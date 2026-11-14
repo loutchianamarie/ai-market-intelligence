@@ -34,6 +34,7 @@ STEPS = [
     ("promotions load + join audit", ["mi.ingest.promotions"], None, False),
     ("train", ["mi.model.train"], None, False),
     ("evaluate model", ["mi.model.evaluate"], None, False),
+    ("model commercial diagnostic + promo ablation", ["mi.model.diagnostic"], None, False),
     ("portfolio+sensitivity", ["mi.decision.report"], None, False),
     ("decision inputs + reversal", ["mi.decision.reversal"], None, False),
     ("claim audit", ["mi.claim_audit"], None, False),

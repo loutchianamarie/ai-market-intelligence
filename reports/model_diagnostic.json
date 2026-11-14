@@ -1,0 +1,301 @@
+{
+  "protocol": "data\\eval\\model_eval_protocol_v2.json",
+  "protocol_status": "PRE-REGISTERED 2026-11-14 before running mi.model.diagnostic. Do not edit after the first run.",
+  "reproduction": {
+    "production_AP_49_recomputed": 0.671737,
+    "production_AP_49_reported": 0.671737,
+    "exact": true
+  },
+  "ablation": {
+    "selection_41": {
+      "production": {
+        "AP_41": 0.6789846102237661,
+        "AP_41_no_recent": 0.2353383145132153
+      },
+      "production_plus_promo": {
+        "AP_41": 0.6788511976440101,
+        "AP_41_no_recent": 0.2355164900275042
+      }
+    },
+    "rolling_45": {
+      "production": 0.6759096558853364,
+      "production_plus_promo": 0.6756657778815096
+    },
+    "gain_41": -0.0001,
+    "gain_rolling_45": -0.0002,
+    "gain_no_recent_41": 0.0002,
+    "adopted": false,
+    "chosen_model": "production",
+    "rule": "Adopt production_plus_promo only if it improves AP by >= 0.005 on window 41 AND on the rolling-origin window 45 AND does not lower AP on the no-recent-history subgroup at 41. Otherwise keep production and report the negative result."
+  },
+  "feature_provenance": {
+    "cat_baskets_4w": {
+      "source": "transactions (+products for category)",
+      "window": "12-week lookback <= cutoff"
+    },
+    "cat_baskets_12w": {
+      "source": "transactions (+products for category)",
+      "window": "12-week lookback <= cutoff"
+    },
+    "cat_weeks_active_12w": {
+      "source": "transactions (+products for category)",
+      "window": "12-week lookback <= cutoff"
+    },
+    "cat_weeks_since_last": {
+      "source": "transactions (+products for category)",
+      "window": "12-week lookback <= cutoff"
+    },
+    "cat_spend_12w": {
+      "source": "transactions (+products for category)",
+      "window": "12-week lookback <= cutoff"
+    },
+    "cat_share_spend_12w": {
+      "source": "transactions (+products for category)",
+      "window": "12-week lookback <= cutoff"
+    },
+    "hh_baskets_4w": {
+      "source": "transactions (+products for category)",
+      "window": "12-week lookback <= cutoff"
+    },
+    "hh_baskets_12w": {
+      "source": "transactions (+products for category)",
+      "window": "12-week lookback <= cutoff"
+    },
+    "hh_weeks_active_12w": {
+      "source": "transactions (+products for category)",
+      "window": "12-week lookback <= cutoff"
+    },
+    "hh_spend_12w": {
+      "source": "transactions (+products for category)",
+      "window": "12-week lookback <= cutoff"
+    },
+    "hh_distinct_cats_12w": {
+      "source": "transactions (+products for category)",
+      "window": "12-week lookback <= cutoff"
+    },
+    "cat_pop_4w": {
+      "source": "transactions (+products for category)",
+      "window": "12-week lookback <= cutoff"
+    },
+    "cat_pop_trend": {
+      "source": "transactions (+products for category)",
+      "window": "12-week lookback <= cutoff"
+    },
+    "hh_coupon_disc_12w": {
+      "source": "transactions.coupon_disc",
+      "window": "12-week lookback"
+    },
+    "hh_redemptions_12w": {
+      "source": "coupon_redemptions",
+      "window": "redemption date <= cutoff date"
+    },
+    "hh_campaigns_started": {
+      "source": "campaigns + campaign_descriptions",
+      "window": "campaign start <= cutoff date (no coupon-pool reconstruction)"
+    },
+    "cat_private_share_12w": {
+      "source": "transactions (+products for category)",
+      "window": "12-week lookback <= cutoff"
+    },
+    "cat_weeks_active_prior14": {
+      "source": "transactions",
+      "window": "14 weeks before the lookback"
+    },
+    "cat_bought_before_lookback": {
+      "source": "transactions",
+      "window": "any week before the lookback"
+    },
+    "history_weeks_available": {
+      "source": "calendar",
+      "window": "weeks of data before the lookback (time index)"
+    },
+    "hh_cat_promo_share_12w": {
+      "source": "transactions x promotions (covered stores)",
+      "window": "12-week lookback <= cutoff"
+    },
+    "cat_promo_index_4w": {
+      "source": "promotions",
+      "window": "weeks cutoff-3..cutoff vs weeks 1..cutoff"
+    }
+  },
+  "excluded_by_design": "promotion placement in weeks AFTER the cutoff (it may be scheduled in advance at a real retailer, but the data do not show when it was known), and any coupon-pool exposure reconstruction",
+  "commercial_reach_49": {
+    "note": "window 49 is REPEATED evaluation; purchases found are buyers identified, not persuaded",
+    "by_capacity": [
+      {
+        "contacts": 100,
+        "purchases_found_model": 96,
+        "purchases_found_rule": 97,
+        "gain_over_rule": -1,
+        "gain_95ci": [
+          -5.0,
+          2.0
+        ],
+        "precision_model": 0.96,
+        "precision_rule": 0.97,
+        "unique_households_model": 84,
+        "unique_households_rule": 87
+      },
+      {
+        "contacts": 1000,
+        "purchases_found_model": 873,
+        "purchases_found_rule": 851,
+        "gain_over_rule": 22,
+        "gain_95ci": [
+          0.0,
+          35.0
+        ],
+        "precision_model": 0.873,
+        "precision_rule": 0.851,
+        "unique_households_model": 530,
+        "unique_households_rule": 551
+      },
+      {
+        "contacts": 2000,
+        "purchases_found_model": 1594,
+        "purchases_found_rule": 1544,
+        "gain_over_rule": 50,
+        "gain_95ci": [
+          26.475,
+          79.0
+        ],
+        "precision_model": 0.797,
+        "precision_rule": 0.772,
+        "unique_households_model": 835,
+        "unique_households_rule": 897
+      }
+    ],
+    "per_category_at_100": [
+      {
+        "category": "BAG SNACKS",
+        "eligible": 2310,
+        "buyers": 998,
+        "found_in_100_model": 97,
+        "found_in_100_rule": 94
+      },
+      {
+        "category": "COFFEE",
+        "eligible": 2310,
+        "buyers": 389,
+        "found_in_100_model": 86,
+        "found_in_100_rule": 77
+      },
+      {
+        "category": "COLD CEREAL",
+        "eligible": 2310,
+        "buyers": 685,
+        "found_in_100_model": 87,
+        "found_in_100_rule": 90
+      },
+      {
+        "category": "FROZEN PIZZA",
+        "eligible": 2310,
+        "buyers": 659,
+        "found_in_100_model": 91,
+        "found_in_100_rule": 83
+      },
+      {
+        "category": "ICE CREAM/MILK/SHERBTS",
+        "eligible": 2310,
+        "buyers": 554,
+        "found_in_100_model": 77,
+        "found_in_100_rule": 75
+      },
+      {
+        "category": "REFRGRATD JUICES/DRNKS",
+        "eligible": 2310,
+        "buyers": 651,
+        "found_in_100_model": 95,
+        "found_in_100_rule": 93
+      },
+      {
+        "category": "SOUP",
+        "eligible": 2310,
+        "buyers": 769,
+        "found_in_100_model": 85,
+        "found_in_100_rule": 85
+      },
+      {
+        "category": "YOGURT",
+        "eligible": 2310,
+        "buyers": 377,
+        "found_in_100_model": 87,
+        "found_in_100_rule": 87
+      }
+    ]
+  },
+  "subgroups_49": [
+    {
+      "group": "new_to_category",
+      "rows": 5023,
+      "households": 1731,
+      "buyers": 280,
+      "prevalence": 0.0557,
+      "AP_model": 0.1235,
+      "AP_rule": 0.0557,
+      "AP_diff_95ci": [
+        0.0493,
+        0.1032
+      ]
+    },
+    {
+      "group": "lapsing",
+      "rows": 3226,
+      "households": 1584,
+      "buyers": 966,
+      "prevalence": 0.2994,
+      "AP_model": 0.4245,
+      "AP_rule": 0.3533,
+      "AP_diff_95ci": [
+        0.043,
+        0.0987
+      ]
+    },
+    {
+      "group": "active",
+      "rows": 5619,
+      "households": 1682,
+      "buyers": 3112,
+      "prevalence": 0.5538,
+      "AP_model": 0.7914,
+      "AP_rule": 0.7637,
+      "AP_diff_95ci": [
+        0.0214,
+        0.0341
+      ]
+    },
+    {
+      "group": "no_recent_history",
+      "rows": 9635,
+      "households": 2198,
+      "buyers": 1004,
+      "prevalence": 0.1042,
+      "AP_model": 0.2232,
+      "AP_rule": 0.1042,
+      "AP_diff_95ci": [
+        0.1015,
+        0.1457
+      ]
+    }
+  ],
+  "by_month": {
+    "41": {
+      "AP_model": 0.679,
+      "AP_rule": 0.628,
+      "prevalence": 0.2788
+    },
+    "45": {
+      "AP_model": 0.6745,
+      "AP_rule": 0.6217,
+      "prevalence": 0.2751
+    },
+    "49": {
+      "AP_model": 0.6717,
+      "AP_rule": 0.621,
+      "prevalence": 0.275
+    }
+  },
+  "label_horizon_weeks": 4,
+  "interpretation": "Purchases reached are buyers identified, NOT buyers persuaded by contact; no model score is coupon uplift.",
+  "seconds": 74.2
+}
