@@ -1,0 +1,21 @@
+{
+  "status": "PRE-REGISTERED 2026-11-14 before running mi.model.diagnostic. Do not edit after the first run.",
+  "question": "Does past-observed promotion context improve decision-relevant ranking over the production model, and how much commercial reach does the production model add over the recency rule at fixed contact capacities?",
+  "candidates": {
+    "rule_repeat": "recency/frequency rule (baseline)",
+    "rule_popularity": "category popularity (baseline)",
+    "production": "hgb_small + long-history features (adopted under protocol v1)",
+    "production_plus_promo": "production + 2 promotion-context features computed from weeks <= cutoff only: hh_cat_promo_share_12w (share of the household's category purchase weeks in the 12-week lookback in which a purchased line was on display or in the mailer, covered stores only) and cat_promo_index_4w (category's promoted product-store rows in the last 4 weeks relative to its own weekly mean up to the cutoff)"
+  },
+  "excluded_by_design": "promotion placement in weeks AFTER the cutoff (it may be scheduled in advance at a real retailer, but the data do not show when it was known), and any coupon-pool exposure reconstruction",
+  "splits": "same as v1: train 13-37, select 41, calibrate 45, report 49 as REPEATED evaluation; rolling-origin refits for 41/45/49",
+  "adoption_rule": "Adopt production_plus_promo only if it improves AP by >= 0.005 on window 41 AND on the rolling-origin window 45 AND does not lower AP on the no-recent-history subgroup at 41. Otherwise keep production and report the negative result.",
+  "commercial_metrics": {
+    "capacities_rows": [100, 1000, 2000],
+    "definition": "on window 49 (repeated), contact the top-k household x category rows by score; report future category purchases reached (true positives), the gain over the recency rule at the same k, and unique households contacted; also per category at 100 contacts",
+    "uncertainty": "household-cluster bootstrap, 300 draws, for the gain at each capacity",
+    "subgroups": "new_to_category (no category purchase ever before the cutoff), lapsing, active (REGULAR + RECENT_LIGHT), no_recent_history (LOW_ACTIVITY + ACTIVE_NONBUYER); counts reported, CIs only with >= 100 positives",
+    "by_month": "AP model vs rule at cutoffs 41, 45, 49 (Oct, Nov, Dec 2017)"
+  },
+  "interpretation_rule": "Purchases reached are buyers identified, NOT buyers persuaded by contact; no model score is coupon uplift."
+}
