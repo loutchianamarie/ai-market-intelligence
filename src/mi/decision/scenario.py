@@ -85,6 +85,15 @@ def assumptions_from_config(cfg: dict, case: str = "base", overrides: dict | Non
     return a
 
 
+def face_value(cfg: dict, observed_face_by_cat: dict, category: str) -> float:
+    """Offer face value per redemption: a CLIENT-CONFIRMED number if supplied, else the OBSERVED historical mean."""
+    spec = cfg.get("scenario", {}).get("coupon_face_value", {})
+    v = spec.get("value")
+    if isinstance(v, (int, float)) and not isinstance(v, bool):
+        return float(v)
+    return float(observed_face_by_cat.get(category) or spec.get("fallback", 1.0))
+
+
 def household_value(q0, dq, g, face, contact, redemption):
     """Vectorised expected net value per contacted household (USD)."""
     q0 = np.asarray(q0, dtype=float)

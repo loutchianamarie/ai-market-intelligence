@@ -5,7 +5,7 @@
 **Decision:** where should a retailer put its next limited CRM budget (product category × existing-household segment × channel), and is any test worth funding before expanding?
 **Data:** the authentic 84.51° Complete Journey tables (2,469 households, 1.47M transaction lines, 2017; CC0, via the R package maintainers). See `docs/dataset_decision.md` for why H&M was not used.
 **Manager summary:** `docs/decision_card.md` · opportunity cards `docs/opportunity_cards.md` · data dictionary `docs/data_dictionary.md`.
-**Current recommendation:** no rollout and no funded test at base assumptions; $0 research first (`docs/decision_brief.md`). Live dossier: `OPP-9DA359C3`. The advisor recommends REJECT FUNDING (DEFER), and a named person decides.
+**Current recommendation:** no rollout and no funded test at base assumptions; $0 research first (`docs/decision_brief.md`). Advisor status: DEFER FUNDING / NO SPEND WHILE TERMS ARE UNCONFIRMED (base case: retailer-funded); live dossier in `NEXT_DAY_STATUS.md`, and a named person decides.
 
 ## Quick start (Windows, Python 3.12)
 ```

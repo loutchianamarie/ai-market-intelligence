@@ -1,5 +1,5 @@
 {
-  "started_at": "2026-11-14T15:43:02+00:00",
+  "started_at": "2026-11-14T16:13:40+00:00",
   "versions": {
     "python": "3.12.10",
     "platform": "Windows-11-10.0.26300-SP0",
@@ -12,18 +12,30 @@
     "anthropic": "2.8.0"
   },
   "git": {
-    "commit": "065a8331435b25df96cc0d43ce39a069dab89472",
+    "commit": "8f3d1c504b3dde81c70b4040e0b5aec958af7101",
     "dirty_tracked_files": [
-      "data/sources/corpus.jsonl",
-      "docs/technical_sources.md",
+      ".gitignore",
+      "README.md",
+      "app/streamlit_app.py",
+      "configs/policy.json",
+      "docs/agents.md",
+      "docs/decision_brief.md",
+      "docs/technical_model_status.md",
       "reports/agent_trace_latest.json",
-      "reports/blocked_demo.json",
-      "reports/claim_audit.json",
-      "reports/data_verification.json",
-      "reports/model_evaluation.json",
-      "reports/model_report.json",
-      "reports/run_manifest.json",
-      "src/mi/cli.py"
+      "src/mi/agents/coordinator.py",
+      "src/mi/agents/tools.py",
+      "src/mi/claim_audit.py",
+      "src/mi/claims_export.py",
+      "src/mi/cli.py",
+      "src/mi/config.py",
+      "src/mi/decision/opportunities.py",
+      "src/mi/decision/optimizer.py",
+      "src/mi/decision/report.py",
+      "src/mi/decision/reversal.py",
+      "src/mi/decision/scenario.py",
+      "src/mi/ingest/accounting.py",
+      "src/mi/outcome/learning.py",
+      "tests/test_technical.py"
     ]
   },
   "data_lock_sha16": "29655981c5dafa28",
@@ -36,28 +48,28 @@
     {
       "step": "verify data",
       "rc": 0,
-      "seconds": 3.2,
+      "seconds": 3.1,
       "log": "reports\\run_logs\\02_verify_data.log",
       "status": "ok"
     },
     {
       "step": "audit",
       "rc": 0,
-      "seconds": 7.2,
+      "seconds": 7.6,
       "log": "reports\\run_logs\\03_audit.log",
       "status": "ok"
     },
     {
       "step": "accounting audit + data dictionary",
       "rc": 0,
-      "seconds": 4.3,
+      "seconds": 4.4,
       "log": "reports\\run_logs\\04_accounting_audit_data_dictionary.log",
       "status": "ok"
     },
     {
       "step": "promotions load + join audit",
       "rc": 0,
-      "seconds": 64.5,
+      "seconds": 65.5,
       "log": "reports\\run_logs\\05_promotions_load_join_audit.log",
       "status": "ok"
     },
@@ -71,110 +83,138 @@
     {
       "step": "evaluate model",
       "rc": 0,
-      "seconds": 68.8,
+      "seconds": 67.3,
       "log": "reports\\run_logs\\07_evaluate_model.log",
       "status": "ok"
     },
     {
       "step": "model commercial diagnostic + promo ablation",
       "rc": 0,
-      "seconds": 80.9,
+      "seconds": 82.2,
       "log": "reports\\run_logs\\08_model_commercial_diagnostic_promo_ablation.log",
       "status": "ok"
     },
     {
       "step": "portfolio+sensitivity",
       "rc": 0,
-      "seconds": 31.5,
+      "seconds": 31.8,
       "log": "reports\\run_logs\\09_portfolio_sensitivity.log",
       "status": "ok"
     },
     {
       "step": "decision inputs + reversal",
       "rc": 0,
-      "seconds": 75.9,
+      "seconds": 15.1,
       "log": "reports\\run_logs\\10_decision_inputs_reversal.log",
+      "status": "ok"
+    },
+    {
+      "step": "claim audit",
+      "rc": 0,
+      "seconds": 28.1,
+      "log": "reports\\run_logs\\11_claim_audit.log",
+      "status": "ok"
+    },
+    {
+      "step": "funding audit (historical coupon lines)",
+      "rc": 0,
+      "seconds": 7.5,
+      "log": "reports\\run_logs\\12_funding_audit_historical_coupon_lines.log",
+      "status": "ok"
+    },
+    {
+      "step": "funding contracts (same plan) + reversal grid",
+      "rc": 0,
+      "seconds": 95.9,
+      "log": "reports\\run_logs\\13_funding_contracts_same_plan_reversal_grid.log",
+      "status": "ok"
+    },
+    {
+      "step": "category trend robustness (Yogurt)",
+      "rc": 0,
+      "seconds": 42.5,
+      "log": "reports\\run_logs\\14_category_trend_robustness_yogurt.log",
       "status": "ok"
     },
     {
       "step": "opportunity cards",
       "rc": 0,
       "seconds": 15.6,
-      "log": "reports\\run_logs\\11_opportunity_cards.log",
+      "log": "reports\\run_logs\\15_opportunity_cards.log",
       "status": "ok"
     },
     {
-      "step": "claim audit",
+      "step": "client inputs check (form answers)",
       "rc": 0,
-      "seconds": 28.2,
-      "log": "reports\\run_logs\\12_claim_audit.log",
+      "seconds": 0.2,
+      "log": "reports\\run_logs\\16_client_inputs_check_form_answers.log",
       "status": "ok"
     },
     {
       "step": "rag eval",
       "rc": 0,
       "seconds": 0.4,
-      "log": "reports\\run_logs\\13_rag_eval.log",
+      "log": "reports\\run_logs\\17_rag_eval.log",
       "status": "ok"
     },
     {
       "step": "geo check",
       "rc": 0,
       "seconds": 0.2,
-      "log": "reports\\run_logs\\14_geo_check.log",
+      "log": "reports\\run_logs\\18_geo_check.log",
       "status": "ok"
     },
     {
       "step": "geo analysis",
       "rc": 0,
       "seconds": 0.2,
-      "log": "reports\\run_logs\\15_geo_analysis.log",
+      "log": "reports\\run_logs\\19_geo_analysis.log",
       "status": "ok"
     },
     {
       "step": "interview intake check",
       "rc": 0,
       "seconds": 0.2,
-      "log": "reports\\run_logs\\16_interview_intake_check.log",
+      "log": "reports\\run_logs\\20_interview_intake_check.log",
       "status": "ok"
     },
     {
       "step": "fashionforward fixture",
       "rc": 0,
       "seconds": 2.0,
-      "log": "reports\\run_logs\\17_fashionforward_fixture.log",
+      "log": "reports\\run_logs\\21_fashionforward_fixture.log",
       "status": "ok"
     },
     {
       "step": "hillstrom experiment (separate track)",
       "rc": 0,
-      "seconds": 81.4,
-      "log": "reports\\run_logs\\18_hillstrom_experiment_separate_track.log",
+      "seconds": 81.3,
+      "log": "reports\\run_logs\\22_hillstrom_experiment_separate_track.log",
       "status": "ok"
     },
     {
       "step": "blocked demo",
       "rc": 0,
-      "seconds": 1.9,
-      "log": "reports\\run_logs\\19_blocked_demo.log",
+      "seconds": 2.0,
+      "log": "reports\\run_logs\\23_blocked_demo.log",
       "status": "ok"
     },
     {
       "step": "agents to human checkpoint",
       "rc": 0,
-      "seconds": 3.1,
-      "log": "reports\\run_logs\\20_agents_to_human_checkpoint.log",
+      "seconds": 3.2,
+      "log": "reports\\run_logs\\24_agents_to_human_checkpoint.log",
       "status": "ok"
     },
     {
       "step": "current claims + decision card",
       "rc": 0,
-      "seconds": 0.4,
-      "log": "reports\\run_logs\\21_current_claims_decision_card.log"
+      "seconds": 0.5,
+      "log": "reports\\run_logs\\25_current_claims_decision_card.log"
     }
   ],
-  "dossier": "OPP-5A2E65C8",
-  "finished_at": "2026-11-14T15:51:28+00:00",
-  "seconds_total": 506.0,
+  "dossier": "OPP-0CB758BD",
+  "finished_at": "2026-11-14T16:23:33+00:00",
+  "seconds_total": 592.5,
   "ok": true
 }

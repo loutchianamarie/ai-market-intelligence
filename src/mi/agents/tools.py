@@ -6,6 +6,8 @@ approval exists only in the human path (DossierStore.approve with role "approver
 """
 from __future__ import annotations
 
+from mi.decision.scenario import face_value  # noqa: E402
+
 import hashlib
 import json
 from datetime import datetime, timezone
@@ -216,7 +218,7 @@ class Toolbox:
         st = e["test_window_category_segment_stats"][f"{category}|{segment}"]
         q0 = float(self.scores[(self.scores.product_category == category) & (self.scores.segment == segment)].p_used.mean())
         g = e["mean_4w_category_spend_among_buyers_test"][category] * a.margin_rate
-        F = e["mean_coupon_disc_per_couponed_line"][category] * a.face_share(category)   # retailer-paid share (ASSUMED funding)
+        F = face_value(self.cfg, e["mean_coupon_disc_per_couponed_line"], category) * a.face_share(category)   # retailer-paid share (ASSUMED funding)
         sigma = a.margin_rate * st["spend_sd"]
         d = pilot_design(q0, g, F, a.contact_cost[channel], a.redemption_share, sigma, a.dq(segment))
         key = str(float(uplift_multiple_for_sizing))
@@ -247,6 +249,14 @@ class Toolbox:
         dv.update({"plan": f"{category}|{segment}|{channel}", "status": "SIMULATION; COMPANY SCALE ASSUMED; same plan as the test"})
         d["decision_value"] = dv
         d["candidate_choice"] = self._candidate_choice(category, segment, channel)
+        fc = _read_json("funding_contracts.json")
+        if fc and fc.get("plan", "").startswith(f"{category}|{segment}|{channel}"):
+            d["funding_contracts"] = {k: {"retailer_share_of_face": v["retailer_share_of_face"],
+                                          "contribution_per_contacted_hh": v["contribution_per_contacted_hh_at_assumed_uplift"],
+                                          "break_even_uplift_pp": v["break_even_uplift_pp"],
+                                          "pool_needed_to_cover_setup": v["reachable_pool_needed_to_cover_setup_at_assumed_uplift"],
+                                          "recommendation": fc["rankings"][k]["recommendation"]}
+                                      for k, v in fc["contracts"].items()}
         return _ok("pilot_design", d, status="DESIGN under labelled assumptions; FUTURE EXPERIMENT")
 
     @staticmethod
@@ -292,7 +302,7 @@ class Toolbox:
         a = assumptions_from_config(self.cfg, "base")
         rep = _read_json("model_report.json")["economics_inputs_observed"]
         cat, seg, ch = pilot["audience"]["category"], pilot["audience"]["segment"], pilot["channel"]
-        face = rep["mean_coupon_disc_per_couponed_line"][cat] * a.face_share(cat)
+        face = face_value(self.cfg, rep["mean_coupon_disc_per_couponed_line"], cat) * a.face_share(cat)
         q0 = float(self.scores[(self.scores.product_category == cat) & (self.scores.segment == seg)].p_used.mean())
         n_t = int(pilot["design"]["n_per_arm"])
         per_hh = a.contact_cost[ch] + float(coupon_cost(q0, a.dq(seg), face, a.redemption_share))

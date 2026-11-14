@@ -2,7 +2,7 @@
 
 **Status:** SIMULATION — conditional on ASSUMED uplift, margin, redemption, contact cost, reach and scale; q0 is a MODEL ESTIMATE
 
-Config `503853f3972f8ab2` · model run `run-331890829f` · 74 candidate plans · 159 feasible portfolios enumerated exactly among top-12 candidates.
+Config `ec713bb7839f1b07` · model run `run-d4d8b1e0b4` · 74 candidate plans · 159 feasible portfolios enumerated exactly among top-12 candidates.
 
 - **Recommended (base case):** NONE: research / measure first
 - **Recommended (worst case / robust):** NONE: research / measure first

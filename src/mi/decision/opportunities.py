@@ -150,7 +150,8 @@ def cards(facts, xs, coh, promo, port, dev) -> list[dict]:
               "segment": {"buyers_H1": declining["buyers_H1"], "buyers_H2": declining["buyers_H2"], "reachability": "assortment/stock review; no contact needed"},
               "observed": [f"buyers {declining['buyer_change_H2_vs_H1']:+.1%} H2 vs H1 while most categories grew",
                            f"return to category {declining['return_to_category_H1_to_H2']:.0%}; private label {declining['private_label_sales_share_H1']:.0%}→{declining['private_label_sales_share_H2']:.0%} (stable)"],
-              "counterevidence": ["seasonality cannot be separated with one year of data", "no stock, price-list or competitor data"],
+              "counterevidence": ["seasonality cannot be separated with one year of data", "no stock, price-list or competitor data"]
+                                 + _trend_checks(declining["category"]),
               "hypothesized_need": "availability / assortment fit (HYPOTHESIS: could equally be seasonal)",
               "positioning": "n/a until the barrier is known",
               "four_ps": {"Product": "assortment review", "Price": "check price moves (no price list in data)", "Place": "stock-out / shelf check", "Promotion": "none until diagnosed"},
@@ -171,6 +172,24 @@ def cards(facts, xs, coh, promo, port, dev) -> list[dict]:
               "observed": ["no modelled coupon plan beats doing nothing at base assumptions"], "evidence_level": "decision rule",
               "recommendation": "default until a card's discriminating evidence arrives"})
     return C
+
+
+def _trend_checks(category) -> list[str]:
+    """Robustness facts from mi.decision.trend_check (equal windows, attrition, coverage, promotions)."""
+    p = REPORTS / f"trend_check_{category.lower().replace('/', '_').replace(' ', '_')}.json"
+    if not p.exists():
+        return ["robustness check not run (python -m mi.decision.trend_check)"]
+    t = json.loads(p.read_text())
+    me = next(r for r in t["equal_windows_all_categories"] if r["category"] == category)
+    c, cp = t["composition"], t.get("coverage_and_promotions", {})
+    out = [f"robustness: on equal 25-week windows buyers change {me['change']:+.1%} (buyer rate {me['buyer_rate_A']:.1%} -> {me['buyer_rate_B']:.1%} of active households)",
+           f"not panel attrition: {c['lost_still_shopping_in_B']} of {c['lost']} lost buyers still shop in the later window; active households {c['active_households_A']:,} -> {c['active_households_B']:,}"]
+    if isinstance(cp, dict):
+        out.append(f"not a promotion or coverage change: promoted product-store rows/week {cp['promoted_product_store_rows_per_week_A']:,} -> {cp['promoted_product_store_rows_per_week_B']:,}; "
+                   f"sales share on promotion {cp['A']['sales_share_on_promotion_covered']:.1%} -> {cp['B']['sales_share_on_promotion_covered']:.1%}; "
+                   f"lines in covered stores {cp['A']['lines_in_covered_stores']:.1%} -> {cp['B']['lines_in_covered_stores']:.1%}")
+    out.append("verdict: a SIGNAL for an operations check, not a diagnosed cause")
+    return out
 
 
 def strategy_comparison(cards_) -> list[dict]:

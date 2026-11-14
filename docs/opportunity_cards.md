@@ -56,7 +56,7 @@ OBSERVED behaviour (2017 panel) + labelled hypotheses; no ROI is claimed for non
 - **Strategy class:** product / place investigation (non-discount) · **Evidence level:** OBSERVED trend; cause UNKNOWN
 - **Segment / reach:** {'buyers_H1': 1196, 'buyers_H2': 1136, 'reachability': 'assortment/stock review; no contact needed'}
 - **Observed:** buyers -5.0% H2 vs H1 while most categories grew; return to category 70%; private label 22%→22% (stable)
-- **Counterevidence:** seasonality cannot be separated with one year of data; no stock, price-list or competitor data
+- **Counterevidence:** seasonality cannot be separated with one year of data; no stock, price-list or competitor data; robustness: on equal 25-week windows buyers change -7.0% (buyer rate 49.9% -> 46.1% of active households); not panel attrition: 353 of 368 lost buyers still shop in the later window; active households 2,391 -> 2,410; not a promotion or coverage change: promoted product-store rows/week 9,757.3 -> 9,718.1; sales share on promotion 19.2% -> 21.1%; lines in covered stores 98.2% -> 99.0%; verdict: a SIGNAL for an operations check, not a diagnosed cause
 - **Evidence that would decide:** operations: stock-out and assortment changes in H2; interviews with lapsed buyers; second year of data for seasonality
 - **Hypothesized need:** availability / assortment fit (HYPOTHESIS: could equally be seasonal)
 - **Positioning (to test):** n/a until the barrier is known

@@ -1,0 +1,332 @@
+{
+  "definitions": "Audit of the historical coupon-funding figures (retailer match vs manufacturer coupon value).\n\nDefinitions (maintainer guide): coupon_disc = manufacturer coupon discount; coupon_match_disc = retailer's match.\nFigures reported, each with numerator, denominator, weighting, filters and n:\n  * value-weighted match share  = sum(coupon_match_disc) / sum(coupon_disc) over couponed lines (coupon_disc > 0)\n  * line-weighted match share   = mean over couponed lines of coupon_match_disc / coupon_disc\n  * match incidence             = share of couponed lines with any retailer match\nCampaign-linked lines: transactions carry no coupon code, so a redemption is linked to a line only when the same\nhousehold bought, on the redemption date, a product eligible for that coupon_upc, with coupon_disc > 0.\nThese describe HISTORICAL coupon lines. The funding of a NEW digital offer is not observed anywhere in the data.",
+  "all_couponed_lines": {
+    "couponed_lines": 21889,
+    "households": 1559,
+    "sum_manufacturer_coupon_usd": 26359.9,
+    "sum_retailer_match_usd": 4542.65,
+    "value_weighted_match_share": 0.1723,
+    "value_weighted_ci95_line_bootstrap": [
+      0.1674,
+      0.1766
+    ],
+    "line_weighted_mean_match_ratio": 0.3987,
+    "match_incidence_lines": 0.4706,
+    "match_ratio_when_matched_median": 1.0
+  },
+  "campaign_linked_lines": {
+    "couponed_lines": 1026,
+    "households": 289,
+    "sum_manufacturer_coupon_usd": 993.0,
+    "sum_retailer_match_usd": 154.41,
+    "value_weighted_match_share": 0.1555,
+    "value_weighted_ci95_line_bootstrap": [
+      0.1379,
+      0.1722
+    ],
+    "line_weighted_mean_match_ratio": 0.2803,
+    "match_incidence_lines": 0.3343,
+    "match_ratio_when_matched_median": 1.0
+  },
+  "not_campaign_linked_lines": {
+    "couponed_lines": 20863,
+    "households": 1554,
+    "sum_manufacturer_coupon_usd": 25366.9,
+    "sum_retailer_match_usd": 4388.24,
+    "value_weighted_match_share": 0.173,
+    "value_weighted_ci95_line_bootstrap": [
+      0.168,
+      0.1777
+    ],
+    "line_weighted_mean_match_ratio": 0.4045,
+    "match_incidence_lines": 0.4773,
+    "match_ratio_when_matched_median": 1.0
+  },
+  "redemption_linkage": {
+    "campaign_redemptions": 2102,
+    "redemptions_linked_to_a_line": 1367,
+    "linkage_rate": 0.6503,
+    "rule": "same household + same calendar date + product eligible for that coupon_upc + coupon_disc > 0"
+  },
+  "by_category_all_couponed": {
+    "BAG SNACKS": {
+      "couponed_lines": 294,
+      "households": 160,
+      "sum_manufacturer_coupon_usd": 331.0,
+      "sum_retailer_match_usd": 52.1,
+      "value_weighted_match_share": 0.1574,
+      "value_weighted_ci95_line_bootstrap": [
+        0.1253,
+        0.1934
+      ],
+      "line_weighted_mean_match_ratio": 0.3693,
+      "match_incidence_lines": 0.4388,
+      "match_ratio_when_matched_median": 0.8182
+    },
+    "COFFEE": {
+      "couponed_lines": 154,
+      "households": 86,
+      "sum_manufacturer_coupon_usd": 118.61,
+      "sum_retailer_match_usd": 35.8,
+      "value_weighted_match_share": 0.3018,
+      "value_weighted_ci95_line_bootstrap": [
+        0.2287,
+        0.3874
+      ],
+      "line_weighted_mean_match_ratio": 0.6114,
+      "match_incidence_lines": 0.6688,
+      "match_ratio_when_matched_median": 1.0
+    },
+    "COLD CEREAL": {
+      "couponed_lines": 513,
+      "households": 239,
+      "sum_manufacturer_coupon_usd": 497.15,
+      "sum_retailer_match_usd": 54.4,
+      "value_weighted_match_share": 0.1094,
+      "value_weighted_ci95_line_bootstrap": [
+        0.0929,
+        0.1265
+      ],
+      "line_weighted_mean_match_ratio": 0.1595,
+      "match_incidence_lines": 0.3099,
+      "match_ratio_when_matched_median": 0.4286
+    },
+    "FROZEN PIZZA": {
+      "couponed_lines": 543,
+      "households": 240,
+      "sum_manufacturer_coupon_usd": 491.21,
+      "sum_retailer_match_usd": 172.19,
+      "value_weighted_match_share": 0.3505,
+      "value_weighted_ci95_line_bootstrap": [
+        0.311,
+        0.3972
+      ],
+      "line_weighted_mean_match_ratio": 0.4972,
+      "match_incidence_lines": 0.6777,
+      "match_ratio_when_matched_median": 1.0
+    },
+    "ICE CREAM/MILK/SHERBTS": {
+      "couponed_lines": 184,
+      "households": 120,
+      "sum_manufacturer_coupon_usd": 241.97,
+      "sum_retailer_match_usd": 16.15,
+      "value_weighted_match_share": 0.0667,
+      "value_weighted_ci95_line_bootstrap": [
+        0.0476,
+        0.0892
+      ],
+      "line_weighted_mean_match_ratio": 0.1453,
+      "match_incidence_lines": 0.2609,
+      "match_ratio_when_matched_median": 0.3333
+    },
+    "REFRGRATD JUICES/DRNKS": {
+      "couponed_lines": 121,
+      "households": 74,
+      "sum_manufacturer_coupon_usd": 108.11,
+      "sum_retailer_match_usd": 25.9,
+      "value_weighted_match_share": 0.2396,
+      "value_weighted_ci95_line_bootstrap": [
+        0.1836,
+        0.3097
+      ],
+      "line_weighted_mean_match_ratio": 0.3849,
+      "match_incidence_lines": 0.5372,
+      "match_ratio_when_matched_median": 0.8182
+    },
+    "SOUP": {
+      "couponed_lines": 438,
+      "households": 190,
+      "sum_manufacturer_coupon_usd": 279.67,
+      "sum_retailer_match_usd": 185.45,
+      "value_weighted_match_share": 0.6631,
+      "value_weighted_ci95_line_bootstrap": [
+        0.6108,
+        0.717
+      ],
+      "line_weighted_mean_match_ratio": 0.8043,
+      "match_incidence_lines": 0.8699,
+      "match_ratio_when_matched_median": 1.0
+    },
+    "YOGURT": {
+      "couponed_lines": 459,
+      "households": 181,
+      "sum_manufacturer_coupon_usd": 399.58,
+      "sum_retailer_match_usd": 106.0,
+      "value_weighted_match_share": 0.2653,
+      "value_weighted_ci95_line_bootstrap": [
+        0.2282,
+        0.3049
+      ],
+      "line_weighted_mean_match_ratio": 0.4471,
+      "match_incidence_lines": 0.5272,
+      "match_ratio_when_matched_median": 1.0
+    }
+  },
+  "by_category_campaign_linked": {
+    "BAG SNACKS": {
+      "couponed_lines": 10,
+      "households": 10,
+      "sum_manufacturer_coupon_usd": 12.0,
+      "sum_retailer_match_usd": 0.0,
+      "value_weighted_match_share": 0.0,
+      "value_weighted_ci95_line_bootstrap": [
+        0.0,
+        0.0
+      ],
+      "line_weighted_mean_match_ratio": 0.0,
+      "match_incidence_lines": 0.0,
+      "match_ratio_when_matched_median": null
+    },
+    "COFFEE": {
+      "couponed_lines": 4,
+      "households": 4,
+      "sum_manufacturer_coupon_usd": 4.25,
+      "sum_retailer_match_usd": 0.0,
+      "value_weighted_match_share": 0.0,
+      "value_weighted_ci95_line_bootstrap": [
+        0.0,
+        0.0
+      ],
+      "line_weighted_mean_match_ratio": 0.0,
+      "match_incidence_lines": 0.0,
+      "match_ratio_when_matched_median": null
+    },
+    "COLD CEREAL": {
+      "couponed_lines": 60,
+      "households": 40,
+      "sum_manufacturer_coupon_usd": 58.9,
+      "sum_retailer_match_usd": 1.1,
+      "value_weighted_match_share": 0.0187,
+      "value_weighted_ci95_line_bootstrap": [
+        0.0,
+        0.0435
+      ],
+      "line_weighted_mean_match_ratio": 0.031,
+      "match_incidence_lines": 0.05,
+      "match_ratio_when_matched_median": 0.4286
+    },
+    "FROZEN PIZZA": {
+      "couponed_lines": 37,
+      "households": 32,
+      "sum_manufacturer_coupon_usd": 34.45,
+      "sum_retailer_match_usd": 8.75,
+      "value_weighted_match_share": 0.254,
+      "value_weighted_ci95_line_bootstrap": [
+        0.152,
+        0.3815
+      ],
+      "line_weighted_mean_match_ratio": 0.4074,
+      "match_incidence_lines": 0.5135,
+      "match_ratio_when_matched_median": 0.8182
+    },
+    "ICE CREAM/MILK/SHERBTS": {
+      "couponed_lines": 68,
+      "households": 53,
+      "sum_manufacturer_coupon_usd": 70.25,
+      "sum_retailer_match_usd": 1.0,
+      "value_weighted_match_share": 0.0142,
+      "value_weighted_ci95_line_bootstrap": [
+        0.0,
+        0.038
+      ],
+      "line_weighted_mean_match_ratio": 0.0294,
+      "match_incidence_lines": 0.0294,
+      "match_ratio_when_matched_median": 1.0
+    },
+    "REFRGRATD JUICES/DRNKS": {
+      "couponed_lines": 25,
+      "households": 23,
+      "sum_manufacturer_coupon_usd": 22.0,
+      "sum_retailer_match_usd": 4.0,
+      "value_weighted_match_share": 0.1818,
+      "value_weighted_ci95_line_bootstrap": [
+        0.08,
+        0.3158
+      ],
+      "line_weighted_mean_match_ratio": 0.32,
+      "match_incidence_lines": 0.32,
+      "match_ratio_when_matched_median": 1.0
+    },
+    "SOUP": {
+      "couponed_lines": 3,
+      "households": 3,
+      "sum_manufacturer_coupon_usd": 2.3,
+      "sum_retailer_match_usd": 0.8,
+      "value_weighted_match_share": 0.3478,
+      "value_weighted_ci95_line_bootstrap": [
+        0.0,
+        1.0
+      ],
+      "line_weighted_mean_match_ratio": 0.6667,
+      "match_incidence_lines": 0.6667,
+      "match_ratio_when_matched_median": 1.0
+    },
+    "YOGURT": {
+      "couponed_lines": 36,
+      "households": 29,
+      "sum_manufacturer_coupon_usd": 28.5,
+      "sum_retailer_match_usd": 9.75,
+      "value_weighted_match_share": 0.3421,
+      "value_weighted_ci95_line_bootstrap": [
+        0.2019,
+        0.5116
+      ],
+      "line_weighted_mean_match_ratio": 0.5093,
+      "match_incidence_lines": 0.5278,
+      "match_ratio_when_matched_median": 1.0
+    }
+  },
+  "by_campaign_type_linked": {
+    "Type A": {
+      "couponed_lines": 851,
+      "households": 261,
+      "sum_manufacturer_coupon_usd": 813.3,
+      "sum_retailer_match_usd": 121.42,
+      "value_weighted_match_share": 0.1493,
+      "value_weighted_ci95_line_bootstrap": [
+        0.1311,
+        0.1681
+      ],
+      "line_weighted_mean_match_ratio": 0.2689,
+      "match_incidence_lines": 0.3149,
+      "match_ratio_when_matched_median": 1.0
+    },
+    "Type B": {
+      "couponed_lines": 143,
+      "households": 70,
+      "sum_manufacturer_coupon_usd": 156.15,
+      "sum_retailer_match_usd": 22.55,
+      "value_weighted_match_share": 0.1444,
+      "value_weighted_ci95_line_bootstrap": [
+        0.1017,
+        0.193
+      ],
+      "line_weighted_mean_match_ratio": 0.2896,
+      "match_incidence_lines": 0.3497,
+      "match_ratio_when_matched_median": 1.0
+    },
+    "Type C": {
+      "couponed_lines": 32,
+      "households": 21,
+      "sum_manufacturer_coupon_usd": 23.55,
+      "sum_retailer_match_usd": 10.44,
+      "value_weighted_match_share": 0.4433,
+      "value_weighted_ci95_line_bootstrap": [
+        0.304,
+        0.596
+      ],
+      "line_weighted_mean_match_ratio": 0.5428,
+      "match_incidence_lines": 0.7812,
+      "match_ratio_when_matched_median": 0.8182
+    }
+  },
+  "supported_wording": [
+    "Historically, on lines with a manufacturer coupon, the retailer's recorded match equals X% of the manufacturer coupon VALUE (value-weighted; most couponed lines carry no match).",
+    "This is an observed accounting share for past coupon lines, not the funding share of a new retailer digital offer.",
+    "Whether campaign coupons were manufacturer- or retailer-funded is not recorded; coupon_disc is defined as a manufacturer discount."
+  ],
+  "unsupported_wording": [
+    "'the retailer pays 17% of a coupon'",
+    "'manufacturer funding cuts the retailer's cost to 35%' as a fact about OUR offer"
+  ]
+}

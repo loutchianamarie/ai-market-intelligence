@@ -181,7 +181,7 @@
         "unit": "share of coupon face value paid by the retailer",
         "status": "ASSUMED",
         "owner": "category manager + finance",
-        "note": "Base: a retailer-funded digital coupon (1.0). Alternative scenario: manufacturer-funded coupon where the retailer pays only its observed match share per category (reports/accounting_audit.json; Frozen Pizza 0.35). Complete Journey coupon_disc is manufacturer-funded and reimbursed to the retailer."
+        "note": "Base: retailer-funded offer (1.0). Explicit alternative contracts (shared 0.5, manufacturer-funded with a historical-match analogue 0.35, manufacturer-funded no match 0.0) are compared in reports/funding_contracts.json. Historical match shares (reports/funding_audit.json) describe past coupon lines, not this offer; the client confirms the real contract via docs/client_input_form.md."
       }
     }
   },

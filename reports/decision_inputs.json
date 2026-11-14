@@ -1,5 +1,5 @@
 {
-  "model_run_id": "run-331890829f",
+  "model_run_id": "run-d4d8b1e0b4",
   "inputs": [
     {
       "input": "contribution_margin_rate",
@@ -133,7 +133,7 @@
       "input": "q0 (probability of buying in 4 weeks, by household x category)",
       "value": "data/processed/scores_latest.parquet",
       "status": "MODEL ESTIMATE (historical conditions; NOT a no-coupon counterfactual)",
-      "source": "run-331890829f"
+      "source": "run-d4d8b1e0b4"
     },
     {
       "input": "lapsing-cohort turnover per 4-week cycle",

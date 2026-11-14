@@ -54,8 +54,7 @@ def claims() -> list[dict]:
         "pp", "SCENARIO", "reports/claim_audit.json", [16.7, 23.1, 27.0])
     one = {r["input"]: r.get("flip_value") for r in rv.get("one_at_a_time", [])}
     add("reversal.one_at_a_time_flip_uplift_multiple", one.get("uplift_multiplier"), "x assumed uplift", "SCENARIO (one input varied)", "reports/decision_reversal.json")
-    co = rv.get("combinations", {})
-    add("reversal.combinations_flipping", f"{co.get('n_flip')} of {co.get('n_combinations')}", "joint scenarios", "SCENARIO", "reports/decision_reversal.json#combinations")
+    add("reversal.combinations", "see contract.* claims (selected grid cases per funding contract; not probabilities)", "-", "SCENARIO", "reports/funding_contracts.json#reversal_grid")
     add("opportunity.cards", [c["id"] + ": " + c["recommendation"] for c in opp.get("cards", [])], "-", "OBSERVED + HYPOTHESES", "reports/opportunities.json#cards")
     v = hs.get("average_effects", {})
     if v:
@@ -65,35 +64,53 @@ def claims() -> list[dict]:
     add("interviews.completed", 0, "of 2-3", "PENDING", "data/interviews/coding_sheet.csv")
     add("agents.live_llm", "PENDING (no runtime key)", "-", "PENDING", "configs/agents.json")
     add("run.dossier", man.get("dossier"), "-", "OBSERVED", "reports/run_manifest.json")
+    rec = {}
+    if man.get("dossier"):
+        from mi.workflow.store import DossierStore
+        rec = DossierStore().get(man["dossier"]).get("advisor_recommendation") or {}
+    add("advisor.status", rec.get("decision"), "-", "ADVISORY (a named human decides)", f"dossier {man.get('dossier')}#advisor_recommendation")
+    add("advisor.base_case", rec.get("base_case"), "-", "ASSUMPTION", f"dossier {man.get('dossier')}#advisor_recommendation")
+    add("advisor.reopen_if", rec.get("reopen_if"), "-", "CHECKLIST", f"dossier {man.get('dossier')}#advisor_recommendation")
+    fa, fc = _r("funding_audit.json"), _r("funding_contracts.json")
+    if fa:
+        add("funding.historical_match_share_all", fa["all_couponed_lines"]["value_weighted_match_share"], "value-weighted share of manufacturer coupon value",
+            "OBSERVED (past coupon lines; not our offer)", "reports/funding_audit.json#all_couponed_lines")
+        add("funding.historical_match_share_frozen_pizza", fa["by_category_all_couponed"]["FROZEN PIZZA"]["value_weighted_match_share"],
+            "value-weighted; 543 lines", "OBSERVED (past coupon lines; not our offer)", "reports/funding_audit.json#by_category_all_couponed")
+    if fc:
+        for k, v in fc["contracts"].items():
+            add(f"contract.{k}", {"contribution_per_contacted_hh": v["contribution_per_contacted_hh_at_assumed_uplift"],
+                                  "break_even_pp": v["break_even_uplift_pp"], "pool_needed": v["reachable_pool_needed_to_cover_setup_at_assumed_uplift"],
+                                  "recommendation": fc["rankings"][k]["recommendation"],
+                                  "selected_reversing_cases": f"{fc['reversal_grid']['by_contract'][k]['cases_reversing_NONE']} of {fc['reversal_grid']['by_contract'][k]['selected_cases']} (not a probability)"},
+                "-", "SCENARIO (contract ASSUMED)", "reports/funding_contracts.json")
     return C
 
 
 def card(C) -> str:
     v = {c["id"]: c["value"] for c in C}
+    con = {k[len("contract."):]: x for k, x in v.items() if k.startswith("contract.")}
     L = ["# Decision card: next CRM / category budget", "",
-         f"**Recommendation now:** {v['decision.recommendation']} (no rollout, no funded coupon test).",
-         f"Live dossier `{v['run.dossier']}`; a named person still has to reject or approve in app tab 4.", "",
+         f"**Advisor status:** {v.get('advisor.status')}. **Base case:** {v.get('advisor.base_case')}.",
+         f"**Recommendation now:** {v['decision.recommendation']}: no rollout, no funded coupon test, no spend or send. "
+         f"Live dossier `{v['run.dossier']}`; a named person still has to decide in app tab 4.", "",
          "## Why",
-         f"- Every modelled coupon plan loses money at the stated assumptions (best: {v.get('decision.rank2', {}).get('plan')} {v.get('decision.rank2', {}).get('net_base'):+,.0f} USD per 4-week cycle at an assumed scale).",
-         f"- A better purchase model does not rescue a negative incremental contribution. AP is {v['model.AP']} vs the rule's {v['model.AP_rule']}, and at 1,000 contacts the model finds {v['model.reach_gain_1000_contacts']:+d} more future buyers than recency; these are buyers *identified*, not persuaded.",
-         f"- Varying one input at a time, only true response ≥ {v['reversal.one_at_a_time_flip_uplift_multiple']:.2f}× the assumption flips the choice.",
-         f"- Varying inputs jointly over a grid (response 1–3×, retailer vs manufacturer funding, scale 40–250×, setup $750–1,500, margin 28–35%), "
-         f"{v['reversal.combinations_flipping']} combinations flip it. Each grid value is an *assumed* alternative. "
-         "The decision is therefore fragile to joint assumptions and holds only because none of these changes is confirmed.", "",
-         "## Minimum evidence before any coupon action",
-         "| input | why it decides | current status |", "|---|---|---|",
-         "| who funds the coupon | manufacturer funding cuts the retailer's cost to its match share (≈35% for Frozen Pizza) | ASSUMED retailer-funded |",
-         "| consented reachable pool | spreads the $1,500 setup; decides whether a decision-grade test fits | UNKNOWN |",
-         "| unit margin | sets the value of each extra buyer | ASSUMED 28% |",
-         "| communication cost and offer mechanics | contact cost; automatic offers subsidise habitual buyers | ASSUMED |",
-         "| stock | no promotion without supply | UNKNOWN |",
-         "| causal response (randomized) | the only way to know whether contact changes buying | UNKNOWN; history is selection |", "",
-         "## What to do this week (zero spend)",
-         "1. Ask the client for coupon funding, pool size, margin, costs and stock, then re-run `python -m mi.cli all`.",
-         "2. Interviews: why did lapsed buyers stop? This decides between a coupon, the product, availability and no action.",
-         "3. Operations check on the shrinking category (card C3).",
-         "4. Collect the 20 GEO answers before any content work (card C4).", "",
-         "Full cards: `docs/opportunity_cards.md`. Claims with provenance: `reports/current_claims.json`."]
+         f"- Under the retailer-funded base case every modelled coupon plan loses money (best: {v.get('decision.rank2', {}).get('plan')} {v.get('decision.rank2', {}).get('net_base'):+,.0f} USD per 4-week cycle at an assumed scale).",
+         f"- A better purchase model does not rescue negative incremental contribution. AP is {v['model.AP']} vs the rule's {v['model.AP_rule']}, and the model finds {v['model.reach_gain_1000_contacts']:+d} more future buyers per 1,000 contacts; these are buyers *identified*, not persuaded.",
+         f"- Historical retailer match on past coupon lines is {100 * (v.get('funding.historical_match_share_all') or 0):.1f}% of manufacturer coupon value overall "
+         f"and {100 * (v.get('funding.historical_match_share_frozen_pizza') or 0):.1f}% for Frozen Pizza (value-weighted). This is OBSERVED for past lines; it does not tell us who would fund OUR offer.",
+         "", "## Same Frozen Pizza plan under each funding contract (assumed 4 pp response, 7,308 assumed pool, $1,500 setup)", "",
+         "| contract | contribution per contacted household | break-even response | pool needed to cover setup | recommendation | selected grid cases reversing NONE |", "|---|---:|---:|---|---|---|"]
+    for k, x in con.items():
+        L.append(f"| {k} | {x['contribution_per_contacted_hh']:+.3f} | {x['break_even_pp']} pp | {x['pool_needed']} | {x['recommendation']} | {x['selected_reversing_cases']} |")
+    L += ["", "Grid cases were selected by us, so counts are not probabilities. The minimal reversing combinations are in `docs/funding_contracts.md`.", "",
+          "## Verified inputs that would reopen the decision"] + [f"- {x}" for x in (v.get("advisor.reopen_if") or [])] + [
+          "", "## What to do this week (zero spend)",
+          "1. Send the client input form (`docs/client_input_form.md`); load the answers with `python -m mi.decision.client_inputs` and re-run `python -m mi.cli all`.",
+          "2. Interviews: why did lapsed buyers stop? This decides between a coupon, the product, availability and no action.",
+          "3. Operations check on the Yogurt signal (card C3); keep the weak cross-sell (C2) as a negative finding.",
+          "4. Collect the 20 GEO answers before any content work (card C4).", "",
+          "Full cards: `docs/opportunity_cards.md`. Claims with provenance: `reports/current_claims.json`."]
     return "\n".join(L) + "\n"
 
 

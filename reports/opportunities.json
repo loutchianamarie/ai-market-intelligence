@@ -638,7 +638,11 @@
       ],
       "counterevidence": [
         "seasonality cannot be separated with one year of data",
-        "no stock, price-list or competitor data"
+        "no stock, price-list or competitor data",
+        "robustness: on equal 25-week windows buyers change -7.0% (buyer rate 49.9% -> 46.1% of active households)",
+        "not panel attrition: 353 of 368 lost buyers still shop in the later window; active households 2,391 -> 2,410",
+        "not a promotion or coverage change: promoted product-store rows/week 9,757.3 -> 9,718.1; sales share on promotion 19.2% -> 21.1%; lines in covered stores 98.2% -> 99.0%",
+        "verdict: a SIGNAL for an operations check, not a diagnosed cause"
       ],
       "hypothesized_need": "availability / assortment fit (HYPOTHESIS: could equally be seasonal)",
       "positioning": "n/a until the barrier is known",

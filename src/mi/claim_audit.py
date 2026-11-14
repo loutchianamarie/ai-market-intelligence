@@ -14,6 +14,7 @@ import pandas as pd
 from sklearn.metrics import average_precision_score, brier_score_loss
 
 from mi.config import load_config
+from mi.decision.scenario import face_value
 from mi.ingest.load import load
 from mi.paths import PROCESSED, RAW, REPORTS
 
@@ -97,7 +98,7 @@ def economics_checks(cfg) -> dict:
     scale, fixed = s["deployment_scale"]["value"], s["fixed_setup_per_plan"]["value"]
     dq = s["incremental_purchase_rate"][seg][1]
     share = s.get("coupon_funding", {}).get("retailer_share", {"value": 1.0})["value"]   # who pays the coupon (ASSUMED)
-    g, F = e["mean_4w_category_spend_among_buyers_test"][cat] * margin, e["mean_coupon_disc_per_couponed_line"][cat] * share
+    g, F = e["mean_4w_category_spend_among_buyers_test"][cat] * margin, face_value(cfg, e["mean_coupon_disc_per_couponed_line"], cat) * share
     q0 = sc[(sc.product_category == cat) & (sc.segment == seg)].p_used.to_numpy()
     v = dq * (g - F) - c - q0 * r * F                                   # plain re-implementation
     net_independent = float(v.sum() * w * scale - fixed)

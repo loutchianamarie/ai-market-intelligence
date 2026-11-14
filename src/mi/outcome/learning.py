@@ -167,30 +167,33 @@ def decision_value(q0: float, g: float, face: float, contact: float, redemption:
     """
     gm = g - face
     k = contact + q0 * redemption * face
-    rem = reachable - n_per_arm
+    test_fits = 2 * n_per_arm <= reachable
+    rem = reachable - n_per_arm if test_fits else None     # a test larger than the pool leaves no meaningful remainder
     rows = {}
     for label, dq in uplifts.items():
         v = dq * gm - k
         test_net = fixed - n_per_arm * v
         cycle = reachable * v - fixed
         newc = (share_new * reachable * v - fixed) if share_new else None
-        once = rem * v - fixed
+        once = (rem * v - fixed) if rem is not None else None
         rows[label] = {"true_uplift": round(dq, 4), "v_per_contacted_hh": round(v, 4), "per_1000_contacted": round(1000 * v, 1),
-                       "test_net_cost_vs_none": round(test_net, 2), "holdout_forgone": round(n_per_arm * max(v, 0.0), 2),
+                       "test_net_cost_vs_none": round(test_net, 2) if test_fits else None,
+                       "holdout_forgone": round(n_per_arm * max(v, 0.0), 2) if test_fits else None,
                        "rollout_cycle_net": round(cycle, 2),
-                       "whole_cycles_to_cover_test": (int(math.ceil(test_net / cycle)) if cycle > 0 and test_net > 0 else None),
+                       "whole_cycles_to_cover_test": (int(math.ceil(test_net / cycle)) if test_fits and cycle > 0 and test_net > 0 else None),
                        "new_entrants_cycle_net": round(newc, 2) if newc is not None else None,
-                       "whole_new_entrant_cycles_to_cover_test": (int(math.ceil(test_net / newc)) if newc and newc > 0 and test_net > 0 else None),
-                       "one_time_remaining_pool_net": round(once, 2),
-                       "one_time_covers_test": bool(once >= test_net)}
+                       "whole_new_entrant_cycles_to_cover_test": (int(math.ceil(test_net / newc)) if test_fits and newc and newc > 0 and test_net > 0 else None),
+                       "one_time_remaining_pool_net": round(once, 2) if once is not None else None,
+                       "one_time_covers_test": bool(once >= test_net) if once is not None else None}
     dq_for = lambda hh, extra=0.0: ((fixed + extra) / hh + k) / gm if hh > 0 else None  # noqa: E731
     hurdles = {"unit_break_even_before_setup": round(k / gm, 4),
                "A_full_pool_cycle_break_even": round(dq_for(reachable), 4),
                "B_new_entrants_cycle_break_even": round(dq_for(share_new * reachable), 4) if share_new else None,
-               "C_one_time_remaining_covers_its_setup": round(dq_for(rem), 4) if rem > 0 else None,
+               "C_one_time_remaining_covers_its_setup": round(dq_for(rem), 4) if rem and rem > 0 else None,
                "C_one_time_remaining_covers_setup_and_test": round((2 * fixed / reachable + k) / gm, 4)}
     return {"scenarios": rows, "rollout_break_even_uplift": hurdles["A_full_pool_cycle_break_even"], "hurdles": hurdles,
             "reachable_after_test": reachable, "remaining_never_offered": rem, "n_per_arm": n_per_arm, "fixed_setup": fixed,
+            "test_fits_in_pool": test_fits,
             "share_new_per_cycle": share_new,
             "notes": ["Same category, segment, channel and assumptions as the test design.",
                       "A is an UPPER BOUND: full assumed pool every cycle, same uplift on repeat offers (unobserved), setup paid each cycle.",

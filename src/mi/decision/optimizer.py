@@ -20,7 +20,7 @@ import numpy as np
 import pandas as pd
 
 from mi.config import config_hash, load_config
-from mi.decision.scenario import CASES, Assumptions, assumptions_from_config, break_even_uplift, coupon_cost, household_value
+from mi.decision.scenario import CASES, Assumptions, assumptions_from_config, break_even_uplift, coupon_cost, face_value, household_value
 from mi.paths import PROCESSED, REPORTS
 
 SEGMENTS = ["REGULAR", "RECENT_LIGHT", "LAPSING", "ACTIVE_NONBUYER"]
@@ -48,7 +48,7 @@ class Universe:
         scores = scores.assign(_i=scores.household_id.map(hh_index))
         for cat in cfg["categories"]:
             g = spend[cat] * a.margin_rate
-            F = (face.get(cat) or cfg["scenario"]["coupon_face_value"]["fallback"]) * a.face_share(cat)
+            F = face_value(cfg, face, cat) * a.face_share(cat)
             sc_cat = scores[scores.product_category == cat]
             groups = [(seg, sc_cat[sc_cat.segment == seg]) for seg in SEGMENTS] + [("BROAD", sc_cat)]
             for seg, sub in groups:
@@ -113,7 +113,17 @@ class Universe:
             "one_contact_per_household": True,
             "stock_capacity": "UNKNOWN — human capacity check required",
         }
-        feasible = checks["within_budget"] and checks["category_share_ok"] and checks["min_reach_ok"]
+        cap = (s.get("stock_capacity") or {}).get("value")
+        if isinstance(cap, dict) and cap:
+            # capacity unit: purchasing households the category can supply per 4 weeks (CLIENT-CONFIRMED)
+            need = {}
+            for c in comps:
+                need[c["category"]] = need.get(c["category"], 0) + c["reach"] * ((c["mean_q0"] if c["mean_q0"] == c["mean_q0"] else 0) + c["dq"])
+            short = {k: round(v) for k, v in need.items() if k in cap and v > cap[k]}
+            unknown = [k for k in need if k not in cap]
+            checks["stock_capacity"] = ("SHORT: " + str(short)) if short else ("UNKNOWN for " + ", ".join(unknown) if unknown else "OK (client-confirmed)")
+            checks["stock_ok"] = not short
+        feasible = checks["within_budget"] and checks["category_share_ok"] and checks["min_reach_ok"] and checks.get("stock_ok", True)
         return {"components": comps, "net": total_net, "cost": total_cost, "checks": checks, "feasible": feasible}
 
 

@@ -231,7 +231,9 @@ with tabs[3]:
         p = d["pilot"]
         rec = d.get("advisor_recommendation")
         if rec:
-            st.error(f"**ADVISOR RECOMMENDS: {rec['decision']}** · {rec['reason']}")
+            st.error(f"**ADVISOR STATUS: {rec['decision']}** · base case: {rec.get('base_case', 'retailer-funded')} · {rec['reason']}")
+            if rec.get("funding_contracts"):
+                st.dataframe(pd.DataFrame(rec["funding_contracts"]).T.astype(str), width="stretch")
             c1, c2 = st.columns(2)
             c1.markdown("**Evidence that would reopen the decision**\n" + "\n".join(f"- {x}" for x in rec["reopen_if"]))
             c2.markdown("**$0 research checklist for approval** " + badge("PENDING"), unsafe_allow_html=True)

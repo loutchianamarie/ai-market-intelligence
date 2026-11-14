@@ -56,6 +56,26 @@ def _usd(v):
     return ("-$" if v < 0 else "$") + f"{abs(v):,.0f}"
 
 
+ADVISOR_STATUS = "DEFER FUNDING / NO SPEND WHILE TERMS ARE UNCONFIRMED"
+BASE_CASE = "RETAILER-FUNDED offer (retailer pays the full coupon face value): the current base case"
+
+
+def reopen_conditions(contracts: dict | None) -> list[str]:
+    """Verified inputs that would reopen the decision (computed from the same-plan contract analysis when available)."""
+    out = ["a WRITTEN funding/reimbursement contract for the exact proposed offer (who pays the face value, who reimburses, any retailer match)"]
+    if contracts:
+        for k, v in contracts.items():
+            pool = v["pool_needed_to_cover_setup"]
+            if isinstance(pool, (int, float)):
+                out.append(f"if the contract is {k} (retailer share {v['retailer_share_of_face']}): a verified count of >= {pool:,} eligible, "
+                           f"consented, reachable households per cycle at the assumed 4 pp response and $1,500 setup (break-even response {v['break_even_uplift_pp']} pp)")
+    out += ["finance-confirmed contribution margin and quoted setup and contact costs (re-run the scenario engine with them)",
+            "redemption / opt-in mechanics of the offer (clip vs automatic), which set the subsidy to habitual buyers",
+            "operations-confirmed stock capacity for the expected purchasing households",
+            "credible response evidence (interviews pointing to price/habit, or a randomized result) supporting the response the plan needs"]
+    return out
+
+
 RESEARCH_PLAN = [
     {"id": "R1", "task": "2-3 consented exploratory interviews (lapsed frozen-pizza buyers, 1 nonbuyer); code barriers, no names",
      "owner": "Loutchiana (I01-I02), Charbel (I03)", "cost_usd": 0, "decides": "which P is broken: coupon vs non-coupon action vs none"},
@@ -65,12 +85,6 @@ RESEARCH_PLAN = [
      "owner": "Charbel", "cost_usd": 0, "decides": "offer-mechanics assumptions (reach share, redemption by habitual buyers)"},
     {"id": "R4", "task": "Ask the client for consented digital pool, margin, contact and setup cost, stock",
      "owner": "both", "cost_usd": 0, "decides": "whether any hurdle (A/B/C) is plausible; re-run the same-plan check"},
-]
-REOPEN_IF = [
-    "interviews show price or a lapsed habit (not stock, taste or brand switching) as the main barrier, with counterexamples reported",
-    "the client's consented pool is much larger than 7,308, or setup cost much lower, so the hurdle falls toward the 6.4 pp unit break-even",
-    "finance confirms a higher margin, lowering every hurdle",
-    "credible external evidence makes a true uplift at or above the hurdle plausible for this category",
 ]
 
 
@@ -306,21 +320,22 @@ class Run:
             worth_it = bool(dv) and dv["scenarios"]["sizing (x break-even)"]["rollout_cycle_net"] > 0
             if dv and not worth_it:
                 h = dv["hurdles"]
-                rec = {"decision": "REJECT FUNDING (DEFER)", "by": "activation_agent (advisory only; a human decides)",
+                rec = {"decision": ADVISOR_STATUS, "base_case": BASE_CASE, "by": "activation_agent (advisory only; a human decides)",
+                       "funding_contracts": dz.get("funding_contracts"),
                        "reason": (f"Same plan, same assumptions: at the uplift the test is sized for ({100 * dv['scenarios']['sizing (x break-even)']['true_uplift']:.1f} pp) "
                                   f"a later rollout still loses ${-dv['scenarios']['sizing (x break-even)']['rollout_cycle_net']:,.0f} per 4-week cycle. "
                                   f"Hurdles: {100 * h['A_full_pool_cycle_break_even']:.1f} pp (full assumed pool every cycle, upper bound), "
                                   f"{100 * (h['B_new_entrants_cycle_break_even'] or 0):.1f} pp (new entrants only), "
                                   f"{100 * h['C_one_time_remaining_covers_setup_and_test']:.1f} pp (one-off on remaining households, covering setup and test); "
                                   "assumed uplift is 4.0 pp."),
-                       "reopen_if": REOPEN_IF, "research_plan": RESEARCH_PLAN,
+                       "reopen_if": reopen_conditions(dz.get("funding_contracts")), "research_plan": RESEARCH_PLAN,
                        "status": "ADVISORY; the dossier stays in review until a named human rejects or approves"}
                 d = self.store.get(oid)
                 self.store.update(oid, d["version"], {"advisor_recommendation": rec}, actor="activation_agent", role="agent",
                                   note="advisor recommends rejecting funding")
             d = self.store.get(oid)
             rq = self.call(out, oid, "request_approval", opportunity_id=oid, expected_version=d["version"])
-            out.proposed_action = (("ADVISOR RECOMMENDS: REJECT funding of this test (defer) and approve the $0 research checklist. "
+            out.proposed_action = ((f"ADVISOR STATUS: {ADVISOR_STATUS} (base case: retailer-funded). Reject or defer funding of this test and approve the $0 research checklist. "
                                     "The test design is shown for review only. ") if not worth_it else "") + (
                 "No message sent; no budget committed; a real launch requires every launch precondition.")
             out.limits.append("Reachability/consent and stock are UNKNOWN; the approver must confirm both.")

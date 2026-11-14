@@ -1,0 +1,93 @@
+{
+  "_instructions": "Fill value + source + date for each answer you can CONFIRM. Leave value null if unknown; it will not be applied.",
+  "answers": {
+    "offer_funder": {
+      "question": "Who funds the EXACT proposed digital offer (retailer, manufacturer or shared), and who reimburses whom?",
+      "unit": "text: retailer | manufacturer | shared + reimbursement terms",
+      "engine_field": "scenario.coupon_funding.contract.funder_and_reimbursement",
+      "value": null,
+      "source": null,
+      "date": null
+    },
+    "retailer_share_of_face_value": {
+      "question": "What share of the offer's face value does the RETAILER bear after any reimbursement (incl. any retailer match)?",
+      "unit": "0..1",
+      "engine_field": "scenario.coupon_funding.retailer_share.value",
+      "value": null,
+      "source": null,
+      "date": null
+    },
+    "offer_face_value_usd": {
+      "question": "Face value of the proposed offer per redemption.",
+      "unit": "USD > 0",
+      "engine_field": "scenario.coupon_face_value.value",
+      "value": null,
+      "source": null,
+      "date": null
+    },
+    "redemption_mechanic": {
+      "question": "How is the offer redeemed / opted into (clip to card, automatic at checkout, code at checkout)?",
+      "unit": "clip_to_card | automatic_at_checkout | code_at_checkout",
+      "engine_field": "scenario.offer_mechanics.mechanic",
+      "value": null,
+      "source": null,
+      "date": null
+    },
+    "redemption_share_of_baseline_buyers": {
+      "question": "Of contacted households who would buy anyway, what share redeem the offer (from your past digital offers)?",
+      "unit": "0..1",
+      "engine_field": "scenario.redemption_share_of_buyers.value",
+      "value": null,
+      "source": null,
+      "date": null
+    },
+    "active_customer_households": {
+      "question": "Active loyalty households in the eligible base (all segments).",
+      "unit": "count",
+      "engine_field": "scenario.deployment_scale.value (= answer / 2,469 panel households)",
+      "value": null,
+      "source": null,
+      "date": null
+    },
+    "eligible_consented_digital_households": {
+      "question": "Of those, households with valid consent for digital offers.",
+      "unit": "count",
+      "engine_field": "scenario.channels.digital_coupon.reach_share.value (= answer / active_customer_households)",
+      "value": null,
+      "source": null,
+      "date": null
+    },
+    "contribution_margin_rate": {
+      "question": "Contribution margin on the category's retailer receipts (after cost of goods, before marketing).",
+      "unit": "0..1",
+      "engine_field": "scenario.contribution_margin_rate.value",
+      "value": null,
+      "source": null,
+      "date": null
+    },
+    "setup_cost_usd": {
+      "question": "One-off setup cost per campaign wave (creative, configuration, QA, legal review).",
+      "unit": "USD",
+      "engine_field": "scenario.fixed_setup_per_plan.value",
+      "value": null,
+      "source": null,
+      "date": null
+    },
+    "contact_cost_digital_usd": {
+      "question": "Cost per digital contact (send + platform fee).",
+      "unit": "USD per household",
+      "engine_field": "scenario.channels.digital_coupon.contact_cost.value",
+      "value": null,
+      "source": null,
+      "date": null
+    },
+    "stock_capacity_purchasing_households_4w": {
+      "question": "For each category, how many purchasing households among CONTACTED households can stock support per 4 weeks (baseline + extra buyers)?",
+      "unit": "object {category: count}",
+      "engine_field": "scenario.stock_capacity.value",
+      "value": null,
+      "source": null,
+      "date": null
+    }
+  }
+}

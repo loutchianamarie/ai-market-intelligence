@@ -1,0 +1,610 @@
+{
+  "plan": "FROZEN PIZZA|LAPSING|digital_coupon|ALL",
+  "contracts": {
+    "RETAILER_FUNDED": {
+      "retailer_share_of_face": 1.0,
+      "face_value_usd": 0.9046,
+      "retailer_cost_per_redemption_usd": 0.9046,
+      "inputs": {
+        "q0_mean": 0.2964,
+        "g_margin_per_extra_buyer": 2.8932,
+        "contact_cost": 0.03,
+        "redemption_share": 0.35,
+        "assumed_uplift": 0.04,
+        "setup_usd": 1500,
+        "assumed_reachable_households": 7308,
+        "sigma": 1.6352
+      },
+      "contribution_per_contacted_hh_at_assumed_uplift": -0.0443,
+      "per_1000_contacted": -44.3,
+      "break_even_uplift_pp": 6.23,
+      "assumed_uplift_pp": 4.0,
+      "reachable_pool_needed_to_cover_setup_at_assumed_uplift": "none: negative per household",
+      "cost_lines_per_cycle_at_assumed_pool": {
+        "contact_usd": 219.24,
+        "setup_usd": 1500,
+        "coupon_cost_to_retailer_usd": 950.25
+      },
+      "requirements": {
+        "consented_eligible_households": "no pool size suffices",
+        "stock": "~2458 purchasing households per cycle at the assumed pool (units per purchase UNKNOWN)",
+        "offer_contract": "written funding/reimbursement terms for this exact offer"
+      },
+      "test_size": {
+        "design_rule_2x_break_even_n_per_arm": 2737,
+        "design_rule_feasible_in_assumed_pool": true,
+        "show_contribution_above_setup_hurdle_n_per_arm": null,
+        "hurdle_rule_feasible_in_assumed_pool": false,
+        "note": "hurdle rule uses the ASSUMED 4 pp as the true effect; None means 4 pp does not clear the hurdle"
+      },
+      "rollout": {
+        "assumed": {
+          "uplift_pp": 4.0,
+          "A_full_pool_cycle": -1823.76,
+          "B_new_entrants_cycle": -1699.44,
+          "C_one_off_remaining": -1702.51,
+          "test_net_cost": 1621.26
+        },
+        "sizing (x break-even)": {
+          "uplift_pp": 12.46,
+          "A_full_pool_cycle": -594.94,
+          "B_new_entrants_cycle": -942.49,
+          "C_one_off_remaining": -933.91,
+          "test_net_cost": 1161.04
+        }
+      },
+      "hurdles_pp": {
+        "unit_break_even_before_setup": 6.23,
+        "A_full_pool_cycle_break_even": 16.55,
+        "B_new_entrants_cycle_break_even": 22.98,
+        "C_one_time_remaining_covers_its_setup": 22.73,
+        "C_one_time_remaining_covers_setup_and_test": 26.87
+      }
+    },
+    "SHARED_50_50": {
+      "retailer_share_of_face": 0.5,
+      "face_value_usd": 0.9046,
+      "retailer_cost_per_redemption_usd": 0.4523,
+      "inputs": {
+        "q0_mean": 0.2964,
+        "g_margin_per_extra_buyer": 2.8932,
+        "contact_cost": 0.03,
+        "redemption_share": 0.35,
+        "assumed_uplift": 0.04,
+        "setup_usd": 1500,
+        "assumed_reachable_households": 7308,
+        "sigma": 1.6352
+      },
+      "contribution_per_contacted_hh_at_assumed_uplift": 0.0207,
+      "per_1000_contacted": 20.7,
+      "break_even_uplift_pp": 3.15,
+      "assumed_uplift_pp": 4.0,
+      "reachable_pool_needed_to_cover_setup_at_assumed_uplift": 72422,
+      "cost_lines_per_cycle_at_assumed_pool": {
+        "contact_usd": 219.24,
+        "setup_usd": 1500,
+        "coupon_cost_to_retailer_usd": 475.12
+      },
+      "requirements": {
+        "consented_eligible_households": ">= 72422 for setup cover (if v > 0)",
+        "stock": "~2458 purchasing households per cycle at the assumed pool (units per purchase UNKNOWN)",
+        "offer_contract": "written funding/reimbursement terms for this exact offer"
+      },
+      "test_size": {
+        "design_rule_2x_break_even_n_per_arm": 7094,
+        "design_rule_feasible_in_assumed_pool": false,
+        "show_contribution_above_setup_hurdle_n_per_arm": null,
+        "hurdle_rule_feasible_in_assumed_pool": false,
+        "note": "hurdle rule uses the ASSUMED 4 pp as the true effect; None means 4 pp does not clear the hurdle"
+      },
+      "rollout": {
+        "assumed": {
+          "uplift_pp": 4.0,
+          "A_full_pool_cycle": -1348.64,
+          "B_new_entrants_cycle": -1406.76,
+          "C_one_off_remaining": null,
+          "test_net_cost": null
+        },
+        "sizing (x break-even)": {
+          "uplift_pp": 6.3,
+          "A_full_pool_cycle": -937.85,
+          "B_new_entrants_cycle": -1153.72,
+          "C_one_off_remaining": null,
+          "test_net_cost": null
+        }
+      },
+      "hurdles_pp": {
+        "unit_break_even_before_setup": 3.15,
+        "A_full_pool_cycle_break_even": 11.56,
+        "B_new_entrants_cycle_break_even": 16.8,
+        "C_one_time_remaining_covers_its_setup": null,
+        "C_one_time_remaining_covers_setup_and_test": 19.97
+      }
+    },
+    "MANUFACTURER_FUNDED_HISTORICAL_MATCH_ANALOGUE": {
+      "retailer_share_of_face": 0.35,
+      "face_value_usd": 0.9046,
+      "retailer_cost_per_redemption_usd": 0.3166,
+      "inputs": {
+        "q0_mean": 0.2964,
+        "g_margin_per_extra_buyer": 2.8932,
+        "contact_cost": 0.03,
+        "redemption_share": 0.35,
+        "assumed_uplift": 0.04,
+        "setup_usd": 1500,
+        "assumed_reachable_households": 7308,
+        "sigma": 1.6352
+      },
+      "contribution_per_contacted_hh_at_assumed_uplift": 0.0402,
+      "per_1000_contacted": 40.2,
+      "break_even_uplift_pp": 2.44,
+      "assumed_uplift_pp": 4.0,
+      "reachable_pool_needed_to_cover_setup_at_assumed_uplift": 37299,
+      "cost_lines_per_cycle_at_assumed_pool": {
+        "contact_usd": 219.24,
+        "setup_usd": 1500,
+        "coupon_cost_to_retailer_usd": 332.59
+      },
+      "requirements": {
+        "consented_eligible_households": ">= 37299 for setup cover (if v > 0)",
+        "stock": "~2458 purchasing households per cycle at the assumed pool (units per purchase UNKNOWN)",
+        "offer_contract": "written funding/reimbursement terms for this exact offer"
+      },
+      "test_size": {
+        "design_rule_2x_break_even_n_per_arm": 10628,
+        "design_rule_feasible_in_assumed_pool": false,
+        "show_contribution_above_setup_hurdle_n_per_arm": null,
+        "hurdle_rule_feasible_in_assumed_pool": false,
+        "note": "hurdle rule uses the ASSUMED 4 pp as the true effect; None means 4 pp does not clear the hurdle"
+      },
+      "rollout": {
+        "assumed": {
+          "uplift_pp": 4.0,
+          "A_full_pool_cycle": -1206.1,
+          "B_new_entrants_cycle": -1318.96,
+          "C_one_off_remaining": null,
+          "test_net_cost": null
+        },
+        "sizing (x break-even)": {
+          "uplift_pp": 4.88,
+          "A_full_pool_cycle": -1040.72,
+          "B_new_entrants_cycle": -1217.09,
+          "C_one_off_remaining": null,
+          "test_net_cost": null
+        }
+      },
+      "hurdles_pp": {
+        "unit_break_even_before_setup": 2.44,
+        "A_full_pool_cycle_break_even": 10.41,
+        "B_new_entrants_cycle_break_even": 15.37,
+        "C_one_time_remaining_covers_its_setup": null,
+        "C_one_time_remaining_covers_setup_and_test": 18.37
+      }
+    },
+    "MANUFACTURER_FUNDED_NO_MATCH": {
+      "retailer_share_of_face": 0.0,
+      "face_value_usd": 0.9046,
+      "retailer_cost_per_redemption_usd": 0.0,
+      "inputs": {
+        "q0_mean": 0.2964,
+        "g_margin_per_extra_buyer": 2.8932,
+        "contact_cost": 0.03,
+        "redemption_share": 0.35,
+        "assumed_uplift": 0.04,
+        "setup_usd": 1500,
+        "assumed_reachable_households": 7308,
+        "sigma": 1.6352
+      },
+      "contribution_per_contacted_hh_at_assumed_uplift": 0.0857,
+      "per_1000_contacted": 85.7,
+      "break_even_uplift_pp": 1.04,
+      "assumed_uplift_pp": 4.0,
+      "reachable_pool_needed_to_cover_setup_at_assumed_uplift": 17498,
+      "cost_lines_per_cycle_at_assumed_pool": {
+        "contact_usd": 219.24,
+        "setup_usd": 1500,
+        "coupon_cost_to_retailer_usd": 0.0
+      },
+      "requirements": {
+        "consented_eligible_households": ">= 17498 for setup cover (if v > 0)",
+        "stock": "~2458 purchasing households per cycle at the assumed pool (units per purchase UNKNOWN)",
+        "offer_contract": "written funding/reimbursement terms for this exact offer"
+      },
+      "test_size": {
+        "design_rule_2x_break_even_n_per_arm": 46638,
+        "design_rule_feasible_in_assumed_pool": false,
+        "show_contribution_above_setup_hurdle_n_per_arm": null,
+        "hurdle_rule_feasible_in_assumed_pool": false,
+        "note": "hurdle rule uses the ASSUMED 4 pp as the true effect; None means 4 pp does not clear the hurdle"
+      },
+      "rollout": {
+        "assumed": {
+          "uplift_pp": 4.0,
+          "A_full_pool_cycle": -873.51,
+          "B_new_entrants_cycle": -1114.08,
+          "C_one_off_remaining": null,
+          "test_net_cost": null
+        },
+        "sizing (x break-even)": {
+          "uplift_pp": 2.07,
+          "A_full_pool_cycle": -1280.76,
+          "B_new_entrants_cycle": -1364.95,
+          "C_one_off_remaining": null,
+          "test_net_cost": null
+        }
+      },
+      "hurdles_pp": {
+        "unit_break_even_before_setup": 1.04,
+        "A_full_pool_cycle_break_even": 8.13,
+        "B_new_entrants_cycle_break_even": 12.55,
+        "C_one_time_remaining_covers_its_setup": null,
+        "C_one_time_remaining_covers_setup_and_test": 15.23
+      }
+    }
+  },
+  "rankings": {
+    "RETAILER_FUNDED": {
+      "recommendation": "NONE: research / measure first",
+      "ranked_actions": [
+        {
+          "rank": 1,
+          "plan_id": "NONE: research / measure first",
+          "net_base": 0.0,
+          "net_low": 0.0,
+          "net_high": 0.0,
+          "status": "NO ACTION: always feasible"
+        },
+        {
+          "rank": 2,
+          "plan_id": "COFFEE/LAPSING/digital_coupon/ALL",
+          "net_base": -1724.41,
+          "net_low": -2663.04,
+          "net_high": 983.54,
+          "status": "FEASIBLE UNDER ASSUMPTIONS; launch PENDING stock and consented-pool confirmation"
+        },
+        {
+          "rank": 3,
+          "plan_id": "COFFEE/RECENT_LIGHT/digital_coupon/ALL",
+          "net_base": -1795.03,
+          "net_low": -2619.85,
+          "net_high": -623.82,
+          "status": "FEASIBLE UNDER ASSUMPTIONS; launch PENDING stock and consented-pool confirmation"
+        },
+        {
+          "rank": 4,
+          "plan_id": "FROZEN PIZZA/LAPSING/digital_coupon/ALL",
+          "net_base": -1823.76,
+          "net_low": -2732.42,
+          "net_high": 2074.32,
+          "status": "FEASIBLE UNDER ASSUMPTIONS; launch PENDING stock and consented-pool confirmation"
+        }
+      ]
+    },
+    "SHARED_50_50": {
+      "recommendation": "NONE: research / measure first",
+      "ranked_actions": [
+        {
+          "rank": 1,
+          "plan_id": "NONE: research / measure first",
+          "net_base": 0.0,
+          "net_low": 0.0,
+          "net_high": 0.0,
+          "status": "NO ACTION: always feasible"
+        },
+        {
+          "rank": 2,
+          "plan_id": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED",
+          "net_base": -1334.38,
+          "net_low": NaN,
+          "net_high": 3498.74,
+          "status": "FEASIBLE UNDER ASSUMPTIONS; launch PENDING stock and consented-pool confirmation"
+        },
+        {
+          "rank": 3,
+          "plan_id": "FROZEN PIZZA/LAPSING/digital_coupon/ALL",
+          "net_base": -1348.64,
+          "net_low": -2639.76,
+          "net_high": 3498.74,
+          "status": "FEASIBLE UNDER ASSUMPTIONS; launch PENDING stock and consented-pool confirmation"
+        },
+        {
+          "rank": 4,
+          "plan_id": "COFFEE/LAPSING/digital_coupon/MODEL_FILTERED",
+          "net_base": -1408.67,
+          "net_low": NaN,
+          "net_high": 1937.47,
+          "status": "FEASIBLE UNDER ASSUMPTIONS; launch PENDING stock and consented-pool confirmation"
+        }
+      ]
+    },
+    "MANUFACTURER_FUNDED_HISTORICAL_MATCH_ANALOGUE": {
+      "recommendation": "NONE: research / measure first",
+      "ranked_actions": [
+        {
+          "rank": 1,
+          "plan_id": "NONE: research / measure first",
+          "net_base": 0.0,
+          "net_low": 0.0,
+          "net_high": 0.0,
+          "status": "NO ACTION: always feasible"
+        },
+        {
+          "rank": 2,
+          "plan_id": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED",
+          "net_base": -1205.97,
+          "net_low": NaN,
+          "net_high": 3926.07,
+          "status": "FEASIBLE UNDER ASSUMPTIONS; launch PENDING stock and consented-pool confirmation"
+        },
+        {
+          "rank": 3,
+          "plan_id": "FROZEN PIZZA/LAPSING/digital_coupon/ALL",
+          "net_base": -1206.1,
+          "net_low": -2611.96,
+          "net_high": 3926.07,
+          "status": "FEASIBLE UNDER ASSUMPTIONS; launch PENDING stock and consented-pool confirmation"
+        },
+        {
+          "rank": 4,
+          "plan_id": "COFFEE/LAPSING/digital_coupon/MODEL_FILTERED",
+          "net_base": -1336.91,
+          "net_low": NaN,
+          "net_high": 2223.65,
+          "status": "FEASIBLE UNDER ASSUMPTIONS; launch PENDING stock and consented-pool confirmation"
+        }
+      ]
+    },
+    "MANUFACTURER_FUNDED_NO_MATCH": {
+      "recommendation": "NONE: research / measure first",
+      "ranked_actions": [
+        {
+          "rank": 1,
+          "plan_id": "NONE: research / measure first",
+          "net_base": 0.0,
+          "net_low": 0.0,
+          "net_high": 0.0,
+          "status": "NO ACTION: always feasible"
+        },
+        {
+          "rank": 2,
+          "plan_id": "FROZEN PIZZA/LAPSING/digital_coupon/ALL",
+          "net_base": -873.51,
+          "net_low": -2547.1,
+          "net_high": 4923.16,
+          "status": "FEASIBLE UNDER ASSUMPTIONS; launch PENDING stock and consented-pool confirmation"
+        },
+        {
+          "rank": 3,
+          "plan_id": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED",
+          "net_base": -873.51,
+          "net_low": NaN,
+          "net_high": 4923.16,
+          "status": "FEASIBLE UNDER ASSUMPTIONS; launch PENDING stock and consented-pool confirmation"
+        },
+        {
+          "rank": 4,
+          "plan_id": "BAG SNACKS/LAPSING/digital_coupon/ALL",
+          "net_base": -1103.0,
+          "net_low": -2568.45,
+          "net_high": 3373.29,
+          "status": "FEASIBLE UNDER ASSUMPTIONS; launch PENDING stock and consented-pool confirmation"
+        }
+      ]
+    }
+  },
+  "reversal_grid": {
+    "grid": {
+      "contract": [
+        "RETAILER_FUNDED",
+        "SHARED_50_50",
+        "MANUFACTURER_FUNDED_HISTORICAL_MATCH_ANALOGUE",
+        "MANUFACTURER_FUNDED_NO_MATCH"
+      ],
+      "uplift_multiplier": [
+        1.0,
+        1.5,
+        2.0
+      ],
+      "scale": [
+        40.0,
+        100.0,
+        250.0
+      ],
+      "fixed_setup": [
+        1500.0,
+        750.0
+      ],
+      "margin_rate": [
+        0.28,
+        0.35
+      ]
+    },
+    "by_contract": {
+      "RETAILER_FUNDED": {
+        "selected_cases": 36,
+        "cases_reversing_NONE": 9,
+        "flips_at_all_base_values": false,
+        "minimal_reversing_combinations": [
+          {
+            "uplift_multiplier": 1.5,
+            "scale": 100.0,
+            "fixed_setup": 750.0,
+            "margin_rate": 0.35,
+            "plan": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED"
+          },
+          {
+            "uplift_multiplier": 1.5,
+            "scale": 250.0,
+            "fixed_setup": 1500.0,
+            "margin_rate": 0.35,
+            "plan": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED"
+          },
+          {
+            "uplift_multiplier": 2.0,
+            "scale": 100.0,
+            "fixed_setup": 1500.0,
+            "margin_rate": 0.35,
+            "plan": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED"
+          },
+          {
+            "uplift_multiplier": 2.0,
+            "scale": 250.0,
+            "fixed_setup": 1500.0,
+            "margin_rate": 0.28,
+            "plan": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED"
+          }
+        ]
+      },
+      "SHARED_50_50": {
+        "selected_cases": 36,
+        "cases_reversing_NONE": 22,
+        "flips_at_all_base_values": false,
+        "minimal_reversing_combinations": [
+          {
+            "uplift_multiplier": 1.0,
+            "scale": 100.0,
+            "fixed_setup": 750.0,
+            "margin_rate": 0.35,
+            "plan": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED"
+          },
+          {
+            "uplift_multiplier": 1.0,
+            "scale": 250.0,
+            "fixed_setup": 1500.0,
+            "margin_rate": 0.35,
+            "plan": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED"
+          },
+          {
+            "uplift_multiplier": 1.0,
+            "scale": 250.0,
+            "fixed_setup": 750.0,
+            "margin_rate": 0.28,
+            "plan": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED"
+          },
+          {
+            "uplift_multiplier": 1.5,
+            "scale": 40.0,
+            "fixed_setup": 750.0,
+            "margin_rate": 0.35,
+            "plan": "FROZEN PIZZA/LAPSING/digital_coupon/ALL"
+          },
+          {
+            "uplift_multiplier": 1.5,
+            "scale": 100.0,
+            "fixed_setup": 1500.0,
+            "margin_rate": 0.35,
+            "plan": "FROZEN PIZZA/LAPSING/digital_coupon/ALL"
+          },
+          {
+            "uplift_multiplier": 1.5,
+            "scale": 100.0,
+            "fixed_setup": 750.0,
+            "margin_rate": 0.28,
+            "plan": "FROZEN PIZZA/LAPSING/digital_coupon/ALL"
+          },
+          {
+            "uplift_multiplier": 1.5,
+            "scale": 250.0,
+            "fixed_setup": 1500.0,
+            "margin_rate": 0.28,
+            "plan": "FROZEN PIZZA/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL"
+          },
+          {
+            "uplift_multiplier": 2.0,
+            "scale": 40.0,
+            "fixed_setup": 750.0,
+            "margin_rate": 0.28,
+            "plan": "FROZEN PIZZA/LAPSING/digital_coupon/ALL"
+          },
+          {
+            "uplift_multiplier": 2.0,
+            "scale": 100.0,
+            "fixed_setup": 1500.0,
+            "margin_rate": 0.28,
+            "plan": "FROZEN PIZZA/LAPSING/digital_coupon/ALL"
+          }
+        ]
+      },
+      "MANUFACTURER_FUNDED_HISTORICAL_MATCH_ANALOGUE": {
+        "selected_cases": 36,
+        "cases_reversing_NONE": 24,
+        "flips_at_all_base_values": false,
+        "minimal_reversing_combinations": [
+          {
+            "uplift_multiplier": 1.0,
+            "scale": 100.0,
+            "fixed_setup": 750.0,
+            "margin_rate": 0.35,
+            "plan": "FROZEN PIZZA/LAPSING/digital_coupon/ALL"
+          },
+          {
+            "uplift_multiplier": 1.0,
+            "scale": 250.0,
+            "fixed_setup": 1500.0,
+            "margin_rate": 0.28,
+            "plan": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED"
+          },
+          {
+            "uplift_multiplier": 1.5,
+            "scale": 40.0,
+            "fixed_setup": 750.0,
+            "margin_rate": 0.35,
+            "plan": "FROZEN PIZZA/LAPSING/digital_coupon/ALL"
+          },
+          {
+            "uplift_multiplier": 1.5,
+            "scale": 100.0,
+            "fixed_setup": 1500.0,
+            "margin_rate": 0.28,
+            "plan": "FROZEN PIZZA/LAPSING/digital_coupon/ALL"
+          },
+          {
+            "uplift_multiplier": 2.0,
+            "scale": 40.0,
+            "fixed_setup": 750.0,
+            "margin_rate": 0.28,
+            "plan": "FROZEN PIZZA/LAPSING/digital_coupon/ALL"
+          }
+        ]
+      },
+      "MANUFACTURER_FUNDED_NO_MATCH": {
+        "selected_cases": 36,
+        "cases_reversing_NONE": 30,
+        "flips_at_all_base_values": false,
+        "minimal_reversing_combinations": [
+          {
+            "uplift_multiplier": 1.0,
+            "scale": 40.0,
+            "fixed_setup": 750.0,
+            "margin_rate": 0.35,
+            "plan": "FROZEN PIZZA/LAPSING/digital_coupon/ALL"
+          },
+          {
+            "uplift_multiplier": 1.0,
+            "scale": 100.0,
+            "fixed_setup": 1500.0,
+            "margin_rate": 0.28,
+            "plan": "FROZEN PIZZA/LAPSING/digital_coupon/ALL"
+          },
+          {
+            "uplift_multiplier": 1.5,
+            "scale": 40.0,
+            "fixed_setup": 750.0,
+            "margin_rate": 0.28,
+            "plan": "FROZEN PIZZA/LAPSING/digital_coupon/ALL"
+          },
+          {
+            "uplift_multiplier": 2.0,
+            "scale": 40.0,
+            "fixed_setup": 1500.0,
+            "margin_rate": 0.35,
+            "plan": "FROZEN PIZZA/LAPSING/digital_coupon/ALL"
+          }
+        ]
+      }
+    },
+    "reading": "Cases were SELECTED by us (plausible-looking levels), not sampled from a distribution; a count of reversing cases is NOT a probability. Use the minimal combinations as a checklist of what would have to be confirmed."
+  },
+  "observed_vs_unknown": "Historical match shares are OBSERVED for past coupon lines (reports/funding_audit.json); the funding of the proposed digital offer is UNKNOWN until the client confirms the contract.",
+  "status": "SCENARIO; contracts are assumptions"
+}

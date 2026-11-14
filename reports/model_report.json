@@ -1,9 +1,9 @@
 {
-  "run_id": "run-331890829f",
-  "created_at": "2026-11-14T15:44:57+00:00",
+  "run_id": "run-d4d8b1e0b4",
+  "created_at": "2026-11-14T16:15:36+00:00",
   "status": "OBSERVED (historical backtest) \u2014 predicts observed purchase under historical conditions, NOT response to a coupon",
   "seed": 20261114,
-  "config_hash": "503853f3972f8ab2",
+  "config_hash": "ec713bb7839f1b07",
   "data_manifest_commit": "5b5d06192b9856edd04e4d405787af2f2e4a1fef",
   "target": "household buys category in the next 4 weeks (any basket)",
   "unit": "(cutoff_week, household_id, product_category)",
@@ -609,11 +609,11 @@
       "rule": 0.6210149195951625
     }
   },
-  "seconds": 29.9,
+  "seconds": 29.8,
   "artifacts": {
     "scores": "data/processed/scores_latest.parquet",
     "scores_sha16": "67046eb13d931d6a",
     "model": "data/processed/model.pkl",
-    "model_sha16": "ee9f3321006af4a8"
+    "model_sha16": "801cccf5842cfe63"
   }
 }

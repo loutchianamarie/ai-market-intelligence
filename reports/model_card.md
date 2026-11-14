@@ -1,4 +1,4 @@
-# Model card — run-331890829f
+# Model card — run-d4d8b1e0b4
 
 **Status:** OBSERVED (historical backtest) — predicts observed purchase under historical conditions, NOT response to a coupon
 
@@ -8,7 +8,7 @@
 - `history_weeks_available` is a time index (weeks of data before the lookback); trees treat later cutoffs as the training maximum.
 - Target: household buys category in the next 4 weeks (any basket)
 - Unit: (cutoff_week, household_id, product_category)
-- Seed 20261114, config hash `503853f3972f8ab2`, data commit `5b5d06192b98`
+- Seed 20261114, config hash `ec713bb7839f1b07`, data commit `5b5d06192b98`
 - Selected on validation AP: **hgb_small** ({"logreg_l2": 0.6743, "hgb_small": 0.679, "hgb_deeper": 0.6783, "rule_repeat": 0.628, "rule_popularity": 0.3409})
 - Calibration: isotonic regression fit on calibration window only
 

@@ -193,11 +193,11 @@
       "source": "reports/decision_reversal.json"
     },
     {
-      "id": "reversal.combinations_flipping",
-      "value": "55 of 96",
-      "unit": "joint scenarios",
+      "id": "reversal.combinations",
+      "value": "see contract.* claims (selected grid cases per funding contract; not probabilities)",
+      "unit": "-",
       "status": "SCENARIO",
-      "source": "reports/decision_reversal.json#combinations"
+      "source": "reports/funding_contracts.json#reversal_grid"
     },
     {
       "id": "opportunity.cards",
@@ -249,10 +249,106 @@
     },
     {
       "id": "run.dossier",
-      "value": "OPP-5A2E65C8",
+      "value": "OPP-0CB758BD",
       "unit": "-",
       "status": "OBSERVED",
       "source": "reports/run_manifest.json"
+    },
+    {
+      "id": "advisor.status",
+      "value": "DEFER FUNDING / NO SPEND WHILE TERMS ARE UNCONFIRMED",
+      "unit": "-",
+      "status": "ADVISORY (a named human decides)",
+      "source": "dossier OPP-0CB758BD#advisor_recommendation"
+    },
+    {
+      "id": "advisor.base_case",
+      "value": "RETAILER-FUNDED offer (retailer pays the full coupon face value): the current base case",
+      "unit": "-",
+      "status": "ASSUMPTION",
+      "source": "dossier OPP-0CB758BD#advisor_recommendation"
+    },
+    {
+      "id": "advisor.reopen_if",
+      "value": [
+        "a WRITTEN funding/reimbursement contract for the exact proposed offer (who pays the face value, who reimburses, any retailer match)",
+        "if the contract is SHARED_50_50 (retailer share 0.5): a verified count of >= 72,422 eligible, consented, reachable households per cycle at the assumed 4 pp response and $1,500 setup (break-even response 3.15 pp)",
+        "if the contract is MANUFACTURER_FUNDED_HISTORICAL_MATCH_ANALOGUE (retailer share 0.35): a verified count of >= 37,299 eligible, consented, reachable households per cycle at the assumed 4 pp response and $1,500 setup (break-even response 2.44 pp)",
+        "if the contract is MANUFACTURER_FUNDED_NO_MATCH (retailer share 0.0): a verified count of >= 17,498 eligible, consented, reachable households per cycle at the assumed 4 pp response and $1,500 setup (break-even response 1.04 pp)",
+        "finance-confirmed contribution margin and quoted setup and contact costs (re-run the scenario engine with them)",
+        "redemption / opt-in mechanics of the offer (clip vs automatic), which set the subsidy to habitual buyers",
+        "operations-confirmed stock capacity for the expected purchasing households",
+        "credible response evidence (interviews pointing to price/habit, or a randomized result) supporting the response the plan needs"
+      ],
+      "unit": "-",
+      "status": "CHECKLIST",
+      "source": "dossier OPP-0CB758BD#advisor_recommendation"
+    },
+    {
+      "id": "funding.historical_match_share_all",
+      "value": 0.1723,
+      "unit": "value-weighted share of manufacturer coupon value",
+      "status": "OBSERVED (past coupon lines; not our offer)",
+      "source": "reports/funding_audit.json#all_couponed_lines"
+    },
+    {
+      "id": "funding.historical_match_share_frozen_pizza",
+      "value": 0.3505,
+      "unit": "value-weighted; 543 lines",
+      "status": "OBSERVED (past coupon lines; not our offer)",
+      "source": "reports/funding_audit.json#by_category_all_couponed"
+    },
+    {
+      "id": "contract.RETAILER_FUNDED",
+      "value": {
+        "contribution_per_contacted_hh": -0.0443,
+        "break_even_pp": 6.23,
+        "pool_needed": "none: negative per household",
+        "recommendation": "NONE: research / measure first",
+        "selected_reversing_cases": "9 of 36 (not a probability)"
+      },
+      "unit": "-",
+      "status": "SCENARIO (contract ASSUMED)",
+      "source": "reports/funding_contracts.json"
+    },
+    {
+      "id": "contract.SHARED_50_50",
+      "value": {
+        "contribution_per_contacted_hh": 0.0207,
+        "break_even_pp": 3.15,
+        "pool_needed": 72422,
+        "recommendation": "NONE: research / measure first",
+        "selected_reversing_cases": "22 of 36 (not a probability)"
+      },
+      "unit": "-",
+      "status": "SCENARIO (contract ASSUMED)",
+      "source": "reports/funding_contracts.json"
+    },
+    {
+      "id": "contract.MANUFACTURER_FUNDED_HISTORICAL_MATCH_ANALOGUE",
+      "value": {
+        "contribution_per_contacted_hh": 0.0402,
+        "break_even_pp": 2.44,
+        "pool_needed": 37299,
+        "recommendation": "NONE: research / measure first",
+        "selected_reversing_cases": "24 of 36 (not a probability)"
+      },
+      "unit": "-",
+      "status": "SCENARIO (contract ASSUMED)",
+      "source": "reports/funding_contracts.json"
+    },
+    {
+      "id": "contract.MANUFACTURER_FUNDED_NO_MATCH",
+      "value": {
+        "contribution_per_contacted_hh": 0.0857,
+        "break_even_pp": 1.04,
+        "pool_needed": 17498,
+        "recommendation": "NONE: research / measure first",
+        "selected_reversing_cases": "30 of 36 (not a probability)"
+      },
+      "unit": "-",
+      "status": "SCENARIO (contract ASSUMED)",
+      "source": "reports/funding_contracts.json"
     }
   ],
   "note": "deck_value_superseded = figure on the current slides that this value replaces; PPT not edited"

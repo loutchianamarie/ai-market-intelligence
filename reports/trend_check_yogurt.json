@@ -1,0 +1,127 @@
+{
+  "category": "YOGURT",
+  "windows": {
+    "A": [
+      2,
+      26
+    ],
+    "B": [
+      27,
+      51
+    ]
+  },
+  "equal_windows_all_categories": [
+    {
+      "category": "BAG SNACKS",
+      "buyers_A": 1852,
+      "buyers_B": 1866,
+      "change": 0.0076,
+      "buyer_rate_A": 0.7746,
+      "buyer_rate_B": 0.7743
+    },
+    {
+      "category": "FROZEN PIZZA",
+      "buyers_A": 1436,
+      "buyers_B": 1438,
+      "change": 0.0014,
+      "buyer_rate_A": 0.6006,
+      "buyer_rate_B": 0.5967
+    },
+    {
+      "category": "COLD CEREAL",
+      "buyers_A": 1518,
+      "buyers_B": 1563,
+      "change": 0.0296,
+      "buyer_rate_A": 0.6349,
+      "buyer_rate_B": 0.6485
+    },
+    {
+      "category": "SOUP",
+      "buyers_A": 1544,
+      "buyers_B": 1609,
+      "change": 0.0421,
+      "buyer_rate_A": 0.6458,
+      "buyer_rate_B": 0.6676
+    },
+    {
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "buyers_A": 1470,
+      "buyers_B": 1518,
+      "change": 0.0327,
+      "buyer_rate_A": 0.6148,
+      "buyer_rate_B": 0.6299
+    },
+    {
+      "category": "YOGURT",
+      "buyers_A": 1194,
+      "buyers_B": 1111,
+      "change": -0.0695,
+      "buyer_rate_A": 0.4994,
+      "buyer_rate_B": 0.461
+    },
+    {
+      "category": "COFFEE",
+      "buyers_A": 918,
+      "buyers_B": 997,
+      "change": 0.0861,
+      "buyer_rate_A": 0.3839,
+      "buyer_rate_B": 0.4137
+    },
+    {
+      "category": "REFRGRATD JUICES/DRNKS",
+      "buyers_A": 1476,
+      "buyers_B": 1444,
+      "change": -0.0217,
+      "buyer_rate_A": 0.6173,
+      "buyer_rate_B": 0.5992
+    }
+  ],
+  "composition": {
+    "buyers_A": 1194,
+    "buyers_B": 1111,
+    "retained": 826,
+    "lost": 368,
+    "new": 285,
+    "lost_still_shopping_in_B": 353,
+    "lost_left_panel_in_B": 15,
+    "active_households_A": 2391,
+    "active_households_B": 2410
+  },
+  "relative_4w_buyer_slope_per_window": {
+    "BAG SNACKS": 0.0018,
+    "FROZEN PIZZA": -0.001,
+    "COLD CEREAL": -0.0024,
+    "SOUP": 0.013,
+    "ICE CREAM/MILK/SHERBTS": -0.0013,
+    "YOGURT": -0.016,
+    "COFFEE": 0.014,
+    "REFRGRATD JUICES/DRNKS": -0.0105
+  },
+  "slope_rank_lowest_first": [
+    "YOGURT",
+    "REFRGRATD JUICES/DRNKS",
+    "COLD CEREAL",
+    "ICE CREAM/MILK/SHERBTS",
+    "FROZEN PIZZA",
+    "BAG SNACKS",
+    "SOUP",
+    "COFFEE"
+  ],
+  "coverage_and_promotions": {
+    "A": {
+      "lines": 13330,
+      "lines_in_covered_stores": 0.9815,
+      "sales_share_on_promotion_covered": 0.1924,
+      "stores_with_category_sales": 155
+    },
+    "B": {
+      "lines": 11509,
+      "lines_in_covered_stores": 0.9897,
+      "sales_share_on_promotion_covered": 0.211,
+      "stores_with_category_sales": 143
+    },
+    "promoted_product_store_rows_per_week_A": 9757.3,
+    "promoted_product_store_rows_per_week_B": 9718.1
+  },
+  "verdict": "YOGURT buyers change -7.0% on equal 25-week windows (buyer rate 49.9% -> 46.1% of active households). This is a SIGNAL for an operations check (stock, assortment, price moves), not evidence of a cause: one year cannot separate seasonality, and promotion intensity / store coverage changes are reported alongside."
+}

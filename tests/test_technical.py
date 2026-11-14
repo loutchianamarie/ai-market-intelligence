@@ -164,3 +164,13 @@ def test_llm_grounded_path_drops_fabricated_citations(monkeypatch):
     assert r["method"] == "bm25+llm"
     assert [c["span"] for c in r["supported_claims"]] == ["2,469 households"]
     assert r["rejected_claims"][0]["reason"].startswith("span not found")
+
+
+def test_decision_value_flags_a_test_larger_than_the_pool():
+    from mi.outcome.learning import decision_value
+    dv = decision_value(q0=0.3, g=2.9, face=0.0, contact=0.03, redemption=0.35, n_per_arm=46638,
+                        reachable=7308, fixed=1500, uplifts={"x": 0.04}, share_new=0.6)
+    s = dv["scenarios"]["x"]
+    assert dv["test_fits_in_pool"] is False and dv["remaining_never_offered"] is None
+    assert s["one_time_remaining_pool_net"] is None and s["test_net_cost_vs_none"] is None   # no nonsense negative pools/costs
+    assert s["rollout_cycle_net"] is not None                                                # rollout economics still reported

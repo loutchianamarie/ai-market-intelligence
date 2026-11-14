@@ -7,9 +7,16 @@ import json
 from mi.paths import CONFIGS
 
 
-def load_config(path=None) -> dict:
+def load_config(path=None, client_inputs=True) -> dict:
+    """Policy config; CLIENT-CONFIRMED answers (data/client_inputs/client_inputs.json) are overlaid when present and valid."""
     p = path or CONFIGS / "policy.json"
-    return json.loads(open(p, encoding="utf-8").read())
+    cfg = json.loads(open(p, encoding="utf-8").read())
+    if client_inputs and path is None:
+        from mi.decision.client_inputs import apply, load_answers
+        ans = load_answers()
+        if ans:
+            cfg = apply(cfg, ans)
+    return cfg
 
 
 def config_hash(cfg: dict) -> str:

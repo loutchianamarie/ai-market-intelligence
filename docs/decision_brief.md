@@ -1,7 +1,7 @@
 # Executive decision brief: next CRM budget (dossier CJ-GROCERY-001)
 
 **Labels:** HISTORICAL OBSERVATION · MODEL ESTIMATE · ASSUMPTION · SIMULATED WORKFLOW · FUTURE EXPERIMENT · COMPANY SCALE ASSUMED · PENDING. Revised 2026-11-14 (third pass).
-- **Live dossier:** `OPP-9DA359C3` (REVIEW_REQUESTED). It carries the advisor's REJECT FUNDING (DEFER) recommendation; a named person decides.
+- **Live dossier:** see `NEXT_DAY_STATUS.md` (REVIEW_REQUESTED). Advisor status: **DEFER FUNDING / NO SPEND WHILE TERMS ARE UNCONFIRMED** (base case: retailer-funded). A named person decides.
 - **Superseded, do not approve:** `OPP-80476CCD`, `OPP-BB3F6F1E`, `OPP-390338F3`, `OPP-E9A4AF0C`.
 
 ## The decision in one paragraph
@@ -97,7 +97,7 @@ Reading:
   So at the assumed 7,308 households, a test that proves the rollout hurdle fits only if the true effect is around 25 pp, about 6× our assumption. Nothing we have observed supports that size. It stays a FUTURE option.
 - **Gross test outlay is $1,927** (2,623 × $0.163 + $1,500), valued at the assumed 4 pp. The first-pass claim "pays back after ~2 cycles" compared this test with Coffee's best case and is withdrawn.
 
-**Advisor action:** the advisor recommends **REJECT FUNDING (DEFER)** and attaches a $0 research checklist. A named approver rejects in the app (tab 4) or the CLI, approving that checklist in the same versioned record. The agent then records the checklist in the sandbox as PLANNED. No contact, spend, send or field work is executed. A scripted rehearsal of the whole path is in `reports/rejection_rehearsal.json`. It ran in a throwaway store, and its "approver" is labelled as a script.
+**Advisor action:** the advisor's status is **DEFER FUNDING / NO SPEND WHILE TERMS ARE UNCONFIRMED** (base case: retailer-funded); it recommends rejecting or deferring funding and attaches a $0 research checklist. A named approver rejects in the app (tab 4) or the CLI, approving that checklist in the same versioned record. The agent then records the checklist in the sandbox as PLANNED. No contact, spend, send or field work is executed. A scripted rehearsal of the whole path is in `reports/rejection_rehearsal.json`. It ran in a throwaway store, and its "approver" is labelled as a script.
 
 ## 5. Evidence-to-decision matrix (what would change which action)
 | Question | Current evidence / unknown | Low-cost method (owner) | If A → decision | If B → decision |

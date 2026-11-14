@@ -64,9 +64,10 @@ def audit() -> dict:
             "Category 'spend' in the economics is retailer receipts (sales_value), not shopper outlay; margin is applied to receipts.",
             "The coupon face value used (mean coupon_disc per couponed line) averages ALL manufacturer coupons; only "
             f"{len(red)} of {red_tx_lines} couponed lines are campaign redemptions, so it is not a measured campaign-coupon value.",
-            "Manufacturer coupons are reimbursed to the retailer; the retailer's observed cost is its match "
-            f"(~{100 * match_ratio:.0f}% of coupon value). Who funds a NEW digital coupon is therefore an ASSUMPTION "
-            "(coupon_funding.retailer_share): retailer-funded (1.0, base) vs manufacturer-funded with retailer match.",
+            "Manufacturer coupons are reimbursed to the retailer. Separately, the retailer recorded a match on 47% of couponed lines "
+            f"(usually equal to the coupon), which sums to {100 * match_ratio:.0f}% of manufacturer coupon VALUE (value-weighted; reports/funding_audit.json). "
+            "That describes past coupon accounting, not who would fund a NEW offer: the offer contract is an ASSUMPTION "
+            "(coupon_funding.retailer_share; base 1.0 = retailer-funded) until the client confirms it.",
             "Unit prices: sales_value / quantity is undefined on zero-quantity lines; no price list exists."]}
 
 

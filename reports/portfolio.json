@@ -1,5 +1,5 @@
 {
-  "config_hash": "503853f3972f8ab2",
+  "config_hash": "ec713bb7839f1b07",
   "n_candidates": 74,
   "n_portfolios_feasible": 159,
   "top_k_screen": [
@@ -490,5 +490,5 @@
     "coupon_retailer_share": 1.0
   },
   "status": "SIMULATION \u2014 conditional on ASSUMED uplift, margin, redemption, contact cost, reach and scale; q0 is a MODEL ESTIMATE",
-  "model_run_id": "run-331890829f"
+  "model_run_id": "run-d4d8b1e0b4"
 }
