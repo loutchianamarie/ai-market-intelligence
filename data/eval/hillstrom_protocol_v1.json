@@ -1,0 +1,21 @@
+{
+  "status": "PRE-REGISTERED 2026-11-14 before any analysis of the Hillstrom data. Edit only by writing v2.",
+  "purpose": "Methodological demonstration of what a RANDOMIZED marketing test identifies. Different retailer (apparel, 2008), channel (email) and outcome window (2 weeks): its effects must NEVER be used as grocery coupon uplift or to change the Frozen Pizza plan.",
+  "source": {"page": "https://blog.minethatdata.com/2008/03/minethatdata-e-mail-analytics-and-data.html",
+             "file": "http://www.minethatdata.com/Kevin_Hillstrom_MineThatData_E-MailAnalytics_DataMiningChallenge_2008.03.20.csv",
+             "sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece", "bytes": 3964977,
+             "terms": "none stated on the source page (checked 2026-11-14): raw file kept local and NOT committed"},
+  "arms": ["Mens E-Mail", "Womens E-Mail", "No E-Mail"],
+  "comparisons": ["Mens E-Mail vs No E-Mail", "Womens E-Mail vs No E-Mail", "Mens E-Mail vs Womens E-Mail"],
+  "outcomes": {"primary": "visit", "secondary": ["conversion", "spend"], "note": "conversion is rare; report CIs and a sample-size warning"},
+  "pre_treatment_features": ["recency", "history", "mens", "womens", "zip_code", "newbie", "channel"],
+  "excluded": ["history_segment (a binned copy of history)", "visit/conversion/spend (post-treatment)"],
+  "uplift_model": {"type": "two-model (T-learner) logistic regression, C=1.0, standardised numeric + one-hot categorical; no tuning",
+                   "treatment_pair": "Womens E-Mail vs No E-Mail (and Mens vs No as a second, separately reported model)",
+                   "outcome": "visit"},
+  "split": {"method": "random 50/50 train/held-out, stratified by arm", "seed": 20080320, "frozen": true},
+  "policy_evaluation": {"held_out_only": true, "target_shares": [0.1, 0.3, 0.5],
+                        "baselines": ["random targeting (= overall ATE x n)", "recency rule: lowest recency months first"],
+                        "estimator": "within the targeted set, mean(visit | treated) - mean(visit | control); household bootstrap 500 draws",
+                        "uplift_by_decile": true}
+}
