@@ -1,5 +1,5 @@
 {
-  "opportunity_id": "OPP-8D0231FE",
+  "opportunity_id": "OPP-9D7E5942",
   "state": "STOP",
   "version": 16,
   "llm_available": false,
@@ -7,7 +7,7 @@
     {
       "role": "research",
       "mode": "deterministic",
-      "ts": "2026-11-14T10:40:52+00:00",
+      "ts": "2026-11-14T10:47:00+00:00",
       "tool_calls": [
         {
           "tool": "retrieve_sources",
@@ -56,7 +56,7 @@
     {
       "role": "intelligence",
       "mode": "deterministic",
-      "ts": "2026-11-14T10:40:52+00:00",
+      "ts": "2026-11-14T10:47:00+00:00",
       "tool_calls": [
         {
           "tool": "get_data_audit",
@@ -96,7 +96,7 @@
     {
       "role": "portfolio",
       "mode": "deterministic",
-      "ts": "2026-11-14T10:40:55+00:00",
+      "ts": "2026-11-14T10:47:03+00:00",
       "tool_calls": [
         {
           "tool": "compare_plans",
@@ -131,7 +131,7 @@
     {
       "role": "activation",
       "mode": "deterministic",
-      "ts": "2026-11-14T10:40:55+00:00",
+      "ts": "2026-11-14T10:47:03+00:00",
       "tool_calls": [
         {
           "tool": "pilot_design",
@@ -154,7 +154,7 @@
           "tool": "draft_pilot",
           "status": "ok",
           "args": {
-            "opportunity_id": "OPP-8D0231FE",
+            "opportunity_id": "OPP-9D7E5942",
             "expected_version": 5
           }
         },
@@ -162,7 +162,7 @@
           "tool": "request_approval",
           "status": "ok",
           "args": {
-            "opportunity_id": "OPP-8D0231FE",
+            "opportunity_id": "OPP-9D7E5942",
             "expected_version": 6
           }
         }
@@ -173,14 +173,14 @@
     {
       "role": "activation",
       "mode": "deterministic",
-      "ts": "2026-11-14T10:40:55+00:00",
+      "ts": "2026-11-14T10:47:04+00:00",
       "tool_calls": [
         {
           "tool": "record_sandbox_action",
           "status": "blocked",
           "args": {
-            "opportunity_id": "OPP-8D0231FE",
-            "idempotency_key": "da1ecbd2fb87d35f231d"
+            "opportunity_id": "OPP-9D7E5942",
+            "idempotency_key": "d65db6c7d62d05ccf799"
           }
         }
       ],
@@ -190,14 +190,14 @@
     {
       "role": "activation",
       "mode": "deterministic",
-      "ts": "2026-11-14T10:40:55+00:00",
+      "ts": "2026-11-14T10:47:04+00:00",
       "tool_calls": [
         {
           "tool": "record_sandbox_action",
           "status": "ok",
           "args": {
-            "opportunity_id": "OPP-8D0231FE",
-            "idempotency_key": "da1ecbd2fb87d35f231d"
+            "opportunity_id": "OPP-9D7E5942",
+            "idempotency_key": "d65db6c7d62d05ccf799"
           }
         }
       ],
@@ -207,7 +207,7 @@
     {
       "role": "measurement",
       "mode": "deterministic",
-      "ts": "2026-11-14T10:40:59+00:00",
+      "ts": "2026-11-14T10:47:07+00:00",
       "tool_calls": [
         {
           "tool": "campaign_history",
@@ -250,7 +250,7 @@
           "tool": "record_outcome",
           "status": "ok",
           "args": {
-            "opportunity_id": "OPP-8D0231FE",
+            "opportunity_id": "OPP-9D7E5942",
             "outcome": {
               "provenance": "SIMULATED fixture (seeded synthetic data) \u2014 not a real pilot",
               "n_per_arm": 6000,
@@ -287,7 +287,7 @@
     {
       "role": "research",
       "mode": "deterministic",
-      "ts": "2026-11-14T10:40:59+00:00",
+      "ts": "2026-11-14T10:47:07+00:00",
       "tool_calls": [
         {
           "tool": "retrieve_sources",
@@ -309,9 +309,9 @@
   "events": [
     {
       "id": 1,
-      "opportunity_id": "OPP-8D0231FE",
+      "opportunity_id": "OPP-9D7E5942",
       "version": 1,
-      "ts": "2026-11-14T10:40:51+00:00",
+      "ts": "2026-11-14T10:47:00+00:00",
       "actor": "coordinator",
       "role": "agent",
       "event": "DOSSIER_CREATED",
@@ -319,9 +319,9 @@
     },
     {
       "id": 2,
-      "opportunity_id": "OPP-8D0231FE",
+      "opportunity_id": "OPP-9D7E5942",
       "version": 2,
-      "ts": "2026-11-14T10:40:52+00:00",
+      "ts": "2026-11-14T10:47:00+00:00",
       "actor": "research_agent",
       "role": "agent",
       "event": "DOSSIER_UPDATED",
@@ -334,9 +334,9 @@
     },
     {
       "id": 3,
-      "opportunity_id": "OPP-8D0231FE",
+      "opportunity_id": "OPP-9D7E5942",
       "version": 3,
-      "ts": "2026-11-14T10:40:52+00:00",
+      "ts": "2026-11-14T10:47:00+00:00",
       "actor": "intelligence_agent",
       "role": "agent",
       "event": "DOSSIER_UPDATED",
@@ -349,9 +349,9 @@
     },
     {
       "id": 4,
-      "opportunity_id": "OPP-8D0231FE",
+      "opportunity_id": "OPP-9D7E5942",
       "version": 4,
-      "ts": "2026-11-14T10:40:55+00:00",
+      "ts": "2026-11-14T10:47:03+00:00",
       "actor": "portfolio_agent",
       "role": "agent",
       "event": "DOSSIER_UPDATED",
@@ -364,9 +364,9 @@
     },
     {
       "id": 5,
-      "opportunity_id": "OPP-8D0231FE",
+      "opportunity_id": "OPP-9D7E5942",
       "version": 5,
-      "ts": "2026-11-14T10:40:55+00:00",
+      "ts": "2026-11-14T10:47:03+00:00",
       "actor": "coordinator",
       "role": "agent",
       "event": "DOSSIER_UPDATED",
@@ -378,9 +378,9 @@
     },
     {
       "id": 6,
-      "opportunity_id": "OPP-8D0231FE",
+      "opportunity_id": "OPP-9D7E5942",
       "version": 6,
-      "ts": "2026-11-14T10:40:55+00:00",
+      "ts": "2026-11-14T10:47:03+00:00",
       "actor": "activation_agent",
       "role": "agent",
       "event": "DOSSIER_UPDATED",
@@ -392,9 +392,9 @@
     },
     {
       "id": 7,
-      "opportunity_id": "OPP-8D0231FE",
+      "opportunity_id": "OPP-9D7E5942",
       "version": 7,
-      "ts": "2026-11-14T10:40:55+00:00",
+      "ts": "2026-11-14T10:47:03+00:00",
       "actor": "activation_agent",
       "role": "agent",
       "event": "STATE_REVIEW_REQUESTED",
@@ -404,9 +404,9 @@
     },
     {
       "id": 8,
-      "opportunity_id": "OPP-8D0231FE",
+      "opportunity_id": "OPP-9D7E5942",
       "version": 8,
-      "ts": "2026-11-14T10:40:55+00:00",
+      "ts": "2026-11-14T10:47:03+00:00",
       "actor": "activation_agent",
       "role": "agent",
       "event": "DOSSIER_UPDATED",
@@ -419,22 +419,22 @@
     },
     {
       "id": 9,
-      "opportunity_id": "OPP-8D0231FE",
+      "opportunity_id": "OPP-9D7E5942",
       "version": 8,
-      "ts": "2026-11-14T10:40:55+00:00",
+      "ts": "2026-11-14T10:47:04+00:00",
       "actor": "activation_agent",
       "role": "agent",
       "event": "UNAPPROVED_ACTION_BLOCKED",
       "detail": {
         "state": "REVIEW_REQUESTED",
-        "idempotency_key": "da1ecbd2fb87d35f231d"
+        "idempotency_key": "d65db6c7d62d05ccf799"
       }
     },
     {
       "id": 10,
-      "opportunity_id": "OPP-8D0231FE",
+      "opportunity_id": "OPP-9D7E5942",
       "version": 9,
-      "ts": "2026-11-14T10:40:55+00:00",
+      "ts": "2026-11-14T10:47:04+00:00",
       "actor": "activation_agent",
       "role": "agent",
       "event": "DOSSIER_UPDATED",
@@ -447,9 +447,9 @@
     },
     {
       "id": 11,
-      "opportunity_id": "OPP-8D0231FE",
+      "opportunity_id": "OPP-9D7E5942",
       "version": 10,
-      "ts": "2026-11-14T10:40:55+00:00",
+      "ts": "2026-11-14T10:47:04+00:00",
       "actor": "TEST_FIXTURE_APPROVER",
       "role": "approver",
       "event": "STATE_APPROVED",
@@ -460,22 +460,22 @@
     },
     {
       "id": 12,
-      "opportunity_id": "OPP-8D0231FE",
+      "opportunity_id": "OPP-9D7E5942",
       "version": 11,
-      "ts": "2026-11-14T10:40:55+00:00",
+      "ts": "2026-11-14T10:47:04+00:00",
       "actor": "activation_agent",
       "role": "agent",
       "event": "STATE_SANDBOX_RECORDED",
       "detail": {
-        "action_id": "SBX-51f053f36c",
+        "action_id": "SBX-bb0929e6dd",
         "live_send": false
       }
     },
     {
       "id": 13,
-      "opportunity_id": "OPP-8D0231FE",
+      "opportunity_id": "OPP-9D7E5942",
       "version": 12,
-      "ts": "2026-11-14T10:40:55+00:00",
+      "ts": "2026-11-14T10:47:04+00:00",
       "actor": "activation_agent",
       "role": "agent",
       "event": "DOSSIER_UPDATED",
@@ -488,9 +488,9 @@
     },
     {
       "id": 14,
-      "opportunity_id": "OPP-8D0231FE",
+      "opportunity_id": "OPP-9D7E5942",
       "version": 13,
-      "ts": "2026-11-14T10:40:59+00:00",
+      "ts": "2026-11-14T10:47:07+00:00",
       "actor": "measurement_agent",
       "role": "agent",
       "event": "STATE_EVALUATED",
@@ -500,9 +500,9 @@
     },
     {
       "id": 15,
-      "opportunity_id": "OPP-8D0231FE",
+      "opportunity_id": "OPP-9D7E5942",
       "version": 14,
-      "ts": "2026-11-14T10:40:59+00:00",
+      "ts": "2026-11-14T10:47:07+00:00",
       "actor": "measurement_agent",
       "role": "agent",
       "event": "STATE_STOP",
@@ -512,9 +512,9 @@
     },
     {
       "id": 16,
-      "opportunity_id": "OPP-8D0231FE",
+      "opportunity_id": "OPP-9D7E5942",
       "version": 15,
-      "ts": "2026-11-14T10:40:59+00:00",
+      "ts": "2026-11-14T10:47:07+00:00",
       "actor": "measurement_agent",
       "role": "agent",
       "event": "DOSSIER_UPDATED",
@@ -527,9 +527,9 @@
     },
     {
       "id": 17,
-      "opportunity_id": "OPP-8D0231FE",
+      "opportunity_id": "OPP-9D7E5942",
       "version": 16,
-      "ts": "2026-11-14T10:40:59+00:00",
+      "ts": "2026-11-14T10:47:07+00:00",
       "actor": "research_agent",
       "role": "agent",
       "event": "DOSSIER_UPDATED",
@@ -544,143 +544,143 @@
   "history": [
     {
       "version": 1,
-      "created_at": "2026-11-14T10:40:51+00:00",
+      "created_at": "2026-11-14T10:47:00+00:00",
       "actor": "coordinator",
       "role": "agent",
       "note": "created",
-      "payload_hash": "342e3e5b4b0969ba705752fc024cfb5ef98604325ed9ecad7894e20dd04d9ee7"
+      "payload_hash": "0bc9004a97e9ba355f0effa90de665b32c0afc3e2c09b65535756dfb21c0ef1e"
     },
     {
       "version": 2,
-      "created_at": "2026-11-14T10:40:52+00:00",
+      "created_at": "2026-11-14T10:47:00+00:00",
       "actor": "research_agent",
       "role": "agent",
       "note": "research output",
-      "payload_hash": "81205ade9b4efce9afc5542997afc881445ea1e19ab14e6362ee7efde606029b"
+      "payload_hash": "2ce881a42469929d61a9c986a27f0dc73521dd243d9fc7329490dfd71a83c3f6"
     },
     {
       "version": 3,
-      "created_at": "2026-11-14T10:40:52+00:00",
+      "created_at": "2026-11-14T10:47:00+00:00",
       "actor": "intelligence_agent",
       "role": "agent",
       "note": "intelligence output",
-      "payload_hash": "2ac2ce8f539524ae9fc21d38432f5099354a001fe569169b7c8eb7819c2d5c6f"
+      "payload_hash": "96d0c210586256d457eda94ef19b6656ec380ff3fbd74d69e05b9895c5931981"
     },
     {
       "version": 4,
-      "created_at": "2026-11-14T10:40:55+00:00",
+      "created_at": "2026-11-14T10:47:03+00:00",
       "actor": "portfolio_agent",
       "role": "agent",
       "note": "portfolio output",
-      "payload_hash": "05ba73884405c497a772992b3bd191f5e07f766c0b06f7c88ebd3008ac487251"
+      "payload_hash": "b975c95ad94acd7d3c885769f41f6d8f6945475fd634697b7f6d3d2a949d341d"
     },
     {
       "version": 5,
-      "created_at": "2026-11-14T10:40:55+00:00",
+      "created_at": "2026-11-14T10:47:03+00:00",
       "actor": "coordinator",
       "role": "agent",
       "note": "reconcile",
-      "payload_hash": "822c3260ec188e0f7eaa57e51ce472f24474f3e9af92b1148d89a61c33e116d9"
+      "payload_hash": "002d2380557c0144dad3f1f8ff22b5ddaaeadd99ddd7fe3e7badc9fb07f4babf"
     },
     {
       "version": 6,
-      "created_at": "2026-11-14T10:40:55+00:00",
+      "created_at": "2026-11-14T10:47:03+00:00",
       "actor": "activation_agent",
       "role": "agent",
       "note": "pilot drafted",
-      "payload_hash": "0d2b049b60251e18b540735d153726b048164cfdae166053b5db1db0a73bb17b"
+      "payload_hash": "d34d6ff457f0556c8c16235e20d56e79117f05825c0ee4d7250e8a4a9af761bb"
     },
     {
       "version": 7,
-      "created_at": "2026-11-14T10:40:55+00:00",
+      "created_at": "2026-11-14T10:47:03+00:00",
       "actor": "activation_agent",
       "role": "agent",
       "note": "-> REVIEW_REQUESTED",
-      "payload_hash": "9d792dc235ece431bd01d54e8c028c91d6fbee1af5daa56cacb24f6199fb4f90"
+      "payload_hash": "8c5b803b86e1301bc14d0f21fd407d99bca11d27d1ff8775f6631bec1e8d3dd7"
     },
     {
       "version": 8,
-      "created_at": "2026-11-14T10:40:55+00:00",
+      "created_at": "2026-11-14T10:47:03+00:00",
       "actor": "activation_agent",
       "role": "agent",
       "note": "activation output",
-      "payload_hash": "59418f7b968fe6186be43e3f375fd5656031bff34f9e1fcdef3e53694ba432a4"
+      "payload_hash": "d7b499db7d0f7f05e85a9c58769c41f7a5a7f56b7e86d2cb5071a597d382209a"
     },
     {
       "version": 9,
-      "created_at": "2026-11-14T10:40:55+00:00",
+      "created_at": "2026-11-14T10:47:04+00:00",
       "actor": "activation_agent",
       "role": "agent",
       "note": "activation output",
-      "payload_hash": "38f80640cd31db7148066ecda46c37332cb89ef9720b41d6f98aacb87835d52a"
+      "payload_hash": "9fce2fe5eea9680d0198d0769acc3d5bf48af498386978a1f8ada862cb2aa246"
     },
     {
       "version": 10,
-      "created_at": "2026-11-14T10:40:55+00:00",
+      "created_at": "2026-11-14T10:47:04+00:00",
       "actor": "TEST_FIXTURE_APPROVER",
       "role": "approver",
       "note": "-> APPROVED",
-      "payload_hash": "5b5507c2e2bda2d868031d1d5ea1b90e5175c2fc7411fff8f7b5148f622b3fac"
+      "payload_hash": "db94b98cc0f5ac5980e5a8d51906dc00d687729dad62167eece57d660d7942b7"
     },
     {
       "version": 11,
-      "created_at": "2026-11-14T10:40:55+00:00",
+      "created_at": "2026-11-14T10:47:04+00:00",
       "actor": "activation_agent",
       "role": "agent",
       "note": "-> SANDBOX_RECORDED",
-      "payload_hash": "64750196ad5a4cd7a7691662387d2d12c7e2189e01b8426013b0f95c6de0e5d7"
+      "payload_hash": "b241154d0baba06a3609ad9a88dea7744b4d8213f0cc60139c0e0e0c965d00c8"
     },
     {
       "version": 12,
-      "created_at": "2026-11-14T10:40:55+00:00",
+      "created_at": "2026-11-14T10:47:04+00:00",
       "actor": "activation_agent",
       "role": "agent",
       "note": "activation output",
-      "payload_hash": "cdacf4be1b36cdd4adb49d0949e56512a997e6cae4c3f68af9a3571ca976f0c1"
+      "payload_hash": "5dd7745c9faf8a455ec3f8b8188f85b832422b6778d35b6a08b27cfebd34ea3b"
     },
     {
       "version": 13,
-      "created_at": "2026-11-14T10:40:59+00:00",
+      "created_at": "2026-11-14T10:47:07+00:00",
       "actor": "measurement_agent",
       "role": "agent",
       "note": "-> EVALUATED",
-      "payload_hash": "1e1577c773186a47c47deee95bfcc5cf411c0bd05cea7b56501cb8329922b23b"
+      "payload_hash": "d1836825a527009c2fe483afd0f12087b057b62484c4cb65a0d71cd150b19d71"
     },
     {
       "version": 14,
-      "created_at": "2026-11-14T10:40:59+00:00",
+      "created_at": "2026-11-14T10:47:07+00:00",
       "actor": "measurement_agent",
       "role": "agent",
       "note": "-> STOP",
-      "payload_hash": "0542f2c5c76566eae5a6904a0a0f897f29e56dcc6083976d057eb4b0021bb992"
+      "payload_hash": "6c684b070763d646a1a3e7fb324ccb2e43f10997746db01970952d0af2ba7873"
     },
     {
       "version": 15,
-      "created_at": "2026-11-14T10:40:59+00:00",
+      "created_at": "2026-11-14T10:47:07+00:00",
       "actor": "measurement_agent",
       "role": "agent",
       "note": "measurement output",
-      "payload_hash": "e9d74adacb5bdb37d0dab642003cc8e6be0e07af8529df132f86bcab684da4a2"
+      "payload_hash": "9e0d33a64e3e8633120524288ab373f3d831ba9eff84d02eab91d71c3d1c27c0"
     },
     {
       "version": 16,
-      "created_at": "2026-11-14T10:40:59+00:00",
+      "created_at": "2026-11-14T10:47:07+00:00",
       "actor": "research_agent",
       "role": "agent",
       "note": "research output",
-      "payload_hash": "cc1c92dc5d5274161c3e732b269f801a93204d06a2fed07ddf22ced01d3a4c03"
+      "payload_hash": "7f819b742f8245bad565fbd0df77f0bb8444579c64ed34f366b21d80b50e45aa"
     }
   ],
   "crm_actions": [
     {
-      "action_id": "SBX-51f053f36c",
-      "opportunity_id": "OPP-8D0231FE",
+      "action_id": "SBX-bb0929e6dd",
+      "opportunity_id": "OPP-9D7E5942",
       "version": 10,
-      "idempotency_key": "da1ecbd2fb87d35f231d",
+      "idempotency_key": "d65db6c7d62d05ccf799",
       "plan_hash": "e0041f6edc6a1081a46a7590a5725a93de1dffd6675339e3d16afe597ad4ef37",
       "kind": "coupon_pilot_record",
       "payload": "{\"plan_id\": \"LEARN-FROZEN_PIZZA-LAPSING-DIGITAL\", \"audience\": {\"category\": \"FROZEN PIZZA\", \"segment\": \"LAPSING\", \"rule\": \"bought FROZEN PIZZA in weeks -12..-5, not in the last 4 weeks; digital consent on file; exclude staff/test accounts\", \"reachability\": \"UNKNOWN in public data \\u2014 requires consented loyalty/app contacts\"}, \"channel\": \"digital_coupon\", \"offer\": {\"type\": \"loaded digital coupon\", \"value_usd\": 0.9, \"value_status\": \"OBSERVED historical mean coupon discount (FROZEN PIZZA)\", \"validity_days\": 28, \"limit\": \"1 use per household\"}, \"message\": \"A $0.90 digital coupon for frozen pizza has been added to your account. Valid for 28 days, one use. Manage offers or opt out any time in your account settings, or reply STOP.\", \"design\": {\"type\": \"customer-level randomized holdout 50/50, stratified by model-score half (above/below segment median q0)\", \"n_per_arm\": 2623, \"n_basis\": \"contribution-based; ASSUMED true uplift = 2x break-even (see pilot_design)\", \"stratification_hypothesis\": \"tests whether uplift differs between higher- and lower-propensity lapsing buyers; the model does not identify persuadable customers by itself\", \"duration_days\": 28, \"primary_metric\": \"incremental contribution per randomized eligible household after coupon and contact cost, 28 days\", \"guardrails\": {\"opt_out_rate_max\": 0.02, \"complaint_rate_max\": 0.005, \"stockout_flag\": false}, \"follow_up_days\": 56, \"analysis\": \"intention-to-treat; no peeking; decision rule in configs/policy.json\", \"launch_preconditions\": [\"eligible consented pool >= 2 x n_per_arm (UNKNOWN; panel households are not contactable)\", \"stock confirmed by operations\", \"margin confirmed by finance\", \"consent/legal sign-off\", \"test cost justified by expected decision value\"]}, \"budget\": {\"currency\": \"USD\", \"treated_households\": 2623, \"per_household_expected_cost\": 0.1627, \"variable\": 426.77, \"fixed_setup\": 1500, \"total\": 1926.77, \"cap\": 25000, \"status\": \"SIMULATION (ASSUMED contact/redemption/fixed; OBSERVED face value; MODEL q0)\"}, \"status\": \"DRAFT \\u2014 not sent\"}",
-      "ts": "2026-11-14T10:40:55+00:00",
+      "ts": "2026-11-14T10:47:04+00:00",
       "sandbox": 1
     }
   ]
