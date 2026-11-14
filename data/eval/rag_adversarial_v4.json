@@ -1,0 +1,9 @@
+{
+  "status": "LOCKED 2026-11-14: written and committed BEFORE the source-scope / conflict fix was run on it. v3 (rag_locked_v3.json) stays untouched. Report v3 and v4 results separately, including misses.",
+  "why": "A1 probes the U1 failure mode with different wording and a different spend type; A2 probes the C1 failure mode with a phrasing ('the number of') the old number detector did not match; A3 is a control: a method question the course material SHOULD still answer, so an over-broad block would show up as a miss.",
+  "items": [
+    {"id": "A1", "type": "unanswerable", "q": "How much did the anonymous grocery retailer spend on paid social advertising?", "expect": [], "answerable": false},
+    {"id": "A2", "type": "conflict", "q": "What is the number of households in the completejourney data?", "expect": ["cj_pkg_index", "cj_py_port_readme"], "answerable": true, "conflict": true},
+    {"id": "A3", "type": "supported", "q": "How is customer acquisition cost calculated from spend and new customers?", "expect": ["course_metrics_workbook", "course_metrics_slides"], "answerable": true}
+  ]
+}
