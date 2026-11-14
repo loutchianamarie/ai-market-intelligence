@@ -224,11 +224,25 @@ with tabs[2]:
 
 # ---------------------------------------------------------------- 4 pilot & approval
 with tabs[3]:
-    st.subheader("Drafted learn-first pilot — a human approves, the sandbox records, nothing is sent")
+    st.subheader("Advisor decision: a person decides, the sandbox records, nothing is sent")
     if not d or not d.get("pilot"):
         st.info("Run the agents (sidebar) to draft a pilot.")
     else:
         p = d["pilot"]
+        rec = d.get("advisor_recommendation")
+        if rec:
+            st.error(f"**ADVISOR RECOMMENDS: {rec['decision']}** · {rec['reason']}")
+            c1, c2 = st.columns(2)
+            c1.markdown("**Evidence that would reopen the decision**\n" + "\n".join(f"- {x}" for x in rec["reopen_if"]))
+            c2.markdown("**$0 research checklist for approval** " + badge("PENDING"), unsafe_allow_html=True)
+            c2.dataframe(pd.DataFrame(rec["research_plan"])[["id", "task", "owner", "decides"]], width="stretch", hide_index=True)
+        elif d.get("decision_record") is None and p["design"].get("launch_preconditions"):
+            st.warning("Superseded dossier: created before the advisor's reject/defer recommendation. Use the latest dossier.")
+        if d.get("decision_record"):
+            dr = d["decision_record"]
+            st.success(f"**Decision recorded: {dr['decision']}** by {dr['by']} · {dr['reason']} · research checklist approved: "
+                       f"{'yes' if dr.get('follow_up_approved_by') else 'no'} ({len(dr.get('follow_up_research') or [])} tasks, PLANNED, not executed)")
+        st.markdown("**Test design under review (shown so it can be rejected; not a funded campaign)**")
         a, b = st.columns([3, 2])
         a.markdown(f"**Plan** `{p['plan_id']}` · channel **{p['channel']}** · offer **${p['offer']['value_usd']:.2f}** ({p['offer']['value_status']})")
         a.markdown(f"**Audience:** {p['audience']['rule']}  \n*Reachability:* {p['audience']['reachability']}")
@@ -262,16 +276,27 @@ with tabs[3]:
         st.divider()
         x, y, z = st.columns(3)
         name = x.text_input("Approver full name (human)")
-        if x.button("Approve (role: approver)", disabled=not name or d["state"] != "REVIEW_REQUESTED"):
-            d = store.approve(oid, name, "approver", pilot_hash(d["pilot"]), "sandbox record of learn-first pilot; no live send")
-            st.success(f"Approved by {name}")
-        if y.button("Try: record sandbox action now"):
+        reason = x.text_area("Reason (required to reject)", value=(rec or {}).get("reason", ""), height=110)
+        with_plan = x.checkbox("Also approve the $0 research checklist", value=bool(rec))
+        if x.button("Reject / defer funding (role: approver)", type="primary", disabled=not name or d["state"] != "REVIEW_REQUESTED"):
+            try:
+                d = store.reject(oid, name, "approver", reason, follow_up=(rec or {}).get("research_plan") if with_plan else None)
+                st.success(f"Rejected by {name}; reason and checklist stored in dossier v{d['version']}")
+            except Exception as e:
+                st.error(str(e))
+        if y.button("Try: record a coupon sandbox action now"):
             try:
                 from mi.agents.tools import stable_key
                 res = store.record_sandbox_action(oid, stable_key(oid, pilot_hash(d["pilot"])), "activation_agent")
                 st.success(f"Recorded in SANDBOX: {res}")
             except PermissionDenied as e:
                 st.error(f"BLOCKED: {e}")
+        if y.button("Approve the test record anyway (role: approver)", disabled=not name or d["state"] != "REVIEW_REQUESTED"):
+            d = store.approve(oid, name, "approver", pilot_hash(d["pilot"]), "sandbox record of learn-first pilot; no live send")
+            st.warning(f"Approved by {name} against the advisor's recommendation (sandbox record only).")
+        if z.button("Agent: record approved research checklist (sandbox)", disabled=d["state"] != "REJECTED"):
+            from mi.agents.coordinator import Run
+            st.success(f"State: {Run().resume_after_rejection(oid)} · checklist recorded as PLANNED; nothing executed")
         if z.button("Resume agents after approval (sandbox + measurement)", disabled=d["state"] != "APPROVED"):
             from mi.agents.coordinator import Run
             st.success(f"Final state: {Run().resume_after_approval(oid)}")

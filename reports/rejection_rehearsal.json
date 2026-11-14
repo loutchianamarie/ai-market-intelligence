@@ -1,0 +1,76 @@
+{
+  "rehearsal": true,
+  "store": "temporary file, deleted with the OS temp folder; live dossiers untouched",
+  "opportunity_id": "OPP-2DC6723A",
+  "advisor_recommendation": "REJECT FUNDING (DEFER)",
+  "advisor_reason": "Same plan, same assumptions: at the uplift the test is sized for (12.7 pp) a later rollout still loses $576 per 4-week cycle. Hurdles: 16.7 pp (full assumed pool every cycle, upper bound), 23.1 pp (new entrants only), 27.0 pp (one-off on remaining households, covering setup and test); assumed uplift is 4.0 pp.",
+  "research_record_before_decision": "blocked",
+  "decision_record": {
+    "decision": "REJECTED",
+    "by": "SCRIPTED REHEARSAL (not a human decision)",
+    "role": "approver",
+    "ts": "2026-11-14T14:09:07+00:00",
+    "reason": "Same plan, same assumptions: at the uplift the test is sized for (12.7 pp) a later rollout still loses $576 per 4-week cycle. Hurdles: 16.7 pp (full assumed pool every cycle, upper bound), 23.1 pp (new entrants only), 27.0 pp (one-off on remaining households, covering setup and test); assumed uplift is 4.0 pp.",
+    "follow_up_research": [
+      {
+        "id": "R1",
+        "task": "2-3 consented exploratory interviews (lapsed frozen-pizza buyers, 1 nonbuyer); code barriers, no names",
+        "owner": "Loutchiana (I01-I02), Charbel (I03)",
+        "cost_usd": 0,
+        "decides": "which P is broken: coupon vs non-coupon action vs none",
+        "status": "PLANNED: not executed"
+      },
+      {
+        "id": "R2",
+        "task": "Freeze the GEO panel, then 20 fresh-chat answers (10 prompts x 2 assistants)",
+        "owner": "Loutchiana (Assistant 1), Charbel (Assistant 2)",
+        "cost_usd": 0,
+        "decides": "whether a discovery/content gap exists (non-coupon action)",
+        "status": "PLANNED: not executed"
+      },
+      {
+        "id": "R3",
+        "task": "Check Kroger / Target / Walmart / ALDI offer pages by hand, with screenshots",
+        "owner": "Charbel",
+        "cost_usd": 0,
+        "decides": "offer-mechanics assumptions (reach share, redemption by habitual buyers)",
+        "status": "PLANNED: not executed"
+      },
+      {
+        "id": "R4",
+        "task": "Ask the client for consented digital pool, margin, contact and setup cost, stock",
+        "owner": "both",
+        "cost_usd": 0,
+        "decides": "whether any hurdle (A/B/C) is plausible; re-run the same-plan check",
+        "status": "PLANNED: not executed"
+      }
+    ],
+    "follow_up_approved_by": "SCRIPTED REHEARSAL (not a human decision)",
+    "scope": "decision record only; no contact, spend, send or field study is executed"
+  },
+  "final_state": "REJECTED",
+  "coupon_record_after_rejection": "blocked",
+  "sandbox_records": [
+    {
+      "action_id": "SBX-c7cdc0197c",
+      "kind": "research_task_record",
+      "plan_hash": null
+    }
+  ],
+  "events": [
+    "DOSSIER_CREATED",
+    "DOSSIER_UPDATED",
+    "DOSSIER_UPDATED",
+    "DOSSIER_UPDATED",
+    "DOSSIER_UPDATED",
+    "DOSSIER_UPDATED",
+    "DOSSIER_UPDATED",
+    "STATE_REVIEW_REQUESTED",
+    "DOSSIER_UPDATED",
+    "RESEARCH_RECORD_BLOCKED",
+    "STATE_REJECTED",
+    "RESEARCH_TASKS_RECORDED",
+    "DOSSIER_UPDATED",
+    "UNAPPROVED_ACTION_BLOCKED"
+  ]
+}

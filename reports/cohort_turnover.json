@@ -1,0 +1,43 @@
+{
+  "category": "FROZEN PIZZA",
+  "segment": "LAPSING",
+  "by_cutoff": [
+    {
+      "cutoff": 37,
+      "n": 416
+    },
+    {
+      "cutoff": 41,
+      "n": 413,
+      "also_in_previous": 185,
+      "new_vs_previous": 228,
+      "share_new": 0.552
+    },
+    {
+      "cutoff": 45,
+      "n": 384,
+      "also_in_previous": 139,
+      "new_vs_previous": 245,
+      "share_new": 0.638
+    },
+    {
+      "cutoff": 49,
+      "n": 412,
+      "also_in_previous": 138,
+      "new_vs_previous": 274,
+      "share_new": 0.665
+    },
+    {
+      "cutoff": 53,
+      "n": 406,
+      "also_in_previous": 159,
+      "new_vs_previous": 247,
+      "share_new": 0.608
+    }
+  ],
+  "ever_in_cohort": 1119,
+  "still_in_cohort_after_8_weeks_share": 0.185,
+  "first_cutoff": 37,
+  "status": "OBSERVED panel turnover (2017); not a contactable pool",
+  "mean_share_new": 0.616
+}

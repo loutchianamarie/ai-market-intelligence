@@ -146,31 +146,96 @@ def pilot_design(q0: float, g: float, face: float, contact: float, redemption: f
 
 
 def decision_value(q0: float, g: float, face: float, contact: float, redemption: float, n_per_arm: int,
-                   reachable: float, fixed: float, uplifts: dict) -> dict:
+                   reachable: float, fixed: float, uplifts: dict, share_new: float | None = None) -> dict:
     """SAME-PLAN test economics (every input labelled by the caller; nothing here is measured).
 
+    Incremental contribution per CONTACTED household, relative to a no-contact control:
+      v = dq*(g - face)  -  contact  -  q0*redemption*face
+          (extra buyers' margin net of their coupon) - (contact cost) - (coupons redeemed by people who would have bought anyway)
+      g = observed mean 4-week category spend among buyers x ASSUMED margin; no gross sales are counted.
     For each hypothesised true uplift dq:
-      v                    = dq*(g - face) - contact - q0*redemption*face   (incremental contribution per contacted household)
-      test_net_cost        = fixed - n_per_arm * v                          (treated arm vs doing NONE)
-      holdout_forgone      = n_per_arm * max(v, 0)                          (value not earned by the control arm vs treating everyone)
-      rollout_cycle_net    = reachable * v - fixed                          (one 4-week rollout cycle after EXPAND, same setup cost per cycle)
-      whole_cycles_to_cover = ceil(test_net_cost / rollout_cycle_net)       (only when rollout_cycle_net > 0)
-    The rollout break-even uplift solves reachable * v = fixed.
+      test_net_cost        = fixed - n_per_arm * v      (treated arm vs doing NONE; control arm is not contacted)
+      holdout_forgone      = n_per_arm * max(v, 0)      (control arm's forgone value vs treating everyone)
+      Post-test rollout, three scenarios (all after the test reads out):
+      A upper bound        = reachable * v - fixed      every 4-week cycle, full assumed pool, same uplift every time
+      B new entrants only  = share_new * reachable * v - fixed   per cycle, only households never offered before
+                             (share_new = OBSERVED panel replenishment of the cohort between 4-week cutoffs)
+      C one-time remaining = (reachable - n_per_arm) * v - fixed  control + never-enrolled households, once,
+                             IF all are still eligible and consented (an upper bound for a one-off)
     """
     gm = g - face
     k = contact + q0 * redemption * face
+    rem = reachable - n_per_arm
     rows = {}
     for label, dq in uplifts.items():
         v = dq * gm - k
         test_net = fixed - n_per_arm * v
         cycle = reachable * v - fixed
+        newc = (share_new * reachable * v - fixed) if share_new else None
+        once = rem * v - fixed
         rows[label] = {"true_uplift": round(dq, 4), "v_per_contacted_hh": round(v, 4), "per_1000_contacted": round(1000 * v, 1),
                        "test_net_cost_vs_none": round(test_net, 2), "holdout_forgone": round(n_per_arm * max(v, 0.0), 2),
                        "rollout_cycle_net": round(cycle, 2),
-                       "whole_cycles_to_cover_test": (int(math.ceil(test_net / cycle)) if cycle > 0 and test_net > 0 else None)}
-    dq_rollout = (fixed / reachable + k) / gm if reachable > 0 else None
-    return {"scenarios": rows, "rollout_break_even_uplift": round(dq_rollout, 4) if dq_rollout else None,
-            "reachable_after_test": reachable, "n_per_arm": n_per_arm, "fixed_setup": fixed,
+                       "whole_cycles_to_cover_test": (int(math.ceil(test_net / cycle)) if cycle > 0 and test_net > 0 else None),
+                       "new_entrants_cycle_net": round(newc, 2) if newc is not None else None,
+                       "whole_new_entrant_cycles_to_cover_test": (int(math.ceil(test_net / newc)) if newc and newc > 0 and test_net > 0 else None),
+                       "one_time_remaining_pool_net": round(once, 2),
+                       "one_time_covers_test": bool(once >= test_net)}
+    dq_for = lambda hh, extra=0.0: ((fixed + extra) / hh + k) / gm if hh > 0 else None  # noqa: E731
+    hurdles = {"unit_break_even_before_setup": round(k / gm, 4),
+               "A_full_pool_cycle_break_even": round(dq_for(reachable), 4),
+               "B_new_entrants_cycle_break_even": round(dq_for(share_new * reachable), 4) if share_new else None,
+               "C_one_time_remaining_covers_its_setup": round(dq_for(rem), 4) if rem > 0 else None,
+               "C_one_time_remaining_covers_setup_and_test": round((2 * fixed / reachable + k) / gm, 4)}
+    return {"scenarios": rows, "rollout_break_even_uplift": hurdles["A_full_pool_cycle_break_even"], "hurdles": hurdles,
+            "reachable_after_test": reachable, "remaining_never_offered": rem, "n_per_arm": n_per_arm, "fixed_setup": fixed,
+            "share_new_per_cycle": share_new,
             "notes": ["Same category, segment, channel and assumptions as the test design.",
-                      "Assumes each later 4-week cycle repeats the same uplift on the same reachable pool (untested) and pays setup again.",
+                      "A is an UPPER BOUND: full assumed pool every cycle, same uplift on repeat offers (unobserved), setup paid each cycle.",
+                      "B uses observed panel replenishment of the lapsing cohort; C is a one-off on households not yet offered.",
                       "Statistical feasibility does not make a test worth funding."]}
+
+
+def hurdle_design(sigma: float, g: float, face: float, contact: float, redemption: float, q0: float,
+                  hurdle_uplift: float, true_uplifts, pool: float) -> dict:
+    """Decision-grade design: show contribution per household ABOVE the commercial hurdle (not merely above 0).
+    delta = (true - hurdle) * (g - face); n per arm from contribution_sample_size. FUTURE option only."""
+    gm = g - face
+    rows = []
+    for t in true_uplifts:
+        if t <= hurdle_uplift:
+            rows.append({"true_uplift": round(t, 4), "n_per_arm": None, "feasible": False, "note": "true uplift not above the hurdle"})
+            continue
+        n = contribution_sample_size(sigma, (t - hurdle_uplift) * gm)
+        rows.append({"true_uplift": round(t, 4), "multiple_of_assumed_4pp": round(t / 0.04, 1), "n_per_arm": n,
+                     "households_needed": 2 * n, "feasible_in_assumed_pool": 2 * n <= pool})
+    return {"hurdle_uplift": round(hurdle_uplift, 4), "pool": pool, "rows": rows,
+            "status": "FUTURE option; sigma OBSERVED x ASSUMED margin; true uplift is a hypothesis"}
+
+
+def cohort_turnover(category: str = "FROZEN PIZZA", segment: str = "LAPSING", cutoffs=(37, 41, 45, 49, 53)) -> dict:
+    """OBSERVED panel turnover of a behavioural cohort between 4-week cutoffs: how many households are in the
+    cohort at each cutoff, and how many were NOT in it at the previous cutoff (replenishment). Panel only; it says
+    nothing about a real retailer's consented pool."""
+    from mi.model.features import build_cutoff, prepare
+    cfg = load_config()
+    t = cfg["temporal"]
+    prep = prepare(load("transactions"), load("products"), cfg["categories"])
+    red, camp, cd = load("coupon_redemptions"), load("campaigns"), load("campaign_descriptions")
+    sets, rows, prev = {}, [], None
+    for c in cutoffs:
+        df = build_cutoff(prep, c, t["lookback_weeks"], t["horizon_weeks"], red, camp, cd, with_label=False)
+        s = set(df[(df.product_category == category) & (df.segment == segment)].household_id)
+        sets[c] = s
+        row = {"cutoff": c, "n": len(s)}
+        if prev is not None:
+            row.update({"also_in_previous": len(s & sets[prev]), "new_vs_previous": len(s - sets[prev]),
+                        "share_new": round(len(s - sets[prev]) / max(1, len(s)), 3)})
+        rows.append(row)
+        prev = c
+    first = cutoffs[0]
+    return {"category": category, "segment": segment, "by_cutoff": rows,
+            "ever_in_cohort": len(set().union(*sets.values())),
+            "still_in_cohort_after_8_weeks_share": round(len(sets[cutoffs[-1]] & sets[cutoffs[-3]]) / max(1, len(sets[cutoffs[-3]])), 3)
+            if len(cutoffs) >= 3 else None,
+            "first_cutoff": first, "status": "OBSERVED panel turnover (2017); not a contactable pool"}

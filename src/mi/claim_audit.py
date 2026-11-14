@@ -144,26 +144,50 @@ def economics_checks(cfg) -> dict:
             "contribution_based_n_per_arm": contrib, "minimum_detectable_effects": mde},
         "pilot_cost_reproduced": {"per_household": round(per_hh_cost, 4), "n_treated": 866,
                                   "total": round(866 * per_hh_cost + fixed, 2), "currency": "USD", "status": "ASSUMED inputs (contact, redemption, fixed, dq); OBSERVED face"},
-        "same_plan_test_value": _same_plan(q0, g, F, c, r, w, scale, fixed, dq, dq_star, contrib["true_uplift_2.0x_break_even"]["n_per_arm"]),
+        "same_plan_test_value": _same_plan(q0, g, F, c, r, w, scale, fixed, dq, dq_star, contrib["true_uplift_2.0x_break_even"]["n_per_arm"], sigma),
     }
 
 
-def _same_plan(q0, g, F, c, r, w, scale, fixed, dq, dq_star, n) -> dict:
-    """Independent re-derivation of the test's worth for the SAME plan (FROZEN PIZZA / LAPSING / digital)."""
+def _same_plan(q0, g, F, c, r, w, scale, fixed, dq, dq_star, n, sigma) -> dict:
+    """Independent re-derivation of the test's worth for the SAME plan (FROZEN PIZZA / LAPSING / digital).
+    v = dq*(g-F) - c - q0*r*F is INCREMENTAL contribution per contacted household vs a no-contact control."""
+    from mi.outcome.learning import cohort_turnover
+    turn = cohort_turnover()
+    share_new = float(np.mean([x["share_new"] for x in turn["by_cutoff"] if "share_new" in x]))
+    (REPORTS / "cohort_turnover.json").write_text(json.dumps({**turn, "mean_share_new": round(share_new, 3)}, indent=2))
     reach = len(q0) * w * scale
+    rem = reach - n
     rows = {}
     for label, u in (("assumed_4pp", dq), ("sizing_2x_break_even", 2 * dq_star), ("3x_break_even", 3 * dq_star)):
         v = float(np.mean(u * (g - F) - c - q0 * r * F))
         test_net, cycle = fixed - n * v, reach * v - fixed
+        newc, once = share_new * reach * v - fixed, rem * v - fixed
         rows[label] = {"uplift_pp": round(100 * u, 2), "value_per_contacted_hh": round(v, 4), "test_net_cost_vs_none": round(test_net, 2),
                        "holdout_forgone": round(n * max(v, 0), 2), "rollout_cycle_net_4w": round(cycle, 2),
-                       "whole_cycles_to_cover_net_test_cost": math.ceil(test_net / cycle) if cycle > 0 else None}
+                       "whole_cycles_to_cover_net_test_cost": math.ceil(test_net / cycle) if cycle > 0 else None,
+                       "B_new_entrants_cycle_net_4w": round(newc, 2),
+                       "B_whole_cycles_to_cover": math.ceil(test_net / newc) if newc > 0 else None,
+                       "C_one_time_remaining_pool_net": round(once, 2), "C_covers_test": bool(once >= test_net)}
     k = float(np.mean(c + q0 * r * F))
+    pp = lambda hh, extra=0.0: round(100 * ((fixed + extra) / hh + k) / (g - F), 2)  # noqa: E731
+    hurdles = {"unit_break_even_pp": round(100 * k / (g - F), 2), "A_full_pool_cycle_pp": pp(reach),
+               "B_new_entrants_cycle_pp": pp(share_new * reach), "C_one_time_covers_own_setup_pp": pp(rem),
+               "C_one_time_covers_setup_and_test_pp": round(100 * (2 * fixed / reach + k) / (g - F), 2)}
+    hz = hurdles["A_full_pool_cycle_pp"] / 100
+    design = []
+    for t in (0.18, 0.20, 0.22, 0.25, 0.30):
+        m = math.ceil((Z975 + Z80) ** 2 * 2 * sigma ** 2 / ((t - hz) * (g - F)) ** 2)
+        design.append({"true_uplift_pp": round(100 * t, 1), "multiple_of_assumed": round(t / dq, 2), "n_per_arm": m,
+                       "households_needed": 2 * m, "feasible_in_assumed_pool": 2 * m <= reach})
     return {"plan": "FROZEN PIZZA|LAPSING|digital_coupon", "n_per_arm": n, "test_gross_cost_at_assumed_uplift": round(n * (c + float(np.mean(q0)) * r * F + dq * F) + fixed, 2),
-            "assumed_reachable_households": round(reach), "scenarios": rows,
-            "rollout_break_even_uplift_pp": round(100 * (fixed / reach + k) / (g - F), 2),
+            "assumed_reachable_households": round(reach), "remaining_never_offered_after_test": round(rem),
+            "observed_share_new_per_cycle": round(share_new, 3), "scenarios": rows,
+            "rollout_break_even_uplift_pp": hurdles["A_full_pool_cycle_pp"], "hurdles_pp": hurdles,
+            "hurdle_based_design_vs_A": {"hurdle_pp": hurdles["A_full_pool_cycle_pp"], "rows": design,
+                                         "status": "FUTURE option; shows contribution above the A hurdle, not merely above 0"},
+            "formula": "v = dq*(g-F) - c - q0*r*F; test_net = fixed - n*v; A = R*v - fixed; B = share_new*R*v - fixed; C = (R-n)*v - fixed",
             "replaces": "overnight/first-pass check that divided the $1,927 FROZEN PIZZA test cost by COFFEE's all-favourable +$875 cycle",
-            "status": "SIMULATION; COMPANY SCALE ASSUMED; each later cycle assumed to repeat the same uplift and pay setup again"}
+            "status": "SIMULATION; COMPANY SCALE ASSUMED; A is an upper bound (same uplift on repeat offers, setup each cycle)"}
 
 
 def rag_checks() -> dict:

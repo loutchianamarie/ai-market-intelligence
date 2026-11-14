@@ -204,13 +204,45 @@ class DossierStore:
                              extra={"approval": {"approver": approver, "role": role, "ts": now(),
                                                  "plan_hash": plan_hash, "scope": scope}})
 
-    def reject(self, oid, approver, role, reason) -> dict:
+    def reject(self, oid, approver, role, reason, follow_up: list[dict] | None = None) -> dict:
+        """Human rejection/deferral. Optionally approves a $0 research follow-up checklist in the same version.
+        The checklist is a tracked plan: no contact, spend, send or field work happens because of this record."""
         if role != "approver":
+            self._log(oid, None, approver, role, "REJECTION_BLOCKED", {"reason": f"role {role} cannot reject"})
             raise PermissionDenied("only an approver can reject")
+        if not (reason or "").strip():
+            raise WorkflowError("a rejection needs a written reason")
+        extra = {"decision_record": {"decision": "REJECTED", "by": approver, "role": role, "ts": now(), "reason": reason,
+                                     "follow_up_research": [{**t, "status": "PLANNED: not executed"} for t in (follow_up or [])],
+                                     "follow_up_approved_by": approver if follow_up else None,
+                                     "scope": "decision record only; no contact, spend, send or field study is executed"}}
         with self._conn() as c:
             cur = self._latest(c, oid)
-            self._transition(c, cur, "REJECTED", approver, role, {"reason": reason})
+            self._transition(c, cur, "REJECTED", approver, role, {"reason": reason, "follow_up_tasks": len(follow_up or [])}, extra=extra)
         return self.get(oid)
+
+    def record_research_followup(self, oid, idempotency_key: str, actor: str, role: str = "agent") -> dict:
+        """Sandbox record of the human-approved research checklist after a rejection. Never a CRM send."""
+        with self._conn() as c:
+            dup = c.execute("SELECT * FROM crm_actions WHERE idempotency_key=?", (idempotency_key,)).fetchone()
+            if dup:
+                self._event(c, oid, None, actor, role, "SANDBOX_DUPLICATE_IGNORED", {"idempotency_key": idempotency_key})
+                return {"duplicate": True, **dict(dup)}
+            cur = self._latest(c, oid)
+            rec = cur.get("decision_record") or {}
+            blocked = cur["state"] != "REJECTED" or not rec.get("follow_up_approved_by") or not rec.get("follow_up_research")
+            if not blocked:
+                aid = f"SBX-{uuid.uuid4().hex[:10]}"
+                c.execute("INSERT INTO crm_actions VALUES(?,?,?,?,?,?,?,?,1)",
+                          (aid, oid, cur["version"], idempotency_key, None, "research_task_record",
+                           json.dumps(rec["follow_up_research"], default=str), now()))
+                self._event(c, oid, cur["version"], actor, role, "RESEARCH_TASKS_RECORDED",
+                            {"action_id": aid, "tasks": len(rec["follow_up_research"]), "live_send": False, "spend": 0})
+        if blocked:
+            self._log(oid, cur["version"], actor, role, "RESEARCH_RECORD_BLOCKED",
+                      {"state": cur["state"], "reason": "needs a human rejection with an approved follow-up checklist"})
+            raise PermissionDenied("research follow-up can be recorded only after a human rejection that approved it")
+        return {"duplicate": False, "action_id": aid, "sandbox": 1, "kind": "research_task_record"}
 
     def record_sandbox_action(self, oid, idempotency_key: str, actor: str, role: str = "agent") -> dict:
         with self._conn() as c:

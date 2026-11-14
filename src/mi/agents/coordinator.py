@@ -13,6 +13,7 @@ CLI:
   python -m mi.agents.coordinator approve OPP --approver "Full Name" [--reject "reason"]
   python -m mi.agents.coordinator resume OPP          -> sandbox record + measurement (+ research loop)
   python -m mi.agents.coordinator blocked-demo        -> shows the blocked paths
+  python -m mi.agents.coordinator rejection-rehearsal -> scripted reject + research-checklist path in a throwaway store
   python -m mi.agents.coordinator llm-smoke           -> one genuine runtime tool-use call (needs API key)
 """
 from __future__ import annotations
@@ -49,6 +50,28 @@ class AgentOutput:
     next_agent: str | None = None
     tool_calls: list = field(default_factory=list)   # {tool, status}
     violations: list = field(default_factory=list)
+
+
+def _usd(v):
+    return ("-$" if v < 0 else "$") + f"{abs(v):,.0f}"
+
+
+RESEARCH_PLAN = [
+    {"id": "R1", "task": "2-3 consented exploratory interviews (lapsed frozen-pizza buyers, 1 nonbuyer); code barriers, no names",
+     "owner": "Loutchiana (I01-I02), Charbel (I03)", "cost_usd": 0, "decides": "which P is broken: coupon vs non-coupon action vs none"},
+    {"id": "R2", "task": "Freeze the GEO panel, then 20 fresh-chat answers (10 prompts x 2 assistants)",
+     "owner": "Loutchiana (Assistant 1), Charbel (Assistant 2)", "cost_usd": 0, "decides": "whether a discovery/content gap exists (non-coupon action)"},
+    {"id": "R3", "task": "Check Kroger / Target / Walmart / ALDI offer pages by hand, with screenshots",
+     "owner": "Charbel", "cost_usd": 0, "decides": "offer-mechanics assumptions (reach share, redemption by habitual buyers)"},
+    {"id": "R4", "task": "Ask the client for consented digital pool, margin, contact and setup cost, stock",
+     "owner": "both", "cost_usd": 0, "decides": "whether any hurdle (A/B/C) is plausible; re-run the same-plan check"},
+]
+REOPEN_IF = [
+    "interviews show price or a lapsed habit (not stock, taste or brand switching) as the main barrier, with counterexamples reported",
+    "the client's consented pool is much larger than 7,308, or setup cost much lower, so the hurdle falls toward the 6.4 pp unit break-even",
+    "finance confirms a higher margin, lowering every hurdle",
+    "credible external evidence makes a true uplift at or above the hurdle plausible for this category",
+]
 
 
 class Run:
@@ -279,27 +302,47 @@ class Run:
                 self.num(out, "pilot_plan_hash", r["data"]["plan_hash"][:16], "sha256 prefix", "COMPUTED", "draft_pilot")
                 bud = self.store.get(oid)["pilot"]["budget"]
                 self.num(out, "pilot_budget_total", bud["total"], "USD", bud["status"], "draft_pilot")
+            dv = dz.get("decision_value")
+            worth_it = bool(dv) and dv["scenarios"]["sizing (x break-even)"]["rollout_cycle_net"] > 0
+            if dv and not worth_it:
+                h = dv["hurdles"]
+                rec = {"decision": "REJECT FUNDING (DEFER)", "by": "activation_agent (advisory only; a human decides)",
+                       "reason": (f"Same plan, same assumptions: at the uplift the test is sized for ({100 * dv['scenarios']['sizing (x break-even)']['true_uplift']:.1f} pp) "
+                                  f"a later rollout still loses ${-dv['scenarios']['sizing (x break-even)']['rollout_cycle_net']:,.0f} per 4-week cycle. "
+                                  f"Hurdles: {100 * h['A_full_pool_cycle_break_even']:.1f} pp (full assumed pool every cycle, upper bound), "
+                                  f"{100 * (h['B_new_entrants_cycle_break_even'] or 0):.1f} pp (new entrants only), "
+                                  f"{100 * h['C_one_time_remaining_covers_setup_and_test']:.1f} pp (one-off on remaining households, covering setup and test); "
+                                  "assumed uplift is 4.0 pp."),
+                       "reopen_if": REOPEN_IF, "research_plan": RESEARCH_PLAN,
+                       "status": "ADVISORY; the dossier stays in review until a named human rejects or approves"}
+                d = self.store.get(oid)
+                self.store.update(oid, d["version"], {"advisor_recommendation": rec}, actor="activation_agent", role="agent",
+                                  note="advisor recommends rejecting funding")
             d = self.store.get(oid)
             rq = self.call(out, oid, "request_approval", opportunity_id=oid, expected_version=d["version"])
-            out.proposed_action = ("Learn-first test DESIGN drafted and sent for human review of a SANDBOX record only. No message sent; "
-                                   "no budget committed; a real launch requires every launch precondition.")
+            out.proposed_action = (("ADVISOR RECOMMENDS: REJECT funding of this test (defer) and approve the $0 research checklist. "
+                                    "The test design is shown for review only. ") if not worth_it else "") + (
+                "No message sent; no budget committed; a real launch requires every launch precondition.")
             out.limits.append("Reachability/consent and stock are UNKNOWN; the approver must confirm both.")
-            dv = dz.get("decision_value")
             if dv:
                 sc = dv["scenarios"]
                 size, three = sc["sizing (x break-even)"], sc["3x break-even"]
                 self.num(out, "same_plan_rollout_cycle_net_at_sizing_uplift", size["rollout_cycle_net"], "USD per 4-week cycle",
-                         "SIMULATION; COMPANY SCALE ASSUMED", "pilot_design")
+                         "SIMULATION; COMPANY SCALE ASSUMED (upper bound)", "pilot_design")
                 self.num(out, "same_plan_rollout_break_even_uplift", dv["rollout_break_even_uplift"], "purchase-rate points",
                          "SIMULATION; COMPANY SCALE ASSUMED", "pilot_design")
+                self.num(out, "hurdles", dv["hurdles"], "purchase-rate points", "SIMULATION", "pilot_design")
                 verdict = ("so the test never pays back at its own sizing assumption" if size["rollout_cycle_net"] <= 0
                            else f"covering the net test cost after {size['whole_cycles_to_cover_test']} whole cycles")
+                b3 = three.get("new_entrants_cycle_net")
                 out.limits.append(
                     f"Worth-it check (SIMULATION, same plan {dv['plan']}): if true uplift equals the sizing assumption "
                     f"({size['true_uplift']:.3f}), one rollout cycle to the ASSUMED {dv['reachable_after_test']:,.0f} reachable households "
-                    f"nets ${size['rollout_cycle_net']:,.0f}, {verdict}. Rollout breaks even at uplift {dv['rollout_break_even_uplift']:.3f}; "
-                    f"at 3x break-even ({three['true_uplift']:.3f}) the net test cost ${three['test_net_cost_vs_none']:,.0f} is covered after "
-                    f"{three['whole_cycles_to_cover_test']} whole cycles. Statistical feasibility is not a reason to fund it.")
+                    f"nets {_usd(size['rollout_cycle_net'])}, {verdict}. Even at 3x break-even ({three['true_uplift']:.3f}) only the UPPER-BOUND "
+                    f"full-pool scenario recovers the ${three['test_net_cost_vs_none']:,.0f} net test cost ({three['whole_cycles_to_cover_test']} whole cycles); "
+                    + (f"new entrants only nets {_usd(b3)} per cycle and " if b3 is not None else "")
+                    + f"a one-off to the {dv['remaining_never_offered']:,.0f} households not yet offered nets {_usd(three['one_time_remaining_pool_net'])}. "
+                    "Statistical feasibility is not a reason to fund it.")
             cc = dz.get("candidate_choice")
             if cc:
                 m1, m2 = cc["uplift_multiple_to_break_even_per_hh"], cc["uplift_multiple_to_break_even_after_setup"]
@@ -368,6 +411,22 @@ class Run:
                           "inputs": [intel["proposed_action"][:120], port["proposed_action"][:120]]}},
                           actor="coordinator", role="agent", note="reconcile")
 
+    def resume_after_rejection(self, oid) -> str:
+        """After a HUMAN rejection that approved the research checklist: record it in the sandbox. Nothing is executed."""
+        out = AgentOutput(role="activation", mode="deterministic")
+        d = self.store.get(oid)
+        key = stable_key(oid, "research-followup-v" + str(d["version"]))
+        r = self.call(out, oid, "record_research_followup", opportunity_id=oid, idempotency_key=key)
+        if r["status"] == "ok":
+            self.num(out, "research_followup_record", r["data"].get("action_id"), "id", "SANDBOX (no contact, spend or send)",
+                     "record_research_followup")
+            out.proposed_action = "Research checklist recorded as PLANNED; the team collects evidence, then the coordinator re-runs the decision."
+        else:
+            out.limits.append(f"BLOCKED: {r['provenance']['reason']}")
+        self.finish(out, oid)
+        self.save_trace(oid)
+        return self.store.get(oid)["state"]
+
     def resume_after_approval(self, oid) -> str:
         self.activation_record(oid)
         m = self.measurement(oid)
@@ -381,8 +440,9 @@ class Run:
         out = {"opportunity_id": oid, "state": d["state"], "version": d["version"], "llm_available": self.llm.available,
                "agent_trace": d.get("agent_trace", []), "events": self.store.events(oid),
                "history": self.store.history(oid), "crm_actions": self.store.crm_actions(oid)}
-        (REPORTS / f"agent_trace_{oid}.json").write_text(json.dumps(out, indent=2, default=str))
-        (REPORTS / "agent_trace_latest.json").write_text(json.dumps(out, indent=2, default=str))
+        if getattr(self, "persist_traces", True):  # rehearsals in throwaway stores never touch reports/
+            (REPORTS / f"agent_trace_{oid}.json").write_text(json.dumps(out, indent=2, default=str))
+            (REPORTS / "agent_trace_latest.json").write_text(json.dumps(out, indent=2, default=str))
 
 
 def blocked_demo(store=None) -> dict:
@@ -405,12 +465,40 @@ def blocked_demo(store=None) -> dict:
     return {"opportunity_id": oid, **res}
 
 
+def rejection_rehearsal() -> dict:
+    """SCRIPTED REHEARSAL in a throwaway store (never the live dossier store): runs the agents to review, shows the
+    advisor's recommendation, a blocked early research record, a rejection with the $0 checklist, the agent's sandbox
+    record of that checklist, and a blocked coupon record. The 'approver' here is a script, not a person."""
+    import tempfile
+    from pathlib import Path
+    tmp = Path(tempfile.mkdtemp()) / "rehearsal.sqlite"
+    r = Run(DossierStore(tmp))
+    r.persist_traces = False
+    oid = r.run_to_checkpoint()
+    d = r.store.get(oid)
+    early = r.tb.dispatch("activation", "record_research_followup", {"opportunity_id": oid, "idempotency_key": "early"}, oid)
+    rec = d.get("advisor_recommendation") or {}
+    actor = "SCRIPTED REHEARSAL (not a human decision)"
+    d = r.store.reject(oid, actor, "approver", rec.get("reason", "rehearsal"), follow_up=rec.get("research_plan"))
+    state = r.resume_after_rejection(oid)
+    coupon = r.tb.dispatch("activation", "record_sandbox_action", {"opportunity_id": oid, "idempotency_key": "coupon-after-reject"}, oid)
+    out = {"rehearsal": True, "store": "temporary file, deleted with the OS temp folder; live dossiers untouched",
+           "opportunity_id": oid, "advisor_recommendation": rec.get("decision"), "advisor_reason": rec.get("reason"),
+           "research_record_before_decision": early["status"], "decision_record": r.store.get(oid).get("decision_record"),
+           "final_state": state, "coupon_record_after_rejection": coupon["status"],
+           "sandbox_records": [{k: x[k] for k in ("action_id", "kind", "plan_hash")} for x in r.store.crm_actions(oid)],
+           "events": [e["event"] for e in r.store.events(oid)]}
+    (REPORTS / "rejection_rehearsal.json").write_text(json.dumps(out, indent=2, default=str))
+    return out
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["run", "approve", "resume", "blocked-demo", "llm-smoke", "show"])
+    ap.add_argument("cmd", choices=["run", "approve", "resume", "blocked-demo", "rejection-rehearsal", "llm-smoke", "show"])
     ap.add_argument("oid", nargs="?")
     ap.add_argument("--approver")
-    ap.add_argument("--reject")
+    ap.add_argument("--reject", help="written reason; rejects (defers) funding")
+    ap.add_argument("--no-follow-up", action="store_true", help="reject without approving the advisor's $0 research checklist")
     a = ap.parse_args(argv)
     if a.cmd == "run":
         r = Run()
@@ -423,12 +511,16 @@ def main(argv=None) -> int:
         s = DossierStore()
         d = s.get(a.oid)
         if a.reject:
-            d = s.reject(a.oid, a.approver, "approver", a.reject)
+            plan = None if a.no_follow_up else (d.get("advisor_recommendation") or {}).get("research_plan")
+            d = s.reject(a.oid, a.approver, "approver", a.reject, follow_up=plan)
         else:
             d = s.approve(a.oid, a.approver, "approver", pilot_hash(d["pilot"]), scope="sandbox record of learn-first pilot; no live send")
         print(a.oid, d["state"])
     elif a.cmd == "resume":
-        print(a.oid, Run().resume_after_approval(a.oid))
+        state = DossierStore().get(a.oid)["state"]
+        print(a.oid, Run().resume_after_rejection(a.oid) if state == "REJECTED" else Run().resume_after_approval(a.oid))
+    elif a.cmd == "rejection-rehearsal":
+        print(json.dumps(rejection_rehearsal(), indent=1, default=str))
     elif a.cmd == "blocked-demo":
         print(json.dumps(blocked_demo(), indent=1, default=str))
     elif a.cmd == "llm-smoke":

@@ -193,6 +193,8 @@
       "n_per_arm": 2623,
       "test_gross_cost_at_assumed_uplift": 1926.77,
       "assumed_reachable_households": 7308,
+      "remaining_never_offered_after_test": 4685,
+      "observed_share_new_per_cycle": 0.616,
       "scenarios": {
         "assumed_4pp": {
           "uplift_pp": 4.0,
@@ -200,7 +202,11 @@
           "test_net_cost_vs_none": 1623.22,
           "holdout_forgone": 0,
           "rollout_cycle_net_4w": -1843.31,
-          "whole_cycles_to_cover_net_test_cost": null
+          "whole_cycles_to_cover_net_test_cost": null,
+          "B_new_entrants_cycle_net_4w": -1711.39,
+          "B_whole_cycles_to_cover": null,
+          "C_one_time_remaining_pool_net": -1720.09,
+          "C_covers_test": false
         },
         "sizing_2x_break_even": {
           "uplift_pp": 12.72,
@@ -208,7 +214,11 @@
           "test_net_cost_vs_none": 1168.14,
           "holdout_forgone": 331.86,
           "rollout_cycle_net_4w": -575.4,
-          "whole_cycles_to_cover_net_test_cost": null
+          "whole_cycles_to_cover_net_test_cost": null,
+          "B_new_entrants_cycle_net_4w": -930.68,
+          "B_whole_cycles_to_cover": null,
+          "C_one_time_remaining_pool_net": -907.26,
+          "C_covers_test": false
         },
         "3x_break_even": {
           "uplift_pp": 19.09,
@@ -216,12 +226,65 @@
           "test_net_cost_vs_none": 836.28,
           "holdout_forgone": 663.72,
           "rollout_cycle_net_4w": 349.2,
-          "whole_cycles_to_cover_net_test_cost": 3
+          "whole_cycles_to_cover_net_test_cost": 3,
+          "B_new_entrants_cycle_net_4w": -361.35,
+          "B_whole_cycles_to_cover": null,
+          "C_one_time_remaining_pool_net": -314.51,
+          "C_covers_test": false
         }
       },
       "rollout_break_even_uplift_pp": 16.68,
+      "hurdles_pp": {
+        "unit_break_even_pp": 6.36,
+        "A_full_pool_cycle_pp": 16.68,
+        "B_new_entrants_cycle_pp": 23.13,
+        "C_one_time_covers_own_setup_pp": 22.46,
+        "C_one_time_covers_setup_and_test_pp": 27.01
+      },
+      "hurdle_based_design_vs_A": {
+        "hurdle_pp": 16.68,
+        "rows": [
+          {
+            "true_uplift_pp": 18.0,
+            "multiple_of_assumed": 4.5,
+            "n_per_arm": 60920,
+            "households_needed": 121840,
+            "feasible_in_assumed_pool": false
+          },
+          {
+            "true_uplift_pp": 20.0,
+            "multiple_of_assumed": 5.0,
+            "n_per_arm": 9631,
+            "households_needed": 19262,
+            "feasible_in_assumed_pool": false
+          },
+          {
+            "true_uplift_pp": 22.0,
+            "multiple_of_assumed": 5.5,
+            "n_per_arm": 3751,
+            "households_needed": 7502,
+            "feasible_in_assumed_pool": false
+          },
+          {
+            "true_uplift_pp": 25.0,
+            "multiple_of_assumed": 6.25,
+            "n_per_arm": 1534,
+            "households_needed": 3068,
+            "feasible_in_assumed_pool": true
+          },
+          {
+            "true_uplift_pp": 30.0,
+            "multiple_of_assumed": 7.5,
+            "n_per_arm": 599,
+            "households_needed": 1198,
+            "feasible_in_assumed_pool": true
+          }
+        ],
+        "status": "FUTURE option; shows contribution above the A hurdle, not merely above 0"
+      },
+      "formula": "v = dq*(g-F) - c - q0*r*F; test_net = fixed - n*v; A = R*v - fixed; B = share_new*R*v - fixed; C = (R-n)*v - fixed",
       "replaces": "overnight/first-pass check that divided the $1,927 FROZEN PIZZA test cost by COFFEE's all-favourable +$875 cycle",
-      "status": "SIMULATION; COMPANY SCALE ASSUMED; each later cycle assumed to repeat the same uplift and pay setup again"
+      "status": "SIMULATION; COMPANY SCALE ASSUMED; A is an upper bound (same uplift on repeat offers, setup each cycle)"
     }
   },
   "rag": {

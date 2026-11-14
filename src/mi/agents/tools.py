@@ -22,7 +22,8 @@ ROLE_ALLOWLIST = {
     "research": {"get_dossier", "retrieve_sources", "seo_audit_summary"},
     "intelligence": {"get_dossier", "get_data_audit", "run_model_pipeline", "get_model_run", "segment_profile"},
     "portfolio": {"get_dossier", "compare_plans", "sensitivity_summary", "break_even", "demand_baseline", "calculate_metric"},
-    "activation": {"get_dossier", "retrieve_sources", "pilot_sample_size", "pilot_design", "draft_pilot", "request_approval", "record_sandbox_action"},
+    "activation": {"get_dossier", "retrieve_sources", "pilot_sample_size", "pilot_design", "draft_pilot", "request_approval", "record_sandbox_action",
+                   "record_research_followup"},
     "measurement": {"get_dossier", "campaign_history", "pilot_sample_size", "pilot_design", "evaluate_outcome", "record_outcome"},
 }
 
@@ -70,6 +71,7 @@ class Toolbox:
         "draft_pilot": ("Write a DRAFT pilot (audience, channel, offer, message, budget) to the dossier.", {"opportunity_id": {"type": "string"}, "expected_version": {"type": "integer"}, "pilot": {"type": "object"}}, ["opportunity_id", "expected_version", "pilot"]),
         "request_approval": ("Move the dossier to REVIEW_REQUESTED for a named human approver.", {"opportunity_id": {"type": "string"}, "expected_version": {"type": "integer"}}, ["opportunity_id", "expected_version"]),
         "record_sandbox_action": ("Record an APPROVED pilot in the local CRM sandbox (never sends).", {"opportunity_id": {"type": "string"}, "idempotency_key": {"type": "string"}}, ["opportunity_id", "idempotency_key"]),
+        "record_research_followup": ("After a HUMAN rejection that approved a research checklist, record that checklist in the sandbox (no contact, spend or send).", {"opportunity_id": {"type": "string"}, "idempotency_key": {"type": "string"}}, ["opportunity_id", "idempotency_key"]),
         "campaign_history": ("Descriptive history of real campaigns (selection-biased).", {}, []),
         "evaluate_outcome": ("Apply the prewritten decision rule to an outcome record.", {"outcome": {"type": "object"}}, ["outcome"]),
         "record_outcome": ("Attach an outcome + decision to the dossier.", {"opportunity_id": {"type": "string"}, "outcome": {"type": "object"}, "decision": {"type": "string"}}, ["opportunity_id", "outcome", "decision"]),
@@ -237,7 +239,8 @@ class Toolbox:
         be = d["break_even_uplift"]
         dv = decision_value(q0, g, F, a.contact_cost[channel], a.redemption_share, n, assumed_reach, a.fixed_setup,
                             {"assumed": a.dq(segment), "sizing (x break-even)": float(uplift_multiple_for_sizing) * be,
-                             "3x break-even": 3 * be})
+                             "3x break-even": 3 * be},
+                            share_new=(_read_json("cohort_turnover.json") or {}).get("mean_share_new"))
         dv.update({"plan": f"{category}|{segment}|{channel}", "status": "SIMULATION; COMPANY SCALE ASSUMED; same plan as the test"})
         d["decision_value"] = dv
         d["candidate_choice"] = self._candidate_choice(category, segment, channel)
@@ -303,6 +306,10 @@ class Toolbox:
         d = self.store.request_review(opportunity_id, expected_version, actor="activation_agent")
         return _ok("request_approval", {"state": d["state"], "version": d["version"], "plan_hash": pilot_hash(d["pilot"]),
                                         "human_task": "A named approver must review audience, offer, message and budget."})
+
+    def t_record_research_followup(self, opportunity_id, idempotency_key):
+        r = self.store.record_research_followup(opportunity_id, idempotency_key, actor="activation_agent")
+        return _ok("record_research_followup", r, live_send=False, spend=0, status="SANDBOX research checklist (not executed)")
 
     def t_record_sandbox_action(self, opportunity_id, idempotency_key):
         r = self.store.record_sandbox_action(opportunity_id, idempotency_key, actor="activation_agent")

@@ -70,6 +70,47 @@ def test_decision_value_same_plan_arithmetic():
     assert abs(7308 * (dv["rollout_break_even_uplift"] * (2.8932 - 0.9046) - 0.03 - 0.3049 * 0.35 * 0.9046) - 1500) < 5
 
 
+def test_payback_only_under_full_pool_upper_bound():
+    """Reusing the full 7,308 pool every cycle is an upper bound; with only new entrants or a one-off on the households
+    not yet offered, 3x break-even does NOT recover the test."""
+    from mi.outcome.learning import decision_value
+    dv = decision_value(q0=0.3049, g=2.8932, face=0.9046, contact=0.03, redemption=0.35, n_per_arm=2623,
+                        reachable=7308, fixed=1500, uplifts={"3x": 0.1908}, share_new=0.616)
+    s = dv["scenarios"]["3x"]
+    assert s["whole_cycles_to_cover_test"] == 3                       # A: upper bound
+    assert s["new_entrants_cycle_net"] < 0 and s["whole_new_entrant_cycles_to_cover_test"] is None   # B
+    assert s["one_time_remaining_pool_net"] < 0 and not s["one_time_covers_test"]                      # C
+    assert dv["remaining_never_offered"] == 7308 - 2623
+    h = dv["hurdles"]
+    assert h["unit_break_even_before_setup"] < h["A_full_pool_cycle_break_even"] < h["B_new_entrants_cycle_break_even"]
+    assert h["A_full_pool_cycle_break_even"] < h["C_one_time_remaining_covers_setup_and_test"]
+
+
+def test_reject_with_research_followup_records_checklist_only(tmp_path):
+    s = DossierStore(tmp_path / "rj.sqlite")
+    d = s.create({})
+    oid = d["opportunity_id"]
+    d = s.update(oid, 1, {"pilot": PILOT}, "activation_agent", "agent")
+    d = s.request_review(oid, d["version"], "activation_agent")
+    tb = Toolbox(s)
+    # before any human decision the agent cannot record research follow-up
+    assert tb.dispatch("activation", "record_research_followup", {"opportunity_id": oid, "idempotency_key": "k1"})["status"] == "blocked"
+    with pytest.raises(WorkflowError):
+        s.reject(oid, "Jane Approver", "approver", "  ")                # a reason is required
+    plan = [{"id": "R1", "task": "interviews", "owner": "L", "cost_usd": 0}]
+    d = s.reject(oid, "Jane Approver", "approver", "test not worth funding at assumed scale", follow_up=plan)
+    assert d["state"] == "REJECTED" and d["decision_record"]["follow_up_approved_by"] == "Jane Approver"
+    assert d["decision_record"]["follow_up_research"][0]["status"].startswith("PLANNED")
+    r = tb.dispatch("activation", "record_research_followup", {"opportunity_id": oid, "idempotency_key": "k2"})
+    assert r["status"] == "ok" and r["data"]["kind"] == "research_task_record" and r["provenance"]["live_send"] is False
+    assert tb.dispatch("activation", "record_research_followup", {"opportunity_id": oid, "idempotency_key": "k2"})["data"]["duplicate"]
+    assert s.get(oid)["state"] == "REJECTED"                            # no state change, no coupon record
+    assert tb.dispatch("activation", "record_sandbox_action", {"opportunity_id": oid, "idempotency_key": "k3"})["status"] == "blocked"
+    assert tb.dispatch("research", "record_research_followup", {"opportunity_id": oid, "idempotency_key": "k4"})["status"] == "blocked"
+    ev = [e["event"] for e in s.events(oid)]
+    assert "RESEARCH_TASKS_RECORDED" in ev and "RESEARCH_RECORD_BLOCKED" in ev
+
+
 @needs_artifacts
 def test_worth_it_check_uses_the_test_plan_not_another_plan(tmp_path):
     r = Toolbox(DossierStore(tmp_path / "w.sqlite")).dispatch("activation", "pilot_design",
