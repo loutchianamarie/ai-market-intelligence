@@ -1,0 +1,23 @@
+{
+  "status": "PRE-REGISTERED 2026-11-14 before running mi.model.evaluate. Do not edit after the first run; write v2 instead.",
+  "question": "Does any purposeful candidate improve decision-relevant ranking/calibration of 4-week category purchase over the production model (hgb_small) and the baselines?",
+  "candidates": {
+    "rule_popularity": "category-wide prior-4-week penetration (baseline)",
+    "rule_repeat": "weeks with a category purchase in the last 12 weeks, ties by recency (baseline)",
+    "logreg_l2": "regularised logistic regression on the production features (log1p + standardise)",
+    "hgb_small": "PRODUCTION model (HistGradientBoosting, unchanged hyper-parameters)",
+    "hgb_small_longhist": "hgb_small + 3 longer-history features computed from weeks <= cutoff only: cat_weeks_active_prior14 (weeks cutoff-25..cutoff-12), cat_bought_before_lookback (any purchase before the 12-week lookback), history_weeks_available. Motivation: the documented failure on households with no recent category history."
+  },
+  "splits": {
+    "train_cutoffs": [13, 17, 21, 25, 29, 33, 37],
+    "selection_window_cutoff": 41,
+    "calibration_window_cutoff": 45,
+    "repeated_evaluation_window_cutoff": 49,
+    "note_49": "Window 49 has been inspected in earlier passes; results on it are REPEATED evaluation, not an untouched test.",
+    "rolling_origin": "for target cutoffs 41, 45, 49 refit each candidate on all cutoffs c with c + 4 <= target (labels fully observed before the target cutoff)"
+  },
+  "adoption_rule": "Replace hgb_small only if a candidate improves AP by >= 0.005 on the selection window 41 AND on the rolling-origin window 45, AND does not lower AP on the no-recent-history subgroup (LOW_ACTIVITY + ACTIVE_NONBUYER) at window 41. Otherwise keep hgb_small and report the negative result.",
+  "metrics": ["AP", "prevalence", "ROC AUC", "Brier and ECE after isotonic calibration fit on window 45 (evaluated on 49)", "precision/recall at the top 5/10/20% of rows", "precision/recall per category at k = 250 households", "household-cluster bootstrap (200 draws) CI of AP(model) - AP(rule) for slices with >= 100 positives"],
+  "subgroups": ["category", "window (Oct/Nov/Dec 2017 = cutoffs 41/45/49)", "segment incl. LAPSING", "no-recent-history (LOW_ACTIVITY + ACTIVE_NONBUYER)"],
+  "intended_use": "ranking existing households by probability of buying a category under historical conditions; NOT coupon uplift or persuadability"
+}
