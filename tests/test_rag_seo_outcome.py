@@ -1,4 +1,5 @@
 import csv
+import json
 
 import pytest
 
@@ -143,6 +144,27 @@ def test_geo_check_lists_missing_incomplete_and_drift(tmp_path):
     assert c["incomplete_rows"][0]["row"] == "P02/ASSISTANT_1" and c["incomplete_rows"][0]["not_Y_or_N"] == ["brand_top_pick"]
     assert "ASSISTANT_1" in c["settings_drift"]          # version changed mid-run
     assert c["warning"] and not c["panel_frozen"]        # answers exist but the panel was never frozen
+
+
+def test_interview_intake_counts_n_of_n_and_flags_bad_rows(tmp_path):
+    from mi.evidence import interviews as iv
+    path = tmp_path / "coding.csv"
+    hdr = open(iv.SHEET, encoding="utf-8").readline().strip().split(",")
+    rows = [  # SIMULATED fixture rows for arithmetic only
+        {"interview_id": "I01", "date": "d", "screen_group": "lapsed", "consent_recorded": "yes", "barrier_codes": "STOCK",
+         "barrier_evidence_behaviour": "shelf empty twice", "implication_decision": "fix Place", "counterexample_to_hypothesis": "not price"},
+        {"interview_id": "I02", "date": "d", "screen_group": "nonbuyer", "consent_recorded": "no", "barrier_codes": "COST",
+         "barrier_evidence_behaviour": "x", "implication_decision": "y"}]
+    with open(path, "w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, hdr, extrasaction="ignore")
+        w.writeheader()
+        w.writerows(rows)
+    c = iv.check(path)
+    assert c["interviews"] == 2 and c["status"] == "FIX ROWS"
+    assert any("consent" in p.get("issue", "") for p in c["problems"]) and any("unknown barrier" in p.get("issue", "") for p in c["problems"])
+    s = iv.summarize(path)
+    assert s["barriers"][0]["n_of_N"].endswith("of 2") and "%" not in json.dumps(s["barriers"])
+    assert iv.check(tmp_path / "missing.csv")["status"].startswith("PENDING")
 
 
 def test_geo_zero_answers_is_pending(tmp_path):
