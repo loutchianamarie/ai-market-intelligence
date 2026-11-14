@@ -37,7 +37,10 @@
         "n_a": 21307,
         "n_b": 21306,
         "mean_a": 0.18275684047496127,
-        "mean_b": 0.10616727682343002
+        "mean_b": 0.10616727682343002,
+        "absolute_effect": 0.07658956365153125,
+        "relative_effect": 0.721404616781399,
+        "label": "absolute = difference in means per customer emailed; relative = absolute / control mean"
       },
       "conversion": {
         "diff": 0.006805006519615695,
@@ -48,7 +51,10 @@
         "n_a": 21307,
         "n_b": 21306,
         "mean_a": 0.01253109306800582,
-        "mean_b": 0.005726086548390125
+        "mean_b": 0.005726086548390125,
+        "absolute_effect": 0.006805006519615695,
+        "relative_effect": 1.188421876286328,
+        "label": "absolute = difference in means per customer emailed; relative = absolute / control mean"
       },
       "spend": {
         "diff": 0.7698271558945368,
@@ -59,7 +65,10 @@
         "n_a": 21307,
         "n_b": 21306,
         "mean_a": 1.422616511005773,
-        "mean_b": 0.6527893551112361
+        "mean_b": 0.6527893551112361,
+        "absolute_effect": 0.7698271558945368,
+        "relative_effect": 1.1792887703620063,
+        "label": "absolute = difference in means per customer emailed; relative = absolute / control mean"
       }
     },
     "Womens E-Mail vs No E-Mail": {
@@ -72,7 +81,10 @@
         "n_a": 21387,
         "n_b": 21306,
         "mean_a": 0.151400383410483,
-        "mean_b": 0.10616727682343002
+        "mean_b": 0.10616727682343002,
+        "absolute_effect": 0.045233106587052985,
+        "relative_effect": 0.4260550702669102,
+        "label": "absolute = difference in means per customer emailed; relative = absolute / control mean"
       },
       "conversion": {
         "diff": 0.003111057511085258,
@@ -83,7 +95,10 @@
         "n_a": 21387,
         "n_b": 21306,
         "mean_a": 0.008837144059475383,
-        "mean_b": 0.005726086548390125
+        "mean_b": 0.005726086548390125,
+        "absolute_effect": 0.003111057511085258,
+        "relative_effect": 0.5433130436982172,
+        "label": "absolute = difference in means per customer emailed; relative = absolute / control mean"
       },
       "spend": {
         "diff": 0.4244122159365967,
@@ -94,7 +109,10 @@
         "n_a": 21387,
         "n_b": 21306,
         "mean_a": 1.0772015710478329,
-        "mean_b": 0.6527893551112361
+        "mean_b": 0.6527893551112361,
+        "absolute_effect": 0.4244122159365967,
+        "relative_effect": 0.6501518638646863,
+        "label": "absolute = difference in means per customer emailed; relative = absolute / control mean"
       }
     },
     "Mens E-Mail vs Womens E-Mail": {
@@ -107,7 +125,10 @@
         "n_a": 21307,
         "n_b": 21387,
         "mean_a": 0.18275684047496127,
-        "mean_b": 0.151400383410483
+        "mean_b": 0.151400383410483,
+        "absolute_effect": 0.03135645706447826,
+        "relative_effect": 0.20710949574984452,
+        "label": "absolute = difference in means per customer emailed; relative = absolute / control mean"
       },
       "conversion": {
         "diff": 0.003693949008530437,
@@ -118,7 +139,10 @@
         "n_a": 21307,
         "n_b": 21387,
         "mean_a": 0.01253109306800582,
-        "mean_b": 0.008837144059475383
+        "mean_b": 0.008837144059475383,
+        "absolute_effect": 0.003693949008530437,
+        "relative_effect": 0.4180025790764045,
+        "label": "absolute = difference in means per customer emailed; relative = absolute / control mean"
       },
       "spend": {
         "diff": 0.34541493995794004,
@@ -129,7 +153,10 @@
         "n_a": 21307,
         "n_b": 21387,
         "mean_a": 1.422616511005773,
-        "mean_b": 1.0772015710478329
+        "mean_b": 1.0772015710478329,
+        "absolute_effect": 0.34541493995794004,
+        "relative_effect": 0.32065952115344803,
+        "label": "absolute = difference in means per customer emailed; relative = absolute / control mean"
       }
     }
   },
@@ -444,6 +471,229 @@
       ]
     }
   },
+  "exploratory": {
+    "label": "EXPLORATORY: added after protocol v1; treat as hypothesis-generating",
+    "break_even_email_cost": {
+      "Mens E-Mail": {
+        "margin_0.2": 0.154,
+        "margin_0.3": 0.2309,
+        "margin_0.4": 0.3079,
+        "margin_0.5": 0.3849
+      },
+      "Womens E-Mail": {
+        "margin_0.2": 0.0849,
+        "margin_0.3": 0.1273,
+        "margin_0.4": 0.1698,
+        "margin_0.5": 0.2122
+      }
+    },
+    "break_even_note": "max cost per e-mail sent that the incremental 2-week spend could cover at each ASSUMED margin; email cost and margin are unknown, so no profit is claimed",
+    "policy_values_other_outcomes_and_history_rule": {
+      "Womens E-Mail": {
+        "conversion": {
+          "uplift_model": [
+            {
+              "target_share": 0.3,
+              "n_targeted": 6404,
+              "incremental_visits_per_1000": 4.4,
+              "ci95_per_1000": [
+                -0.2,
+                9.3
+              ]
+            }
+          ],
+          "history_rule": [
+            {
+              "target_share": 0.3,
+              "n_targeted": 6404,
+              "incremental_visits_per_1000": 3.2,
+              "ci95_per_1000": [
+                -1.7,
+                8.4
+              ]
+            }
+          ],
+          "random": [
+            {
+              "target_share": 0.3,
+              "n_targeted": 6404,
+              "incremental_visits_per_1000": 2.9,
+              "ci95_per_1000": [
+                -1.2,
+                7.0
+              ]
+            }
+          ]
+        },
+        "spend": {
+          "uplift_model": [
+            {
+              "target_share": 0.3,
+              "n_targeted": 6404,
+              "incremental_visits_per_1000": 324.5,
+              "ci95_per_1000": [
+                -375.1,
+                969.3
+              ]
+            }
+          ],
+          "history_rule": [
+            {
+              "target_share": 0.3,
+              "n_targeted": 6404,
+              "incremental_visits_per_1000": 273.6,
+              "ci95_per_1000": [
+                -609.9,
+                989.8
+              ]
+            }
+          ],
+          "random": [
+            {
+              "target_share": 0.3,
+              "n_targeted": 6404,
+              "incremental_visits_per_1000": 339.0,
+              "ci95_per_1000": [
+                -202.6,
+                859.8
+              ]
+            }
+          ]
+        },
+        "visit_history_rule": [
+          {
+            "target_share": 0.1,
+            "n_targeted": 2135,
+            "incremental_visits_per_1000": 56.6,
+            "ci95_per_1000": [
+              26.3,
+              87.9
+            ]
+          },
+          {
+            "target_share": 0.3,
+            "n_targeted": 6404,
+            "incremental_visits_per_1000": 40.7,
+            "ci95_per_1000": [
+              20.8,
+              59.1
+            ]
+          },
+          {
+            "target_share": 0.5,
+            "n_targeted": 10674,
+            "incremental_visits_per_1000": 37.6,
+            "ci95_per_1000": [
+              25.0,
+              51.4
+            ]
+          }
+        ]
+      },
+      "Mens E-Mail": {
+        "conversion": {
+          "uplift_model": [
+            {
+              "target_share": 0.3,
+              "n_targeted": 6392,
+              "incremental_visits_per_1000": 3.0,
+              "ci95_per_1000": [
+                -1.3,
+                8.3
+              ]
+            }
+          ],
+          "history_rule": [
+            {
+              "target_share": 0.3,
+              "n_targeted": 6392,
+              "incremental_visits_per_1000": 6.7,
+              "ci95_per_1000": [
+                1.7,
+                12.4
+              ]
+            }
+          ],
+          "random": [
+            {
+              "target_share": 0.3,
+              "n_targeted": 6392,
+              "incremental_visits_per_1000": 3.6,
+              "ci95_per_1000": [
+                -0.9,
+                7.8
+              ]
+            }
+          ]
+        },
+        "spend": {
+          "uplift_model": [
+            {
+              "target_share": 0.3,
+              "n_targeted": 6392,
+              "incremental_visits_per_1000": -14.3,
+              "ci95_per_1000": [
+                -764.5,
+                813.1
+              ]
+            }
+          ],
+          "history_rule": [
+            {
+              "target_share": 0.3,
+              "n_targeted": 6392,
+              "incremental_visits_per_1000": 616.5,
+              "ci95_per_1000": [
+                -181.8,
+                1384.9
+              ]
+            }
+          ],
+          "random": [
+            {
+              "target_share": 0.3,
+              "n_targeted": 6392,
+              "incremental_visits_per_1000": 430.5,
+              "ci95_per_1000": [
+                -162.3,
+                1014.7
+              ]
+            }
+          ]
+        },
+        "visit_history_rule": [
+          {
+            "target_share": 0.1,
+            "n_targeted": 2131,
+            "incremental_visits_per_1000": 96.5,
+            "ci95_per_1000": [
+              64.4,
+              129.5
+            ]
+          },
+          {
+            "target_share": 0.3,
+            "n_targeted": 6392,
+            "incremental_visits_per_1000": 76.3,
+            "ci95_per_1000": [
+              56.3,
+              94.7
+            ]
+          },
+          {
+            "target_share": 0.5,
+            "n_targeted": 10654,
+            "incremental_visits_per_1000": 73.3,
+            "ci95_per_1000": [
+              59.2,
+              87.8
+            ]
+          }
+        ]
+      }
+    },
+    "note": "spend policy values are 'incremental dollars per 1,000 targeted' (estimator reused on spend); conversion is rare: wide CIs expected"
+  },
   "use_restriction": "Methodological demonstration of what a RANDOMIZED marketing test identifies. Different retailer (apparel, 2008), channel (email) and outcome window (2 weeks): its effects must NEVER be used as grocery coupon uplift or to change the Frozen Pizza plan.",
-  "seconds": 36.5
+  "seconds": 74.8
 }

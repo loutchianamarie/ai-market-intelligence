@@ -54,8 +54,11 @@ def load(path: Path = CSV, proto: dict | None = None) -> pd.DataFrame:
 def diff_ci(a: np.ndarray, b: np.ndarray) -> dict:
     d = float(a.mean() - b.mean())
     se = float(np.sqrt(a.var(ddof=1) / len(a) + b.var(ddof=1) / len(b)))
+    rel = d / float(b.mean()) if b.mean() else None
     return {"diff": d, "ci95": [d - 1.96 * se, d + 1.96 * se], "n_a": int(len(a)), "n_b": int(len(b)),
-            "mean_a": float(a.mean()), "mean_b": float(b.mean())}
+            "mean_a": float(a.mean()), "mean_b": float(b.mean()),
+            "absolute_effect": d, "relative_effect": rel,
+            "label": "absolute = difference in means per customer emailed; relative = absolute / control mean"}
 
 
 def balance(df: pd.DataFrame) -> list[dict]:
@@ -133,6 +136,29 @@ def run(path: Path = CSV, write=True) -> dict:
                              "recency_rule": policy_eval(pair, rec, treat, proto["policy_evaluation"]["target_shares"]),
                              "random": policy_eval(pair, rand, treat, proto["policy_evaluation"]["target_shares"])},
             "uplift_by_decile": uplift_by_decile(pair, upl, treat)}
+    # ---- EXPLORATORY additions (not in protocol v1; added in a later pass and labelled as such) ----
+    explore = {"label": "EXPLORATORY: added after protocol v1; treat as hypothesis-generating"}
+    explore["break_even_email_cost"] = {
+        arm: {f"margin_{m}": round(m * ate[f"{arm} vs No E-Mail"]["spend"]["diff"], 4) for m in (0.2, 0.3, 0.4, 0.5)}
+        for arm in ("Mens E-Mail", "Womens E-Mail")}
+    explore["break_even_note"] = ("max cost per e-mail sent that the incremental 2-week spend could cover at each ASSUMED margin; "
+                                  "email cost and margin are unknown, so no profit is claimed")
+    pv = {}
+    for treat in ["Womens E-Mail", "Mens E-Mail"]:
+        pair = ho[ho.segment.isin([treat, CTRL])].reset_index(drop=True)
+        trp = tr[tr.segment.isin([treat, CTRL])]
+        rows = {}
+        for outcome in ("conversion", "spend"):
+            mt = _model().fit(trp[trp.segment == treat][NUM + CAT], (trp[trp.segment == treat][outcome] > 0).astype(int))
+            mc = _model().fit(trp[trp.segment == CTRL][NUM + CAT], (trp[trp.segment == CTRL][outcome] > 0).astype(int))
+            upl = mt.predict_proba(pair[NUM + CAT])[:, 1] - mc.predict_proba(pair[NUM + CAT])[:, 1]
+            p2 = pair.assign(visit=pair[outcome])        # reuse the estimator on another outcome
+            rows[outcome] = {"uplift_model": policy_eval(p2, upl, treat, [0.3]), "history_rule": policy_eval(p2, pair.history.to_numpy(float), treat, [0.3]),
+                             "random": policy_eval(p2, np.random.default_rng(1).random(len(pair)), treat, [0.3])}
+        rows["visit_history_rule"] = policy_eval(pair, pair.history.to_numpy(float), treat, proto["policy_evaluation"]["target_shares"])
+        pv[treat] = rows
+    explore["policy_values_other_outcomes_and_history_rule"] = pv
+    explore["note"] = "spend policy values are 'incremental dollars per 1,000 targeted' (estimator reused on spend); conversion is rare: wide CIs expected"
     res = {"provenance": {"namespace": "experiments/hillstrom (NOT grocery evidence)", **proto["source"],
                           "rows": int(len(df)), "protocol": str(PROTOCOL.relative_to(ROOT))},
            "arm_sizes": {a: int(len(v)) for a, v in arms.items()}, "balance_vs_control": balance(df),
@@ -140,6 +166,7 @@ def run(path: Path = CSV, write=True) -> dict:
            "rare_outcome_warning": f"Control conversion is {conv_ctrl:.4f}; conversion and spend effects are imprecise at this n and "
                                    "should not drive targeting on their own; visit is the pre-registered primary outcome.",
            "uplift_models_visit": models,
+           "exploratory": explore,
            "use_restriction": proto["purpose"], "seconds": round(time.time() - t0, 1)}
     if write:
         out = REPORTS / "experiments"
