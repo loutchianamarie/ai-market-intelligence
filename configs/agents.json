@@ -1,0 +1,54 @@
+{
+  "_note": "Course agent worksheet, per role (numeric goal + deadline, named tools, action order, human checkpoint, success metric, risk, guardrail). tests/test_agent_config.py checks these tools equal the ENFORCED allowlists in src/mi/agents/tools.py and that no role can approve, send, spend or publish. Roles run as deterministic nodes; live LLM execution is PENDING (no runtime key).",
+  "deadline": "presentation week (team calendar)",
+  "roles": {
+    "coordinator": {
+      "goal": "1 versioned dossier per run reaching REVIEW_REQUESTED with 0 provenance violations, within the one-command pipeline (< 5 min)",
+      "tools": ["get_dossier"],
+      "action_order": ["create dossier", "research", "intelligence", "portfolio", "reconcile", "activation draft", "STOP at human checkpoint"],
+      "human_checkpoint": "named approver approves or rejects in app tab 4 or CLI",
+      "success_metric": "dossier reaches the checkpoint with every number citing a tool call",
+      "risk": "loops or skipped steps", "guardrail": "fixed order; at most one research loop-back"
+    },
+    "research": {
+      "goal": ">= 5 span-verified source claims and all unknowns listed per run; 20 GEO answers ingested once collected",
+      "tools": ["get_dossier", "retrieve_sources", "seo_audit_summary"],
+      "action_order": ["retrieve", "validate spans", "flag conflicts", "abstain on unknowns", "summarise GEO log"],
+      "human_checkpoint": "two reviewers judge semantic support before any slide quote",
+      "success_metric": "answer-or-abstain accuracy on locked/adversarial sets; 0 fabricated spans accepted",
+      "risk": "prompt injection, stale or out-of-scope sources", "guardrail": "read-only tools; source-scope rule; conflicting spans withheld"
+    },
+    "intelligence": {
+      "goal": "model AP gain over the recency rule with a 95% CI excluding 0 on the evaluation window, else use the rule",
+      "tools": ["get_dossier", "get_data_audit", "run_model_pipeline", "get_model_run", "segment_profile"],
+      "action_order": ["read data audit", "run/reuse pipeline", "read evaluation", "profile segments", "state failure case"],
+      "human_checkpoint": "analyst signs off the model card",
+      "success_metric": "pre-registered adoption rule applied; subgroup CIs reported",
+      "risk": "leakage; reading purchase probability as uplift", "guardrail": "cutoff contract + tests; 'not uplift' label on every score"
+    },
+    "portfolio": {
+      "goal": ">= 3 feasible plans + NONE + heuristic ranked, with one-at-a-time and combination reversal, every input labelled",
+      "tools": ["get_dossier", "compare_plans", "sensitivity_summary", "break_even", "demand_baseline", "calculate_metric"],
+      "action_order": ["enumerate", "rank with NONE", "break-even", "reversal", "demand context"],
+      "human_checkpoint": "finance confirms margin, budget and coupon funding",
+      "success_metric": "recommendation reproducible from decision_inputs.json",
+      "risk": "false precision; assumed inputs read as measured", "guardrail": "LLM never computes money; status labels on every input"
+    },
+    "activation": {
+      "goal": "1 test design + advisor recommendation in REVIEW within budget cap, 0 sends; research checklist recorded only after a human rejection",
+      "tools": ["get_dossier", "retrieve_sources", "pilot_sample_size", "pilot_design", "draft_pilot", "request_approval", "record_sandbox_action", "record_research_followup"],
+      "action_order": ["pilot design", "worth-it check", "advisor recommendation", "draft", "request review", "WAIT for human", "record sandbox item (approved pilot or approved research checklist)"],
+      "human_checkpoint": "named approver approves the hash-bound plan or rejects with a written reason",
+      "success_metric": "unsafe actions executed = 0; blocked attempts logged",
+      "risk": "unapproved or repeated writes; launching without stock/consent", "guardrail": "approval hash, idempotency key, launch preconditions UNKNOWN until confirmed, sandbox only"
+    },
+    "measurement": {
+      "goal": "decision rule applied to 100% of outcome records with provenance; observational history never read as uplift",
+      "tools": ["get_dossier", "campaign_history", "pilot_sample_size", "pilot_design", "evaluate_outcome", "record_outcome", "method_evidence"],
+      "action_order": ["descriptive history", "method evidence (labelled)", "apply rule", "record outcome", "route back to research once"],
+      "human_checkpoint": "manager accepts EXPAND / CHANGE / STOP",
+      "success_metric": "rule outcome reproducible; synthetic fixtures labelled",
+      "risk": "simulated or other-retailer results reported as grocery impact", "guardrail": "provenance labels; randomized-only pilot analyzer"
+    }
+  }
+}

@@ -1,0 +1,5 @@
+sku,public_name,description,price,currency,valid_from,image_ref,availability,category,customer_email
+SYNTH-001,Example Product A 500 g,"SYNTHETIC EXAMPLE ROW (not a real product). A long enough description used only to exercise the validator and the copy drafter.",4.50,USD,2026-11-01T00:00:00Z,images/synth-001.jpg,in_stock,example,someone@example.invalid
+SYNTH-002,EXAMPLE PRODUCT B,,3.10,USD,2026-11-01T00:00:00Z,,unknown,example,
+SYNTH-003,Example Product C,Too short.,abc,usd,not-a-date,images/synth-003.jpg,in_stock,example,
+SYNTH-003,Example Product A 500 g,"SYNTHETIC EXAMPLE ROW (not a real product). Duplicate SKU and duplicate title on purpose to test the validator.",2.00,USD,2026-11-02T00:00:00Z,images/synth-004.jpg,limited,example,

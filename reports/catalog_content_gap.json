@@ -1,0 +1,103 @@
+{
+  "source": "example_catalog_SYNTHETIC.csv",
+  "rows": 4,
+  "personal_columns_dropped": [
+    "customer_email"
+  ],
+  "validation_issues": [
+    {
+      "issue": "duplicate sku",
+      "skus": [
+        "SYNTH-003"
+      ]
+    },
+    {
+      "issue": "price missing, non-numeric or negative",
+      "skus": [
+        "SYNTH-003"
+      ]
+    },
+    {
+      "issue": "currency not an ISO-4217 code",
+      "skus": [
+        "SYNTH-003"
+      ]
+    },
+    {
+      "issue": "valid_from not a timestamp",
+      "skus": [
+        "SYNTH-003"
+      ]
+    }
+  ],
+  "valid": false,
+  "content_gaps": [
+    {
+      "sku": "SYNTH-001",
+      "gaps": [
+        "title shared with another SKU"
+      ],
+      "proposed_copy_DRAFT": "Example Product A 500 g (500 g). SYNTHETIC EXAMPLE ROW (not a real product). Price 4.50 USD.",
+      "draft_sources": [
+        "public_name",
+        "description",
+        "price",
+        "currency"
+      ],
+      "review": "HUMAN REVIEW REQUIRED before publishing; no claims beyond source fields"
+    },
+    {
+      "sku": "SYNTH-002",
+      "gaps": [
+        "missing description",
+        "missing image reference",
+        "title formatting (whitespace, ALL CAPS or > 70 chars)",
+        "buyer question unanswered: size / quantity",
+        "buyer question unanswered: availability"
+      ],
+      "proposed_copy_DRAFT": "EXAMPLE PRODUCT B Price 3.10 USD.",
+      "draft_sources": [
+        "public_name",
+        "description",
+        "price",
+        "currency"
+      ],
+      "review": "HUMAN REVIEW REQUIRED before publishing; no claims beyond source fields"
+    },
+    {
+      "sku": "SYNTH-003",
+      "gaps": [
+        "description shorter than 80 characters",
+        "buyer question unanswered: size / quantity"
+      ],
+      "proposed_copy_DRAFT": "Example Product C. Too short.",
+      "draft_sources": [
+        "public_name",
+        "description",
+        "price",
+        "currency"
+      ],
+      "review": "HUMAN REVIEW REQUIRED before publishing; no claims beyond source fields"
+    },
+    {
+      "sku": "SYNTH-003",
+      "gaps": [
+        "title shared with another SKU"
+      ],
+      "proposed_copy_DRAFT": "Example Product A 500 g (500 g). SYNTHETIC EXAMPLE ROW (not a real product). Price 2.00 USD.",
+      "draft_sources": [
+        "public_name",
+        "description",
+        "price",
+        "currency"
+      ],
+      "review": "HUMAN REVIEW REQUIRED before publishing; no claims beyond source fields"
+    }
+  ],
+  "skus_with_gaps": 4,
+  "boundaries": [
+    "catalog SKUs are not mapped to anonymous Complete Journey product_ids",
+    "structured data / copy does not guarantee search ranking or AI-answer inclusion",
+    "Search Console impressions/clicks (owned site) and assistant prompt logs are separate measurements"
+  ]
+}
