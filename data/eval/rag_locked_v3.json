@@ -1,0 +1,17 @@
+{
+  "status": "LOCKED 2026-11-14 — written and committed BEFORE any run; thresholds frozen at rag.py v2 (min_score 4.0, min_terms 2, min_coverage 0.45). Do not edit after the first run; add a v4 file instead.",
+  "items": [
+    {"id": "S1", "type": "supported", "q": "Which function downloads the full Complete Journey transactions data?", "expect": ["cj_pkg_index"], "answerable": true},
+    {"id": "S2", "type": "supported", "q": "What does least privilege mean for a marketing agent?", "expect": ["course_agent_worksheet"], "answerable": true},
+    {"id": "S3", "type": "supported", "q": "How is CPM calculated from spend and impressions?", "expect": ["course_metrics_workbook", "course_metrics_slides"], "answerable": true},
+    {"id": "S4", "type": "supported", "q": "Should structured data match the visible text on the page for AI features?", "expect": ["google_ai_features"], "answerable": true},
+    {"id": "S5", "type": "supported", "q": "What does the transactions table contain in the Complete Journey study?", "expect": ["cj_transactions", "cj_pkg_index"], "answerable": true},
+    {"id": "C1", "type": "conflict", "q": "How many households are in the Complete Journey panel?", "expect": ["cj_pkg_index", "cj_py_port_readme"], "answerable": true, "conflict": true},
+    {"id": "T1", "type": "stale", "q": "What does Google say about AI Overviews and AI Mode eligibility?", "as_of": "2025-01-01", "expect": [], "answerable": false},
+    {"id": "T2", "type": "stale", "q": "What does the coupon redemptions table record?", "as_of": "2025-01-01", "expect": [], "answerable": false},
+    {"id": "U1", "type": "unanswerable", "q": "What was the retailer's total marketing spend in 2017?", "expect": [], "answerable": false},
+    {"id": "U2", "type": "unanswerable", "q": "What share of Kroger shoppers use digital coupons?", "expect": [], "answerable": false},
+    {"id": "U3", "type": "unanswerable", "q": "Which frozen pizza brand has the highest profit margin at this retailer?", "expect": [], "answerable": false},
+    {"id": "U4", "type": "unanswerable", "q": "How many customers opted out of email in the 2017 campaigns?", "expect": [], "answerable": false}
+  ]
+}
