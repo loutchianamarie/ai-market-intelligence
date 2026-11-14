@@ -564,6 +564,6 @@
     }
   },
   "seed": 20261114,
-  "seconds": 65.4,
+  "seconds": 60.9,
   "intended_use": "ranking existing households by probability of buying a category under historical conditions; NOT coupon uplift or persuadability"
 }

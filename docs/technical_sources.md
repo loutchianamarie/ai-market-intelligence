@@ -1,0 +1,13 @@
+# Technical sources that changed the code (checked 2026-11-14)
+
+| Source (URL) | Claim used | Design consequence in this repo | Limitation |
+|---|---|---|---|
+| scikit-learn, "Probability calibration" (https://scikit-learn.org/stable/modules/calibration.html) | "Ideally, the calibrator is fit on a dataset independent of the training data used to fit the classifier"; a lower Brier loss does not necessarily mean better calibration | isotonic calibrator fit on window 45 only and evaluated on the later window 49; ECE reported next to Brier (the adopted model has better Brier but slightly worse ECE) | small windows; isotonic can overfit; one later window |
+| scikit-learn, "Cross-validation: time series data" (https://scikit-learn.org/stable/modules/cross_validation.html) | i.i.d. K-fold gives poor generalisation estimates on time-ordered data; evaluate on future observations | rolling-origin refits (train on label windows ending before each target); no shuffled CV anywhere | 3 target windows only |
+| Gutierrez & Gérardy (2017), "Causal Inference and Uplift Modelling: A Review of the Literature", PMLR 67:1-13 (https://proceedings.mlr.press/v67/gutierrez17a.html) | uplift models the *incremental* impact of a treatment, which requires treatment/control data | grocery purchase model labelled "not uplift"; two-model uplift and policy evaluation only on the randomized Hillstrom data; future pilot analyzer requires `randomized: true` | review paper; estimator choice kept simple on purpose |
+| Complete Journey reference (https://bradleyboehmke.github.io/completejourney/reference/index.html) | documented tables include campaigns, coupons, redemptions, demographics, products and a promotions sample | data lock covers the 7 files used; the promotions table is recorded as an unused confounder/feature gap | full promotions table not downloaded |
+| Hillstrom, MineThatData e-mail challenge (https://blog.minethatdata.com/2008/03/minethatdata-e-mail-analytics-and-data.html) | 64,000 customers; thirds randomly assigned to Mens / Womens / no e-mail; 2-week visit, conversion, spend | pre-registered protocol; three arms kept separate; raw file local only (no terms stated); checksum-gated loader | apparel, 2008, e-mail: not transferable to grocery coupons |
+
+Why the Hillstrom data is or is not fit for the grocery decision:
+- **Fit for:** demonstrating randomized identification, uplift heterogeneity and policy evaluation.
+- **Not fit for:** estimating grocery coupon response. It covers a different retailer, era, channel and outcome window, and uses e-mail rather than a coupon. A test enforces that grocery decision code never reads it.

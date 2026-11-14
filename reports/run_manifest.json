@@ -1,5 +1,5 @@
 {
-  "started_at": "2026-11-14T14:56:40+00:00",
+  "started_at": "2026-11-14T15:01:22+00:00",
   "versions": {
     "python": "3.12.10",
     "platform": "Windows-11-10.0.26300-SP0",
@@ -12,26 +12,8 @@
     "anthropic": "2.8.0"
   },
   "git": {
-    "commit": "e7ad52a8f8514894af38fdd45081b634ae37a83d",
-    "dirty_tracked_files": [
-      ".gitignore",
-      "data/sources/corpus.jsonl",
-      "reports/agent_trace_latest.json",
-      "reports/blocked_demo.json",
-      "reports/claim_audit.json",
-      "reports/model_card.md",
-      "reports/model_report.json",
-      "reports/portfolio.json",
-      "reports/portfolio.md",
-      "reports/sensitivity.json",
-      "src/mi/cli.py",
-      "src/mi/decision/optimizer.py",
-      "src/mi/ingest/load.py",
-      "src/mi/model/features.py",
-      "src/mi/model/train.py",
-      "src/mi/outcome/learning.py",
-      "tests/test_data_and_features.py"
-    ]
+    "commit": "266a048fb17d942931ddb55384bd1dc5a5acaf0e",
+    "dirty_tracked_files": []
   },
   "data_lock_sha16": "de0c5b190122a37d",
   "seed": 20261114,
@@ -50,42 +32,42 @@
     {
       "step": "audit",
       "rc": 0,
-      "seconds": 7.4,
+      "seconds": 7.5,
       "log": "reports\\run_logs\\03_audit.log",
       "status": "ok"
     },
     {
       "step": "train",
       "rc": 0,
-      "seconds": 35.5,
+      "seconds": 35.2,
       "log": "reports\\run_logs\\04_train.log",
       "status": "ok"
     },
     {
       "step": "evaluate model",
       "rc": 0,
-      "seconds": 70.8,
+      "seconds": 66.4,
       "log": "reports\\run_logs\\05_evaluate_model.log",
       "status": "ok"
     },
     {
       "step": "portfolio+sensitivity",
       "rc": 0,
-      "seconds": 30.4,
+      "seconds": 30.9,
       "log": "reports\\run_logs\\06_portfolio_sensitivity.log",
       "status": "ok"
     },
     {
       "step": "decision inputs + reversal",
       "rc": 0,
-      "seconds": 14.4,
+      "seconds": 14.2,
       "log": "reports\\run_logs\\07_decision_inputs_reversal.log",
       "status": "ok"
     },
     {
       "step": "claim audit",
       "rc": 0,
-      "seconds": 27.1,
+      "seconds": 27.9,
       "log": "reports\\run_logs\\08_claim_audit.log",
       "status": "ok"
     },
@@ -125,22 +107,29 @@
       "status": "ok"
     },
     {
+      "step": "hillstrom experiment (separate track)",
+      "rc": 0,
+      "seconds": 41.8,
+      "log": "reports\\run_logs\\14_hillstrom_experiment_separate_track.log",
+      "status": "ok"
+    },
+    {
       "step": "blocked demo",
       "rc": 0,
       "seconds": 1.9,
-      "log": "reports\\run_logs\\14_blocked_demo.log",
+      "log": "reports\\run_logs\\15_blocked_demo.log",
       "status": "ok"
     },
     {
       "step": "agents to human checkpoint",
       "rc": 0,
-      "seconds": 3.2,
-      "log": "reports\\run_logs\\15_agents_to_human_checkpoint.log",
+      "seconds": 3.1,
+      "log": "reports\\run_logs\\16_agents_to_human_checkpoint.log",
       "status": "ok"
     }
   ],
-  "dossier": "OPP-A3877BDD",
-  "finished_at": "2026-11-14T14:59:58+00:00",
-  "seconds_total": 196.8,
+  "dossier": "OPP-92F0F1F2",
+  "finished_at": "2026-11-14T15:05:17+00:00",
+  "seconds_total": 235.2,
   "ok": true
 }

@@ -11,8 +11,8 @@
 python -m venv .venv && .venv\Scripts\activate
 pip install -r requirements.lock.txt
 pip install -e .                      # or add src/ to PYTHONPATH
-python -m mi.cli all                  # download → audit → train/evaluate → portfolio & sensitivity → RAG eval → GEO → blocked demo → agents to the human checkpoint (~3 min on our laptop; measured 3 m 11 s)
-python -m mi.cli test                 # 59 tests
+python -m mi.cli all                  # download → VERIFY (data/manifest.lock.json) → audit → train → evaluate → portfolio, sensitivity & reversal → claim audit → RAG → GEO/interview checks → Hillstrom method track → agents to the human checkpoint (~3.5 min; logs in reports/run_logs, record in reports/run_manifest.json)
+python -m mi.cli test                 # 69 tests
 python -m mi.cli demo                 # Streamlit manager app (offline; uses saved, hashed artifacts)
 python -m mi.claim_audit              # independent re-derivation of every headline number → reports/claim_audit.json
 python -m mi.seo.geo check            # which of the 20 GEO answers are still missing
@@ -33,12 +33,13 @@ Verified and corrected on 2026-11-14 (three passes): see `docs/verification_and_
 
 | | Result | Status |
 |---|---|---|
-| Model vs rule (untouched window, weeks 50–53) | AP 0.662 vs 0.621 (repeat rule) vs 0.352 (popularity), base rate 0.275; same gap in all 3 held-out windows (+0.037/+0.043/+0.041). Predicts purchase under historical conditions, **not** whom a coupon persuades | HISTORICAL OBSERVATION |
+| Model vs rule (window weeks 50–53; repeated evaluation) | AP 0.672 vs 0.621 (repeat rule) vs 0.352 (popularity), base rate 0.275; household-bootstrap CI of the gain +0.045 to +0.056; rolling-origin gains in all 3 windows. Long-history features adopted 2026-11-14 under a pre-registered rule (was 0.662). Predicts purchase under historical conditions, **not** whom a coupon persuades. Details: `docs/technical_model_status.md` | HISTORICAL OBSERVATION (TRAINED+EVALUATED) |
 | Campaign imbalance | recipients' pre-campaign weekly spend 2.0–2.6× others' (selection, not effect) | HISTORICAL OBSERVATION |
 | Base-case recommendation | NONE: every plan loses per contacted household even before setup (best: Coffee/lapsing −$44 per 1,000); broad mailing is an infeasible illustrative comparator | ASSUMPTION |
 | What flips it | higher true uplift (≈2–3× assumed) **and** a hypothetical company scale (100k–250k, not in data) | ASSUMPTION + COMPANY SCALE ASSUMED |
 | Test candidate | Frozen Pizza/lapsing (needs the smallest uplift multiple to break even: 1.59× vs Coffee 1.77×) | ASSUMPTION |
-| Is a test worth funding? | 2,623/arm detects 12.7 pp, but at 12.7 pp every rollout scenario loses (full pool −$575/cycle; new entrants −$931; one-off −$907). Hurdles: unit 6.4 pp; rollout 16.7 pp (upper bound) / 23.1 pp (new entrants) / 27.0 pp (one-off incl. test). **Not worth funding**; the advisor recommends rejecting | SIMULATION; FUTURE EXPERIMENT |
+| Is a test worth funding? | Recomputed with the adopted model: 2,737/arm detects 12.46 pp, but at that response every rollout scenario loses (full pool −$595/cycle; new entrants −$943; one-off −$934). Hurdles: unit 6.23 pp; rollout 16.55 pp (upper bound) / 22.99 pp (new entrants) / 26.87 pp (one-off incl. test). Only true uplift ≥ 4.14× the assumption flips the choice (no single other input does). **Not worth funding**; the advisor recommends rejecting | SIMULATION; FUTURE EXPERIMENT |
+| Randomized-experiment method track | Hillstrom 2008 e-mail (64k, 3 randomized arms): visit effects +7.7 pp (men's) / +4.5 pp (women's); uplift targeting beats random only for some arms and shares. Separate namespace; never grocery evidence | METHOD EVIDENCE |
 | Cohort turnover | lapsing frozen-pizza cohort ~385–415 panel households per 4-week cutoff; 55–67% new each time | HISTORICAL OBSERVATION |
 | Interviews | 0 of 2–3; intake check ready (`mi.evidence.interviews`) | PENDING (human) |
 | RAG | locked pre-registered set 11/12, conflict 0/1 (before fix); after a source-scope/conflict fix: v3 12/12 (no longer unseen), new adversarial set 3/3, conflict 1/1 | HISTORICAL OBSERVATION (small sets) |
@@ -59,6 +60,11 @@ src/mi/evidence/interviews.py interview intake check and n-of-N summary
 src/mi/workflow/store.py     versioned dossier + CRM sandbox state machine (SQLite)
 src/mi/agents/               tools + allowlists, Claude adapter, coordinator + 5 roles
 src/mi/claim_audit.py        independent recomputation of headline claims
+src/mi/ingest/verify.py      raw files vs committed data/manifest.lock.json
+src/mi/model/evaluate.py     pre-registered evaluation (rolling origin, calibration drift, subgroups)
+src/mi/decision/reversal.py  decision inputs (measured vs assumed) + one-at-a-time reversal
+src/mi/outcome/pilot.py      randomized pilot ingestion, ITT estimate, decision rule with commercial hurdle
+src/mi/experiments/          Hillstrom randomized e-mail method track (raw data local only)
 app/streamlit_app.py         manager demo
 deck/                        build_deck.js → AI_Market_Intelligence_Deck.pptx (12 slides + appendix)
 docs/                        decision brief, research memo, agents canvas, traceability, metrics, protocols, presentation, claim audit
