@@ -187,6 +187,41 @@
       "total": 1640.9,
       "currency": "USD",
       "status": "ASSUMED inputs (contact, redemption, fixed, dq); OBSERVED face"
+    },
+    "same_plan_test_value": {
+      "plan": "FROZEN PIZZA|LAPSING|digital_coupon",
+      "n_per_arm": 2623,
+      "test_gross_cost_at_assumed_uplift": 1926.77,
+      "assumed_reachable_households": 7308,
+      "scenarios": {
+        "assumed_4pp": {
+          "uplift_pp": 4.0,
+          "value_per_contacted_hh": -0.047,
+          "test_net_cost_vs_none": 1623.22,
+          "holdout_forgone": 0,
+          "rollout_cycle_net_4w": -1843.31,
+          "whole_cycles_to_cover_net_test_cost": null
+        },
+        "sizing_2x_break_even": {
+          "uplift_pp": 12.72,
+          "value_per_contacted_hh": 0.1265,
+          "test_net_cost_vs_none": 1168.14,
+          "holdout_forgone": 331.86,
+          "rollout_cycle_net_4w": -575.4,
+          "whole_cycles_to_cover_net_test_cost": null
+        },
+        "3x_break_even": {
+          "uplift_pp": 19.09,
+          "value_per_contacted_hh": 0.253,
+          "test_net_cost_vs_none": 836.28,
+          "holdout_forgone": 663.72,
+          "rollout_cycle_net_4w": 349.2,
+          "whole_cycles_to_cover_net_test_cost": 3
+        }
+      },
+      "rollout_break_even_uplift_pp": 16.68,
+      "replaces": "overnight/first-pass check that divided the $1,927 FROZEN PIZZA test cost by COFFEE's all-favourable +$875 cycle",
+      "status": "SIMULATION; COMPANY SCALE ASSUMED; each later cycle assumed to repeat the same uplift and pay setup again"
     }
   },
   "rag": {

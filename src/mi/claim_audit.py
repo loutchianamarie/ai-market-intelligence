@@ -144,7 +144,26 @@ def economics_checks(cfg) -> dict:
             "contribution_based_n_per_arm": contrib, "minimum_detectable_effects": mde},
         "pilot_cost_reproduced": {"per_household": round(per_hh_cost, 4), "n_treated": 866,
                                   "total": round(866 * per_hh_cost + fixed, 2), "currency": "USD", "status": "ASSUMED inputs (contact, redemption, fixed, dq); OBSERVED face"},
+        "same_plan_test_value": _same_plan(q0, g, F, c, r, w, scale, fixed, dq, dq_star, contrib["true_uplift_2.0x_break_even"]["n_per_arm"]),
     }
+
+
+def _same_plan(q0, g, F, c, r, w, scale, fixed, dq, dq_star, n) -> dict:
+    """Independent re-derivation of the test's worth for the SAME plan (FROZEN PIZZA / LAPSING / digital)."""
+    reach = len(q0) * w * scale
+    rows = {}
+    for label, u in (("assumed_4pp", dq), ("sizing_2x_break_even", 2 * dq_star), ("3x_break_even", 3 * dq_star)):
+        v = float(np.mean(u * (g - F) - c - q0 * r * F))
+        test_net, cycle = fixed - n * v, reach * v - fixed
+        rows[label] = {"uplift_pp": round(100 * u, 2), "value_per_contacted_hh": round(v, 4), "test_net_cost_vs_none": round(test_net, 2),
+                       "holdout_forgone": round(n * max(v, 0), 2), "rollout_cycle_net_4w": round(cycle, 2),
+                       "whole_cycles_to_cover_net_test_cost": math.ceil(test_net / cycle) if cycle > 0 else None}
+    k = float(np.mean(c + q0 * r * F))
+    return {"plan": "FROZEN PIZZA|LAPSING|digital_coupon", "n_per_arm": n, "test_gross_cost_at_assumed_uplift": round(n * (c + float(np.mean(q0)) * r * F + dq * F) + fixed, 2),
+            "assumed_reachable_households": round(reach), "scenarios": rows,
+            "rollout_break_even_uplift_pp": round(100 * (fixed / reach + k) / (g - F), 2),
+            "replaces": "overnight/first-pass check that divided the $1,927 FROZEN PIZZA test cost by COFFEE's all-favourable +$875 cycle",
+            "status": "SIMULATION; COMPANY SCALE ASSUMED; each later cycle assumed to repeat the same uplift and pay setup again"}
 
 
 def rag_checks() -> dict:

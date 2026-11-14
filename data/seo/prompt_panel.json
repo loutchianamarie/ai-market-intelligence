@@ -1,23 +1,81 @@
 {
-  "status": "FROZEN DRAFT 2026-11-14 — edit wording after two real shopper interviews, then freeze again and keep this file as the original (log any revision below).",
+  "status": "DRAFT 2026-11-14: may be revised after 2-3 interviews (log every change in revision_log), then frozen with `python -m mi.seo.geo freeze` BEFORE the first assistant run. All 20 answers must use the frozen version.",
   "audited_brand": "Kroger",
   "audited_brand_rationale": "Public US grocery ANALOGUE with a digital-coupon program. The Complete Journey retailer is anonymous; we do NOT claim the dataset households are this brand's customers. Team may replace the analogue before the first run.",
-  "competitors": ["Walmart", "Target", "Aldi"],
+  "competitors": [
+    "Walmart",
+    "Target",
+    "Aldi"
+  ],
   "linked_pilot_question": "Do shoppers looking for coffee / frozen pizza savings encounter digital grocery coupons, and which sources do assistants cite when they do?",
-  "assistants": ["ASSISTANT_1 (team fills: name, version, region)", "ASSISTANT_2 (team fills)"],
+  "assistants": [
+    "ASSISTANT_1 (team fills: name, version, region)",
+    "ASSISTANT_2 (team fills)"
+  ],
   "rules": "Fresh chat per prompt, same language/region settings, record date/time/model/version, exact cited URLs. Brand named in at most one prompt. Do not paste personal data.",
-  "language_note": "Worksheet asks for at least two prompts in a second language; for a US grocery market we use Spanish (largest non-English US language). Exploratory robustness check, not a prevalence claim.",
+  "language_note": "ADAPTATION, not the literal class worksheet. The worksheet is a solo Lebanon-brand exercise requiring >= 2 prompts in Arabic, French or English; this US grocery panel keeps its method (4/3/3, two assistants, fresh chats, five rates) and uses Spanish, the largest non-English US language, as the second language. Fit with the official brief is PENDING (see docs/seo_geo_protocol.md for the fallback).",
   "prompts": [
-    {"id": 1, "intent": "Learn", "lang": "en", "text": "How do digital grocery coupons work, and are they worth using?"},
-    {"id": 2, "intent": "Learn", "lang": "en", "text": "What is the cheapest way to buy coffee for home every month?"},
-    {"id": 3, "intent": "Learn", "lang": "es", "text": "¿Cómo puedo ahorrar dinero en el supermercado con cupones digitales?"},
-    {"id": 4, "intent": "Learn", "lang": "en", "text": "Is store-brand frozen pizza as good as name-brand frozen pizza?"},
-    {"id": 5, "intent": "Browse", "lang": "en", "text": "Which US grocery stores have the best digital coupon app?"},
-    {"id": 6, "intent": "Browse", "lang": "en", "text": "Compare grocery store loyalty programs for weekly digital deals."},
-    {"id": 7, "intent": "Browse", "lang": "en", "text": "Kroger or other supermarkets: who has better coupons on coffee?", "brand_prompt": true},
-    {"id": 8, "intent": "Buy", "lang": "en", "text": "Where can I buy frozen pizza on sale this week with a digital coupon?"},
-    {"id": 9, "intent": "Buy", "lang": "es", "text": "¿Dónde comprar café molido barato con cupón en Estados Unidos?"},
-    {"id": 10, "intent": "Buy", "lang": "en", "text": "Best grocery store to order coffee and frozen pizza for pickup with coupons."}
+    {
+      "id": 1,
+      "intent": "Learn",
+      "lang": "en",
+      "text": "How do digital grocery coupons work, and are they worth using?"
+    },
+    {
+      "id": 2,
+      "intent": "Learn",
+      "lang": "en",
+      "text": "What is the cheapest way to buy coffee for home every month?"
+    },
+    {
+      "id": 3,
+      "intent": "Learn",
+      "lang": "es",
+      "text": "¿Cómo puedo ahorrar dinero en el supermercado con cupones digitales?"
+    },
+    {
+      "id": 4,
+      "intent": "Learn",
+      "lang": "en",
+      "text": "Is store-brand frozen pizza as good as name-brand frozen pizza?"
+    },
+    {
+      "id": 5,
+      "intent": "Browse",
+      "lang": "en",
+      "text": "Which US grocery stores have the best digital coupon app?"
+    },
+    {
+      "id": 6,
+      "intent": "Browse",
+      "lang": "en",
+      "text": "Compare grocery store loyalty programs for weekly digital deals."
+    },
+    {
+      "id": 7,
+      "intent": "Browse",
+      "lang": "en",
+      "text": "Kroger or other supermarkets: who has better coupons on coffee?",
+      "brand_prompt": true
+    },
+    {
+      "id": 8,
+      "intent": "Buy",
+      "lang": "en",
+      "text": "Where can I buy frozen pizza on sale this week with a digital coupon?"
+    },
+    {
+      "id": 9,
+      "intent": "Buy",
+      "lang": "es",
+      "text": "¿Dónde comprar café molido barato con cupón en Estados Unidos?"
+    },
+    {
+      "id": 10,
+      "intent": "Buy",
+      "lang": "en",
+      "text": "Best grocery store to order coffee and frozen pizza for pickup with coupons."
+    }
   ],
   "revision_log": []
 }

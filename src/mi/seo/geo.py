@@ -7,7 +7,7 @@ never invents answers. Metrics follow the course worksheet (Step 4) with explici
   share of voice = brand appearances / all brand appearances  (count rule: one appearance per brand per answer)
   share of recommendations = brand recommendations / all recommendations
 Source gap (Step 5A): domains cited in answers where a competitor was recommended and the brand was not.
-Usage: python -m mi.seo.geo init | analyze [--log path]
+Usage: python -m mi.seo.geo init | freeze [--by NAME] | check | analyze [--log path]
 """
 from __future__ import annotations
 
@@ -16,6 +16,7 @@ import csv
 import json
 import sys
 from collections import Counter
+from datetime import datetime, timezone
 from urllib.parse import urlparse
 
 from mi.paths import REPORTS, SEO
@@ -141,13 +142,70 @@ def candidate_actions(gap: Counter, by_intent: dict, leak) -> list[dict]:
     return acts[:3] + acts[3:]
 
 
+REQUIRED = ["assistant_version", "country_setting", "timestamp_utc", "raw_answer_sha256", "brand_mentioned",
+            "brand_recommended", "brand_top_pick", "collected_by"]
+
+
+def panel_sha16(panel: dict) -> str:
+    import hashlib
+    return hashlib.sha256(json.dumps(panel["prompts"], sort_keys=True, ensure_ascii=False).encode()).hexdigest()[:16]
+
+
+def check(log_path=LOG, panel_path=PANEL) -> dict:
+    """Collection checklist: which of the 20 rows are missing or incomplete, and whether settings stayed identical."""
+    panel = load_panel(panel_path)
+    rows = list(csv.DictReader(open(log_path, encoding="utf-8"))) if log_path.exists() else []
+    have = {(str(r.get("prompt_id")), r.get("assistant")): r for r in rows}
+    missing, incomplete = [], []
+    for q in panel["prompts"]:
+        for a in ("ASSISTANT_1", "ASSISTANT_2"):
+            r = have.get((str(q["id"]), a))
+            if r is None:
+                missing.append(f"P{q['id']:02d}/{a}")
+                continue
+            gaps = [k for k in REQUIRED if not (r.get(k) or "").strip()]
+            bad_yn = [k for k in ("brand_mentioned", "brand_recommended", "brand_top_pick")
+                      if (r.get(k) or "").strip() and r[k].strip().lower() not in YES | {"n", "no", "0", "false"}]
+            if gaps or bad_yn:
+                incomplete.append({"row": f"P{q['id']:02d}/{a}", "empty": gaps, "not_Y_or_N": bad_yn})
+    settings = {}
+    for r in rows:
+        if (r.get("timestamp_utc") or "").strip():
+            settings.setdefault(r["assistant"], set()).add(((r.get("assistant_version") or "").strip(), (r.get("country_setting") or "").strip()))
+    drift = {a: sorted(map(list, s)) for a, s in settings.items() if len(s) > 1}
+    frozen = panel.get("frozen", {})
+    started = any((r.get("timestamp_utc") or "").strip() for r in rows)
+    freeze_ok = bool(frozen) and frozen.get("prompts_sha16") == panel_sha16(panel)
+    return {"complete_rows": 20 - len(missing) - len(incomplete), "target": 20, "missing_rows": missing, "incomplete_rows": incomplete,
+            "settings_drift": drift, "panel_frozen": freeze_ok, "panel_sha16": panel_sha16(panel),
+            "warning": (None if freeze_ok or not started else "answers logged but the panel was not frozen at this version: re-freeze is NOT allowed mid-run; restart collection")}
+
+
+def freeze(panel_path=PANEL, by="team") -> str:
+    panel = json.loads(open(panel_path, encoding="utf-8").read())
+    if any((r.get("timestamp_utc") or "").strip() for r in (csv.DictReader(open(LOG, encoding="utf-8")) if LOG.exists() else [])):
+        return "refused: answers already logged; the panel must be frozen BEFORE the first assistant run"
+    load_panel(panel_path)  # validates 4/3/3, brand-once, second-language rule
+    panel["frozen"] = {"at_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"), "by": by, "prompts_sha16": panel_sha16(panel)}
+    open(panel_path, "w", encoding="utf-8").write(json.dumps(panel, indent=2, ensure_ascii=False) + "\n")
+    return f"frozen {panel['frozen']}"
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["init", "analyze"])
+    ap.add_argument("cmd", choices=["init", "analyze", "check", "freeze"])
     ap.add_argument("--log", default=str(LOG))
+    ap.add_argument("--by", default="team")
     a = ap.parse_args(argv)
     if a.cmd == "init":
         print(init_template())
+        return 0
+    if a.cmd == "check":
+        from pathlib import Path
+        print(json.dumps(check(Path(a.log)), indent=1, ensure_ascii=False))
+        return 0
+    if a.cmd == "freeze":
+        print(freeze(by=a.by))
         return 0
     from pathlib import Path
     res = analyze(read_log(Path(a.log)), load_panel())

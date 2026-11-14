@@ -127,6 +127,24 @@ def test_geo_metrics_on_simulated_fixture(tmp_path):
     assert r["source_gap_top3"][0] == ("reddit.com", 2)
 
 
+def test_geo_check_lists_missing_incomplete_and_drift(tmp_path):
+    from mi.seo.geo import check
+    path = tmp_path / "log.csv"
+    full = {"assistant_version": "v1", "country_setting": "US-en", "timestamp_utc": "t", "raw_answer_sha256": "h",
+            "brand_mentioned": "Y", "brand_recommended": "N", "brand_top_pick": "N", "collected_by": "L"}
+    rows = [{"prompt_id": 1, "assistant": "ASSISTANT_1", **full},
+            {"prompt_id": 2, "assistant": "ASSISTANT_1", **full, "assistant_version": "v2", "brand_top_pick": "maybe"}]
+    with open(path, "w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, COLUMNS, extrasaction="ignore")
+        w.writeheader()
+        w.writerows(rows)
+    c = check(path)
+    assert c["complete_rows"] == 1 and len(c["missing_rows"]) == 18
+    assert c["incomplete_rows"][0]["row"] == "P02/ASSISTANT_1" and c["incomplete_rows"][0]["not_Y_or_N"] == ["brand_top_pick"]
+    assert "ASSISTANT_1" in c["settings_drift"]          # version changed mid-run
+    assert c["warning"] and not c["panel_frozen"]        # answers exist but the panel was never frozen
+
+
 def test_geo_zero_answers_is_pending(tmp_path):
     r = analyze([], load_panel())
     assert r["status"].startswith("PENDING") and "mention_rate" not in r
