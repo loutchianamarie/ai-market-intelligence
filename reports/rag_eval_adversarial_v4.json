@@ -1,0 +1,64 @@
+{
+ "file": "data/eval/rag_adversarial_v4.json",
+ "n": 3,
+ "decisions_correct": 3,
+ "recall_at_5_answerable": "2/2",
+ "conflicts_flagged": "1/1",
+ "by_type": {
+  "conflict": "1/1 correct answer-or-abstain decisions",
+  "supported": "1/1 correct answer-or-abstain decisions",
+  "unanswerable": "1/1 correct answer-or-abstain decisions"
+ },
+ "rows": [
+  {
+   "id": "A1",
+   "type": "unanswerable",
+   "answerable": false,
+   "abstained": true,
+   "decision_correct": true,
+   "recall_at_5": null,
+   "conflict_flagged": null,
+   "top3": [
+    "report_data_audit",
+    "cj_pkg_index",
+    "cj_py_port_readme"
+   ],
+   "coverage": 0.25,
+   "answer": "UNKNOWN — the corpus does not support an answer."
+  },
+  {
+   "id": "A2",
+   "type": "conflict",
+   "answerable": true,
+   "abstained": false,
+   "decision_correct": true,
+   "recall_at_5": true,
+   "conflict_flagged": true,
+   "top3": [
+    "cj_pkg_index",
+    "cj_py_port_readme",
+    "cj_py_port_readme"
+   ],
+   "coverage": 1.0,
+   "answer": "CONFLICT: sources disagree (2469 households (cj_pkg_index); 801 households (cj_py_port_readme)). No single value is asserted; resolve against the primary data."
+  },
+  {
+   "id": "A3",
+   "type": "supported",
+   "answerable": true,
+   "abstained": false,
+   "decision_correct": true,
+   "recall_at_5": true,
+   "conflict_flagged": null,
+   "top3": [
+    "course_metrics_workbook",
+    "course_metrics_workbook",
+    "course_metrics_workbook"
+   ],
+   "coverage": 0.857,
+   "answer": "To grow, we must know what a new customer costs: the CAC (customer acquisition cost). r new customer, with acquisition_channel), ff_ads_daily.csv and ff_other_costs.csv."
+  }
+ ],
+ "status": "OBSERVED on a small locked set; semantic adequacy still needs human review",
+ "code": "rag.py with source-scope + full-retrieval conflict rule (2026-11-14)"
+}

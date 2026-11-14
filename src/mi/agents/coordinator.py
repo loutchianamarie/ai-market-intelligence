@@ -238,8 +238,6 @@ class Run:
         out = self.llm_role("activation", oid, "Draft one learn-first pilot for the portfolio agent's cohort and request approval. Do not record any action.")
         if out is None:
             out = AgentOutput(role="activation", mode="deterministic")
-            port = self.store.get(oid)["portfolio_output"]["numbers"]
-            best_high = next((n["value"] for n in port if n["name"] == "best_plan_net_high"), None)
             pdz = self.call(out, oid, "pilot_design", category="FROZEN PIZZA", segment="LAPSING", channel="digital_coupon",
                             uplift_multiple_for_sizing=2.0)
             dz = pdz["data"] if pdz["status"] == "ok" else {}
@@ -271,7 +269,9 @@ class Run:
                            "analysis": "intention-to-treat; no peeking; decision rule in configs/policy.json",
                            "launch_preconditions": ["eligible consented pool >= 2 x n_per_arm (UNKNOWN; panel households are not contactable)",
                                                     "stock confirmed by operations", "margin confirmed by finance",
-                                                    "consent/legal sign-off", "test cost justified by expected decision value"]},
+                                                    "consent/legal sign-off",
+                                                    "test cost justified by decision value for the SAME plan: a credible prior that true uplift "
+                                                    "reaches the rollout break-even (see pilot_design.decision_value)"]},
             }
             d = self.store.get(oid)
             r = self.call(out, oid, "draft_pilot", opportunity_id=oid, expected_version=d["version"], pilot=pilot)
@@ -284,11 +284,30 @@ class Run:
             out.proposed_action = ("Learn-first test DESIGN drafted and sent for human review of a SANDBOX record only. No message sent; "
                                    "no budget committed; a real launch requires every launch precondition.")
             out.limits.append("Reachability/consent and stock are UNKNOWN; the approver must confirm both.")
-            tc = dz.get("test_cost", {}).get("total")
-            if tc and best_high and best_high > 0:
-                out.limits.append(f"Worth-it check (SIMULATION): test cost ${tc:,.0f} vs the best plan's favourable-case net "
-                                  f"${best_high:,.0f} per 4-week cycle at ASSUMED company scale: pays back only after "
-                                  f"~{tc / best_high:.1f} favourable cycles; never under base assumptions.")
+            dv = dz.get("decision_value")
+            if dv:
+                sc = dv["scenarios"]
+                size, three = sc["sizing (x break-even)"], sc["3x break-even"]
+                self.num(out, "same_plan_rollout_cycle_net_at_sizing_uplift", size["rollout_cycle_net"], "USD per 4-week cycle",
+                         "SIMULATION; COMPANY SCALE ASSUMED", "pilot_design")
+                self.num(out, "same_plan_rollout_break_even_uplift", dv["rollout_break_even_uplift"], "purchase-rate points",
+                         "SIMULATION; COMPANY SCALE ASSUMED", "pilot_design")
+                verdict = ("so the test never pays back at its own sizing assumption" if size["rollout_cycle_net"] <= 0
+                           else f"covering the net test cost after {size['whole_cycles_to_cover_test']} whole cycles")
+                out.limits.append(
+                    f"Worth-it check (SIMULATION, same plan {dv['plan']}): if true uplift equals the sizing assumption "
+                    f"({size['true_uplift']:.3f}), one rollout cycle to the ASSUMED {dv['reachable_after_test']:,.0f} reachable households "
+                    f"nets ${size['rollout_cycle_net']:,.0f}, {verdict}. Rollout breaks even at uplift {dv['rollout_break_even_uplift']:.3f}; "
+                    f"at 3x break-even ({three['true_uplift']:.3f}) the net test cost ${three['test_net_cost_vs_none']:,.0f} is covered after "
+                    f"{three['whole_cycles_to_cover_test']} whole cycles. Statistical feasibility is not a reason to fund it.")
+            cc = dz.get("candidate_choice")
+            if cc:
+                m1, m2 = cc["uplift_multiple_to_break_even_per_hh"], cc["uplift_multiple_to_break_even_after_setup"]
+                out.limits.append(
+                    f"Why {cc['candidate']} and not the best base plan {cc['best_base_plan']} ({cc['best_base_per_1000']:+.0f} per 1,000): "
+                    f"both lose at base, but the candidate needs {m1['candidate']}x the assumed uplift to break even per household "
+                    f"(best base plan {m1['best_base']}x) and {m2['candidate']}x after setup at assumed scale ({m2['best_base']}x), "
+                    "so it is the cohort where the smallest change in true uplift would flip the decision.")
             out.next_agent = "HUMAN_APPROVER" if rq["status"] == "ok" else None
         return self.finish(out, oid)
 

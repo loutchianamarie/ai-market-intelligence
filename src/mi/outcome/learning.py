@@ -143,3 +143,34 @@ def pilot_design(q0: float, g: float, face: float, contact: float, redemption: f
             "n_purchase_proxy_note": "detects uplift > 0 when true uplift = break-even; contribution is then 0, so it cannot support EXPAND",
             "n_contribution": contrib, "mde_by_n_per_arm": mde,
             "per_treated_household_cost": round(contact + (q0 * redemption + assumed_dq) * face, 4)}
+
+
+def decision_value(q0: float, g: float, face: float, contact: float, redemption: float, n_per_arm: int,
+                   reachable: float, fixed: float, uplifts: dict) -> dict:
+    """SAME-PLAN test economics (every input labelled by the caller; nothing here is measured).
+
+    For each hypothesised true uplift dq:
+      v                    = dq*(g - face) - contact - q0*redemption*face   (incremental contribution per contacted household)
+      test_net_cost        = fixed - n_per_arm * v                          (treated arm vs doing NONE)
+      holdout_forgone      = n_per_arm * max(v, 0)                          (value not earned by the control arm vs treating everyone)
+      rollout_cycle_net    = reachable * v - fixed                          (one 4-week rollout cycle after EXPAND, same setup cost per cycle)
+      whole_cycles_to_cover = ceil(test_net_cost / rollout_cycle_net)       (only when rollout_cycle_net > 0)
+    The rollout break-even uplift solves reachable * v = fixed.
+    """
+    gm = g - face
+    k = contact + q0 * redemption * face
+    rows = {}
+    for label, dq in uplifts.items():
+        v = dq * gm - k
+        test_net = fixed - n_per_arm * v
+        cycle = reachable * v - fixed
+        rows[label] = {"true_uplift": round(dq, 4), "v_per_contacted_hh": round(v, 4), "per_1000_contacted": round(1000 * v, 1),
+                       "test_net_cost_vs_none": round(test_net, 2), "holdout_forgone": round(n_per_arm * max(v, 0.0), 2),
+                       "rollout_cycle_net": round(cycle, 2),
+                       "whole_cycles_to_cover_test": (int(math.ceil(test_net / cycle)) if cycle > 0 and test_net > 0 else None)}
+    dq_rollout = (fixed / reachable + k) / gm if reachable > 0 else None
+    return {"scenarios": rows, "rollout_break_even_uplift": round(dq_rollout, 4) if dq_rollout else None,
+            "reachable_after_test": reachable, "n_per_arm": n_per_arm, "fixed_setup": fixed,
+            "notes": ["Same category, segment, channel and assumptions as the test design.",
+                      "Assumes each later 4-week cycle repeats the same uplift on the same reachable pool (untested) and pays setup again.",
+                      "Statistical feasibility does not make a test worth funding."]}

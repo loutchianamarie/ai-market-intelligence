@@ -109,6 +109,10 @@ class Toolbox:
     def t_retrieve_sources(self, query):
         from mi.evidence.rag import answer
         r = answer(query)
+        if r.get("conflicts"):
+            # a contradicted value can never be promoted to a claim by any role (deterministic or LLM)
+            r = {**r, "conflicting_spans": r.get("supported_claims", []), "supported_claims": []}
+            return _ok("retrieve_sources", r, method=r["method"], status="CONFLICT: sources disagree; not usable as a fact")
         return _ok("retrieve_sources", r, method=r["method"], status="OBSERVED source spans" if not r["abstained"] else "ABSTAINED")
 
     def t_seo_audit_summary(self):
@@ -229,7 +233,37 @@ class Toolbox:
             "test_cost": {"n_treated": n, "variable": round(n * d["per_treated_household_cost"], 2), "fixed_setup": a.fixed_setup,
                           "total": round(n * d["per_treated_household_cost"] + a.fixed_setup, 2), "currency": self.cfg["currency"],
                           "status": "ASSUMED (contact, redemption, fixed, uplift); OBSERVED face value"}})
+        from mi.outcome.learning import decision_value
+        be = d["break_even_uplift"]
+        dv = decision_value(q0, g, F, a.contact_cost[channel], a.redemption_share, n, assumed_reach, a.fixed_setup,
+                            {"assumed": a.dq(segment), "sizing (x break-even)": float(uplift_multiple_for_sizing) * be,
+                             "3x break-even": 3 * be})
+        dv.update({"plan": f"{category}|{segment}|{channel}", "status": "SIMULATION; COMPANY SCALE ASSUMED; same plan as the test"})
+        d["decision_value"] = dv
+        d["candidate_choice"] = self._candidate_choice(category, segment, channel)
         return _ok("pilot_design", d, status="DESIGN under labelled assumptions; FUTURE EXPERIMENT")
+
+    @staticmethod
+    def _candidate_choice(category, segment, channel) -> dict | None:
+        """Why test this cohort rather than the best base plan: rank by the uplift multiple needed to break even."""
+        sens, port = _read_json("sensitivity.json"), _read_json("portfolio.json")
+        if not sens or not port:
+            return None
+        key = lambda r: (r["category"], r["segment"], r["channel"])  # noqa: E731
+        hh = {key(r): r["ratio_needed_to_assumed"] for r in sens["break_even"]}
+        scale = load_config()["scenario"]["deployment_scale"]["value"]
+        fx = {key(r): r["uplift_multiple_needed"] for r in sens["break_even_with_fixed"] if r.get("scale") == scale}
+        best = port["top3"][0]["base"]["components"][0]
+        bk = (best["category"], best["segment"], best["channel"])
+        me = (category, segment, channel)
+        nan = float("nan")
+        return {"best_base_plan": "|".join(bk), "best_base_per_1000": round(best["net_per_1000_contacted_before_fixed"], 1),
+                "candidate": "|".join(me),
+                "uplift_multiple_to_break_even_per_hh": {"candidate": round(hh.get(me, nan), 2), "best_base": round(hh.get(bk, nan), 2)},
+                "uplift_multiple_to_break_even_after_setup": {"candidate": round(fx.get(me, nan), 2), "best_base": round(fx.get(bk, nan), 2)},
+                "candidate_rank_closest_to_break_even": (sorted(hh, key=hh.get).index(me) + 1) if me in hh else None,
+                "reason": "Both lose at base; the test goes where the smallest change in true uplift would flip the decision.",
+                "status": "SIMULATION (ASSUMED uplift, margin, redemption, contact, scale)"}
 
     def t_draft_pilot(self, opportunity_id, expected_version, pilot):
         required = {"plan_id", "audience", "channel", "offer", "message", "design"}

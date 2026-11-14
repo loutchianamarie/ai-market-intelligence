@@ -35,7 +35,7 @@
         "cj_pkg_index",
         "cj_py_port_readme"
       ],
-      "answer": "Source: R/transactions.R transactions.Rd All products purchased by households within the Complete Journey study. The data represents grocery store shopping transactions over one year from a group of 2,469 households who are frequent shopper"
+      "answer": "CONFLICT: sources disagree (2469 households (cj_pkg_index); 801 households (cj_py_port_readme)). No single value is asserted; resolve against the primary data."
     },
     {
       "q": "Is the completejourney_py Python package authentic consumer data or simulated?",
@@ -200,8 +200,8 @@
       "conflicts": null,
       "top": [
         "report_data_audit",
-        "course_marketing_primer",
-        "report_model_card"
+        "report_model_card",
+        "cj_py_port_readme"
       ],
       "answer": "UNKNOWN \u2014 the corpus does not support an answer."
     }

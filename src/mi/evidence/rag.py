@@ -177,13 +177,61 @@ def find_conflicts(claims: list[dict]) -> list[dict]:
     return out
 
 
+# ---- source scope and claim type (v3 fix, 2026-11-14) -------------------------------------------------------
+# A source may only support the KIND of claim it is about. Course material (definitions, formulas and a synthetic
+# FashionForward exercise) supports method claims; it never supports a quantitative fact about a real retailer,
+# shopper, household or brand. Rule set by source identity/scope and claim type, not by a fitted score threshold.
+SCOPE = {"course_material": "method_or_synthetic_exercise", "dataset_documentation": "complete_journey_dataset",
+         "third_party_readme": "third_party_port_of_dataset", "platform_guidance": "platform_policy",
+         "internal_report": "this_project_outputs"}
+QUANTITY_Q = re.compile(r"^\s*(how many|how much)\b|\b(number|count|share|percentage|percent|total) of\b|"
+                        r"\bwhat (was|were|is|are) (the )?(\S+ )?(total|actual)\b", re.I)
+METHOD_Q = re.compile(r"^\s*(how (is|are|do|does|should|to)\b.*\b(calculat|comput|measur|defin)|what is the formula|why\b)", re.I)
+REAL_ENTITY = re.compile(r"\b(retailer'?s?|stores?|shoppers?|customers?|households?|kroger|walmart|target|aldi|brands?|company)\b", re.I)
+
+
+def claim_type(question: str) -> str:
+    if METHOD_Q.search(question):
+        return "method"
+    if QUANTITY_Q.search(question):
+        return "quantity_about_real_entity" if REAL_ENTITY.search(question) else "quantity"
+    return "descriptive"
+
+
+def in_scope(doc: dict, ctype: str) -> bool:
+    return not (ctype == "quantity_about_real_entity" and SCOPE.get(doc.get("type")) == "method_or_synthetic_exercise")
+
+
+def quantity_conflicts(question: str, docs: list[dict]) -> list[dict]:
+    """Scan EVERY retrieved chunk (not only the sentence picked per hit) for verbatim value spans of the asked noun;
+    distinct values from distinct sources are a conflict that must be surfaced, never silently resolved."""
+    asked = {n.lower() for n in re.findall(r"\b(households|transactions|transaction records|rows|campaigns|coupons)\b", question, re.I)}
+    vals: dict = {}
+    for d in docs:
+        for sent in sentences(d["text"]):
+            for num, noun in NUM_NOUN.findall(sent):
+                if noun.lower() in asked:
+                    vals.setdefault(noun.lower(), {}).setdefault(num.replace(",", ""), []).append(
+                        {"source_id": d["source_id"], "chunk_id": d["chunk_id"], "span": sent})
+    out = []
+    for noun, by_val in vals.items():
+        srcs = {v: {x["source_id"] for x in xs} for v, xs in by_val.items()}
+        if len(by_val) > 1 and len(set().union(*srcs.values())) > 1:
+            out.append({"about": noun, "values": {v: sorted(ss) for v, ss in srcs.items()},
+                        "spans": [xs[0] for xs in by_val.values()]})
+    return out
+
+
 def answer(question: str, k=5, min_score=4.0, min_terms=2, min_coverage=0.45, as_of=None, llm=None) -> dict:
     """Grounded answer. Deterministic extractive path unless an LLM client is passed."""
-    hits = index().search(question, k=k, as_of=as_of)
+    ctype = claim_type(question)
+    raw = index().search(question, k=k + 15, as_of=as_of)
+    hits = [(s, d) for s, d in raw if in_scope(d, ctype)][:k]
     q = set(tokens(question))
     res = {"question": question, "retrieved": [{"chunk_id": d["chunk_id"], "score": round(s, 3), "source_id": d["source_id"],
                                                "instruction_like": d["instruction_like"]} for s, d in hits],
-           "method": "bm25+extractive", "abstained": False}
+           "method": "bm25+extractive", "abstained": False, "claim_type": ctype,
+           "out_of_scope_excluded": sorted({d["source_id"] for s, d in raw[:k] if not in_scope(d, ctype)})}
     flagged = [d["chunk_id"] for _, d in hits if d["instruction_like"]]
     if flagged:
         res["untrusted_instruction_text_ignored"] = flagged
@@ -212,9 +260,19 @@ def answer(question: str, k=5, min_score=4.0, min_terms=2, min_coverage=0.45, as
     if not ok:
         res.update({"abstained": True, "answer": "UNKNOWN — no verifiable span.", "supported_claims": [], "rejected_claims": bad})
         return res
+    conflicts = find_conflicts(ok)
+    if ctype.startswith("quantity"):
+        conflicts = conflicts or quantity_conflicts(question, [d for _, d in hits])
     res.update({"answer": " ".join(c["span"] for c in ok[:2]), "supported_claims": ok, "rejected_claims": bad,
-                "conflicts": find_conflicts(ok),
+                "conflicts": conflicts,
                 "next_research_action": "verify semantic adequacy by a human reviewer before quoting on a slide"})
+    if conflicts:
+        vals = "; ".join(f"{v} {c['about']} ({', '.join(ss)})" for c in conflicts for v, ss in c["values"].items())
+        res.update({"answer": f"CONFLICT: sources disagree ({vals}). No single value is asserted; resolve against the primary data.",
+                    "usable_as_fact": False,
+                    "next_research_action": "resolve the conflict against primary data (e.g., our own audit) before using any value"})
+    else:
+        res["usable_as_fact"] = True
     return res
 
 

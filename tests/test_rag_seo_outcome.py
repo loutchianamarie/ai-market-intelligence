@@ -47,6 +47,41 @@ def test_as_of_filter_excludes_later_sources(monkeypatch):
     assert rag.index().search("households panel", as_of="2020-01-01") == []
 
 
+SCOPE_DOCS = [
+    {"chunk_id": "c#0", "source_id": "course_ex", "type": "course_material", "url": "u4", "retrieved_at": "2026-11-14",
+     "instruction_like": False, "text": "The retailer total marketing spend in 2017 was 48,000 dollars across paid channels in this exercise."},
+    {"chunk_id": "d#0", "source_id": "dataset_doc", "type": "dataset_documentation", "url": "u5", "retrieved_at": "2026-11-14",
+     "instruction_like": False, "text": "The study covers 2,469 households. Campaign descriptions list campaign types A, B and C."},
+    {"chunk_id": "e#0", "source_id": "port", "type": "third_party_readme", "url": "u6", "retrieved_at": "2026-11-14",
+     "instruction_like": False, "text": "Overview of the grocery study data. Key statistics: one year of purchases. The data come from 801 households."},
+]
+
+
+def test_course_exercise_cannot_answer_a_real_entity_quantity(monkeypatch):
+    _install_corpus(monkeypatch, SCOPE_DOCS)
+    r = rag.answer("What was the retailer's total marketing spend in 2017?", min_score=0.1)
+    assert r["claim_type"] == "quantity_about_real_entity"
+    assert all(c["source_id"] != "course_ex" for c in r.get("supported_claims", []))
+    assert "course_ex" in r["out_of_scope_excluded"]
+    # the same course source still answers a method question
+    m = rag.answer("How is total marketing spend calculated in this exercise?", min_score=0.1)
+    assert m["claim_type"] == "method" and not m["abstained"]
+
+
+def test_conflict_found_beyond_the_single_picked_sentence(monkeypatch, tmp_path):
+    _install_corpus(monkeypatch, SCOPE_DOCS[1:])
+    r = rag.answer("What is the number of households in the grocery study data?", min_score=0.1)
+    assert r["conflicts"] and set(r["conflicts"][0]["values"]) == {"2469", "801"}
+    assert r["usable_as_fact"] is False and r["answer"].startswith("CONFLICT")
+    # through the tool, no role receives a contradicted value as a supported claim
+    orig = rag.answer
+    monkeypatch.setattr(rag, "answer", lambda q, **kw: orig(q, min_score=0.1))
+    t = Toolbox(DossierStore(tmp_path / "c.sqlite")).dispatch("research", "retrieve_sources",
+                                                             {"query": "What is the number of households in the grocery study data?"})
+    assert t["data"]["supported_claims"] == [] and t["data"]["conflicting_spans"]
+    assert t["provenance"]["status"].startswith("CONFLICT")
+
+
 def test_poisoned_page_cannot_trigger_tools(monkeypatch, tmp_path):
     _install_corpus(monkeypatch, DOCS)
     r = rag.answer("coupon pilot grocery retailer note", min_score=0.1)

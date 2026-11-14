@@ -240,6 +240,14 @@ with tabs[3]:
             a.markdown(badge("FUTURE EXPERIMENT") + " not performed; the approval below covers a SANDBOX record only", unsafe_allow_html=True)
         else:
             a.warning("Older dossier: its 866/arm design only detects uplift at break-even and cannot support EXPAND. Use a newer dossier.")
+        act_limits = (d.get("activation_output") or {}).get("limits", [])
+        same_plan = [x for x in act_limits if x.startswith("Worth-it check (SIMULATION, same plan")]
+        if same_plan:
+            a.markdown(badge("ASSUMPTION") + " " + badge("COMPANY SCALE ASSUMED") + " " + same_plan[0], unsafe_allow_html=True)
+            a.caption(next((x for x in act_limits if x.startswith("Why ")), ""))
+        elif p["design"].get("launch_preconditions"):
+            a.warning("Superseded dossier: its worth-it check compared this test's cost with a different plan's (Coffee) favourable "
+                      "case. Use a dossier created after the same-plan reconciliation.")
         new_msg = a.text_area("Message (editing it after approval invalidates the approval)", p["message"])
         bud = p["budget"]
         b.markdown(f"**Budget** ${bud['total']:,.2f} of ${bud['cap']:,.0f} cap  \n{bud['treated_households']} treated × ${bud['per_household_expected_cost']:.3f} + ${bud['fixed_setup']:,.0f} setup")

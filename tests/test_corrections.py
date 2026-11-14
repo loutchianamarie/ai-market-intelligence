@@ -55,6 +55,33 @@ def test_pilot_design_tool_labels_scale_and_feasibility(tmp_path):
     assert f["eligible_consented_households_needed"] == 2 * r["data"]["sizing_choice"]["n_per_arm"]
 
 
+def test_decision_value_same_plan_arithmetic():
+    from mi.outcome.learning import decision_value
+    # FROZEN PIZZA / LAPSING / digital inputs from the pipeline; break-even uplift 0.0636
+    dv = decision_value(q0=0.3049, g=2.8932, face=0.9046, contact=0.03, redemption=0.35, n_per_arm=2623,
+                        reachable=7308, fixed=1500, uplifts={"base": 0.04, "sizing": 0.1272, "3x": 0.1908})
+    s = dv["scenarios"]
+    assert s["base"]["v_per_contacted_hh"] < 0 and s["base"]["whole_cycles_to_cover_test"] is None
+    # at the sizing uplift the rollout cycle still loses after setup -> no payback claim allowed
+    assert s["sizing"]["rollout_cycle_net"] < 0 and s["sizing"]["whole_cycles_to_cover_test"] is None
+    # rollout break-even lies between the sizing and 3x uplift; whole cycles are rounded UP
+    assert 0.1272 < dv["rollout_break_even_uplift"] < 0.1908
+    assert s["3x"]["whole_cycles_to_cover_test"] == 3
+    assert abs(7308 * (dv["rollout_break_even_uplift"] * (2.8932 - 0.9046) - 0.03 - 0.3049 * 0.35 * 0.9046) - 1500) < 5
+
+
+@needs_artifacts
+def test_worth_it_check_uses_the_test_plan_not_another_plan(tmp_path):
+    r = Toolbox(DossierStore(tmp_path / "w.sqlite")).dispatch("activation", "pilot_design",
+                                                              {"category": "FROZEN PIZZA", "segment": "LAPSING", "channel": "digital_coupon"})
+    dv, cc = r["data"]["decision_value"], r["data"]["candidate_choice"]
+    assert dv["plan"] == "FROZEN PIZZA|LAPSING|digital_coupon" == cc["candidate"]
+    assert dv["n_per_arm"] == r["data"]["sizing_choice"]["n_per_arm"]
+    # the candidate is chosen because it needs the smallest uplift multiple, not because it is the best base plan
+    assert cc["candidate_rank_closest_to_break_even"] == 1
+    assert cc["uplift_multiple_to_break_even_per_hh"]["candidate"] < cc["uplift_multiple_to_break_even_per_hh"]["best_base"]
+
+
 @needs_artifacts
 def test_scale_free_view_is_independent_of_scale():
     from mi.config import load_config
