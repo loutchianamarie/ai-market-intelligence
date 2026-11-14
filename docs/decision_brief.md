@@ -69,11 +69,14 @@ v = Δq·(g − F) − c − q0·r·F
 ## 4. Is a coupon test worth funding? Same plan, three questions (SIMULATION; COMPANY SCALE ASSUMED)
 All rows: Frozen Pizza / lapsing / digital, 2,623 treated + 2,623 control, $1,500 setup per wave, 7,308 assumed reachable households.
 
-| Question | Hurdle (true extra 4-week purchase rate) | Assumed today |
-|---|---|---|
-| (a) Does a contacted household add contribution at all? | **6.4 pp** (unit break-even, before setup) | 4.0 pp, so no |
-| (b) Would a rollout cover its $1,500 setup? | **16.7 pp** if the *full* assumed pool is offered every cycle (upper bound); **23.1 pp** if only new entrants (observed 61.6% per cycle) are offered | no |
-| (c) Is paying for the test worth it? | **27.0 pp** if the payoff is a one-off to the 4,685 households not yet offered (control + never enrolled) and must cover the test as well | no |
+| Question | Hurdle (true extra 4-week purchase rate) | Denominator, scale and costs covered | Assumed today |
+|---|---|---|---|
+| (a) Does a contacted household add contribution at all? | **6.4 pp** | per contacted household; coupon + contact cost only; **no setup**; scale-free | 4.0 pp, so no |
+| (b-A) Would a rollout cover its setup, every cycle? | **16.7 pp** | 7,308 assumed households offered **every** 4-week cycle; $1,500 setup per cycle; same response to repeat offers (**upper bound**) | no |
+| (b-B) …if only newcomers are offered? | **23.1 pp** | ≈ 4,500 per cycle = 61.6% (cohort turnover OBSERVED in the 2017 panel) × 7,308 (ASSUMED); $1,500 setup per cycle | no |
+| (c) Would a one-off to households not yet offered pay? | **22.5 pp** to cover its own setup; **27.0 pp** to also recover the test's net cost | 4,685 households (control + never enrolled), once; $1,500 setup, plus the test | no |
+
+The 61.6% turnover is observed. Every money result in this section is a SIMULATION at a hypothetical company scale.
 
 **What the test buys, if true uplift is…**
 
@@ -81,17 +84,17 @@ All rows: Frozen Pizza / lapsing / digital, 2,623 treated + 2,623 control, $1,50
 |---|---:|---:|---:|---:|
 | 4.0 pp (assumed) | $1,623 | −$1,843 | −$1,711 | −$1,720 |
 | 12.7 pp (**what the test is sized for**) | $1,168 | −$575 | −$931 | −$907 |
-| 19.1 pp (3× unit break-even) | $836 | +$349 → recovers in 3 cycles | −$361 | −$315 |
+| 19.1 pp (3× unit break-even) | $836 | +$349 per cycle (upper bound)* | −$361 | −$315 |
 
 Reading:
 - **12.7 pp is not a commercial success.** It is the effect the 2,623/arm design can detect, and at that response every rollout scenario loses money.
-- **The only payback is an upper bound.** It appears only in scenario A at ≥ 19 pp. A assumes the whole pool is offered again every cycle with the same response to repeat offers, with no fatigue, constant stock and consent, and setup paid each time. In the panel, about 40% of each cycle's cohort were already in the previous one, so repeat response matters and is unobserved.
+- **Payback appears only in an upper-bound hypothetical.** *Only scenario A at ≥ 19 pp has a positive cycle: about 3 whole cycles to recover the $836 net test cost. This is an upper-bound hypothetical for Q&A, not an investment case.* A assumes the whole pool is offered again every cycle with the same response to repeat offers, with no fatigue, constant stock and consent, and setup paid each time. In the panel, about 40% of each cycle's cohort were already in the previous one, so repeat response matters and is unobserved.
 - **Testing against the hurdle itself is impractical.** A test built to show contribution above the A hurdle, not merely above zero, needs:
   - 9,631 households per arm if true uplift is 20 pp, which is infeasible in 7,308;
   - 3,751 per arm at 22 pp, still infeasible;
   - only 1,534 per arm at 25 pp, i.e. **6× our assumption**.
 
-  So a decision-grade test is only "feasible" if one already believes an implausibly large effect. It stays a FUTURE option.
+  So at the assumed 7,308 households, a test that proves the rollout hurdle fits only if the true effect is around 25 pp, about 6× our assumption. Nothing we have observed supports that size. It stays a FUTURE option.
 - **Gross test outlay is $1,927** (2,623 × $0.163 + $1,500), valued at the assumed 4 pp. The first-pass claim "pays back after ~2 cycles" compared this test with Coffee's best case and is withdrawn.
 
 **Advisor action:** the advisor recommends **REJECT FUNDING (DEFER)** and attaches a $0 research checklist. A named approver rejects in the app (tab 4) or the CLI, approving that checklist in the same versioned record. The agent then records the checklist in the sandbox as PLANNED. No contact, spend, send or field work is executed. A scripted rehearsal of the whole path is in `reports/rejection_rehearsal.json`. It ran in a throwaway store, and its "approver" is labelled as a script.
@@ -100,15 +103,16 @@ Reading:
 | Question | Current evidence / unknown | Low-cost method (owner) | If A → decision | If B → decision |
 |---|---|---|---|---|
 | Why did lapsed buyers stop? | **Unknown**: 0 interviews | 2–3 consented interviews, coded barriers (L: I01–I02, C: I03) | Habit or price → a reminder or offer stays a candidate; re-run §4 | Stock, taste, brand switch, convenience → the matching non-coupon fix (§2); **no coupon test** |
-| How many consented, reachable households? | **Unknown**; 7,308 is assumed | Ask the client (both) | ≫ 7,308 or setup ≪ $1,500 → hurdles fall toward 6.4 pp; re-run §4 | ≤ 7,308 → no decision-grade test is possible; NONE |
+| How many consented, reachable households? | **Unknown**; 7,308 is assumed | Ask the client (both) | Much larger pool, or setup well below $1,500 → the rollout hurdles fall toward 6.4 pp and a hurdle-based test needs fewer multiples of our assumed effect; re-run §4 and the design table | About 7,308 or fewer → at *this* assumed uplift (4 pp) and hurdle (16.7 pp), a test powered to show contribution above the hurdle does not fit (it would need ~25 pp true effect to fit); keep NONE unless the pool, setup cost, margin or credible effect-size evidence changes |
 | What is the real margin? | 28% ASSUMED | Ask finance (both) | Higher → every hurdle falls; re-run | ≤ 28% → NONE holds (it holds even at 40% under base uplift) |
 | How do our offers reach shoppers? | Unknown for our retailer; competitors differ (§6) | Ask the client; verify competitor pages by hand (C) | Clip/opt-in → less subsidy to habitual buyers | Automatic → more subsidy (q0·r·F up); the coupon case weakens |
-| Do assistants surface the analogue when shoppers ask how to save on frozen pizza or coffee? | **0/20 answers** | 20 fresh-chat answers on the frozen panel (L: Assistant 1, C: Assistant 2) | Absent while competitor pages are cited → content/listing action (non-coupon) | Present → discovery is not the barrier |
+| What do two AI assistants say and cite when shoppers ask how to save on frozen pizza or coffee? | **0/20 answers** | 20 fresh-chat answers on the frozen panel (L: Assistant 1, C: Assistant 2) | Analogue often absent while competitor pages are cited → a *candidate* content/listing action (non-coupon) aimed at the cited sources | Analogue mentioned or recommended → only says it appears in these dated answers. It does **not** show recommendation quality, search reach, traffic, conversion, or that discovery is fine. Diagnosing discovery also needs interview evidence on how shoppers look for deals, plus (for a real owner) Search Console impressions and site analytics |
 | Is stock available? | Unknown | Ask operations (both) | Yes → precondition met | No → no promotion of any kind |
 
 **SEO/AEO/GEO limits:**
 - The audit studies a **public analogue** (Kroger vs Walmart, Target, ALDI). It cannot be joined to the anonymous 2017 panel.
-- Assistant visibility is not organic search impressions, traffic or incremental purchases.
+- **The 20-answer log can measure:** mention, recommendation and top-pick rates and share of voice / recommendations in two assistants on one date, plus the domains cited when a competitor was recommended instead.
+- **It cannot measure:** organic search impressions, traffic, conversion or incremental purchases, or whether discovery is a real barrier for shoppers.
 - The panel *adapts* the class worksheet, which is a solo Lebanon-brand exercise. Fit with the official brief is pending.
 
 ## 6. Public offer mechanics at analogue retailers (checked 2026-11-14)
