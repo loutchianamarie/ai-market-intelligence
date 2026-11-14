@@ -11,3 +11,4 @@ reports/_tmp/
 data/sources/_cache/
 reports/_tmp*
 reports/agent_trace_OPP-*.json
+deck/node_modules/
