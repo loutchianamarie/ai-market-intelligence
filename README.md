@@ -11,7 +11,7 @@ python -m venv .venv && .venv\Scripts\activate
 pip install -r requirements.lock.txt
 pip install -e .                      # or add src/ to PYTHONPATH
 python -m mi.cli all                  # download → audit → train/evaluate → portfolio & sensitivity → RAG eval → GEO → blocked demo → agents to the human checkpoint (~1.5 min)
-python -m mi.cli test                 # 44 tests
+python -m mi.cli test                 # 51 tests
 python -m mi.cli demo                 # Streamlit manager app (offline; uses saved, hashed artifacts)
 ```
 Human approval (after `all`): `python -m mi.agents.coordinator approve OPP-XXXX --approver "Full Name"`, then `python -m mi.agents.coordinator resume OPP-XXXX`. You can also approve in app tab 4. Rebuild the deck: `cd deck && npm install && cd .. && node deck/build_deck.js`.
@@ -20,14 +20,18 @@ Live LLM agents: set `ANTHROPIC_API_KEY`, then `python -m mi.agents.coordinator 
 ## What is measured vs assumed (headline)
 | | Result | Status |
 |---|---|---|
-| Model vs rule (locked test, weeks 50–53) | AP 0.662 vs 0.621 (repeat rule) vs 0.352 (popularity); gain CI +0.038 to +0.045 | OBSERVED |
-| Campaign selection bias | recipients' pre-campaign weekly spend 2.0–2.6× others' | OBSERVED (descriptive) |
-| Base-case recommendation | NONE: no plan breaks even; popularity mailing −$61,914 and over budget | SIMULATION |
-| What flips it | Frozen Pizza / lapsing / digital / model-filtered at ≈2× assumed uplift with ~250k households (3× at ~100k) | SIMULATION |
-| Learn-first test | 866 households per arm to detect the 6.4 pp break-even uplift; simulated cost $1,641 | FUTURE TEST |
-| RAG | recall@5 1.0; abstention decisions 13/13 dev, 6/6 held-out (v1 failed 3/3 unanswerable: fixed and logged) | OBSERVED (small authored set) |
-| GEO audit | 0 / 20 real answers collected | PENDING |
-| Live LLM agents | adapter built; no runtime key here; roles ran deterministically | PENDING |
+Verified and corrected on 2026-11-14: see `docs/verification_and_claim_audit.md`.
+
+| | Result | Status |
+|---|---|---|
+| Model vs rule (untouched window, weeks 50–53) | AP 0.662 vs 0.621 (repeat rule) vs 0.352 (popularity), base rate 0.275; same gap in all 3 held-out windows (+0.037/+0.043/+0.041). Predicts purchase under historical conditions, **not** who a coupon persuades | HISTORICAL OBSERVATION |
+| Campaign imbalance | recipients' pre-campaign weekly spend 2.0–2.6× others' (selection, not effect) | HISTORICAL OBSERVATION |
+| Base-case recommendation | NONE: every plan loses per contacted household even before setup (best −$44 per 1,000); broad mailing is an infeasible comparator | ASSUMPTION |
+| What flips it | higher true uplift (≈2–3× assumed) **and** a hypothetical company scale (100k–250k, not in data) | ASSUMPTION + COMPANY SCALE ASSUMED |
+| Learn-first test | contribution-based 2,623 per arm at an assumed 2× break-even uplift (5,246 consented households needed), assumed cost $1,927; overnight 866/arm design withdrawn (could not support EXPAND) | FUTURE EXPERIMENT, conditional |
+| RAG | locked pre-registered set: 11/12 answer-or-abstain decisions, conflict flagged 0/1 (earlier 19/19 was on threshold-development sets) | HISTORICAL OBSERVATION (small set) |
+| GEO audit | 0 / 20 real answers collected | PENDING (human) |
+| Live LLM agents | Claude loop unit-tested with a mocked client only; no live call (no key) | PENDING |
 
 ## Layout
 ```

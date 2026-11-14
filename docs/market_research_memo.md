@@ -30,7 +30,8 @@ Which product category × existing-household segment × channel deserves the nex
 | — | Kroger / Walmart / Target / Aldi pages | **Not collected**: automated fetches returned 403/429. The team must record observations manually with date and screenshot | PENDING |
 
 ## 4. Competitor / analogue observations
-Automated fetching of the retailer pages was blocked, so **no competitor observations are claimed**. Protocol for the team (15 min each): open the public digital-coupon page of Kroger, Walmart, Target and Aldi; record date, URL, how coupons are loaded, whether an account/app is required, and category examples; screenshot. Optional: Meta Ad Library search for the same brands (course primer Part 7). Record only what is visible, e.g. "this ad ran for 11 weeks", never "this ad is profitable".
+**Update 2026-11-14 (verification pass):** a web search of official retailer pages produced summaries of their digital-offer mechanics; see the table in `docs/decision_brief.md` §5 (Kroger, Target, Walmart, ALDI, with URLs). They are *search summaries*, not verbatim quotes, so the team must verify each against the live page (task 4 in `docs/team_tasks.md`) before quoting on a slide. Direct automated fetches still return 403/429.
+The original note follows: automated fetching of the retailer pages was blocked, so **no competitor observations were claimed** at that time. Protocol for the team (15 min each): open the public digital-coupon page of Kroger, Walmart, Target and Aldi; record date, URL, how coupons are loaded, whether an account/app is required, and category examples; screenshot. Optional: Meta Ad Library search for the same brands (course primer Part 7). Record only what is visible, e.g. "this ad ran for 11 weeks", never "this ad is profitable".
 
 ## 5. Interview guide (6–10 consented interviews; recruit outside friends where possible)
 Screen into two groups: (a) **lapsed category buyers** (bought frozen pizza before, not in the last month); (b) **nonbuyers** of the category who shop weekly.
@@ -44,7 +45,7 @@ Avoid: "Would you use a coupon for frozen pizza?" (future, leading). Report refu
 
 ## 6. STP, positioning, 4 Ps
 - **Segmentation (behavioural):** REGULAR, RECENT_LIGHT, LAPSING, ACTIVE_NONBUYER per category, from pre-cutoff purchases only. Demographics are not used: they cover 801 of 2,469 households, and the course primer notes they are a weak predictor.
-- **Targeting:** LAPSING frozen-pizza buyers. Measurable (406 panel households; 7,308 reachable at 40× scale and 45% digital consent, both ASSUMPTION), reachable only with consent, and closest to break-even. The criterion is *value net of cost to serve*, not size: the biggest groups (REGULAR buyers) carry the most subsidy waste.
+- **Targeting:** LAPSING frozen-pizza buyers. Measurable (406 panel households; 7,308 reachable at 40× scale and 45% digital consent, both ASSUMPTION), reachable only with consent, and closest to break-even. The criterion is *value net of cost to serve*, not size. Under Assumption A1 (historical propensity ≈ no-coupon purchase), coupons to REGULAR buyers would mostly discount purchases they make anyway. That is an assumption to test, not a measured fact. The 7,308 figure is a hypothetical company-scale count, not data.
 - **Positioning hypothesis:** see `decision_brief.md`. It must be validated in interviews before any public claim.
 - **4 Ps:** see `decision_brief.md`. Diagnosis: if the friction is habit loss (Keep stage), Promotion to lapsed buyers is appropriate. If interviews reveal Product/Price issues (e.g., store-brand switching), a coupon is the wrong lever (primer §7, "which P is broken").
 

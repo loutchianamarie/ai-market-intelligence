@@ -29,7 +29,15 @@ Break-even uplift (per household, before fixed setup): `Δq* = (c_k + q̄0 · r 
 Frozen pizza / lapsing / digital: (0.03 + 0.305 × 0.35 × 0.905) / (2.893 − 0.905) = **0.064**, which is 1.6× the assumed 0.04.
 With fixed setup F: multiple needed = (F / (scale × reach share) + Σ(c + q0 r F_c)) / Σ Δq (g − F_c). This gives 4.2× at 40× scale, 2.6× at 100×, 2.0× at 250×.
 
-Interpretation for marketing allocation: the subsidy term `q0 · r · F` grows with the model score. Coupons to likely buyers are money transferred to customers who would have bought anyway. That is why a higher score is not automatically a better investment, and why the model's role is to *exclude* households.
+Interpretation, with its assumption stated: **Assumption A1** approximates each household's no-coupon purchase probability by its historical propensity `q0`. Historical data cannot measure who would buy without a coupon. Under A1, coupon cost on purchases the coupon did not cause grows with `q0`, and with uplift held constant within a segment, lower-`q0` households look more valuable. That is why a "model-filtered" variant can win in a scenario. It is a **hypothesis for a stratified randomized pilot**, not evidence that the model identifies persuadable customers. A higher score is not automatically a better investment; only a holdout can measure response.
+
+Scale-free check: per 1,000 contacted households before fixed setup, the best base-case plan is −$44 (Frozen Pizza/lapsing −$47; broad mailing −$651). The 40×/100×/250× "deployment scale" is a HYPOTHETICAL company size, not data.
+
+## Pilot sizing (corrected 2026-11-14)
+- **Purchase-rate proxy:** 866 per arm detects a 6.4 pp uplift *at* break-even. At break-even, contribution is zero, so this cannot support EXPAND on the primary metric.
+- **Contribution-based:** n = (1.96 + 0.84)² · 2σ² / δ², with σ = 0.28 × SD of 4-week frozen-pizza spend among lapsing households in the historical test window (= $1.64, OBSERVED × ASSUMED). δ = (k − 1) · Δq* · (g − F).
+  - k = 1.5 → 10,487 per arm; k = 2 → 2,623; k = 3 → 656.
+- Minimum uplift needed for EXPAND by n per arm: 406 → 22.5 pp; 866 → 17.4 pp; 2,000 → 13.7 pp; 5,000 → 11.0 pp. Source: `reports/claim_audit.json`.
 
 ## FashionForward (synthetic course fixture, arithmetic check only)
 `python -m mi.decision.fashionforward`: rules R1–R4 remove 135 duplicate orders and 12 test orders. Rule-less revenue is overstated by 19.6%. TikTok's platform-reported ROAS is 4.44 vs a shop-measured 1.47 (break-even 1.82 at the fixture's 55% margin). This fixture's customers and margin are **never** mixed with the grocery case.

@@ -4,6 +4,18 @@ Architecture: a **Coordinator** (hierarchical) plus five specialists share one v
 
 **Runtime LLM status:** no runtime credential was found in this environment (no `ANTHROPIC_API_KEY`, no `ANTHROPIC_AUTH_TOKEN`, no `ant` profile). The LLM path is implemented (`src/mi/agents/llm.py`: manual Claude tool-use loop, `claude-opus-5-5`, adaptive thinking, server-side refusal fallback, structured JSON for grounded claims), but it is **not yet live-tested**. All roles ran as *typed deterministic nodes* through the same allowlisted dispatcher, and the trace labels each step `mode=deterministic`. Run `python -m mi.agents.coordinator llm-smoke` after setting a key.
 
+**Verification pass (2026-11-14): what actually ran.**
+
+| Path | Status | Evidence |
+|---|---|---|
+| Deterministic role nodes calling real tools on real artifacts | **RAN** | `reports/agent_trace_latest.json`; 0 provenance violations; end-to-end test |
+| Allowlist / approval / rejection / idempotency / injection blocks | **RAN** | `blocked_demo.json`; `tests/test_workflow.py`, `test_corrections.py` |
+| Claude tool-use loop (`run_role`) | **Unit-tested against a MOCKED client only** | `test_llm_loop_enforces_dispatch_and_round_limit_with_mock`: the dispatcher blocks a research-role write and the round limit holds |
+| Server-side refusal fallback (`fallbacks="default"`) | **Code path only**; request shape asserted in a mock test; never exercised live | — |
+| Any live LLM request | **NOT RUN**: no runtime credential; no local model runtime found | `llm-smoke` → `live_llm: false` |
+
+Activation now calls `pilot_design` (contribution-based sizing, MDE table, feasibility, assumed cost) in place of the purchase-proxy-only `pilot_sample_size`. The Intelligence role states that its score does not identify persuadable customers.
+
 Why several agents rather than one: each role has a different tool boundary and failure mode. Research may read but never write. Portfolio computes money but cannot draft or send. Activation can draft and record but only after human approval. Measurement can close the loop but cannot change the pilot. Merging them would widen privileges without adding a handoff.
 
 | | Research / SEO | Customer/Product Intelligence | Portfolio & Risk | Activation / CRM | Measurement / Learning |

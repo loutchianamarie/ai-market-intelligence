@@ -22,7 +22,7 @@ Sources were read from the course folder on 2026-11-14. We attribute nothing to 
 | SEO/AEO/GEO worksheet Steps 1–5 | 10 prompts 4/3/3, two assistants, 20 answers, ≤1 brand prompt, metrics with denominators, source gap, 3 ranked actions | `data/seo/prompt_panel.json`; `src/mi/seo/geo.py` validates and computes | 8 | 0/20 answers collected so far |
 
 ## Supplied videos (metadata verified via YouTube oEmbed, 2026-11-14)
-Transcripts and audio were **not accessible** in this environment, so the videos were **not reviewed**. Titles and channels are verified; upload dates are not. No figure from any video is used. They can serve as background only after a team member watches them.
+Transcripts and audio were **not accessible** in this environment, so the videos were **not reviewed** by this build. The research blueprint (prior session) states it reviewed "available captions/transcripts", with audiovisual details, dates and figures *not independently verified*. Its teaching angles may be used only with that provenance stated, and no numeric claim from a video appears in the deck. Titles and channels are verified; upload dates are not. No figure from any video is used. They can serve as background only after a team member watches them.
 
 | Video (channel) | Possible teaching angle (to confirm by watching) | Do not infer |
 |---|---|---|
