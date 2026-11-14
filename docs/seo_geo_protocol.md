@@ -18,7 +18,7 @@ It is **not** the literal worksheet:
 - the second language is Spanish, the largest non-English US language;
 - it is done as a pair, not alone.
 
-We call it an *adaptation*, never "worksheet-compliant". Whether the adaptation meets the grading requirement is **PENDING** the official project brief (task 5 in `docs/team_tasks.md`).
+We call it an *adaptation*, never "worksheet-compliant". Whether the adaptation meets the grading requirement is **PENDING** the official project brief (task 1 in `docs/team_tasks.md`).
 
 **Rubric-fit note and fallback.**
 

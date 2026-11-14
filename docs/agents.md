@@ -14,6 +14,8 @@ Architecture: a **Coordinator** (hierarchical) plus five specialists share one v
 | Server-side refusal fallback (`fallbacks="default"`) | **Code path only**; request shape asserted in a mock test; never exercised live | — |
 | Any live LLM request | **NOT RUN**: no runtime credential; no local model runtime found | `llm-smoke` → `live_llm: false` |
 
+**Second pass (2026-11-14):** `pilot_design` also returns `decision_value` (same-plan test economics) and `candidate_choice` (why Frozen Pizza rather than the best base plan). Activation reports that the test never pays back at its own sizing assumption at the assumed scale. `retrieve_sources` withholds conflicting spans (`supported_claims` empty, status CONFLICT), and course/synthetic sources cannot answer quantity questions about a real entity. Live dossier: `OPP-390338F3`.
+
 Activation now calls `pilot_design` (contribution-based sizing, MDE table, feasibility, assumed cost) in place of the purchase-proxy-only `pilot_sample_size`. The Intelligence role states that its score does not identify persuadable customers.
 
 Why several agents rather than one: each role has a different tool boundary and failure mode. Research may read but never write. Portfolio computes money but cannot draft or send. Activation can draft and record but only after human approval. Measurement can close the loop but cannot change the pilot. Merging them would widen privileges without adding a handoff.
