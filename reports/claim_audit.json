@@ -8,7 +8,8 @@
       "campaign_descriptions.rda": true,
       "coupons.rda": true,
       "coupon_redemptions.rda": true,
-      "demographics.rda": true
+      "demographics.rda": true,
+      "promotions.rds": true
     },
     "transaction_lines": 1469307,
     "households": 2469,

@@ -1,5 +1,5 @@
 {
-  "model_run_id": "run-fb9020ccd9",
+  "model_run_id": "run-331890829f",
   "base_recommendation": "NONE: research / measure first",
   "base_best_plan_net": -1724.41,
   "one_at_a_time": [
@@ -87,9 +87,9 @@
     }
   ],
   "status": "SCENARIO (one input varied, others at ASSUMED base values); not a forecast",
-  "seconds": 75.8,
+  "seconds": 74.0,
   "combinations": {
-    "model_run_id": "run-fb9020ccd9",
+    "model_run_id": "run-331890829f",
     "grid": {
       "uplift_multiplier": [
         1.0,

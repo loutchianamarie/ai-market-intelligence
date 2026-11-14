@@ -1,0 +1,259 @@
+{
+  "claims": [
+    {
+      "id": "data.households",
+      "value": 2469,
+      "unit": "households",
+      "status": "OBSERVED",
+      "source": "reports/data_audit.json#transactions.households"
+    },
+    {
+      "id": "data.transaction_lines",
+      "value": 1469307,
+      "unit": "lines",
+      "status": "OBSERVED",
+      "source": "reports/data_audit.json#tables.transactions.rows"
+    },
+    {
+      "id": "data.promotions_rows",
+      "value": 20940529,
+      "unit": "product x store x week rows",
+      "status": "OBSERVED",
+      "source": "reports/promotions_audit.json#rows"
+    },
+    {
+      "id": "data.promotions_store_coverage_of_lines",
+      "value": 0.987,
+      "unit": "share",
+      "status": "OBSERVED",
+      "source": "reports/promotions_audit.json#join.all_lines"
+    },
+    {
+      "id": "data.retailer_match_share_of_coupon_value",
+      "value": 0.1723,
+      "unit": "share",
+      "status": "OBSERVED",
+      "source": "reports/accounting_audit.json"
+    },
+    {
+      "id": "model.AP",
+      "value": 0.672,
+      "unit": "average precision (window 49, repeated)",
+      "status": "OBSERVED backtest",
+      "source": "reports/model_report.json#test",
+      "deck_value_superseded": 0.662
+    },
+    {
+      "id": "model.AP_rule",
+      "value": 0.621,
+      "unit": "average precision",
+      "status": "OBSERVED backtest",
+      "source": "reports/model_report.json#test"
+    },
+    {
+      "id": "model.AP_popularity",
+      "value": 0.352,
+      "unit": "average precision",
+      "status": "OBSERVED backtest",
+      "source": "reports/model_report.json#test"
+    },
+    {
+      "id": "model.AP_gain_ci95",
+      "value": [
+        0.045,
+        0.056
+      ],
+      "unit": "AP difference",
+      "status": "OBSERVED backtest",
+      "source": "reports/model_report.json#bootstrap_model_minus_rule_repeat",
+      "deck_value_superseded": [
+        0.037,
+        0.046
+      ]
+    },
+    {
+      "id": "model.reach_gain_1000_contacts",
+      "value": 22,
+      "unit": "extra future purchases found vs recency rule per 1,000 contacts",
+      "status": "OBSERVED backtest (not persuasion)",
+      "source": "reports/model_diagnostic.json#commercial_reach_49"
+    },
+    {
+      "id": "model.reach_gain_100_contacts",
+      "value": -1,
+      "unit": "extra purchases per 100 contacts",
+      "status": "OBSERVED backtest",
+      "source": "reports/model_diagnostic.json#commercial_reach_49"
+    },
+    {
+      "id": "model.promo_ablation_adopted",
+      "value": false,
+      "unit": "bool",
+      "status": "OBSERVED (pre-registered rule)",
+      "source": "reports/model_diagnostic.json#ablation"
+    },
+    {
+      "id": "decision.recommendation",
+      "value": "NONE: research / measure first",
+      "unit": "-",
+      "status": "SCENARIO",
+      "source": "reports/portfolio.json#recommended_base"
+    },
+    {
+      "id": "decision.rank1",
+      "value": {
+        "plan": "NONE: research / measure first",
+        "net_base": 0.0
+      },
+      "unit": "USD per 4-week cycle (assumed scale)",
+      "status": "SCENARIO",
+      "source": "reports/portfolio.json#ranked_actions"
+    },
+    {
+      "id": "decision.rank2",
+      "value": {
+        "plan": "COFFEE/LAPSING/digital_coupon/ALL",
+        "net_base": -1724.41
+      },
+      "unit": "USD per 4-week cycle (assumed scale)",
+      "status": "SCENARIO",
+      "source": "reports/portfolio.json#ranked_actions"
+    },
+    {
+      "id": "decision.rank3",
+      "value": {
+        "plan": "COFFEE/RECENT_LIGHT/digital_coupon/ALL",
+        "net_base": -1795.03
+      },
+      "unit": "USD per 4-week cycle (assumed scale)",
+      "status": "SCENARIO",
+      "source": "reports/portfolio.json#ranked_actions"
+    },
+    {
+      "id": "economics.unit_break_even_pp",
+      "value": 6.23,
+      "unit": "pp",
+      "status": "SCENARIO",
+      "source": "reports/claim_audit.json#economics.same_plan_test_value",
+      "deck_value_superseded": 6.4
+    },
+    {
+      "id": "economics.test_n_per_arm",
+      "value": 2737,
+      "unit": "households",
+      "status": "DESIGN (ASSUMED effect)",
+      "source": "reports/claim_audit.json",
+      "deck_value_superseded": 2623
+    },
+    {
+      "id": "economics.sized_for_uplift_pp",
+      "value": 12.46,
+      "unit": "pp",
+      "status": "DESIGN",
+      "source": "reports/claim_audit.json",
+      "deck_value_superseded": 12.7
+    },
+    {
+      "id": "economics.rollout_A_B_C_at_sized_uplift",
+      "value": [
+        -594.94,
+        -942.71,
+        -933.91
+      ],
+      "unit": "USD per cycle / one-off",
+      "status": "SCENARIO",
+      "source": "reports/claim_audit.json",
+      "deck_value_superseded": [
+        -575,
+        -931,
+        -907
+      ]
+    },
+    {
+      "id": "economics.hurdles_A_B_C_pp",
+      "value": [
+        16.55,
+        22.99,
+        26.87
+      ],
+      "unit": "pp",
+      "status": "SCENARIO",
+      "source": "reports/claim_audit.json",
+      "deck_value_superseded": [
+        16.7,
+        23.1,
+        27.0
+      ]
+    },
+    {
+      "id": "reversal.one_at_a_time_flip_uplift_multiple",
+      "value": 4.1377,
+      "unit": "x assumed uplift",
+      "status": "SCENARIO (one input varied)",
+      "source": "reports/decision_reversal.json"
+    },
+    {
+      "id": "reversal.combinations_flipping",
+      "value": "55 of 96",
+      "unit": "joint scenarios",
+      "status": "SCENARIO",
+      "source": "reports/decision_reversal.json#combinations"
+    },
+    {
+      "id": "opportunity.cards",
+      "value": [
+        "C1: do not fund now; research first",
+        "C2: low priority: weak evidence; consider only as a zero-cost app 'goes well with' default after operations sign-off",
+        "C3: operational investigation; no spend",
+        "C4: collect evidence first; zero cost to collect",
+        "C0: default until a card's discriminating evidence arrives"
+      ],
+      "unit": "-",
+      "status": "OBSERVED + HYPOTHESES",
+      "source": "reports/opportunities.json#cards"
+    },
+    {
+      "id": "hillstrom.visit_effect_mens_pp",
+      "value": 7.7,
+      "unit": "pp (2 weeks)",
+      "status": "METHOD EVIDENCE (other retailer)",
+      "source": "reports/experiments/hillstrom_report.json"
+    },
+    {
+      "id": "hillstrom.visit_effect_womens_pp",
+      "value": 4.5,
+      "unit": "pp (2 weeks)",
+      "status": "METHOD EVIDENCE (other retailer)",
+      "source": "reports/experiments/hillstrom_report.json"
+    },
+    {
+      "id": "geo.answers_logged",
+      "value": 0,
+      "unit": "of 20",
+      "status": "PENDING",
+      "source": "reports/seo_geo_audit.json"
+    },
+    {
+      "id": "interviews.completed",
+      "value": 0,
+      "unit": "of 2-3",
+      "status": "PENDING",
+      "source": "data/interviews/coding_sheet.csv"
+    },
+    {
+      "id": "agents.live_llm",
+      "value": "PENDING (no runtime key)",
+      "unit": "-",
+      "status": "PENDING",
+      "source": "configs/agents.json"
+    },
+    {
+      "id": "run.dossier",
+      "value": "OPP-5A2E65C8",
+      "unit": "-",
+      "status": "OBSERVED",
+      "source": "reports/run_manifest.json"
+    }
+  ],
+  "note": "deck_value_superseded = figure on the current slides that this value replaces; PPT not edited"
+}

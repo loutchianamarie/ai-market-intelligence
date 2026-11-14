@@ -48,6 +48,7 @@ STEPS = [
     ("blocked demo", ["mi.agents.coordinator", "blocked-demo"], None, False),
     ("agents to human checkpoint", ["mi.agents.coordinator", "run"], None, False),
 ]
+POST = [("current claims + decision card", ["mi.claims_export"], None, False)]
 PACKAGES = ["numpy", "pandas", "scikit-learn", "pyreadr", "pyarrow", "streamlit", "anthropic"]
 
 
@@ -103,6 +104,15 @@ def run_all() -> int:
     trace = REPORTS / "agent_trace_latest.json"
     if trace.exists() and rc_final == 0:
         man["dossier"] = json.loads(trace.read_text()).get("opportunity_id")
+        (REPORTS / "run_manifest.json").write_text(json.dumps(man, indent=2))   # claims export reads the dossier id
+        for name, mod, _, _ in POST:
+            t = time.time()
+            log = logs / f"{len(STEPS) + 1:02d}_{re.sub(r'[^a-z0-9]+', '_', name.lower()).strip('_')}.log"
+            with open(log, "w", encoding="utf-8") as f:
+                rc = subprocess.call([py, "-m", *mod], cwd=ROOT, stdout=f, stderr=subprocess.STDOUT)
+            print(f"[{'ok' if rc == 0 else 'FAIL'}] {name} ({time.time() - t:.0f}s) -> {log.relative_to(ROOT)}")
+            man["steps"].append({"step": name, "rc": rc, "seconds": round(time.time() - t, 1), "log": str(log.relative_to(ROOT))})
+            rc_final = rc_final or rc
     man.update({"finished_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
                 "seconds_total": round(time.time() - t_all, 1), "ok": rc_final == 0})
     (REPORTS / "run_manifest.json").write_text(json.dumps(man, indent=2))

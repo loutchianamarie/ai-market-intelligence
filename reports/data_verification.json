@@ -58,6 +58,13 @@
       "sha256_ok": true,
       "rows": 801,
       "rows_ok": true
+    },
+    {
+      "name": "promotions.rds",
+      "present": true,
+      "bytes_ok": true,
+      "sha256_ok": true,
+      "rows": "checked by mi.ingest.promotions (documented 20,940,529 rows)"
     }
   ],
   "ok": true,

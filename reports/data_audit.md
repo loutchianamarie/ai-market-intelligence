@@ -6,13 +6,14 @@ Source: https://github.com/bradleyboehmke/completejourney @ commit `5b5d06192b98
 
 | file | bytes | sha256 (first 16) | retrieved |
 |---|---:|---|---|
-| transactions.rds | 12,775,661 | `1fa0700033f1e5d9` | 2026-11-13T23:55:32+00:00 |
-| products.rda | 869,019 | `a80c6df33623b4af` | 2026-11-13T23:55:34+00:00 |
-| campaigns.rda | 8,264 | `33c7b3dc1bc722d4` | 2026-11-13T23:55:34+00:00 |
-| campaign_descriptions.rda | 496 | `601bd17ea1a6de92` | 2026-11-13T23:55:35+00:00 |
-| coupons.rda | 324,969 | `4d87effce5b8813c` | 2026-11-13T23:55:36+00:00 |
-| coupon_redemptions.rda | 8,370 | `4b68148175ed1930` | 2026-11-13T23:55:36+00:00 |
-| demographics.rda | 4,237 | `8b80455bc841003b` | 2026-11-13T23:55:37+00:00 |
+| transactions.rds | 12,775,661 | `1fa0700033f1e5d9` | 2026-11-14T15:16:55+00:00 |
+| products.rda | 869,019 | `a80c6df33623b4af` | 2026-11-14T15:16:55+00:00 |
+| campaigns.rda | 8,264 | `33c7b3dc1bc722d4` | 2026-11-14T15:16:55+00:00 |
+| campaign_descriptions.rda | 496 | `601bd17ea1a6de92` | 2026-11-14T15:16:55+00:00 |
+| coupons.rda | 324,969 | `4d87effce5b8813c` | 2026-11-14T15:16:55+00:00 |
+| coupon_redemptions.rda | 8,370 | `4b68148175ed1930` | 2026-11-14T15:16:55+00:00 |
+| demographics.rda | 4,237 | `8b80455bc841003b` | 2026-11-14T15:16:55+00:00 |
+| promotions.rds | 24,976,951 | `15a729fdad31b10d` | 2026-11-14T15:17:20+00:00 |
 
 ## Tables
 

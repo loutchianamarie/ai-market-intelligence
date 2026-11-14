@@ -1,5 +1,5 @@
 {
-  "config_hash": "562d203b67791ea9",
+  "config_hash": "503853f3972f8ab2",
   "n_candidates": 74,
   "n_portfolios_feasible": 159,
   "top_k_screen": [
@@ -475,6 +475,7 @@
     "uplift_multiplier": 1.0,
     "scale": 40,
     "status": {
+      "coupon_funding": "ASSUMED",
       "margin_rate": "ASSUMED",
       "redemption_share": "ASSUMED",
       "contact_cost": "ASSUMED",
@@ -485,8 +486,9 @@
       "q0": "MODEL ESTIMATE",
       "category_spend": "OBSERVED",
       "coupon_face_value": "OBSERVED"
-    }
+    },
+    "coupon_retailer_share": 1.0
   },
   "status": "SIMULATION \u2014 conditional on ASSUMED uplift, margin, redemption, contact cost, reach and scale; q0 is a MODEL ESTIMATE",
-  "model_run_id": "run-fb9020ccd9"
+  "model_run_id": "run-331890829f"
 }
