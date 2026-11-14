@@ -1,0 +1,360 @@
+{
+  "run_id": "run-3d1f29708e",
+  "created_at": "2026-11-14T00:04:03+00:00",
+  "status": "OBSERVED (historical backtest) \u2014 predicts observed purchase under historical conditions, NOT response to a coupon",
+  "seed": 20261114,
+  "config_hash": "6ad30019bd70298e",
+  "data_manifest_commit": "5b5d06192b9856edd04e4d405787af2f2e4a1fef",
+  "target": "household buys category in the next 4 weeks (any basket)",
+  "unit": "(cutoff_week, household_id, product_category)",
+  "features": [
+    "cat_baskets_4w",
+    "cat_baskets_12w",
+    "cat_weeks_active_12w",
+    "cat_weeks_since_last",
+    "cat_spend_12w",
+    "cat_share_spend_12w",
+    "hh_baskets_4w",
+    "hh_baskets_12w",
+    "hh_weeks_active_12w",
+    "hh_spend_12w",
+    "hh_distinct_cats_12w",
+    "cat_pop_4w",
+    "cat_pop_trend",
+    "hh_coupon_disc_12w",
+    "hh_redemptions_12w",
+    "hh_campaigns_started",
+    "cat_private_share_12w"
+  ],
+  "split_counts": {
+    "train": {
+      "rows": 128112,
+      "households": 2439,
+      "positives": 34655,
+      "prevalence": 0.27050549519170725,
+      "cutoffs": [
+        13,
+        17,
+        21,
+        25,
+        29,
+        33,
+        37
+      ]
+    },
+    "validation": {
+      "rows": 18456,
+      "households": 2307,
+      "positives": 5146,
+      "prevalence": 0.2788253142609449,
+      "cutoffs": [
+        41
+      ]
+    },
+    "calibration": {
+      "rows": 18368,
+      "households": 2296,
+      "positives": 5053,
+      "prevalence": 0.27509799651567945,
+      "cutoffs": [
+        45
+      ]
+    },
+    "test": {
+      "rows": 18480,
+      "households": 2310,
+      "positives": 5082,
+      "prevalence": 0.275,
+      "cutoffs": [
+        49
+      ]
+    }
+  },
+  "validation_AP": {
+    "logreg_l2": 0.6614921496000338,
+    "hgb_small": 0.6651821207836169,
+    "hgb_deeper": 0.6625640813484175,
+    "rule_repeat": 0.627952498473635,
+    "rule_popularity": 0.3408531304510077
+  },
+  "selected_model": "hgb_small",
+  "calibration": "isotonic regression fit on calibration window only",
+  "test": {
+    "model_hgb_small": {
+      "n": 18480,
+      "prevalence": 0.275,
+      "AP": 0.6623996291847538,
+      "ROC_AUC": 0.8178948760260083,
+      "precision_top10pct": 0.795995670995671,
+      "recall_at_3": 0.6151154401154401,
+      "Brier": 0.14383075210943236,
+      "log_loss": 0.44759379629719714
+    },
+    "model_uncalibrated_brier": 0.1436304065106058,
+    "rule_repeat": {
+      "n": 18480,
+      "prevalence": 0.275,
+      "AP": 0.6210149195951625,
+      "ROC_AUC": 0.7865093596529089,
+      "precision_top10pct": 0.783008658008658,
+      "recall_at_3": 0.6044092528786407,
+      "Brier": 0.14851464559187016,
+      "log_loss": 0.46377652215639387
+    },
+    "rule_popularity": {
+      "n": 18480,
+      "prevalence": 0.275,
+      "AP": 0.35228292125407995,
+      "ROC_AUC": 0.6124998303681689,
+      "precision_top10pct": 0.4258658008658009,
+      "recall_at_3": 0.49270179933445235,
+      "Brier": 0.193386312095884,
+      "log_loss": 0.5731037799663605
+    }
+  },
+  "bootstrap_model_minus_rule_repeat": {
+    "n_boot": 200,
+    "AP_diff_mean": 0.041470059264980916,
+    "AP_diff_95ci": [
+      0.037617078654803335,
+      0.045460937689187485
+    ],
+    "Brier_diff_mean": -0.0046882557339326895,
+    "Brier_diff_95ci": [
+      -0.005759878920746667,
+      -0.003602011800094241
+    ]
+  },
+  "decision_score_used": "model",
+  "calibration_deciles_model": [
+    {
+      "mean_pred": 0.0377890630779837,
+      "observed": 0.030844155844155844,
+      "n": 1848
+    },
+    {
+      "mean_pred": 0.06498924440088473,
+      "observed": 0.06818181818181818,
+      "n": 1848
+    },
+    {
+      "mean_pred": 0.08449063460261882,
+      "observed": 0.08279220779220779,
+      "n": 1848
+    },
+    {
+      "mean_pred": 0.11799644975006297,
+      "observed": 0.1038961038961039,
+      "n": 1848
+    },
+    {
+      "mean_pred": 0.16782708770782098,
+      "observed": 0.17153679653679654,
+      "n": 1848
+    },
+    {
+      "mean_pred": 0.2261707103112997,
+      "observed": 0.23484848484848486,
+      "n": 1848
+    },
+    {
+      "mean_pred": 0.30108101274971594,
+      "observed": 0.3068181818181818,
+      "n": 1848
+    },
+    {
+      "mean_pred": 0.39783297764012054,
+      "observed": 0.4025974025974026,
+      "n": 1848
+    },
+    {
+      "mean_pred": 0.5616592601560658,
+      "observed": 0.5546536796536796,
+      "n": 1848
+    },
+    {
+      "mean_pred": 0.7919871722836662,
+      "observed": 0.7938311688311688,
+      "n": 1848
+    }
+  ],
+  "by_category": [
+    {
+      "category": "BAG SNACKS",
+      "n": 2310,
+      "prevalence": 0.43203463203463205,
+      "AP_model": 0.7631622925332813,
+      "AP_rule": 0.7266077875192485,
+      "AP_popularity_baseline": 0.43203463203463205
+    },
+    {
+      "category": "COFFEE",
+      "n": 2310,
+      "prevalence": 0.1683982683982684,
+      "AP_model": 0.5798118400868548,
+      "AP_rule": 0.5371362551011855,
+      "AP_popularity_baseline": 0.1683982683982684
+    },
+    {
+      "category": "COLD CEREAL",
+      "n": 2310,
+      "prevalence": 0.29653679653679654,
+      "AP_model": 0.6501210235707798,
+      "AP_rule": 0.6141008392819953,
+      "AP_popularity_baseline": 0.29653679653679654
+    },
+    {
+      "category": "FROZEN PIZZA",
+      "n": 2310,
+      "prevalence": 0.2852813852813853,
+      "AP_model": 0.6392363899852808,
+      "AP_rule": 0.5932218670434459,
+      "AP_popularity_baseline": 0.2852813852813853
+    },
+    {
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "n": 2310,
+      "prevalence": 0.23982683982683983,
+      "AP_model": 0.5518179853191312,
+      "AP_rule": 0.5213922391612474,
+      "AP_popularity_baseline": 0.23982683982683983
+    },
+    {
+      "category": "REFRGRATD JUICES/DRNKS",
+      "n": 2310,
+      "prevalence": 0.2818181818181818,
+      "AP_model": 0.6780330371235644,
+      "AP_rule": 0.6466598298443796,
+      "AP_popularity_baseline": 0.2818181818181818
+    },
+    {
+      "category": "SOUP",
+      "n": 2310,
+      "prevalence": 0.3329004329004329,
+      "AP_model": 0.6771871291194627,
+      "AP_rule": 0.6436523122603663,
+      "AP_popularity_baseline": 0.3329004329004329
+    },
+    {
+      "category": "YOGURT",
+      "n": 2310,
+      "prevalence": 0.1632034632034632,
+      "AP_model": 0.6119019577927994,
+      "AP_rule": 0.5829302247932069,
+      "AP_popularity_baseline": 0.1632034632034632
+    }
+  ],
+  "by_segment": [
+    {
+      "segment": "ACTIVE_NONBUYER",
+      "n": 5564,
+      "prevalence": 0.12670740474478792,
+      "mean_pred_model": 0.13163421034709,
+      "mean_pred_rule": 0.10932509015971151,
+      "Brier_model": 0.10654741265001752,
+      "Brier_rule": 0.11095478318796298,
+      "AP_model": 0.21403976799304947,
+      "AP_rule": 0.12670740474478792
+    },
+    {
+      "segment": "LAPSING",
+      "n": 3226,
+      "prevalence": 0.2994420334779913,
+      "mean_pred_model": 0.2925289245186495,
+      "mean_pred_rule": 0.2983072526561876,
+      "Brier_model": 0.20111519058926638,
+      "Brier_rule": 0.20774569615283658,
+      "AP_model": 0.4026375851919893,
+      "AP_rule": 0.3533040042877843
+    },
+    {
+      "segment": "LOW_ACTIVITY",
+      "n": 4071,
+      "prevalence": 0.07344632768361582,
+      "mean_pred_model": 0.07142893412326493,
+      "mean_pred_rule": 0.10932509015971154,
+      "Brier_model": 0.06572901045278003,
+      "Brier_rule": 0.06933925023022283,
+      "AP_model": 0.15254988215795862,
+      "AP_rule": 0.07344632768361582
+    },
+    {
+      "segment": "RECENT_LIGHT",
+      "n": 2373,
+      "prevalence": 0.3683101559207754,
+      "mean_pred_model": 0.37064804378496324,
+      "mean_pred_rule": 0.3562556192964782,
+      "Brier_model": 0.2174549180722871,
+      "Brier_rule": 0.2253793747973141,
+      "AP_model": 0.5118966806740674,
+      "AP_rule": 0.42799830132248934
+    },
+    {
+      "segment": "REGULAR",
+      "n": 3246,
+      "prevalence": 0.6894639556377079,
+      "mean_pred_model": 0.6897486077163221,
+      "mean_pred_rule": 0.6909012460388692,
+      "Brier_model": 0.1949357892845875,
+      "Brier_rule": 0.19713656100110355,
+      "AP_model": 0.8378802797189733,
+      "AP_rule": 0.8200953399891024
+    }
+  ],
+  "failure_case": {
+    "weakest_category_vs_rule": {
+      "category": "YOGURT",
+      "n": 2310,
+      "prevalence": 0.1632034632034632,
+      "AP_model": 0.6119019577927994,
+      "AP_rule": 0.5829302247932069,
+      "AP_popularity_baseline": 0.1632034632034632
+    },
+    "missed_buyers_pred_below_5pct": {
+      "n": 50,
+      "share_of_positives": 0.009838646202282565,
+      "segment_mix": {
+        "LOW_ACTIVITY": 45,
+        "ACTIVE_NONBUYER": 5
+      }
+    },
+    "interpretation": "Households with no category purchase in 12 weeks who then buy are near-unpredictable from behaviour alone; the model gives them low scores. This is the cold-start limit."
+  },
+  "ablation_test_AP": {
+    "no_campaign_coupon_features": 0.6640414233548894,
+    "no_popularity_features": 0.6618200180845693
+  },
+  "robustness": {
+    "backtest_cutoff_45_AP_model": 0.6651663258750253,
+    "backtest_cutoff_45_AP_rule": 0.6216834324267566
+  },
+  "economics_inputs_observed": {
+    "mean_4w_category_spend_among_buyers_test": {
+      "BAG SNACKS": 7.1238,
+      "COFFEE": 7.8651,
+      "COLD CEREAL": 6.7139,
+      "FROZEN PIZZA": 10.3327,
+      "ICE CREAM/MILK/SHERBTS": 5.6694,
+      "REFRGRATD JUICES/DRNKS": 4.9122,
+      "SOUP": 5.7588,
+      "YOGURT": 5.2348
+    },
+    "mean_coupon_disc_per_couponed_line": {
+      "BAG SNACKS": 1.1259,
+      "COFFEE": 0.7702,
+      "COLD CEREAL": 0.9691,
+      "FROZEN PIZZA": 0.9046,
+      "ICE CREAM/MILK/SHERBTS": 1.3151,
+      "REFRGRATD JUICES/DRNKS": 0.8935,
+      "SOUP": 0.6385,
+      "YOGURT": 0.8705
+    }
+  },
+  "seconds": 136.7,
+  "artifacts": {
+    "scores": "data/processed/scores_latest.parquet",
+    "scores_sha16": "c65e158357f2f128",
+    "model": "data/processed/model.pkl",
+    "model_sha16": "2f6c2a5c3c59874c"
+  }
+}

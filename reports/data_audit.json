@@ -1,0 +1,281 @@
+{
+  "tables": {
+    "transactions": {
+      "rows": 1469307,
+      "columns": {
+        "household_id": "object",
+        "store_id": "object",
+        "basket_id": "object",
+        "product_id": "object",
+        "quantity": "float64",
+        "sales_value": "float64",
+        "retail_disc": "float64",
+        "coupon_disc": "float64",
+        "coupon_match_disc": "float64",
+        "week": "int32",
+        "transaction_timestamp": "datetime64[ns]"
+      },
+      "null_rate": {}
+    },
+    "products": {
+      "rows": 92331,
+      "columns": {
+        "product_id": "object",
+        "manufacturer_id": "object",
+        "department": "object",
+        "brand": "string",
+        "product_category": "object",
+        "product_type": "object",
+        "package_size": "object"
+      },
+      "null_rate": {
+        "product_category": 0.00585,
+        "product_type": 0.00572,
+        "package_size": 0.33126
+      }
+    },
+    "campaigns": {
+      "rows": 6589,
+      "columns": {
+        "campaign_id": "object",
+        "household_id": "object"
+      },
+      "null_rate": {}
+    },
+    "campaign_descriptions": {
+      "rows": 27,
+      "columns": {
+        "campaign_id": "object",
+        "campaign_type": "string",
+        "start_date": "datetime64[ns]",
+        "end_date": "datetime64[ns]"
+      },
+      "null_rate": {}
+    },
+    "coupons": {
+      "rows": 116204,
+      "columns": {
+        "coupon_upc": "object",
+        "product_id": "object",
+        "campaign_id": "object"
+      },
+      "null_rate": {}
+    },
+    "coupon_redemptions": {
+      "rows": 2102,
+      "columns": {
+        "household_id": "object",
+        "coupon_upc": "object",
+        "campaign_id": "object",
+        "redemption_date": "datetime64[ns]"
+      },
+      "null_rate": {}
+    },
+    "demographics": {
+      "rows": 801,
+      "columns": {
+        "household_id": "object",
+        "age": "string",
+        "income": "string",
+        "home_ownership": "string",
+        "marital_status": "string",
+        "household_size": "string",
+        "household_comp": "string",
+        "kids_count": "string"
+      },
+      "null_rate": {
+        "home_ownership": 0.29089,
+        "marital_status": 0.17104
+      }
+    }
+  },
+  "transactions": {
+    "households": 2469,
+    "baskets": 155848,
+    "products": 68509,
+    "stores": 457,
+    "timestamp_min": "2017-01-01 11:53:26",
+    "timestamp_max": "2018-01-01 04:01:20",
+    "week_min": 1,
+    "week_max": 53,
+    "rows_per_week_first_last": {
+      "1": 3722,
+      "2": 31454,
+      "52": 33126,
+      "53": 24886
+    },
+    "exact_duplicate_rows": 0,
+    "duplicate_basket_product_rows": 0,
+    "zero_sales_value_rows": 11226,
+    "negative_sales_value_rows": 0,
+    "zero_quantity_rows": 8869,
+    "quantity_gt_100_rows": 13510,
+    "discount_sign_convention": "positive magnitudes",
+    "rows_with_coupon_disc": 21889,
+    "duplicate_policy": "Report only. Identical-looking lines can be genuine; nothing deleted."
+  },
+  "joins": {
+    "tx_product_coverage": 0.99671,
+    "demographics_household_coverage": 0.3244,
+    "campaign_households_in_tx": 1.0,
+    "coupon_products_in_products": 0.9999,
+    "redemption_coupons_in_coupons": 1.0
+  },
+  "anomalies": {
+    "quantity_gt_100_by_department": {
+      "FUEL": 11830,
+      "MISCELLANEOUS": 1679,
+      "PRODUCE": 1
+    },
+    "note": "Large quantities concentrate in FUEL/MISC; candidate categories exclude these departments."
+  },
+  "campaigns": {
+    "n_campaigns": 27,
+    "types": {
+      "Type B": 17,
+      "Type C": 6,
+      "Type A": 4
+    },
+    "start_min": "2016-11-14",
+    "end_max": "2018-02-28",
+    "household_campaign_pairs": 6589,
+    "households_receiving_any": 1559,
+    "redemptions": 2102,
+    "redemption_date_range": [
+      "2017-01-01",
+      "2017-12-31"
+    ],
+    "assignment": "UNKNOWN / not documented as randomized. Treat as observational selection."
+  },
+  "candidate_categories": [
+    {
+      "category": "BAG SNACKS",
+      "lines": 38088,
+      "sales_value": 84943.85,
+      "households_year": 2149,
+      "year_penetration": 0.8704,
+      "weekly_households_median": 385.0
+    },
+    {
+      "category": "COFFEE",
+      "lines": 7795,
+      "sales_value": 36874.53,
+      "households_year": 1273,
+      "year_penetration": 0.5156,
+      "weekly_households_median": 118.0
+    },
+    {
+      "category": "COLD CEREAL",
+      "lines": 21397,
+      "sales_value": 63009.35,
+      "households_year": 1867,
+      "year_penetration": 0.7562,
+      "weekly_households_median": 252.0
+    },
+    {
+      "category": "FROZEN PIZZA",
+      "lines": 23998,
+      "sales_value": 81175.04,
+      "households_year": 1766,
+      "year_penetration": 0.7153,
+      "weekly_households_median": 218.0
+    },
+    {
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "lines": 16088,
+      "sales_value": 46876.51,
+      "households_year": 1853,
+      "year_penetration": 0.7505,
+      "weekly_households_median": 195.0
+    },
+    {
+      "category": "REFRGRATD JUICES/DRNKS",
+      "lines": 17317,
+      "sales_value": 40720.99,
+      "households_year": 1824,
+      "year_penetration": 0.7388,
+      "weekly_households_median": 239.0
+    },
+    {
+      "category": "SOUP",
+      "lines": 25789,
+      "sales_value": 49027.16,
+      "households_year": 1932,
+      "year_penetration": 0.7825,
+      "weekly_households_median": 240.0
+    },
+    {
+      "category": "YOGURT",
+      "lines": 25554,
+      "sales_value": 34438.85,
+      "households_year": 1493,
+      "year_penetration": 0.6047,
+      "weekly_households_median": 181.0
+    }
+  ],
+  "missing_for_business_case": [
+    "product cost / margin",
+    "inventory / stock",
+    "returns",
+    "ad or contact cost",
+    "documented random assignment of campaigns",
+    "customer consent / reachability",
+    "retailer identity (anonymous by design)"
+  ],
+  "manifest": {
+    "source_repo": "https://github.com/bradleyboehmke/completejourney",
+    "commit": "5b5d06192b9856edd04e4d405787af2f2e4a1fef",
+    "licence": "CC0 (package DESCRIPTION)",
+    "files": [
+      {
+        "name": "transactions.rds",
+        "url": "https://raw.githubusercontent.com/bradleyboehmke/completejourney/5b5d06192b9856edd04e4d405787af2f2e4a1fef/data/transactions.rds",
+        "bytes": 12775661,
+        "sha256": "1fa0700033f1e5d9bb6b09e2be063d8d68474d346e95c50f2833e09d083e0007",
+        "retrieved_at": "2026-11-13T23:55:32+00:00"
+      },
+      {
+        "name": "products.rda",
+        "url": "https://raw.githubusercontent.com/bradleyboehmke/completejourney/5b5d06192b9856edd04e4d405787af2f2e4a1fef/data/products.rda",
+        "bytes": 869019,
+        "sha256": "a80c6df33623b4af296ae9f317a6647e369db7e8ce7e7baed0e1bf44b9d979e5",
+        "retrieved_at": "2026-11-13T23:55:34+00:00"
+      },
+      {
+        "name": "campaigns.rda",
+        "url": "https://raw.githubusercontent.com/bradleyboehmke/completejourney/5b5d06192b9856edd04e4d405787af2f2e4a1fef/data/campaigns.rda",
+        "bytes": 8264,
+        "sha256": "33c7b3dc1bc722d465f97416fb1327c6a9a640190e464c73e354bce8c001a772",
+        "retrieved_at": "2026-11-13T23:55:34+00:00"
+      },
+      {
+        "name": "campaign_descriptions.rda",
+        "url": "https://raw.githubusercontent.com/bradleyboehmke/completejourney/5b5d06192b9856edd04e4d405787af2f2e4a1fef/data/campaign_descriptions.rda",
+        "bytes": 496,
+        "sha256": "601bd17ea1a6de92cc288f393164813fbaf293b997d44054dcf1f3ebbe8dacee",
+        "retrieved_at": "2026-11-13T23:55:35+00:00"
+      },
+      {
+        "name": "coupons.rda",
+        "url": "https://raw.githubusercontent.com/bradleyboehmke/completejourney/5b5d06192b9856edd04e4d405787af2f2e4a1fef/data/coupons.rda",
+        "bytes": 324969,
+        "sha256": "4d87effce5b8813c0934b581a83292707347577743320ca746878de89cc16f34",
+        "retrieved_at": "2026-11-13T23:55:36+00:00"
+      },
+      {
+        "name": "coupon_redemptions.rda",
+        "url": "https://raw.githubusercontent.com/bradleyboehmke/completejourney/5b5d06192b9856edd04e4d405787af2f2e4a1fef/data/coupon_redemptions.rda",
+        "bytes": 8370,
+        "sha256": "4b68148175ed19300bb2615d68d1a0300a5f971db3240819ab5d92e5919e1598",
+        "retrieved_at": "2026-11-13T23:55:36+00:00"
+      },
+      {
+        "name": "demographics.rda",
+        "url": "https://raw.githubusercontent.com/bradleyboehmke/completejourney/5b5d06192b9856edd04e4d405787af2f2e4a1fef/data/demographics.rda",
+        "bytes": 4237,
+        "sha256": "8b80455bc841003b64e47f5e5c2221f6093b995e923d59e72a1f852c7e268980",
+        "retrieved_at": "2026-11-13T23:55:37+00:00"
+      }
+    ]
+  }
+}

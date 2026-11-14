@@ -1,0 +1,63 @@
+{
+  "_note": "Frozen 2026-11-14 BEFORE model results. Changing any value creates a new assumption version; the dossier records the hash.",
+  "case_id": "CJ-GROCERY-001",
+  "currency": "USD",
+  "categories": [
+    "BAG SNACKS",
+    "FROZEN PIZZA",
+    "COLD CEREAL",
+    "SOUP",
+    "ICE CREAM/MILK/SHERBTS",
+    "YOGURT",
+    "COFFEE",
+    "REFRGRATD JUICES/DRNKS"
+  ],
+  "category_selection_rule": "Food categories with 4-week household penetration between 12% and 55% (weeks 46-49 scan), high annual sales, and coupons present in at least 4 historical campaigns. Excluded: fuel, COUPON/MISC ITEMS, alcohol and tobacco (guardrail: no promotional targeting of age-restricted goods), fresh meat (stock/perishability risk with no inventory data).",
+  "temporal": {
+    "time_unit": "week (1..53; week 1 is a single day and is never a label week)",
+    "lookback_weeks": 12,
+    "horizon_weeks": 4,
+    "train_cutoffs": [13, 17, 21, 25, 29, 33, 37],
+    "validation_cutoff": 41,
+    "calibration_cutoff": 45,
+    "test_cutoff": 49,
+    "scoring_cutoff": 53,
+    "eligibility": "household has >= 1 basket in the 12 lookback weeks (existing active household, decided with pre-cutoff data only)"
+  },
+  "segments": {
+    "REGULAR": "bought the category in >= 3 of the last 12 weeks",
+    "RECENT_LIGHT": "bought in 1-2 of the last 12 weeks, at least once in the last 4 weeks",
+    "LAPSING": "bought in weeks -12..-5 but not in the last 4 weeks",
+    "ACTIVE_NONBUYER": "no category purchase in 12 weeks but >= 6 store baskets in 12 weeks"
+  },
+  "scenario": {
+    "budget_cap": {"value": 3000, "unit": "USD per 4-week pilot on the 2,469-household panel", "status": "ASSUMED", "owner": "finance (illustrative)"},
+    "contact_cost_per_household": {"value": 0.50, "range": [0.30, 0.80], "unit": "USD", "status": "ASSUMED", "owner": "CRM ops"},
+    "fixed_setup_per_plan": {"value": 250, "range": [150, 400], "unit": "USD", "status": "ASSUMED", "owner": "marketing"},
+    "contribution_margin_rate": {"value": 0.28, "range": [0.20, 0.35], "unit": "share of category sales", "status": "ASSUMED", "owner": "finance"},
+    "redemption_share_of_buyers": {"value": 0.35, "range": [0.20, 0.50], "unit": "share of contacted buyers who redeem", "status": "ASSUMED", "owner": "CRM ops"},
+    "coupon_face_value": {"value": "observed_mean", "fallback": 1.00, "unit": "USD per redemption", "status": "OBSERVED (historical mean coupon discount per couponed line in category)", "owner": "data"},
+    "incremental_purchase_rate": {
+      "status": "ASSUMED (subjective ranges; replace with pilot estimate). Absolute probability points added to 4-week category purchase.",
+      "owner": "marketing + analyst",
+      "REGULAR": [0.005, 0.010, 0.020],
+      "RECENT_LIGHT": [0.010, 0.025, 0.045],
+      "LAPSING": [0.020, 0.040, 0.070],
+      "ACTIVE_NONBUYER": [0.005, 0.015, 0.030],
+      "BROAD": [0.003, 0.008, 0.015]
+    },
+    "max_category_share_of_spend": {"value": 0.60, "status": "POLICY"},
+    "max_plans_in_portfolio": {"value": 3, "status": "POLICY"},
+    "min_reach_per_plan": {"value": 150, "status": "POLICY (smaller cells cannot be measured with a holdout)"},
+    "one_contact_per_household": true,
+    "stock_capacity": {"value": null, "status": "UNKNOWN (no inventory data; human capacity check required)"}
+  },
+  "outcome_rule": {
+    "primary_metric": "incremental contribution per randomized eligible household after coupon and contact cost, 28 days",
+    "expand_if": "95% CI lower bound > 0 and all guardrails pass",
+    "stop_if": "95% CI upper bound < 0 or any guardrail fails",
+    "change_if": "point estimate > 0 but CI includes 0 and guardrails pass",
+    "else": "INCONCLUSIVE",
+    "guardrails": {"opt_out_rate_max": 0.02, "complaint_rate_max": 0.005, "stockout_flag": false}
+  }
+}

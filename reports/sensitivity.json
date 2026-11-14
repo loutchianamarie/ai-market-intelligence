@@ -1,0 +1,2566 @@
+{
+  "scans": {
+    "uplift_multiplier": [
+      {
+        "param": "uplift_multiplier",
+        "value": 0.5,
+        "recommended_base": "NONE: research / measure first",
+        "best_net_base": -1861.063676580059
+      },
+      {
+        "param": "uplift_multiplier",
+        "value": 1.0,
+        "recommended_base": "NONE: research / measure first",
+        "best_net_base": -1781.2941940771234
+      },
+      {
+        "param": "uplift_multiplier",
+        "value": 1.5,
+        "recommended_base": "NONE: research / measure first",
+        "best_net_base": -1427.7276755800876
+      },
+      {
+        "param": "uplift_multiplier",
+        "value": 2.0,
+        "recommended_base": "NONE: research / measure first",
+        "best_net_base": -1232.9395589002265
+      },
+      {
+        "param": "uplift_multiplier",
+        "value": 2.5,
+        "recommended_base": "NONE: research / measure first",
+        "best_net_base": -968.1990329814906
+      },
+      {
+        "param": "uplift_multiplier",
+        "value": 3.0,
+        "recommended_base": "NONE: research / measure first",
+        "best_net_base": -680.7054472607439
+      }
+    ],
+    "margin_rate": [
+      {
+        "param": "margin_rate",
+        "value": 0.2,
+        "recommended_base": "NONE: research / measure first",
+        "best_net_base": -1870.1690008800592
+      },
+      {
+        "param": "margin_rate",
+        "value": 0.25,
+        "recommended_base": "NONE: research / measure first",
+        "best_net_base": -1839.687419917055
+      },
+      {
+        "param": "margin_rate",
+        "value": 0.28,
+        "recommended_base": "NONE: research / measure first",
+        "best_net_base": -1781.2941940771234
+      },
+      {
+        "param": "margin_rate",
+        "value": 0.32,
+        "recommended_base": "NONE: research / measure first",
+        "best_net_base": -1700.8814116771234
+      },
+      {
+        "param": "margin_rate",
+        "value": 0.35,
+        "recommended_base": "NONE: research / measure first",
+        "best_net_base": -1455.783732470283
+      },
+      {
+        "param": "margin_rate",
+        "value": 0.4,
+        "recommended_base": "NONE: research / measure first",
+        "best_net_base": -1395.6942379078512
+      }
+    ],
+    "fixed_setup": [
+      {
+        "param": "fixed_setup",
+        "value": 0,
+        "recommended_base": "NONE: research / measure first",
+        "best_net_base": -281.2941940771234
+      },
+      {
+        "param": "fixed_setup",
+        "value": 500,
+        "recommended_base": "NONE: research / measure first",
+        "best_net_base": -781.2941940771234
+      },
+      {
+        "param": "fixed_setup",
+        "value": 1000,
+        "recommended_base": "NONE: research / measure first",
+        "best_net_base": -1281.2941940771234
+      },
+      {
+        "param": "fixed_setup",
+        "value": 1500,
+        "recommended_base": "NONE: research / measure first",
+        "best_net_base": -1781.2941940771234
+      },
+      {
+        "param": "fixed_setup",
+        "value": 2500,
+        "recommended_base": "NONE: research / measure first",
+        "best_net_base": -2781.2941940771234
+      }
+    ],
+    "scale": [
+      {
+        "param": "scale",
+        "value": 10,
+        "recommended_base": "NONE: research / measure first",
+        "best_net_base": -1616.6902399444068
+      },
+      {
+        "param": "scale",
+        "value": 40,
+        "recommended_base": "NONE: research / measure first",
+        "best_net_base": -1781.2941940771234
+      },
+      {
+        "param": "scale",
+        "value": 100,
+        "recommended_base": "NONE: research / measure first",
+        "best_net_base": -2203.2354851928085
+      },
+      {
+        "param": "scale",
+        "value": 250,
+        "recommended_base": "NONE: research / measure first",
+        "best_net_base": -1468.947024548016
+      }
+    ],
+    "digital_contact_cost": [
+      {
+        "param": "contact_cost",
+        "value": {
+          "digital_coupon": 0.0
+        },
+        "recommended_base": "NONE: research / measure first",
+        "best_net_base": -1416.8227190798277
+      },
+      {
+        "param": "contact_cost",
+        "value": {
+          "digital_coupon": 0.01
+        },
+        "recommended_base": "NONE: research / measure first",
+        "best_net_base": -1494.5702306894807
+      },
+      {
+        "param": "contact_cost",
+        "value": {
+          "digital_coupon": 0.03
+        },
+        "recommended_base": "NONE: research / measure first",
+        "best_net_base": -1781.2941940771234
+      },
+      {
+        "param": "contact_cost",
+        "value": {
+          "digital_coupon": 0.05
+        },
+        "recommended_base": "NONE: research / measure first",
+        "best_net_base": -1891.9745768170549
+      },
+      {
+        "param": "contact_cost",
+        "value": {
+          "digital_coupon": 0.08
+        },
+        "recommended_base": "NONE: research / measure first",
+        "best_net_base": -1988.9973832800592
+      }
+    ]
+  },
+  "reversals": {
+    "uplift_multiplier": null,
+    "margin_rate": null,
+    "fixed_setup": null,
+    "scale": null,
+    "digital_contact_cost": null
+  },
+  "break_even": [
+    {
+      "category": "FROZEN PIZZA",
+      "segment": "LAPSING",
+      "channel": "digital_coupon",
+      "panel_households": 406,
+      "mean_q0": 0.30485206958455974,
+      "assumed_dq_base": 0.04,
+      "break_even_dq": 0.06362366146649498,
+      "ratio_needed_to_assumed": 1.5905915366623744
+    },
+    {
+      "category": "COFFEE",
+      "segment": "LAPSING",
+      "channel": "digital_coupon",
+      "panel_households": 355,
+      "mean_q0": 0.26450317408482954,
+      "assumed_dq_base": 0.04,
+      "break_even_dq": 0.07074032116554108,
+      "ratio_needed_to_assumed": 1.768508029138527
+    },
+    {
+      "category": "COFFEE",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "digital_coupon",
+      "panel_households": 983,
+      "mean_q0": 0.06773217419383942,
+      "assumed_dq_base": 0.015,
+      "break_even_dq": 0.0336994543384859,
+      "ratio_needed_to_assumed": 2.2466302892323937
+    },
+    {
+      "category": "SOUP",
+      "segment": "LAPSING",
+      "channel": "digital_coupon",
+      "panel_households": 502,
+      "mean_q0": 0.30754354779736326,
+      "assumed_dq_base": 0.04,
+      "break_even_dq": 0.10136749853589633,
+      "ratio_needed_to_assumed": 2.534187463397408
+    },
+    {
+      "category": "FROZEN PIZZA",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "digital_coupon",
+      "panel_households": 679,
+      "mean_q0": 0.1618170168451861,
+      "assumed_dq_base": 0.015,
+      "break_even_dq": 0.04085018762526895,
+      "ratio_needed_to_assumed": 2.723345841684597
+    },
+    {
+      "category": "FROZEN PIZZA",
+      "segment": "RECENT_LIGHT",
+      "channel": "digital_coupon",
+      "panel_households": 322,
+      "mean_q0": 0.3814928514448884,
+      "assumed_dq_base": 0.025,
+      "break_even_dq": 0.07582610280825183,
+      "ratio_needed_to_assumed": 3.033044112330073
+    },
+    {
+      "category": "COFFEE",
+      "segment": "RECENT_LIGHT",
+      "channel": "digital_coupon",
+      "panel_households": 206,
+      "mean_q0": 0.33947105222098195,
+      "assumed_dq_base": 0.025,
+      "break_even_dq": 0.08485253887997307,
+      "ratio_needed_to_assumed": 3.394101555198923
+    },
+    {
+      "category": "COLD CEREAL",
+      "segment": "LAPSING",
+      "channel": "digital_coupon",
+      "panel_households": 421,
+      "mean_q0": 0.27721669357102247,
+      "assumed_dq_base": 0.04,
+      "break_even_dq": 0.13617570664749715,
+      "ratio_needed_to_assumed": 3.4043926661874284
+    },
+    {
+      "category": "YOGURT",
+      "segment": "LAPSING",
+      "channel": "digital_coupon",
+      "panel_households": 330,
+      "mean_q0": 0.2440927150029185,
+      "assumed_dq_base": 0.04,
+      "break_even_dq": 0.17533809319121935,
+      "ratio_needed_to_assumed": 4.383452329780484
+    },
+    {
+      "category": "SOUP",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "digital_coupon",
+      "panel_households": 509,
+      "mean_q0": 0.15909955577183502,
+      "assumed_dq_base": 0.015,
+      "break_even_dq": 0.06730718304384024,
+      "ratio_needed_to_assumed": 4.487145536256016
+    },
+    {
+      "category": "BAG SNACKS",
+      "segment": "LAPSING",
+      "channel": "digital_coupon",
+      "panel_households": 443,
+      "mean_q0": 0.3239011919703731,
+      "assumed_dq_base": 0.04,
+      "break_even_dq": 0.1814510306755402,
+      "ratio_needed_to_assumed": 4.5362757668885045
+    },
+    {
+      "category": "SOUP",
+      "segment": "RECENT_LIGHT",
+      "channel": "digital_coupon",
+      "panel_households": 335,
+      "mean_q0": 0.37975407288422053,
+      "assumed_dq_base": 0.025,
+      "break_even_dq": 0.1179361264254132,
+      "ratio_needed_to_assumed": 4.717445057016528
+    },
+    {
+      "category": "COLD CEREAL",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "digital_coupon",
+      "panel_households": 638,
+      "mean_q0": 0.14003455255908417,
+      "assumed_dq_base": 0.015,
+      "break_even_dq": 0.08508816470692865,
+      "ratio_needed_to_assumed": 5.672544313795243
+    },
+    {
+      "category": "YOGURT",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "digital_coupon",
+      "panel_households": 989,
+      "mean_q0": 0.06831145445405461,
+      "assumed_dq_base": 0.015,
+      "break_even_dq": 0.0853646443908533,
+      "ratio_needed_to_assumed": 5.690976292723553
+    },
+    {
+      "category": "REFRGRATD JUICES/DRNKS",
+      "segment": "LAPSING",
+      "channel": "digital_coupon",
+      "panel_households": 404,
+      "mean_q0": 0.28833436421031416,
+      "assumed_dq_base": 0.04,
+      "break_even_dq": 0.24935748978591793,
+      "ratio_needed_to_assumed": 6.233937244647948
+    },
+    {
+      "category": "COLD CEREAL",
+      "segment": "RECENT_LIGHT",
+      "channel": "digital_coupon",
+      "panel_households": 324,
+      "mean_q0": 0.33590256214276554,
+      "assumed_dq_base": 0.025,
+      "break_even_dq": 0.1580307145214208,
+      "ratio_needed_to_assumed": 6.3212285808568325
+    },
+    {
+      "category": "FROZEN PIZZA",
+      "segment": "LAPSING",
+      "channel": "mail_coupon",
+      "panel_households": 406,
+      "mean_q0": 0.30485206958455974,
+      "assumed_dq_base": 0.04,
+      "break_even_dq": 0.29997606994782505,
+      "ratio_needed_to_assumed": 7.499401748695626
+    },
+    {
+      "category": "YOGURT",
+      "segment": "RECENT_LIGHT",
+      "channel": "digital_coupon",
+      "panel_households": 167,
+      "mean_q0": 0.32019325576309343,
+      "assumed_dq_base": 0.025,
+      "break_even_dq": 0.21429007297783842,
+      "ratio_needed_to_assumed": 8.571602919113536
+    },
+    {
+      "category": "BAG SNACKS",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "digital_coupon",
+      "panel_households": 351,
+      "mean_q0": 0.20809067000544365,
+      "assumed_dq_base": 0.015,
+      "break_even_dq": 0.1289202244518593,
+      "ratio_needed_to_assumed": 8.594681630123954
+    },
+    {
+      "category": "BAG SNACKS",
+      "segment": "RECENT_LIGHT",
+      "channel": "digital_coupon",
+      "panel_households": 401,
+      "mean_q0": 0.39837305390573613,
+      "assumed_dq_base": 0.025,
+      "break_even_dq": 0.21523092288281262,
+      "ratio_needed_to_assumed": 8.609236915312504
+    },
+    {
+      "category": "COFFEE",
+      "segment": "LAPSING",
+      "channel": "mail_coupon",
+      "panel_households": 355,
+      "mean_q0": 0.26450317408482954,
+      "assumed_dq_base": 0.04,
+      "break_even_dq": 0.39894619423506206,
+      "ratio_needed_to_assumed": 9.973654855876552
+    },
+    {
+      "category": "REFRGRATD JUICES/DRNKS",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "digital_coupon",
+      "panel_households": 709,
+      "mean_q0": 0.15687263945898156,
+      "assumed_dq_base": 0.015,
+      "break_even_dq": 0.16404932846141226,
+      "ratio_needed_to_assumed": 10.936621897427484
+    },
+    {
+      "category": "REFRGRATD JUICES/DRNKS",
+      "segment": "RECENT_LIGHT",
+      "channel": "digital_coupon",
+      "panel_households": 294,
+      "mean_q0": 0.3706050229489287,
+      "assumed_dq_base": 0.025,
+      "break_even_dq": 0.30274457748176786,
+      "ratio_needed_to_assumed": 12.109783099270715
+    },
+    {
+      "category": "FROZEN PIZZA",
+      "segment": "REGULAR",
+      "channel": "digital_coupon",
+      "panel_households": 403,
+      "mean_q0": 0.6840095512439409,
+      "assumed_dq_base": 0.01,
+      "break_even_dq": 0.12399161201361389,
+      "ratio_needed_to_assumed": 12.39916120136139
+    },
+    {
+      "category": "FROZEN PIZZA",
+      "segment": "RECENT_LIGHT",
+      "channel": "mail_coupon",
+      "panel_households": 322,
+      "mean_q0": 0.3814928514448884,
+      "assumed_dq_base": 0.025,
+      "break_even_dq": 0.3121785112895819,
+      "ratio_needed_to_assumed": 12.487140451583276
+    },
+    {
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "segment": "LAPSING",
+      "channel": "digital_coupon",
+      "panel_households": 444,
+      "mean_q0": 0.254974791198777,
+      "assumed_dq_base": 0.04,
+      "break_even_dq": 0.5411081759283849,
+      "ratio_needed_to_assumed": 13.527704398209622
+    },
+    {
+      "category": "COFFEE",
+      "segment": "REGULAR",
+      "channel": "digital_coupon",
+      "panel_households": 213,
+      "mean_q0": 0.6479663328354321,
+      "assumed_dq_base": 0.01,
+      "break_even_dq": 0.1429247782462685,
+      "ratio_needed_to_assumed": 14.29247782462685
+    },
+    {
+      "category": "SOUP",
+      "segment": "LAPSING",
+      "channel": "mail_coupon",
+      "panel_households": 502,
+      "mean_q0": 0.30754354779736326,
+      "assumed_dq_base": 0.04,
+      "break_even_dq": 0.5839315358103745,
+      "ratio_needed_to_assumed": 14.598288395259361
+    },
+    {
+      "category": "COLD CEREAL",
+      "segment": "LAPSING",
+      "channel": "mail_coupon",
+      "panel_households": 421,
+      "mean_q0": 0.27721669357102247,
+      "assumed_dq_base": 0.04,
+      "break_even_dq": 0.6522101030848835,
+      "ratio_needed_to_assumed": 16.305252577122086
+    },
+    {
+      "category": "COFFEE",
+      "segment": "RECENT_LIGHT",
+      "channel": "mail_coupon",
+      "panel_households": 206,
+      "mean_q0": 0.33947105222098195,
+      "assumed_dq_base": 0.025,
+      "break_even_dq": 0.413058411949494,
+      "ratio_needed_to_assumed": 16.52233647797976
+    },
+    {
+      "category": "BAG SNACKS",
+      "segment": "LAPSING",
+      "channel": "mail_coupon",
+      "panel_households": 443,
+      "mean_q0": 0.3239011919703731,
+      "assumed_dq_base": 0.04,
+      "break_even_dq": 0.7224495066713226,
+      "ratio_needed_to_assumed": 18.061237666783065
+    },
+    {
+      "category": "FROZEN PIZZA",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "mail_coupon",
+      "panel_households": 679,
+      "mean_q0": 0.1618170168451861,
+      "assumed_dq_base": 0.015,
+      "break_even_dq": 0.27720259610659903,
+      "ratio_needed_to_assumed": 18.48017307377327
+    },
+    {
+      "category": "SOUP",
+      "segment": "REGULAR",
+      "channel": "digital_coupon",
+      "panel_households": 509,
+      "mean_q0": 0.6718820867804041,
+      "assumed_dq_base": 0.01,
+      "break_even_dq": 0.18496458733921456,
+      "ratio_needed_to_assumed": 18.496458733921454
+    },
+    {
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "digital_coupon",
+      "panel_households": 744,
+      "mean_q0": 0.14066383163752924,
+      "assumed_dq_base": 0.015,
+      "break_even_dq": 0.34790421891397283,
+      "ratio_needed_to_assumed": 23.193614594264854
+    },
+    {
+      "category": "SOUP",
+      "segment": "RECENT_LIGHT",
+      "channel": "mail_coupon",
+      "panel_households": 335,
+      "mean_q0": 0.37975407288422053,
+      "assumed_dq_base": 0.025,
+      "break_even_dq": 0.6005001636998915,
+      "ratio_needed_to_assumed": 24.020006547995656
+    },
+    {
+      "category": "YOGURT",
+      "segment": "LAPSING",
+      "channel": "mail_coupon",
+      "panel_households": 330,
+      "mean_q0": 0.2440927150029185,
+      "assumed_dq_base": 0.04,
+      "break_even_dq": 0.9649302604369202,
+      "ratio_needed_to_assumed": 24.123256510923003
+    },
+    {
+      "category": "COFFEE",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "mail_coupon",
+      "panel_households": 983,
+      "mean_q0": 0.06773217419383942,
+      "assumed_dq_base": 0.015,
+      "break_even_dq": 0.3619053274080068,
+      "ratio_needed_to_assumed": 24.127021827200455
+    },
+    {
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "segment": "RECENT_LIGHT",
+      "channel": "digital_coupon",
+      "panel_households": 311,
+      "mean_q0": 0.328725262581321,
+      "assumed_dq_base": 0.025,
+      "break_even_dq": 0.6657583665791871,
+      "ratio_needed_to_assumed": 26.63033466316748
+    },
+    {
+      "category": "COLD CEREAL",
+      "segment": "RECENT_LIGHT",
+      "channel": "mail_coupon",
+      "panel_households": 324,
+      "mean_q0": 0.33590256214276554,
+      "assumed_dq_base": 0.025,
+      "break_even_dq": 0.6740651109588071,
+      "ratio_needed_to_assumed": 26.96260443835228
+    },
+    {
+      "category": "COLD CEREAL",
+      "segment": "REGULAR",
+      "channel": "digital_coupon",
+      "panel_households": 433,
+      "mean_q0": 0.6547609334421124,
+      "assumed_dq_base": 0.01,
+      "break_even_dq": 0.2767756932533036,
+      "ratio_needed_to_assumed": 27.67756932533036
+    },
+    {
+      "category": "BAG SNACKS",
+      "segment": "RECENT_LIGHT",
+      "channel": "mail_coupon",
+      "panel_households": 401,
+      "mean_q0": 0.39837305390573613,
+      "assumed_dq_base": 0.025,
+      "break_even_dq": 0.756229398878595,
+      "ratio_needed_to_assumed": 30.249175955143798
+    },
+    {
+      "category": "REFRGRATD JUICES/DRNKS",
+      "segment": "LAPSING",
+      "channel": "mail_coupon",
+      "panel_households": 404,
+      "mean_q0": 0.28833436421031416,
+      "assumed_dq_base": 0.04,
+      "break_even_dq": 1.224631188936807,
+      "ratio_needed_to_assumed": 30.61577972342017
+    },
+    {
+      "category": "FROZEN PIZZA",
+      "segment": "REGULAR",
+      "channel": "mail_coupon",
+      "panel_households": 403,
+      "mean_q0": 0.6840095512439409,
+      "assumed_dq_base": 0.01,
+      "break_even_dq": 0.36034402049494396,
+      "ratio_needed_to_assumed": 36.034402049494396
+    },
+    {
+      "category": "BAG SNACKS",
+      "segment": "REGULAR",
+      "channel": "digital_coupon",
+      "panel_households": 693,
+      "mean_q0": 0.726308184387551,
+      "assumed_dq_base": 0.01,
+      "break_even_dq": 0.36397990096352983,
+      "ratio_needed_to_assumed": 36.397990096352984
+    },
+    {
+      "category": "SOUP",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "mail_coupon",
+      "panel_households": 509,
+      "mean_q0": 0.15909955577183502,
+      "assumed_dq_base": 0.015,
+      "break_even_dq": 0.5498712203183185,
+      "ratio_needed_to_assumed": 36.65808135455457
+    },
+    {
+      "category": "YOGURT",
+      "segment": "REGULAR",
+      "channel": "digital_coupon",
+      "panel_households": 266,
+      "mean_q0": 0.6498606838958593,
+      "assumed_dq_base": 0.01,
+      "break_even_dq": 0.383029990837322,
+      "ratio_needed_to_assumed": 38.302999083732196
+    },
+    {
+      "category": "COLD CEREAL",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "mail_coupon",
+      "panel_households": 638,
+      "mean_q0": 0.14003455255908417,
+      "assumed_dq_base": 0.015,
+      "break_even_dq": 0.601122561144315,
+      "ratio_needed_to_assumed": 40.074837409621
+    },
+    {
+      "category": "YOGURT",
+      "segment": "RECENT_LIGHT",
+      "channel": "mail_coupon",
+      "panel_households": 167,
+      "mean_q0": 0.32019325576309343,
+      "assumed_dq_base": 0.025,
+      "break_even_dq": 1.0038822402235392,
+      "ratio_needed_to_assumed": 40.155289608941565
+    },
+    {
+      "category": "BAG SNACKS",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "mail_coupon",
+      "panel_households": 351,
+      "mean_q0": 0.20809067000544365,
+      "assumed_dq_base": 0.015,
+      "break_even_dq": 0.6699187004476416,
+      "ratio_needed_to_assumed": 44.66124669650944
+    },
+    {
+      "category": "COFFEE",
+      "segment": "REGULAR",
+      "channel": "mail_coupon",
+      "panel_households": 213,
+      "mean_q0": 0.6479663328354321,
+      "assumed_dq_base": 0.01,
+      "break_even_dq": 0.4711306513157894,
+      "ratio_needed_to_assumed": 47.11306513157894
+    },
+    {
+      "category": "REFRGRATD JUICES/DRNKS",
+      "segment": "RECENT_LIGHT",
+      "channel": "mail_coupon",
+      "panel_households": 294,
+      "mean_q0": 0.3706050229489287,
+      "assumed_dq_base": 0.025,
+      "break_even_dq": 1.2780182766326569,
+      "ratio_needed_to_assumed": 51.12073106530627
+    },
+    {
+      "category": "REFRGRATD JUICES/DRNKS",
+      "segment": "REGULAR",
+      "channel": "digital_coupon",
+      "panel_households": 406,
+      "mean_q0": 0.7007575421093232,
+      "assumed_dq_base": 0.01,
+      "break_even_dq": 0.5169871976778898,
+      "ratio_needed_to_assumed": 51.69871976778898
+    },
+    {
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "segment": "LAPSING",
+      "channel": "mail_coupon",
+      "panel_households": 444,
+      "mean_q0": 0.254974791198777,
+      "assumed_dq_base": 0.04,
+      "break_even_dq": 2.2669428189376513,
+      "ratio_needed_to_assumed": 56.67357047344128
+    },
+    {
+      "category": "YOGURT",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "mail_coupon",
+      "panel_households": 989,
+      "mean_q0": 0.06831145445405461,
+      "assumed_dq_base": 0.015,
+      "break_even_dq": 0.874956811636554,
+      "ratio_needed_to_assumed": 58.330454109103606
+    },
+    {
+      "category": "SOUP",
+      "segment": "REGULAR",
+      "channel": "mail_coupon",
+      "panel_households": 509,
+      "mean_q0": 0.6718820867804041,
+      "assumed_dq_base": 0.01,
+      "break_even_dq": 0.6675286246136928,
+      "ratio_needed_to_assumed": 66.75286246136928
+    },
+    {
+      "category": "REFRGRATD JUICES/DRNKS",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "mail_coupon",
+      "panel_households": 709,
+      "mean_q0": 0.15687263945898156,
+      "assumed_dq_base": 0.015,
+      "break_even_dq": 1.1393230276123012,
+      "ratio_needed_to_assumed": 75.95486850748675
+    },
+    {
+      "category": "COLD CEREAL",
+      "segment": "REGULAR",
+      "channel": "mail_coupon",
+      "panel_households": 433,
+      "mean_q0": 0.6547609334421124,
+      "assumed_dq_base": 0.01,
+      "break_even_dq": 0.7928100896906898,
+      "ratio_needed_to_assumed": 79.28100896906898
+    },
+    {
+      "category": "BAG SNACKS",
+      "segment": "REGULAR",
+      "channel": "mail_coupon",
+      "panel_households": 693,
+      "mean_q0": 0.726308184387551,
+      "assumed_dq_base": 0.01,
+      "break_even_dq": 0.9049783769593122,
+      "ratio_needed_to_assumed": 90.49783769593121
+    },
+    {
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "segment": "RECENT_LIGHT",
+      "channel": "mail_coupon",
+      "panel_households": 311,
+      "mean_q0": 0.328725262581321,
+      "assumed_dq_base": 0.025,
+      "break_even_dq": 2.3915930095884534,
+      "ratio_needed_to_assumed": 95.66372038353813
+    },
+    {
+      "category": "YOGURT",
+      "segment": "REGULAR",
+      "channel": "mail_coupon",
+      "panel_households": 266,
+      "mean_q0": 0.6498606838958593,
+      "assumed_dq_base": 0.01,
+      "break_even_dq": 1.1726221580830227,
+      "ratio_needed_to_assumed": 117.26221580830227
+    },
+    {
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "segment": "REGULAR",
+      "channel": "digital_coupon",
+      "panel_households": 296,
+      "mean_q0": 0.6335707694247167,
+      "assumed_dq_base": 0.01,
+      "break_even_dq": 1.180996436719355,
+      "ratio_needed_to_assumed": 118.09964367193551
+    },
+    {
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "mail_coupon",
+      "panel_households": 744,
+      "mean_q0": 0.14066383163752924,
+      "assumed_dq_base": 0.015,
+      "break_even_dq": 2.0737388619232395,
+      "ratio_needed_to_assumed": 138.24925746154932
+    },
+    {
+      "category": "REFRGRATD JUICES/DRNKS",
+      "segment": "REGULAR",
+      "channel": "mail_coupon",
+      "panel_households": 406,
+      "mean_q0": 0.7007575421093232,
+      "assumed_dq_base": 0.01,
+      "break_even_dq": 1.4922608968287787,
+      "ratio_needed_to_assumed": 149.22608968287787
+    },
+    {
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "segment": "REGULAR",
+      "channel": "mail_coupon",
+      "panel_households": 296,
+      "mean_q0": 0.6335707694247167,
+      "assumed_dq_base": 0.01,
+      "break_even_dq": 2.9068310797286214,
+      "ratio_needed_to_assumed": 290.68310797286216
+    }
+  ],
+  "break_even_with_fixed": [
+    {
+      "scale": 40,
+      "category": "FROZEN PIZZA",
+      "segment": "LAPSING",
+      "channel": "digital_coupon",
+      "reach": 7308.0,
+      "uplift_multiple_needed": 4.171038298022666
+    },
+    {
+      "scale": 40,
+      "category": "COFFEE",
+      "segment": "LAPSING",
+      "channel": "digital_coupon",
+      "reach": 6390.0,
+      "uplift_multiple_needed": 5.866573570412137
+    },
+    {
+      "scale": 40,
+      "category": "COFFEE",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "digital_coupon",
+      "reach": 17694.0,
+      "uplift_multiple_needed": 6.193224435457234
+    },
+    {
+      "scale": 40,
+      "category": "SOUP",
+      "segment": "LAPSING",
+      "channel": "digital_coupon",
+      "reach": 9036.0,
+      "uplift_multiple_needed": 6.795193415426863
+    },
+    {
+      "scale": 40,
+      "category": "FROZEN PIZZA",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "digital_coupon",
+      "reach": 12222.0,
+      "uplift_multiple_needed": 6.837872636430906
+    },
+    {
+      "scale": 40,
+      "category": "FROZEN PIZZA",
+      "segment": "RECENT_LIGHT",
+      "channel": "digital_coupon",
+      "reach": 5796.0,
+      "uplift_multiple_needed": 8.238814970030836
+    },
+    {
+      "scale": 40,
+      "category": "FROZEN PIZZA",
+      "segment": "LAPSING",
+      "channel": "mail_coupon",
+      "reach": 16240.0,
+      "uplift_multiple_needed": 8.660602791307756
+    },
+    {
+      "scale": 40,
+      "category": "COLD CEREAL",
+      "segment": "LAPSING",
+      "channel": "digital_coupon",
+      "reach": 7578.0,
+      "uplift_multiple_needed": 8.837614777899939
+    },
+    {
+      "scale": 40,
+      "category": "BAG SNACKS",
+      "segment": "LAPSING",
+      "channel": "digital_coupon",
+      "reach": 7974.0,
+      "uplift_multiple_needed": 9.94946513495222
+    },
+    {
+      "scale": 40,
+      "category": "COFFEE",
+      "segment": "LAPSING",
+      "channel": "mail_coupon",
+      "reach": 14200.0,
+      "uplift_multiple_needed": 11.817784349449674
+    },
+    {
+      "scale": 40,
+      "category": "COFFEE",
+      "segment": "RECENT_LIGHT",
+      "channel": "digital_coupon",
+      "reach": 3708.0,
+      "uplift_multiple_needed": 14.693622076768873
+    },
+    {
+      "scale": 40,
+      "category": "FROZEN PIZZA",
+      "segment": "RECENT_LIGHT",
+      "channel": "mail_coupon",
+      "reach": 12880.0,
+      "uplift_multiple_needed": 14.82973733754862
+    },
+    {
+      "scale": 40,
+      "category": "SOUP",
+      "segment": "RECENT_LIGHT",
+      "channel": "digital_coupon",
+      "reach": 6030.0,
+      "uplift_multiple_needed": 14.933683805285357
+    },
+    {
+      "scale": 40,
+      "category": "YOGURT",
+      "segment": "LAPSING",
+      "channel": "digital_coupon",
+      "reach": 5940.0,
+      "uplift_multiple_needed": 14.989407724763568
+    },
+    {
+      "scale": 40,
+      "category": "YOGURT",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "digital_coupon",
+      "reach": 17802.0,
+      "uplift_multiple_needed": 15.128024571373825
+    },
+    {
+      "scale": 40,
+      "category": "COLD CEREAL",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "digital_coupon",
+      "reach": 11484.0,
+      "uplift_multiple_needed": 15.233198479023947
+    },
+    {
+      "scale": 40,
+      "category": "SOUP",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "digital_coupon",
+      "reach": 9162.0,
+      "uplift_multiple_needed": 15.693563285666816
+    },
+    {
+      "scale": 40,
+      "category": "SOUP",
+      "segment": "LAPSING",
+      "channel": "mail_coupon",
+      "reach": 20080.0,
+      "uplift_multiple_needed": 16.51574107367262
+    },
+    {
+      "scale": 40,
+      "category": "REFRGRATD JUICES/DRNKS",
+      "segment": "LAPSING",
+      "channel": "digital_coupon",
+      "reach": 7272.0,
+      "uplift_multiple_needed": 16.934486046861725
+    },
+    {
+      "scale": 40,
+      "category": "COLD CEREAL",
+      "segment": "RECENT_LIGHT",
+      "channel": "digital_coupon",
+      "reach": 5832.0,
+      "uplift_multiple_needed": 17.61696442792333
+    },
+    {
+      "scale": 40,
+      "category": "BAG SNACKS",
+      "segment": "RECENT_LIGHT",
+      "channel": "digital_coupon",
+      "reach": 7218.0,
+      "uplift_multiple_needed": 18.177487848189216
+    },
+    {
+      "scale": 40,
+      "category": "COLD CEREAL",
+      "segment": "LAPSING",
+      "channel": "mail_coupon",
+      "reach": 16840.0,
+      "uplift_multiple_needed": 18.750202527392716
+    },
+    {
+      "scale": 40,
+      "category": "FROZEN PIZZA",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "mail_coupon",
+      "reach": 27160.0,
+      "uplift_multiple_needed": 20.331710131409107
+    },
+    {
+      "scale": 40,
+      "category": "BAG SNACKS",
+      "segment": "LAPSING",
+      "channel": "mail_coupon",
+      "reach": 17720.0,
+      "uplift_multiple_needed": 20.497172882411732
+    },
+    {
+      "scale": 40,
+      "category": "COFFEE",
+      "segment": "RECENT_LIGHT",
+      "channel": "mail_coupon",
+      "reach": 8240.0,
+      "uplift_multiple_needed": 21.607120712686235
+    },
+    {
+      "scale": 40,
+      "category": "FROZEN PIZZA",
+      "segment": "REGULAR",
+      "channel": "digital_coupon",
+      "reach": 7254.0,
+      "uplift_multiple_needed": 22.797785371210306
+    },
+    {
+      "scale": 40,
+      "category": "COFFEE",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "mail_coupon",
+      "reach": 39320.0,
+      "uplift_multiple_needed": 25.90298919300164
+    },
+    {
+      "scale": 40,
+      "category": "BAG SNACKS",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "digital_coupon",
+      "reach": 6318.0,
+      "uplift_multiple_needed": 26.81343103223014
+    },
+    {
+      "scale": 40,
+      "category": "REFRGRATD JUICES/DRNKS",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "digital_coupon",
+      "reach": 12762.0,
+      "uplift_multiple_needed": 27.196224026602344
+    },
+    {
+      "scale": 40,
+      "category": "SOUP",
+      "segment": "RECENT_LIGHT",
+      "channel": "mail_coupon",
+      "reach": 13400.0,
+      "uplift_multiple_needed": 28.617313984716628
+    },
+    {
+      "scale": 40,
+      "category": "YOGURT",
+      "segment": "LAPSING",
+      "channel": "mail_coupon",
+      "reach": 13200.0,
+      "uplift_multiple_needed": 28.895936438665387
+    },
+    {
+      "scale": 40,
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "segment": "LAPSING",
+      "channel": "digital_coupon",
+      "reach": 7992.0,
+      "uplift_multiple_needed": 30.757380647024256
+    },
+    {
+      "scale": 40,
+      "category": "COLD CEREAL",
+      "segment": "RECENT_LIGHT",
+      "channel": "mail_coupon",
+      "reach": 12960.0,
+      "uplift_multiple_needed": 32.0456855695322
+    },
+    {
+      "scale": 40,
+      "category": "BAG SNACKS",
+      "segment": "RECENT_LIGHT",
+      "channel": "mail_coupon",
+      "reach": 16040.0,
+      "uplift_multiple_needed": 34.554888874938314
+    },
+    {
+      "scale": 40,
+      "category": "SOUP",
+      "segment": "REGULAR",
+      "channel": "digital_coupon",
+      "reach": 9162.0,
+      "uplift_multiple_needed": 35.30608535803765
+    },
+    {
+      "scale": 40,
+      "category": "REFRGRATD JUICES/DRNKS",
+      "segment": "LAPSING",
+      "channel": "mail_coupon",
+      "reach": 16160.0,
+      "uplift_multiple_needed": 35.43102668441637
+    },
+    {
+      "scale": 40,
+      "category": "REFRGRATD JUICES/DRNKS",
+      "segment": "RECENT_LIGHT",
+      "channel": "digital_coupon",
+      "reach": 5292.0,
+      "uplift_multiple_needed": 35.63643189434209
+    },
+    {
+      "scale": 40,
+      "category": "FROZEN PIZZA",
+      "segment": "REGULAR",
+      "channel": "mail_coupon",
+      "reach": 16120.0,
+      "uplift_multiple_needed": 40.7137829259264
+    },
+    {
+      "scale": 40,
+      "category": "COFFEE",
+      "segment": "REGULAR",
+      "channel": "digital_coupon",
+      "reach": 3834.0,
+      "uplift_multiple_needed": 41.61291476645091
+    },
+    {
+      "scale": 40,
+      "category": "SOUP",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "mail_coupon",
+      "reach": 20360.0,
+      "uplift_multiple_needed": 41.700969341789424
+    },
+    {
+      "scale": 40,
+      "category": "YOGURT",
+      "segment": "RECENT_LIGHT",
+      "channel": "digital_coupon",
+      "reach": 3006.0,
+      "uplift_multiple_needed": 42.10420440744329
+    },
+    {
+      "scale": 40,
+      "category": "COLD CEREAL",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "mail_coupon",
+      "reach": 25520.0,
+      "uplift_multiple_needed": 44.37713178397391
+    },
+    {
+      "scale": 40,
+      "category": "COLD CEREAL",
+      "segment": "REGULAR",
+      "channel": "digital_coupon",
+      "reach": 7794.0,
+      "uplift_multiple_needed": 48.808160632775774
+    },
+    {
+      "scale": 40,
+      "category": "BAG SNACKS",
+      "segment": "REGULAR",
+      "channel": "digital_coupon",
+      "reach": 12474.0,
+      "uplift_multiple_needed": 50.23950749925184
+    },
+    {
+      "scale": 40,
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "digital_coupon",
+      "reach": 13392.0,
+      "uplift_multiple_needed": 50.61288432356126
+    },
+    {
+      "scale": 40,
+      "category": "BAG SNACKS",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "mail_coupon",
+      "reach": 14040.0,
+      "uplift_multiple_needed": 52.85968392745723
+    },
+    {
+      "scale": 40,
+      "category": "YOGURT",
+      "segment": "RECENT_LIGHT",
+      "channel": "mail_coupon",
+      "reach": 6680.0,
+      "uplift_multiple_needed": 55.24496027868995
+    },
+    {
+      "scale": 40,
+      "category": "COFFEE",
+      "segment": "REGULAR",
+      "channel": "mail_coupon",
+      "reach": 8520.0,
+      "uplift_multiple_needed": 59.40726175539977
+    },
+    {
+      "scale": 40,
+      "category": "REFRGRATD JUICES/DRNKS",
+      "segment": "RECENT_LIGHT",
+      "channel": "mail_coupon",
+      "reach": 11760.0,
+      "uplift_multiple_needed": 61.70772302308839
+    },
+    {
+      "scale": 40,
+      "category": "YOGURT",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "mail_coupon",
+      "reach": 39560.0,
+      "uplift_multiple_needed": 62.577125834496236
+    },
+    {
+      "scale": 40,
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "segment": "LAPSING",
+      "channel": "mail_coupon",
+      "reach": 17760.0,
+      "uplift_multiple_needed": 64.42692478540788
+    },
+    {
+      "scale": 40,
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "segment": "RECENT_LIGHT",
+      "channel": "digital_coupon",
+      "reach": 5598.0,
+      "uplift_multiple_needed": 65.98712568296786
+    },
+    {
+      "scale": 40,
+      "category": "SOUP",
+      "segment": "REGULAR",
+      "channel": "mail_coupon",
+      "reach": 20360.0,
+      "uplift_multiple_needed": 74.31719444222156
+    },
+    {
+      "scale": 40,
+      "category": "REFRGRATD JUICES/DRNKS",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "mail_coupon",
+      "reach": 28360.0,
+      "uplift_multiple_needed": 83.27168946561542
+    },
+    {
+      "scale": 40,
+      "category": "COLD CEREAL",
+      "segment": "REGULAR",
+      "channel": "mail_coupon",
+      "reach": 17320.0,
+      "uplift_multiple_needed": 88.78977505741942
+    },
+    {
+      "scale": 40,
+      "category": "YOGURT",
+      "segment": "REGULAR",
+      "channel": "digital_coupon",
+      "reach": 4788.0,
+      "uplift_multiple_needed": 90.93405593101669
+    },
+    {
+      "scale": 40,
+      "category": "REFRGRATD JUICES/DRNKS",
+      "segment": "REGULAR",
+      "channel": "digital_coupon",
+      "reach": 7308.0,
+      "uplift_multiple_needed": 94.29006672438372
+    },
+    {
+      "scale": 40,
+      "category": "BAG SNACKS",
+      "segment": "REGULAR",
+      "channel": "mail_coupon",
+      "reach": 27720.0,
+      "uplift_multiple_needed": 96.7265205272357
+    },
+    {
+      "scale": 40,
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "segment": "RECENT_LIGHT",
+      "channel": "mail_coupon",
+      "reach": 12440.0,
+      "uplift_multiple_needed": 113.3742763424483
+    },
+    {
+      "scale": 40,
+      "category": "YOGURT",
+      "segment": "REGULAR",
+      "channel": "mail_coupon",
+      "reach": 10640.0,
+      "uplift_multiple_needed": 140.9461913895803
+    },
+    {
+      "scale": 40,
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "mail_coupon",
+      "reach": 29760.0,
+      "uplift_multiple_needed": 150.58792883973265
+    },
+    {
+      "scale": 40,
+      "category": "REFRGRATD JUICES/DRNKS",
+      "segment": "REGULAR",
+      "channel": "mail_coupon",
+      "reach": 16240.0,
+      "uplift_multiple_needed": 168.3921958133455
+    },
+    {
+      "scale": 40,
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "segment": "REGULAR",
+      "channel": "digital_coupon",
+      "reach": 5328.0,
+      "uplift_multiple_needed": 221.47770116482334
+    },
+    {
+      "scale": 40,
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "segment": "REGULAR",
+      "channel": "mail_coupon",
+      "reach": 11840.0,
+      "uplift_multiple_needed": 337.20323384466167
+    },
+    {
+      "scale": 100,
+      "category": "FROZEN PIZZA",
+      "segment": "LAPSING",
+      "channel": "digital_coupon",
+      "reach": 18270.0,
+      "uplift_multiple_needed": 2.622770241206491
+    },
+    {
+      "scale": 100,
+      "category": "COFFEE",
+      "segment": "LAPSING",
+      "channel": "digital_coupon",
+      "reach": 15975.0,
+      "uplift_multiple_needed": 3.407734245647971
+    },
+    {
+      "scale": 100,
+      "category": "COFFEE",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "digital_coupon",
+      "reach": 44235.0,
+      "uplift_multiple_needed": 3.8252679477223297
+    },
+    {
+      "scale": 100,
+      "category": "SOUP",
+      "segment": "LAPSING",
+      "channel": "digital_coupon",
+      "reach": 22590.0,
+      "uplift_multiple_needed": 4.23858984420919
+    },
+    {
+      "scale": 100,
+      "category": "FROZEN PIZZA",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "digital_coupon",
+      "reach": 30555.0,
+      "uplift_multiple_needed": 4.369156559583121
+    },
+    {
+      "scale": 100,
+      "category": "FROZEN PIZZA",
+      "segment": "RECENT_LIGHT",
+      "channel": "digital_coupon",
+      "reach": 14490.0,
+      "uplift_multiple_needed": 5.115352455410378
+    },
+    {
+      "scale": 100,
+      "category": "COLD CEREAL",
+      "segment": "LAPSING",
+      "channel": "digital_coupon",
+      "reach": 18945.0,
+      "uplift_multiple_needed": 5.577681510872434
+    },
+    {
+      "scale": 100,
+      "category": "BAG SNACKS",
+      "segment": "LAPSING",
+      "channel": "digital_coupon",
+      "reach": 19935.0,
+      "uplift_multiple_needed": 6.701551514113992
+    },
+    {
+      "scale": 100,
+      "category": "COFFEE",
+      "segment": "RECENT_LIGHT",
+      "channel": "digital_coupon",
+      "reach": 9270.0,
+      "uplift_multiple_needed": 7.913909763826903
+    },
+    {
+      "scale": 100,
+      "category": "FROZEN PIZZA",
+      "segment": "LAPSING",
+      "channel": "mail_coupon",
+      "reach": 40600.0,
+      "uplift_multiple_needed": 7.963882165740477
+    },
+    {
+      "scale": 100,
+      "category": "YOGURT",
+      "segment": "LAPSING",
+      "channel": "digital_coupon",
+      "reach": 14850.0,
+      "uplift_multiple_needed": 8.625834487773718
+    },
+    {
+      "scale": 100,
+      "category": "SOUP",
+      "segment": "RECENT_LIGHT",
+      "channel": "digital_coupon",
+      "reach": 15075.0,
+      "uplift_multiple_needed": 8.80394055632406
+    },
+    {
+      "scale": 100,
+      "category": "SOUP",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "digital_coupon",
+      "reach": 22905.0,
+      "uplift_multiple_needed": 8.969712636020336
+    },
+    {
+      "scale": 100,
+      "category": "YOGURT",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "digital_coupon",
+      "reach": 44505.0,
+      "uplift_multiple_needed": 9.465795604183663
+    },
+    {
+      "scale": 100,
+      "category": "COLD CEREAL",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "digital_coupon",
+      "reach": 28710.0,
+      "uplift_multiple_needed": 9.496805979886725
+    },
+    {
+      "scale": 100,
+      "category": "REFRGRATD JUICES/DRNKS",
+      "segment": "LAPSING",
+      "channel": "digital_coupon",
+      "reach": 18180.0,
+      "uplift_multiple_needed": 10.514156765533457
+    },
+    {
+      "scale": 100,
+      "category": "COFFEE",
+      "segment": "LAPSING",
+      "channel": "mail_coupon",
+      "reach": 35500.0,
+      "uplift_multiple_needed": 10.7113066533058
+    },
+    {
+      "scale": 100,
+      "category": "COLD CEREAL",
+      "segment": "RECENT_LIGHT",
+      "channel": "digital_coupon",
+      "reach": 14580.0,
+      "uplift_multiple_needed": 10.83952291968343
+    },
+    {
+      "scale": 100,
+      "category": "BAG SNACKS",
+      "segment": "RECENT_LIGHT",
+      "channel": "digital_coupon",
+      "reach": 18045.0,
+      "uplift_multiple_needed": 12.436537288463187
+    },
+    {
+      "scale": 100,
+      "category": "FROZEN PIZZA",
+      "segment": "RECENT_LIGHT",
+      "channel": "mail_coupon",
+      "reach": 32200.0,
+      "uplift_multiple_needed": 13.424179205969414
+    },
+    {
+      "scale": 100,
+      "category": "SOUP",
+      "segment": "LAPSING",
+      "channel": "mail_coupon",
+      "reach": 50200.0,
+      "uplift_multiple_needed": 15.365269466624667
+    },
+    {
+      "scale": 100,
+      "category": "BAG SNACKS",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "digital_coupon",
+      "reach": 15795.0,
+      "uplift_multiple_needed": 15.882181390966432
+    },
+    {
+      "scale": 100,
+      "category": "FROZEN PIZZA",
+      "segment": "REGULAR",
+      "channel": "digital_coupon",
+      "reach": 18135.0,
+      "uplift_multiple_needed": 16.558610869300956
+    },
+    {
+      "scale": 100,
+      "category": "COLD CEREAL",
+      "segment": "LAPSING",
+      "channel": "mail_coupon",
+      "reach": 42100.0,
+      "uplift_multiple_needed": 17.28323255723034
+    },
+    {
+      "scale": 100,
+      "category": "REFRGRATD JUICES/DRNKS",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "digital_coupon",
+      "reach": 31905.0,
+      "uplift_multiple_needed": 17.440462749097428
+    },
+    {
+      "scale": 100,
+      "category": "COFFEE",
+      "segment": "RECENT_LIGHT",
+      "channel": "mail_coupon",
+      "reach": 20600.0,
+      "uplift_multiple_needed": 18.55625017186235
+    },
+    {
+      "scale": 100,
+      "category": "BAG SNACKS",
+      "segment": "LAPSING",
+      "channel": "mail_coupon",
+      "reach": 44300.0,
+      "uplift_multiple_needed": 19.03561175303453
+    },
+    {
+      "scale": 100,
+      "category": "FROZEN PIZZA",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "mail_coupon",
+      "reach": 67900.0,
+      "uplift_multiple_needed": 19.220787896827606
+    },
+    {
+      "scale": 100,
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "segment": "LAPSING",
+      "channel": "digital_coupon",
+      "reach": 19980.0,
+      "uplift_multiple_needed": 20.419574897735476
+    },
+    {
+      "scale": 100,
+      "category": "REFRGRATD JUICES/DRNKS",
+      "segment": "RECENT_LIGHT",
+      "channel": "digital_coupon",
+      "reach": 13230.0,
+      "uplift_multiple_needed": 21.520442617299267
+    },
+    {
+      "scale": 100,
+      "category": "YOGURT",
+      "segment": "RECENT_LIGHT",
+      "channel": "digital_coupon",
+      "reach": 7515.0,
+      "uplift_multiple_needed": 21.98464351444544
+    },
+    {
+      "scale": 100,
+      "category": "COFFEE",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "mail_coupon",
+      "reach": 98300.0,
+      "uplift_multiple_needed": 24.837408773520934
+    },
+    {
+      "scale": 100,
+      "category": "SOUP",
+      "segment": "REGULAR",
+      "channel": "digital_coupon",
+      "reach": 22905.0,
+      "uplift_multiple_needed": 25.220309383567933
+    },
+    {
+      "scale": 100,
+      "category": "COFFEE",
+      "segment": "REGULAR",
+      "channel": "digital_coupon",
+      "reach": 9585.0,
+      "uplift_multiple_needed": 25.220652601356477
+    },
+    {
+      "scale": 100,
+      "category": "SOUP",
+      "segment": "RECENT_LIGHT",
+      "channel": "mail_coupon",
+      "reach": 33500.0,
+      "uplift_multiple_needed": 25.858929522684043
+    },
+    {
+      "scale": 100,
+      "category": "YOGURT",
+      "segment": "LAPSING",
+      "channel": "mail_coupon",
+      "reach": 33000.0,
+      "uplift_multiple_needed": 26.032328482019953
+    },
+    {
+      "scale": 100,
+      "category": "COLD CEREAL",
+      "segment": "RECENT_LIGHT",
+      "channel": "mail_coupon",
+      "reach": 32400.0,
+      "uplift_multiple_needed": 28.995836890824247
+    },
+    {
+      "scale": 100,
+      "category": "BAG SNACKS",
+      "segment": "RECENT_LIGHT",
+      "channel": "mail_coupon",
+      "reach": 40100.0,
+      "uplift_multiple_needed": 31.971461123061605
+    },
+    {
+      "scale": 100,
+      "category": "REFRGRATD JUICES/DRNKS",
+      "segment": "LAPSING",
+      "channel": "mail_coupon",
+      "reach": 40400.0,
+      "uplift_multiple_needed": 32.54187850781865
+    },
+    {
+      "scale": 100,
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "digital_coupon",
+      "reach": 33480.0,
+      "uplift_multiple_needed": 34.161322485983426
+    },
+    {
+      "scale": 100,
+      "category": "COLD CEREAL",
+      "segment": "REGULAR",
+      "channel": "digital_coupon",
+      "reach": 19485.0,
+      "uplift_multiple_needed": 36.129805848308514
+    },
+    {
+      "scale": 100,
+      "category": "FROZEN PIZZA",
+      "segment": "REGULAR",
+      "channel": "mail_coupon",
+      "reach": 40300.0,
+      "uplift_multiple_needed": 37.906154400067194
+    },
+    {
+      "scale": 100,
+      "category": "SOUP",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "mail_coupon",
+      "reach": 50900.0,
+      "uplift_multiple_needed": 38.67523654944851
+    },
+    {
+      "scale": 100,
+      "category": "COLD CEREAL",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "mail_coupon",
+      "reach": 63800.0,
+      "uplift_multiple_needed": 41.79575515936216
+    },
+    {
+      "scale": 100,
+      "category": "BAG SNACKS",
+      "segment": "REGULAR",
+      "channel": "digital_coupon",
+      "reach": 31185.0,
+      "uplift_multiple_needed": 41.93459705751253
+    },
+    {
+      "scale": 100,
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "segment": "RECENT_LIGHT",
+      "channel": "digital_coupon",
+      "reach": 13995.0,
+      "uplift_multiple_needed": 42.37305107108763
+    },
+    {
+      "scale": 100,
+      "category": "YOGURT",
+      "segment": "RECENT_LIGHT",
+      "channel": "mail_coupon",
+      "reach": 16700.0,
+      "uplift_multiple_needed": 46.191157876840926
+    },
+    {
+      "scale": 100,
+      "category": "BAG SNACKS",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "mail_coupon",
+      "reach": 35100.0,
+      "uplift_multiple_needed": 47.94062158888856
+    },
+    {
+      "scale": 100,
+      "category": "COFFEE",
+      "segment": "REGULAR",
+      "channel": "mail_coupon",
+      "reach": 21300.0,
+      "uplift_multiple_needed": 52.03074378110727
+    },
+    {
+      "scale": 100,
+      "category": "REFRGRATD JUICES/DRNKS",
+      "segment": "RECENT_LIGHT",
+      "channel": "mail_coupon",
+      "reach": 29400.0,
+      "uplift_multiple_needed": 55.35552784841912
+    },
+    {
+      "scale": 100,
+      "category": "YOGURT",
+      "segment": "REGULAR",
+      "channel": "digital_coupon",
+      "reach": 11970.0,
+      "uplift_multiple_needed": 59.355421822645994
+    },
+    {
+      "scale": 100,
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "segment": "LAPSING",
+      "channel": "mail_coupon",
+      "reach": 44400.0,
+      "uplift_multiple_needed": 59.774912198227916
+    },
+    {
+      "scale": 100,
+      "category": "YOGURT",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "mail_coupon",
+      "reach": 98900.0,
+      "uplift_multiple_needed": 60.02912279926066
+    },
+    {
+      "scale": 100,
+      "category": "REFRGRATD JUICES/DRNKS",
+      "segment": "REGULAR",
+      "channel": "digital_coupon",
+      "reach": 18270.0,
+      "uplift_multiple_needed": 68.73525855042688
+    },
+    {
+      "scale": 100,
+      "category": "SOUP",
+      "segment": "REGULAR",
+      "channel": "mail_coupon",
+      "reach": 50900.0,
+      "uplift_multiple_needed": 69.7785952537102
+    },
+    {
+      "scale": 100,
+      "category": "REFRGRATD JUICES/DRNKS",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "mail_coupon",
+      "reach": 70900.0,
+      "uplift_multiple_needed": 78.88159689073822
+    },
+    {
+      "scale": 100,
+      "category": "COLD CEREAL",
+      "segment": "REGULAR",
+      "channel": "mail_coupon",
+      "reach": 43300.0,
+      "uplift_multiple_needed": 83.08451540440915
+    },
+    {
+      "scale": 100,
+      "category": "BAG SNACKS",
+      "segment": "REGULAR",
+      "channel": "mail_coupon",
+      "reach": 69300.0,
+      "uplift_multiple_needed": 92.98931082845301
+    },
+    {
+      "scale": 100,
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "segment": "RECENT_LIGHT",
+      "channel": "mail_coupon",
+      "reach": 31100.0,
+      "uplift_multiple_needed": 102.74794276710219
+    },
+    {
+      "scale": 100,
+      "category": "YOGURT",
+      "segment": "REGULAR",
+      "channel": "mail_coupon",
+      "reach": 26600.0,
+      "uplift_multiple_needed": 126.73580604081349
+    },
+    {
+      "scale": 100,
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "mail_coupon",
+      "reach": 74400.0,
+      "uplift_multiple_needed": 143.18472601282264
+    },
+    {
+      "scale": 100,
+      "category": "REFRGRATD JUICES/DRNKS",
+      "segment": "REGULAR",
+      "channel": "mail_coupon",
+      "reach": 40600.0,
+      "uplift_multiple_needed": 156.8925321350649
+    },
+    {
+      "scale": 100,
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "segment": "REGULAR",
+      "channel": "digital_coupon",
+      "reach": 13320.0,
+      "uplift_multiple_needed": 159.45086666909066
+    },
+    {
+      "scale": 100,
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "segment": "REGULAR",
+      "channel": "mail_coupon",
+      "reach": 29600.0,
+      "uplift_multiple_needed": 309.291158321582
+    },
+    {
+      "scale": 250,
+      "category": "FROZEN PIZZA",
+      "segment": "LAPSING",
+      "channel": "digital_coupon",
+      "reach": 45675.0,
+      "uplift_multiple_needed": 2.0034630184800206
+    },
+    {
+      "scale": 250,
+      "category": "COFFEE",
+      "segment": "LAPSING",
+      "channel": "digital_coupon",
+      "reach": 39937.5,
+      "uplift_multiple_needed": 2.4241985157423045
+    },
+    {
+      "scale": 250,
+      "category": "COFFEE",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "digital_coupon",
+      "reach": 110587.5,
+      "uplift_multiple_needed": 2.878085352628368
+    },
+    {
+      "scale": 250,
+      "category": "SOUP",
+      "segment": "LAPSING",
+      "channel": "digital_coupon",
+      "reach": 56475.0,
+      "uplift_multiple_needed": 3.215948415722121
+    },
+    {
+      "scale": 250,
+      "category": "FROZEN PIZZA",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "digital_coupon",
+      "reach": 76387.5,
+      "uplift_multiple_needed": 3.3816701288440063
+    },
+    {
+      "scale": 250,
+      "category": "FROZEN PIZZA",
+      "segment": "RECENT_LIGHT",
+      "channel": "digital_coupon",
+      "reach": 36225.0,
+      "uplift_multiple_needed": 3.8659674495621954
+    },
+    {
+      "scale": 250,
+      "category": "COLD CEREAL",
+      "segment": "LAPSING",
+      "channel": "digital_coupon",
+      "reach": 47362.5,
+      "uplift_multiple_needed": 4.27370820406143
+    },
+    {
+      "scale": 250,
+      "category": "COFFEE",
+      "segment": "RECENT_LIGHT",
+      "channel": "digital_coupon",
+      "reach": 23175.0,
+      "uplift_multiple_needed": 5.2020248386501144
+    },
+    {
+      "scale": 250,
+      "category": "BAG SNACKS",
+      "segment": "LAPSING",
+      "channel": "digital_coupon",
+      "reach": 49837.5,
+      "uplift_multiple_needed": 5.402386065778699
+    },
+    {
+      "scale": 250,
+      "category": "YOGURT",
+      "segment": "LAPSING",
+      "channel": "digital_coupon",
+      "reach": 37125.0,
+      "uplift_multiple_needed": 6.080405192977778
+    },
+    {
+      "scale": 250,
+      "category": "SOUP",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "digital_coupon",
+      "reach": 57262.5,
+      "uplift_multiple_needed": 6.280172376161744
+    },
+    {
+      "scale": 250,
+      "category": "SOUP",
+      "segment": "RECENT_LIGHT",
+      "channel": "digital_coupon",
+      "reach": 37687.5,
+      "uplift_multiple_needed": 6.35204325673954
+    },
+    {
+      "scale": 250,
+      "category": "YOGURT",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "digital_coupon",
+      "reach": 111262.5,
+      "uplift_multiple_needed": 7.2009040173075975
+    },
+    {
+      "scale": 250,
+      "category": "COLD CEREAL",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "digital_coupon",
+      "reach": 71775.0,
+      "uplift_multiple_needed": 7.202248980231836
+    },
+    {
+      "scale": 250,
+      "category": "FROZEN PIZZA",
+      "segment": "LAPSING",
+      "channel": "mail_coupon",
+      "reach": 101500.0,
+      "uplift_multiple_needed": 7.685193915513566
+    },
+    {
+      "scale": 250,
+      "category": "REFRGRATD JUICES/DRNKS",
+      "segment": "LAPSING",
+      "channel": "digital_coupon",
+      "reach": 45450.0,
+      "uplift_multiple_needed": 7.946025053002152
+    },
+    {
+      "scale": 250,
+      "category": "COLD CEREAL",
+      "segment": "RECENT_LIGHT",
+      "channel": "digital_coupon",
+      "reach": 36450.0,
+      "uplift_multiple_needed": 8.128546316387471
+    },
+    {
+      "scale": 250,
+      "category": "BAG SNACKS",
+      "segment": "RECENT_LIGHT",
+      "channel": "digital_coupon",
+      "reach": 45112.5,
+      "uplift_multiple_needed": 10.140157064572776
+    },
+    {
+      "scale": 250,
+      "category": "COFFEE",
+      "segment": "LAPSING",
+      "channel": "mail_coupon",
+      "reach": 88750.0,
+      "uplift_multiple_needed": 10.26871557484825
+    },
+    {
+      "scale": 250,
+      "category": "BAG SNACKS",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "digital_coupon",
+      "reach": 39487.5,
+      "uplift_multiple_needed": 11.509681534460945
+    },
+    {
+      "scale": 250,
+      "category": "FROZEN PIZZA",
+      "segment": "RECENT_LIGHT",
+      "channel": "mail_coupon",
+      "reach": 80500.0,
+      "uplift_multiple_needed": 12.861955953337732
+    },
+    {
+      "scale": 250,
+      "category": "REFRGRATD JUICES/DRNKS",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "digital_coupon",
+      "reach": 79762.5,
+      "uplift_multiple_needed": 13.538158238095463
+    },
+    {
+      "scale": 250,
+      "category": "YOGURT",
+      "segment": "RECENT_LIGHT",
+      "channel": "digital_coupon",
+      "reach": 18787.5,
+      "uplift_multiple_needed": 13.9368191572463
+    },
+    {
+      "scale": 250,
+      "category": "FROZEN PIZZA",
+      "segment": "REGULAR",
+      "channel": "digital_coupon",
+      "reach": 45337.5,
+      "uplift_multiple_needed": 14.062941068537214
+    },
+    {
+      "scale": 250,
+      "category": "SOUP",
+      "segment": "LAPSING",
+      "channel": "mail_coupon",
+      "reach": 125500.0,
+      "uplift_multiple_needed": 14.905080823805486
+    },
+    {
+      "scale": 250,
+      "category": "REFRGRATD JUICES/DRNKS",
+      "segment": "RECENT_LIGHT",
+      "channel": "digital_coupon",
+      "reach": 33075.0,
+      "uplift_multiple_needed": 15.874046906482134
+    },
+    {
+      "scale": 250,
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "segment": "LAPSING",
+      "channel": "digital_coupon",
+      "reach": 49950.0,
+      "uplift_multiple_needed": 16.28445259801996
+    },
+    {
+      "scale": 250,
+      "category": "COLD CEREAL",
+      "segment": "LAPSING",
+      "channel": "mail_coupon",
+      "reach": 105250.0,
+      "uplift_multiple_needed": 16.696444569165386
+    },
+    {
+      "scale": 250,
+      "category": "COFFEE",
+      "segment": "RECENT_LIGHT",
+      "channel": "mail_coupon",
+      "reach": 51500.0,
+      "uplift_multiple_needed": 17.335901955532794
+    },
+    {
+      "scale": 250,
+      "category": "BAG SNACKS",
+      "segment": "LAPSING",
+      "channel": "mail_coupon",
+      "reach": 110750.0,
+      "uplift_multiple_needed": 18.45098730128365
+    },
+    {
+      "scale": 250,
+      "category": "COFFEE",
+      "segment": "REGULAR",
+      "channel": "digital_coupon",
+      "reach": 23962.5,
+      "uplift_multiple_needed": 18.6637477353187
+    },
+    {
+      "scale": 250,
+      "category": "FROZEN PIZZA",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "mail_coupon",
+      "reach": 169750.0,
+      "uplift_multiple_needed": 18.776419002995002
+    },
+    {
+      "scale": 250,
+      "category": "SOUP",
+      "segment": "REGULAR",
+      "channel": "digital_coupon",
+      "reach": 57262.5,
+      "uplift_multiple_needed": 21.185998993780043
+    },
+    {
+      "scale": 250,
+      "category": "COFFEE",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "mail_coupon",
+      "reach": 245750.0,
+      "uplift_multiple_needed": 24.411176605728652
+    },
+    {
+      "scale": 250,
+      "category": "SOUP",
+      "segment": "RECENT_LIGHT",
+      "channel": "mail_coupon",
+      "reach": 83750.0,
+      "uplift_multiple_needed": 24.75557573787101
+    },
+    {
+      "scale": 250,
+      "category": "YOGURT",
+      "segment": "LAPSING",
+      "channel": "mail_coupon",
+      "reach": 82500.0,
+      "uplift_multiple_needed": 24.88688529936178
+    },
+    {
+      "scale": 250,
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "digital_coupon",
+      "reach": 83700.0,
+      "uplift_multiple_needed": 27.580697750952282
+    },
+    {
+      "scale": 250,
+      "category": "COLD CEREAL",
+      "segment": "RECENT_LIGHT",
+      "channel": "mail_coupon",
+      "reach": 81000.0,
+      "uplift_multiple_needed": 27.775897419341064
+    },
+    {
+      "scale": 250,
+      "category": "BAG SNACKS",
+      "segment": "RECENT_LIGHT",
+      "channel": "mail_coupon",
+      "reach": 100250.0,
+      "uplift_multiple_needed": 30.93809002231092
+    },
+    {
+      "scale": 250,
+      "category": "COLD CEREAL",
+      "segment": "REGULAR",
+      "channel": "digital_coupon",
+      "reach": 48712.5,
+      "uplift_multiple_needed": 31.058463934521615
+    },
+    {
+      "scale": 250,
+      "category": "REFRGRATD JUICES/DRNKS",
+      "segment": "LAPSING",
+      "channel": "mail_coupon",
+      "reach": 101000.0,
+      "uplift_multiple_needed": 31.386219237179564
+    },
+    {
+      "scale": 250,
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "segment": "RECENT_LIGHT",
+      "channel": "digital_coupon",
+      "reach": 34987.5,
+      "uplift_multiple_needed": 32.92742122633554
+    },
+    {
+      "scale": 250,
+      "category": "FROZEN PIZZA",
+      "segment": "REGULAR",
+      "channel": "mail_coupon",
+      "reach": 100750.0,
+      "uplift_multiple_needed": 36.78310298972351
+    },
+    {
+      "scale": 250,
+      "category": "SOUP",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "mail_coupon",
+      "reach": 127250.0,
+      "uplift_multiple_needed": 37.46494343251214
+    },
+    {
+      "scale": 250,
+      "category": "BAG SNACKS",
+      "segment": "REGULAR",
+      "channel": "digital_coupon",
+      "reach": 77962.5,
+      "uplift_multiple_needed": 38.61263288081681
+    },
+    {
+      "scale": 250,
+      "category": "COLD CEREAL",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "mail_coupon",
+      "reach": 159500.0,
+      "uplift_multiple_needed": 40.76320450951746
+    },
+    {
+      "scale": 250,
+      "category": "YOGURT",
+      "segment": "RECENT_LIGHT",
+      "channel": "mail_coupon",
+      "reach": 41750.0,
+      "uplift_multiple_needed": 42.56963691610131
+    },
+    {
+      "scale": 250,
+      "category": "BAG SNACKS",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "mail_coupon",
+      "reach": 87750.0,
+      "uplift_multiple_needed": 45.972996653461095
+    },
+    {
+      "scale": 250,
+      "category": "YOGURT",
+      "segment": "REGULAR",
+      "channel": "digital_coupon",
+      "reach": 29925.0,
+      "uplift_multiple_needed": 46.72396817929771
+    },
+    {
+      "scale": 250,
+      "category": "COFFEE",
+      "segment": "REGULAR",
+      "channel": "mail_coupon",
+      "reach": 53250.0,
+      "uplift_multiple_needed": 49.08013659139027
+    },
+    {
+      "scale": 250,
+      "category": "REFRGRATD JUICES/DRNKS",
+      "segment": "RECENT_LIGHT",
+      "channel": "mail_coupon",
+      "reach": 73500.0,
+      "uplift_multiple_needed": 52.81464977855141
+    },
+    {
+      "scale": 250,
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "segment": "LAPSING",
+      "channel": "mail_coupon",
+      "reach": 111000.0,
+      "uplift_multiple_needed": 57.914107163355936
+    },
+    {
+      "scale": 250,
+      "category": "REFRGRATD JUICES/DRNKS",
+      "segment": "REGULAR",
+      "channel": "digital_coupon",
+      "reach": 45675.0,
+      "uplift_multiple_needed": 58.51333528084414
+    },
+    {
+      "scale": 250,
+      "category": "YOGURT",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "mail_coupon",
+      "reach": 247250.0,
+      "uplift_multiple_needed": 59.00992158516643
+    },
+    {
+      "scale": 250,
+      "category": "SOUP",
+      "segment": "REGULAR",
+      "channel": "mail_coupon",
+      "reach": 127250.0,
+      "uplift_multiple_needed": 67.96315557830565
+    },
+    {
+      "scale": 250,
+      "category": "REFRGRATD JUICES/DRNKS",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "mail_coupon",
+      "reach": 177250.0,
+      "uplift_multiple_needed": 77.12555986078733
+    },
+    {
+      "scale": 250,
+      "category": "COLD CEREAL",
+      "segment": "REGULAR",
+      "channel": "mail_coupon",
+      "reach": 108250.0,
+      "uplift_multiple_needed": 80.80241154320504
+    },
+    {
+      "scale": 250,
+      "category": "BAG SNACKS",
+      "segment": "REGULAR",
+      "channel": "mail_coupon",
+      "reach": 173250.0,
+      "uplift_multiple_needed": 91.49442694893995
+    },
+    {
+      "scale": 250,
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "segment": "RECENT_LIGHT",
+      "channel": "mail_coupon",
+      "reach": 77750.0,
+      "uplift_multiple_needed": 98.49740933696374
+    },
+    {
+      "scale": 250,
+      "category": "YOGURT",
+      "segment": "REGULAR",
+      "channel": "mail_coupon",
+      "reach": 66500.0,
+      "uplift_multiple_needed": 121.05165190130676
+    },
+    {
+      "scale": 250,
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "segment": "REGULAR",
+      "channel": "digital_coupon",
+      "reach": 33300.0,
+      "uplift_multiple_needed": 134.64013287079754
+    },
+    {
+      "scale": 250,
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "mail_coupon",
+      "reach": 186000.0,
+      "uplift_multiple_needed": 140.2234448820586
+    },
+    {
+      "scale": 250,
+      "category": "REFRGRATD JUICES/DRNKS",
+      "segment": "REGULAR",
+      "channel": "mail_coupon",
+      "reach": 101500.0,
+      "uplift_multiple_needed": 152.29266666375267
+    },
+    {
+      "scale": 250,
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "segment": "REGULAR",
+      "channel": "mail_coupon",
+      "reach": 74000.0,
+      "uplift_multiple_needed": 298.1263281123501
+    }
+  ],
+  "reversal_grid": [
+    {
+      "uplift_multiplier": 1.0,
+      "scale": 40,
+      "recommended_base": "NONE: research / measure first",
+      "best_net_base": -1781.2941940771234
+    },
+    {
+      "uplift_multiplier": 1.0,
+      "scale": 100,
+      "recommended_base": "NONE: research / measure first",
+      "best_net_base": -2203.2354851928085
+    },
+    {
+      "uplift_multiplier": 1.0,
+      "scale": 250,
+      "recommended_base": "NONE: research / measure first",
+      "best_net_base": -1468.947024548016
+    },
+    {
+      "uplift_multiplier": 2.0,
+      "scale": 40,
+      "recommended_base": "NONE: research / measure first",
+      "best_net_base": -1232.9395589002265
+    },
+    {
+      "uplift_multiplier": 2.0,
+      "scale": 100,
+      "recommended_base": "NONE: research / measure first",
+      "best_net_base": -832.3488972505666
+    },
+    {
+      "uplift_multiplier": 2.0,
+      "scale": 250,
+      "recommended_base": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED",
+      "best_net_base": 169.12775687358385
+    },
+    {
+      "uplift_multiplier": 3.0,
+      "scale": 40,
+      "recommended_base": "NONE: research / measure first",
+      "best_net_base": -680.7054472607439
+    },
+    {
+      "uplift_multiplier": 3.0,
+      "scale": 100,
+      "recommended_base": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED",
+      "best_net_base": 548.2363818481404
+    },
+    {
+      "uplift_multiplier": 3.0,
+      "scale": 250,
+      "recommended_base": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED + COFFEE/LAPSING/digital_coupon/MODEL_FILTERED",
+      "best_net_base": 4331.475750652502
+    },
+    {
+      "uplift_multiplier": 4.0,
+      "scale": 40,
+      "recommended_base": "NONE: research / measure first",
+      "best_net_base": -99.42365441353058
+    },
+    {
+      "uplift_multiplier": 4.0,
+      "scale": 100,
+      "recommended_base": "FROZEN PIZZA/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL",
+      "best_net_base": 2093.762644803659
+    },
+    {
+      "uplift_multiplier": 4.0,
+      "scale": 250,
+      "recommended_base": "FROZEN PIZZA/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL",
+      "best_net_base": 9734.406612009147
+    },
+    {
+      "uplift_multiplier": 5.0,
+      "scale": 40,
+      "recommended_base": "FROZEN PIZZA/LAPSING/digital_coupon/ALL",
+      "best_net_base": 481.87103550647
+    },
+    {
+      "uplift_multiplier": 5.0,
+      "scale": 100,
+      "recommended_base": "FROZEN PIZZA/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL + COFFEE/ACTIVE_NONBUYER/digital_coupon/ALL",
+      "best_net_base": 4871.700435824607
+    },
+    {
+      "uplift_multiplier": 5.0,
+      "scale": 250,
+      "recommended_base": "COFFEE/LAPSING/digital_coupon/ALL + SOUP/LAPSING/digital_coupon/ALL",
+      "best_net_base": 8839.295513027786
+    }
+  ],
+  "demand": [
+    {
+      "category": "BAG SNACKS",
+      "status": "OBSERVED history; forecast = trailing-8-week baseline (not a validated demand model)",
+      "weekly_sales_mean_last8": 1685.13,
+      "weekly_households_mean_last8": 392.75,
+      "next4w_sales_low": 6206.283345500057,
+      "next4w_sales_base": 6740.52,
+      "next4w_sales_high": 7274.756654499944,
+      "trend_last8_vs_prev8": 1.0782649591722635,
+      "origins": 8,
+      "WAPE_naive_last4": 0.03574216366226667,
+      "WAPE_trailing8_mean": 0.040120821098313476
+    },
+    {
+      "category": "COFFEE",
+      "status": "OBSERVED history; forecast = trailing-8-week baseline (not a validated demand model)",
+      "weekly_sales_mean_last8": 804.75875,
+      "weekly_households_mean_last8": 135.625,
+      "next4w_sales_low": 2771.729873663319,
+      "next4w_sales_base": 3219.035,
+      "next4w_sales_high": 3666.340126336681,
+      "trend_last8_vs_prev8": 1.0133059889541718,
+      "origins": 8,
+      "WAPE_naive_last4": 0.04801237096901193,
+      "WAPE_trailing8_mean": 0.0660464832104282
+    },
+    {
+      "category": "COLD CEREAL",
+      "status": "OBSERVED history; forecast = trailing-8-week baseline (not a validated demand model)",
+      "weekly_sales_mean_last8": 1157.5149999999999,
+      "weekly_households_mean_last8": 237.0,
+      "next4w_sales_low": 4060.520219008424,
+      "next4w_sales_base": 4630.0599999999995,
+      "next4w_sales_high": 5199.599780991574,
+      "trend_last8_vs_prev8": 0.9616178231373047,
+      "origins": 8,
+      "WAPE_naive_last4": 0.042889385286656825,
+      "WAPE_trailing8_mean": 0.03375371751017797
+    },
+    {
+      "category": "FROZEN PIZZA",
+      "status": "OBSERVED history; forecast = trailing-8-week baseline (not a validated demand model)",
+      "weekly_sales_mean_last8": 1650.3175,
+      "weekly_households_mean_last8": 229.0,
+      "next4w_sales_low": 5844.793090637357,
+      "next4w_sales_base": 6601.27,
+      "next4w_sales_high": 7357.746909362644,
+      "trend_last8_vs_prev8": 1.0373369455047168,
+      "origins": 8,
+      "WAPE_naive_last4": 0.03634952453100397,
+      "WAPE_trailing8_mean": 0.038559755947781674
+    },
+    {
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "status": "OBSERVED history; forecast = trailing-8-week baseline (not a validated demand model)",
+      "weekly_sales_mean_last8": 783.1175000000001,
+      "weekly_households_mean_last8": 181.0,
+      "next4w_sales_low": 2857.317631626112,
+      "next4w_sales_base": 3132.4700000000003,
+      "next4w_sales_high": 3407.6223683738885,
+      "trend_last8_vs_prev8": 0.879168900277576,
+      "origins": 8,
+      "WAPE_naive_last4": 0.08210837586381177,
+      "WAPE_trailing8_mean": 0.10437226899443096
+    },
+    {
+      "category": "REFRGRATD JUICES/DRNKS",
+      "status": "OBSERVED history; forecast = trailing-8-week baseline (not a validated demand model)",
+      "weekly_sales_mean_last8": 788.4325000000001,
+      "weekly_households_mean_last8": 238.875,
+      "next4w_sales_low": 2935.1867088877034,
+      "next4w_sales_base": 3153.7300000000005,
+      "next4w_sales_high": 3372.2732911122976,
+      "trend_last8_vs_prev8": 1.1129626786795055,
+      "origins": 8,
+      "WAPE_naive_last4": 0.04151828475097952,
+      "WAPE_trailing8_mean": 0.05484972899522803
+    },
+    {
+      "category": "SOUP",
+      "status": "OBSERVED history; forecast = trailing-8-week baseline (not a validated demand model)",
+      "weekly_sales_mean_last8": 1192.46875,
+      "weekly_households_mean_last8": 283.875,
+      "next4w_sales_low": 4341.36629509328,
+      "next4w_sales_base": 4769.875,
+      "next4w_sales_high": 5198.38370490672,
+      "trend_last8_vs_prev8": 1.0400562997010576,
+      "origins": 8,
+      "WAPE_naive_last4": 0.12046037979633122,
+      "WAPE_trailing8_mean": 0.16415446864215158
+    },
+    {
+      "category": "YOGURT",
+      "status": "OBSERVED history; forecast = trailing-8-week baseline (not a validated demand model)",
+      "weekly_sales_mean_last8": 552.95875,
+      "weekly_households_mean_last8": 149.75,
+      "next4w_sales_low": 1802.3692438134156,
+      "next4w_sales_base": 2211.835,
+      "next4w_sales_high": 2621.3007561865843,
+      "trend_last8_vs_prev8": 0.8529611954687877,
+      "origins": 8,
+      "WAPE_naive_last4": 0.06183243319140689,
+      "WAPE_trailing8_mean": 0.07209548491973869
+    }
+  ],
+  "status": "SIMULATION \u2014 conditional on ASSUMED uplift, margin, redemption, contact cost, reach and scale; q0 is a MODEL ESTIMATE"
+}

@@ -1,0 +1,576 @@
+{
+  "config_hash": "6ad30019bd70298e",
+  "n_candidates": 40,
+  "n_portfolios_feasible": 260,
+  "top_k_screen": [
+    "YOGURT|RECENT_LIGHT|mail_coupon|ALL",
+    "COFFEE|RECENT_LIGHT|mail_coupon|ALL",
+    "COFFEE|REGULAR|mail_coupon|ALL",
+    "REFRGRATD JUICES/DRNKS|RECENT_LIGHT|mail_coupon|ALL",
+    "YOGURT|LAPSING|mail_coupon|ALL",
+    "COFFEE|LAPSING|mail_coupon|ALL",
+    "FROZEN PIZZA|RECENT_LIGHT|mail_coupon|ALL",
+    "YOGURT|REGULAR|mail_coupon|ALL",
+    "SOUP|RECENT_LIGHT|mail_coupon|ALL",
+    "COLD CEREAL|RECENT_LIGHT|mail_coupon|ALL",
+    "BAG SNACKS|ACTIVE_NONBUYER|mail_coupon|ALL",
+    "ICE CREAM/MILK/SHERBTS|RECENT_LIGHT|mail_coupon|ALL"
+  ],
+  "top3": [
+    {
+      "plan_id": "YOGURT/RECENT_LIGHT/mail_coupon/ALL",
+      "base": {
+        "components": [
+          {
+            "candidate_id": "YOGURT|RECENT_LIGHT|mail_coupon|ALL",
+            "category": "YOGURT",
+            "segment": "RECENT_LIGHT",
+            "channel": "mail_coupon",
+            "targeting": "ALL",
+            "dq": 0.025,
+            "g": 1.4657440000000002,
+            "face": 0.8705,
+            "contact_cost": 0.5,
+            "w": 1.0,
+            "reach": 167.0,
+            "net": -347.30652129333663,
+            "cost": 353.4260024933366,
+            "mean_q0": 0.32019325576309343,
+            "break_even_dq": 1.0038822402235392,
+            "break_even_note": null
+          }
+        ],
+        "net": -347.30652129333663,
+        "cost": 353.4260024933366,
+        "checks": {
+          "within_budget": true,
+          "category_share_ok": true,
+          "min_reach_ok": true,
+          "one_contact_per_household": true,
+          "stock_capacity": "UNKNOWN \u2014 human capacity check required"
+        },
+        "feasible": true
+      },
+      "low": {
+        "components": [
+          {
+            "candidate_id": "YOGURT|RECENT_LIGHT|mail_coupon|ALL",
+            "category": "YOGURT",
+            "segment": "RECENT_LIGHT",
+            "channel": "mail_coupon",
+            "targeting": "ALL",
+            "dq": 0.01,
+            "g": 1.0469600000000001,
+            "face": 0.8705,
+            "contact_cost": 0.8,
+            "w": 1.0,
+            "reach": 167.0,
+            "net": -556.5791189333381,
+            "cost": 558.327542133338,
+            "mean_q0": 0.32019325576309343,
+            "break_even_dq": 5.32338271886482,
+            "break_even_note": null
+          }
+        ],
+        "net": -556.5791189333381,
+        "cost": 558.327542133338,
+        "checks": {
+          "within_budget": true,
+          "category_share_ok": true,
+          "min_reach_ok": true,
+          "one_contact_per_household": true,
+          "stock_capacity": "UNKNOWN \u2014 human capacity check required"
+        },
+        "feasible": true
+      },
+      "high": {
+        "components": [
+          {
+            "candidate_id": "YOGURT|RECENT_LIGHT|mail_coupon|ALL",
+            "category": "YOGURT",
+            "segment": "RECENT_LIGHT",
+            "channel": "mail_coupon",
+            "targeting": "ALL",
+            "dq": 0.045,
+            "g": 1.83218,
+            "face": 0.8705,
+            "contact_cost": 0.3,
+            "w": 1.0,
+            "reach": 167.0,
+            "net": -202.18249765333522,
+            "cost": 215.9513303533352,
+            "mean_q0": 0.32019325576309343,
+            "break_even_dq": 0.3699210192874497,
+            "break_even_note": null
+          }
+        ],
+        "net": -202.18249765333522,
+        "cost": 215.9513303533352,
+        "checks": {
+          "within_budget": true,
+          "category_share_ok": true,
+          "min_reach_ok": true,
+          "one_contact_per_household": true,
+          "stock_capacity": "UNKNOWN \u2014 human capacity check required"
+        },
+        "feasible": true
+      }
+    },
+    {
+      "plan_id": "COFFEE/RECENT_LIGHT/mail_coupon/ALL",
+      "base": {
+        "components": [
+          {
+            "candidate_id": "COFFEE|RECENT_LIGHT|mail_coupon|ALL",
+            "category": "COFFEE",
+            "segment": "RECENT_LIGHT",
+            "channel": "mail_coupon",
+            "targeting": "ALL",
+            "dq": 0.025,
+            "g": 2.2022280000000003,
+            "face": 0.7702,
+            "contact_cost": 0.5,
+            "w": 1.0,
+            "reach": 206.0,
+            "net": -364.4763653787253,
+            "cost": 375.8178395787253,
+            "mean_q0": 0.33947105222098195,
+            "break_even_dq": 0.413058411949494,
+            "break_even_note": null
+          }
+        ],
+        "net": -364.4763653787253,
+        "cost": 375.8178395787253,
+        "checks": {
+          "within_budget": true,
+          "category_share_ok": true,
+          "min_reach_ok": true,
+          "one_contact_per_household": true,
+          "stock_capacity": "UNKNOWN \u2014 human capacity check required"
+        },
+        "feasible": true
+      },
+      "low": {
+        "components": [
+          {
+            "candidate_id": "COFFEE|RECENT_LIGHT|mail_coupon|ALL",
+            "category": "COFFEE",
+            "segment": "RECENT_LIGHT",
+            "channel": "mail_coupon",
+            "targeting": "ALL",
+            "dq": 0.01,
+            "g": 1.57302,
+            "face": 0.7702,
+            "contact_cost": 0.8,
+            "w": 1.0,
+            "reach": 206.0,
+            "net": -590.0766330553218,
+            "cost": 593.3170542553219,
+            "mean_q0": 0.33947105222098195,
+            "break_even_dq": 1.1593262527220298,
+            "break_even_note": null
+          }
+        ],
+        "net": -590.0766330553218,
+        "cost": 593.3170542553219,
+        "checks": {
+          "within_budget": true,
+          "category_share_ok": true,
+          "min_reach_ok": true,
+          "one_contact_per_household": true,
+          "stock_capacity": "UNKNOWN \u2014 human capacity check required"
+        },
+        "feasible": true
+      },
+      "high": {
+        "components": [
+          {
+            "candidate_id": "COFFEE|RECENT_LIGHT|mail_coupon|ALL",
+            "category": "COFFEE",
+            "segment": "RECENT_LIGHT",
+            "channel": "mail_coupon",
+            "targeting": "ALL",
+            "dq": 0.045,
+            "g": 2.752785,
+            "face": 0.7702,
+            "contact_cost": 0.3,
+            "w": 1.0,
+            "reach": 206.0,
+            "net": -204.19361395212871,
+            "cost": 229.71193090212873,
+            "mean_q0": 0.33947105222098195,
+            "break_even_dq": 0.17769332507010802,
+            "break_even_note": null
+          }
+        ],
+        "net": -204.19361395212871,
+        "cost": 229.71193090212873,
+        "checks": {
+          "within_budget": true,
+          "category_share_ok": true,
+          "min_reach_ok": true,
+          "one_contact_per_household": true,
+          "stock_capacity": "UNKNOWN \u2014 human capacity check required"
+        },
+        "feasible": true
+      }
+    },
+    {
+      "plan_id": "COFFEE/REGULAR/mail_coupon/ALL",
+      "base": {
+        "components": [
+          {
+            "candidate_id": "COFFEE|REGULAR|mail_coupon|ALL",
+            "category": "COFFEE",
+            "segment": "REGULAR",
+            "channel": "mail_coupon",
+            "targeting": "ALL",
+            "dq": 0.01,
+            "g": 2.2022280000000003,
+            "face": 0.7702,
+            "contact_cost": 0.5,
+            "w": 1.0,
+            "reach": 213.0,
+            "net": -390.6549769249413,
+            "cost": 395.3457225649413,
+            "mean_q0": 0.6479663328354321,
+            "break_even_dq": 0.4711306513157894,
+            "break_even_note": null
+          }
+        ],
+        "net": -390.6549769249413,
+        "cost": 395.3457225649413,
+        "checks": {
+          "within_budget": true,
+          "category_share_ok": true,
+          "min_reach_ok": true,
+          "one_contact_per_household": true,
+          "stock_capacity": "UNKNOWN \u2014 human capacity check required"
+        },
+        "feasible": true
+      },
+      "low": {
+        "components": [
+          {
+            "candidate_id": "COFFEE|REGULAR|mail_coupon|ALL",
+            "category": "COFFEE",
+            "segment": "REGULAR",
+            "channel": "mail_coupon",
+            "targeting": "ALL",
+            "dq": 0.005,
+            "g": 1.57302,
+            "face": 0.7702,
+            "contact_cost": 0.8,
+            "w": 1.0,
+            "reach": 213.0,
+            "net": -622.695277507059,
+            "cost": 624.370543807059,
+            "mean_q0": 0.6479663328354321,
+            "break_even_dq": 1.3073065379224793,
+            "break_even_note": null
+          }
+        ],
+        "net": -622.695277507059,
+        "cost": 624.370543807059,
+        "checks": {
+          "within_budget": true,
+          "category_share_ok": true,
+          "min_reach_ok": true,
+          "one_contact_per_household": true,
+          "stock_capacity": "UNKNOWN \u2014 human capacity check required"
+        },
+        "feasible": true
+      },
+      "high": {
+        "components": [
+          {
+            "candidate_id": "COFFEE|REGULAR|mail_coupon|ALL",
+            "category": "COFFEE",
+            "segment": "REGULAR",
+            "channel": "mail_coupon",
+            "targeting": "ALL",
+            "dq": 0.02,
+            "g": 2.752785,
+            "face": 0.7702,
+            "contact_cost": 0.3,
+            "w": 1.0,
+            "reach": 213.0,
+            "net": -226.7143002228236,
+            "cost": 238.4411643228236,
+            "mean_q0": 0.6479663328354321,
+            "break_even_dq": 0.2016623417961752,
+            "break_even_note": null
+          }
+        ],
+        "net": -226.7143002228236,
+        "cost": 238.4411643228236,
+        "checks": {
+          "within_budget": true,
+          "category_share_ok": true,
+          "min_reach_ok": true,
+          "one_contact_per_household": true,
+          "stock_capacity": "UNKNOWN \u2014 human capacity check required"
+        },
+        "feasible": true
+      }
+    }
+  ],
+  "heuristic": {
+    "plan_id": "HEURISTIC: BAG SNACKS/BROAD/mail_coupon/ALL + SOUP/BROAD/mail_coupon/ALL + COLD CEREAL/BROAD/mail_coupon/ALL",
+    "base": {
+      "components": [
+        {
+          "candidate_id": "BAG SNACKS|BROAD|mail_coupon|ALL",
+          "category": "BAG SNACKS",
+          "segment": "BROAD",
+          "channel": "mail_coupon",
+          "targeting": "ALL",
+          "dq": 0.008,
+          "g": 1.9946640000000002,
+          "face": 1.1259,
+          "contact_cost": 0.5,
+          "w": 1.0,
+          "reach": 36.0,
+          "net": -271.6684030802514,
+          "cost": 272.2428663122514,
+          "mean_q0": 0.27622396701696095,
+          "break_even_dq": 0.7008234659384349,
+          "break_even_note": null
+        },
+        {
+          "candidate_id": "SOUP|BROAD|mail_coupon|ALL",
+          "category": "SOUP",
+          "segment": "BROAD",
+          "channel": "mail_coupon",
+          "targeting": "ALL",
+          "dq": 0.008,
+          "g": 1.6124640000000001,
+          "face": 0.6385,
+          "contact_cost": 0.5,
+          "w": 1.0,
+          "reach": 1598.0,
+          "net": -1138.4247693001078,
+          "cost": 1159.0385090761079,
+          "mean_q0": 0.28527639938139415,
+          "break_even_dq": 0.5788223623786474,
+          "break_even_note": null
+        },
+        {
+          "candidate_id": "COLD CEREAL|BROAD|mail_coupon|ALL",
+          "category": "COLD CEREAL",
+          "segment": "BROAD",
+          "channel": "mail_coupon",
+          "targeting": "ALL",
+          "dq": 0.008,
+          "g": 1.8798920000000001,
+          "face": 0.9691,
+          "contact_cost": 0.5,
+          "w": 1.0,
+          "reach": 685.0,
+          "net": -627.7166163169361,
+          "cost": 638.0184244769362,
+          "mean_q0": 0.17305439424165467,
+          "break_even_dq": 0.6134193698570646,
+          "break_even_note": null
+        }
+      ],
+      "net": -2037.8097886972953,
+      "cost": 2069.2997998652954,
+      "checks": {
+        "within_budget": true,
+        "category_share_ok": true,
+        "min_reach_ok": false,
+        "one_contact_per_household": true,
+        "stock_capacity": "UNKNOWN \u2014 human capacity check required"
+      },
+      "feasible": false
+    },
+    "low": {
+      "components": [
+        {
+          "candidate_id": "BAG SNACKS|BROAD|mail_coupon|ALL",
+          "category": "BAG SNACKS",
+          "segment": "BROAD",
+          "channel": "mail_coupon",
+          "targeting": "ALL",
+          "dq": 0.003,
+          "g": 1.42476,
+          "face": 1.1259,
+          "contact_cost": 0.8,
+          "w": 1.0,
+          "reach": 36.0,
+          "net": -434.3657332803591,
+          "cost": 434.51960736035915,
+          "mean_q0": 0.27622396701696095,
+          "break_even_dq": 3.1971501111965392,
+          "break_even_note": null
+        },
+        {
+          "candidate_id": "SOUP|BROAD|mail_coupon|ALL",
+          "category": "SOUP",
+          "segment": "BROAD",
+          "channel": "mail_coupon",
+          "targeting": "ALL",
+          "dq": 0.003,
+          "g": 1.1517600000000001,
+          "face": 0.6385,
+          "contact_cost": 0.8,
+          "w": 1.0,
+          "reach": 1597.0,
+          "net": -1820.5966368989468,
+          "cost": 1826.1147190589468,
+          "mean_q0": 0.2852954331637812,
+          "break_even_dq": 1.7361192515246404,
+          "break_even_note": null
+        },
+        {
+          "candidate_id": "COLD CEREAL|BROAD|mail_coupon|ALL",
+          "category": "COLD CEREAL",
+          "segment": "BROAD",
+          "channel": "mail_coupon",
+          "targeting": "ALL",
+          "dq": 0.003,
+          "g": 1.34278,
+          "face": 0.9691,
+          "contact_cost": 0.8,
+          "w": 1.0,
+          "reach": 686.0,
+          "net": -1005.5513770032421,
+          "cost": 1008.3148182432421,
+          "mean_q0": 0.1730450826854229,
+          "break_even_dq": 2.365256355210933,
+          "break_even_note": null
+        }
+      ],
+      "net": -3260.5137471825483,
+      "cost": 3268.949144662548,
+      "checks": {
+        "within_budget": false,
+        "category_share_ok": false,
+        "min_reach_ok": false,
+        "one_contact_per_household": true,
+        "stock_capacity": "UNKNOWN \u2014 human capacity check required"
+      },
+      "feasible": false
+    },
+    "high": {
+      "components": [
+        {
+          "candidate_id": "BAG SNACKS|BROAD|mail_coupon|ALL",
+          "category": "BAG SNACKS",
+          "segment": "BROAD",
+          "channel": "mail_coupon",
+          "targeting": "ALL",
+          "dq": 0.015,
+          "g": 2.49333,
+          "face": 1.1259,
+          "contact_cost": 0.3,
+          "w": 1.0,
+          "reach": 36.0,
+          "net": -162.30079186414366,
+          "cost": 163.64719006414364,
+          "mean_q0": 0.27622396701696095,
+          "break_even_dq": 0.2648765296160529,
+          "break_even_note": null
+        },
+        {
+          "candidate_id": "SOUP|BROAD|mail_coupon|ALL",
+          "category": "SOUP",
+          "segment": "BROAD",
+          "channel": "mail_coupon",
+          "targeting": "ALL",
+          "dq": 0.015,
+          "g": 2.01558,
+          "face": 0.6385,
+          "contact_cost": 0.3,
+          "w": 1.0,
+          "reach": 1597.0,
+          "net": -654.2943148235787,
+          "cost": 702.5775337235787,
+          "mean_q0": 0.2852954331637812,
+          "break_even_dq": 0.2443084111417019,
+          "break_even_note": null
+        },
+        {
+          "candidate_id": "COLD CEREAL|BROAD|mail_coupon|ALL",
+          "category": "COLD CEREAL",
+          "segment": "BROAD",
+          "channel": "mail_coupon",
+          "targeting": "ALL",
+          "dq": 0.015,
+          "g": 2.349865,
+          "face": 0.9691,
+          "contact_cost": 0.3,
+          "w": 1.0,
+          "reach": 686.0,
+          "net": -364.6000923272968,
+          "cost": 388.7802031772968,
+          "mean_q0": 0.1730450826854229,
+          "break_even_dq": 0.2415614517503621,
+          "break_even_note": null
+        }
+      ],
+      "net": -1181.1951990150192,
+      "cost": 1255.004926965019,
+      "checks": {
+        "within_budget": true,
+        "category_share_ok": true,
+        "min_reach_ok": false,
+        "one_contact_per_household": true,
+        "stock_capacity": "UNKNOWN \u2014 human capacity check required"
+      },
+      "feasible": false
+    }
+  },
+  "none": {
+    "plan_id": "NONE: research / measure first",
+    "base": {
+      "net": 0.0,
+      "cost": 0.0,
+      "feasible": true,
+      "components": []
+    },
+    "low": {
+      "net": 0.0
+    },
+    "high": {
+      "net": 0.0
+    }
+  },
+  "recommended_base": "NONE: research / measure first",
+  "recommended_robust": "NONE: research / measure first",
+  "assumptions_base": {
+    "margin_rate": 0.28,
+    "redemption_share": 0.35,
+    "contact_cost": {
+      "mail_coupon": 0.5
+    },
+    "reach_share": {
+      "mail_coupon": 1.0
+    },
+    "fixed_setup": 250,
+    "uplift": {
+      "REGULAR": 0.01,
+      "RECENT_LIGHT": 0.025,
+      "LAPSING": 0.04,
+      "ACTIVE_NONBUYER": 0.015,
+      "BROAD": 0.008
+    },
+    "uplift_multiplier": 1.0,
+    "scale": 1.0,
+    "status": {
+      "margin_rate": "ASSUMED",
+      "redemption_share": "ASSUMED",
+      "contact_cost": "ASSUMED",
+      "reach_share": "ASSUMED",
+      "fixed_setup": "ASSUMED",
+      "uplift": "ASSUMED",
+      "scale": "ASSUMED",
+      "q0": "MODEL ESTIMATE",
+      "category_spend": "OBSERVED",
+      "coupon_face_value": "OBSERVED"
+    }
+  },
+  "status": "SIMULATION \u2014 conditional on ASSUMED uplift, margin, redemption, contact cost, reach and scale; q0 is a MODEL ESTIMATE",
+  "model_run_id": "run-3d1f29708e"
+}
