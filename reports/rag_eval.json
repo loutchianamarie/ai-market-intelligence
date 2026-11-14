@@ -21,21 +21,21 @@
         {
           "about": "households",
           "values": {
-            "801": [
-              "cj_py_port_readme"
-            ],
             "2469": [
               "cj_pkg_index"
+            ],
+            "801": [
+              "cj_py_port_readme"
             ]
           }
         }
       ],
       "top": [
         "cj_transactions",
-        "cj_py_port_readme",
-        "cj_pkg_index"
+        "cj_pkg_index",
+        "cj_py_port_readme"
       ],
-      "answer": "Source: R/transactions.R transactions.Rd All products purchased by households within the Complete Journey study. ## Overview The Complete Journey dataset represents grocery store shopping transactions over one year from a group of **801 hou"
+      "answer": "Source: R/transactions.R transactions.Rd All products purchased by households within the Complete Journey study. The data represents grocery store shopping transactions over one year from a group of 2,469 households who are frequent shopper"
     },
     {
       "q": "Is the completejourney_py Python package authentic consumer data or simulated?",
@@ -49,7 +49,7 @@
         "cj_py_port_readme",
         "cj_py_port_readme"
       ],
-      "answer": "> **Important**: This package contains simulated data based on real grocery shopping patterns. st.yml) [![Docs](https://img.shields.io/badge/docs-latest-blue.svg)](https://cunningjames.github.io/completejourney_py/) [![Code style: black](ht"
+      "answer": "The Complete Journey (Python) A Python data package providing access to grocery store shopping transaction data from 84.51\u00b0. >= 1.0.0 Development Running Tests Install test dependencies pip install -e \".[test]\" Run tests pytest Run with cov"
     },
     {
       "q": "What does the coupon redemptions table record?",
@@ -77,7 +77,7 @@
         "cj_py_port_readme",
         "cj_campaigns"
       ],
-      "answer": "campaigns : campaigns received by each household campaign_descriptions : campaign metadata (length of time active) coupons havior patterns - **Coupon Analysis** - Promotional effectiveness - **Traffic Patterns** - Store visit timing and tre"
+      "answer": "campaigns : campaigns received by each household campaign_descriptions : campaign metadata (length of time active) coupons sociations and cross-selling Datasets Core Transaction Data - `transactions` - Complete purchase records (1.47M recor"
     },
     {
       "q": "Does Google require special markup or schema to appear in AI Overviews?",
@@ -131,7 +131,7 @@
       "top": [
         "course_marketing_primer",
         "course_market_research_primer",
-        "course_market_research_primer"
+        "cj_py_port_readme"
       ],
       "answer": "3 Tests Every Real Segment Must Pass Measurable: \u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026... The rule for this course When somebody says \"we used AI\", you must be able to answer three questions: which method?"
     },
@@ -226,7 +226,7 @@
           "cj_py_port_readme",
           "cj_pkg_index"
         ],
-        "answer": "te.max()}\") # Household spending analysis household_spending = transactions.groupby('household_id')['sales_value'].sum() print(f\"\\nAverage household spending: ${household_spending.mean():.2f}\") print(f\"Median household spending: ${household"
+        "answer": "campaign_data = get_data([\"campaigns\", \"campaign_descriptions\", \"transactions\"]) campaigns = campaign_data[\"campaigns\"] descriptions = campaign_data[\"campaign_descriptions\"] transactions = campaign_data[\"transactions\"] Join campaign data ca"
       },
       {
         "q": "What does Google say about AI Overviews and AI Mode eligibility for a page?",
@@ -294,7 +294,7 @@
         "top": [
           "course_market_research_primer",
           "course_metrics_workbook",
-          "course_metrics_workbook"
+          "report_data_audit"
         ],
         "answer": "UNKNOWN \u2014 the corpus does not support an answer."
       }

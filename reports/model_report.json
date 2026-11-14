@@ -1,9 +1,9 @@
 {
-  "run_id": "run-3d1f29708e",
-  "created_at": "2026-11-14T00:04:03+00:00",
+  "run_id": "run-0a53542e4e",
+  "created_at": "2026-11-14T01:34:13+00:00",
   "status": "OBSERVED (historical backtest) \u2014 predicts observed purchase under historical conditions, NOT response to a coupon",
   "seed": 20261114,
-  "config_hash": "6ad30019bd70298e",
+  "config_hash": "562d203b67791ea9",
   "data_manifest_commit": "5b5d06192b9856edd04e4d405787af2f2e4a1fef",
   "target": "household buys category in the next 4 weeks (any basket)",
   "unit": "(cutoff_week, household_id, product_category)",
@@ -350,11 +350,11 @@
       "YOGURT": 0.8705
     }
   },
-  "seconds": 136.7,
+  "seconds": 31.9,
   "artifacts": {
     "scores": "data/processed/scores_latest.parquet",
     "scores_sha16": "c65e158357f2f128",
     "model": "data/processed/model.pkl",
-    "model_sha16": "2f6c2a5c3c59874c"
+    "model_sha16": "e693db50e28b4641"
   }
 }

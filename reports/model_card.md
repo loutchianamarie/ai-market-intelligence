@@ -1,10 +1,10 @@
-# Model card — run-3d1f29708e
+# Model card — run-0a53542e4e
 
 **Status:** OBSERVED (historical backtest) — predicts observed purchase under historical conditions, NOT response to a coupon
 
 - Target: household buys category in the next 4 weeks (any basket)
 - Unit: (cutoff_week, household_id, product_category)
-- Seed 20261114, config hash `6ad30019bd70298e`, data commit `5b5d06192b98`
+- Seed 20261114, config hash `562d203b67791ea9`, data commit `5b5d06192b98`
 - Selected on validation AP: **hgb_small** ({"logreg_l2": 0.6615, "hgb_small": 0.6652, "hgb_deeper": 0.6626, "rule_repeat": 0.628, "rule_popularity": 0.3409})
 - Calibration: isotonic regression fit on calibration window only
 

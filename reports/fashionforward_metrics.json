@@ -1,0 +1,50 @@
+{
+  "status": "SYNTHETIC course fixture (FashionForward) \u2014 arithmetic check only",
+  "naive_no_rules": {
+    "rows": 12023,
+    "revenue_all_rows": 952832.75
+  },
+  "duplicates_removed_R1": 135,
+  "test_orders_removed_R2": 12,
+  "N1_orders_after_cleaning": 11876,
+  "N2_completed_orders": 9916,
+  "N3_net_revenue": 796987.13,
+  "N4_AOV": 80.37,
+  "N5_return_rate_pct": 15.2,
+  "unmapped_channel_rows": 0,
+  "naive_revenue_overstatement_pct": 19.6,
+  "channels": {
+    "Google": {
+      "spend": 73169.43,
+      "CTR_pct": 4.58,
+      "CPM": 54.07,
+      "CPC": 1.18,
+      "CPA_shop": 50.74,
+      "ROAS_shop": 1.86,
+      "ROAS_platform": 2.37,
+      "above_break_even_1.82": true
+    },
+    "Meta": {
+      "spend": 101086.67,
+      "CTR_pct": 1.13,
+      "CPM": 8.09,
+      "CPC": 0.72,
+      "CPA_shop": 50.72,
+      "ROAS_shop": 1.55,
+      "ROAS_platform": 2.75,
+      "above_break_even_1.82": false
+    },
+    "TikTok": {
+      "spend": 67210.35,
+      "CTR_pct": 1.63,
+      "CPM": 5.07,
+      "CPC": 0.31,
+      "CPA_shop": 41.75,
+      "ROAS_shop": 1.47,
+      "ROAS_platform": 4.44,
+      "above_break_even_1.82": false
+    }
+  },
+  "N6_total_ad_spend": 241466.45,
+  "blended_ROAS": 3.3
+}

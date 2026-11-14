@@ -66,6 +66,19 @@ def chunk(text: str, size=700, overlap=120) -> list[str]:
     return out
 
 
+def clean_markdown(text: str) -> str:
+    """Drop badge/image lines and markdown markup so cited spans are plain text."""
+    out = []
+    for line in text.splitlines():
+        if "[![" in line or line.strip().startswith("```"):
+            continue
+        line = re.sub(r"!\[[^\]]*\]\([^)]*\)", "", line)
+        line = re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", line)
+        line = re.sub(r"^\s*#{1,6}\s*", "", line).replace("**", "").replace("> ", "")
+        out.append(line)
+    return "\n".join(out)
+
+
 def build() -> list[dict]:
     log = json.loads((CACHE / "fetch_log.json").read_text()) if (CACHE / "fetch_log.json").exists() else {}
     rows = []
@@ -75,7 +88,7 @@ def build() -> list[dict]:
     for sid, path, meta in items:
         if not path.exists():
             continue
-        text = path.read_text(encoding="utf-8", errors="ignore")
+        text = clean_markdown(path.read_text(encoding="utf-8", errors="ignore"))
         fl = log.get(sid, {})
         src = {"source_id": sid, "url": fl.get("url") or (f"local:{path.name}"), **meta,
                "retrieved_at": fl.get("retrieved_at") or datetime.fromtimestamp(path.stat().st_mtime, timezone.utc).isoformat(timespec="seconds"),
