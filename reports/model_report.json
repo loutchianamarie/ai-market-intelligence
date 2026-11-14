@@ -1,6 +1,6 @@
 {
   "run_id": "run-0a53542e4e",
-  "created_at": "2026-11-14T01:34:13+00:00",
+  "created_at": "2026-11-14T08:54:39+00:00",
   "status": "OBSERVED (historical backtest) \u2014 predicts observed purchase under historical conditions, NOT response to a coupon",
   "seed": 20261114,
   "config_hash": "562d203b67791ea9",
@@ -348,9 +348,265 @@
       "REFRGRATD JUICES/DRNKS": 0.8935,
       "SOUP": 0.6385,
       "YOGURT": 0.8705
+    },
+    "test_window_category_segment_stats": {
+      "BAG SNACKS|ACTIVE_NONBUYER": {
+        "n": 375,
+        "purchase_rate": 0.232,
+        "spend_mean": 1.009,
+        "spend_sd": 2.3383
+      },
+      "BAG SNACKS|LAPSING": {
+        "n": 454,
+        "purchase_rate": 0.3678,
+        "spend_mean": 1.8382,
+        "spend_sd": 3.3449
+      },
+      "BAG SNACKS|LOW_ACTIVITY": {
+        "n": 430,
+        "purchase_rate": 0.1442,
+        "spend_mean": 0.6945,
+        "spend_sd": 2.1037
+      },
+      "BAG SNACKS|RECENT_LIGHT": {
+        "n": 361,
+        "purchase_rate": 0.446,
+        "spend_mean": 2.3609,
+        "spend_sd": 4.0319
+      },
+      "BAG SNACKS|REGULAR": {
+        "n": 690,
+        "purchase_rate": 0.7551,
+        "spend_mean": 6.8778,
+        "spend_sd": 7.7431
+      },
+      "COFFEE|ACTIVE_NONBUYER": {
+        "n": 969,
+        "purchase_rate": 0.0671,
+        "spend_mean": 0.3213,
+        "spend_sd": 1.3542
+      },
+      "COFFEE|LAPSING": {
+        "n": 295,
+        "purchase_rate": 0.2542,
+        "spend_mean": 1.7372,
+        "spend_sd": 3.7428
+      },
+      "COFFEE|LOW_ACTIVITY": {
+        "n": 564,
+        "purchase_rate": 0.0408,
+        "spend_mean": 0.2137,
+        "spend_sd": 1.1653
+      },
+      "COFFEE|RECENT_LIGHT": {
+        "n": 270,
+        "purchase_rate": 0.2852,
+        "spend_mean": 1.6455,
+        "spend_sd": 3.0985
+      },
+      "COFFEE|REGULAR": {
+        "n": 212,
+        "purchase_rate": 0.7028,
+        "spend_mean": 7.8814,
+        "spend_sd": 10.0492
+      },
+      "COLD CEREAL|ACTIVE_NONBUYER": {
+        "n": 641,
+        "purchase_rate": 0.156,
+        "spend_mean": 0.6731,
+        "spend_sd": 1.9557
+      },
+      "COLD CEREAL|LAPSING": {
+        "n": 438,
+        "purchase_rate": 0.3311,
+        "spend_mean": 1.8275,
+        "spend_sd": 3.4808
+      },
+      "COLD CEREAL|LOW_ACTIVITY": {
+        "n": 509,
+        "purchase_rate": 0.0904,
+        "spend_mean": 0.4274,
+        "spend_sd": 1.6465
+      },
+      "COLD CEREAL|RECENT_LIGHT": {
+        "n": 276,
+        "purchase_rate": 0.3587,
+        "spend_mean": 2.0384,
+        "spend_sd": 3.7972
+      },
+      "COLD CEREAL|REGULAR": {
+        "n": 446,
+        "purchase_rate": 0.6614,
+        "spend_mean": 5.8005,
+        "spend_sd": 7.1266
+      },
+      "FROZEN PIZZA|ACTIVE_NONBUYER": {
+        "n": 698,
+        "purchase_rate": 0.1562,
+        "spend_mean": 1.1455,
+        "spend_sd": 3.2267
+      },
+      "FROZEN PIZZA|LAPSING": {
+        "n": 412,
+        "purchase_rate": 0.3277,
+        "spend_mean": 2.8955,
+        "spend_sd": 5.84
+      },
+      "FROZEN PIZZA|LOW_ACTIVITY": {
+        "n": 512,
+        "purchase_rate": 0.0762,
+        "spend_mean": 0.6059,
+        "spend_sd": 2.9051
+      },
+      "FROZEN PIZZA|RECENT_LIGHT": {
+        "n": 300,
+        "purchase_rate": 0.38,
+        "spend_mean": 3.6875,
+        "spend_sd": 7.3773
+      },
+      "FROZEN PIZZA|REGULAR": {
+        "n": 388,
+        "purchase_rate": 0.6753,
+        "spend_mean": 8.7636,
+        "spend_sd": 11.2566
+      },
+      "ICE CREAM/MILK/SHERBTS|ACTIVE_NONBUYER": {
+        "n": 702,
+        "purchase_rate": 0.1268,
+        "spend_mean": 0.5354,
+        "spend_sd": 1.9309
+      },
+      "ICE CREAM/MILK/SHERBTS|LAPSING": {
+        "n": 499,
+        "purchase_rate": 0.2926,
+        "spend_mean": 1.5031,
+        "spend_sd": 3.3035
+      },
+      "ICE CREAM/MILK/SHERBTS|LOW_ACTIVITY": {
+        "n": 527,
+        "purchase_rate": 0.0759,
+        "spend_mean": 0.3164,
+        "spend_sd": 1.3196
+      },
+      "ICE CREAM/MILK/SHERBTS|RECENT_LIGHT": {
+        "n": 278,
+        "purchase_rate": 0.3273,
+        "spend_mean": 1.4249,
+        "spend_sd": 2.6171
+      },
+      "ICE CREAM/MILK/SHERBTS|REGULAR": {
+        "n": 304,
+        "purchase_rate": 0.6184,
+        "spend_mean": 4.7765,
+        "spend_sd": 6.42
+      },
+      "REFRGRATD JUICES/DRNKS|ACTIVE_NONBUYER": {
+        "n": 743,
+        "purchase_rate": 0.1413,
+        "spend_mean": 0.5278,
+        "spend_sd": 1.6342
+      },
+      "REFRGRATD JUICES/DRNKS|LAPSING": {
+        "n": 362,
+        "purchase_rate": 0.2735,
+        "spend_mean": 1.1308,
+        "spend_sd": 2.3947
+      },
+      "REFRGRATD JUICES/DRNKS|LOW_ACTIVITY": {
+        "n": 506,
+        "purchase_rate": 0.0751,
+        "spend_mean": 0.2561,
+        "spend_sd": 1.0716
+      },
+      "REFRGRATD JUICES/DRNKS|RECENT_LIGHT": {
+        "n": 299,
+        "purchase_rate": 0.4047,
+        "spend_mean": 1.6702,
+        "spend_sd": 2.7458
+      },
+      "REFRGRATD JUICES/DRNKS|REGULAR": {
+        "n": 400,
+        "purchase_rate": 0.72,
+        "spend_mean": 4.4182,
+        "spend_sd": 4.8065
+      },
+      "SOUP|ACTIVE_NONBUYER": {
+        "n": 502,
+        "purchase_rate": 0.1713,
+        "spend_mean": 0.6512,
+        "spend_sd": 2.0424
+      },
+      "SOUP|LAPSING": {
+        "n": 446,
+        "purchase_rate": 0.3161,
+        "spend_mean": 1.3438,
+        "spend_sd": 2.7678
+      },
+      "SOUP|LOW_ACTIVITY": {
+        "n": 465,
+        "purchase_rate": 0.0796,
+        "spend_mean": 0.3431,
+        "spend_sd": 1.4636
+      },
+      "SOUP|RECENT_LIGHT": {
+        "n": 394,
+        "purchase_rate": 0.3832,
+        "spend_mean": 1.9815,
+        "spend_sd": 4.3476
+      },
+      "SOUP|REGULAR": {
+        "n": 503,
+        "purchase_rate": 0.7038,
+        "spend_mean": 5.0935,
+        "spend_sd": 7.486
+      },
+      "YOGURT|ACTIVE_NONBUYER": {
+        "n": 934,
+        "purchase_rate": 0.0685,
+        "spend_mean": 0.258,
+        "spend_sd": 1.1376
+      },
+      "YOGURT|LAPSING": {
+        "n": 320,
+        "purchase_rate": 0.1812,
+        "spend_mean": 0.6831,
+        "spend_sd": 1.6648
+      },
+      "YOGURT|LOW_ACTIVITY": {
+        "n": 558,
+        "purchase_rate": 0.0251,
+        "spend_mean": 0.0789,
+        "spend_sd": 0.5543
+      },
+      "YOGURT|RECENT_LIGHT": {
+        "n": 195,
+        "purchase_rate": 0.3077,
+        "spend_mean": 1.6208,
+        "spend_sd": 3.5456
+      },
+      "YOGURT|REGULAR": {
+        "n": 303,
+        "purchase_rate": 0.5974,
+        "spend_mean": 3.808,
+        "spend_sd": 5.217
+      }
     }
   },
-  "seconds": 31.9,
+  "window_gaps_model_vs_rule": {
+    "validation_41": {
+      "model": 0.6651821207836169,
+      "rule": 0.627952498473635
+    },
+    "calibration_45": {
+      "model": 0.6651663258750253,
+      "rule": 0.6216834324267566
+    },
+    "test_49": {
+      "model": 0.6623996291847538,
+      "rule": 0.6210149195951625
+    }
+  },
+  "seconds": 87.5,
   "artifacts": {
     "scores": "data/processed/scores_latest.parquet",
     "scores_sha16": "c65e158357f2f128",

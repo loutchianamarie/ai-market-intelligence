@@ -110,3 +110,36 @@ def decide(outcome: dict, cfg=None) -> dict:
            "INCONCLUSIVE": "Extend the test or enlarge the sample; do not roll out."}[d]
     return {"decision": d, "guardrail_failures": fails, "rule": cfg["outcome_rule"], "next_action": nxt,
             "provenance": outcome["provenance"]}
+
+
+Z975, Z80 = 1.959964, 0.841621
+
+
+def contribution_sample_size(sigma: float, delta: float) -> int:
+    """Households per arm so the 95% CI lower bound of the contribution difference is > 0 with 80% power,
+    if the true effect is `delta` USD/household and the per-household SD is `sigma` (equal arms)."""
+    if delta <= 0 or sigma <= 0:
+        raise ValueError("need delta > 0 and sigma > 0")
+    return int(math.ceil((Z975 + Z80) ** 2 * 2 * sigma ** 2 / delta ** 2))
+
+
+def pilot_design(q0: float, g: float, face: float, contact: float, redemption: float, sigma: float,
+                 assumed_dq: float, multiples=(1.5, 2.0, 3.0), arms_n=(200, 406, 866, 2000, 5000)) -> dict:
+    """Deterministic design table for a learn-first holdout. Every input is labelled by the caller."""
+    dq_star = (contact + q0 * redemption * face) / (g - face)
+    n_proxy = sample_size(q0, round(dq_star, 4))
+    contrib = {}
+    for k in multiples:
+        delta = (k - 1) * dq_star * (g - face)
+        contrib[str(k)] = {"true_uplift": round(k * dq_star, 4), "delta_usd_per_hh": round(delta, 4),
+                           "n_per_arm": contribution_sample_size(sigma, delta)}
+    mde = {}
+    for n in arms_n:
+        d_c = (Z975 + Z80) * math.sqrt(2 * sigma ** 2 / n)
+        mde[str(n)] = {"min_detectable_purchase_uplift": round((Z975 + Z80) * math.sqrt(2 * q0 * (1 - q0) / n), 4),
+                       "uplift_needed_for_expand": round(dq_star + d_c / (g - face), 4)}
+    return {"break_even_uplift": round(dq_star, 4), "assumed_uplift": assumed_dq,
+            "n_purchase_proxy": n_proxy,
+            "n_purchase_proxy_note": "detects uplift > 0 when true uplift = break-even; contribution is then 0, so it cannot support EXPAND",
+            "n_contribution": contrib, "mde_by_n_per_arm": mde,
+            "per_treated_household_cost": round(contact + (q0 * redemption + assumed_dq) * face, 4)}

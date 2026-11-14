@@ -94,7 +94,10 @@ class Universe:
             c = self.cands[j]
             mean_q0 = float(np.nanmean(self.Q[m, j])) if m.any() else float("nan")
             be = break_even_uplift(mean_q0, c["g"], c["face"], c["contact_cost"], a.redemption_share)
+            per1000 = float(1000 * self.V[m, j].mean()) if m.any() else None   # scale-free: per 1,000 contacted, before fixed setup
             comps.append({**c, "reach": reach, "net": net, "cost": cost, "mean_q0": mean_q0,
+                          "panel_households": int(m.sum()), "net_per_1000_contacted_before_fixed": per1000,
+                          "reach_status": "COMPANY SCALE ASSUMED; not measured" if a.scale != 1 else "panel sample (not contactable)",
                           "break_even_dq": be if isinstance(be, float) else None,
                           "break_even_note": None if isinstance(be, float) else be.reason})
             total_net += net

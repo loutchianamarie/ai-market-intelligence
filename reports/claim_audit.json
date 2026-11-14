@@ -1,0 +1,205 @@
+{
+  "data": {
+    "manifest_commit": "5b5d06192b9856edd04e4d405787af2f2e4a1fef",
+    "checksums_match": {
+      "transactions.rds": true,
+      "products.rda": true,
+      "campaigns.rda": true,
+      "campaign_descriptions.rda": true,
+      "coupons.rda": true,
+      "coupon_redemptions.rda": true,
+      "demographics.rda": true
+    },
+    "transaction_lines": 1469307,
+    "households": 2469,
+    "year": [
+      2017,
+      2018
+    ]
+  },
+  "model": {
+    "test_rows": 18480,
+    "test_households": 2310,
+    "rows_per_household": [
+      8
+    ],
+    "prevalence": 0.275,
+    "AP_recomputed": {
+      "model": 0.6623996291847538,
+      "rule_repeat": 0.6210149195951625,
+      "popularity": 0.35228292125407995
+    },
+    "Brier_recomputed": {
+      "model": 0.14383075232587914,
+      "rule_repeat": 0.1485146455918681,
+      "popularity": 0.193386312095884
+    },
+    "AP_diff_bootstrap_1000_seed7": {
+      "mean": 0.04159688728669841,
+      "ci95": [
+        0.03721211813078208,
+        0.0461345650318101
+      ]
+    },
+    "AP_diff_reported": [
+      0.037617078654803335,
+      0.045460937689187485
+    ],
+    "window_gaps": {
+      "validation_41": 0.0372,
+      "calibration_45": 0.0435,
+      "test_49": 0.0414
+    },
+    "interval_scope": "household sampling within ONE 4-week test window (holiday); temporal variation shown by window_gaps",
+    "category_support": {
+      "BAG SNACKS": {
+        "rows": 2310,
+        "positives": 998
+      },
+      "COFFEE": {
+        "rows": 2310,
+        "positives": 389
+      },
+      "COLD CEREAL": {
+        "rows": 2310,
+        "positives": 685
+      },
+      "FROZEN PIZZA": {
+        "rows": 2310,
+        "positives": 659
+      },
+      "ICE CREAM/MILK/SHERBTS": {
+        "rows": 2310,
+        "positives": 554
+      },
+      "REFRGRATD JUICES/DRNKS": {
+        "rows": 2310,
+        "positives": 651
+      },
+      "SOUP": {
+        "rows": 2310,
+        "positives": 769
+      },
+      "YOGURT": {
+        "rows": 2310,
+        "positives": 377
+      }
+    },
+    "no_recent_history_rows": {
+      "rows": 9635,
+      "positives": 1004,
+      "AP_model": 0.1977867600209975,
+      "AP_rule": 0.10420342501297353,
+      "prevalence": 0.10420342501297353
+    },
+    "test_window_never_used_for_selection_or_calibration": "selection used cutoff 41, calibration cutoff 45; cutoff 49 used only for reporting (ablation numbers on test are reported, never used to choose)"
+  },
+  "campaigns": {
+    "definition": "pre-period = 8 weeks before the campaign's start week; recipients = households listed for that campaign and active in the pre-period; others = active households not listed for that campaign (may receive other campaigns); type ratio = mean over campaigns of campaign-level mean ratios; campaigns starting before week 10 excluded",
+    "campaigns_included": 23,
+    "campaigns_total": 27,
+    "reported_selection_ratio_by_type": {
+      "Type A": 2.553,
+      "Type B": 2.042,
+      "Type C": 2.226
+    },
+    "pooled_recipient_weighted_ratio_by_type": {
+      "Type A": 2.552,
+      "Type B": 2.136,
+      "Type C": 2.271
+    },
+    "ever_vs_never_recipient_weekly_spend_weeks_2_9": 4.139,
+    "households_ever_recipient": 1559
+  },
+  "economics": {
+    "inputs": {
+      "g_contribution_per_incremental_buyer": 2.8932,
+      "coupon_face": 0.9046,
+      "q0_mean": 0.3049,
+      "assumed_dq": 0.04,
+      "contact_cost": 0.03,
+      "redemption_share": 0.35,
+      "reach_share": 0.45,
+      "scale": 40,
+      "fixed_setup": 1500
+    },
+    "frozen_pizza_lapsing_digital_net_base": {
+      "independent": -1843.31,
+      "engine": -1843.31
+    },
+    "per_1000_contacted_households_before_fixed": -46.98,
+    "break_even_uplift": 0.0636,
+    "reach_needed_to_cover_fixed_at_assumed_dq": null,
+    "panel_households_in_cohort": 406,
+    "panel_reachable_digital_at_scale_1": 182.7,
+    "sample_size": {
+      "reported_866_reproduced": 866,
+      "basis_of_866": "binary 4-week purchase, p0 = model mean q0, minimum effect = break-even uplift, two-sided alpha .05, power .8, 1:1. It detects uplift > 0 when true uplift equals break-even; at break-even contribution is ZERO, so it cannot support EXPAND.",
+      "contribution_sigma_per_hh_observed": 1.6352,
+      "contribution_based_n_per_arm": {
+        "true_uplift_1.5x_break_even": {
+          "uplift": 0.0954,
+          "delta_contribution_per_hh": 0.0633,
+          "n_per_arm": 10489
+        },
+        "true_uplift_2.0x_break_even": {
+          "uplift": 0.1272,
+          "delta_contribution_per_hh": 0.1265,
+          "n_per_arm": 2623
+        },
+        "true_uplift_3.0x_break_even": {
+          "uplift": 0.1909,
+          "delta_contribution_per_hh": 0.253,
+          "n_per_arm": 656
+        }
+      },
+      "minimum_detectable_effects": {
+        "200": {
+          "min_detectable_purchase_uplift_pp": 12.9,
+          "min_detectable_contribution_per_hh_usd": 0.458,
+          "implied_uplift_for_positive_contribution_pp": 29.4
+        },
+        "406": {
+          "min_detectable_purchase_uplift_pp": 9.05,
+          "min_detectable_contribution_per_hh_usd": 0.322,
+          "implied_uplift_for_positive_contribution_pp": 22.53
+        },
+        "866": {
+          "min_detectable_purchase_uplift_pp": 6.2,
+          "min_detectable_contribution_per_hh_usd": 0.22,
+          "implied_uplift_for_positive_contribution_pp": 17.43
+        },
+        "2000": {
+          "min_detectable_purchase_uplift_pp": 4.08,
+          "min_detectable_contribution_per_hh_usd": 0.145,
+          "implied_uplift_for_positive_contribution_pp": 13.65
+        },
+        "5000": {
+          "min_detectable_purchase_uplift_pp": 2.58,
+          "min_detectable_contribution_per_hh_usd": 0.092,
+          "implied_uplift_for_positive_contribution_pp": 10.97
+        }
+      }
+    },
+    "pilot_cost_reproduced": {
+      "per_household": 0.1627,
+      "n_treated": 866,
+      "total": 1640.9,
+      "currency": "USD",
+      "status": "ASSUMED inputs (contact, redemption, fixed, dq); OBSERVED face"
+    }
+  },
+  "rag": {
+    "dev_set": {
+      "n": 13,
+      "abstention_correct": 13,
+      "recall_at_5": 1.0
+    },
+    "held_out_set": {
+      "n": 6,
+      "abstention_correct": 6
+    },
+    "what_19_of_19_counts": "answer-vs-abstain DECISIONS on 13 development + 6 'held-out' questions (not claims, not tool calls)",
+    "provenance_caveat": "the coverage threshold (0.45) was chosen after inspecting development coverage values; the 6 held-out questions were written by the same session after seeing v1 failures, so they are NOT a clean unseen test"
+  }
+}

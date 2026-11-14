@@ -300,3 +300,27 @@ def main(argv=None) -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
+
+
+def evaluate_locked(path) -> dict:
+    """Run a pre-registered, locked evaluation file once; never used to tune thresholds."""
+    spec = json.loads(open(path, encoding="utf-8").read())
+    rows = []
+    for e in spec["items"]:
+        r = answer(e["q"], as_of=e.get("as_of"))
+        got = [x["source_id"] for x in r["retrieved"]]
+        rows.append({"id": e["id"], "type": e["type"], "answerable": e["answerable"], "abstained": r["abstained"],
+                     "decision_correct": r["abstained"] == (not e["answerable"]),
+                     "recall_at_5": (any(s in got for s in e["expect"]) if e["expect"] else None),
+                     "conflict_flagged": bool(r.get("conflicts")) if e.get("conflict") else None,
+                     "top3": got[:3], "coverage": r.get("top1_query_coverage"), "answer": r["answer"][:200]})
+    by_type = {}
+    for t in sorted({x["type"] for x in rows}):
+        rr = [x for x in rows if x["type"] == t]
+        by_type[t] = f"{sum(x['decision_correct'] for x in rr)}/{len(rr)} correct answer-or-abstain decisions"
+    out = {"file": str(path), "n": len(rows), "decisions_correct": sum(x["decision_correct"] for x in rows),
+           "recall_at_5_answerable": f"{sum(bool(x['recall_at_5']) for x in rows if x['answerable'])}/{sum(x['answerable'] for x in rows)}",
+           "conflicts_flagged": f"{sum(bool(x['conflict_flagged']) for x in rows if x['conflict_flagged'] is not None)}/{sum(1 for x in rows if x['conflict_flagged'] is not None)}",
+           "by_type": by_type, "rows": rows,
+           "status": "OBSERVED on a small locked set; semantic adequacy still needs human review"}
+    return out

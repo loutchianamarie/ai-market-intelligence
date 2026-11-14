@@ -36,6 +36,9 @@
             "net": -1781.2941940771234,
             "cost": 2344.1836708771234,
             "mean_q0": 0.26450317408482954,
+            "panel_households": 355,
+            "net_per_1000_contacted_before_fixed": -44.02100063804748,
+            "reach_status": "COMPANY SCALE ASSUMED; not measured",
             "break_even_dq": 0.07074032116554108,
             "break_even_note": null
           }
@@ -68,6 +71,9 @@
             "net": -2676.581017542172,
             "cost": 2710.0863435421725,
             "mean_q0": 0.26450317408482954,
+            "panel_households": 355,
+            "net_per_1000_contacted_before_fixed": -165.80377234006784,
+            "reach_status": "COMPANY SCALE ASSUMED; not measured",
             "break_even_dq": 0.2265267087766471,
             "break_even_note": null
           }
@@ -100,6 +106,9 @@
             "net": 875.1855666626218,
             "cost": 3229.2168683373784,
             "mean_q0": 0.26450317408482954,
+            "panel_households": 355,
+            "net_per_1000_contacted_before_fixed": 88.03688106397286,
+            "reach_status": "COMPANY SCALE ASSUMED; not measured",
             "break_even_dq": 0.025594902077856512,
             "break_even_note": null
           }
@@ -135,6 +144,9 @@
             "net": -1817.8145768170548,
             "cost": 2021.9611124170551,
             "mean_q0": 0.33947105222098195,
+            "panel_households": 206,
+            "net_per_1000_contacted_before_fixed": -85.71051154721005,
+            "reach_status": "COMPANY SCALE ASSUMED; not measured",
             "break_even_dq": 0.08485253887997307,
             "break_even_note": null
           }
@@ -167,6 +179,9 @@
             "net": -2625.2698991659654,
             "cost": 2634.9911627659653,
             "mean_q0": 0.33947105222098195,
+            "panel_households": 206,
+            "net_per_1000_contacted_before_fixed": -202.7021022103001,
+            "reach_status": "COMPANY SCALE ASSUMED; not measured",
             "break_even_dq": 0.26248760894135686,
             "break_even_note": null
           }
@@ -199,6 +214,9 @@
             "net": -667.2168371277239,
             "cost": 2198.3158541277235,
             "mean_q0": 0.33947105222098195,
+            "panel_households": 206,
+            "net_per_1000_contacted_before_fixed": 26.924204115879938,
+            "reach_status": "COMPANY SCALE ASSUMED; not measured",
             "break_even_dq": 0.03141964701847339,
             "break_even_note": null
           }
@@ -234,6 +252,9 @@
             "net": -1838.697383280059,
             "cost": 1948.8480448800592,
             "mean_q0": 0.32019325576309343,
+            "panel_households": 167,
+            "net_per_1000_contacted_before_fixed": -112.6737801996205,
+            "reach_status": "COMPANY SCALE ASSUMED; not measured",
             "break_even_dq": 0.21429007297783842,
             "break_even_note": null
           }
@@ -266,6 +287,9 @@
             "net": -2609.017356800014,
             "cost": 2614.262626400014,
             "mean_q0": 0.32019325576309343,
+            "panel_households": 167,
+            "net_per_1000_contacted_before_fixed": -217.59951457088647,
+            "reach_status": "COMPANY SCALE ASSUMED; not measured",
             "break_even_dq": 1.24313790417594,
             "break_even_note": null
           }
@@ -298,6 +322,9 @@
             "net": -1225.149859200113,
             "cost": 2051.279821200113,
             "mean_q0": 0.32019325576309343,
+            "panel_households": 167,
+            "net_per_1000_contacted_before_fixed": -22.470045828354586,
+            "reach_status": "COMPANY SCALE ASSUMED; not measured",
             "break_even_dq": 0.06836540827339092,
             "break_even_note": null
           }
@@ -334,6 +361,9 @@
           "net": -61914.314716087916,
           "cost": 63394.51497720793,
           "mean_q0": 0.4015763030473907,
+          "panel_households": 2319,
+          "net_per_1000_contacted_before_fixed": -651.2970538603699,
+          "reach_status": "COMPANY SCALE ASSUMED; not measured",
           "break_even_dq": 0.7576823692744747,
           "break_even_note": null
         }

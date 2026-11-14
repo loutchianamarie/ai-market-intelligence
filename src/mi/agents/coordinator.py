@@ -194,8 +194,9 @@ class Run:
                     lap = [x for x in s["data"]["segments"] if x["segment"] == "LAPSING"][0]
                     self.num(out, f"{cat}_LAPSING_panel_households", lap["panel_households"], "households", "OBSERVED segment", "segment_profile")
                     self.num(out, f"{cat}_LAPSING_mean_q0", lap["mean_q0"], "probability", "MODEL ESTIMATE", "segment_profile")
-            out.proposed_action = ("Use the fitted model score (beats the repeat rule on the locked test) to EXCLUDE likely-anyway buyers "
-                                   "from coupon audiences; candidate segment: LAPSING category buyers (measurable, behavioural).")
+            out.proposed_action = ("The fitted score finds historically relevant category-household matches better than the repeat rule. "
+                                   "It does NOT show who would buy without a coupon or who a coupon would persuade; use it to define the "
+                                   "candidate segment (LAPSING category buyers) and to STRATIFY a randomized pilot, not to target by assumed persuadability.")
             out.next_agent = "portfolio"
         return self.finish(out, oid)
 
@@ -225,9 +226,10 @@ class Run:
             dm = self.call(out, oid, "demand_baseline", category="FROZEN PIZZA")
             if dm["status"] == "ok":
                 self.num(out, "frozen_pizza_weekly_buying_households", round(dm["data"]["weekly_households_mean_last8"], 1), "panel households/week", "OBSERVED", "demand_baseline")
-            out.proposed_action = ("Do NOT roll out: no plan breaks even under base assumptions and the popularity-led mailing loses most. "
-                                   "Fund a small randomized learn-first test on FROZEN PIZZA / LAPSING / digital coupon, because "
-                                   "the recommendation reverses only if true uplift is ~2-3x the assumed value.")
+            out.proposed_action = ("Do NOT roll out at these assumptions: no plan breaks even and the popularity-led mailing is an "
+                                   "infeasible, loss-making comparator. A learn-first test on FROZEN PIZZA / LAPSING / digital coupon is the "
+                                   "closest-to-viable cohort, but running it is CONDITIONAL on an eligible consented pool, stock, finance-confirmed "
+                                   "margin and a test cost justified by the stakes. Reversals shown need ~2-3x the assumed uplift AND an assumed company scale.")
             out.limits.append("Stock capacity UNKNOWN: a human must confirm availability before any send.")
             out.next_agent = "activation"
         return self.finish(out, oid)
@@ -237,12 +239,15 @@ class Run:
         if out is None:
             out = AgentOutput(role="activation", mode="deterministic")
             port = self.store.get(oid)["portfolio_output"]["numbers"]
-            dq_star = next(n["value"] for n in port if n["name"] == "break_even_dq_frozen_pizza_lapsing")
-            intel = self.store.get(oid)["intelligence_output"]["numbers"]
-            q0 = next(n["value"] for n in intel if n["name"] == "FROZEN PIZZA_LAPSING_mean_q0")
-            ss = self.call(out, oid, "pilot_sample_size", p0=q0, dq=dq_star)
-            n_arm = ss["data"]["n_per_arm"] if ss["status"] == "ok" else None
-            self.num(out, "n_per_arm", n_arm, "households", "COMPUTED (alpha .05, power .8)", "pilot_sample_size")
+            best_high = next((n["value"] for n in port if n["name"] == "best_plan_net_high"), None)
+            pdz = self.call(out, oid, "pilot_design", category="FROZEN PIZZA", segment="LAPSING", channel="digital_coupon",
+                            uplift_multiple_for_sizing=2.0)
+            dz = pdz["data"] if pdz["status"] == "ok" else {}
+            n_arm = dz.get("sizing_choice", {}).get("n_per_arm")
+            self.num(out, "n_per_arm_contribution_based", n_arm, "households", "DESIGN (ASSUMED true uplift = 2x break-even; alpha .05, power .8)", "pilot_design")
+            self.num(out, "n_per_arm_purchase_proxy", dz.get("n_purchase_proxy"), "households", "DESIGN (cannot support EXPAND on contribution)", "pilot_design")
+            self.num(out, "eligible_consented_needed", dz.get("feasibility", {}).get("eligible_consented_households_needed"), "households", "DESIGN", "pilot_design")
+            self.num(out, "test_cost_total", dz.get("test_cost", {}).get("total"), "USD", "ASSUMED", "pilot_design")
             src = self.call(out, oid, "retrieve_sources", query="Where must a human approve in the agent canvas: money and public messages?")
             if src["status"] == "ok":
                 for c in src["data"]["supported_claims"][:1]:
@@ -257,10 +262,16 @@ class Run:
                           "validity_days": 28, "limit": "1 use per household"},
                 "message": ("A $0.90 digital coupon for frozen pizza has been added to your account. Valid for 28 days, one use. "
                             "Manage offers or opt out any time in your account settings, or reply STOP."),
-                "design": {"type": "customer-level randomized holdout 50/50", "n_per_arm": n_arm, "duration_days": 28,
-                           "primary_metric": self.cfg["outcome_rule"]["primary_metric"],
+                "design": {"type": "customer-level randomized holdout 50/50, stratified by model-score half (above/below segment median q0)",
+                           "n_per_arm": n_arm, "n_basis": "contribution-based; ASSUMED true uplift = 2x break-even (see pilot_design)",
+                           "stratification_hypothesis": "tests whether uplift differs between higher- and lower-propensity lapsing buyers; the model does not "
+                                                        "identify persuadable customers by itself",
+                           "duration_days": 28, "primary_metric": self.cfg["outcome_rule"]["primary_metric"],
                            "guardrails": self.cfg["outcome_rule"]["guardrails"], "follow_up_days": 56,
-                           "analysis": "intention-to-treat; no peeking; decision rule in configs/policy.json"},
+                           "analysis": "intention-to-treat; no peeking; decision rule in configs/policy.json",
+                           "launch_preconditions": ["eligible consented pool >= 2 x n_per_arm (UNKNOWN; panel households are not contactable)",
+                                                    "stock confirmed by operations", "margin confirmed by finance",
+                                                    "consent/legal sign-off", "test cost justified by expected decision value"]},
             }
             d = self.store.get(oid)
             r = self.call(out, oid, "draft_pilot", opportunity_id=oid, expected_version=d["version"], pilot=pilot)
@@ -270,8 +281,14 @@ class Run:
                 self.num(out, "pilot_budget_total", bud["total"], "USD", bud["status"], "draft_pilot")
             d = self.store.get(oid)
             rq = self.call(out, oid, "request_approval", opportunity_id=oid, expected_version=d["version"])
-            out.proposed_action = "Pilot drafted and sent for human review. No message has been sent; no budget committed."
+            out.proposed_action = ("Learn-first test DESIGN drafted and sent for human review of a SANDBOX record only. No message sent; "
+                                   "no budget committed; a real launch requires every launch precondition.")
             out.limits.append("Reachability/consent and stock are UNKNOWN; the approver must confirm both.")
+            tc = dz.get("test_cost", {}).get("total")
+            if tc and best_high and best_high > 0:
+                out.limits.append(f"Worth-it check (SIMULATION): test cost ${tc:,.0f} vs the best plan's favourable-case net "
+                                  f"${best_high:,.0f} per 4-week cycle at ASSUMED company scale: pays back only after "
+                                  f"~{tc / best_high:.1f} favourable cycles; never under base assumptions.")
             out.next_agent = "HUMAN_APPROVER" if rq["status"] == "ok" else None
         return self.finish(out, oid)
 
@@ -323,9 +340,11 @@ class Run:
     def reconcile(self, oid):
         d = self.store.get(oid)
         intel, port = d["intelligence_output"], d["portfolio_output"]
-        note = ("Intelligence: model beats the repeat rule (ranking value). Portfolio: no plan breaks even at base "
-                "assumptions. Reconciled: the model's decision value is audience FILTERING (excluding likely-anyway "
-                "buyers), which only matters if uplift is high enough — so the next action is to measure uplift.")
+        note = ("Intelligence: the model ranks historical category purchase better than the repeat rule. Portfolio: no plan "
+                "breaks even at base assumptions. Reconciled: a purchase score is not a response estimate. The 'model-filtered' "
+                "variant wins in some scenarios only because of an ASSUMED cost formula (coupon cost to baseline buyers "
+                "scales with historical propensity; uplift constant within segment). That is a pilot stratification hypothesis, "
+                "so the next step is to measure uplift, if the test is feasible and worth its cost.")
         self.store.update(oid, d["version"], {"coordinator_reconciliation": {"note": note,
                           "inputs": [intel["proposed_action"][:120], port["proposed_action"][:120]]}},
                           actor="coordinator", role="agent", note="reconcile")

@@ -1,0 +1,21 @@
+............................................                             [100%]
+============================== warnings summary ===============================
+tests/test_data_and_features.py: 45 warnings
+  C:\Users\admin\Desktop\USJ\s3\business and marketing\ai-market-intelligence\tests\conftest.py:16: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.
+    ts = lambda w: pd.Timestamp("2017-01-01") + pd.Timedelta(weeks=int(w) - 1, hours=10)
+
+tests/test_data_and_features.py::test_features_use_only_pre_cutoff_and_label_only_horizon
+tests/test_data_and_features.py::test_future_changes_do_not_change_features
+tests/test_data_and_features.py::test_future_changes_do_not_change_features
+tests/test_data_and_features.py::test_eligibility_uses_pre_cutoff_activity_only
+tests/test_data_and_features.py::test_redemption_after_cutoff_not_counted
+tests/test_data_and_features.py::test_redemption_after_cutoff_not_counted
+  C:\Users\admin\Desktop\USJ\s3\business and marketing\ai-market-intelligence\src\mi\model\features.py:85: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.
+    (redemptions.redemption_date > cutoff_date - pd.Timedelta(weeks=int(lookback)))]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+44 passed, 51 warnings in 8.93s
+
+real	0m21.267s
+user	0m0.000s
+sys	0m0.000s

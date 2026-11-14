@@ -1,0 +1,200 @@
+{
+  "file": "data/eval/rag_locked_v3.json",
+  "n": 12,
+  "decisions_correct": 11,
+  "recall_at_5_answerable": "6/6",
+  "conflicts_flagged": "0/1",
+  "by_type": {
+    "conflict": "1/1 correct answer-or-abstain decisions",
+    "stale": "2/2 correct answer-or-abstain decisions",
+    "supported": "5/5 correct answer-or-abstain decisions",
+    "unanswerable": "3/4 correct answer-or-abstain decisions"
+  },
+  "rows": [
+    {
+      "id": "S1",
+      "type": "supported",
+      "answerable": true,
+      "abstained": false,
+      "decision_correct": true,
+      "recall_at_5": true,
+      "conflict_flagged": null,
+      "top3": [
+        "cj_transactions",
+        "cj_pkg_index",
+        "cj_campaigns"
+      ],
+      "coverage": 0.571,
+      "answer": "Complete Journey transactions. install.packages ( \"completejourney\" ) To get a bug fix, or use a feature from the development version, you can install completejourney from GitHub with: install.package"
+    },
+    {
+      "id": "S2",
+      "type": "supported",
+      "answerable": true,
+      "abstained": false,
+      "decision_correct": true,
+      "recall_at_5": true,
+      "conflict_flagged": null,
+      "top3": [
+        "course_agent_worksheet",
+        "course_agent_worksheet",
+        "course_agent_worksheet"
+      ],
+      "coverage": 0.8,
+      "answer": "MARKETING AND AI Design a marketing agent Name: _______________________________   Student ID: ________________ 1."
+    },
+    {
+      "id": "S3",
+      "type": "supported",
+      "answerable": true,
+      "abstained": false,
+      "decision_correct": true,
+      "recall_at_5": true,
+      "conflict_flagged": null,
+      "top3": [
+        "course_metrics_workbook",
+        "course_metrics_slides",
+        "course_metrics_workbook"
+      ],
+      "coverage": 0.75,
+      "answer": "| Part 2 \u00b7 Paying for attention: CPM, CTR, CPC Ads are bought in an auction: $ spend \u2192 impressions \u2192 clicks \u2192 orders. CPM Cost per mille (1,000 views) Ad spend \u00f7 impressions \u00d7 1,000 What do 1,000 view"
+    },
+    {
+      "id": "S4",
+      "type": "supported",
+      "answerable": true,
+      "abstained": false,
+      "decision_correct": true,
+      "recall_at_5": true,
+      "conflict_flagged": null,
+      "top3": [
+        "google_ai_features",
+        "google_ai_features",
+        "google_ai_features"
+      ],
+      "coverage": 0.875,
+      "answer": "that important content is available in textual form Supporting your textual content with high-quality images and videos , when applicable Making sure your structured data matches the visible text on t"
+    },
+    {
+      "id": "S5",
+      "type": "supported",
+      "answerable": true,
+      "abstained": false,
+      "decision_correct": true,
+      "recall_at_5": true,
+      "conflict_flagged": null,
+      "top3": [
+        "cj_transactions",
+        "cj_pkg_index",
+        "cj_coupon_redemptions"
+      ],
+      "coverage": 0.833,
+      "answer": "Complete Journey transactions. Retail Shopping Data \u2022 completejourney Toggle navigation completejourney 1.1.1 Articles User Guide Reference News GitHub Overview An R data package that provides access "
+    },
+    {
+      "id": "C1",
+      "type": "conflict",
+      "answerable": true,
+      "abstained": false,
+      "decision_correct": true,
+      "recall_at_5": true,
+      "conflict_flagged": false,
+      "top3": [
+        "cj_transactions",
+        "cj_pkg_index",
+        "cj_py_port_readme"
+      ],
+      "coverage": 0.6,
+      "answer": "Source: R/transactions.R transactions.Rd All products purchased by households within the Complete Journey study. Overview The Complete Journey dataset represents grocery store shopping transactions ov"
+    },
+    {
+      "id": "T1",
+      "type": "stale",
+      "answerable": false,
+      "abstained": true,
+      "decision_correct": true,
+      "recall_at_5": null,
+      "conflict_flagged": null,
+      "top3": [],
+      "coverage": 0.0,
+      "answer": "UNKNOWN \u2014 the corpus does not support an answer."
+    },
+    {
+      "id": "T2",
+      "type": "stale",
+      "answerable": false,
+      "abstained": true,
+      "decision_correct": true,
+      "recall_at_5": null,
+      "conflict_flagged": null,
+      "top3": [],
+      "coverage": 0.0,
+      "answer": "UNKNOWN \u2014 the corpus does not support an answer."
+    },
+    {
+      "id": "U1",
+      "type": "unanswerable",
+      "answerable": false,
+      "abstained": false,
+      "decision_correct": false,
+      "recall_at_5": null,
+      "conflict_flagged": null,
+      "top3": [
+        "course_metrics_workbook",
+        "course_metrics_workbook",
+        "course_metrics_workbook"
+      ],
+      "coverage": 0.6,
+      "answer": "Give: (a) new customers per channel, (b) CAC per paid channel = channel spend / new customers from that channel, (c) paid CAC = total ad spend / new customers from Meta + Google + TikTok, (d) fully lo"
+    },
+    {
+      "id": "U2",
+      "type": "unanswerable",
+      "answerable": false,
+      "abstained": true,
+      "decision_correct": true,
+      "recall_at_5": null,
+      "conflict_flagged": null,
+      "top3": [
+        "cj_pkg_index",
+        "report_portfolio",
+        "report_portfolio"
+      ],
+      "coverage": 0.333,
+      "answer": "UNKNOWN \u2014 the corpus does not support an answer."
+    },
+    {
+      "id": "U3",
+      "type": "unanswerable",
+      "answerable": false,
+      "abstained": true,
+      "decision_correct": true,
+      "recall_at_5": null,
+      "conflict_flagged": null,
+      "top3": [
+        "report_portfolio",
+        "report_portfolio",
+        "report_data_audit"
+      ],
+      "coverage": 0.25,
+      "answer": "UNKNOWN \u2014 the corpus does not support an answer."
+    },
+    {
+      "id": "U4",
+      "type": "unanswerable",
+      "answerable": false,
+      "abstained": true,
+      "decision_correct": true,
+      "recall_at_5": null,
+      "conflict_flagged": null,
+      "top3": [
+        "course_metrics_workbook",
+        "course_metrics_workbook",
+        "course_metrics_slides"
+      ],
+      "coverage": 0.286,
+      "answer": "UNKNOWN \u2014 the corpus does not support an answer."
+    }
+  ],
+  "status": "OBSERVED on a small locked set; semantic adequacy still needs human review"
+}

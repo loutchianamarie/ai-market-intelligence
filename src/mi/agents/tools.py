@@ -22,8 +22,8 @@ ROLE_ALLOWLIST = {
     "research": {"get_dossier", "retrieve_sources", "seo_audit_summary"},
     "intelligence": {"get_dossier", "get_data_audit", "run_model_pipeline", "get_model_run", "segment_profile"},
     "portfolio": {"get_dossier", "compare_plans", "sensitivity_summary", "break_even", "demand_baseline", "calculate_metric"},
-    "activation": {"get_dossier", "retrieve_sources", "pilot_sample_size", "draft_pilot", "request_approval", "record_sandbox_action"},
-    "measurement": {"get_dossier", "campaign_history", "pilot_sample_size", "evaluate_outcome", "record_outcome"},
+    "activation": {"get_dossier", "retrieve_sources", "pilot_sample_size", "pilot_design", "draft_pilot", "request_approval", "record_sandbox_action"},
+    "measurement": {"get_dossier", "campaign_history", "pilot_sample_size", "pilot_design", "evaluate_outcome", "record_outcome"},
 }
 
 
@@ -64,6 +64,9 @@ class Toolbox:
         "demand_baseline": ("Historical weekly demand baseline for a category.", {"category": {"type": "string"}}, ["category"]),
         "calculate_metric": ("Deterministic metric (cpa, roas, break_even_roas, roi, aov).", {"name": {"type": "string"}, "args": {"type": "object"}}, ["name", "args"]),
         "pilot_sample_size": ("Households per arm to detect an uplift.", {"p0": {"type": "number"}, "dq": {"type": "number"}}, ["p0", "dq"]),
+        "pilot_design": ("Learn-first test design: break-even, purchase-proxy vs contribution-based n per arm, MDE table, feasibility and cost.",
+                         {"category": {"type": "string"}, "segment": {"type": "string"}, "channel": {"type": "string"}, "uplift_multiple_for_sizing": {"type": "number"}},
+                         ["category", "segment", "channel"]),
         "draft_pilot": ("Write a DRAFT pilot (audience, channel, offer, message, budget) to the dossier.", {"opportunity_id": {"type": "string"}, "expected_version": {"type": "integer"}, "pilot": {"type": "object"}}, ["opportunity_id", "expected_version", "pilot"]),
         "request_approval": ("Move the dossier to REVIEW_REQUESTED for a named human approver.", {"opportunity_id": {"type": "string"}, "expected_version": {"type": "integer"}}, ["opportunity_id", "expected_version"]),
         "record_sandbox_action": ("Record an APPROVED pilot in the local CRM sandbox (never sends).", {"opportunity_id": {"type": "string"}, "idempotency_key": {"type": "string"}}, ["opportunity_id", "idempotency_key"]),
@@ -195,6 +198,38 @@ class Toolbox:
         from mi.outcome.learning import sample_size
         return _ok("pilot_sample_size", {"p0": p0, "dq": dq, "n_per_arm": sample_size(float(p0), float(dq)),
                                          "alpha": 0.05, "power": 0.8})
+
+    def t_pilot_design(self, category, segment, channel, uplift_multiple_for_sizing=2.0):
+        from mi.decision.scenario import assumptions_from_config
+        from mi.outcome.learning import pilot_design
+        a = assumptions_from_config(self.cfg, "base")
+        rep = _read_json("model_report.json")
+        e = rep["economics_inputs_observed"]
+        st = e["test_window_category_segment_stats"][f"{category}|{segment}"]
+        q0 = float(self.scores[(self.scores.product_category == category) & (self.scores.segment == segment)].p_used.mean())
+        g, F = e["mean_4w_category_spend_among_buyers_test"][category] * a.margin_rate, e["mean_coupon_disc_per_couponed_line"][category]
+        sigma = a.margin_rate * st["spend_sd"]
+        d = pilot_design(q0, g, F, a.contact_cost[channel], a.redemption_share, sigma, a.dq(segment))
+        key = str(float(uplift_multiple_for_sizing))
+        n = d["n_contribution"][key]["n_per_arm"] if key in d["n_contribution"] else d["n_purchase_proxy"]
+        panel = int(((self.scores.product_category == category) & (self.scores.segment == segment)).sum())
+        s = self.cfg["scenario"]
+        assumed_reach = panel * a.reach_share[channel] * s["deployment_scale"]["value"]
+        d.update({
+            "inputs": {"q0_mean": round(q0, 4), "q0_status": "MODEL ESTIMATE (historical conditions, NOT a no-coupon counterfactual)",
+                       "contribution_sd_per_hh": round(sigma, 4), "sd_status": "OBSERVED spend SD (test window) x ASSUMED margin",
+                       "g": round(g, 4), "face": F, "contact": a.contact_cost[channel], "redemption": a.redemption_share},
+            "sizing_choice": {"uplift_multiple_for_sizing": float(uplift_multiple_for_sizing), "n_per_arm": n,
+                              "status": "ASSUMPTION — sized for a true uplift of this multiple of break-even"},
+            "feasibility": {"eligible_consented_households_needed": 2 * n, "panel_households_in_segment": panel,
+                            "panel_contactable": False,
+                            "assumed_company_reachable": round(assumed_reach),
+                            "assumed_company_reachable_status": "COMPANY SCALE ASSUMED; not measured",
+                            "feasible_under_assumed_scale": assumed_reach >= 2 * n},
+            "test_cost": {"n_treated": n, "variable": round(n * d["per_treated_household_cost"], 2), "fixed_setup": a.fixed_setup,
+                          "total": round(n * d["per_treated_household_cost"] + a.fixed_setup, 2), "currency": self.cfg["currency"],
+                          "status": "ASSUMED (contact, redemption, fixed, uplift); OBSERVED face value"}})
+        return _ok("pilot_design", d, status="DESIGN under labelled assumptions; FUTURE EXPERIMENT")
 
     def t_draft_pilot(self, opportunity_id, expected_version, pilot):
         required = {"plan_id", "audience", "channel", "offer", "message", "design"}

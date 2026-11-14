@@ -1,13 +1,13 @@
 {
-  "opportunity_id": "OPP-6EF9B5FA",
-  "state": "STOP",
-  "version": 16,
+  "opportunity_id": "OPP-BB3F6F1E",
+  "state": "REVIEW_REQUESTED",
+  "version": 8,
   "llm_available": false,
   "agent_trace": [
     {
       "role": "research",
       "mode": "deterministic",
-      "ts": "2026-11-14T01:45:53+00:00",
+      "ts": "2026-11-14T10:35:18+00:00",
       "tool_calls": [
         {
           "tool": "retrieve_sources",
@@ -56,7 +56,7 @@
     {
       "role": "intelligence",
       "mode": "deterministic",
-      "ts": "2026-11-14T01:45:53+00:00",
+      "ts": "2026-11-14T10:35:18+00:00",
       "tool_calls": [
         {
           "tool": "get_data_audit",
@@ -96,7 +96,7 @@
     {
       "role": "portfolio",
       "mode": "deterministic",
-      "ts": "2026-11-14T01:45:54+00:00",
+      "ts": "2026-11-14T10:35:20+00:00",
       "tool_calls": [
         {
           "tool": "compare_plans",
@@ -131,14 +131,16 @@
     {
       "role": "activation",
       "mode": "deterministic",
-      "ts": "2026-11-14T01:45:54+00:00",
+      "ts": "2026-11-14T10:35:20+00:00",
       "tool_calls": [
         {
-          "tool": "pilot_sample_size",
+          "tool": "pilot_design",
           "status": "ok",
           "args": {
-            "p0": 0.3049,
-            "dq": 0.0636
+            "category": "FROZEN PIZZA",
+            "segment": "LAPSING",
+            "channel": "digital_coupon",
+            "uplift_multiple_for_sizing": 2.0
           }
         },
         {
@@ -152,7 +154,7 @@
           "tool": "draft_pilot",
           "status": "ok",
           "args": {
-            "opportunity_id": "OPP-6EF9B5FA",
+            "opportunity_id": "OPP-BB3F6F1E",
             "expected_version": 5
           }
         },
@@ -160,166 +162,31 @@
           "tool": "request_approval",
           "status": "ok",
           "args": {
-            "opportunity_id": "OPP-6EF9B5FA",
+            "opportunity_id": "OPP-BB3F6F1E",
             "expected_version": 6
           }
         }
       ],
       "next_agent": "HUMAN_APPROVER",
       "violations": []
-    },
-    {
-      "role": "activation",
-      "mode": "deterministic",
-      "ts": "2026-11-14T01:45:54+00:00",
-      "tool_calls": [
-        {
-          "tool": "record_sandbox_action",
-          "status": "blocked",
-          "args": {
-            "opportunity_id": "OPP-6EF9B5FA",
-            "idempotency_key": "9a0054c09663962648b9"
-          }
-        }
-      ],
-      "next_agent": null,
-      "violations": []
-    },
-    {
-      "role": "activation",
-      "mode": "deterministic",
-      "ts": "2026-11-14T01:45:54+00:00",
-      "tool_calls": [
-        {
-          "tool": "record_sandbox_action",
-          "status": "ok",
-          "args": {
-            "opportunity_id": "OPP-6EF9B5FA",
-            "idempotency_key": "9a0054c09663962648b9"
-          }
-        }
-      ],
-      "next_agent": "measurement",
-      "violations": []
-    },
-    {
-      "role": "measurement",
-      "mode": "deterministic",
-      "ts": "2026-11-14T01:45:55+00:00",
-      "tool_calls": [
-        {
-          "tool": "campaign_history",
-          "status": "ok",
-          "args": {}
-        },
-        {
-          "tool": "evaluate_outcome",
-          "status": "ok",
-          "args": {
-            "outcome": {
-              "provenance": "SIMULATED fixture (seeded synthetic data) \u2014 not a real pilot",
-              "n_per_arm": 6000,
-              "purchase_rate_treatment": 0.3431666666666667,
-              "purchase_rate_control": 0.309,
-              "incremental_contribution_per_household": -0.07082633333333299,
-              "ci95": [
-                -0.11642963715254424,
-                -0.02522302951412174
-              ],
-              "guardrails": {
-                "opt_out_rate": 0.004,
-                "complaint_rate": 0.0005,
-                "stockout_flag": false
-              },
-              "inputs": {
-                "p0": 0.3,
-                "true_dq": 0.05,
-                "spend": 10.33,
-                "margin": 0.28,
-                "face": 0.9,
-                "redemption": 0.35,
-                "contact": 0.03,
-                "seed": 7
-              }
-            }
-          }
-        },
-        {
-          "tool": "record_outcome",
-          "status": "ok",
-          "args": {
-            "opportunity_id": "OPP-6EF9B5FA",
-            "outcome": {
-              "provenance": "SIMULATED fixture (seeded synthetic data) \u2014 not a real pilot",
-              "n_per_arm": 6000,
-              "purchase_rate_treatment": 0.3431666666666667,
-              "purchase_rate_control": 0.309,
-              "incremental_contribution_per_household": -0.07082633333333299,
-              "ci95": [
-                -0.11642963715254424,
-                -0.02522302951412174
-              ],
-              "guardrails": {
-                "opt_out_rate": 0.004,
-                "complaint_rate": 0.0005,
-                "stockout_flag": false
-              },
-              "inputs": {
-                "p0": 0.3,
-                "true_dq": 0.05,
-                "spend": 10.33,
-                "margin": 0.28,
-                "face": 0.9,
-                "redemption": 0.35,
-                "contact": 0.03,
-                "seed": 7
-              }
-            },
-            "decision": "STOP"
-          }
-        }
-      ],
-      "next_agent": "research",
-      "violations": []
-    },
-    {
-      "role": "research",
-      "mode": "deterministic",
-      "ts": "2026-11-14T01:45:55+00:00",
-      "tool_calls": [
-        {
-          "tool": "retrieve_sources",
-          "status": "ok",
-          "args": {
-            "query": "Why might a digital coupon fail to reactivate lapsing frozen pizza buyers?"
-          }
-        },
-        {
-          "tool": "seo_audit_summary",
-          "status": "ok",
-          "args": {}
-        }
-      ],
-      "next_agent": "intelligence",
-      "violations": []
     }
   ],
   "events": [
     {
-      "id": 1,
-      "opportunity_id": "OPP-6EF9B5FA",
+      "id": 40,
+      "opportunity_id": "OPP-BB3F6F1E",
       "version": 1,
-      "ts": "2026-11-14T01:45:53+00:00",
+      "ts": "2026-11-14T10:35:17+00:00",
       "actor": "coordinator",
       "role": "agent",
       "event": "DOSSIER_CREATED",
       "detail": {}
     },
     {
-      "id": 2,
-      "opportunity_id": "OPP-6EF9B5FA",
+      "id": 41,
+      "opportunity_id": "OPP-BB3F6F1E",
       "version": 2,
-      "ts": "2026-11-14T01:45:53+00:00",
+      "ts": "2026-11-14T10:35:18+00:00",
       "actor": "research_agent",
       "role": "agent",
       "event": "DOSSIER_UPDATED",
@@ -331,10 +198,10 @@
       }
     },
     {
-      "id": 3,
-      "opportunity_id": "OPP-6EF9B5FA",
+      "id": 42,
+      "opportunity_id": "OPP-BB3F6F1E",
       "version": 3,
-      "ts": "2026-11-14T01:45:53+00:00",
+      "ts": "2026-11-14T10:35:18+00:00",
       "actor": "intelligence_agent",
       "role": "agent",
       "event": "DOSSIER_UPDATED",
@@ -346,10 +213,10 @@
       }
     },
     {
-      "id": 4,
-      "opportunity_id": "OPP-6EF9B5FA",
+      "id": 43,
+      "opportunity_id": "OPP-BB3F6F1E",
       "version": 4,
-      "ts": "2026-11-14T01:45:54+00:00",
+      "ts": "2026-11-14T10:35:20+00:00",
       "actor": "portfolio_agent",
       "role": "agent",
       "event": "DOSSIER_UPDATED",
@@ -361,10 +228,10 @@
       }
     },
     {
-      "id": 5,
-      "opportunity_id": "OPP-6EF9B5FA",
+      "id": 44,
+      "opportunity_id": "OPP-BB3F6F1E",
       "version": 5,
-      "ts": "2026-11-14T01:45:54+00:00",
+      "ts": "2026-11-14T10:35:20+00:00",
       "actor": "coordinator",
       "role": "agent",
       "event": "DOSSIER_UPDATED",
@@ -375,10 +242,10 @@
       }
     },
     {
-      "id": 6,
-      "opportunity_id": "OPP-6EF9B5FA",
+      "id": 45,
+      "opportunity_id": "OPP-BB3F6F1E",
       "version": 6,
-      "ts": "2026-11-14T01:45:54+00:00",
+      "ts": "2026-11-14T10:35:20+00:00",
       "actor": "activation_agent",
       "role": "agent",
       "event": "DOSSIER_UPDATED",
@@ -389,22 +256,22 @@
       }
     },
     {
-      "id": 7,
-      "opportunity_id": "OPP-6EF9B5FA",
+      "id": 46,
+      "opportunity_id": "OPP-BB3F6F1E",
       "version": 7,
-      "ts": "2026-11-14T01:45:54+00:00",
+      "ts": "2026-11-14T10:35:20+00:00",
       "actor": "activation_agent",
       "role": "agent",
       "event": "STATE_REVIEW_REQUESTED",
       "detail": {
-        "plan_hash": "8c15c05cc7997b711e13b58b87709555e31408e64e1cc98e73256777ad231493"
+        "plan_hash": "e0041f6edc6a1081a46a7590a5725a93de1dffd6675339e3d16afe597ad4ef37"
       }
     },
     {
-      "id": 8,
-      "opportunity_id": "OPP-6EF9B5FA",
+      "id": 47,
+      "opportunity_id": "OPP-BB3F6F1E",
       "version": 8,
-      "ts": "2026-11-14T01:45:54+00:00",
+      "ts": "2026-11-14T10:35:20+00:00",
       "actor": "activation_agent",
       "role": "agent",
       "event": "DOSSIER_UPDATED",
@@ -412,129 +279,6 @@
         "fields": [
           "activation_output",
           "agent_trace"
-        ]
-      }
-    },
-    {
-      "id": 9,
-      "opportunity_id": "OPP-6EF9B5FA",
-      "version": 8,
-      "ts": "2026-11-14T01:45:54+00:00",
-      "actor": "activation_agent",
-      "role": "agent",
-      "event": "UNAPPROVED_ACTION_BLOCKED",
-      "detail": {
-        "state": "REVIEW_REQUESTED",
-        "idempotency_key": "9a0054c09663962648b9"
-      }
-    },
-    {
-      "id": 10,
-      "opportunity_id": "OPP-6EF9B5FA",
-      "version": 9,
-      "ts": "2026-11-14T01:45:54+00:00",
-      "actor": "activation_agent",
-      "role": "agent",
-      "event": "DOSSIER_UPDATED",
-      "detail": {
-        "fields": [
-          "activation_output",
-          "agent_trace"
-        ]
-      }
-    },
-    {
-      "id": 11,
-      "opportunity_id": "OPP-6EF9B5FA",
-      "version": 10,
-      "ts": "2026-11-14T01:45:54+00:00",
-      "actor": "TEST_FIXTURE_APPROVER",
-      "role": "approver",
-      "event": "STATE_APPROVED",
-      "detail": {
-        "plan_hash": "8c15c05cc7997b711e13b58b87709555e31408e64e1cc98e73256777ad231493",
-        "scope": "test"
-      }
-    },
-    {
-      "id": 12,
-      "opportunity_id": "OPP-6EF9B5FA",
-      "version": 11,
-      "ts": "2026-11-14T01:45:54+00:00",
-      "actor": "activation_agent",
-      "role": "agent",
-      "event": "STATE_SANDBOX_RECORDED",
-      "detail": {
-        "action_id": "SBX-cbc49a483d",
-        "live_send": false
-      }
-    },
-    {
-      "id": 13,
-      "opportunity_id": "OPP-6EF9B5FA",
-      "version": 12,
-      "ts": "2026-11-14T01:45:54+00:00",
-      "actor": "activation_agent",
-      "role": "agent",
-      "event": "DOSSIER_UPDATED",
-      "detail": {
-        "fields": [
-          "activation_output",
-          "agent_trace"
-        ]
-      }
-    },
-    {
-      "id": 14,
-      "opportunity_id": "OPP-6EF9B5FA",
-      "version": 13,
-      "ts": "2026-11-14T01:45:55+00:00",
-      "actor": "measurement_agent",
-      "role": "agent",
-      "event": "STATE_EVALUATED",
-      "detail": {
-        "provenance": "SIMULATED fixture (seeded synthetic data) \u2014 not a real pilot"
-      }
-    },
-    {
-      "id": 15,
-      "opportunity_id": "OPP-6EF9B5FA",
-      "version": 14,
-      "ts": "2026-11-14T01:45:55+00:00",
-      "actor": "measurement_agent",
-      "role": "agent",
-      "event": "STATE_STOP",
-      "detail": {
-        "decision": "STOP"
-      }
-    },
-    {
-      "id": 16,
-      "opportunity_id": "OPP-6EF9B5FA",
-      "version": 15,
-      "ts": "2026-11-14T01:45:55+00:00",
-      "actor": "measurement_agent",
-      "role": "agent",
-      "event": "DOSSIER_UPDATED",
-      "detail": {
-        "fields": [
-          "agent_trace",
-          "measurement_output"
-        ]
-      }
-    },
-    {
-      "id": 17,
-      "opportunity_id": "OPP-6EF9B5FA",
-      "version": 16,
-      "ts": "2026-11-14T01:45:55+00:00",
-      "actor": "research_agent",
-      "role": "agent",
-      "event": "DOSSIER_UPDATED",
-      "detail": {
-        "fields": [
-          "agent_trace",
-          "research_output"
         ]
       }
     }
@@ -542,144 +286,68 @@
   "history": [
     {
       "version": 1,
-      "created_at": "2026-11-14T01:45:53+00:00",
+      "created_at": "2026-11-14T10:35:17+00:00",
       "actor": "coordinator",
       "role": "agent",
       "note": "created",
-      "payload_hash": "f7c3b29c05dae2ac22075237b4b7c571db57ec32107b5908f7b1790cff5eaa2f"
+      "payload_hash": "6f1abd542cd4df9698df1c8937455fc093b90afa69ec20ad00e3e8d9390dd606"
     },
     {
       "version": 2,
-      "created_at": "2026-11-14T01:45:53+00:00",
+      "created_at": "2026-11-14T10:35:18+00:00",
       "actor": "research_agent",
       "role": "agent",
       "note": "research output",
-      "payload_hash": "d4a381dee8e463337f43dffdfb06ea48c2b14441b04e0694a3361d3a7088cac7"
+      "payload_hash": "37bba31f54e0406bddb0e54df56bc5954a532fd3b2c9b296ce8ac33399442584"
     },
     {
       "version": 3,
-      "created_at": "2026-11-14T01:45:53+00:00",
+      "created_at": "2026-11-14T10:35:18+00:00",
       "actor": "intelligence_agent",
       "role": "agent",
       "note": "intelligence output",
-      "payload_hash": "4b31f603ec129ecc006429bff7f5ab79d15306ea5279e45fb46c96cf9965c504"
+      "payload_hash": "a932e9c7a7528442dcb2a1519146472cd66257a2adf465589c68bb01005f3106"
     },
     {
       "version": 4,
-      "created_at": "2026-11-14T01:45:54+00:00",
+      "created_at": "2026-11-14T10:35:20+00:00",
       "actor": "portfolio_agent",
       "role": "agent",
       "note": "portfolio output",
-      "payload_hash": "a13ccf56b9341e58da6bc98a6c80b61f2be1950c3abc3dd325ad19fef06a9c95"
+      "payload_hash": "5e3755f595320d83ed2809ae12bb13eac4d3d565ee4c731553c399c7d6f9e0d2"
     },
     {
       "version": 5,
-      "created_at": "2026-11-14T01:45:54+00:00",
+      "created_at": "2026-11-14T10:35:20+00:00",
       "actor": "coordinator",
       "role": "agent",
       "note": "reconcile",
-      "payload_hash": "d6eaee30ea30ebd2c833834006a4737e38553d1f2afc8a62a1cd637118eebb34"
+      "payload_hash": "16dc2f761e9bb6cac8fc4292066cfcb6dfa1658f91d657104da1d7956a8df104"
     },
     {
       "version": 6,
-      "created_at": "2026-11-14T01:45:54+00:00",
+      "created_at": "2026-11-14T10:35:20+00:00",
       "actor": "activation_agent",
       "role": "agent",
       "note": "pilot drafted",
-      "payload_hash": "c38c74fa383e5b4016343e9eb6b55670b71e6475688768eb0e6b35f9f774f124"
+      "payload_hash": "fda0b2fe7061d8978d37de6e29c6c82df346701b8ba4f4f2a18274338cc66722"
     },
     {
       "version": 7,
-      "created_at": "2026-11-14T01:45:54+00:00",
+      "created_at": "2026-11-14T10:35:20+00:00",
       "actor": "activation_agent",
       "role": "agent",
       "note": "-> REVIEW_REQUESTED",
-      "payload_hash": "0effbf2441e473fca5efbcf3f76bf1ca52439f0619c1a6ae09b69ac7ec78a48b"
+      "payload_hash": "4c964e9f86b90c5cbab4983df9a04da397881d34510c3589e6646374fe722d7c"
     },
     {
       "version": 8,
-      "created_at": "2026-11-14T01:45:54+00:00",
+      "created_at": "2026-11-14T10:35:20+00:00",
       "actor": "activation_agent",
       "role": "agent",
       "note": "activation output",
-      "payload_hash": "6e3dbaf3a312977c369f7421cd63335e053722ce3d265a5e4128e6f78e894852"
-    },
-    {
-      "version": 9,
-      "created_at": "2026-11-14T01:45:54+00:00",
-      "actor": "activation_agent",
-      "role": "agent",
-      "note": "activation output",
-      "payload_hash": "b038b0fa028bdf6801bd09e7368709ff928c8aa45bd1355003fe5c9637d5a16d"
-    },
-    {
-      "version": 10,
-      "created_at": "2026-11-14T01:45:54+00:00",
-      "actor": "TEST_FIXTURE_APPROVER",
-      "role": "approver",
-      "note": "-> APPROVED",
-      "payload_hash": "b62aa5cf115212540e7b11ced1e904aeb4413ebab0396510e493dadedfafdfd5"
-    },
-    {
-      "version": 11,
-      "created_at": "2026-11-14T01:45:54+00:00",
-      "actor": "activation_agent",
-      "role": "agent",
-      "note": "-> SANDBOX_RECORDED",
-      "payload_hash": "9145fd9e8cc77bba10555b1b9ba48a0b200abe548934d5b0ca150eacb2084307"
-    },
-    {
-      "version": 12,
-      "created_at": "2026-11-14T01:45:54+00:00",
-      "actor": "activation_agent",
-      "role": "agent",
-      "note": "activation output",
-      "payload_hash": "610a1e75cfd5bf480a964a2edac528fd1f419ce9148357939610ff103129665e"
-    },
-    {
-      "version": 13,
-      "created_at": "2026-11-14T01:45:55+00:00",
-      "actor": "measurement_agent",
-      "role": "agent",
-      "note": "-> EVALUATED",
-      "payload_hash": "a976207fffbb999f703a16f7a0a996e6d4f298d71a16bb882198df0a3da1e6cd"
-    },
-    {
-      "version": 14,
-      "created_at": "2026-11-14T01:45:55+00:00",
-      "actor": "measurement_agent",
-      "role": "agent",
-      "note": "-> STOP",
-      "payload_hash": "316cf9644089384c68490f53104a8aa4db5d8e2f0c68fa8f9201ffe392d5fd6a"
-    },
-    {
-      "version": 15,
-      "created_at": "2026-11-14T01:45:55+00:00",
-      "actor": "measurement_agent",
-      "role": "agent",
-      "note": "measurement output",
-      "payload_hash": "2b340d687d6e085b932d8488a7319bd2e14f4508183419987a6bc4bca1d2ae52"
-    },
-    {
-      "version": 16,
-      "created_at": "2026-11-14T01:45:55+00:00",
-      "actor": "research_agent",
-      "role": "agent",
-      "note": "research output",
-      "payload_hash": "805d67357cc01a811d102c9c579da3d3343d41c2d696cd30f5a5e88b59e3b3b9"
+      "payload_hash": "5706c0a7fd869482ae5387090d081bc16df2af0133212433fedfa7026922037f"
     }
   ],
-  "crm_actions": [
-    {
-      "action_id": "SBX-cbc49a483d",
-      "opportunity_id": "OPP-6EF9B5FA",
-      "version": 10,
-      "idempotency_key": "9a0054c09663962648b9",
-      "plan_hash": "8c15c05cc7997b711e13b58b87709555e31408e64e1cc98e73256777ad231493",
-      "kind": "coupon_pilot_record",
-      "payload": "{\"plan_id\": \"LEARN-FROZEN_PIZZA-LAPSING-DIGITAL\", \"audience\": {\"category\": \"FROZEN PIZZA\", \"segment\": \"LAPSING\", \"rule\": \"bought FROZEN PIZZA in weeks -12..-5, not in the last 4 weeks; digital consent on file; exclude staff/test accounts\", \"reachability\": \"UNKNOWN in public data \\u2014 requires consented loyalty/app contacts\"}, \"channel\": \"digital_coupon\", \"offer\": {\"type\": \"loaded digital coupon\", \"value_usd\": 0.9, \"value_status\": \"OBSERVED historical mean coupon discount (FROZEN PIZZA)\", \"validity_days\": 28, \"limit\": \"1 use per household\"}, \"message\": \"A $0.90 digital coupon for frozen pizza has been added to your account. Valid for 28 days, one use. Manage offers or opt out any time in your account settings, or reply STOP.\", \"design\": {\"type\": \"customer-level randomized holdout 50/50\", \"n_per_arm\": 866, \"duration_days\": 28, \"primary_metric\": \"incremental contribution per randomized eligible household after coupon and contact cost, 28 days\", \"guardrails\": {\"opt_out_rate_max\": 0.02, \"complaint_rate_max\": 0.005, \"stockout_flag\": false}, \"follow_up_days\": 56, \"analysis\": \"intention-to-treat; no peeking; decision rule in configs/policy.json\"}, \"budget\": {\"currency\": \"USD\", \"treated_households\": 866, \"per_household_expected_cost\": 0.1627, \"variable\": 140.9, \"fixed_setup\": 1500, \"total\": 1640.9, \"cap\": 25000, \"status\": \"SIMULATION (ASSUMED contact/redemption/fixed; OBSERVED face value; MODEL q0)\"}, \"status\": \"DRAFT \\u2014 not sent\"}",
-      "ts": "2026-11-14T01:45:54+00:00",
-      "sandbox": 1
-    }
-  ]
+  "crm_actions": []
 }

@@ -109,6 +109,11 @@ def bootstrap_by_household(df, y, s_a, p_a, s_b, p_b, n_boot=200, seed=SEED) -> 
             "Brier_diff_mean": float(np.mean(d_br)), "Brier_diff_95ci": q(d_br)}
 
 
+def robust_gap(model, cal, cats, yca) -> dict:
+    return {"model": float(average_precision_score(yca, model.predict_proba(design(cal, cats, FEATURES))[:, 1])),
+            "rule": float(average_precision_score(yca, rule_repeat(cal)))}
+
+
 def file_hash(path) -> str:
     return hashlib.sha256(open(path, "rb").read()).hexdigest()[:16]
 
@@ -203,6 +208,14 @@ def run(cfg=None, write=True) -> dict:
 
     # --- historical economics inputs (OBSERVED): mean 4-week category spend among buyers, test window
     spend = te[te.y == 1].groupby("product_category").label_spend.mean().round(4).to_dict()
+    # per category x segment: purchase rate and SD of 4-week category spend incl. non-buyers (for pilot sizing)
+    seg_stats = {f"{c}|{s}": {"n": int(len(g)), "purchase_rate": round(float(g.y.mean()), 4),
+                              "spend_mean": round(float(g.label_spend.mean()), 4), "spend_sd": round(float(g.label_spend.std(ddof=1)), 4)}
+                 for (c, s), g in te.groupby(["product_category", "segment"])}
+    # paired model-vs-rule AP gap on every non-training window (temporal stability, not just household sampling)
+    window_gaps = {"validation_41": {"model": val[best], "rule": val["rule_repeat"]},
+                   "calibration_45": robust_gap(model, cal, cats, yca),
+                   "test_49": {"model": test["model_" + best]["AP"], "rule": test["rule_repeat"]["AP"]}}
     tx_c = tx.merge(products[["product_id", "product_category"]], on="product_id")
     coup = tx_c[(tx_c.coupon_disc > 0) & tx_c.product_category.isin(cats)].groupby("product_category").coupon_disc.mean().round(4).to_dict()
 
@@ -227,7 +240,9 @@ def run(cfg=None, write=True) -> dict:
         "by_category": by_cat, "by_segment": by_seg, "failure_case": failure,
         "ablation_test_AP": abl, "robustness": robust,
         "economics_inputs_observed": {"mean_4w_category_spend_among_buyers_test": spend,
-                                      "mean_coupon_disc_per_couponed_line": coup},
+                                      "mean_coupon_disc_per_couponed_line": coup,
+                                      "test_window_category_segment_stats": seg_stats},
+        "window_gaps_model_vs_rule": window_gaps,
         "seconds": round(time.time() - t0, 1),
     }
     if write:
@@ -235,6 +250,10 @@ def run(cfg=None, write=True) -> dict:
         cols = ["household_id", "product_category", "segment", "p_model", "p_rule", "p_used",
                 "cat_weeks_active_12w", "cat_spend_12w", "hh_baskets_12w"]
         sc[cols].to_parquet(PROCESSED / "scores_latest.parquet", index=False)
+        # raw locked-test predictions so every reported test metric can be re-derived independently (gitignored)
+        te[["household_id", "product_category", "segment", "y", "label_spend"]].assign(
+            s_model=s_model, p_model=p_model, s_rule=s_rep, p_rule=p_rep, s_popularity=s_pop, p_popularity=p_pop
+        ).to_parquet(PROCESSED / "test_predictions.parquet", index=False)
         with open(PROCESSED / "model.pkl", "wb") as f:
             pickle.dump({"model": model, "iso_model": iso_m, "iso_rule": iso_r, "features": FEATURES,
                          "categories": cats, "run_id": run_id}, f)

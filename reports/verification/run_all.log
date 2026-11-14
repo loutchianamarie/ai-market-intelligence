@@ -1,0 +1,38 @@
+[skip] download
+[run ] audit ...
+[ok] audit (12s)
+[run ] train ...
+[ok] train (112s)
+[run ] portfolio+sensitivity ...
+[ok] portfolio+sensitivity (57s)
+[run ] rag eval ...
+[ok] rag eval (1s)
+[run ] geo analysis ...
+[ok] geo analysis (0s)
+[run ] fashionforward fixture ...
+[ok] fashionforward fixture (2s)
+[run ] blocked demo ...
+[ok] blocked demo (2s)
+[run ] agents to human checkpoint ...
+{
+ "opportunity_id": "OPP-A3ED0A0E",
+ "state": "REVIEW_REQUESTED",
+ "llm_available": false,
+ "pilot_budget": {
+  "currency": "USD",
+  "treated_households": 866,
+  "per_household_expected_cost": 0.1627,
+  "variable": 140.9,
+  "fixed_setup": 1500,
+  "total": 1640.9,
+  "cap": 25000,
+  "status": "SIMULATION (ASSUMED contact/redemption/fixed; OBSERVED face value; MODEL q0)"
+ },
+ "plan_hash": "8c15c05cc7997b711e13b58b87709555e31408e64e1cc98e73256777ad231493",
+ "next": "human: python -m mi.agents.coordinator approve OPP-A3ED0A0E --approver \"<name>\""
+}
+[ok] agents to human checkpoint (3s)
+
+real	3m10.732s
+user	0m0.000s
+sys	0m0.046s

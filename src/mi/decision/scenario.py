@@ -2,11 +2,15 @@
 
 Per contacted household h in plan j (category c, segment s, channel k):
     q0_h   = calibrated historical purchase probability (MODEL ESTIMATE; not a response estimate)
-    dq_s   = ASSUMED incremental purchase probability from the coupon
+    dq_s   = ASSUMED incremental purchase probability from the coupon, CONSTANT within a segment
     g_c    = OBSERVED mean 4-week category spend among buyers x ASSUMED margin rate
     F_c    = coupon face value (OBSERVED historical mean coupon discount)
-    r      = ASSUMED share of would-have-bought-anyway households that redeem (subsidy)
+    r      = ASSUMED share of baseline buyers who redeem (coupon cost on purchases not caused by the coupon)
     c_k    = ASSUMED contact cost of channel k
+KEY ASSUMPTION A1: the no-contact (baseline) purchase probability is approximated by q0_h, the propensity under
+historical conditions. This is NOT measured: historical data cannot show who would buy without a coupon or whom a
+coupon would persuade. Under A1 + constant dq_s, households with lower q0 have higher expected value, which is why a
+"MODEL_FILTERED" variant can win. Treat that as a STRATIFICATION HYPOTHESIS for a randomized pilot, not measured targeting.
   expected net value  v_h = dq_s * (g_c - F_c) - c_k - q0_h * r * F_c
   (incremental buyers are assumed to redeem; non-incremental buyers redeem at rate r)
 Plan net = scale * sum_h w_k * v_h - fixed_setup, where w_k is the reachable share of channel k.
