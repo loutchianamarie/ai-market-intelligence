@@ -82,7 +82,7 @@ def build_cutoff(prep: dict, cutoff: int, lookback: int, horizon: int,
     # campaign / coupon history known at cutoff date
     cutoff_date = prep["week_end"].get(cutoff, prep["week_end"].max())
     red = redemptions[(redemptions.redemption_date <= cutoff_date) &
-                      (redemptions.redemption_date > cutoff_date - pd.Timedelta(weeks=lookback))]
+                      (redemptions.redemption_date > cutoff_date - pd.Timedelta(weeks=int(lookback)))]
     df["hh_redemptions_12w"] = df.household_id.map(red.groupby("household_id").size()).fillna(0)
     started = camp_desc[camp_desc.start_date <= cutoff_date].campaign_id
     camp = campaigns[campaigns.campaign_id.isin(set(started))]

@@ -1,0 +1,197 @@
+{
+  "n": 13,
+  "answerable": 10,
+  "passage_recall_at_5": 1.0,
+  "abstention_decision_accuracy": 0.7692307692307693,
+  "conflict_detected": "0/1",
+  "baseline_no_retrieval": {
+    "passage_recall_at_5": 0.0,
+    "abstention_decision_accuracy": 0.23076923076923078,
+    "note": "always-abstain baseline"
+  },
+  "status": "OBSERVED on a 13-question authored set; semantic support still needs two human reviewers",
+  "rows": [
+    {
+      "q": "How many households are in the Complete Journey data?",
+      "answerable": true,
+      "abstained": false,
+      "recall_at_5": true,
+      "correct_abstention_decision": true,
+      "conflicts": [],
+      "top": [
+        "cj_transactions",
+        "cj_py_port_readme",
+        "cj_pkg_index"
+      ],
+      "answer": "Source: R/transactions.R transactions.Rd All products purchased by households within the Complete Journey study. ## Overview The Complete Journey dataset represents grocery store shopping transactions over one year from a group of **801 hou"
+    },
+    {
+      "q": "Is the completejourney_py Python package authentic consumer data or simulated?",
+      "answerable": true,
+      "abstained": false,
+      "recall_at_5": true,
+      "correct_abstention_decision": true,
+      "conflicts": [],
+      "top": [
+        "cj_py_port_readme",
+        "cj_py_port_readme",
+        "cj_py_port_readme"
+      ],
+      "answer": "> **Important**: This package contains simulated data based on real grocery shopping patterns. st.yml) [![Docs](https://img.shields.io/badge/docs-latest-blue.svg)](https://cunningjames.github.io/completejourney_py/) [![Code style: black](ht"
+    },
+    {
+      "q": "What does the coupon redemptions table record?",
+      "answerable": true,
+      "abstained": false,
+      "recall_at_5": true,
+      "correct_abstention_decision": true,
+      "conflicts": [],
+      "top": [
+        "cj_coupon_redemptions",
+        "report_data_audit",
+        "cj_pkg_index"
+      ],
+      "answer": "\u2014 coupon_redemptions \u2022 completejourney Toggle navigation completejourney 1.1.1 Articles User Guide Reference News GitHub Coupon redemption data. mpaigns : campaigns received by each household campaign_descriptions : campaign metadata (lengt"
+    },
+    {
+      "q": "Which households received which campaigns?",
+      "answerable": true,
+      "abstained": false,
+      "recall_at_5": true,
+      "correct_abstention_decision": true,
+      "conflicts": [],
+      "top": [
+        "cj_pkg_index",
+        "cj_py_port_readme",
+        "cj_campaigns"
+      ],
+      "answer": "campaigns : campaigns received by each household campaign_descriptions : campaign metadata (length of time active) coupons havior patterns - **Coupon Analysis** - Promotional effectiveness - **Traffic Patterns** - Store visit timing and tre"
+    },
+    {
+      "q": "Does Google require special markup or schema to appear in AI Overviews?",
+      "answerable": true,
+      "abstained": false,
+      "recall_at_5": true,
+      "correct_abstention_decision": true,
+      "conflicts": [],
+      "top": [
+        "google_ai_features",
+        "google_ai_features",
+        "google_ai_features"
+      ],
+      "answer": "There are no additional requirements to appear in AI Overviews or AI Mode, nor other special optimizations necessary. that important content is available in textual form Supporting your textual content with high-quality images and videos , "
+    },
+    {
+      "q": "What is the break-even ROAS formula given a gross margin?",
+      "answerable": true,
+      "abstained": false,
+      "recall_at_5": true,
+      "correct_abstention_decision": true,
+      "conflicts": [],
+      "top": [
+        "course_metrics_slides",
+        "course_marketing_primer",
+        "course_metrics_workbook"
+      ],
+      "answer": "The rule Break-even ROAS = 1 \u00f7 gross margin Gross margin = what is left of revenue after paying for the products, shipping and payment fees. At MERIDIAN's 42% gross margin, though, \u20ac3 of revenue brings in only about \u20ac1.26 of gross profit fo"
+    },
+    {
+      "q": "Why should research ask about missing customers who are not in the dashboard?",
+      "answerable": true,
+      "abstained": false,
+      "recall_at_5": true,
+      "correct_abstention_decision": true,
+      "conflicts": [],
+      "top": [
+        "course_market_research_primer",
+        "course_market_research_primer",
+        "course_market_research_primer"
+      ],
+      "answer": "PART 2 \u2014 The five steps of a research project Write the missing step names and the missing problems."
+    },
+    {
+      "q": "What are the three tests every real segment must pass: measurable reachable substantial?",
+      "answerable": true,
+      "abstained": false,
+      "recall_at_5": true,
+      "correct_abstention_decision": true,
+      "conflicts": [],
+      "top": [
+        "course_marketing_primer",
+        "course_market_research_primer",
+        "course_market_research_primer"
+      ],
+      "answer": "3 Tests Every Real Segment Must Pass Measurable: \u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026... The rule for this course When somebody says \"we used AI\", you must be able to answer three questions: which method?"
+    },
+    {
+      "q": "Where must a human approve in the agent canvas: money and public messages?",
+      "answerable": true,
+      "abstained": false,
+      "recall_at_5": true,
+      "correct_abstention_decision": true,
+      "conflicts": [],
+      "top": [
+        "course_agent_worksheet",
+        "course_agent_worksheet",
+        "course_agent_worksheet"
+      ],
+      "answer": "\u2610  A human approves money and public messages. A moment where a person must approve before the agent continues."
+    },
+    {
+      "q": "How many prompts and answers does the GEO sprint log?",
+      "answerable": true,
+      "abstained": false,
+      "recall_at_5": true,
+      "correct_abstention_decision": true,
+      "conflicts": [],
+      "top": [
+        "course_seo_geo_worksheet",
+        "course_seo_geo_worksheet",
+        "course_market_research_primer"
+      ],
+      "answer": "GEO sprint: make a brand the answer Name: ______________________________   Date: ____________ YOUR MISSION Pick ONE brand: A caf\u00e9 in Beirut \u00b7 B phone-accessories web shop in Lebanon \u00b7 C beauty brand sold in Lebanon. Run and log 20 answers U"
+    },
+    {
+      "q": "What is the retailer's actual product gross margin on frozen pizza?",
+      "answerable": false,
+      "abstained": false,
+      "recall_at_5": null,
+      "correct_abstention_decision": false,
+      "conflicts": [],
+      "top": [
+        "report_portfolio",
+        "report_portfolio",
+        "report_data_audit"
+      ],
+      "answer": "FROZEN PIZZA/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED"
+    },
+    {
+      "q": "What was Kroger's digital coupon redemption rate in 2025?",
+      "answerable": false,
+      "abstained": false,
+      "recall_at_5": null,
+      "correct_abstention_decision": false,
+      "conflicts": [],
+      "top": [
+        "report_portfolio",
+        "report_portfolio",
+        "report_portfolio"
+      ],
+      "answer": "EL_FILTERED + COFFEE/LAPSING/digital_coupon/MODEL_FILTERED witch within scanned range - **fixed_setup**: no switch within scanned range - **scale**: no switch within scanned range - **digital_contact_cost**: no switch within scanned range #"
+    },
+    {
+      "q": "How many stores does the anonymous retailer operate in Ohio?",
+      "answerable": false,
+      "abstained": false,
+      "recall_at_5": null,
+      "correct_abstention_decision": false,
+      "conflicts": [],
+      "top": [
+        "report_data_audit",
+        "course_marketing_primer",
+        "report_model_card"
+      ],
+      "answer": "ot in the data (must stay ASSUMED or UNKNOWN) - product cost / margin - inventory / stock - returns - ad or contact cost - documented random assignment of campaigns - customer consent / reachability - retailer identity (anonymous by design)"
+    }
+  ]
+}

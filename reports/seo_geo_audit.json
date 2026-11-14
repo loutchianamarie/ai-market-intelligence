@@ -1,0 +1,12 @@
+{
+  "status": "PENDING — 0 real answers collected",
+  "answers_logged": 0,
+  "answers_target": 20,
+  "brand": "Kroger",
+  "competitors": [
+    "Walmart",
+    "Target",
+    "Aldi"
+  ],
+  "note": "Run the frozen panel in two assistants and fill data/seo/answer_log.csv. No metric is computed from zero answers."
+}

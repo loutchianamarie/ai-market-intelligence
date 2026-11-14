@@ -1,0 +1,18 @@
+{
+  "opportunity_id": "OPP-2911C766",
+  "portfolio_tries_draft_pilot": "blocked",
+  "activation_records_before_approval": {
+    "status": "blocked",
+    "provenance": {
+      "reason": "sandbox action blocked: dossier state DRAFT has no valid approval"
+    }
+  },
+  "agent_self_approval": "blocked: role 'agent' cannot approve money, offers or customer messages",
+  "poisoned_page": "see tests/test_rag.py::test_poisoned_page_cannot_trigger_tools",
+  "events": [
+    "DOSSIER_CREATED",
+    "TOOL_BLOCKED",
+    "UNAPPROVED_ACTION_BLOCKED",
+    "APPROVAL_BLOCKED"
+  ]
+}

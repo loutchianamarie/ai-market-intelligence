@@ -8,3 +8,4 @@ data/processed/
 *.sqlite-journal
 .env
 reports/_tmp/
+data/sources/_cache/
