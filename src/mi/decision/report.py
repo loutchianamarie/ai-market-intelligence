@@ -67,7 +67,7 @@ def run() -> dict:
                 sub = scores[(scores.product_category == cat) & (scores.segment == seg)]
                 if sub.empty:
                     continue
-                g, F = sp[cat] * a.margin_rate, fc[cat]
+                g, F = sp[cat] * a.margin_rate, fc[cat] * a.face_share(cat)
                 for ch in a.contact_cost:
                     w = a.reach_share[ch] * scale
                     fixed_cost_terms = (a.contact_cost[ch] + sub.p_used * a.redemption_share * F).sum()

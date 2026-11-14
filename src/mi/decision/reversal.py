@@ -28,7 +28,11 @@ SEARCH = {
     "fixed_setup": (lambda v: {"fixed_setup": v}, 1500.0, 0.0, "USD per plan", "setup cost"),
     "contact_cost_digital": (lambda v: {"contact_cost": {"digital_coupon": v}}, 0.03, 0.0, "USD per contact", "digital contact cost"),
     "redemption_share": (lambda v: {"redemption_share": v}, 0.35, 0.0, "share of baseline buyers", "coupons used by people who buy anyway"),
+    "coupon_retailer_share": (lambda v: {"coupon_retailer_share": v}, 1.0, 0.0, "share of coupon face paid by retailer", "who funds the coupon"),
 }
+# combination grid: plausible joint changes (each level is a value a manager could plausibly confirm or negotiate)
+GRID = {"uplift_multiplier": [1.0, 1.5, 2.0, 3.0], "funding": ["retailer", "manufacturer+observed match"],
+        "scale": [40.0, 100.0, 250.0], "fixed_setup": [1500.0, 750.0], "margin_rate": [0.28, 0.35]}
 
 
 def decision_inputs(cfg=None) -> dict:
@@ -90,13 +94,47 @@ def reversal(cfg=None, iters=10) -> dict:
             "status": "SCENARIO (one input varied, others at ASSUMED base values); not a forecast"}
 
 
+def combinations(cfg=None) -> dict:
+    """Full factorial over GRID (others at base). A combination 'flips' if the optimizer stops recommending NONE.
+    Minimal flips: no other flipping combination is at least as close to base on every dimension."""
+    import itertools
+    cfg = cfg or load_config()
+    scores, econ, rep = load_inputs()
+    acc = REPORTS / "accounting_audit.json"
+    match = {c: v["retailer_match_share_of_coupon_value"] for c, v in json.loads(acc.read_text())["by_candidate_category"].items()} if acc.exists() else None
+    keys = list(GRID)
+    rows = []
+    for combo in itertools.product(*[GRID[k] for k in keys]):
+        d = dict(zip(keys, combo))
+        if d["funding"] != "retailer" and match is None:
+            continue
+        ov = {"uplift_multiplier": d["uplift_multiplier"], "scale": d["scale"], "fixed_setup": d["fixed_setup"], "margin_rate": d["margin_rate"],
+              "coupon_retailer_share": 1.0 if d["funding"] == "retailer" else match}
+        rec, net = _rec(scores, econ, cfg, ov)
+        rows.append({**d, "recommendation": rec, "best_plan_net": round(net, 2), "flips": rec != NONE_ID})
+    level = {k: {v: i for i, v in enumerate(GRID[k])} for k in keys}
+    flips = [r for r in rows if r["flips"]]
+    def dominated(a, b):  # b at least as close to base everywhere and strictly closer somewhere
+        return all(level[k][b[k]] <= level[k][a[k]] for k in keys) and any(level[k][b[k]] < level[k][a[k]] for k in keys)
+    minimal = [r for r in flips if not any(dominated(r, o) for o in flips if o is not r)]
+    return {"model_run_id": rep["run_id"], "grid": GRID, "n_combinations": len(rows), "n_flip": len(flips),
+            "minimal_flipping_combinations": minimal, "all": rows,
+            "status": "SCENARIO; each grid value is an ASSUMED alternative, not an observed input",
+            "reading": "A flip shows which JOINT changes would have to be confirmed before any coupon plan beats doing nothing."}
+
+
 def main(argv=None) -> int:
     t = time.time()
     di = decision_inputs()
     (REPORTS / "decision_inputs.json").write_text(json.dumps(di, indent=2, default=str))
     rv = reversal()
     rv["seconds"] = round(time.time() - t, 1)
+    rv["combinations"] = combinations()
+    rv["seconds"] = round(time.time() - t, 1)
     (REPORTS / "decision_reversal.json").write_text(json.dumps(rv, indent=2, default=str))
+    print("combinations:", rv["combinations"]["n_flip"], "of", rv["combinations"]["n_combinations"], "flip; minimal:")
+    for m in rv["combinations"]["minimal_flipping_combinations"]:
+        print("  ", {k: m[k] for k in GRID}, "->", m["recommendation"], m["best_plan_net"])
     print("base:", rv["base_recommendation"])
     for r in rv["one_at_a_time"]:
         print(" ", r["input"], "->", r.get("flip_value", "no flip"), r.get("first_plan_after_flip", r.get("result")))

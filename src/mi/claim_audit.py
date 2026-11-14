@@ -96,7 +96,8 @@ def economics_checks(cfg) -> dict:
     w = s["channels"]["digital_coupon"]["reach_share"]["value"]
     scale, fixed = s["deployment_scale"]["value"], s["fixed_setup_per_plan"]["value"]
     dq = s["incremental_purchase_rate"][seg][1]
-    g, F = e["mean_4w_category_spend_among_buyers_test"][cat] * margin, e["mean_coupon_disc_per_couponed_line"][cat]
+    share = s.get("coupon_funding", {}).get("retailer_share", {"value": 1.0})["value"]   # who pays the coupon (ASSUMED)
+    g, F = e["mean_4w_category_spend_among_buyers_test"][cat] * margin, e["mean_coupon_disc_per_couponed_line"][cat] * share
     q0 = sc[(sc.product_category == cat) & (sc.segment == seg)].p_used.to_numpy()
     v = dq * (g - F) - c - q0 * r * F                                   # plain re-implementation
     net_independent = float(v.sum() * w * scale - fixed)

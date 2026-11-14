@@ -48,7 +48,7 @@ class Universe:
         scores = scores.assign(_i=scores.household_id.map(hh_index))
         for cat in cfg["categories"]:
             g = spend[cat] * a.margin_rate
-            F = face.get(cat) or cfg["scenario"]["coupon_face_value"]["fallback"]
+            F = (face.get(cat) or cfg["scenario"]["coupon_face_value"]["fallback"]) * a.face_share(cat)
             sc_cat = scores[scores.product_category == cat]
             groups = [(seg, sc_cat[sc_cat.segment == seg]) for seg in SEGMENTS] + [("BROAD", sc_cat)]
             for seg, sub in groups:

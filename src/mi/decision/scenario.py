@@ -4,7 +4,7 @@ Per contacted household h in plan j (category c, segment s, channel k):
     q0_h   = calibrated historical purchase probability (MODEL ESTIMATE; not a response estimate)
     dq_s   = ASSUMED incremental purchase probability from the coupon, CONSTANT within a segment
     g_c    = OBSERVED mean 4-week category spend among buyers x ASSUMED margin rate
-    F_c    = coupon face value (OBSERVED historical mean coupon discount)
+    F_c    = coupon face value the RETAILER pays = OBSERVED mean manufacturer coupon x ASSUMED retailer share (coupon_funding)
     r      = ASSUMED share of baseline buyers who redeem (coupon cost on purchases not caused by the coupon)
     c_k    = ASSUMED contact cost of channel k
 KEY ASSUMPTION A1: the no-contact (baseline) purchase probability is approximated by q0_h, the propensity under
@@ -39,9 +39,14 @@ class Assumptions:
     uplift_multiplier: float = 1.0
     scale: float = 1.0
     status: dict = field(default_factory=dict)
+    coupon_retailer_share: object = 1.0   # float, or {category: share}; who pays the coupon face value (ASSUMED)
 
     def dq(self, segment: str) -> float:
         return self.uplift[segment] * self.uplift_multiplier
+
+    def face_share(self, category: str) -> float:
+        s = self.coupon_retailer_share
+        return float(s.get(category, 1.0)) if isinstance(s, dict) else float(s)
 
 
 def assumptions_from_config(cfg: dict, case: str = "base", overrides: dict | None = None) -> Assumptions:
@@ -68,7 +73,8 @@ def assumptions_from_config(cfg: dict, case: str = "base", overrides: dict | Non
         fixed_setup=pick(s["fixed_setup_per_plan"], False),
         uplift=up, scale=s.get("deployment_scale", {"value": 1.0})["value"] if case == "base"
         else pick(s.get("deployment_scale", {"value": 1.0}), True),
-        status={"margin_rate": "ASSUMED", "redemption_share": "ASSUMED", "contact_cost": "ASSUMED",
+        coupon_retailer_share=s.get("coupon_funding", {}).get("retailer_share", {"value": 1.0})["value"],
+        status={"coupon_funding": "ASSUMED", "margin_rate": "ASSUMED", "redemption_share": "ASSUMED", "contact_cost": "ASSUMED",
                 "reach_share": "ASSUMED", "fixed_setup": "ASSUMED", "uplift": "ASSUMED", "scale": "ASSUMED",
                 "q0": "MODEL ESTIMATE", "category_spend": "OBSERVED", "coupon_face_value": "OBSERVED"})
     for k, v in (overrides or {}).items():

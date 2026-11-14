@@ -26,9 +26,12 @@ from mi.paths import RAW, REPORTS, ROOT
 
 # (name, module args, run-condition or None, optional?)
 STEPS = [
-    ("download", ["mi.ingest.download"], lambda: not (RAW / "transactions.rds").exists(), False),
+    ("download", ["mi.ingest.download", "--with-promotions"],
+     lambda: not (RAW / "transactions.rds").exists() or not (RAW / "promotions.rds").exists(), False),
     ("verify data", ["mi.ingest.verify"], None, False),
     ("audit", ["mi.ingest.audit"], None, False),
+    ("accounting audit + data dictionary", ["mi.ingest.accounting"], None, False),
+    ("promotions load + join audit", ["mi.ingest.promotions"], None, False),
     ("train", ["mi.model.train"], None, False),
     ("evaluate model", ["mi.model.evaluate"], None, False),
     ("portfolio+sensitivity", ["mi.decision.report"], None, False),

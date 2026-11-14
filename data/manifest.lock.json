@@ -53,6 +53,14 @@
       "bytes": 4237,
       "sha256": "8b80455bc841003b64e47f5e5c2221f6093b995e923d59e72a1f852c7e268980",
       "expected_rows": 801
+    },
+    {
+      "name": "promotions.rds",
+      "url": "https://raw.githubusercontent.com/bradleyboehmke/completejourney/5b5d06192b9856edd04e4d405787af2f2e4a1fef/data/promotions.rds",
+      "bytes": 24976951,
+      "sha256": "15a729fdad31b10d3afedb058da31bcd6e9e68cb0207a43b3121264cd80198ba",
+      "expected_rows": 20940529,
+      "row_check": "mi.ingest.promotions (documented 20,940,529 rows)"
     }
   ]
 }

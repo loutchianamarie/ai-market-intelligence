@@ -1,0 +1,183 @@
+{
+  "rows": 20940529,
+  "rows_match_documentation": true,
+  "duplicate_product_store_week_keys": 12785,
+  "products": 59800,
+  "stores": 112,
+  "weeks": [
+    1,
+    53
+  ],
+  "display_codes": {
+    "0": 11937691,
+    "9": 1524457,
+    "5": 1448441,
+    "7": 1379279,
+    "3": 1176150,
+    "2": 1046606,
+    "6": 1043837,
+    "1": 632040,
+    "A": 409401,
+    "4": 342627
+  },
+  "mailer_codes": {
+    "A": 9569399,
+    "0": 6632002,
+    "D": 2557238,
+    "H": 880951,
+    "F": 610173,
+    "J": 214982,
+    "L": 189763,
+    "C": 164936,
+    "X": 109772,
+    "Z": 10744,
+    "P": 569
+  },
+  "undocumented_display_codes": [],
+  "undocumented_mailer_codes": [],
+  "rows_on_display": 9002838,
+  "rows_in_mailer": 14308527,
+  "rows_neither": 0,
+  "join": {
+    "key": [
+      "product_id",
+      "store_id",
+      "week"
+    ],
+    "rule": "Multiplicity rule: the key is checked unique in the audit; if duplicates ever appear, they are collapsed first\n    (on_display = any non-'0' display code, in_mailer = any non-'0' mailer code), so the join can never multiply\n    transaction lines. Lines without a promotions row get promo_record = False (absence of a record is NOT\n    evidence of no promotion; it is unknown).",
+    "all_lines": {
+      "lines": 1469307,
+      "lines_in_covered_stores": 0.987,
+      "with_promo_record": 0.2226,
+      "on_display_covered": 0.1091,
+      "in_mailer_covered": 0.1657,
+      "sales_share_on_display_or_mailer_covered": 0.1996,
+      "status_counts": {
+        "no_record_covered_store": 1123234,
+        "promoted": 327041,
+        "unknown_store_not_covered": 19032
+      }
+    },
+    "candidate_categories": {
+      "lines": 176026,
+      "lines_in_covered_stores": 0.9871,
+      "with_promo_record": 0.2834,
+      "on_display_covered": 0.155,
+      "in_mailer_covered": 0.2107,
+      "sales_share_on_display_or_mailer_covered": 0.2609,
+      "status_counts": {
+        "no_record_covered_store": 123861,
+        "promoted": 49893,
+        "unknown_store_not_covered": 2272
+      }
+    },
+    "by_category": {
+      "BAG SNACKS": {
+        "lines": 38088,
+        "lines_in_covered_stores": 0.9849,
+        "with_promo_record": 0.3555,
+        "on_display_covered": 0.2767,
+        "in_mailer_covered": 0.1866,
+        "sales_share_on_display_or_mailer_covered": 0.3461,
+        "status_counts": {
+          "no_record_covered_store": 23971,
+          "promoted": 13541,
+          "unknown_store_not_covered": 576
+        }
+      },
+      "COFFEE": {
+        "lines": 7795,
+        "lines_in_covered_stores": 0.9887,
+        "with_promo_record": 0.1133,
+        "on_display_covered": 0.0666,
+        "in_mailer_covered": 0.0785,
+        "sales_share_on_display_or_mailer_covered": 0.1173,
+        "status_counts": {
+          "no_record_covered_store": 6824,
+          "promoted": 883,
+          "unknown_store_not_covered": 88
+        }
+      },
+      "COLD CEREAL": {
+        "lines": 21397,
+        "lines_in_covered_stores": 0.9894,
+        "with_promo_record": 0.2392,
+        "on_display_covered": 0.1671,
+        "in_mailer_covered": 0.1812,
+        "sales_share_on_display_or_mailer_covered": 0.2014,
+        "status_counts": {
+          "no_record_covered_store": 16051,
+          "promoted": 5119,
+          "unknown_store_not_covered": 227
+        }
+      },
+      "FROZEN PIZZA": {
+        "lines": 23998,
+        "lines_in_covered_stores": 0.9883,
+        "with_promo_record": 0.3553,
+        "on_display_covered": 0.1919,
+        "in_mailer_covered": 0.2706,
+        "sales_share_on_display_or_mailer_covered": 0.3406,
+        "status_counts": {
+          "no_record_covered_store": 15191,
+          "promoted": 8527,
+          "unknown_store_not_covered": 280
+        }
+      },
+      "ICE CREAM/MILK/SHERBTS": {
+        "lines": 16088,
+        "lines_in_covered_stores": 0.9873,
+        "with_promo_record": 0.4266,
+        "on_display_covered": 0.1866,
+        "in_mailer_covered": 0.3895,
+        "sales_share_on_display_or_mailer_covered": 0.3556,
+        "status_counts": {
+          "no_record_covered_store": 9020,
+          "promoted": 6863,
+          "unknown_store_not_covered": 205
+        }
+      },
+      "REFRGRATD JUICES/DRNKS": {
+        "lines": 17317,
+        "lines_in_covered_stores": 0.9861,
+        "with_promo_record": 0.2932,
+        "on_display_covered": 0.1016,
+        "in_mailer_covered": 0.254,
+        "sales_share_on_display_or_mailer_covered": 0.2573,
+        "status_counts": {
+          "no_record_covered_store": 11999,
+          "promoted": 5077,
+          "unknown_store_not_covered": 241
+        }
+      },
+      "SOUP": {
+        "lines": 25789,
+        "lines_in_covered_stores": 0.9889,
+        "with_promo_record": 0.1361,
+        "on_display_covered": 0.0838,
+        "in_mailer_covered": 0.0902,
+        "sales_share_on_display_or_mailer_covered": 0.1215,
+        "status_counts": {
+          "no_record_covered_store": 21992,
+          "promoted": 3511,
+          "unknown_store_not_covered": 286
+        }
+      },
+      "YOGURT": {
+        "lines": 25554,
+        "lines_in_covered_stores": 0.9856,
+        "with_promo_record": 0.2494,
+        "on_display_covered": 0.044,
+        "in_mailer_covered": 0.2351,
+        "sales_share_on_display_or_mailer_covered": 0.2008,
+        "status_counts": {
+          "no_record_covered_store": 18813,
+          "promoted": 6372,
+          "unknown_store_not_covered": 369
+        }
+      }
+    }
+  },
+  "status": "OBSERVED placement records; association only, not a randomized treatment",
+  "seconds": 61.8
+}

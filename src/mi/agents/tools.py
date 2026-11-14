@@ -215,7 +215,8 @@ class Toolbox:
         e = rep["economics_inputs_observed"]
         st = e["test_window_category_segment_stats"][f"{category}|{segment}"]
         q0 = float(self.scores[(self.scores.product_category == category) & (self.scores.segment == segment)].p_used.mean())
-        g, F = e["mean_4w_category_spend_among_buyers_test"][category] * a.margin_rate, e["mean_coupon_disc_per_couponed_line"][category]
+        g = e["mean_4w_category_spend_among_buyers_test"][category] * a.margin_rate
+        F = e["mean_coupon_disc_per_couponed_line"][category] * a.face_share(category)   # retailer-paid share (ASSUMED funding)
         sigma = a.margin_rate * st["spend_sd"]
         d = pilot_design(q0, g, F, a.contact_cost[channel], a.redemption_share, sigma, a.dq(segment))
         key = str(float(uplift_multiple_for_sizing))
@@ -291,7 +292,7 @@ class Toolbox:
         a = assumptions_from_config(self.cfg, "base")
         rep = _read_json("model_report.json")["economics_inputs_observed"]
         cat, seg, ch = pilot["audience"]["category"], pilot["audience"]["segment"], pilot["channel"]
-        face = rep["mean_coupon_disc_per_couponed_line"][cat]
+        face = rep["mean_coupon_disc_per_couponed_line"][cat] * a.face_share(cat)
         q0 = float(self.scores[(self.scores.product_category == cat) & (self.scores.segment == seg)].p_used.mean())
         n_t = int(pilot["design"]["n_per_arm"])
         per_hh = a.contact_cost[ch] + float(coupon_cost(q0, a.dq(seg), face, a.redemption_share))

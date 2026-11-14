@@ -1,0 +1,138 @@
+{
+  "source": "maintainer guide + CC0 package data at commit 5b5d0619",
+  "transactions": {
+    "lines": 1469307,
+    "zero_quantity_lines": 8869,
+    "zero_sales_lines": 11226,
+    "negative_any_money_or_quantity_lines": 0,
+    "returns": "NOT REPRESENTED: no negative quantity or value lines; a return rate cannot be computed",
+    "lines_retail_disc_exceeds_sales_value": 37634,
+    "lines_coupon_disc_exceeds_sales_value": 3507
+  },
+  "money_fields": {
+    "sales_value": {
+      "sum": 4596039.58,
+      "lines_gt0": 1458081,
+      "lines_lt0": 0
+    },
+    "retail_disc": {
+      "sum": 791650.64,
+      "lines_gt0": 736369,
+      "lines_lt0": 0
+    },
+    "coupon_disc": {
+      "sum": 26359.9,
+      "lines_gt0": 21889,
+      "lines_lt0": 0
+    },
+    "coupon_match_disc": {
+      "sum": 4542.65,
+      "lines_gt0": 10300,
+      "lines_lt0": 0
+    }
+  },
+  "retailer_match_share_of_manufacturer_coupon_value": 0.1723,
+  "coupon_match_only_with_manufacturer_coupon": true,
+  "by_candidate_category": {
+    "BAG SNACKS": {
+      "lines": 38088,
+      "couponed_lines": 294,
+      "mean_manufacturer_coupon_per_couponed_line": 1.1259,
+      "retailer_match_share_of_coupon_value": 0.1574,
+      "loyalty_discount_share_of_sales": 0.1385
+    },
+    "COFFEE": {
+      "lines": 7795,
+      "couponed_lines": 154,
+      "mean_manufacturer_coupon_per_couponed_line": 0.7702,
+      "retailer_match_share_of_coupon_value": 0.3018,
+      "loyalty_discount_share_of_sales": 0.1328
+    },
+    "COLD CEREAL": {
+      "lines": 21397,
+      "couponed_lines": 513,
+      "mean_manufacturer_coupon_per_couponed_line": 0.9691,
+      "retailer_match_share_of_coupon_value": 0.1094,
+      "loyalty_discount_share_of_sales": 0.2282
+    },
+    "FROZEN PIZZA": {
+      "lines": 23998,
+      "couponed_lines": 543,
+      "mean_manufacturer_coupon_per_couponed_line": 0.9046,
+      "retailer_match_share_of_coupon_value": 0.3505,
+      "loyalty_discount_share_of_sales": 0.2073
+    },
+    "ICE CREAM/MILK/SHERBTS": {
+      "lines": 16088,
+      "couponed_lines": 184,
+      "mean_manufacturer_coupon_per_couponed_line": 1.3151,
+      "retailer_match_share_of_coupon_value": 0.0667,
+      "loyalty_discount_share_of_sales": 0.4832
+    },
+    "REFRGRATD JUICES/DRNKS": {
+      "lines": 17317,
+      "couponed_lines": 121,
+      "mean_manufacturer_coupon_per_couponed_line": 0.8935,
+      "retailer_match_share_of_coupon_value": 0.2396,
+      "loyalty_discount_share_of_sales": 0.2668
+    },
+    "SOUP": {
+      "lines": 25789,
+      "couponed_lines": 438,
+      "mean_manufacturer_coupon_per_couponed_line": 0.6385,
+      "retailer_match_share_of_coupon_value": 0.6631,
+      "loyalty_discount_share_of_sales": 0.1306
+    },
+    "YOGURT": {
+      "lines": 25554,
+      "couponed_lines": 459,
+      "mean_manufacturer_coupon_per_couponed_line": 0.8705,
+      "retailer_match_share_of_coupon_value": 0.2653,
+      "loyalty_discount_share_of_sales": 0.2254
+    }
+  },
+  "coupons": {
+    "campaign_coupon_redemptions": 2102,
+    "lines_with_manufacturer_coupon": 21889,
+    "share_of_coupon_lines_that_are_campaign_redemptions": 0.096,
+    "coupon_pool_size_by_campaign_type": {
+      "Type A": 717,
+      "Type B": 240,
+      "Type C": 74
+    },
+    "type_A_exposure": "each Type A recipient got 16 coupons from the pool; WHICH 16 is not recorded -> exact exposure cannot be reconstructed",
+    "assignment": "undocumented for all types -> observational, not randomized",
+    "campaign_households": 1559
+  },
+  "products": {
+    "rows": 92331,
+    "missing_share": {
+      "product_id": 0.0,
+      "manufacturer_id": 0.0,
+      "department": 0.0,
+      "brand": 0.0,
+      "product_category": 0.0058,
+      "product_type": 0.0057,
+      "package_size": 0.3313
+    },
+    "brand_values": {
+      "National": 78516,
+      "Private": 13815
+    },
+    "transaction_lines_without_product_metadata": 4836,
+    "fields_absent": [
+      "prose descriptions",
+      "images",
+      "price list",
+      "cost / margin",
+      "stock",
+      "supplier"
+    ]
+  },
+  "economics_implications": [
+    "Category 'spend' in the economics is retailer receipts (sales_value), not shopper outlay; margin is applied to receipts.",
+    "The coupon face value used (mean coupon_disc per couponed line) averages ALL manufacturer coupons; only 2102 of 21889 couponed lines are campaign redemptions, so it is not a measured campaign-coupon value.",
+    "Manufacturer coupons are reimbursed to the retailer; the retailer's observed cost is its match (~17% of coupon value). Who funds a NEW digital coupon is therefore an ASSUMPTION (coupon_funding.retailer_share): retailer-funded (1.0, base) vs manufacturer-funded with retailer match.",
+    "Unit prices: sales_value / quantity is undefined on zero-quantity lines; no price list exists."
+  ]
+}

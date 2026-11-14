@@ -74,8 +74,1134 @@
       "flips": false,
       "result": "recommendation stays NONE across 0.35..0.0 (others at base)",
       "best_plan_net_at_end": -1137.95
+    },
+    {
+      "input": "coupon_retailer_share",
+      "meaning": "who funds the coupon",
+      "base": 1.0,
+      "searched_to": 0.0,
+      "unit": "share of coupon face paid by retailer",
+      "flips": false,
+      "result": "recommendation stays NONE across 1.0..0.0 (others at base)",
+      "best_plan_net_at_end": -873.51
     }
   ],
   "status": "SCENARIO (one input varied, others at ASSUMED base values); not a forecast",
-  "seconds": 12.2
+  "seconds": 75.8,
+  "combinations": {
+    "model_run_id": "run-fb9020ccd9",
+    "grid": {
+      "uplift_multiplier": [
+        1.0,
+        1.5,
+        2.0,
+        3.0
+      ],
+      "funding": [
+        "retailer",
+        "manufacturer+observed match"
+      ],
+      "scale": [
+        40.0,
+        100.0,
+        250.0
+      ],
+      "fixed_setup": [
+        1500.0,
+        750.0
+      ],
+      "margin_rate": [
+        0.28,
+        0.35
+      ]
+    },
+    "n_combinations": 96,
+    "n_flip": 55,
+    "minimal_flipping_combinations": [
+      {
+        "uplift_multiplier": 1.0,
+        "funding": "manufacturer+observed match",
+        "scale": 100.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.35,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 512.14,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 1.0,
+        "funding": "manufacturer+observed match",
+        "scale": 250.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.28,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED",
+        "best_plan_net": 334.72,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 1.5,
+        "funding": "retailer",
+        "scale": 100.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.35,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED",
+        "best_plan_net": 40.12,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 1.5,
+        "funding": "retailer",
+        "scale": 250.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.35,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED",
+        "best_plan_net": 475.3,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 1.5,
+        "funding": "manufacturer+observed match",
+        "scale": 40.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.35,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 237.09,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 1.5,
+        "funding": "manufacturer+observed match",
+        "scale": 100.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.28,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 174.87,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 2.0,
+        "funding": "retailer",
+        "scale": 100.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.35,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED",
+        "best_plan_net": 202.89,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 2.0,
+        "funding": "retailer",
+        "scale": 250.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.28,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED",
+        "best_plan_net": 341.56,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 2.0,
+        "funding": "manufacturer+observed match",
+        "scale": 40.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.28,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 296.47,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 3.0,
+        "funding": "retailer",
+        "scale": 40.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.28,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED",
+        "best_plan_net": 89.2,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 3.0,
+        "funding": "retailer",
+        "scale": 100.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.28,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED",
+        "best_plan_net": 597.99,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 3.0,
+        "funding": "manufacturer+observed match",
+        "scale": 40.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.28,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 299.51,
+        "flips": true
+      }
+    ],
+    "all": [
+      {
+        "uplift_multiplier": 1.0,
+        "funding": "retailer",
+        "scale": 40.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.28,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -1724.41,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 1.0,
+        "funding": "retailer",
+        "scale": 40.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.35,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -1431.89,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 1.0,
+        "funding": "retailer",
+        "scale": 40.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.28,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -974.41,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 1.0,
+        "funding": "retailer",
+        "scale": 40.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.35,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -681.89,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 1.0,
+        "funding": "retailer",
+        "scale": 100.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.28,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -1474.59,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 1.0,
+        "funding": "retailer",
+        "scale": 100.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.35,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -1329.72,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 1.0,
+        "funding": "retailer",
+        "scale": 100.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.28,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -724.59,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 1.0,
+        "funding": "retailer",
+        "scale": 100.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.35,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -579.72,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 1.0,
+        "funding": "retailer",
+        "scale": 250.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.28,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -1436.46,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 1.0,
+        "funding": "retailer",
+        "scale": 250.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.35,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -1074.31,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 1.0,
+        "funding": "retailer",
+        "scale": 250.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.28,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -686.46,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 1.0,
+        "funding": "retailer",
+        "scale": 250.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.35,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -324.31,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 1.0,
+        "funding": "manufacturer+observed match",
+        "scale": 40.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.28,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -1206.44,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 1.0,
+        "funding": "manufacturer+observed match",
+        "scale": 40.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.35,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -995.14,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 1.0,
+        "funding": "manufacturer+observed match",
+        "scale": 40.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.28,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -456.44,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 1.0,
+        "funding": "manufacturer+observed match",
+        "scale": 40.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.35,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -245.14,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 1.0,
+        "funding": "manufacturer+observed match",
+        "scale": 100.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.28,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -766.11,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 1.0,
+        "funding": "manufacturer+observed match",
+        "scale": 100.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.35,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -237.86,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 1.0,
+        "funding": "manufacturer+observed match",
+        "scale": 100.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.28,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -16.11,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 1.0,
+        "funding": "manufacturer+observed match",
+        "scale": 100.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.35,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 512.14,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 1.0,
+        "funding": "manufacturer+observed match",
+        "scale": 250.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.28,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED",
+        "best_plan_net": 334.72,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 1.0,
+        "funding": "manufacturer+observed match",
+        "scale": 250.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.35,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL + COLD CEREAL/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 1818.2,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 1.0,
+        "funding": "manufacturer+observed match",
+        "scale": 250.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.28,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED + COLD CEREAL/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 1372.53,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 1.0,
+        "funding": "manufacturer+observed match",
+        "scale": 250.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.35,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL + BAG SNACKS/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 3836.98,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 1.5,
+        "funding": "retailer",
+        "scale": 40.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.28,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -1397.38,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 1.5,
+        "funding": "retailer",
+        "scale": 40.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.35,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -1183.95,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 1.5,
+        "funding": "retailer",
+        "scale": 40.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.28,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -647.38,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 1.5,
+        "funding": "retailer",
+        "scale": 40.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.35,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -433.95,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 1.5,
+        "funding": "retailer",
+        "scale": 100.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.28,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -1243.46,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 1.5,
+        "funding": "retailer",
+        "scale": 100.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.35,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -709.88,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 1.5,
+        "funding": "retailer",
+        "scale": 100.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.28,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -493.46,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 1.5,
+        "funding": "retailer",
+        "scale": 100.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.35,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED",
+        "best_plan_net": 40.12,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 1.5,
+        "funding": "retailer",
+        "scale": 250.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.28,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -858.65,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 1.5,
+        "funding": "retailer",
+        "scale": 250.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.35,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED",
+        "best_plan_net": 475.3,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 1.5,
+        "funding": "retailer",
+        "scale": 250.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.28,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -108.65,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 1.5,
+        "funding": "retailer",
+        "scale": 250.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.35,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED + COFFEE/LAPSING/digital_coupon/MODEL_FILTERED",
+        "best_plan_net": 1514.93,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 1.5,
+        "funding": "manufacturer+observed match",
+        "scale": 40.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.28,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -830.05,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 1.5,
+        "funding": "manufacturer+observed match",
+        "scale": 40.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.35,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -512.91,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 1.5,
+        "funding": "manufacturer+observed match",
+        "scale": 40.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.28,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -80.05,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 1.5,
+        "funding": "manufacturer+observed match",
+        "scale": 40.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.35,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 237.09,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 1.5,
+        "funding": "manufacturer+observed match",
+        "scale": 100.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.28,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 174.87,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 1.5,
+        "funding": "manufacturer+observed match",
+        "scale": 100.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.35,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 967.74,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 1.5,
+        "funding": "manufacturer+observed match",
+        "scale": 100.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.28,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL + COLD CEREAL/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 1066.15,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 1.5,
+        "funding": "manufacturer+observed match",
+        "scale": 100.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.35,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL + BAG SNACKS/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 2578.67,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 1.5,
+        "funding": "manufacturer+observed match",
+        "scale": 250.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.28,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL + BAG SNACKS/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 3654.54,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 1.5,
+        "funding": "manufacturer+observed match",
+        "scale": 250.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.35,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL + BAG SNACKS/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 7571.68,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 1.5,
+        "funding": "manufacturer+observed match",
+        "scale": 250.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.28,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL + BAG SNACKS/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 5904.54,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 1.5,
+        "funding": "manufacturer+observed match",
+        "scale": 250.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.35,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL + BAG SNACKS/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 9821.68,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 2.0,
+        "funding": "retailer",
+        "scale": 40.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.28,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -1205.35,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 2.0,
+        "funding": "retailer",
+        "scale": 40.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.35,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -818.85,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 2.0,
+        "funding": "retailer",
+        "scale": 40.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.28,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -455.35,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 2.0,
+        "funding": "retailer",
+        "scale": 40.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.35,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -68.85,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 2.0,
+        "funding": "retailer",
+        "scale": 100.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.28,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -763.37,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 2.0,
+        "funding": "retailer",
+        "scale": 100.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.35,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED",
+        "best_plan_net": 202.89,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 2.0,
+        "funding": "retailer",
+        "scale": 100.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.28,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -13.37,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 2.0,
+        "funding": "retailer",
+        "scale": 100.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.35,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED + COFFEE/LAPSING/digital_coupon/MODEL_FILTERED",
+        "best_plan_net": 1057.05,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 2.0,
+        "funding": "retailer",
+        "scale": 250.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.28,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED",
+        "best_plan_net": 341.56,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 2.0,
+        "funding": "retailer",
+        "scale": 250.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.35,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED + COFFEE/LAPSING/digital_coupon/MODEL_FILTERED",
+        "best_plan_net": 3392.61,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 2.0,
+        "funding": "retailer",
+        "scale": 250.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.28,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED + COFFEE/LAPSING/digital_coupon/MODEL_FILTERED",
+        "best_plan_net": 1274.84,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 2.0,
+        "funding": "retailer",
+        "scale": 250.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.35,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED + COFFEE/LAPSING/digital_coupon/MODEL_FILTERED + COFFEE/ACTIVE_NONBUYER/digital_coupon/MODEL_FILTERED",
+        "best_plan_net": 5252.57,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 2.0,
+        "funding": "manufacturer+observed match",
+        "scale": 40.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.28,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -453.53,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 2.0,
+        "funding": "manufacturer+observed match",
+        "scale": 40.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.35,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -30.67,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 2.0,
+        "funding": "manufacturer+observed match",
+        "scale": 40.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.28,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 296.47,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 2.0,
+        "funding": "manufacturer+observed match",
+        "scale": 40.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.35,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL + BAG SNACKS/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 761.64,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 2.0,
+        "funding": "manufacturer+observed match",
+        "scale": 100.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.28,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 1116.17,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 2.0,
+        "funding": "manufacturer+observed match",
+        "scale": 100.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.35,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL + BAG SNACKS/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 2727.06,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 2.0,
+        "funding": "manufacturer+observed match",
+        "scale": 100.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.28,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL + BAG SNACKS/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 2884.76,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 2.0,
+        "funding": "manufacturer+observed match",
+        "scale": 100.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.35,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL + BAG SNACKS/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 4977.06,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 2.0,
+        "funding": "manufacturer+observed match",
+        "scale": 250.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.28,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL + BAG SNACKS/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 8336.9,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 2.0,
+        "funding": "manufacturer+observed match",
+        "scale": 250.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.35,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL + BAG SNACKS/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 13567.65,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 2.0,
+        "funding": "manufacturer+observed match",
+        "scale": 250.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.28,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL + BAG SNACKS/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 10586.9,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 2.0,
+        "funding": "manufacturer+observed match",
+        "scale": 250.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.35,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL + BAG SNACKS/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 15817.65,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 3.0,
+        "funding": "retailer",
+        "scale": 40.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.28,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -660.8,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 3.0,
+        "funding": "retailer",
+        "scale": 40.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.35,
+        "recommendation": "NONE: research / measure first",
+        "best_plan_net": -26.88,
+        "flips": false
+      },
+      {
+        "uplift_multiplier": 3.0,
+        "funding": "retailer",
+        "scale": 40.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.28,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED",
+        "best_plan_net": 89.2,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 3.0,
+        "funding": "retailer",
+        "scale": 40.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.35,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 723.12,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 3.0,
+        "funding": "retailer",
+        "scale": 100.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.28,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED",
+        "best_plan_net": 597.99,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 3.0,
+        "funding": "retailer",
+        "scale": 100.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.35,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 2500.49,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 3.0,
+        "funding": "retailer",
+        "scale": 100.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.28,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED + COFFEE/LAPSING/digital_coupon/MODEL_FILTERED",
+        "best_plan_net": 1607.54,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 3.0,
+        "funding": "retailer",
+        "scale": 100.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.35,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL + COFFEE/ACTIVE_NONBUYER/digital_coupon/MODEL_FILTERED",
+        "best_plan_net": 4695.26,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 3.0,
+        "funding": "retailer",
+        "scale": 250.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.28,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED + COFFEE/LAPSING/digital_coupon/MODEL_FILTERED",
+        "best_plan_net": 4768.85,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 3.0,
+        "funding": "retailer",
+        "scale": 250.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.35,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 10751.23,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 3.0,
+        "funding": "retailer",
+        "scale": 250.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.28,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED + COFFEE/LAPSING/digital_coupon/MODEL_FILTERED + COFFEE/ACTIVE_NONBUYER/digital_coupon/MODEL_FILTERED",
+        "best_plan_net": 7007.25,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 3.0,
+        "funding": "retailer",
+        "scale": 250.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.35,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL + SOUP/LAPSING/digital_coupon/MODEL_FILTERED",
+        "best_plan_net": 14002.01,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 3.0,
+        "funding": "manufacturer+observed match",
+        "scale": 40.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.28,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 299.51,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 3.0,
+        "funding": "manufacturer+observed match",
+        "scale": 40.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.35,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 933.81,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 3.0,
+        "funding": "manufacturer+observed match",
+        "scale": 40.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.28,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL + BAG SNACKS/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 1304.2,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 3.0,
+        "funding": "manufacturer+observed match",
+        "scale": 40.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.35,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL + BAG SNACKS/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 2559.7,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 3.0,
+        "funding": "manufacturer+observed match",
+        "scale": 100.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.28,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL + BAG SNACKS/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 4385.51,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 3.0,
+        "funding": "manufacturer+observed match",
+        "scale": 100.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.35,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL + BAG SNACKS/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 7524.24,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 3.0,
+        "funding": "manufacturer+observed match",
+        "scale": 100.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.28,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL + BAG SNACKS/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 6635.51,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 3.0,
+        "funding": "manufacturer+observed match",
+        "scale": 100.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.35,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL + BAG SNACKS/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 9774.24,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 3.0,
+        "funding": "manufacturer+observed match",
+        "scale": 250.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.28,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL + BAG SNACKS/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 17713.77,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 3.0,
+        "funding": "manufacturer+observed match",
+        "scale": 250.0,
+        "fixed_setup": 1500.0,
+        "margin_rate": 0.35,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL + BAG SNACKS/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 25560.6,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 3.0,
+        "funding": "manufacturer+observed match",
+        "scale": 250.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.28,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL + BAG SNACKS/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 19963.77,
+        "flips": true
+      },
+      {
+        "uplift_multiplier": 3.0,
+        "funding": "manufacturer+observed match",
+        "scale": 250.0,
+        "fixed_setup": 750.0,
+        "margin_rate": 0.35,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL + BAG SNACKS/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL",
+        "best_plan_net": 27810.6,
+        "flips": true
+      }
+    ],
+    "status": "SCENARIO; each grid value is an ASSUMED alternative, not an observed input",
+    "reading": "A flip shows which JOINT changes would have to be confirmed before any coupon plan beats doing nothing."
+  }
 }
