@@ -1,0 +1,749 @@
+{
+  "status": "OBSERVED behaviour (2017 panel) + labelled hypotheses; no ROI is claimed for non-coupon actions",
+  "category_facts": [
+    {
+      "category": "BAG SNACKS",
+      "households_year": 2149,
+      "penetration_year": 0.8704,
+      "buyers_H1": 1854,
+      "buyers_H2": 1915,
+      "buyer_change_H2_vs_H1": 0.0329,
+      "return_to_category_H1_to_H2": 0.8738,
+      "return_ci95": [
+        0.8587,
+        0.8889
+      ],
+      "median_weeks_between_purchase_weeks": 2.0,
+      "private_label_sales_share_H1": 0.0879,
+      "private_label_sales_share_H2": 0.0874,
+      "sales_value_year": 84943.85
+    },
+    {
+      "category": "FROZEN PIZZA",
+      "households_year": 1766,
+      "penetration_year": 0.7153,
+      "buyers_H1": 1439,
+      "buyers_H2": 1473,
+      "buyer_change_H2_vs_H1": 0.0236,
+      "return_to_category_H1_to_H2": 0.7964,
+      "return_ci95": [
+        0.7756,
+        0.8172
+      ],
+      "median_weeks_between_purchase_weeks": 3.0,
+      "private_label_sales_share_H1": 0.0937,
+      "private_label_sales_share_H2": 0.0912,
+      "sales_value_year": 81175.04
+    },
+    {
+      "category": "COLD CEREAL",
+      "households_year": 1867,
+      "penetration_year": 0.7562,
+      "buyers_H1": 1518,
+      "buyers_H2": 1601,
+      "buyer_change_H2_vs_H1": 0.0547,
+      "return_to_category_H1_to_H2": 0.8248,
+      "return_ci95": [
+        0.8056,
+        0.8439
+      ],
+      "median_weeks_between_purchase_weeks": 3.0,
+      "private_label_sales_share_H1": 0.2002,
+      "private_label_sales_share_H2": 0.1897,
+      "sales_value_year": 63009.35
+    },
+    {
+      "category": "SOUP",
+      "households_year": 1932,
+      "penetration_year": 0.7825,
+      "buyers_H1": 1546,
+      "buyers_H2": 1648,
+      "buyer_change_H2_vs_H1": 0.066,
+      "return_to_category_H1_to_H2": 0.8163,
+      "return_ci95": [
+        0.797,
+        0.8356
+      ],
+      "median_weeks_between_purchase_weeks": 3.0,
+      "private_label_sales_share_H1": 0.165,
+      "private_label_sales_share_H2": 0.1734,
+      "sales_value_year": 49027.16
+    },
+    {
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "households_year": 1853,
+      "penetration_year": 0.7505,
+      "buyers_H1": 1472,
+      "buyers_H2": 1551,
+      "buyer_change_H2_vs_H1": 0.0537,
+      "return_to_category_H1_to_H2": 0.7948,
+      "return_ci95": [
+        0.7742,
+        0.8155
+      ],
+      "median_weeks_between_purchase_weeks": 3.0,
+      "private_label_sales_share_H1": 0.4016,
+      "private_label_sales_share_H2": 0.4211,
+      "sales_value_year": 46876.51
+    },
+    {
+      "category": "YOGURT",
+      "households_year": 1493,
+      "penetration_year": 0.6047,
+      "buyers_H1": 1196,
+      "buyers_H2": 1136,
+      "buyer_change_H2_vs_H1": -0.0502,
+      "return_to_category_H1_to_H2": 0.7015,
+      "return_ci95": [
+        0.6756,
+        0.7274
+      ],
+      "median_weeks_between_purchase_weeks": 2.0,
+      "private_label_sales_share_H1": 0.2231,
+      "private_label_sales_share_H2": 0.2177,
+      "sales_value_year": 34438.85
+    },
+    {
+      "category": "COFFEE",
+      "households_year": 1273,
+      "penetration_year": 0.5156,
+      "buyers_H1": 921,
+      "buyers_H2": 1029,
+      "buyer_change_H2_vs_H1": 0.1173,
+      "return_to_category_H1_to_H2": 0.7351,
+      "return_ci95": [
+        0.7066,
+        0.7636
+      ],
+      "median_weeks_between_purchase_weeks": 3.0,
+      "private_label_sales_share_H1": 0.2469,
+      "private_label_sales_share_H2": 0.2311,
+      "sales_value_year": 36874.53
+    },
+    {
+      "category": "REFRGRATD JUICES/DRNKS",
+      "households_year": 1824,
+      "penetration_year": 0.7388,
+      "buyers_H1": 1481,
+      "buyers_H2": 1491,
+      "buyer_change_H2_vs_H1": 0.0068,
+      "return_to_category_H1_to_H2": 0.7752,
+      "return_ci95": [
+        0.7539,
+        0.7964
+      ],
+      "median_weeks_between_purchase_weeks": 2.0,
+      "private_label_sales_share_H1": 0.3905,
+      "private_label_sales_share_H2": 0.3774,
+      "sales_value_year": 40720.99
+    }
+  ],
+  "cross_sell_validated": [
+    {
+      "A": "COLD CEREAL",
+      "B": "SOUP",
+      "H1": {
+        "baskets_with_A": 6837,
+        "baskets_A_and_B": 1780,
+        "P(B|A)": 0.2603,
+        "P(B)": 0.0819,
+        "lift": 3.18,
+        "lift_ci95": [
+          3.053,
+          3.307
+        ],
+        "popularity_benchmark": "BAG SNACKS",
+        "P(pop|A)": 0.3452
+      },
+      "H2": {
+        "baskets_with_A": 7366,
+        "baskets_A_and_B": 1917,
+        "P(B|A)": 0.2602,
+        "P(B)": 0.0876,
+        "lift": 2.972,
+        "lift_ci95": [
+          2.857,
+          3.086
+        ],
+        "popularity_benchmark": "BAG SNACKS",
+        "P(pop|A)": 0.3458
+      },
+      "survives_held_out": true,
+      "beats_popularity_benchmark_H2": false
+    },
+    {
+      "A": "SOUP",
+      "B": "COLD CEREAL",
+      "H1": {
+        "baskets_with_A": 6131,
+        "baskets_A_and_B": 1780,
+        "P(B|A)": 0.2903,
+        "P(B)": 0.0913,
+        "lift": 3.18,
+        "lift_ci95": [
+          3.056,
+          3.305
+        ],
+        "popularity_benchmark": "BAG SNACKS",
+        "P(pop|A)": 0.3432
+      },
+      "H2": {
+        "baskets_with_A": 7090,
+        "baskets_A_and_B": 1917,
+        "P(B|A)": 0.2704,
+        "P(B)": 0.091,
+        "lift": 2.972,
+        "lift_ci95": [
+          2.858,
+          3.085
+        ],
+        "popularity_benchmark": "BAG SNACKS",
+        "P(pop|A)": 0.325
+      },
+      "survives_held_out": true,
+      "beats_popularity_benchmark_H2": false
+    },
+    {
+      "A": "COLD CEREAL",
+      "B": "YOGURT",
+      "H1": {
+        "baskets_with_A": 6837,
+        "baskets_A_and_B": 1489,
+        "P(B|A)": 0.2178,
+        "P(B)": 0.0691,
+        "lift": 3.153,
+        "lift_ci95": [
+          3.011,
+          3.295
+        ],
+        "popularity_benchmark": "BAG SNACKS",
+        "P(pop|A)": 0.3452
+      },
+      "H2": {
+        "baskets_with_A": 7366,
+        "baskets_A_and_B": 1366,
+        "P(B|A)": 0.1854,
+        "P(B)": 0.0602,
+        "lift": 3.079,
+        "lift_ci95": [
+          2.932,
+          3.226
+        ],
+        "popularity_benchmark": "BAG SNACKS",
+        "P(pop|A)": 0.3458
+      },
+      "survives_held_out": true,
+      "beats_popularity_benchmark_H2": false
+    },
+    {
+      "A": "YOGURT",
+      "B": "COLD CEREAL",
+      "H1": {
+        "baskets_with_A": 5173,
+        "baskets_A_and_B": 1489,
+        "P(B|A)": 0.2878,
+        "P(B)": 0.0913,
+        "lift": 3.153,
+        "lift_ci95": [
+          3.018,
+          3.288
+        ],
+        "popularity_benchmark": "BAG SNACKS",
+        "P(pop|A)": 0.3255
+      },
+      "H2": {
+        "baskets_with_A": 4876,
+        "baskets_A_and_B": 1366,
+        "P(B|A)": 0.2801,
+        "P(B)": 0.091,
+        "lift": 3.079,
+        "lift_ci95": [
+          2.94,
+          3.218
+        ],
+        "popularity_benchmark": "BAG SNACKS",
+        "P(pop|A)": 0.3222
+      },
+      "survives_held_out": true,
+      "beats_popularity_benchmark_H2": false
+    },
+    {
+      "A": "SOUP",
+      "B": "COFFEE",
+      "H1": {
+        "baskets_with_A": 6131,
+        "baskets_A_and_B": 730,
+        "P(B|A)": 0.1191,
+        "P(B)": 0.0401,
+        "lift": 2.972,
+        "lift_ci95": [
+          2.77,
+          3.175
+        ],
+        "popularity_benchmark": "BAG SNACKS",
+        "P(pop|A)": 0.3432
+      },
+      "H2": {
+        "baskets_with_A": 7090,
+        "baskets_A_and_B": 881,
+        "P(B|A)": 0.1243,
+        "P(B)": 0.0437,
+        "lift": 2.844,
+        "lift_ci95": [
+          2.668,
+          3.02
+        ],
+        "popularity_benchmark": "BAG SNACKS",
+        "P(pop|A)": 0.325
+      },
+      "survives_held_out": true,
+      "beats_popularity_benchmark_H2": false
+    },
+    {
+      "A": "COFFEE",
+      "B": "SOUP",
+      "H1": {
+        "baskets_with_A": 3000,
+        "baskets_A_and_B": 730,
+        "P(B|A)": 0.2433,
+        "P(B)": 0.0819,
+        "lift": 2.972,
+        "lift_ci95": [
+          2.785,
+          3.16
+        ],
+        "popularity_benchmark": "BAG SNACKS",
+        "P(pop|A)": 0.2853
+      },
+      "H2": {
+        "baskets_with_A": 3537,
+        "baskets_A_and_B": 881,
+        "P(B|A)": 0.2491,
+        "P(B)": 0.0876,
+        "lift": 2.844,
+        "lift_ci95": [
+          2.681,
+          3.007
+        ],
+        "popularity_benchmark": "BAG SNACKS",
+        "P(pop|A)": 0.2779
+      },
+      "survives_held_out": true,
+      "beats_popularity_benchmark_H2": false
+    },
+    {
+      "A": "COLD CEREAL",
+      "B": "COFFEE",
+      "H1": {
+        "baskets_with_A": 6837,
+        "baskets_A_and_B": 786,
+        "P(B|A)": 0.115,
+        "P(B)": 0.0401,
+        "lift": 2.87,
+        "lift_ci95": [
+          2.681,
+          3.059
+        ],
+        "popularity_benchmark": "BAG SNACKS",
+        "P(pop|A)": 0.3452
+      },
+      "H2": {
+        "baskets_with_A": 7366,
+        "baskets_A_and_B": 849,
+        "P(B|A)": 0.1153,
+        "P(B)": 0.0437,
+        "lift": 2.638,
+        "lift_ci95": [
+          2.471,
+          2.805
+        ],
+        "popularity_benchmark": "BAG SNACKS",
+        "P(pop|A)": 0.3458
+      },
+      "survives_held_out": true,
+      "beats_popularity_benchmark_H2": false
+    },
+    {
+      "A": "COFFEE",
+      "B": "COLD CEREAL",
+      "H1": {
+        "baskets_with_A": 3000,
+        "baskets_A_and_B": 786,
+        "P(B|A)": 0.262,
+        "P(B)": 0.0913,
+        "lift": 2.87,
+        "lift_ci95": [
+          2.698,
+          3.042
+        ],
+        "popularity_benchmark": "BAG SNACKS",
+        "P(pop|A)": 0.2853
+      },
+      "H2": {
+        "baskets_with_A": 3537,
+        "baskets_A_and_B": 849,
+        "P(B|A)": 0.24,
+        "P(B)": 0.091,
+        "lift": 2.638,
+        "lift_ci95": [
+          2.483,
+          2.793
+        ],
+        "popularity_benchmark": "BAG SNACKS",
+        "P(pop|A)": 0.2779
+      },
+      "survives_held_out": true,
+      "beats_popularity_benchmark_H2": false
+    },
+    {
+      "A": "SOUP",
+      "B": "YOGURT",
+      "H1": {
+        "baskets_with_A": 6131,
+        "baskets_A_and_B": 1201,
+        "P(B|A)": 0.1959,
+        "P(B)": 0.0691,
+        "lift": 2.836,
+        "lift_ci95": [
+          2.692,
+          2.98
+        ],
+        "popularity_benchmark": "BAG SNACKS",
+        "P(pop|A)": 0.3432
+      },
+      "H2": {
+        "baskets_with_A": 7090,
+        "baskets_A_and_B": 1169,
+        "P(B|A)": 0.1649,
+        "P(B)": 0.0602,
+        "lift": 2.738,
+        "lift_ci95": [
+          2.594,
+          2.881
+        ],
+        "popularity_benchmark": "BAG SNACKS",
+        "P(pop|A)": 0.325
+      },
+      "survives_held_out": true,
+      "beats_popularity_benchmark_H2": false
+    },
+    {
+      "A": "YOGURT",
+      "B": "SOUP",
+      "H1": {
+        "baskets_with_A": 5173,
+        "baskets_A_and_B": 1201,
+        "P(B|A)": 0.2322,
+        "P(B)": 0.0819,
+        "lift": 2.836,
+        "lift_ci95": [
+          2.695,
+          2.976
+        ],
+        "popularity_benchmark": "BAG SNACKS",
+        "P(pop|A)": 0.3255
+      },
+      "H2": {
+        "baskets_with_A": 4876,
+        "baskets_A_and_B": 1169,
+        "P(B|A)": 0.2397,
+        "P(B)": 0.0876,
+        "lift": 2.738,
+        "lift_ci95": [
+          2.601,
+          2.874
+        ],
+        "popularity_benchmark": "BAG SNACKS",
+        "P(pop|A)": 0.3222
+      },
+      "survives_held_out": true,
+      "beats_popularity_benchmark_H2": false
+    }
+  ],
+  "cross_sell_all_pairs_tested": 56,
+  "cohorts": {
+    "BAG SNACKS": {
+      "segments_at_53": {
+        "REGULAR": 693,
+        "LAPSING": 443,
+        "LOW_ACTIVITY": 431,
+        "RECENT_LIGHT": 401,
+        "ACTIVE_NONBUYER": 351
+      },
+      "lapsing_53": 443,
+      "lapsing_new_vs_49": 0.634
+    },
+    "FROZEN PIZZA": {
+      "segments_at_53": {
+        "ACTIVE_NONBUYER": 679,
+        "LOW_ACTIVITY": 509,
+        "LAPSING": 406,
+        "REGULAR": 403,
+        "RECENT_LIGHT": 322
+      },
+      "lapsing_53": 406,
+      "lapsing_new_vs_49": 0.608
+    },
+    "COLD CEREAL": {
+      "segments_at_53": {
+        "ACTIVE_NONBUYER": 638,
+        "LOW_ACTIVITY": 503,
+        "REGULAR": 433,
+        "LAPSING": 421,
+        "RECENT_LIGHT": 324
+      },
+      "lapsing_53": 421,
+      "lapsing_new_vs_49": 0.613
+    },
+    "SOUP": {
+      "segments_at_53": {
+        "REGULAR": 509,
+        "ACTIVE_NONBUYER": 509,
+        "LAPSING": 502,
+        "LOW_ACTIVITY": 464,
+        "RECENT_LIGHT": 335
+      },
+      "lapsing_53": 502,
+      "lapsing_new_vs_49": 0.639
+    },
+    "ICE CREAM/MILK/SHERBTS": {
+      "segments_at_53": {
+        "ACTIVE_NONBUYER": 744,
+        "LOW_ACTIVITY": 524,
+        "LAPSING": 444,
+        "RECENT_LIGHT": 311,
+        "REGULAR": 296
+      },
+      "lapsing_53": 444,
+      "lapsing_new_vs_49": 0.561
+    },
+    "YOGURT": {
+      "segments_at_53": {
+        "ACTIVE_NONBUYER": 989,
+        "LOW_ACTIVITY": 567,
+        "LAPSING": 330,
+        "REGULAR": 266,
+        "RECENT_LIGHT": 167
+      },
+      "lapsing_53": 330,
+      "lapsing_new_vs_49": 0.615
+    },
+    "COFFEE": {
+      "segments_at_53": {
+        "ACTIVE_NONBUYER": 983,
+        "LOW_ACTIVITY": 562,
+        "LAPSING": 355,
+        "REGULAR": 213,
+        "RECENT_LIGHT": 206
+      },
+      "lapsing_53": 355,
+      "lapsing_new_vs_49": 0.637
+    },
+    "REFRGRATD JUICES/DRNKS": {
+      "segments_at_53": {
+        "ACTIVE_NONBUYER": 709,
+        "LOW_ACTIVITY": 506,
+        "REGULAR": 406,
+        "LAPSING": 404,
+        "RECENT_LIGHT": 294
+      },
+      "lapsing_53": 404,
+      "lapsing_new_vs_49": 0.609
+    }
+  },
+  "cards": [
+    {
+      "id": "C1",
+      "title": "Frozen Pizza / lapsing / digital coupon (REJECTED for funding)",
+      "strategy_class": "coupon / paid contact",
+      "segment": {
+        "panel_households_lapsing_at_53": 406,
+        "reachability": "UNKNOWN (consent, offer mechanics)",
+        "substantial": "UNKNOWN at a real company (7,308 is ASSUMED)"
+      },
+      "observed": [
+        "return to category H1\u2192H2 80% of H1 buyers",
+        "61% of the lapsing cohort is new each 4 weeks",
+        "34% of category sales occur while on display or in the mailer (association)",
+        "model ranks lapsing buyers better than recency (AP 0.42 vs 0.35), but ranking \u2260 persuasion"
+      ],
+      "counterevidence": [
+        "every modelled coupon plan loses at base (best Frozen Pizza plan -1,824 per 4-week cycle, assumed scale)",
+        "flips only under joint changes (e.g., manufacturer-funded coupon + larger reachable pool), none confirmed"
+      ],
+      "hypothesized_need": "an easy dinner restarted after a lapse (HYPOTHESIS)",
+      "positioning": "the easy dinner you already like, back on your list (to test, not to publish)",
+      "four_ps": {
+        "Product": "as is",
+        "Price": "coupon only if price is the barrier",
+        "Place": "check stock/pickup first",
+        "Promotion": "reminder before discount"
+      },
+      "discriminating_evidence": [
+        "interviews: price vs habit vs stock vs switching",
+        "who funds the coupon",
+        "consented pool size",
+        "randomized response"
+      ],
+      "success_metric": "incremental contribution per randomized household above the rollout hurdle (pilot analyzer)",
+      "evidence_level": "OBSERVED behaviour + ASSUMED economics",
+      "recommendation": "do not fund now; research first"
+    },
+    {
+      "id": "C2",
+      "title": "Basket attachment: BAG SNACKS \u2192 FROZEN PIZZA",
+      "strategy_class": "place / merchandising (non-discount)",
+      "segment": {
+        "baskets_with_A_H2": 12412,
+        "reachability": "in-store placement or app 'goes well with' module; no individual contact needed"
+      },
+      "observed": [
+        "lift 2.521 (H1) and 2.493 (H2, CI [2.407, 2.58]) \u2014 survives the held-out half",
+        "P(FROZEN PIZZA|BAG SNACKS) 20.6% vs popularity benchmark COLD CEREAL 20.5% in H2"
+      ],
+      "counterevidence": [
+        "co-purchase can reflect shared shopping missions (association, not causation)",
+        "only 1 of 56 tested pairs both survive the held-out half and beat simply suggesting the most popular category; here the margin is 0.06 pp, i.e. negligible",
+        "most basket 'lift' among these categories reflects large shopping trips, not specific affinity",
+        "no data on whether adjacency or a bundle would add incremental baskets"
+      ],
+      "hypothesized_need": "convenience: complete a meal/occasion in one trip (HYPOTHESIS)",
+      "positioning": "frozen pizza that goes with your bag snacks",
+      "four_ps": {
+        "Product": "none",
+        "Price": "no discount needed",
+        "Place": "adjacency / secondary display / app pairing",
+        "Promotion": "in-store or in-app suggestion"
+      },
+      "discriminating_evidence": [
+        "store placement test with a holdout of stores (operations validation)",
+        "interviews on shopping missions"
+      ],
+      "success_metric": "incremental share of BAG SNACKS baskets that also contain FROZEN PIZZA vs control stores",
+      "evidence_level": "OBSERVED association, WEAK (negligible margin over a popularity suggestion); effect UNKNOWN",
+      "recommendation": "low priority: weak evidence; consider only as a zero-cost app 'goes well with' default after operations sign-off"
+    },
+    {
+      "id": "C3",
+      "title": "YOGURT: shrinking buyer base",
+      "strategy_class": "product / place investigation (non-discount)",
+      "segment": {
+        "buyers_H1": 1196,
+        "buyers_H2": 1136,
+        "reachability": "assortment/stock review; no contact needed"
+      },
+      "observed": [
+        "buyers -5.0% H2 vs H1 while most categories grew",
+        "return to category 70%; private label 22%\u219222% (stable)"
+      ],
+      "counterevidence": [
+        "seasonality cannot be separated with one year of data",
+        "no stock, price-list or competitor data"
+      ],
+      "hypothesized_need": "availability / assortment fit (HYPOTHESIS: could equally be seasonal)",
+      "positioning": "n/a until the barrier is known",
+      "four_ps": {
+        "Product": "assortment review",
+        "Price": "check price moves (no price list in data)",
+        "Place": "stock-out / shelf check",
+        "Promotion": "none until diagnosed"
+      },
+      "discriminating_evidence": [
+        "operations: stock-out and assortment changes in H2",
+        "interviews with lapsed buyers",
+        "second year of data for seasonality"
+      ],
+      "success_metric": "buyers per 4 weeks returns to H1 level after the fix (vs same weeks last year when available)",
+      "evidence_level": "OBSERVED trend; cause UNKNOWN",
+      "recommendation": "operational investigation; no spend"
+    },
+    {
+      "id": "C4",
+      "title": "Discovery content for the public analogue (SEO/GEO)",
+      "strategy_class": "content / discovery",
+      "segment": {
+        "reachability": "public web and AI assistants; not linkable to the anonymous panel"
+      },
+      "observed": [
+        "0/20 assistant answers collected; no Search Console data"
+      ],
+      "counterevidence": [
+        "a mention in a small prompt panel does not show reach, traffic or conversion"
+      ],
+      "hypothesized_need": "shoppers asking how to save on frozen pizza/coffee may not find the retailer's offers (HYPOTHESIS)",
+      "positioning": "clear, factual answers to buyer questions",
+      "four_ps": {
+        "Product": "none",
+        "Price": "none",
+        "Place": "owned pages / listings",
+        "Promotion": "content where cited sources are"
+      },
+      "discriminating_evidence": [
+        "20 GEO answers",
+        "Search Console impressions/clicks for owned pages (if a real site owner)"
+      ],
+      "success_metric": "mention/recommendation rate in a re-run panel AND owned-page search clicks (separately)",
+      "evidence_level": "PENDING",
+      "recommendation": "collect evidence first; zero cost to collect"
+    },
+    {
+      "id": "C0",
+      "title": "Do nothing now / research first",
+      "strategy_class": "no action",
+      "observed": [
+        "no modelled coupon plan beats doing nothing at base assumptions"
+      ],
+      "evidence_level": "decision rule",
+      "recommendation": "default until a card's discriminating evidence arrives"
+    }
+  ],
+  "strategy_comparison": [
+    {
+      "card": "C1",
+      "strategy_class": "coupon / paid contact",
+      "feasibility_rank_now": 4,
+      "information_value": "LOW at current cost: decision-grade test infeasible in the assumed pool",
+      "assumed_financial_upside": "negative at base; positive only under unconfirmed joint changes",
+      "evidence_level": "OBSERVED behaviour + ASSUMED economics"
+    },
+    {
+      "card": "C2",
+      "strategy_class": "place / merchandising (non-discount)",
+      "feasibility_rank_now": 3,
+      "information_value": "LOW-MEDIUM: association barely beats a popularity suggestion",
+      "assumed_financial_upside": "not modelled (no causal data)",
+      "evidence_level": "OBSERVED association, WEAK (negligible margin over a popularity suggestion); effect UNKNOWN"
+    },
+    {
+      "card": "C3",
+      "strategy_class": "product / place investigation (non-discount)",
+      "feasibility_rank_now": 2,
+      "information_value": "HIGH: an operations check is cheap",
+      "assumed_financial_upside": "not modelled",
+      "evidence_level": "OBSERVED trend; cause UNKNOWN"
+    },
+    {
+      "card": "C4",
+      "strategy_class": "content / discovery",
+      "feasibility_rank_now": 3,
+      "information_value": "MEDIUM: 20 answers + analytics",
+      "assumed_financial_upside": "not modelled",
+      "evidence_level": "PENDING"
+    },
+    {
+      "card": "C0",
+      "strategy_class": "no action",
+      "feasibility_rank_now": 1,
+      "information_value": "n/a",
+      "assumed_financial_upside": "$0",
+      "evidence_level": "decision rule"
+    }
+  ],
+  "what_to_learn_next": [
+    "who funds a coupon and the consented pool size (flip the coupon economics or not)",
+    "interviews: barrier for lapsed frozen-pizza buyers",
+    "operations: stock/assortment for the shrinking category; feasibility of an adjacency test",
+    "20 GEO answers before any content work"
+  ],
+  "unavailable_metrics": "market size, LTV, CAC, ROAS: numerator/denominator/attribution/costs not in the data"
+}

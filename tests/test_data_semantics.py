@@ -58,3 +58,25 @@ def test_coupon_funding_share_scales_the_retailer_cost():
     shared = float(household_value(0.3, 0.04, 2.89, 0.90 * a.face_share("FROZEN PIZZA"), 0.03, 0.35))
     assert full < 0 < shared                                   # who funds the coupon changes the sign per household
     assert a.face_share("COFFEE") == 1.0                       # unspecified categories default to retailer-funded
+
+
+def test_cross_sell_requires_held_out_survival_and_popularity_benchmark():
+    from mi.decision.opportunities import cross_sell
+    rows = []
+    rng = np.random.default_rng(0)
+    for b in range(4000):
+        wk = 5 if b < 2000 else 40
+        cats = {"POP"} if rng.random() < 0.6 else set()
+        if rng.random() < 0.3:
+            cats.add("A")
+            if rng.random() < 0.5:
+                cats.add("B")            # B strongly attached to A in both halves
+        rows += [{"basket_id": b, "week": wk, "product_category": c, "household_id": b % 50, "sales_value": 1.0} for c in cats]
+        if not cats:
+            rows.append({"basket_id": b, "week": wk, "product_category": "OTHER", "household_id": b % 50, "sales_value": 1.0})
+    t = pd.DataFrame(rows)
+    xs = cross_sell(t, ["A", "B", "POP"], min_support=50)
+    ab = next(x for x in xs if x["A"] == "A" and x["B"] == "B")
+    assert ab["survives_held_out"] and ab["H2"]["lift"] > 1
+    assert ab["H2"]["popularity_benchmark"] == "POP"
+    assert ab["beats_popularity_benchmark_H2"] is False      # P(B|A)=0.5 < P(POP|A)=0.6: lift alone is not enough

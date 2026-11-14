@@ -37,6 +37,7 @@ STEPS = [
     ("model commercial diagnostic + promo ablation", ["mi.model.diagnostic"], None, False),
     ("portfolio+sensitivity", ["mi.decision.report"], None, False),
     ("decision inputs + reversal", ["mi.decision.reversal"], None, False),
+    ("opportunity cards", ["mi.decision.opportunities"], None, False),
     ("claim audit", ["mi.claim_audit"], None, False),
     ("rag eval", ["mi.evidence.rag", "eval"], None, False),
     ("geo check", ["mi.seo.geo", "check"], None, False),
