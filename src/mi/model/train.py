@@ -114,6 +114,11 @@ def robust_gap(model, cal, cats, yca) -> dict:
             "rule": float(average_precision_score(yca, rule_repeat(cal)))}
 
 
+def make_run_id(cfg_hash: str, model_name: str, seed: int, data_commit, features: list[str]) -> str:
+    """Run identity must change whenever the model's inputs change (config, model, seed, data, feature list)."""
+    return "run-" + hashlib.sha256(json.dumps([cfg_hash, model_name, seed, data_commit, list(features)]).encode()).hexdigest()[:10]
+
+
 def file_hash(path) -> str:
     return hashlib.sha256(open(path, "rb").read()).hexdigest()[:16]
 
@@ -226,7 +231,7 @@ def run(cfg=None, write=True) -> dict:
     sc["p_rule"] = iso_r.predict(rule_repeat(sc))
     sc["p_used"] = sc.p_model if winner == "model" else sc.p_rule
 
-    run_id = "run-" + hashlib.sha256(json.dumps([config_hash(cfg), best, SEED, manifest().get("commit")]).encode()).hexdigest()[:10]
+    run_id = make_run_id(config_hash(cfg), best, SEED, manifest().get("commit"), FEATURES)
     report = {
         "run_id": run_id, "created_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "status": "OBSERVED (historical backtest) — predicts observed purchase under historical conditions, NOT response to a coupon",
@@ -269,12 +274,18 @@ def model_card(r: dict) -> str:
     sel = "model_" + r["selected_model"]
     T = r["test"]
     L = [f"# Model card — {r['run_id']}", "", f"**Status:** {r['status']}", "",
+         "**Intended use:** rank existing households by the probability of buying a category in the next 4 weeks under "
+         "historical conditions (audience sizing, demand context, test stratification). **Not** coupon uplift, persuadability or a demand forecast.",
+         f"- Features ({len(r['features'])}): {', '.join(r['features'])}",
+         "- Long-history features adopted 2026-11-14 under the pre-registered protocol `data/eval/model_eval_protocol_v1.json`; "
+         "full evaluation (rolling origin, calibration drift, contact sizes, subgroups with CIs) in `reports/model_evaluation.md`.",
+         "- `history_weeks_available` is a time index (weeks of data before the lookback); trees treat later cutoffs as the training maximum.",
          f"- Target: {r['target']}", f"- Unit: {r['unit']}", f"- Seed {r['seed']}, config hash `{r['config_hash']}`, data commit `{str(r['data_manifest_commit'])[:12]}`",
          f"- Selected on validation AP: **{r['selected_model']}** ({json.dumps({k: round(v, 4) for k, v in r['validation_AP'].items()})})",
          f"- Calibration: {r['calibration']}", "", "## Split", "", "| split | cutoffs | rows | households | positives | prevalence |", "|---|---|---:|---:|---:|---:|"]
     for k, v in r["split_counts"].items():
         L.append(f"| {k} | {v['cutoffs']} | {v['rows']:,} | {v['households']:,} | {v['positives']:,} | {v['prevalence']:.3f} |")
-    L += ["", "## Locked out-of-time test (cutoff 49 → weeks 50–53, evaluated once)", "",
+    L += ["", "## Out-of-time evaluation window (cutoff 49 → weeks 50–53; inspected in earlier passes, so this is REPEATED evaluation)", "",
           "| scorer | AP | ROC AUC | Brier (calibrated) | precision top 10% | Recall@3 per household |", "|---|---:|---:|---:|---:|---:|"]
     for k in [sel, "rule_repeat", "rule_popularity"]:
         m = T[k]

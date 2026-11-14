@@ -25,30 +25,30 @@
     ],
     "prevalence": 0.275,
     "AP_recomputed": {
-      "model": 0.6623996291847538,
+      "model": 0.6717374137892858,
       "rule_repeat": 0.6210149195951625,
       "popularity": 0.35228292125407995
     },
     "Brier_recomputed": {
-      "model": 0.14383075232587914,
+      "model": 0.14115631253860125,
       "rule_repeat": 0.1485146455918681,
       "popularity": 0.193386312095884
     },
     "AP_diff_bootstrap_1000_seed7": {
-      "mean": 0.04159688728669841,
+      "mean": 0.05096755080669347,
       "ci95": [
-        0.03721211813078208,
-        0.0461345650318101
+        0.0455098287951227,
+        0.05660608937479188
       ]
     },
     "AP_diff_reported": [
-      0.037617078654803335,
-      0.045460937689187485
+      0.045305102142999404,
+      0.055625755158393485
     ],
     "window_gaps": {
-      "validation_41": 0.0372,
-      "calibration_45": 0.0435,
-      "test_49": 0.0414
+      "validation_41": 0.051,
+      "calibration_45": 0.0528,
+      "test_49": 0.0507
     },
     "interval_scope": "household sampling within ONE 4-week test window (holiday); temporal variation shown by window_gaps",
     "category_support": {
@@ -88,7 +88,7 @@
     "no_recent_history_rows": {
       "rows": 9635,
       "positives": 1004,
-      "AP_model": 0.1977867600209975,
+      "AP_model": 0.22317897550685062,
       "AP_rule": 0.10420342501297353,
       "prevalence": 0.10420342501297353
     },
@@ -115,7 +115,7 @@
     "inputs": {
       "g_contribution_per_incremental_buyer": 2.8932,
       "coupon_face": 0.9046,
-      "q0_mean": 0.3049,
+      "q0_mean": 0.2964,
       "assumed_dq": 0.04,
       "contact_cost": 0.03,
       "redemption_share": 0.35,
@@ -124,159 +124,159 @@
       "fixed_setup": 1500
     },
     "frozen_pizza_lapsing_digital_net_base": {
-      "independent": -1843.31,
-      "engine": -1843.31
+      "independent": -1823.76,
+      "engine": -1823.76
     },
-    "per_1000_contacted_households_before_fixed": -46.98,
-    "break_even_uplift": 0.0636,
+    "per_1000_contacted_households_before_fixed": -44.3,
+    "break_even_uplift": 0.0623,
     "reach_needed_to_cover_fixed_at_assumed_dq": null,
     "panel_households_in_cohort": 406,
     "panel_reachable_digital_at_scale_1": 182.7,
     "sample_size": {
-      "reported_866_reproduced": 866,
+      "reported_866_reproduced": 890,
       "basis_of_866": "binary 4-week purchase, p0 = model mean q0, minimum effect = break-even uplift, two-sided alpha .05, power .8, 1:1. It detects uplift > 0 when true uplift equals break-even; at break-even contribution is ZERO, so it cannot support EXPAND.",
       "contribution_sigma_per_hh_observed": 1.6352,
       "contribution_based_n_per_arm": {
         "true_uplift_1.5x_break_even": {
-          "uplift": 0.0954,
-          "delta_contribution_per_hh": 0.0633,
-          "n_per_arm": 10489
+          "uplift": 0.0934,
+          "delta_contribution_per_hh": 0.0619,
+          "n_per_arm": 10947
         },
         "true_uplift_2.0x_break_even": {
-          "uplift": 0.1272,
-          "delta_contribution_per_hh": 0.1265,
-          "n_per_arm": 2623
+          "uplift": 0.1246,
+          "delta_contribution_per_hh": 0.1238,
+          "n_per_arm": 2737
         },
         "true_uplift_3.0x_break_even": {
-          "uplift": 0.1909,
-          "delta_contribution_per_hh": 0.253,
-          "n_per_arm": 656
+          "uplift": 0.1868,
+          "delta_contribution_per_hh": 0.2477,
+          "n_per_arm": 685
         }
       },
       "minimum_detectable_effects": {
         "200": {
-          "min_detectable_purchase_uplift_pp": 12.9,
+          "min_detectable_purchase_uplift_pp": 12.79,
           "min_detectable_contribution_per_hh_usd": 0.458,
-          "implied_uplift_for_positive_contribution_pp": 29.4
+          "implied_uplift_for_positive_contribution_pp": 29.27
         },
         "406": {
-          "min_detectable_purchase_uplift_pp": 9.05,
+          "min_detectable_purchase_uplift_pp": 8.98,
           "min_detectable_contribution_per_hh_usd": 0.322,
-          "implied_uplift_for_positive_contribution_pp": 22.53
+          "implied_uplift_for_positive_contribution_pp": 22.4
         },
         "866": {
-          "min_detectable_purchase_uplift_pp": 6.2,
+          "min_detectable_purchase_uplift_pp": 6.15,
           "min_detectable_contribution_per_hh_usd": 0.22,
-          "implied_uplift_for_positive_contribution_pp": 17.43
+          "implied_uplift_for_positive_contribution_pp": 17.3
         },
         "2000": {
-          "min_detectable_purchase_uplift_pp": 4.08,
+          "min_detectable_purchase_uplift_pp": 4.05,
           "min_detectable_contribution_per_hh_usd": 0.145,
-          "implied_uplift_for_positive_contribution_pp": 13.65
+          "implied_uplift_for_positive_contribution_pp": 13.51
         },
         "5000": {
-          "min_detectable_purchase_uplift_pp": 2.58,
+          "min_detectable_purchase_uplift_pp": 2.56,
           "min_detectable_contribution_per_hh_usd": 0.092,
-          "implied_uplift_for_positive_contribution_pp": 10.97
+          "implied_uplift_for_positive_contribution_pp": 10.84
         }
       }
     },
     "pilot_cost_reproduced": {
-      "per_household": 0.1627,
+      "per_household": 0.16,
       "n_treated": 866,
-      "total": 1640.9,
+      "total": 1638.58,
       "currency": "USD",
       "status": "ASSUMED inputs (contact, redemption, fixed, dq); OBSERVED face"
     },
     "same_plan_test_value": {
       "plan": "FROZEN PIZZA|LAPSING|digital_coupon",
-      "n_per_arm": 2623,
-      "test_gross_cost_at_assumed_uplift": 1926.77,
+      "n_per_arm": 2737,
+      "test_gross_cost_at_assumed_uplift": 1938.0,
       "assumed_reachable_households": 7308,
-      "remaining_never_offered_after_test": 4685,
+      "remaining_never_offered_after_test": 4571,
       "observed_share_new_per_cycle": 0.616,
       "scenarios": {
         "assumed_4pp": {
           "uplift_pp": 4.0,
-          "value_per_contacted_hh": -0.047,
-          "test_net_cost_vs_none": 1623.22,
+          "value_per_contacted_hh": -0.0443,
+          "test_net_cost_vs_none": 1621.26,
           "holdout_forgone": 0,
-          "rollout_cycle_net_4w": -1843.31,
+          "rollout_cycle_net_4w": -1823.76,
           "whole_cycles_to_cover_net_test_cost": null,
-          "B_new_entrants_cycle_net_4w": -1711.39,
+          "B_new_entrants_cycle_net_4w": -1699.36,
           "B_whole_cycles_to_cover": null,
-          "C_one_time_remaining_pool_net": -1720.09,
+          "C_one_time_remaining_pool_net": -1702.51,
           "C_covers_test": false
         },
         "sizing_2x_break_even": {
-          "uplift_pp": 12.72,
-          "value_per_contacted_hh": 0.1265,
-          "test_net_cost_vs_none": 1168.14,
-          "holdout_forgone": 331.86,
-          "rollout_cycle_net_4w": -575.4,
+          "uplift_pp": 12.46,
+          "value_per_contacted_hh": 0.1238,
+          "test_net_cost_vs_none": 1161.04,
+          "holdout_forgone": 338.96,
+          "rollout_cycle_net_4w": -594.94,
           "whole_cycles_to_cover_net_test_cost": null,
-          "B_new_entrants_cycle_net_4w": -930.68,
+          "B_new_entrants_cycle_net_4w": -942.71,
           "B_whole_cycles_to_cover": null,
-          "C_one_time_remaining_pool_net": -907.26,
+          "C_one_time_remaining_pool_net": -933.91,
           "C_covers_test": false
         },
         "3x_break_even": {
-          "uplift_pp": 19.09,
-          "value_per_contacted_hh": 0.253,
-          "test_net_cost_vs_none": 836.28,
-          "holdout_forgone": 663.72,
-          "rollout_cycle_net_4w": 349.2,
+          "uplift_pp": 18.68,
+          "value_per_contacted_hh": 0.2477,
+          "test_net_cost_vs_none": 822.07,
+          "holdout_forgone": 677.93,
+          "rollout_cycle_net_4w": 310.11,
           "whole_cycles_to_cover_net_test_cost": 3,
-          "B_new_entrants_cycle_net_4w": -361.35,
+          "B_new_entrants_cycle_net_4w": -385.42,
           "B_whole_cycles_to_cover": null,
-          "C_one_time_remaining_pool_net": -314.51,
+          "C_one_time_remaining_pool_net": -367.81,
           "C_covers_test": false
         }
       },
-      "rollout_break_even_uplift_pp": 16.68,
+      "rollout_break_even_uplift_pp": 16.55,
       "hurdles_pp": {
-        "unit_break_even_pp": 6.36,
-        "A_full_pool_cycle_pp": 16.68,
-        "B_new_entrants_cycle_pp": 23.13,
-        "C_one_time_covers_own_setup_pp": 22.46,
-        "C_one_time_covers_setup_and_test_pp": 27.01
+        "unit_break_even_pp": 6.23,
+        "A_full_pool_cycle_pp": 16.55,
+        "B_new_entrants_cycle_pp": 22.99,
+        "C_one_time_covers_own_setup_pp": 22.73,
+        "C_one_time_covers_setup_and_test_pp": 26.87
       },
       "hurdle_based_design_vs_A": {
-        "hurdle_pp": 16.68,
+        "hurdle_pp": 16.55,
         "rows": [
           {
             "true_uplift_pp": 18.0,
             "multiple_of_assumed": 4.5,
-            "n_per_arm": 60920,
-            "households_needed": 121840,
+            "n_per_arm": 50486,
+            "households_needed": 100972,
             "feasible_in_assumed_pool": false
           },
           {
             "true_uplift_pp": 20.0,
             "multiple_of_assumed": 5.0,
-            "n_per_arm": 9631,
-            "households_needed": 19262,
+            "n_per_arm": 8918,
+            "households_needed": 17836,
             "feasible_in_assumed_pool": false
           },
           {
             "true_uplift_pp": 22.0,
             "multiple_of_assumed": 5.5,
-            "n_per_arm": 3751,
-            "households_needed": 7502,
-            "feasible_in_assumed_pool": false
+            "n_per_arm": 3574,
+            "households_needed": 7148,
+            "feasible_in_assumed_pool": true
           },
           {
             "true_uplift_pp": 25.0,
             "multiple_of_assumed": 6.25,
-            "n_per_arm": 1534,
-            "households_needed": 3068,
+            "n_per_arm": 1487,
+            "households_needed": 2974,
             "feasible_in_assumed_pool": true
           },
           {
             "true_uplift_pp": 30.0,
             "multiple_of_assumed": 7.5,
-            "n_per_arm": 599,
-            "households_needed": 1198,
+            "n_per_arm": 587,
+            "households_needed": 1174,
             "feasible_in_assumed_pool": true
           }
         ],

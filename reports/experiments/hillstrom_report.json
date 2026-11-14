@@ -1,0 +1,449 @@
+{
+  "provenance": {
+    "namespace": "experiments/hillstrom (NOT grocery evidence)",
+    "page": "https://blog.minethatdata.com/2008/03/minethatdata-e-mail-analytics-and-data.html",
+    "file": "http://www.minethatdata.com/Kevin_Hillstrom_MineThatData_E-MailAnalytics_DataMiningChallenge_2008.03.20.csv",
+    "sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+    "bytes": 3964977,
+    "terms": "none stated on the source page (checked 2026-11-14): raw file kept local and NOT committed",
+    "rows": 64000,
+    "protocol": "data\\eval\\hillstrom_protocol_v1.json"
+  },
+  "arm_sizes": {
+    "Mens E-Mail": 21307,
+    "Womens E-Mail": 21387,
+    "No E-Mail": 21306
+  },
+  "balance_vs_control": [
+    {
+      "arm": "Womens E-Mail",
+      "max_abs_smd": 0.0086,
+      "feature_at_max": "mens"
+    },
+    {
+      "arm": "Mens E-Mail",
+      "max_abs_smd": 0.0137,
+      "feature_at_max": "zip_code_Rural"
+    }
+  ],
+  "average_effects": {
+    "Mens E-Mail vs No E-Mail": {
+      "visit": {
+        "diff": 0.07658956365153125,
+        "ci95": [
+          0.06995322354054365,
+          0.08322590376251884
+        ],
+        "n_a": 21307,
+        "n_b": 21306,
+        "mean_a": 0.18275684047496127,
+        "mean_b": 0.10616727682343002
+      },
+      "conversion": {
+        "diff": 0.006805006519615695,
+        "ci95": [
+          0.005000095859574857,
+          0.008609917179656533
+        ],
+        "n_a": 21307,
+        "n_b": 21306,
+        "mean_a": 0.01253109306800582,
+        "mean_b": 0.005726086548390125
+      },
+      "spend": {
+        "diff": 0.7698271558945368,
+        "ci95": [
+          0.4851438978071107,
+          1.0545104139819628
+        ],
+        "n_a": 21307,
+        "n_b": 21306,
+        "mean_a": 1.422616511005773,
+        "mean_b": 0.6527893551112361
+      }
+    },
+    "Womens E-Mail vs No E-Mail": {
+      "visit": {
+        "diff": 0.045233106587052985,
+        "ci95": [
+          0.03889356087283511,
+          0.05157265230127086
+        ],
+        "n_a": 21387,
+        "n_b": 21306,
+        "mean_a": 0.151400383410483,
+        "mean_b": 0.10616727682343002
+      },
+      "conversion": {
+        "diff": 0.003111057511085258,
+        "ci95": [
+          0.0014986104390772236,
+          0.004723504583093292
+        ],
+        "n_a": 21387,
+        "n_b": 21306,
+        "mean_a": 0.008837144059475383,
+        "mean_b": 0.005726086548390125
+      },
+      "spend": {
+        "diff": 0.4244122159365967,
+        "ci95": [
+          0.16895981321938208,
+          0.6798646186538113
+        ],
+        "n_a": 21387,
+        "n_b": 21306,
+        "mean_a": 1.0772015710478329,
+        "mean_b": 0.6527893551112361
+      }
+    },
+    "Mens E-Mail vs Womens E-Mail": {
+      "visit": {
+        "diff": 0.03135645706447826,
+        "ci95": [
+          0.024284775423615665,
+          0.038428138705340856
+        ],
+        "n_a": 21307,
+        "n_b": 21387,
+        "mean_a": 0.18275684047496127,
+        "mean_b": 0.151400383410483
+      },
+      "conversion": {
+        "diff": 0.003693949008530437,
+        "ci95": [
+          0.0017434311955954796,
+          0.005644466821465395
+        ],
+        "n_a": 21307,
+        "n_b": 21387,
+        "mean_a": 0.01253109306800582,
+        "mean_b": 0.008837144059475383
+      },
+      "spend": {
+        "diff": 0.34541493995794004,
+        "ci95": [
+          0.03256480686829777,
+          0.6582650730475823
+        ],
+        "n_a": 21307,
+        "n_b": 21387,
+        "mean_a": 1.422616511005773,
+        "mean_b": 1.0772015710478329
+      }
+    }
+  },
+  "rare_outcome_warning": "Control conversion is 0.0057; conversion and spend effects are imprecise at this n and should not drive targeting on their own; visit is the pre-registered primary outcome.",
+  "uplift_models_visit": {
+    "Womens E-Mail": {
+      "heldout_pair_n": 21347,
+      "policy_value": {
+        "uplift_model": [
+          {
+            "target_share": 0.1,
+            "n_targeted": 2135,
+            "incremental_visits_per_1000": 58.6,
+            "ci95_per_1000": [
+              27.4,
+              89.1
+            ]
+          },
+          {
+            "target_share": 0.3,
+            "n_targeted": 6404,
+            "incremental_visits_per_1000": 70.4,
+            "ci95_per_1000": [
+              53.3,
+              88.2
+            ]
+          },
+          {
+            "target_share": 0.5,
+            "n_targeted": 10674,
+            "incremental_visits_per_1000": 67.0,
+            "ci95_per_1000": [
+              55.0,
+              79.4
+            ]
+          }
+        ],
+        "recency_rule": [
+          {
+            "target_share": 0.1,
+            "n_targeted": 2135,
+            "incremental_visits_per_1000": 28.0,
+            "ci95_per_1000": [
+              -2.3,
+              56.6
+            ]
+          },
+          {
+            "target_share": 0.3,
+            "n_targeted": 6404,
+            "incremental_visits_per_1000": 38.1,
+            "ci95_per_1000": [
+              20.7,
+              55.6
+            ]
+          },
+          {
+            "target_share": 0.5,
+            "n_targeted": 10674,
+            "incremental_visits_per_1000": 32.7,
+            "ci95_per_1000": [
+              17.2,
+              45.7
+            ]
+          }
+        ],
+        "random": [
+          {
+            "target_share": 0.1,
+            "n_targeted": 2135,
+            "incremental_visits_per_1000": 40.2,
+            "ci95_per_1000": [
+              8.1,
+              66.2
+            ]
+          },
+          {
+            "target_share": 0.3,
+            "n_targeted": 6404,
+            "incremental_visits_per_1000": 45.0,
+            "ci95_per_1000": [
+              27.5,
+              61.5
+            ]
+          },
+          {
+            "target_share": 0.5,
+            "n_targeted": 10674,
+            "incremental_visits_per_1000": 46.0,
+            "ci95_per_1000": [
+              32.6,
+              58.1
+            ]
+          }
+        ]
+      },
+      "uplift_by_decile": [
+        {
+          "decile_from_low": 0,
+          "n": 2135,
+          "observed_uplift_visit": 0.0164,
+          "mean_predicted_uplift": -0.0215
+        },
+        {
+          "decile_from_low": 1,
+          "n": 2135,
+          "observed_uplift_visit": 0.0024,
+          "mean_predicted_uplift": 0.0071
+        },
+        {
+          "decile_from_low": 2,
+          "n": 2134,
+          "observed_uplift_visit": 0.0066,
+          "mean_predicted_uplift": 0.0163
+        },
+        {
+          "decile_from_low": 3,
+          "n": 2135,
+          "observed_uplift_visit": 0.014,
+          "mean_predicted_uplift": 0.025
+        },
+        {
+          "decile_from_low": 4,
+          "n": 2135,
+          "observed_uplift_visit": 0.0321,
+          "mean_predicted_uplift": 0.0383
+        },
+        {
+          "decile_from_low": 5,
+          "n": 2134,
+          "observed_uplift_visit": 0.0582,
+          "mean_predicted_uplift": 0.071
+        },
+        {
+          "decile_from_low": 6,
+          "n": 2135,
+          "observed_uplift_visit": 0.0691,
+          "mean_predicted_uplift": 0.0798
+        },
+        {
+          "decile_from_low": 7,
+          "n": 2134,
+          "observed_uplift_visit": 0.0917,
+          "mean_predicted_uplift": 0.0848
+        },
+        {
+          "decile_from_low": 8,
+          "n": 2135,
+          "observed_uplift_visit": 0.0617,
+          "mean_predicted_uplift": 0.0893
+        },
+        {
+          "decile_from_low": 9,
+          "n": 2135,
+          "observed_uplift_visit": 0.0586,
+          "mean_predicted_uplift": 0.0957
+        }
+      ]
+    },
+    "Mens E-Mail": {
+      "heldout_pair_n": 21307,
+      "policy_value": {
+        "uplift_model": [
+          {
+            "target_share": 0.1,
+            "n_targeted": 2131,
+            "incremental_visits_per_1000": 112.7,
+            "ci95_per_1000": [
+              74.2,
+              152.3
+            ]
+          },
+          {
+            "target_share": 0.3,
+            "n_targeted": 6392,
+            "incremental_visits_per_1000": 68.3,
+            "ci95_per_1000": [
+              49.5,
+              86.5
+            ]
+          },
+          {
+            "target_share": 0.5,
+            "n_targeted": 10654,
+            "incremental_visits_per_1000": 70.5,
+            "ci95_per_1000": [
+              55.0,
+              84.2
+            ]
+          }
+        ],
+        "recency_rule": [
+          {
+            "target_share": 0.1,
+            "n_targeted": 2131,
+            "incremental_visits_per_1000": 88.5,
+            "ci95_per_1000": [
+              53.4,
+              124.7
+            ]
+          },
+          {
+            "target_share": 0.3,
+            "n_targeted": 6392,
+            "incremental_visits_per_1000": 77.7,
+            "ci95_per_1000": [
+              60.4,
+              96.8
+            ]
+          },
+          {
+            "target_share": 0.5,
+            "n_targeted": 10654,
+            "incremental_visits_per_1000": 74.1,
+            "ci95_per_1000": [
+              58.4,
+              88.9
+            ]
+          }
+        ],
+        "random": [
+          {
+            "target_share": 0.1,
+            "n_targeted": 2131,
+            "incremental_visits_per_1000": 46.5,
+            "ci95_per_1000": [
+              18.0,
+              76.5
+            ]
+          },
+          {
+            "target_share": 0.3,
+            "n_targeted": 6392,
+            "incremental_visits_per_1000": 66.9,
+            "ci95_per_1000": [
+              50.6,
+              84.9
+            ]
+          },
+          {
+            "target_share": 0.5,
+            "n_targeted": 10654,
+            "incremental_visits_per_1000": 73.0,
+            "ci95_per_1000": [
+              60.0,
+              84.9
+            ]
+          }
+        ]
+      },
+      "uplift_by_decile": [
+        {
+          "decile_from_low": 0,
+          "n": 2131,
+          "observed_uplift_visit": 0.0941,
+          "mean_predicted_uplift": 0.0435
+        },
+        {
+          "decile_from_low": 1,
+          "n": 2131,
+          "observed_uplift_visit": 0.0834,
+          "mean_predicted_uplift": 0.0562
+        },
+        {
+          "decile_from_low": 2,
+          "n": 2130,
+          "observed_uplift_visit": 0.0603,
+          "mean_predicted_uplift": 0.0621
+        },
+        {
+          "decile_from_low": 3,
+          "n": 2131,
+          "observed_uplift_visit": 0.0719,
+          "mean_predicted_uplift": 0.0663
+        },
+        {
+          "decile_from_low": 4,
+          "n": 2131,
+          "observed_uplift_visit": 0.0623,
+          "mean_predicted_uplift": 0.0704
+        },
+        {
+          "decile_from_low": 5,
+          "n": 2130,
+          "observed_uplift_visit": 0.0627,
+          "mean_predicted_uplift": 0.075
+        },
+        {
+          "decile_from_low": 6,
+          "n": 2131,
+          "observed_uplift_visit": 0.0828,
+          "mean_predicted_uplift": 0.0809
+        },
+        {
+          "decile_from_low": 7,
+          "n": 2130,
+          "observed_uplift_visit": 0.0678,
+          "mean_predicted_uplift": 0.0897
+        },
+        {
+          "decile_from_low": 8,
+          "n": 2131,
+          "observed_uplift_visit": 0.0235,
+          "mean_predicted_uplift": 0.1015
+        },
+        {
+          "decile_from_low": 9,
+          "n": 2131,
+          "observed_uplift_visit": 0.1127,
+          "mean_predicted_uplift": 0.157
+        }
+      ]
+    }
+  },
+  "use_restriction": "Methodological demonstration of what a RANDOMIZED marketing test identifies. Different retailer (apparel, 2008), channel (email) and outcome window (2 weeks): its effects must NEVER be used as grocery coupon uplift or to change the Frozen Pizza plan.",
+  "seconds": 45.5
+}

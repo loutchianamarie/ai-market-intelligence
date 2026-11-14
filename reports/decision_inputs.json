@@ -1,0 +1,146 @@
+{
+  "model_run_id": "run-fb9020ccd9",
+  "inputs": [
+    {
+      "input": "contribution_margin_rate",
+      "value": 0.28,
+      "range": [
+        0.2,
+        0.35
+      ],
+      "status": "ASSUMED",
+      "source": "configs/policy.json (finance to confirm)"
+    },
+    {
+      "input": "redemption_share_of_buyers",
+      "value": 0.35,
+      "range": [
+        0.2,
+        0.5
+      ],
+      "status": "ASSUMED",
+      "source": "configs/policy.json"
+    },
+    {
+      "input": "incremental_purchase_rate (uplift) by segment",
+      "value": {
+        "REGULAR": [
+          0.005,
+          0.01,
+          0.02
+        ],
+        "RECENT_LIGHT": [
+          0.01,
+          0.025,
+          0.045
+        ],
+        "LAPSING": [
+          0.02,
+          0.04,
+          0.07
+        ],
+        "ACTIVE_NONBUYER": [
+          0.005,
+          0.015,
+          0.03
+        ],
+        "BROAD": [
+          0.003,
+          0.008,
+          0.015
+        ]
+      },
+      "status": "ASSUMED [low, base, high]",
+      "source": "configs/policy.json; no randomized grocery evidence"
+    },
+    {
+      "input": "contact_cost by channel",
+      "value": {
+        "mail_coupon": 0.5,
+        "digital_coupon": 0.03
+      },
+      "status": "ASSUMED",
+      "source": "configs/policy.json"
+    },
+    {
+      "input": "reach_share (consented, reachable) by channel",
+      "value": {
+        "mail_coupon": 1.0,
+        "digital_coupon": 0.45
+      },
+      "status": "ASSUMED",
+      "source": "configs/policy.json; real consented pool UNKNOWN"
+    },
+    {
+      "input": "fixed_setup_per_plan",
+      "value": 1500,
+      "range": [
+        1000,
+        2500
+      ],
+      "status": "ASSUMED",
+      "source": "configs/policy.json"
+    },
+    {
+      "input": "deployment_scale",
+      "value": 40,
+      "status": "ASSUMED (COMPANY SCALE)",
+      "source": "configs/policy.json; the panel is not contactable"
+    },
+    {
+      "input": "budget_cap",
+      "value": 25000,
+      "status": "ASSUMED",
+      "source": "configs/policy.json"
+    },
+    {
+      "input": "stock_capacity",
+      "value": null,
+      "status": "UNKNOWN",
+      "source": "no inventory data"
+    },
+    {
+      "input": "mean 4-week category spend among buyers",
+      "value": {
+        "BAG SNACKS": 7.1238,
+        "COFFEE": 7.8651,
+        "COLD CEREAL": 6.7139,
+        "FROZEN PIZZA": 10.3327,
+        "ICE CREAM/MILK/SHERBTS": 5.6694,
+        "REFRGRATD JUICES/DRNKS": 4.9122,
+        "SOUP": 5.7588,
+        "YOGURT": 5.2348
+      },
+      "status": "OBSERVED (panel, weeks 50-53 2017)",
+      "source": "reports/model_report.json"
+    },
+    {
+      "input": "coupon face value per couponed line",
+      "value": {
+        "BAG SNACKS": 1.1259,
+        "COFFEE": 0.7702,
+        "COLD CEREAL": 0.9691,
+        "FROZEN PIZZA": 0.9046,
+        "ICE CREAM/MILK/SHERBTS": 1.3151,
+        "REFRGRATD JUICES/DRNKS": 0.8935,
+        "SOUP": 0.6385,
+        "YOGURT": 0.8705
+      },
+      "status": "OBSERVED (panel, 2017)",
+      "source": "reports/model_report.json"
+    },
+    {
+      "input": "q0 (probability of buying in 4 weeks, by household x category)",
+      "value": "data/processed/scores_latest.parquet",
+      "status": "MODEL ESTIMATE (historical conditions; NOT a no-coupon counterfactual)",
+      "source": "run-fb9020ccd9"
+    },
+    {
+      "input": "lapsing-cohort turnover per 4-week cycle",
+      "value": 0.616,
+      "status": "OBSERVED (panel, 2017)",
+      "source": "reports/cohort_turnover.json"
+    }
+  ],
+  "rule": "Money outputs are SIMULATIONS whenever any ASSUMED or UNKNOWN input enters them."
+}

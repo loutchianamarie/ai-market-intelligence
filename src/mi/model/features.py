@@ -1,7 +1,9 @@
 """Time-aware features and labels for (cutoff_week, household, category).
 
 Contract (enforced by assert_no_leakage and tests):
-  * every feature uses only transactions with week <= cutoff (and >= cutoff-lookback+1),
+  * every feature uses only transactions with week <= cutoff; the 12-week features use weeks >= cutoff-lookback+1,
+    and the LONG_HISTORY features (adopted 2026-11-14 under data/eval/model_eval_protocol_v1.json) use the 14 weeks
+    before that lookback and any earlier week,
   * the label uses only weeks cutoff+1 .. cutoff+horizon,
   * eligibility uses only pre-cutoff data (>= 1 basket in the lookback window),
   * coupon redemptions / campaigns count only if dated on or before the cutoff week's last day.
@@ -11,12 +13,14 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
-FEATURES = [
+FEATURES_V1 = [
     "cat_baskets_4w", "cat_baskets_12w", "cat_weeks_active_12w", "cat_weeks_since_last",
     "cat_spend_12w", "cat_share_spend_12w", "hh_baskets_4w", "hh_baskets_12w", "hh_weeks_active_12w",
     "hh_spend_12w", "hh_distinct_cats_12w", "cat_pop_4w", "cat_pop_trend", "hh_coupon_disc_12w",
     "hh_redemptions_12w", "hh_campaigns_started", "cat_private_share_12w",
 ]
+LONG_HISTORY = ["cat_weeks_active_prior14", "cat_bought_before_lookback", "history_weeks_available"]
+FEATURES = FEATURES_V1 + LONG_HISTORY
 CAMPAIGN_FEATURES = ["hh_coupon_disc_12w", "hh_redemptions_12w", "hh_campaigns_started"]
 POPULARITY_FEATURES = ["cat_pop_4w", "cat_pop_trend"]
 
@@ -65,6 +69,13 @@ def build_cutoff(prep: dict, cutoff: int, lookback: int, horizon: int,
     df = grid.merge(cagg.reset_index(), how="left", on=["household_id", "product_category"]).merge(
         c4.reset_index(), how="left", on=["household_id", "product_category"])
     df["cat_weeks_since_last"] = (cutoff - df.last_week).fillna(lookback).clip(upper=lookback)
+    # longer history, strictly before the 12-week lookback (still <= cutoff): weeks lo-14 .. lo-1, and any week < lo
+    prior = hcw[(hcw.week < lo) & (hcw.week >= lo - 14)].groupby(["household_id", "product_category"]).week.nunique()
+    before = hcw[hcw.week < lo].groupby(["household_id", "product_category"]).size().gt(0).astype(float)
+    df = df.merge(prior.rename("cat_weeks_active_prior14").reset_index(), how="left", on=["household_id", "product_category"]).merge(
+        before.rename("cat_bought_before_lookback").reset_index(), how="left", on=["household_id", "product_category"])
+    df[["cat_weeks_active_prior14", "cat_bought_before_lookback"]] = df[["cat_weeks_active_prior14", "cat_bought_before_lookback"]].fillna(0.0)
+    df["history_weeks_available"] = float(max(0, cutoff - lookback))
     df = df.drop(columns="last_week").fillna({"cat_baskets_12w": 0, "cat_weeks_active_12w": 0, "cat_spend_12w": 0,
                                               "cat_private_12w": 0, "cat_baskets_4w": 0})
     df = df.merge(hh.reset_index(), on="household_id", how="left")

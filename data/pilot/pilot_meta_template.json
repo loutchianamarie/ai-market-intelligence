@@ -1,0 +1,12 @@
+{
+  "source": "REPLACE: e.g. 'retailer X pilot, export 2027-01-15' (use 'SYNTHETIC ...' for fixtures)",
+  "randomized": true,
+  "assignment_method": "REPLACE: e.g. household-level 50/50 random assignment, stratified by model-score half, seed 1234, done before any contact",
+  "expected_treatment_share": 0.5,
+  "preregistration": "REPLACE: link/commit of the prewritten design and decision rule",
+  "margin_rate": 0.28,
+  "margin_status": "REPLACE: CONFIRMED BY FINANCE or ASSUMED",
+  "rollout_households": 7308,
+  "rollout_fixed_setup_usd": 1500,
+  "stockout_flag": false
+}

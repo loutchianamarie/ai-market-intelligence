@@ -1,0 +1,146 @@
+{
+  "started_at": "2026-11-14T14:56:40+00:00",
+  "versions": {
+    "python": "3.12.10",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "numpy": "2.5.4",
+    "pandas": "2.3.3",
+    "scikit-learn": "1.7.2",
+    "pyreadr": "0.5.9",
+    "pyarrow": "26.0.1",
+    "streamlit": "1.67.0",
+    "anthropic": "2.8.0"
+  },
+  "git": {
+    "commit": "e7ad52a8f8514894af38fdd45081b634ae37a83d",
+    "dirty_tracked_files": [
+      ".gitignore",
+      "data/sources/corpus.jsonl",
+      "reports/agent_trace_latest.json",
+      "reports/blocked_demo.json",
+      "reports/claim_audit.json",
+      "reports/model_card.md",
+      "reports/model_report.json",
+      "reports/portfolio.json",
+      "reports/portfolio.md",
+      "reports/sensitivity.json",
+      "src/mi/cli.py",
+      "src/mi/decision/optimizer.py",
+      "src/mi/ingest/load.py",
+      "src/mi/model/features.py",
+      "src/mi/model/train.py",
+      "src/mi/outcome/learning.py",
+      "tests/test_data_and_features.py"
+    ]
+  },
+  "data_lock_sha16": "de0c5b190122a37d",
+  "seed": 20261114,
+  "steps": [
+    {
+      "step": "download",
+      "status": "skipped"
+    },
+    {
+      "step": "verify data",
+      "rc": 0,
+      "seconds": 3.1,
+      "log": "reports\\run_logs\\02_verify_data.log",
+      "status": "ok"
+    },
+    {
+      "step": "audit",
+      "rc": 0,
+      "seconds": 7.4,
+      "log": "reports\\run_logs\\03_audit.log",
+      "status": "ok"
+    },
+    {
+      "step": "train",
+      "rc": 0,
+      "seconds": 35.5,
+      "log": "reports\\run_logs\\04_train.log",
+      "status": "ok"
+    },
+    {
+      "step": "evaluate model",
+      "rc": 0,
+      "seconds": 70.8,
+      "log": "reports\\run_logs\\05_evaluate_model.log",
+      "status": "ok"
+    },
+    {
+      "step": "portfolio+sensitivity",
+      "rc": 0,
+      "seconds": 30.4,
+      "log": "reports\\run_logs\\06_portfolio_sensitivity.log",
+      "status": "ok"
+    },
+    {
+      "step": "decision inputs + reversal",
+      "rc": 0,
+      "seconds": 14.4,
+      "log": "reports\\run_logs\\07_decision_inputs_reversal.log",
+      "status": "ok"
+    },
+    {
+      "step": "claim audit",
+      "rc": 0,
+      "seconds": 27.1,
+      "log": "reports\\run_logs\\08_claim_audit.log",
+      "status": "ok"
+    },
+    {
+      "step": "rag eval",
+      "rc": 0,
+      "seconds": 0.4,
+      "log": "reports\\run_logs\\09_rag_eval.log",
+      "status": "ok"
+    },
+    {
+      "step": "geo check",
+      "rc": 0,
+      "seconds": 0.2,
+      "log": "reports\\run_logs\\10_geo_check.log",
+      "status": "ok"
+    },
+    {
+      "step": "geo analysis",
+      "rc": 0,
+      "seconds": 0.2,
+      "log": "reports\\run_logs\\11_geo_analysis.log",
+      "status": "ok"
+    },
+    {
+      "step": "interview intake check",
+      "rc": 0,
+      "seconds": 0.2,
+      "log": "reports\\run_logs\\12_interview_intake_check.log",
+      "status": "ok"
+    },
+    {
+      "step": "fashionforward fixture",
+      "rc": 0,
+      "seconds": 1.9,
+      "log": "reports\\run_logs\\13_fashionforward_fixture.log",
+      "status": "ok"
+    },
+    {
+      "step": "blocked demo",
+      "rc": 0,
+      "seconds": 1.9,
+      "log": "reports\\run_logs\\14_blocked_demo.log",
+      "status": "ok"
+    },
+    {
+      "step": "agents to human checkpoint",
+      "rc": 0,
+      "seconds": 3.2,
+      "log": "reports\\run_logs\\15_agents_to_human_checkpoint.log",
+      "status": "ok"
+    }
+  ],
+  "dossier": "OPP-A3877BDD",
+  "finished_at": "2026-11-14T14:59:58+00:00",
+  "seconds_total": 196.8,
+  "ok": true
+}

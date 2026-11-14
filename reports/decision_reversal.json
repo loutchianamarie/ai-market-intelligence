@@ -1,0 +1,81 @@
+{
+  "model_run_id": "run-fb9020ccd9",
+  "base_recommendation": "NONE: research / measure first",
+  "base_best_plan_net": -1724.41,
+  "one_at_a_time": [
+    {
+      "input": "uplift_multiplier",
+      "meaning": "true response to the coupon",
+      "base": 1.0,
+      "searched_to": 10.0,
+      "unit": "x assumed uplift",
+      "flips": true,
+      "flip_value": 4.1377,
+      "first_plan_after_flip": "FROZEN PIZZA/LAPSING/digital_coupon/ALL",
+      "multiple_of_base": 4.14,
+      "best_plan_net_at_flip": 0.16
+    },
+    {
+      "input": "margin_rate",
+      "meaning": "contribution margin",
+      "base": 0.28,
+      "searched_to": 0.8,
+      "unit": "share of sales",
+      "flips": false,
+      "result": "recommendation stays NONE across 0.28..0.8 (others at base)",
+      "best_plan_net_at_end": -253.12
+    },
+    {
+      "input": "scale",
+      "meaning": "company size (reachable households)",
+      "base": 40.0,
+      "searched_to": 1000.0,
+      "unit": "x panel",
+      "flips": false,
+      "result": "recommendation stays NONE across 40.0..1000.0 (others at base)",
+      "best_plan_net_at_end": -1245.86
+    },
+    {
+      "input": "reach_share_digital",
+      "meaning": "consented digital reach",
+      "base": 0.45,
+      "searched_to": 1.0,
+      "unit": "share",
+      "flips": false,
+      "result": "recommendation stays NONE across 0.45..1.0 (others at base)",
+      "best_plan_net_at_end": -1477.41
+    },
+    {
+      "input": "fixed_setup",
+      "meaning": "setup cost",
+      "base": 1500.0,
+      "searched_to": 0.0,
+      "unit": "USD per plan",
+      "flips": false,
+      "result": "recommendation stays NONE across 1500.0..0.0 (others at base)",
+      "best_plan_net_at_end": -224.41
+    },
+    {
+      "input": "contact_cost_digital",
+      "meaning": "digital contact cost",
+      "base": 0.03,
+      "searched_to": 0.0,
+      "unit": "USD per contact",
+      "flips": false,
+      "result": "recommendation stays NONE across 0.03..0.0 (others at base)",
+      "best_plan_net_at_end": -1386.54
+    },
+    {
+      "input": "redemption_share",
+      "meaning": "coupons used by people who buy anyway",
+      "base": 0.35,
+      "searched_to": 0.0,
+      "unit": "share of baseline buyers",
+      "flips": false,
+      "result": "recommendation stays NONE across 0.35..0.0 (others at base)",
+      "best_plan_net_at_end": -1137.95
+    }
+  ],
+  "status": "SCENARIO (one input varied, others at ASSUMED base values); not a forecast",
+  "seconds": 12.4
+}

@@ -2,7 +2,7 @@
 
 **Status:** SIMULATION — conditional on ASSUMED uplift, margin, redemption, contact cost, reach and scale; q0 is a MODEL ESTIMATE
 
-Config `562d203b67791ea9` · model run `run-0a53542e4e` · 74 candidate plans · 159 feasible portfolios enumerated exactly among top-12 candidates.
+Config `562d203b67791ea9` · model run `run-fb9020ccd9` · 74 candidate plans · 159 feasible portfolios enumerated exactly among top-12 candidates.
 
 - **Recommended (base case):** NONE: research / measure first
 - **Recommended (worst case / robust):** NONE: research / measure first
@@ -11,10 +11,10 @@ Config `562d203b67791ea9` · model run `run-0a53542e4e` · 74 candidate plans ·
 
 | plan | net low | net base | net high | cost base | reach |
 |---|---:|---:|---:|---:|---:|
-| COFFEE/LAPSING/digital_coupon/ALL | -2,677 | -1,781 | 875 | 2,344 | 6,390 |
-| COFFEE/RECENT_LIGHT/digital_coupon/ALL | -2,625 | -1,818 | -667 | 2,022 | 3,708 |
-| YOGURT/RECENT_LIGHT/digital_coupon/ALL | -2,609 | -1,839 | -1,225 | 1,949 | 3,006 |
-| HEURISTIC: BAG SNACKS/BROAD/mail_coupon/ALL (INFEASIBLE) | nan | -61,914 | nan | 63,395 | 92,760 |
+| COFFEE/LAPSING/digital_coupon/ALL | -2,663 | -1,724 | 984 | 2,287 | 6,390 |
+| COFFEE/RECENT_LIGHT/digital_coupon/ALL | -2,620 | -1,795 | -624 | 1,999 | 3,708 |
+| FROZEN PIZZA/LAPSING/digital_coupon/ALL | -2,732 | -1,824 | 2,074 | 2,669 | 7,308 |
+| HEURISTIC: BAG SNACKS/BROAD/mail_coupon/ALL (INFEASIBLE) | nan | -62,080 | nan | 63,560 | 92,760 |
 | NONE: research / measure first | 0 | 0 | 0 | 0 | 0 |
 
 ## What reverses the recommendation
@@ -29,16 +29,16 @@ Config `562d203b67791ea9` · model run `run-0a53542e4e` · 74 candidate plans ·
 
 | category | segment | channel | panel hh | mean q0 | assumed Δq | break-even Δq | needed ÷ assumed |
 |---|---|---|---:|---:|---:|---:|---:|
-| FROZEN PIZZA | LAPSING | digital_coupon | 406 | 0.305 | 0.040 | 0.064 | 1.6× |
-| COFFEE | LAPSING | digital_coupon | 355 | 0.265 | 0.040 | 0.071 | 1.8× |
-| COFFEE | ACTIVE_NONBUYER | digital_coupon | 983 | 0.068 | 0.015 | 0.034 | 2.2× |
-| SOUP | LAPSING | digital_coupon | 502 | 0.308 | 0.040 | 0.101 | 2.5× |
-| FROZEN PIZZA | ACTIVE_NONBUYER | digital_coupon | 679 | 0.162 | 0.015 | 0.041 | 2.7× |
-| FROZEN PIZZA | RECENT_LIGHT | digital_coupon | 322 | 0.381 | 0.025 | 0.076 | 3.0× |
-| COFFEE | RECENT_LIGHT | digital_coupon | 206 | 0.339 | 0.025 | 0.085 | 3.4× |
-| COLD CEREAL | LAPSING | digital_coupon | 421 | 0.277 | 0.040 | 0.136 | 3.4× |
-| YOGURT | LAPSING | digital_coupon | 330 | 0.244 | 0.040 | 0.175 | 4.4× |
-| SOUP | ACTIVE_NONBUYER | digital_coupon | 509 | 0.159 | 0.015 | 0.067 | 4.5× |
+| FROZEN PIZZA | LAPSING | digital_coupon | 406 | 0.296 | 0.040 | 0.062 | 1.6× |
+| COFFEE | LAPSING | digital_coupon | 355 | 0.231 | 0.040 | 0.065 | 1.6× |
+| COFFEE | ACTIVE_NONBUYER | digital_coupon | 983 | 0.071 | 0.015 | 0.034 | 2.3× |
+| SOUP | LAPSING | digital_coupon | 502 | 0.285 | 0.040 | 0.096 | 2.4× |
+| FROZEN PIZZA | ACTIVE_NONBUYER | digital_coupon | 679 | 0.150 | 0.015 | 0.039 | 2.6× |
+| FROZEN PIZZA | RECENT_LIGHT | digital_coupon | 322 | 0.364 | 0.025 | 0.073 | 2.9× |
+| COFFEE | RECENT_LIGHT | digital_coupon | 206 | 0.317 | 0.025 | 0.081 | 3.2× |
+| COLD CEREAL | LAPSING | digital_coupon | 421 | 0.294 | 0.040 | 0.142 | 3.6× |
+| SOUP | ACTIVE_NONBUYER | digital_coupon | 509 | 0.150 | 0.015 | 0.065 | 4.4× |
+| YOGURT | LAPSING | digital_coupon | 330 | 0.253 | 0.040 | 0.180 | 4.5× |
 
 Fixed setup is excluded from this per-household break-even; it raises the bar further for small cells.
 
@@ -46,35 +46,35 @@ Fixed setup is excluded from this per-household break-even; it raises the bar fu
 
 | scale | category | segment | channel | reach | × assumed uplift needed |
 |---:|---|---|---|---:|---:|
-| 40 | FROZEN PIZZA | LAPSING | digital_coupon | 7,308 | 4.17× |
-| 40 | COFFEE | LAPSING | digital_coupon | 6,390 | 5.87× |
-| 40 | COFFEE | ACTIVE_NONBUYER | digital_coupon | 17,694 | 6.19× |
-| 100 | FROZEN PIZZA | LAPSING | digital_coupon | 18,270 | 2.62× |
-| 100 | COFFEE | LAPSING | digital_coupon | 15,975 | 3.41× |
-| 100 | COFFEE | ACTIVE_NONBUYER | digital_coupon | 44,235 | 3.83× |
-| 250 | FROZEN PIZZA | LAPSING | digital_coupon | 45,675 | 2.00× |
-| 250 | COFFEE | LAPSING | digital_coupon | 39,938 | 2.42× |
-| 250 | COFFEE | ACTIVE_NONBUYER | digital_coupon | 110,588 | 2.88× |
+| 40 | FROZEN PIZZA | LAPSING | digital_coupon | 7,308 | 4.14× |
+| 40 | COFFEE | LAPSING | digital_coupon | 6,390 | 5.71× |
+| 40 | COFFEE | ACTIVE_NONBUYER | digital_coupon | 17,694 | 6.23× |
+| 100 | FROZEN PIZZA | LAPSING | digital_coupon | 18,270 | 2.59× |
+| 100 | COFFEE | LAPSING | digital_coupon | 15,975 | 3.25× |
+| 100 | COFFEE | ACTIVE_NONBUYER | digital_coupon | 44,235 | 3.86× |
+| 250 | FROZEN PIZZA | LAPSING | digital_coupon | 45,675 | 1.97× |
+| 250 | COFFEE | LAPSING | digital_coupon | 39,938 | 2.27× |
+| 250 | COFFEE | ACTIVE_NONBUYER | digital_coupon | 110,588 | 2.92× |
 
 ## Reversal grid (recommended plan, base assumptions otherwise)
 
 | uplift × | scale | recommendation | best net |
 |---:|---:|---|---:|
-| 1.0 | 40 | NONE: research / measure first | -1,781 |
-| 1.0 | 100 | NONE: research / measure first | -2,203 |
-| 1.0 | 250 | NONE: research / measure first | -1,469 |
-| 2.0 | 40 | NONE: research / measure first | -1,233 |
-| 2.0 | 100 | NONE: research / measure first | -832 |
-| 2.0 | 250 | FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED | 169 |
-| 3.0 | 40 | NONE: research / measure first | -681 |
-| 3.0 | 100 | FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED | 548 |
-| 3.0 | 250 | FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED + COFFEE/LAPSING/digital_coupon/MODEL_FILTERED | 4,331 |
-| 4.0 | 40 | NONE: research / measure first | -99 |
-| 4.0 | 100 | FROZEN PIZZA/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL | 2,094 |
-| 4.0 | 250 | FROZEN PIZZA/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL | 9,734 |
-| 5.0 | 40 | FROZEN PIZZA/LAPSING/digital_coupon/ALL | 482 |
-| 5.0 | 100 | FROZEN PIZZA/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL + COFFEE/ACTIVE_NONBUYER/digital_coupon/ALL | 4,872 |
-| 5.0 | 250 | COFFEE/LAPSING/digital_coupon/ALL + SOUP/LAPSING/digital_coupon/ALL | 8,839 |
+| 1.0 | 40 | NONE: research / measure first | -1,724 |
+| 1.0 | 100 | NONE: research / measure first | -1,475 |
+| 1.0 | 250 | NONE: research / measure first | -1,436 |
+| 2.0 | 40 | NONE: research / measure first | -1,205 |
+| 2.0 | 100 | NONE: research / measure first | -763 |
+| 2.0 | 250 | FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED | 342 |
+| 3.0 | 40 | NONE: research / measure first | -661 |
+| 3.0 | 100 | FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED | 598 |
+| 3.0 | 250 | FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED + COFFEE/LAPSING/digital_coupon/MODEL_FILTERED | 4,769 |
+| 4.0 | 40 | NONE: research / measure first | -80 |
+| 4.0 | 100 | FROZEN PIZZA/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL | 2,258 |
+| 4.0 | 250 | FROZEN PIZZA/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL | 10,145 |
+| 5.0 | 40 | FROZEN PIZZA/LAPSING/digital_coupon/ALL | 501 |
+| 5.0 | 100 | FROZEN PIZZA/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL + COFFEE/ACTIVE_NONBUYER/digital_coupon/ALL | 5,007 |
+| 5.0 | 250 | COFFEE/LAPSING/digital_coupon/ALL + SOUP/LAPSING/digital_coupon/ALL | 9,463 |
 
 ## Demand baseline (OBSERVED history, next-4-week trailing baseline)
 

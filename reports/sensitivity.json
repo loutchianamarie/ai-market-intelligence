@@ -5,37 +5,37 @@
         "param": "uplift_multiplier",
         "value": 0.5,
         "recommended_base": "NONE: research / measure first",
-        "best_net_base": -1861.063676580059
+        "best_net_base": -1861.4071321188567
       },
       {
         "param": "uplift_multiplier",
         "value": 1.0,
         "recommended_base": "NONE: research / measure first",
-        "best_net_base": -1781.2941940771234
+        "best_net_base": -1724.4105070476633
       },
       {
         "param": "uplift_multiplier",
         "value": 1.5,
         "recommended_base": "NONE: research / measure first",
-        "best_net_base": -1427.7276755800876
+        "best_net_base": -1397.3840624551256
       },
       {
         "param": "uplift_multiplier",
         "value": 2.0,
         "recommended_base": "NONE: research / measure first",
-        "best_net_base": -1232.9395589002265
+        "best_net_base": -1205.3499992284064
       },
       {
         "param": "uplift_multiplier",
         "value": 2.5,
         "recommended_base": "NONE: research / measure first",
-        "best_net_base": -968.1990329814906
+        "best_net_base": -948.5555684913281
       },
       {
         "param": "uplift_multiplier",
         "value": 3.0,
         "recommended_base": "NONE: research / measure first",
-        "best_net_base": -680.7054472607439
+        "best_net_base": -660.8047758435406
       }
     ],
     "margin_rate": [
@@ -43,37 +43,37 @@
         "param": "margin_rate",
         "value": 0.2,
         "recommended_base": "NONE: research / measure first",
-        "best_net_base": -1870.1690008800592
+        "best_net_base": -1853.360215918857
       },
       {
         "param": "margin_rate",
         "value": 0.25,
         "recommended_base": "NONE: research / measure first",
-        "best_net_base": -1839.687419917055
+        "best_net_base": -1784.7200938476633
       },
       {
         "param": "margin_rate",
         "value": 0.28,
         "recommended_base": "NONE: research / measure first",
-        "best_net_base": -1781.2941940771234
+        "best_net_base": -1724.4105070476633
       },
       {
         "param": "margin_rate",
         "value": 0.32,
         "recommended_base": "NONE: research / measure first",
-        "best_net_base": -1700.8814116771234
+        "best_net_base": -1463.1320846690503
       },
       {
         "param": "margin_rate",
         "value": 0.35,
         "recommended_base": "NONE: research / measure first",
-        "best_net_base": -1455.783732470283
+        "best_net_base": -1431.8892088125103
       },
       {
         "param": "margin_rate",
         "value": 0.4,
         "recommended_base": "NONE: research / measure first",
-        "best_net_base": -1395.6942379078512
+        "best_net_base": -1356.3537249420972
       }
     ],
     "fixed_setup": [
@@ -81,31 +81,31 @@
         "param": "fixed_setup",
         "value": 0,
         "recommended_base": "NONE: research / measure first",
-        "best_net_base": -281.2941940771234
+        "best_net_base": -224.41050704766332
       },
       {
         "param": "fixed_setup",
         "value": 500,
         "recommended_base": "NONE: research / measure first",
-        "best_net_base": -781.2941940771234
+        "best_net_base": -724.4105070476633
       },
       {
         "param": "fixed_setup",
         "value": 1000,
         "recommended_base": "NONE: research / measure first",
-        "best_net_base": -1281.2941940771234
+        "best_net_base": -1224.4105070476633
       },
       {
         "param": "fixed_setup",
         "value": 1500,
         "recommended_base": "NONE: research / measure first",
-        "best_net_base": -1781.2941940771234
+        "best_net_base": -1724.4105070476633
       },
       {
         "param": "fixed_setup",
         "value": 2500,
         "recommended_base": "NONE: research / measure first",
-        "best_net_base": -2781.2941940771234
+        "best_net_base": -2724.4105070476635
       }
     ],
     "scale": [
@@ -113,25 +113,25 @@
         "param": "scale",
         "value": 10,
         "recommended_base": "NONE: research / measure first",
-        "best_net_base": -1616.6902399444068
+        "best_net_base": -1612.2821343647754
       },
       {
         "param": "scale",
         "value": 40,
         "recommended_base": "NONE: research / measure first",
-        "best_net_base": -1781.2941940771234
+        "best_net_base": -1724.4105070476633
       },
       {
         "param": "scale",
         "value": 100,
         "recommended_base": "NONE: research / measure first",
-        "best_net_base": -2203.2354851928085
+        "best_net_base": -1474.5855454168661
       },
       {
         "param": "scale",
         "value": 250,
         "recommended_base": "NONE: research / measure first",
-        "best_net_base": -1468.947024548016
+        "best_net_base": -1436.4638635421654
       }
     ],
     "digital_contact_cost": [
@@ -141,7 +141,7 @@
           "digital_coupon": 0.0
         },
         "recommended_base": "NONE: research / measure first",
-        "best_net_base": -1416.8227190798277
+        "best_net_base": -1386.538207837123
       },
       {
         "param": "contact_cost",
@@ -149,7 +149,7 @@
           "digital_coupon": 0.01
         },
         "recommended_base": "NONE: research / measure first",
-        "best_net_base": -1494.5702306894807
+        "best_net_base": -1454.8543221160066
       },
       {
         "param": "contact_cost",
@@ -157,7 +157,7 @@
           "digital_coupon": 0.03
         },
         "recommended_base": "NONE: research / measure first",
-        "best_net_base": -1781.2941940771234
+        "best_net_base": -1724.4105070476633
       },
       {
         "param": "contact_cost",
@@ -165,7 +165,7 @@
           "digital_coupon": 0.05
         },
         "recommended_base": "NONE: research / measure first",
-        "best_net_base": -1891.9745768170549
+        "best_net_base": -1852.2105070476632
       },
       {
         "param": "contact_cost",
@@ -173,7 +173,7 @@
           "digital_coupon": 0.08
         },
         "recommended_base": "NONE: research / measure first",
-        "best_net_base": -1988.9973832800592
+        "best_net_base": -1980.4326343188568
       }
     ]
   },
@@ -190,640 +190,640 @@
       "segment": "LAPSING",
       "channel": "digital_coupon",
       "panel_households": 406,
-      "mean_q0": 0.30485206958455974,
+      "mean_q0": 0.29640426554157173,
       "assumed_dq_base": 0.04,
-      "break_even_dq": 0.06362366146649498,
-      "ratio_needed_to_assumed": 1.5905915366623744
+      "break_even_dq": 0.06227863560951613,
+      "ratio_needed_to_assumed": 1.5569658902379033
     },
     {
       "category": "COFFEE",
       "segment": "LAPSING",
       "channel": "digital_coupon",
       "panel_households": 355,
-      "mean_q0": 0.26450317408482954,
+      "mean_q0": 0.2314802655615527,
       "assumed_dq_base": 0.04,
-      "break_even_dq": 0.07074032116554108,
-      "ratio_needed_to_assumed": 1.768508029138527
+      "break_even_dq": 0.0645239724275138,
+      "ratio_needed_to_assumed": 1.613099310687845
     },
     {
       "category": "COFFEE",
       "segment": "ACTIVE_NONBUYER",
       "channel": "digital_coupon",
       "panel_households": 983,
-      "mean_q0": 0.06773217419383942,
+      "mean_q0": 0.07071998809984435,
       "assumed_dq_base": 0.015,
-      "break_even_dq": 0.0336994543384859,
-      "ratio_needed_to_assumed": 2.2466302892323937
+      "break_even_dq": 0.03426189096307826,
+      "ratio_needed_to_assumed": 2.2841260642052172
     },
     {
       "category": "SOUP",
       "segment": "LAPSING",
       "channel": "digital_coupon",
       "panel_households": 502,
-      "mean_q0": 0.30754354779736326,
+      "mean_q0": 0.28496838882785785,
       "assumed_dq_base": 0.04,
-      "break_even_dq": 0.10136749853589633,
-      "ratio_needed_to_assumed": 2.534187463397408
+      "break_even_dq": 0.09618765241149109,
+      "ratio_needed_to_assumed": 2.4046913102872773
     },
     {
       "category": "FROZEN PIZZA",
       "segment": "ACTIVE_NONBUYER",
       "channel": "digital_coupon",
       "panel_households": 679,
-      "mean_q0": 0.1618170168451861,
+      "mean_q0": 0.14968141385768421,
       "assumed_dq_base": 0.015,
-      "break_even_dq": 0.04085018762526895,
-      "ratio_needed_to_assumed": 2.723345841684597
+      "break_even_dq": 0.03891800504561167,
+      "ratio_needed_to_assumed": 2.594533669707445
     },
     {
       "category": "FROZEN PIZZA",
       "segment": "RECENT_LIGHT",
       "channel": "digital_coupon",
       "panel_households": 322,
-      "mean_q0": 0.3814928514448884,
+      "mean_q0": 0.364452344969217,
       "assumed_dq_base": 0.025,
-      "break_even_dq": 0.07582610280825183,
-      "ratio_needed_to_assumed": 3.033044112330073
+      "break_even_dq": 0.07311298094733251,
+      "ratio_needed_to_assumed": 2.9245192378933003
     },
     {
       "category": "COFFEE",
       "segment": "RECENT_LIGHT",
       "channel": "digital_coupon",
       "panel_households": 206,
-      "mean_q0": 0.33947105222098195,
+      "mean_q0": 0.31667920803399513,
       "assumed_dq_base": 0.025,
-      "break_even_dq": 0.08485253887997307,
-      "ratio_needed_to_assumed": 3.394101555198923
+      "break_even_dq": 0.08056212176697944,
+      "ratio_needed_to_assumed": 3.2224848706791773
     },
     {
       "category": "COLD CEREAL",
       "segment": "LAPSING",
       "channel": "digital_coupon",
       "panel_households": 421,
-      "mean_q0": 0.27721669357102247,
+      "mean_q0": 0.29353000616555697,
       "assumed_dq_base": 0.04,
-      "break_even_dq": 0.13617570664749715,
-      "ratio_needed_to_assumed": 3.4043926661874284
-    },
-    {
-      "category": "YOGURT",
-      "segment": "LAPSING",
-      "channel": "digital_coupon",
-      "panel_households": 330,
-      "mean_q0": 0.2440927150029185,
-      "assumed_dq_base": 0.04,
-      "break_even_dq": 0.17533809319121935,
-      "ratio_needed_to_assumed": 4.383452329780484
+      "break_even_dq": 0.1422508927848119,
+      "ratio_needed_to_assumed": 3.556272319620297
     },
     {
       "category": "SOUP",
       "segment": "ACTIVE_NONBUYER",
       "channel": "digital_coupon",
       "panel_households": 509,
-      "mean_q0": 0.15909955577183502,
+      "mean_q0": 0.15048777935757596,
       "assumed_dq_base": 0.015,
-      "break_even_dq": 0.06730718304384024,
-      "ratio_needed_to_assumed": 4.487145536256016
+      "break_even_dq": 0.06533122013948593,
+      "ratio_needed_to_assumed": 4.355414675965729
     },
     {
-      "category": "BAG SNACKS",
+      "category": "YOGURT",
       "segment": "LAPSING",
       "channel": "digital_coupon",
-      "panel_households": 443,
-      "mean_q0": 0.3239011919703731,
+      "panel_households": 330,
+      "mean_q0": 0.2528310271928576,
       "assumed_dq_base": 0.04,
-      "break_even_dq": 0.1814510306755402,
-      "ratio_needed_to_assumed": 4.5362757668885045
+      "break_even_dq": 0.17981078886974733,
+      "ratio_needed_to_assumed": 4.495269721743683
     },
     {
       "category": "SOUP",
       "segment": "RECENT_LIGHT",
       "channel": "digital_coupon",
       "panel_households": 335,
-      "mean_q0": 0.37975407288422053,
+      "mean_q0": 0.36402837175939506,
       "assumed_dq_base": 0.025,
-      "break_even_dq": 0.1179361264254132,
-      "ratio_needed_to_assumed": 4.717445057016528
+      "break_even_dq": 0.11432788109101649,
+      "ratio_needed_to_assumed": 4.573115243640659
+    },
+    {
+      "category": "BAG SNACKS",
+      "segment": "LAPSING",
+      "channel": "digital_coupon",
+      "panel_households": 443,
+      "mean_q0": 0.3371538767587843,
+      "assumed_dq_base": 0.04,
+      "break_even_dq": 0.18746235162247774,
+      "ratio_needed_to_assumed": 4.686558790561944
     },
     {
       "category": "COLD CEREAL",
       "segment": "ACTIVE_NONBUYER",
       "channel": "digital_coupon",
       "panel_households": 638,
-      "mean_q0": 0.14003455255908417,
+      "mean_q0": 0.14995801033452322,
       "assumed_dq_base": 0.015,
-      "break_even_dq": 0.08508816470692865,
-      "ratio_needed_to_assumed": 5.672544313795243
-    },
-    {
-      "category": "YOGURT",
-      "segment": "ACTIVE_NONBUYER",
-      "channel": "digital_coupon",
-      "panel_households": 989,
-      "mean_q0": 0.06831145445405461,
-      "assumed_dq_base": 0.015,
-      "break_even_dq": 0.0853646443908533,
-      "ratio_needed_to_assumed": 5.690976292723553
+      "break_even_dq": 0.08878372640000708,
+      "ratio_needed_to_assumed": 5.918915093333806
     },
     {
       "category": "REFRGRATD JUICES/DRNKS",
       "segment": "LAPSING",
       "channel": "digital_coupon",
       "panel_households": 404,
-      "mean_q0": 0.28833436421031416,
+      "mean_q0": 0.2895292598545883,
       "assumed_dq_base": 0.04,
-      "break_even_dq": 0.24935748978591793,
-      "ratio_needed_to_assumed": 6.233937244647948
+      "break_even_dq": 0.2501328816391779,
+      "ratio_needed_to_assumed": 6.253322040979447
+    },
+    {
+      "category": "YOGURT",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "digital_coupon",
+      "panel_households": 989,
+      "mean_q0": 0.08570821366885177,
+      "assumed_dq_base": 0.015,
+      "break_even_dq": 0.09426915684922049,
+      "ratio_needed_to_assumed": 6.2846104566147
     },
     {
       "category": "COLD CEREAL",
       "segment": "RECENT_LIGHT",
       "channel": "digital_coupon",
       "panel_households": 324,
-      "mean_q0": 0.33590256214276554,
+      "mean_q0": 0.3417573233403783,
       "assumed_dq_base": 0.025,
-      "break_even_dq": 0.1580307145214208,
-      "ratio_needed_to_assumed": 6.3212285808568325
+      "break_even_dq": 0.16021106654121486,
+      "ratio_needed_to_assumed": 6.4084426616485946
     },
     {
       "category": "FROZEN PIZZA",
       "segment": "LAPSING",
       "channel": "mail_coupon",
       "panel_households": 406,
-      "mean_q0": 0.30485206958455974,
+      "mean_q0": 0.29640426554157173,
       "assumed_dq_base": 0.04,
-      "break_even_dq": 0.29997606994782505,
-      "ratio_needed_to_assumed": 7.499401748695626
-    },
-    {
-      "category": "YOGURT",
-      "segment": "RECENT_LIGHT",
-      "channel": "digital_coupon",
-      "panel_households": 167,
-      "mean_q0": 0.32019325576309343,
-      "assumed_dq_base": 0.025,
-      "break_even_dq": 0.21429007297783842,
-      "ratio_needed_to_assumed": 8.571602919113536
+      "break_even_dq": 0.2986310440908462,
+      "ratio_needed_to_assumed": 7.465776102271154
     },
     {
       "category": "BAG SNACKS",
       "segment": "ACTIVE_NONBUYER",
       "channel": "digital_coupon",
       "panel_households": 351,
-      "mean_q0": 0.20809067000544365,
+      "mean_q0": 0.20168119497487658,
       "assumed_dq_base": 0.015,
-      "break_even_dq": 0.1289202244518593,
-      "ratio_needed_to_assumed": 8.594681630123954
+      "break_even_dq": 0.12601293342930264,
+      "ratio_needed_to_assumed": 8.400862228620177
+    },
+    {
+      "category": "YOGURT",
+      "segment": "RECENT_LIGHT",
+      "channel": "digital_coupon",
+      "panel_households": 167,
+      "mean_q0": 0.3224287392383492,
+      "assumed_dq_base": 0.025,
+      "break_even_dq": 0.2154343027858223,
+      "ratio_needed_to_assumed": 8.617372111432891
     },
     {
       "category": "BAG SNACKS",
       "segment": "RECENT_LIGHT",
       "channel": "digital_coupon",
       "panel_households": 401,
-      "mean_q0": 0.39837305390573613,
+      "mean_q0": 0.4002524790756332,
       "assumed_dq_base": 0.025,
-      "break_even_dq": 0.21523092288281262,
-      "ratio_needed_to_assumed": 8.609236915312504
+      "break_even_dq": 0.21608341640185286,
+      "ratio_needed_to_assumed": 8.643336656074114
     },
     {
       "category": "COFFEE",
       "segment": "LAPSING",
       "channel": "mail_coupon",
       "panel_households": 355,
-      "mean_q0": 0.26450317408482954,
+      "mean_q0": 0.2314802655615527,
       "assumed_dq_base": 0.04,
-      "break_even_dq": 0.39894619423506206,
-      "ratio_needed_to_assumed": 9.973654855876552
+      "break_even_dq": 0.3927298454970347,
+      "ratio_needed_to_assumed": 9.818246137425868
     },
     {
       "category": "REFRGRATD JUICES/DRNKS",
       "segment": "ACTIVE_NONBUYER",
       "channel": "digital_coupon",
       "panel_households": 709,
-      "mean_q0": 0.15687263945898156,
+      "mean_q0": 0.15104288879816785,
       "assumed_dq_base": 0.015,
-      "break_even_dq": 0.16404932846141226,
-      "ratio_needed_to_assumed": 10.936621897427484
+      "break_even_dq": 0.16026628582451505,
+      "ratio_needed_to_assumed": 10.68441905496767
     },
     {
       "category": "REFRGRATD JUICES/DRNKS",
       "segment": "RECENT_LIGHT",
       "channel": "digital_coupon",
       "panel_households": 294,
-      "mean_q0": 0.3706050229489287,
+      "mean_q0": 0.3543233810727841,
       "assumed_dq_base": 0.025,
-      "break_even_dq": 0.30274457748176786,
-      "ratio_needed_to_assumed": 12.109783099270715
+      "break_even_dq": 0.29217909209485954,
+      "ratio_needed_to_assumed": 11.687163683794381
     },
     {
       "category": "FROZEN PIZZA",
       "segment": "REGULAR",
       "channel": "digital_coupon",
       "panel_households": 403,
-      "mean_q0": 0.6840095512439409,
+      "mean_q0": 0.6623017227318264,
       "assumed_dq_base": 0.01,
-      "break_even_dq": 0.12399161201361389,
-      "ratio_needed_to_assumed": 12.39916120136139
+      "break_even_dq": 0.12053537764796336,
+      "ratio_needed_to_assumed": 12.053537764796337
     },
     {
       "category": "FROZEN PIZZA",
       "segment": "RECENT_LIGHT",
       "channel": "mail_coupon",
       "panel_households": 322,
-      "mean_q0": 0.3814928514448884,
+      "mean_q0": 0.364452344969217,
       "assumed_dq_base": 0.025,
-      "break_even_dq": 0.3121785112895819,
-      "ratio_needed_to_assumed": 12.487140451583276
-    },
-    {
-      "category": "ICE CREAM/MILK/SHERBTS",
-      "segment": "LAPSING",
-      "channel": "digital_coupon",
-      "panel_households": 444,
-      "mean_q0": 0.254974791198777,
-      "assumed_dq_base": 0.04,
-      "break_even_dq": 0.5411081759283849,
-      "ratio_needed_to_assumed": 13.527704398209622
+      "break_even_dq": 0.3094653894286626,
+      "ratio_needed_to_assumed": 12.378615577146503
     },
     {
       "category": "COFFEE",
       "segment": "REGULAR",
       "channel": "digital_coupon",
       "panel_households": 213,
-      "mean_q0": 0.6479663328354321,
+      "mean_q0": 0.6322593150726408,
       "assumed_dq_base": 0.01,
-      "break_even_dq": 0.1429247782462685,
-      "ratio_needed_to_assumed": 14.29247782462685
+      "break_even_dq": 0.13996803384021242,
+      "ratio_needed_to_assumed": 13.996803384021241
+    },
+    {
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "segment": "LAPSING",
+      "channel": "digital_coupon",
+      "panel_households": 444,
+      "mean_q0": 0.27168594080314085,
+      "assumed_dq_base": 0.04,
+      "break_even_dq": 0.5693527138293463,
+      "ratio_needed_to_assumed": 14.233817845733656
     },
     {
       "category": "SOUP",
       "segment": "LAPSING",
       "channel": "mail_coupon",
       "panel_households": 502,
-      "mean_q0": 0.30754354779736326,
+      "mean_q0": 0.28496838882785785,
       "assumed_dq_base": 0.04,
-      "break_even_dq": 0.5839315358103745,
-      "ratio_needed_to_assumed": 14.598288395259361
-    },
-    {
-      "category": "COLD CEREAL",
-      "segment": "LAPSING",
-      "channel": "mail_coupon",
-      "panel_households": 421,
-      "mean_q0": 0.27721669357102247,
-      "assumed_dq_base": 0.04,
-      "break_even_dq": 0.6522101030848835,
-      "ratio_needed_to_assumed": 16.305252577122086
+      "break_even_dq": 0.5787516896859694,
+      "ratio_needed_to_assumed": 14.468792242149233
     },
     {
       "category": "COFFEE",
       "segment": "RECENT_LIGHT",
       "channel": "mail_coupon",
       "panel_households": 206,
-      "mean_q0": 0.33947105222098195,
+      "mean_q0": 0.31667920803399513,
       "assumed_dq_base": 0.025,
-      "break_even_dq": 0.413058411949494,
-      "ratio_needed_to_assumed": 16.52233647797976
+      "break_even_dq": 0.40876799483650034,
+      "ratio_needed_to_assumed": 16.350719793460012
+    },
+    {
+      "category": "COLD CEREAL",
+      "segment": "LAPSING",
+      "channel": "mail_coupon",
+      "panel_households": 421,
+      "mean_q0": 0.29353000616555697,
+      "assumed_dq_base": 0.04,
+      "break_even_dq": 0.6582852892221981,
+      "ratio_needed_to_assumed": 16.45713223055495
+    },
+    {
+      "category": "SOUP",
+      "segment": "REGULAR",
+      "channel": "digital_coupon",
+      "panel_households": 509,
+      "mean_q0": 0.6451324140747162,
+      "assumed_dq_base": 0.01,
+      "break_even_dq": 0.17882690349473612,
+      "ratio_needed_to_assumed": 17.882690349473613
     },
     {
       "category": "BAG SNACKS",
       "segment": "LAPSING",
       "channel": "mail_coupon",
       "panel_households": 443,
-      "mean_q0": 0.3239011919703731,
+      "mean_q0": 0.3371538767587843,
       "assumed_dq_base": 0.04,
-      "break_even_dq": 0.7224495066713226,
-      "ratio_needed_to_assumed": 18.061237666783065
+      "break_even_dq": 0.72846082761826,
+      "ratio_needed_to_assumed": 18.2115206904565
     },
     {
       "category": "FROZEN PIZZA",
       "segment": "ACTIVE_NONBUYER",
       "channel": "mail_coupon",
       "panel_households": 679,
-      "mean_q0": 0.1618170168451861,
+      "mean_q0": 0.14968141385768421,
       "assumed_dq_base": 0.015,
-      "break_even_dq": 0.27720259610659903,
-      "ratio_needed_to_assumed": 18.48017307377327
-    },
-    {
-      "category": "SOUP",
-      "segment": "REGULAR",
-      "channel": "digital_coupon",
-      "panel_households": 509,
-      "mean_q0": 0.6718820867804041,
-      "assumed_dq_base": 0.01,
-      "break_even_dq": 0.18496458733921456,
-      "ratio_needed_to_assumed": 18.496458733921454
-    },
-    {
-      "category": "ICE CREAM/MILK/SHERBTS",
-      "segment": "ACTIVE_NONBUYER",
-      "channel": "digital_coupon",
-      "panel_households": 744,
-      "mean_q0": 0.14066383163752924,
-      "assumed_dq_base": 0.015,
-      "break_even_dq": 0.34790421891397283,
-      "ratio_needed_to_assumed": 23.193614594264854
+      "break_even_dq": 0.27527041352694176,
+      "ratio_needed_to_assumed": 18.351360901796117
     },
     {
       "category": "SOUP",
       "segment": "RECENT_LIGHT",
       "channel": "mail_coupon",
       "panel_households": 335,
-      "mean_q0": 0.37975407288422053,
+      "mean_q0": 0.36402837175939506,
       "assumed_dq_base": 0.025,
-      "break_even_dq": 0.6005001636998915,
-      "ratio_needed_to_assumed": 24.020006547995656
-    },
-    {
-      "category": "YOGURT",
-      "segment": "LAPSING",
-      "channel": "mail_coupon",
-      "panel_households": 330,
-      "mean_q0": 0.2440927150029185,
-      "assumed_dq_base": 0.04,
-      "break_even_dq": 0.9649302604369202,
-      "ratio_needed_to_assumed": 24.123256510923003
+      "break_even_dq": 0.5968919183654947,
+      "ratio_needed_to_assumed": 23.875676734619788
     },
     {
       "category": "COFFEE",
       "segment": "ACTIVE_NONBUYER",
       "channel": "mail_coupon",
       "panel_households": 983,
-      "mean_q0": 0.06773217419383942,
+      "mean_q0": 0.07071998809984435,
       "assumed_dq_base": 0.015,
-      "break_even_dq": 0.3619053274080068,
-      "ratio_needed_to_assumed": 24.127021827200455
+      "break_even_dq": 0.36246776403259917,
+      "ratio_needed_to_assumed": 24.16451760217328
+    },
+    {
+      "category": "YOGURT",
+      "segment": "LAPSING",
+      "channel": "mail_coupon",
+      "panel_households": 330,
+      "mean_q0": 0.2528310271928576,
+      "assumed_dq_base": 0.04,
+      "break_even_dq": 0.9694029561154481,
+      "ratio_needed_to_assumed": 24.235073902886203
     },
     {
       "category": "ICE CREAM/MILK/SHERBTS",
-      "segment": "RECENT_LIGHT",
+      "segment": "ACTIVE_NONBUYER",
       "channel": "digital_coupon",
-      "panel_households": 311,
-      "mean_q0": 0.328725262581321,
-      "assumed_dq_base": 0.025,
-      "break_even_dq": 0.6657583665791871,
-      "ratio_needed_to_assumed": 26.63033466316748
+      "panel_households": 744,
+      "mean_q0": 0.15378998641908612,
+      "assumed_dq_base": 0.015,
+      "break_even_dq": 0.3700895373988696,
+      "ratio_needed_to_assumed": 24.672635826591307
     },
     {
       "category": "COLD CEREAL",
       "segment": "RECENT_LIGHT",
       "channel": "mail_coupon",
       "panel_households": 324,
-      "mean_q0": 0.33590256214276554,
+      "mean_q0": 0.3417573233403783,
       "assumed_dq_base": 0.025,
-      "break_even_dq": 0.6740651109588071,
-      "ratio_needed_to_assumed": 26.96260443835228
+      "break_even_dq": 0.6762454629786011,
+      "ratio_needed_to_assumed": 27.049818519144043
     },
     {
       "category": "COLD CEREAL",
       "segment": "REGULAR",
       "channel": "digital_coupon",
       "panel_households": 433,
-      "mean_q0": 0.6547609334421124,
+      "mean_q0": 0.6636581089226471,
       "assumed_dq_base": 0.01,
-      "break_even_dq": 0.2767756932533036,
-      "ratio_needed_to_assumed": 27.67756932533036
+      "break_even_dq": 0.28008906059224065,
+      "ratio_needed_to_assumed": 28.008906059224064
+    },
+    {
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "segment": "RECENT_LIGHT",
+      "channel": "digital_coupon",
+      "panel_households": 311,
+      "mean_q0": 0.3515597369481495,
+      "assumed_dq_base": 0.025,
+      "break_even_dq": 0.7043523108601957,
+      "ratio_needed_to_assumed": 28.174092434407825
     },
     {
       "category": "BAG SNACKS",
       "segment": "RECENT_LIGHT",
       "channel": "mail_coupon",
       "panel_households": 401,
-      "mean_q0": 0.39837305390573613,
+      "mean_q0": 0.4002524790756332,
       "assumed_dq_base": 0.025,
-      "break_even_dq": 0.756229398878595,
-      "ratio_needed_to_assumed": 30.249175955143798
+      "break_even_dq": 0.7570818923976352,
+      "ratio_needed_to_assumed": 30.28327569590541
     },
     {
       "category": "REFRGRATD JUICES/DRNKS",
       "segment": "LAPSING",
       "channel": "mail_coupon",
       "panel_households": 404,
-      "mean_q0": 0.28833436421031416,
+      "mean_q0": 0.2895292598545883,
       "assumed_dq_base": 0.04,
-      "break_even_dq": 1.224631188936807,
-      "ratio_needed_to_assumed": 30.61577972342017
+      "break_even_dq": 1.2254065807900667,
+      "ratio_needed_to_assumed": 30.635164519751665
     },
     {
       "category": "FROZEN PIZZA",
       "segment": "REGULAR",
       "channel": "mail_coupon",
       "panel_households": 403,
-      "mean_q0": 0.6840095512439409,
+      "mean_q0": 0.6623017227318264,
       "assumed_dq_base": 0.01,
-      "break_even_dq": 0.36034402049494396,
-      "ratio_needed_to_assumed": 36.034402049494396
-    },
-    {
-      "category": "BAG SNACKS",
-      "segment": "REGULAR",
-      "channel": "digital_coupon",
-      "panel_households": 693,
-      "mean_q0": 0.726308184387551,
-      "assumed_dq_base": 0.01,
-      "break_even_dq": 0.36397990096352983,
-      "ratio_needed_to_assumed": 36.397990096352984
+      "break_even_dq": 0.3568877861292934,
+      "ratio_needed_to_assumed": 35.68877861292934
     },
     {
       "category": "SOUP",
       "segment": "ACTIVE_NONBUYER",
       "channel": "mail_coupon",
       "panel_households": 509,
-      "mean_q0": 0.15909955577183502,
+      "mean_q0": 0.15048777935757596,
       "assumed_dq_base": 0.015,
-      "break_even_dq": 0.5498712203183185,
-      "ratio_needed_to_assumed": 36.65808135455457
+      "break_even_dq": 0.5478952574139642,
+      "ratio_needed_to_assumed": 36.52635049426428
+    },
+    {
+      "category": "BAG SNACKS",
+      "segment": "REGULAR",
+      "channel": "digital_coupon",
+      "panel_households": 693,
+      "mean_q0": 0.7334975727449742,
+      "assumed_dq_base": 0.01,
+      "break_even_dq": 0.3672409549702198,
+      "ratio_needed_to_assumed": 36.72409549702198
     },
     {
       "category": "YOGURT",
       "segment": "REGULAR",
       "channel": "digital_coupon",
       "panel_households": 266,
-      "mean_q0": 0.6498606838958593,
+      "mean_q0": 0.6519444110793201,
       "assumed_dq_base": 0.01,
-      "break_even_dq": 0.383029990837322,
-      "ratio_needed_to_assumed": 38.302999083732196
-    },
-    {
-      "category": "COLD CEREAL",
-      "segment": "ACTIVE_NONBUYER",
-      "channel": "mail_coupon",
-      "panel_households": 638,
-      "mean_q0": 0.14003455255908417,
-      "assumed_dq_base": 0.015,
-      "break_even_dq": 0.601122561144315,
-      "ratio_needed_to_assumed": 40.074837409621
+      "break_even_dq": 0.38409654435087426,
+      "ratio_needed_to_assumed": 38.409654435087425
     },
     {
       "category": "YOGURT",
       "segment": "RECENT_LIGHT",
       "channel": "mail_coupon",
       "panel_households": 167,
-      "mean_q0": 0.32019325576309343,
+      "mean_q0": 0.3224287392383492,
       "assumed_dq_base": 0.025,
-      "break_even_dq": 1.0038822402235392,
-      "ratio_needed_to_assumed": 40.155289608941565
+      "break_even_dq": 1.0050264700315232,
+      "ratio_needed_to_assumed": 40.20105880126093
+    },
+    {
+      "category": "COLD CEREAL",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "mail_coupon",
+      "panel_households": 638,
+      "mean_q0": 0.14995801033452322,
+      "assumed_dq_base": 0.015,
+      "break_even_dq": 0.6048181228373933,
+      "ratio_needed_to_assumed": 40.321208189159556
     },
     {
       "category": "BAG SNACKS",
       "segment": "ACTIVE_NONBUYER",
       "channel": "mail_coupon",
       "panel_households": 351,
-      "mean_q0": 0.20809067000544365,
+      "mean_q0": 0.20168119497487658,
       "assumed_dq_base": 0.015,
-      "break_even_dq": 0.6699187004476416,
-      "ratio_needed_to_assumed": 44.66124669650944
+      "break_even_dq": 0.667011409425085,
+      "ratio_needed_to_assumed": 44.46742729500566
     },
     {
       "category": "COFFEE",
       "segment": "REGULAR",
       "channel": "mail_coupon",
       "panel_households": 213,
-      "mean_q0": 0.6479663328354321,
+      "mean_q0": 0.6322593150726408,
       "assumed_dq_base": 0.01,
-      "break_even_dq": 0.4711306513157894,
-      "ratio_needed_to_assumed": 47.11306513157894
+      "break_even_dq": 0.4681739069097334,
+      "ratio_needed_to_assumed": 46.81739069097333
     },
     {
       "category": "REFRGRATD JUICES/DRNKS",
       "segment": "RECENT_LIGHT",
       "channel": "mail_coupon",
       "panel_households": 294,
-      "mean_q0": 0.3706050229489287,
+      "mean_q0": 0.3543233810727841,
       "assumed_dq_base": 0.025,
-      "break_even_dq": 1.2780182766326569,
-      "ratio_needed_to_assumed": 51.12073106530627
+      "break_even_dq": 1.2674527912457485,
+      "ratio_needed_to_assumed": 50.69811164982994
     },
     {
       "category": "REFRGRATD JUICES/DRNKS",
       "segment": "REGULAR",
       "channel": "digital_coupon",
       "panel_households": 406,
-      "mean_q0": 0.7007575421093232,
+      "mean_q0": 0.6916669136256067,
       "assumed_dq_base": 0.01,
-      "break_even_dq": 0.5169871976778898,
-      "ratio_needed_to_assumed": 51.69871976778898
+      "break_even_dq": 0.5110881057353724,
+      "ratio_needed_to_assumed": 51.10881057353724
     },
     {
       "category": "ICE CREAM/MILK/SHERBTS",
       "segment": "LAPSING",
       "channel": "mail_coupon",
       "panel_households": 444,
-      "mean_q0": 0.254974791198777,
+      "mean_q0": 0.27168594080314085,
       "assumed_dq_base": 0.04,
-      "break_even_dq": 2.2669428189376513,
-      "ratio_needed_to_assumed": 56.67357047344128
+      "break_even_dq": 2.2951873568386127,
+      "ratio_needed_to_assumed": 57.37968392096532
     },
     {
       "category": "YOGURT",
       "segment": "ACTIVE_NONBUYER",
       "channel": "mail_coupon",
       "panel_households": 989,
-      "mean_q0": 0.06831145445405461,
+      "mean_q0": 0.08570821366885177,
       "assumed_dq_base": 0.015,
-      "break_even_dq": 0.874956811636554,
-      "ratio_needed_to_assumed": 58.330454109103606
+      "break_even_dq": 0.8838613240949212,
+      "ratio_needed_to_assumed": 58.92408827299475
     },
     {
       "category": "SOUP",
       "segment": "REGULAR",
       "channel": "mail_coupon",
       "panel_households": 509,
-      "mean_q0": 0.6718820867804041,
+      "mean_q0": 0.6451324140747162,
       "assumed_dq_base": 0.01,
-      "break_even_dq": 0.6675286246136928,
-      "ratio_needed_to_assumed": 66.75286246136928
+      "break_even_dq": 0.6613909407692143,
+      "ratio_needed_to_assumed": 66.13909407692144
     },
     {
       "category": "REFRGRATD JUICES/DRNKS",
       "segment": "ACTIVE_NONBUYER",
       "channel": "mail_coupon",
       "panel_households": 709,
-      "mean_q0": 0.15687263945898156,
+      "mean_q0": 0.15104288879816785,
       "assumed_dq_base": 0.015,
-      "break_even_dq": 1.1393230276123012,
-      "ratio_needed_to_assumed": 75.95486850748675
+      "break_even_dq": 1.135539984975404,
+      "ratio_needed_to_assumed": 75.70266566502694
     },
     {
       "category": "COLD CEREAL",
       "segment": "REGULAR",
       "channel": "mail_coupon",
       "panel_households": 433,
-      "mean_q0": 0.6547609334421124,
+      "mean_q0": 0.6636581089226471,
       "assumed_dq_base": 0.01,
-      "break_even_dq": 0.7928100896906898,
-      "ratio_needed_to_assumed": 79.28100896906898
+      "break_even_dq": 0.7961234570296268,
+      "ratio_needed_to_assumed": 79.61234570296268
     },
     {
       "category": "BAG SNACKS",
       "segment": "REGULAR",
       "channel": "mail_coupon",
       "panel_households": 693,
-      "mean_q0": 0.726308184387551,
+      "mean_q0": 0.7334975727449742,
       "assumed_dq_base": 0.01,
-      "break_even_dq": 0.9049783769593122,
-      "ratio_needed_to_assumed": 90.49783769593121
+      "break_even_dq": 0.9082394309660022,
+      "ratio_needed_to_assumed": 90.82394309660022
     },
     {
       "category": "ICE CREAM/MILK/SHERBTS",
       "segment": "RECENT_LIGHT",
       "channel": "mail_coupon",
       "panel_households": 311,
-      "mean_q0": 0.328725262581321,
+      "mean_q0": 0.3515597369481495,
       "assumed_dq_base": 0.025,
-      "break_even_dq": 2.3915930095884534,
-      "ratio_needed_to_assumed": 95.66372038353813
+      "break_even_dq": 2.430186953869462,
+      "ratio_needed_to_assumed": 97.20747815477847
     },
     {
       "category": "YOGURT",
       "segment": "REGULAR",
       "channel": "mail_coupon",
       "panel_households": 266,
-      "mean_q0": 0.6498606838958593,
+      "mean_q0": 0.6519444110793201,
       "assumed_dq_base": 0.01,
-      "break_even_dq": 1.1726221580830227,
-      "ratio_needed_to_assumed": 117.26221580830227
+      "break_even_dq": 1.173688711596575,
+      "ratio_needed_to_assumed": 117.3688711596575
     },
     {
       "category": "ICE CREAM/MILK/SHERBTS",
       "segment": "REGULAR",
       "channel": "digital_coupon",
       "panel_households": 296,
-      "mean_q0": 0.6335707694247167,
+      "mean_q0": 0.6565724764203499,
       "assumed_dq_base": 0.01,
-      "break_even_dq": 1.180996436719355,
-      "ratio_needed_to_assumed": 118.09964367193551
+      "break_even_dq": 1.2198730311132753,
+      "ratio_needed_to_assumed": 121.98730311132752
     },
     {
       "category": "ICE CREAM/MILK/SHERBTS",
       "segment": "ACTIVE_NONBUYER",
       "channel": "mail_coupon",
       "panel_households": 744,
-      "mean_q0": 0.14066383163752924,
+      "mean_q0": 0.15378998641908612,
       "assumed_dq_base": 0.015,
-      "break_even_dq": 2.0737388619232395,
-      "ratio_needed_to_assumed": 138.24925746154932
+      "break_even_dq": 2.095924180408136,
+      "ratio_needed_to_assumed": 139.72827869387575
     },
     {
       "category": "REFRGRATD JUICES/DRNKS",
       "segment": "REGULAR",
       "channel": "mail_coupon",
       "panel_households": 406,
-      "mean_q0": 0.7007575421093232,
+      "mean_q0": 0.6916669136256067,
       "assumed_dq_base": 0.01,
-      "break_even_dq": 1.4922608968287787,
-      "ratio_needed_to_assumed": 149.22608968287787
+      "break_even_dq": 1.4863618048862612,
+      "ratio_needed_to_assumed": 148.6361804886261
     },
     {
       "category": "ICE CREAM/MILK/SHERBTS",
       "segment": "REGULAR",
       "channel": "mail_coupon",
       "panel_households": 296,
-      "mean_q0": 0.6335707694247167,
+      "mean_q0": 0.6565724764203499,
       "assumed_dq_base": 0.01,
-      "break_even_dq": 2.9068310797286214,
-      "ratio_needed_to_assumed": 290.68310797286216
+      "break_even_dq": 2.945707674122542,
+      "ratio_needed_to_assumed": 294.57076741225416
     }
   ],
   "break_even_with_fixed": [
@@ -833,7 +833,7 @@
       "segment": "LAPSING",
       "channel": "digital_coupon",
       "reach": 7308.0,
-      "uplift_multiple_needed": 4.171038298022666
+      "uplift_multiple_needed": 4.137412651598194
     },
     {
       "scale": 40,
@@ -841,7 +841,7 @@
       "segment": "LAPSING",
       "channel": "digital_coupon",
       "reach": 6390.0,
-      "uplift_multiple_needed": 5.866573570412137
+      "uplift_multiple_needed": 5.711164851961455
     },
     {
       "scale": 40,
@@ -849,7 +849,7 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "digital_coupon",
       "reach": 17694.0,
-      "uplift_multiple_needed": 6.193224435457234
+      "uplift_multiple_needed": 6.230720210430058
     },
     {
       "scale": 40,
@@ -857,7 +857,7 @@
       "segment": "LAPSING",
       "channel": "digital_coupon",
       "reach": 9036.0,
-      "uplift_multiple_needed": 6.795193415426863
+      "uplift_multiple_needed": 6.665697262316732
     },
     {
       "scale": 40,
@@ -865,7 +865,7 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "digital_coupon",
       "reach": 12222.0,
-      "uplift_multiple_needed": 6.837872636430906
+      "uplift_multiple_needed": 6.709060464453753
     },
     {
       "scale": 40,
@@ -873,7 +873,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "digital_coupon",
       "reach": 5796.0,
-      "uplift_multiple_needed": 8.238814970030836
+      "uplift_multiple_needed": 8.130290095594061
     },
     {
       "scale": 40,
@@ -881,7 +881,7 @@
       "segment": "LAPSING",
       "channel": "mail_coupon",
       "reach": 16240.0,
-      "uplift_multiple_needed": 8.660602791307756
+      "uplift_multiple_needed": 8.626977144883284
     },
     {
       "scale": 40,
@@ -889,7 +889,7 @@
       "segment": "LAPSING",
       "channel": "digital_coupon",
       "reach": 7578.0,
-      "uplift_multiple_needed": 8.837614777899939
+      "uplift_multiple_needed": 8.989494431332808
     },
     {
       "scale": 40,
@@ -897,7 +897,7 @@
       "segment": "LAPSING",
       "channel": "digital_coupon",
       "reach": 7974.0,
-      "uplift_multiple_needed": 9.94946513495222
+      "uplift_multiple_needed": 10.09974815862566
     },
     {
       "scale": 40,
@@ -905,7 +905,7 @@
       "segment": "LAPSING",
       "channel": "mail_coupon",
       "reach": 14200.0,
-      "uplift_multiple_needed": 11.817784349449674
+      "uplift_multiple_needed": 11.662375630998993
     },
     {
       "scale": 40,
@@ -913,7 +913,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "digital_coupon",
       "reach": 3708.0,
-      "uplift_multiple_needed": 14.693622076768873
+      "uplift_multiple_needed": 14.522005392249131
     },
     {
       "scale": 40,
@@ -921,7 +921,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "mail_coupon",
       "reach": 12880.0,
-      "uplift_multiple_needed": 14.82973733754862
+      "uplift_multiple_needed": 14.721212463111845
     },
     {
       "scale": 40,
@@ -929,7 +929,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "digital_coupon",
       "reach": 6030.0,
-      "uplift_multiple_needed": 14.933683805285357
+      "uplift_multiple_needed": 14.78935399190949
     },
     {
       "scale": 40,
@@ -937,15 +937,7 @@
       "segment": "LAPSING",
       "channel": "digital_coupon",
       "reach": 5940.0,
-      "uplift_multiple_needed": 14.989407724763568
-    },
-    {
-      "scale": 40,
-      "category": "YOGURT",
-      "segment": "ACTIVE_NONBUYER",
-      "channel": "digital_coupon",
-      "reach": 17802.0,
-      "uplift_multiple_needed": 15.128024571373825
+      "uplift_multiple_needed": 15.101225116726768
     },
     {
       "scale": 40,
@@ -953,7 +945,7 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "digital_coupon",
       "reach": 11484.0,
-      "uplift_multiple_needed": 15.233198479023947
+      "uplift_multiple_needed": 15.479569258562508
     },
     {
       "scale": 40,
@@ -961,7 +953,15 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "digital_coupon",
       "reach": 9162.0,
-      "uplift_multiple_needed": 15.693563285666816
+      "uplift_multiple_needed": 15.56183242537653
+    },
+    {
+      "scale": 40,
+      "category": "YOGURT",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "digital_coupon",
+      "reach": 17802.0,
+      "uplift_multiple_needed": 15.721658735264969
     },
     {
       "scale": 40,
@@ -969,7 +969,7 @@
       "segment": "LAPSING",
       "channel": "mail_coupon",
       "reach": 20080.0,
-      "uplift_multiple_needed": 16.51574107367262
+      "uplift_multiple_needed": 16.386244920562486
     },
     {
       "scale": 40,
@@ -977,7 +977,7 @@
       "segment": "LAPSING",
       "channel": "digital_coupon",
       "reach": 7272.0,
-      "uplift_multiple_needed": 16.934486046861725
+      "uplift_multiple_needed": 16.953870843193226
     },
     {
       "scale": 40,
@@ -985,7 +985,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "digital_coupon",
       "reach": 5832.0,
-      "uplift_multiple_needed": 17.61696442792333
+      "uplift_multiple_needed": 17.7041785087151
     },
     {
       "scale": 40,
@@ -993,7 +993,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "digital_coupon",
       "reach": 7218.0,
-      "uplift_multiple_needed": 18.177487848189216
+      "uplift_multiple_needed": 18.21158758895083
     },
     {
       "scale": 40,
@@ -1001,7 +1001,7 @@
       "segment": "LAPSING",
       "channel": "mail_coupon",
       "reach": 16840.0,
-      "uplift_multiple_needed": 18.750202527392716
+      "uplift_multiple_needed": 18.902082180825584
     },
     {
       "scale": 40,
@@ -1009,7 +1009,7 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "mail_coupon",
       "reach": 27160.0,
-      "uplift_multiple_needed": 20.331710131409107
+      "uplift_multiple_needed": 20.202897959431954
     },
     {
       "scale": 40,
@@ -1017,7 +1017,7 @@
       "segment": "LAPSING",
       "channel": "mail_coupon",
       "reach": 17720.0,
-      "uplift_multiple_needed": 20.497172882411732
+      "uplift_multiple_needed": 20.647455906085174
     },
     {
       "scale": 40,
@@ -1025,7 +1025,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "mail_coupon",
       "reach": 8240.0,
-      "uplift_multiple_needed": 21.607120712686235
+      "uplift_multiple_needed": 21.43550402816649
     },
     {
       "scale": 40,
@@ -1033,7 +1033,7 @@
       "segment": "REGULAR",
       "channel": "digital_coupon",
       "reach": 7254.0,
-      "uplift_multiple_needed": 22.797785371210306
+      "uplift_multiple_needed": 22.45216193464525
     },
     {
       "scale": 40,
@@ -1041,7 +1041,7 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "mail_coupon",
       "reach": 39320.0,
-      "uplift_multiple_needed": 25.90298919300164
+      "uplift_multiple_needed": 25.940484967974463
     },
     {
       "scale": 40,
@@ -1049,7 +1049,7 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "digital_coupon",
       "reach": 6318.0,
-      "uplift_multiple_needed": 26.81343103223014
+      "uplift_multiple_needed": 26.619611630726364
     },
     {
       "scale": 40,
@@ -1057,7 +1057,7 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "digital_coupon",
       "reach": 12762.0,
-      "uplift_multiple_needed": 27.196224026602344
+      "uplift_multiple_needed": 26.944021184142528
     },
     {
       "scale": 40,
@@ -1065,7 +1065,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "mail_coupon",
       "reach": 13400.0,
-      "uplift_multiple_needed": 28.617313984716628
+      "uplift_multiple_needed": 28.472984171340762
     },
     {
       "scale": 40,
@@ -1073,7 +1073,7 @@
       "segment": "LAPSING",
       "channel": "mail_coupon",
       "reach": 13200.0,
-      "uplift_multiple_needed": 28.895936438665387
+      "uplift_multiple_needed": 29.007753830628587
     },
     {
       "scale": 40,
@@ -1081,7 +1081,7 @@
       "segment": "LAPSING",
       "channel": "digital_coupon",
       "reach": 7992.0,
-      "uplift_multiple_needed": 30.757380647024256
+      "uplift_multiple_needed": 31.46349409454829
     },
     {
       "scale": 40,
@@ -1089,7 +1089,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "mail_coupon",
       "reach": 12960.0,
-      "uplift_multiple_needed": 32.0456855695322
+      "uplift_multiple_needed": 32.13289965032397
     },
     {
       "scale": 40,
@@ -1097,7 +1097,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "mail_coupon",
       "reach": 16040.0,
-      "uplift_multiple_needed": 34.554888874938314
+      "uplift_multiple_needed": 34.588988615699925
     },
     {
       "scale": 40,
@@ -1105,15 +1105,7 @@
       "segment": "REGULAR",
       "channel": "digital_coupon",
       "reach": 9162.0,
-      "uplift_multiple_needed": 35.30608535803765
-    },
-    {
-      "scale": 40,
-      "category": "REFRGRATD JUICES/DRNKS",
-      "segment": "LAPSING",
-      "channel": "mail_coupon",
-      "reach": 16160.0,
-      "uplift_multiple_needed": 35.43102668441637
+      "uplift_multiple_needed": 34.692316973589804
     },
     {
       "scale": 40,
@@ -1121,7 +1113,15 @@
       "segment": "RECENT_LIGHT",
       "channel": "digital_coupon",
       "reach": 5292.0,
-      "uplift_multiple_needed": 35.63643189434209
+      "uplift_multiple_needed": 35.213812478865755
+    },
+    {
+      "scale": 40,
+      "category": "REFRGRATD JUICES/DRNKS",
+      "segment": "LAPSING",
+      "channel": "mail_coupon",
+      "reach": 16160.0,
+      "uplift_multiple_needed": 35.450411480747874
     },
     {
       "scale": 40,
@@ -1129,7 +1129,7 @@
       "segment": "REGULAR",
       "channel": "mail_coupon",
       "reach": 16120.0,
-      "uplift_multiple_needed": 40.7137829259264
+      "uplift_multiple_needed": 40.36815948936134
     },
     {
       "scale": 40,
@@ -1137,7 +1137,7 @@
       "segment": "REGULAR",
       "channel": "digital_coupon",
       "reach": 3834.0,
-      "uplift_multiple_needed": 41.61291476645091
+      "uplift_multiple_needed": 41.31724032584531
     },
     {
       "scale": 40,
@@ -1145,7 +1145,7 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "mail_coupon",
       "reach": 20360.0,
-      "uplift_multiple_needed": 41.700969341789424
+      "uplift_multiple_needed": 41.56923848149914
     },
     {
       "scale": 40,
@@ -1153,7 +1153,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "digital_coupon",
       "reach": 3006.0,
-      "uplift_multiple_needed": 42.10420440744329
+      "uplift_multiple_needed": 42.149973599762646
     },
     {
       "scale": 40,
@@ -1161,7 +1161,7 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "mail_coupon",
       "reach": 25520.0,
-      "uplift_multiple_needed": 44.37713178397391
+      "uplift_multiple_needed": 44.623502563512474
     },
     {
       "scale": 40,
@@ -1169,7 +1169,7 @@
       "segment": "REGULAR",
       "channel": "digital_coupon",
       "reach": 7794.0,
-      "uplift_multiple_needed": 48.808160632775774
+      "uplift_multiple_needed": 49.13949736666948
     },
     {
       "scale": 40,
@@ -1177,7 +1177,7 @@
       "segment": "REGULAR",
       "channel": "digital_coupon",
       "reach": 12474.0,
-      "uplift_multiple_needed": 50.23950749925184
+      "uplift_multiple_needed": 50.56561289992083
     },
     {
       "scale": 40,
@@ -1185,7 +1185,7 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "digital_coupon",
       "reach": 13392.0,
-      "uplift_multiple_needed": 50.61288432356126
+      "uplift_multiple_needed": 52.09190555588771
     },
     {
       "scale": 40,
@@ -1193,7 +1193,7 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "mail_coupon",
       "reach": 14040.0,
-      "uplift_multiple_needed": 52.85968392745723
+      "uplift_multiple_needed": 52.66586452595345
     },
     {
       "scale": 40,
@@ -1201,7 +1201,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "mail_coupon",
       "reach": 6680.0,
-      "uplift_multiple_needed": 55.24496027868995
+      "uplift_multiple_needed": 55.290729471009314
     },
     {
       "scale": 40,
@@ -1209,7 +1209,7 @@
       "segment": "REGULAR",
       "channel": "mail_coupon",
       "reach": 8520.0,
-      "uplift_multiple_needed": 59.40726175539977
+      "uplift_multiple_needed": 59.11158731479417
     },
     {
       "scale": 40,
@@ -1217,7 +1217,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "mail_coupon",
       "reach": 11760.0,
-      "uplift_multiple_needed": 61.70772302308839
+      "uplift_multiple_needed": 61.285103607612044
     },
     {
       "scale": 40,
@@ -1225,7 +1225,7 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "mail_coupon",
       "reach": 39560.0,
-      "uplift_multiple_needed": 62.577125834496236
+      "uplift_multiple_needed": 63.170759998387375
     },
     {
       "scale": 40,
@@ -1233,7 +1233,7 @@
       "segment": "LAPSING",
       "channel": "mail_coupon",
       "reach": 17760.0,
-      "uplift_multiple_needed": 64.42692478540788
+      "uplift_multiple_needed": 65.13303823293191
     },
     {
       "scale": 40,
@@ -1241,7 +1241,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "digital_coupon",
       "reach": 5598.0,
-      "uplift_multiple_needed": 65.98712568296786
+      "uplift_multiple_needed": 67.5308834542082
     },
     {
       "scale": 40,
@@ -1249,7 +1249,7 @@
       "segment": "REGULAR",
       "channel": "mail_coupon",
       "reach": 20360.0,
-      "uplift_multiple_needed": 74.31719444222156
+      "uplift_multiple_needed": 73.70342605777371
     },
     {
       "scale": 40,
@@ -1257,7 +1257,7 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "mail_coupon",
       "reach": 28360.0,
-      "uplift_multiple_needed": 83.27168946561542
+      "uplift_multiple_needed": 83.0194866231556
     },
     {
       "scale": 40,
@@ -1265,7 +1265,7 @@
       "segment": "REGULAR",
       "channel": "mail_coupon",
       "reach": 17320.0,
-      "uplift_multiple_needed": 88.78977505741942
+      "uplift_multiple_needed": 89.12111179131313
     },
     {
       "scale": 40,
@@ -1273,7 +1273,7 @@
       "segment": "REGULAR",
       "channel": "digital_coupon",
       "reach": 4788.0,
-      "uplift_multiple_needed": 90.93405593101669
+      "uplift_multiple_needed": 91.0407112823719
     },
     {
       "scale": 40,
@@ -1281,7 +1281,7 @@
       "segment": "REGULAR",
       "channel": "digital_coupon",
       "reach": 7308.0,
-      "uplift_multiple_needed": 94.29006672438372
+      "uplift_multiple_needed": 93.70015753013196
     },
     {
       "scale": 40,
@@ -1289,7 +1289,7 @@
       "segment": "REGULAR",
       "channel": "mail_coupon",
       "reach": 27720.0,
-      "uplift_multiple_needed": 96.7265205272357
+      "uplift_multiple_needed": 97.0526259279047
     },
     {
       "scale": 40,
@@ -1297,7 +1297,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "mail_coupon",
       "reach": 12440.0,
-      "uplift_multiple_needed": 113.3742763424483
+      "uplift_multiple_needed": 114.91803411368866
     },
     {
       "scale": 40,
@@ -1305,7 +1305,7 @@
       "segment": "REGULAR",
       "channel": "mail_coupon",
       "reach": 10640.0,
-      "uplift_multiple_needed": 140.9461913895803
+      "uplift_multiple_needed": 141.0528467409355
     },
     {
       "scale": 40,
@@ -1313,7 +1313,7 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "mail_coupon",
       "reach": 29760.0,
-      "uplift_multiple_needed": 150.58792883973265
+      "uplift_multiple_needed": 152.06695007205911
     },
     {
       "scale": 40,
@@ -1321,7 +1321,7 @@
       "segment": "REGULAR",
       "channel": "mail_coupon",
       "reach": 16240.0,
-      "uplift_multiple_needed": 168.3921958133455
+      "uplift_multiple_needed": 167.80228661909376
     },
     {
       "scale": 40,
@@ -1329,7 +1329,7 @@
       "segment": "REGULAR",
       "channel": "digital_coupon",
       "reach": 5328.0,
-      "uplift_multiple_needed": 221.47770116482334
+      "uplift_multiple_needed": 225.36536060421534
     },
     {
       "scale": 40,
@@ -1337,7 +1337,7 @@
       "segment": "REGULAR",
       "channel": "mail_coupon",
       "reach": 11840.0,
-      "uplift_multiple_needed": 337.20323384466167
+      "uplift_multiple_needed": 341.09089328405366
     },
     {
       "scale": 100,
@@ -1345,7 +1345,7 @@
       "segment": "LAPSING",
       "channel": "digital_coupon",
       "reach": 18270.0,
-      "uplift_multiple_needed": 2.622770241206491
+      "uplift_multiple_needed": 2.5891445947820193
     },
     {
       "scale": 100,
@@ -1353,7 +1353,7 @@
       "segment": "LAPSING",
       "channel": "digital_coupon",
       "reach": 15975.0,
-      "uplift_multiple_needed": 3.407734245647971
+      "uplift_multiple_needed": 3.2523255271972897
     },
     {
       "scale": 100,
@@ -1361,7 +1361,7 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "digital_coupon",
       "reach": 44235.0,
-      "uplift_multiple_needed": 3.8252679477223297
+      "uplift_multiple_needed": 3.8627637226951546
     },
     {
       "scale": 100,
@@ -1369,7 +1369,7 @@
       "segment": "LAPSING",
       "channel": "digital_coupon",
       "reach": 22590.0,
-      "uplift_multiple_needed": 4.23858984420919
+      "uplift_multiple_needed": 4.109093691099059
     },
     {
       "scale": 100,
@@ -1377,7 +1377,7 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "digital_coupon",
       "reach": 30555.0,
-      "uplift_multiple_needed": 4.369156559583121
+      "uplift_multiple_needed": 4.240344387605968
     },
     {
       "scale": 100,
@@ -1385,7 +1385,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "digital_coupon",
       "reach": 14490.0,
-      "uplift_multiple_needed": 5.115352455410378
+      "uplift_multiple_needed": 5.006827580973606
     },
     {
       "scale": 100,
@@ -1393,7 +1393,7 @@
       "segment": "LAPSING",
       "channel": "digital_coupon",
       "reach": 18945.0,
-      "uplift_multiple_needed": 5.577681510872434
+      "uplift_multiple_needed": 5.729561164305302
     },
     {
       "scale": 100,
@@ -1401,7 +1401,7 @@
       "segment": "LAPSING",
       "channel": "digital_coupon",
       "reach": 19935.0,
-      "uplift_multiple_needed": 6.701551514113992
+      "uplift_multiple_needed": 6.851834537787431
     },
     {
       "scale": 100,
@@ -1409,7 +1409,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "digital_coupon",
       "reach": 9270.0,
-      "uplift_multiple_needed": 7.913909763826903
+      "uplift_multiple_needed": 7.742293079307159
     },
     {
       "scale": 100,
@@ -1417,15 +1417,7 @@
       "segment": "LAPSING",
       "channel": "mail_coupon",
       "reach": 40600.0,
-      "uplift_multiple_needed": 7.963882165740477
-    },
-    {
-      "scale": 100,
-      "category": "YOGURT",
-      "segment": "LAPSING",
-      "channel": "digital_coupon",
-      "reach": 14850.0,
-      "uplift_multiple_needed": 8.625834487773718
+      "uplift_multiple_needed": 7.930256519316006
     },
     {
       "scale": 100,
@@ -1433,7 +1425,15 @@
       "segment": "RECENT_LIGHT",
       "channel": "digital_coupon",
       "reach": 15075.0,
-      "uplift_multiple_needed": 8.80394055632406
+      "uplift_multiple_needed": 8.659610742948193
+    },
+    {
+      "scale": 100,
+      "category": "YOGURT",
+      "segment": "LAPSING",
+      "channel": "digital_coupon",
+      "reach": 14850.0,
+      "uplift_multiple_needed": 8.737651879736918
     },
     {
       "scale": 100,
@@ -1441,15 +1441,7 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "digital_coupon",
       "reach": 22905.0,
-      "uplift_multiple_needed": 8.969712636020336
-    },
-    {
-      "scale": 100,
-      "category": "YOGURT",
-      "segment": "ACTIVE_NONBUYER",
-      "channel": "digital_coupon",
-      "reach": 44505.0,
-      "uplift_multiple_needed": 9.465795604183663
+      "uplift_multiple_needed": 8.83798177573005
     },
     {
       "scale": 100,
@@ -1457,7 +1449,15 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "digital_coupon",
       "reach": 28710.0,
-      "uplift_multiple_needed": 9.496805979886725
+      "uplift_multiple_needed": 9.743176759425287
+    },
+    {
+      "scale": 100,
+      "category": "YOGURT",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "digital_coupon",
+      "reach": 44505.0,
+      "uplift_multiple_needed": 10.059429768074807
     },
     {
       "scale": 100,
@@ -1465,7 +1465,7 @@
       "segment": "LAPSING",
       "channel": "digital_coupon",
       "reach": 18180.0,
-      "uplift_multiple_needed": 10.514156765533457
+      "uplift_multiple_needed": 10.53354156186496
     },
     {
       "scale": 100,
@@ -1473,7 +1473,7 @@
       "segment": "LAPSING",
       "channel": "mail_coupon",
       "reach": 35500.0,
-      "uplift_multiple_needed": 10.7113066533058
+      "uplift_multiple_needed": 10.555897934855118
     },
     {
       "scale": 100,
@@ -1481,7 +1481,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "digital_coupon",
       "reach": 14580.0,
-      "uplift_multiple_needed": 10.83952291968343
+      "uplift_multiple_needed": 10.926737000475196
     },
     {
       "scale": 100,
@@ -1489,7 +1489,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "digital_coupon",
       "reach": 18045.0,
-      "uplift_multiple_needed": 12.436537288463187
+      "uplift_multiple_needed": 12.470637029224802
     },
     {
       "scale": 100,
@@ -1497,7 +1497,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "mail_coupon",
       "reach": 32200.0,
-      "uplift_multiple_needed": 13.424179205969414
+      "uplift_multiple_needed": 13.31565433153264
     },
     {
       "scale": 100,
@@ -1505,7 +1505,7 @@
       "segment": "LAPSING",
       "channel": "mail_coupon",
       "reach": 50200.0,
-      "uplift_multiple_needed": 15.365269466624667
+      "uplift_multiple_needed": 15.235773313514535
     },
     {
       "scale": 100,
@@ -1513,7 +1513,7 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "digital_coupon",
       "reach": 15795.0,
-      "uplift_multiple_needed": 15.882181390966432
+      "uplift_multiple_needed": 15.688361989462651
     },
     {
       "scale": 100,
@@ -1521,15 +1521,7 @@
       "segment": "REGULAR",
       "channel": "digital_coupon",
       "reach": 18135.0,
-      "uplift_multiple_needed": 16.558610869300956
-    },
-    {
-      "scale": 100,
-      "category": "COLD CEREAL",
-      "segment": "LAPSING",
-      "channel": "mail_coupon",
-      "reach": 42100.0,
-      "uplift_multiple_needed": 17.28323255723034
+      "uplift_multiple_needed": 16.212987432735897
     },
     {
       "scale": 100,
@@ -1537,7 +1529,15 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "digital_coupon",
       "reach": 31905.0,
-      "uplift_multiple_needed": 17.440462749097428
+      "uplift_multiple_needed": 17.18825990663761
+    },
+    {
+      "scale": 100,
+      "category": "COLD CEREAL",
+      "segment": "LAPSING",
+      "channel": "mail_coupon",
+      "reach": 42100.0,
+      "uplift_multiple_needed": 17.435112210663203
     },
     {
       "scale": 100,
@@ -1545,15 +1545,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "mail_coupon",
       "reach": 20600.0,
-      "uplift_multiple_needed": 18.55625017186235
-    },
-    {
-      "scale": 100,
-      "category": "BAG SNACKS",
-      "segment": "LAPSING",
-      "channel": "mail_coupon",
-      "reach": 44300.0,
-      "uplift_multiple_needed": 19.03561175303453
+      "uplift_multiple_needed": 18.384633487342604
     },
     {
       "scale": 100,
@@ -1561,15 +1553,15 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "mail_coupon",
       "reach": 67900.0,
-      "uplift_multiple_needed": 19.220787896827606
+      "uplift_multiple_needed": 19.091975724850453
     },
     {
       "scale": 100,
-      "category": "ICE CREAM/MILK/SHERBTS",
+      "category": "BAG SNACKS",
       "segment": "LAPSING",
-      "channel": "digital_coupon",
-      "reach": 19980.0,
-      "uplift_multiple_needed": 20.419574897735476
+      "channel": "mail_coupon",
+      "reach": 44300.0,
+      "uplift_multiple_needed": 19.18589477670797
     },
     {
       "scale": 100,
@@ -1577,7 +1569,15 @@
       "segment": "RECENT_LIGHT",
       "channel": "digital_coupon",
       "reach": 13230.0,
-      "uplift_multiple_needed": 21.520442617299267
+      "uplift_multiple_needed": 21.097823201822933
+    },
+    {
+      "scale": 100,
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "segment": "LAPSING",
+      "channel": "digital_coupon",
+      "reach": 19980.0,
+      "uplift_multiple_needed": 21.125688345259512
     },
     {
       "scale": 100,
@@ -1585,15 +1585,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "digital_coupon",
       "reach": 7515.0,
-      "uplift_multiple_needed": 21.98464351444544
-    },
-    {
-      "scale": 100,
-      "category": "COFFEE",
-      "segment": "ACTIVE_NONBUYER",
-      "channel": "mail_coupon",
-      "reach": 98300.0,
-      "uplift_multiple_needed": 24.837408773520934
+      "uplift_multiple_needed": 22.030412706764796
     },
     {
       "scale": 100,
@@ -1601,7 +1593,15 @@
       "segment": "REGULAR",
       "channel": "digital_coupon",
       "reach": 22905.0,
-      "uplift_multiple_needed": 25.220309383567933
+      "uplift_multiple_needed": 24.606540999120092
+    },
+    {
+      "scale": 100,
+      "category": "COFFEE",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "mail_coupon",
+      "reach": 98300.0,
+      "uplift_multiple_needed": 24.874904548493756
     },
     {
       "scale": 100,
@@ -1609,7 +1609,7 @@
       "segment": "REGULAR",
       "channel": "digital_coupon",
       "reach": 9585.0,
-      "uplift_multiple_needed": 25.220652601356477
+      "uplift_multiple_needed": 24.924978160750868
     },
     {
       "scale": 100,
@@ -1617,7 +1617,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "mail_coupon",
       "reach": 33500.0,
-      "uplift_multiple_needed": 25.858929522684043
+      "uplift_multiple_needed": 25.714599709308178
     },
     {
       "scale": 100,
@@ -1625,7 +1625,7 @@
       "segment": "LAPSING",
       "channel": "mail_coupon",
       "reach": 33000.0,
-      "uplift_multiple_needed": 26.032328482019953
+      "uplift_multiple_needed": 26.144145873983156
     },
     {
       "scale": 100,
@@ -1633,7 +1633,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "mail_coupon",
       "reach": 32400.0,
-      "uplift_multiple_needed": 28.995836890824247
+      "uplift_multiple_needed": 29.08305097161601
     },
     {
       "scale": 100,
@@ -1641,7 +1641,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "mail_coupon",
       "reach": 40100.0,
-      "uplift_multiple_needed": 31.971461123061605
+      "uplift_multiple_needed": 32.00556086382321
     },
     {
       "scale": 100,
@@ -1649,7 +1649,7 @@
       "segment": "LAPSING",
       "channel": "mail_coupon",
       "reach": 40400.0,
-      "uplift_multiple_needed": 32.54187850781865
+      "uplift_multiple_needed": 32.56126330415015
     },
     {
       "scale": 100,
@@ -1657,7 +1657,7 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "digital_coupon",
       "reach": 33480.0,
-      "uplift_multiple_needed": 34.161322485983426
+      "uplift_multiple_needed": 35.64034371830987
     },
     {
       "scale": 100,
@@ -1665,7 +1665,7 @@
       "segment": "REGULAR",
       "channel": "digital_coupon",
       "reach": 19485.0,
-      "uplift_multiple_needed": 36.129805848308514
+      "uplift_multiple_needed": 36.461142582202235
     },
     {
       "scale": 100,
@@ -1673,7 +1673,7 @@
       "segment": "REGULAR",
       "channel": "mail_coupon",
       "reach": 40300.0,
-      "uplift_multiple_needed": 37.906154400067194
+      "uplift_multiple_needed": 37.56053096350213
     },
     {
       "scale": 100,
@@ -1681,7 +1681,7 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "mail_coupon",
       "reach": 50900.0,
-      "uplift_multiple_needed": 38.67523654944851
+      "uplift_multiple_needed": 38.54350568915822
     },
     {
       "scale": 100,
@@ -1689,7 +1689,7 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "mail_coupon",
       "reach": 63800.0,
-      "uplift_multiple_needed": 41.79575515936216
+      "uplift_multiple_needed": 42.04212593890072
     },
     {
       "scale": 100,
@@ -1697,7 +1697,7 @@
       "segment": "REGULAR",
       "channel": "digital_coupon",
       "reach": 31185.0,
-      "uplift_multiple_needed": 41.93459705751253
+      "uplift_multiple_needed": 42.26070245818152
     },
     {
       "scale": 100,
@@ -1705,7 +1705,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "digital_coupon",
       "reach": 13995.0,
-      "uplift_multiple_needed": 42.37305107108763
+      "uplift_multiple_needed": 43.916808842327974
     },
     {
       "scale": 100,
@@ -1713,7 +1713,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "mail_coupon",
       "reach": 16700.0,
-      "uplift_multiple_needed": 46.191157876840926
+      "uplift_multiple_needed": 46.23692706916028
     },
     {
       "scale": 100,
@@ -1721,7 +1721,7 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "mail_coupon",
       "reach": 35100.0,
-      "uplift_multiple_needed": 47.94062158888856
+      "uplift_multiple_needed": 47.74680218738478
     },
     {
       "scale": 100,
@@ -1729,7 +1729,7 @@
       "segment": "REGULAR",
       "channel": "mail_coupon",
       "reach": 21300.0,
-      "uplift_multiple_needed": 52.03074378110727
+      "uplift_multiple_needed": 51.735069340501674
     },
     {
       "scale": 100,
@@ -1737,7 +1737,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "mail_coupon",
       "reach": 29400.0,
-      "uplift_multiple_needed": 55.35552784841912
+      "uplift_multiple_needed": 54.932908432942774
     },
     {
       "scale": 100,
@@ -1745,7 +1745,7 @@
       "segment": "REGULAR",
       "channel": "digital_coupon",
       "reach": 11970.0,
-      "uplift_multiple_needed": 59.355421822645994
+      "uplift_multiple_needed": 59.462077174001216
     },
     {
       "scale": 100,
@@ -1753,7 +1753,7 @@
       "segment": "LAPSING",
       "channel": "mail_coupon",
       "reach": 44400.0,
-      "uplift_multiple_needed": 59.774912198227916
+      "uplift_multiple_needed": 60.481025645751956
     },
     {
       "scale": 100,
@@ -1761,7 +1761,7 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "mail_coupon",
       "reach": 98900.0,
-      "uplift_multiple_needed": 60.02912279926066
+      "uplift_multiple_needed": 60.62275696315181
     },
     {
       "scale": 100,
@@ -1769,7 +1769,7 @@
       "segment": "REGULAR",
       "channel": "digital_coupon",
       "reach": 18270.0,
-      "uplift_multiple_needed": 68.73525855042688
+      "uplift_multiple_needed": 68.14534935617513
     },
     {
       "scale": 100,
@@ -1777,7 +1777,7 @@
       "segment": "REGULAR",
       "channel": "mail_coupon",
       "reach": 50900.0,
-      "uplift_multiple_needed": 69.7785952537102
+      "uplift_multiple_needed": 69.16482686926234
     },
     {
       "scale": 100,
@@ -1785,7 +1785,7 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "mail_coupon",
       "reach": 70900.0,
-      "uplift_multiple_needed": 78.88159689073822
+      "uplift_multiple_needed": 78.6293940482784
     },
     {
       "scale": 100,
@@ -1793,7 +1793,7 @@
       "segment": "REGULAR",
       "channel": "mail_coupon",
       "reach": 43300.0,
-      "uplift_multiple_needed": 83.08451540440915
+      "uplift_multiple_needed": 83.41585213830287
     },
     {
       "scale": 100,
@@ -1801,7 +1801,7 @@
       "segment": "REGULAR",
       "channel": "mail_coupon",
       "reach": 69300.0,
-      "uplift_multiple_needed": 92.98931082845301
+      "uplift_multiple_needed": 93.31541622912201
     },
     {
       "scale": 100,
@@ -1809,7 +1809,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "mail_coupon",
       "reach": 31100.0,
-      "uplift_multiple_needed": 102.74794276710219
+      "uplift_multiple_needed": 104.29170053834257
     },
     {
       "scale": 100,
@@ -1817,7 +1817,7 @@
       "segment": "REGULAR",
       "channel": "mail_coupon",
       "reach": 26600.0,
-      "uplift_multiple_needed": 126.73580604081349
+      "uplift_multiple_needed": 126.84246139216869
     },
     {
       "scale": 100,
@@ -1825,7 +1825,7 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "mail_coupon",
       "reach": 74400.0,
-      "uplift_multiple_needed": 143.18472601282264
+      "uplift_multiple_needed": 144.6637472451491
     },
     {
       "scale": 100,
@@ -1833,7 +1833,7 @@
       "segment": "REGULAR",
       "channel": "mail_coupon",
       "reach": 40600.0,
-      "uplift_multiple_needed": 156.8925321350649
+      "uplift_multiple_needed": 156.30262294081317
     },
     {
       "scale": 100,
@@ -1841,7 +1841,7 @@
       "segment": "REGULAR",
       "channel": "digital_coupon",
       "reach": 13320.0,
-      "uplift_multiple_needed": 159.45086666909066
+      "uplift_multiple_needed": 163.33852610848265
     },
     {
       "scale": 100,
@@ -1849,7 +1849,7 @@
       "segment": "REGULAR",
       "channel": "mail_coupon",
       "reach": 29600.0,
-      "uplift_multiple_needed": 309.291158321582
+      "uplift_multiple_needed": 313.17881776097397
     },
     {
       "scale": 250,
@@ -1857,7 +1857,7 @@
       "segment": "LAPSING",
       "channel": "digital_coupon",
       "reach": 45675.0,
-      "uplift_multiple_needed": 2.0034630184800206
+      "uplift_multiple_needed": 1.9698373720555495
     },
     {
       "scale": 250,
@@ -1865,7 +1865,7 @@
       "segment": "LAPSING",
       "channel": "digital_coupon",
       "reach": 39937.5,
-      "uplift_multiple_needed": 2.4241985157423045
+      "uplift_multiple_needed": 2.268789797291623
     },
     {
       "scale": 250,
@@ -1873,7 +1873,7 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "digital_coupon",
       "reach": 110587.5,
-      "uplift_multiple_needed": 2.878085352628368
+      "uplift_multiple_needed": 2.9155811276011927
     },
     {
       "scale": 250,
@@ -1881,7 +1881,7 @@
       "segment": "LAPSING",
       "channel": "digital_coupon",
       "reach": 56475.0,
-      "uplift_multiple_needed": 3.215948415722121
+      "uplift_multiple_needed": 3.0864522626119903
     },
     {
       "scale": 250,
@@ -1889,7 +1889,7 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "digital_coupon",
       "reach": 76387.5,
-      "uplift_multiple_needed": 3.3816701288440063
+      "uplift_multiple_needed": 3.252857956866854
     },
     {
       "scale": 250,
@@ -1897,7 +1897,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "digital_coupon",
       "reach": 36225.0,
-      "uplift_multiple_needed": 3.8659674495621954
+      "uplift_multiple_needed": 3.7574425751254217
     },
     {
       "scale": 250,
@@ -1905,7 +1905,7 @@
       "segment": "LAPSING",
       "channel": "digital_coupon",
       "reach": 47362.5,
-      "uplift_multiple_needed": 4.27370820406143
+      "uplift_multiple_needed": 4.425587857494299
     },
     {
       "scale": 250,
@@ -1913,7 +1913,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "digital_coupon",
       "reach": 23175.0,
-      "uplift_multiple_needed": 5.2020248386501144
+      "uplift_multiple_needed": 5.03040815413037
     },
     {
       "scale": 250,
@@ -1921,7 +1921,15 @@
       "segment": "LAPSING",
       "channel": "digital_coupon",
       "reach": 49837.5,
-      "uplift_multiple_needed": 5.402386065778699
+      "uplift_multiple_needed": 5.552669089452138
+    },
+    {
+      "scale": 250,
+      "category": "SOUP",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "digital_coupon",
+      "reach": 57262.5,
+      "uplift_multiple_needed": 6.148441515871457
     },
     {
       "scale": 250,
@@ -1929,15 +1937,7 @@
       "segment": "LAPSING",
       "channel": "digital_coupon",
       "reach": 37125.0,
-      "uplift_multiple_needed": 6.080405192977778
-    },
-    {
-      "scale": 250,
-      "category": "SOUP",
-      "segment": "ACTIVE_NONBUYER",
-      "channel": "digital_coupon",
-      "reach": 57262.5,
-      "uplift_multiple_needed": 6.280172376161744
+      "uplift_multiple_needed": 6.192222584940977
     },
     {
       "scale": 250,
@@ -1945,15 +1945,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "digital_coupon",
       "reach": 37687.5,
-      "uplift_multiple_needed": 6.35204325673954
-    },
-    {
-      "scale": 250,
-      "category": "YOGURT",
-      "segment": "ACTIVE_NONBUYER",
-      "channel": "digital_coupon",
-      "reach": 111262.5,
-      "uplift_multiple_needed": 7.2009040173075975
+      "uplift_multiple_needed": 6.207713443363674
     },
     {
       "scale": 250,
@@ -1961,7 +1953,7 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "digital_coupon",
       "reach": 71775.0,
-      "uplift_multiple_needed": 7.202248980231836
+      "uplift_multiple_needed": 7.448619759770398
     },
     {
       "scale": 250,
@@ -1969,7 +1961,15 @@
       "segment": "LAPSING",
       "channel": "mail_coupon",
       "reach": 101500.0,
-      "uplift_multiple_needed": 7.685193915513566
+      "uplift_multiple_needed": 7.651568269089094
+    },
+    {
+      "scale": 250,
+      "category": "YOGURT",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "digital_coupon",
+      "reach": 111262.5,
+      "uplift_multiple_needed": 7.794538181198742
     },
     {
       "scale": 250,
@@ -1977,7 +1977,7 @@
       "segment": "LAPSING",
       "channel": "digital_coupon",
       "reach": 45450.0,
-      "uplift_multiple_needed": 7.946025053002152
+      "uplift_multiple_needed": 7.9654098493336525
     },
     {
       "scale": 250,
@@ -1985,15 +1985,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "digital_coupon",
       "reach": 36450.0,
-      "uplift_multiple_needed": 8.128546316387471
-    },
-    {
-      "scale": 250,
-      "category": "BAG SNACKS",
-      "segment": "RECENT_LIGHT",
-      "channel": "digital_coupon",
-      "reach": 45112.5,
-      "uplift_multiple_needed": 10.140157064572776
+      "uplift_multiple_needed": 8.215760397179235
     },
     {
       "scale": 250,
@@ -2001,7 +1993,15 @@
       "segment": "LAPSING",
       "channel": "mail_coupon",
       "reach": 88750.0,
-      "uplift_multiple_needed": 10.26871557484825
+      "uplift_multiple_needed": 10.113306856397568
+    },
+    {
+      "scale": 250,
+      "category": "BAG SNACKS",
+      "segment": "RECENT_LIGHT",
+      "channel": "digital_coupon",
+      "reach": 45112.5,
+      "uplift_multiple_needed": 10.17425680533439
     },
     {
       "scale": 250,
@@ -2009,7 +2009,7 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "digital_coupon",
       "reach": 39487.5,
-      "uplift_multiple_needed": 11.509681534460945
+      "uplift_multiple_needed": 11.315862132957168
     },
     {
       "scale": 250,
@@ -2017,7 +2017,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "mail_coupon",
       "reach": 80500.0,
-      "uplift_multiple_needed": 12.861955953337732
+      "uplift_multiple_needed": 12.753431078900956
     },
     {
       "scale": 250,
@@ -2025,15 +2025,7 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "digital_coupon",
       "reach": 79762.5,
-      "uplift_multiple_needed": 13.538158238095463
-    },
-    {
-      "scale": 250,
-      "category": "YOGURT",
-      "segment": "RECENT_LIGHT",
-      "channel": "digital_coupon",
-      "reach": 18787.5,
-      "uplift_multiple_needed": 13.9368191572463
+      "uplift_multiple_needed": 13.285955395635646
     },
     {
       "scale": 250,
@@ -2041,7 +2033,15 @@
       "segment": "REGULAR",
       "channel": "digital_coupon",
       "reach": 45337.5,
-      "uplift_multiple_needed": 14.062941068537214
+      "uplift_multiple_needed": 13.717317631972158
+    },
+    {
+      "scale": 250,
+      "category": "YOGURT",
+      "segment": "RECENT_LIGHT",
+      "channel": "digital_coupon",
+      "reach": 18787.5,
+      "uplift_multiple_needed": 13.982588349565654
     },
     {
       "scale": 250,
@@ -2049,7 +2049,7 @@
       "segment": "LAPSING",
       "channel": "mail_coupon",
       "reach": 125500.0,
-      "uplift_multiple_needed": 14.905080823805486
+      "uplift_multiple_needed": 14.775584670695354
     },
     {
       "scale": 250,
@@ -2057,15 +2057,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "digital_coupon",
       "reach": 33075.0,
-      "uplift_multiple_needed": 15.874046906482134
-    },
-    {
-      "scale": 250,
-      "category": "ICE CREAM/MILK/SHERBTS",
-      "segment": "LAPSING",
-      "channel": "digital_coupon",
-      "reach": 49950.0,
-      "uplift_multiple_needed": 16.28445259801996
+      "uplift_multiple_needed": 15.451427491005804
     },
     {
       "scale": 250,
@@ -2073,7 +2065,15 @@
       "segment": "LAPSING",
       "channel": "mail_coupon",
       "reach": 105250.0,
-      "uplift_multiple_needed": 16.696444569165386
+      "uplift_multiple_needed": 16.848324222598254
+    },
+    {
+      "scale": 250,
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "segment": "LAPSING",
+      "channel": "digital_coupon",
+      "reach": 49950.0,
+      "uplift_multiple_needed": 16.990566045543996
     },
     {
       "scale": 250,
@@ -2081,15 +2081,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "mail_coupon",
       "reach": 51500.0,
-      "uplift_multiple_needed": 17.335901955532794
-    },
-    {
-      "scale": 250,
-      "category": "BAG SNACKS",
-      "segment": "LAPSING",
-      "channel": "mail_coupon",
-      "reach": 110750.0,
-      "uplift_multiple_needed": 18.45098730128365
+      "uplift_multiple_needed": 17.16428527101305
     },
     {
       "scale": 250,
@@ -2097,7 +2089,15 @@
       "segment": "REGULAR",
       "channel": "digital_coupon",
       "reach": 23962.5,
-      "uplift_multiple_needed": 18.6637477353187
+      "uplift_multiple_needed": 18.368073294713092
+    },
+    {
+      "scale": 250,
+      "category": "BAG SNACKS",
+      "segment": "LAPSING",
+      "channel": "mail_coupon",
+      "reach": 110750.0,
+      "uplift_multiple_needed": 18.60127032495709
     },
     {
       "scale": 250,
@@ -2105,7 +2105,7 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "mail_coupon",
       "reach": 169750.0,
-      "uplift_multiple_needed": 18.776419002995002
+      "uplift_multiple_needed": 18.64760683101785
     },
     {
       "scale": 250,
@@ -2113,7 +2113,7 @@
       "segment": "REGULAR",
       "channel": "digital_coupon",
       "reach": 57262.5,
-      "uplift_multiple_needed": 21.185998993780043
+      "uplift_multiple_needed": 20.572230609332202
     },
     {
       "scale": 250,
@@ -2121,7 +2121,7 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "mail_coupon",
       "reach": 245750.0,
-      "uplift_multiple_needed": 24.411176605728652
+      "uplift_multiple_needed": 24.448672380701474
     },
     {
       "scale": 250,
@@ -2129,7 +2129,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "mail_coupon",
       "reach": 83750.0,
-      "uplift_multiple_needed": 24.75557573787101
+      "uplift_multiple_needed": 24.611245924495144
     },
     {
       "scale": 250,
@@ -2137,15 +2137,7 @@
       "segment": "LAPSING",
       "channel": "mail_coupon",
       "reach": 82500.0,
-      "uplift_multiple_needed": 24.88688529936178
-    },
-    {
-      "scale": 250,
-      "category": "ICE CREAM/MILK/SHERBTS",
-      "segment": "ACTIVE_NONBUYER",
-      "channel": "digital_coupon",
-      "reach": 83700.0,
-      "uplift_multiple_needed": 27.580697750952282
+      "uplift_multiple_needed": 24.998702691324983
     },
     {
       "scale": 250,
@@ -2153,7 +2145,15 @@
       "segment": "RECENT_LIGHT",
       "channel": "mail_coupon",
       "reach": 81000.0,
-      "uplift_multiple_needed": 27.775897419341064
+      "uplift_multiple_needed": 27.863111500132828
+    },
+    {
+      "scale": 250,
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "segment": "ACTIVE_NONBUYER",
+      "channel": "digital_coupon",
+      "reach": 83700.0,
+      "uplift_multiple_needed": 29.05971898327873
     },
     {
       "scale": 250,
@@ -2161,7 +2161,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "mail_coupon",
       "reach": 100250.0,
-      "uplift_multiple_needed": 30.93809002231092
+      "uplift_multiple_needed": 30.972189763072528
     },
     {
       "scale": 250,
@@ -2169,7 +2169,7 @@
       "segment": "REGULAR",
       "channel": "digital_coupon",
       "reach": 48712.5,
-      "uplift_multiple_needed": 31.058463934521615
+      "uplift_multiple_needed": 31.389800668415326
     },
     {
       "scale": 250,
@@ -2177,7 +2177,7 @@
       "segment": "LAPSING",
       "channel": "mail_coupon",
       "reach": 101000.0,
-      "uplift_multiple_needed": 31.386219237179564
+      "uplift_multiple_needed": 31.40560403351106
     },
     {
       "scale": 250,
@@ -2185,7 +2185,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "digital_coupon",
       "reach": 34987.5,
-      "uplift_multiple_needed": 32.92742122633554
+      "uplift_multiple_needed": 34.47117899757588
     },
     {
       "scale": 250,
@@ -2193,7 +2193,7 @@
       "segment": "REGULAR",
       "channel": "mail_coupon",
       "reach": 100750.0,
-      "uplift_multiple_needed": 36.78310298972351
+      "uplift_multiple_needed": 36.437479553158454
     },
     {
       "scale": 250,
@@ -2201,7 +2201,7 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "mail_coupon",
       "reach": 127250.0,
-      "uplift_multiple_needed": 37.46494343251214
+      "uplift_multiple_needed": 37.33321257222185
     },
     {
       "scale": 250,
@@ -2209,7 +2209,7 @@
       "segment": "REGULAR",
       "channel": "digital_coupon",
       "reach": 77962.5,
-      "uplift_multiple_needed": 38.61263288081681
+      "uplift_multiple_needed": 38.9387382814858
     },
     {
       "scale": 250,
@@ -2217,7 +2217,7 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "mail_coupon",
       "reach": 159500.0,
-      "uplift_multiple_needed": 40.76320450951746
+      "uplift_multiple_needed": 41.00957528905602
     },
     {
       "scale": 250,
@@ -2225,7 +2225,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "mail_coupon",
       "reach": 41750.0,
-      "uplift_multiple_needed": 42.56963691610131
+      "uplift_multiple_needed": 42.61540610842067
     },
     {
       "scale": 250,
@@ -2233,7 +2233,7 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "mail_coupon",
       "reach": 87750.0,
-      "uplift_multiple_needed": 45.972996653461095
+      "uplift_multiple_needed": 45.779177251957314
     },
     {
       "scale": 250,
@@ -2241,7 +2241,7 @@
       "segment": "REGULAR",
       "channel": "digital_coupon",
       "reach": 29925.0,
-      "uplift_multiple_needed": 46.72396817929771
+      "uplift_multiple_needed": 46.83062353065294
     },
     {
       "scale": 250,
@@ -2249,7 +2249,7 @@
       "segment": "REGULAR",
       "channel": "mail_coupon",
       "reach": 53250.0,
-      "uplift_multiple_needed": 49.08013659139027
+      "uplift_multiple_needed": 48.78446215078468
     },
     {
       "scale": 250,
@@ -2257,15 +2257,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "mail_coupon",
       "reach": 73500.0,
-      "uplift_multiple_needed": 52.81464977855141
-    },
-    {
-      "scale": 250,
-      "category": "ICE CREAM/MILK/SHERBTS",
-      "segment": "LAPSING",
-      "channel": "mail_coupon",
-      "reach": 111000.0,
-      "uplift_multiple_needed": 57.914107163355936
+      "uplift_multiple_needed": 52.392030363075065
     },
     {
       "scale": 250,
@@ -2273,7 +2265,15 @@
       "segment": "REGULAR",
       "channel": "digital_coupon",
       "reach": 45675.0,
-      "uplift_multiple_needed": 58.51333528084414
+      "uplift_multiple_needed": 57.923426086592386
+    },
+    {
+      "scale": 250,
+      "category": "ICE CREAM/MILK/SHERBTS",
+      "segment": "LAPSING",
+      "channel": "mail_coupon",
+      "reach": 111000.0,
+      "uplift_multiple_needed": 58.620220610879976
     },
     {
       "scale": 250,
@@ -2281,7 +2281,7 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "mail_coupon",
       "reach": 247250.0,
-      "uplift_multiple_needed": 59.00992158516643
+      "uplift_multiple_needed": 59.60355574905758
     },
     {
       "scale": 250,
@@ -2289,7 +2289,7 @@
       "segment": "REGULAR",
       "channel": "mail_coupon",
       "reach": 127250.0,
-      "uplift_multiple_needed": 67.96315557830565
+      "uplift_multiple_needed": 67.3493871938578
     },
     {
       "scale": 250,
@@ -2297,7 +2297,7 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "mail_coupon",
       "reach": 177250.0,
-      "uplift_multiple_needed": 77.12555986078733
+      "uplift_multiple_needed": 76.87335701832751
     },
     {
       "scale": 250,
@@ -2305,7 +2305,7 @@
       "segment": "REGULAR",
       "channel": "mail_coupon",
       "reach": 108250.0,
-      "uplift_multiple_needed": 80.80241154320504
+      "uplift_multiple_needed": 81.13374827709876
     },
     {
       "scale": 250,
@@ -2313,7 +2313,7 @@
       "segment": "REGULAR",
       "channel": "mail_coupon",
       "reach": 173250.0,
-      "uplift_multiple_needed": 91.49442694893995
+      "uplift_multiple_needed": 91.82053234960892
     },
     {
       "scale": 250,
@@ -2321,7 +2321,7 @@
       "segment": "RECENT_LIGHT",
       "channel": "mail_coupon",
       "reach": 77750.0,
-      "uplift_multiple_needed": 98.49740933696374
+      "uplift_multiple_needed": 100.04116710820412
     },
     {
       "scale": 250,
@@ -2329,7 +2329,7 @@
       "segment": "REGULAR",
       "channel": "mail_coupon",
       "reach": 66500.0,
-      "uplift_multiple_needed": 121.05165190130676
+      "uplift_multiple_needed": 121.15830725266197
     },
     {
       "scale": 250,
@@ -2337,7 +2337,7 @@
       "segment": "REGULAR",
       "channel": "digital_coupon",
       "reach": 33300.0,
-      "uplift_multiple_needed": 134.64013287079754
+      "uplift_multiple_needed": 138.52779231018957
     },
     {
       "scale": 250,
@@ -2345,7 +2345,7 @@
       "segment": "ACTIVE_NONBUYER",
       "channel": "mail_coupon",
       "reach": 186000.0,
-      "uplift_multiple_needed": 140.2234448820586
+      "uplift_multiple_needed": 141.7024661143851
     },
     {
       "scale": 250,
@@ -2353,7 +2353,7 @@
       "segment": "REGULAR",
       "channel": "mail_coupon",
       "reach": 101500.0,
-      "uplift_multiple_needed": 152.29266666375267
+      "uplift_multiple_needed": 151.70275746950094
     },
     {
       "scale": 250,
@@ -2361,7 +2361,7 @@
       "segment": "REGULAR",
       "channel": "mail_coupon",
       "reach": 74000.0,
-      "uplift_multiple_needed": 298.1263281123501
+      "uplift_multiple_needed": 302.01398755174205
     }
   ],
   "reversal_grid": [
@@ -2369,91 +2369,91 @@
       "uplift_multiplier": 1.0,
       "scale": 40,
       "recommended_base": "NONE: research / measure first",
-      "best_net_base": -1781.2941940771234
+      "best_net_base": -1724.4105070476633
     },
     {
       "uplift_multiplier": 1.0,
       "scale": 100,
       "recommended_base": "NONE: research / measure first",
-      "best_net_base": -2203.2354851928085
+      "best_net_base": -1474.5855454168661
     },
     {
       "uplift_multiplier": 1.0,
       "scale": 250,
       "recommended_base": "NONE: research / measure first",
-      "best_net_base": -1468.947024548016
+      "best_net_base": -1436.4638635421654
     },
     {
       "uplift_multiplier": 2.0,
       "scale": 40,
       "recommended_base": "NONE: research / measure first",
-      "best_net_base": -1232.9395589002265
+      "best_net_base": -1205.3499992284064
     },
     {
       "uplift_multiplier": 2.0,
       "scale": 100,
       "recommended_base": "NONE: research / measure first",
-      "best_net_base": -832.3488972505666
+      "best_net_base": -763.3749980710159
     },
     {
       "uplift_multiplier": 2.0,
       "scale": 250,
       "recommended_base": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED",
-      "best_net_base": 169.12775687358385
+      "best_net_base": 341.56250482246037
     },
     {
       "uplift_multiplier": 3.0,
       "scale": 40,
       "recommended_base": "NONE: research / measure first",
-      "best_net_base": -680.7054472607439
+      "best_net_base": -660.8047758435406
     },
     {
       "uplift_multiplier": 3.0,
       "scale": 100,
       "recommended_base": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED",
-      "best_net_base": 548.2363818481404
+      "best_net_base": 597.9880603911483
     },
     {
       "uplift_multiplier": 3.0,
       "scale": 250,
       "recommended_base": "FROZEN PIZZA/LAPSING/digital_coupon/MODEL_FILTERED + COFFEE/LAPSING/digital_coupon/MODEL_FILTERED",
-      "best_net_base": 4331.475750652502
+      "best_net_base": 4768.8528880384
     },
     {
       "uplift_multiplier": 4.0,
       "scale": 40,
       "recommended_base": "NONE: research / measure first",
-      "best_net_base": -99.42365441353058
+      "best_net_base": -79.87724470185776
     },
     {
       "uplift_multiplier": 4.0,
       "scale": 100,
       "recommended_base": "FROZEN PIZZA/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL",
-      "best_net_base": 2093.762644803659
+      "best_net_base": 2258.140495599862
     },
     {
       "uplift_multiplier": 4.0,
       "scale": 250,
       "recommended_base": "FROZEN PIZZA/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL",
-      "best_net_base": 9734.406612009147
+      "best_net_base": 10145.351238999654
     },
     {
       "uplift_multiplier": 5.0,
       "scale": 40,
       "recommended_base": "FROZEN PIZZA/LAPSING/digital_coupon/ALL",
-      "best_net_base": 481.87103550647
+      "best_net_base": 501.41744521814235
     },
     {
       "uplift_multiplier": 5.0,
       "scale": 100,
       "recommended_base": "FROZEN PIZZA/LAPSING/digital_coupon/ALL + COFFEE/LAPSING/digital_coupon/ALL + COFFEE/ACTIVE_NONBUYER/digital_coupon/ALL",
-      "best_net_base": 4871.700435824607
+      "best_net_base": 5007.127178263918
     },
     {
       "uplift_multiplier": 5.0,
       "scale": 250,
       "recommended_base": "COFFEE/LAPSING/digital_coupon/ALL + SOUP/LAPSING/digital_coupon/ALL",
-      "best_net_base": 8839.295513027786
+      "best_net_base": 9463.080736753445
     }
   ],
   "demand": [

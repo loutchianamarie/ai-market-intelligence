@@ -14,3 +14,6 @@ reports/agent_trace_OPP-*.json
 deck/node_modules/
 data/interviews/*_notes*.md
 answers/
+reports/run_logs/
+data/pilot/*.csv
+!data/pilot/pilot_outcomes_template.csv

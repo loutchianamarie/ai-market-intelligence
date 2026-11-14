@@ -168,11 +168,22 @@ def optimise(scores, econ, cfg, overrides=None, score_col="p_used") -> dict:
     none = {"plan_id": "NONE: research / measure first", "base": {"net": 0.0, "cost": 0.0, "feasible": True, "components": []},
             "low": {"net": 0.0}, "high": {"net": 0.0}}
     top3 = portfolios[:3]
-    best_base = top3[0] if top3 and top3[0]["base"]["net"] > 0 else none
+    # NONE is a first-class action: ranked with the feasible plans by base net (ties go to NONE: no spend, no risk)
+    ranked = sorted(portfolios[:5] + [none], key=lambda p: (-p["base"]["net"], p is not none))
+    best_base = ranked[0]
     robust_pool = [p for p in portfolios if p.get("low")] + [none]
-    best_robust = max(robust_pool, key=lambda p: p["low"]["net"])
+    best_robust = max(robust_pool, key=lambda p: (p["low"]["net"], p is none))
+    ranked_actions = [{"rank": i + 1, "plan_id": p["plan_id"], "net_base": round(p["base"]["net"], 2),
+                       "net_low": round((p.get("low") or {}).get("net", float("nan")), 2),
+                       "net_high": round((p.get("high") or {}).get("net", float("nan")), 2),
+                       "status": ("NO ACTION: always feasible" if p is none else
+                                  "FEASIBLE UNDER ASSUMPTIONS; launch PENDING stock and consented-pool confirmation")}
+                      for i, p in enumerate(ranked)]
     return {"config_hash": config_hash(cfg), "n_candidates": len(ids), "n_portfolios_feasible": len(portfolios),
             "top_k_screen": [ids[j] for j in top], "top3": top3, "heuristic": heuristic, "none": none,
+            "ranked_actions": ranked_actions,
+            "unresolved_constraints": {"stock_capacity": "UNKNOWN: no inventory data; human confirmation required before any launch",
+                                       "consented_pool": "UNKNOWN: reach_share and deployment scale are ASSUMED; the panel is not contactable"},
             "recommended_base": best_base["plan_id"], "recommended_robust": best_robust["plan_id"],
             "assumptions_base": asdict(assumptions_from_config(cfg, "base", overrides)),
             "status": "SIMULATION — conditional on ASSUMED uplift, margin, redemption, contact cost, reach and scale; q0 is a MODEL ESTIMATE"}

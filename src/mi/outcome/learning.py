@@ -87,7 +87,9 @@ def simulated_outcome(n_per_arm=6000, p0=0.30, true_dq=0.05, spend=10.33, margin
                        "redemption": redemption, "contact": contact, "seed": seed}}
 
 
-def decide(outcome: dict, cfg=None) -> dict:
+def decide(outcome: dict, cfg=None, hurdle_usd_per_hh: float = 0.0) -> dict:
+    """Prewritten rule. EXPAND needs the CI lower bound above the commercial hurdle per household
+    (rollout setup / rollout households); hurdle 0 reproduces the original contribution-only rule."""
     cfg = cfg or load_config()
     g = cfg["outcome_rule"]["guardrails"]
     gr = outcome["guardrails"]
@@ -98,7 +100,7 @@ def decide(outcome: dict, cfg=None) -> dict:
     point = outcome["incremental_contribution_per_household"]
     if fails or hi < 0:
         d = "STOP"
-    elif lo > 0:
+    elif lo > hurdle_usd_per_hh:
         d = "EXPAND"
     elif point > 0:
         d = "CHANGE"

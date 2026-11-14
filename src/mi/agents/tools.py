@@ -24,7 +24,8 @@ ROLE_ALLOWLIST = {
     "portfolio": {"get_dossier", "compare_plans", "sensitivity_summary", "break_even", "demand_baseline", "calculate_metric"},
     "activation": {"get_dossier", "retrieve_sources", "pilot_sample_size", "pilot_design", "draft_pilot", "request_approval", "record_sandbox_action",
                    "record_research_followup"},
-    "measurement": {"get_dossier", "campaign_history", "pilot_sample_size", "pilot_design", "evaluate_outcome", "record_outcome"},
+    "measurement": {"get_dossier", "campaign_history", "pilot_sample_size", "pilot_design", "evaluate_outcome", "record_outcome",
+                    "method_evidence"},
 }
 
 
@@ -73,6 +74,7 @@ class Toolbox:
         "record_sandbox_action": ("Record an APPROVED pilot in the local CRM sandbox (never sends).", {"opportunity_id": {"type": "string"}, "idempotency_key": {"type": "string"}}, ["opportunity_id", "idempotency_key"]),
         "record_research_followup": ("After a HUMAN rejection that approved a research checklist, record that checklist in the sandbox (no contact, spend or send).", {"opportunity_id": {"type": "string"}, "idempotency_key": {"type": "string"}}, ["opportunity_id", "idempotency_key"]),
         "campaign_history": ("Descriptive history of real campaigns (selection-biased).", {}, []),
+        "method_evidence": ("Summary of a randomized e-mail experiment from ANOTHER retailer (method illustration only; never grocery uplift).", {}, []),
         "evaluate_outcome": ("Apply the prewritten decision rule to an outcome record.", {"outcome": {"type": "object"}}, ["outcome"]),
         "record_outcome": ("Attach an outcome + decision to the dossier.", {"opportunity_id": {"type": "string"}, "outcome": {"type": "object"}, "decision": {"type": "string"}}, ["opportunity_id", "outcome", "decision"]),
     }
@@ -314,6 +316,18 @@ class Toolbox:
     def t_record_sandbox_action(self, opportunity_id, idempotency_key):
         r = self.store.record_sandbox_action(opportunity_id, idempotency_key, actor="activation_agent")
         return _ok("record_sandbox_action", r, live_send=False)
+
+    def t_method_evidence(self):
+        """Randomized-experiment METHOD evidence from another retailer (Hillstrom 2008 e-mail). Never grocery uplift."""
+        r = _read_json("experiments/hillstrom_report.json")
+        if r is None:
+            return _ok("method_evidence", {"available": False}, status="PENDING: run python -m mi.experiments.hillstrom")
+        v = r["average_effects"]["Womens E-Mail vs No E-Mail"]["visit"]
+        return _ok("method_evidence", {"available": True, "namespace": r["provenance"]["namespace"],
+                                       "example": f"randomized e-mail raised 2-week visits by {100 * v['diff']:.1f} pp "
+                                                  f"(95% CI {100 * v['ci95'][0]:.1f} to {100 * v['ci95'][1]:.1f}) in a 2008 apparel retailer",
+                                       "use_restriction": r["use_restriction"]},
+                   status="METHOD EVIDENCE (different retailer, channel and period); not grocery coupon uplift")
 
     def t_campaign_history(self):
         from mi.outcome.learning import campaign_history

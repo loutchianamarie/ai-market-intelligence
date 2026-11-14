@@ -384,6 +384,10 @@ class Run:
             self.call(out, oid, "record_outcome", opportunity_id=oid, outcome=fixture, decision=dec)
             out.proposed_action = ev["data"]["next_action"]
             out.next_agent = "research" if dec in ("STOP", "CHANGE", "INCONCLUSIVE") else None
+        me = self.call(out, oid, "method_evidence")
+        if me["status"] == "ok" and me["data"].get("available"):
+            out.claims.append({"text": "METHOD EVIDENCE ONLY: " + me["data"]["example"], "source_id": "hillstrom_2008",
+                               "span": me["data"]["use_restriction"][:200]})
         out.limits.append("Outcome is a SIMULATED fixture; never report it as achieved impact.")
         out.limits.append("Historical campaign recipients spent ~2x more before campaigns: observational comparisons are biased.")
         return self.finish(out, oid)

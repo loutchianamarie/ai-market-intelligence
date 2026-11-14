@@ -1,0 +1,58 @@
+{
+  "purpose": "Committed expected checksums and row counts for the raw Complete Journey files (data/raw/ is gitignored). mi.ingest.verify fails the pipeline on any mismatch.",
+  "source_repo": "https://github.com/bradleyboehmke/completejourney",
+  "commit": "5b5d06192b9856edd04e4d405787af2f2e4a1fef",
+  "licence": "CC0 (package DESCRIPTION)",
+  "documentation": "https://bradleyboehmke.github.io/completejourney/reference/index.html",
+  "files": [
+    {
+      "name": "transactions.rds",
+      "url": "https://raw.githubusercontent.com/bradleyboehmke/completejourney/5b5d06192b9856edd04e4d405787af2f2e4a1fef/data/transactions.rds",
+      "bytes": 12775661,
+      "sha256": "1fa0700033f1e5d9bb6b09e2be063d8d68474d346e95c50f2833e09d083e0007",
+      "expected_rows": 1469307
+    },
+    {
+      "name": "products.rda",
+      "url": "https://raw.githubusercontent.com/bradleyboehmke/completejourney/5b5d06192b9856edd04e4d405787af2f2e4a1fef/data/products.rda",
+      "bytes": 869019,
+      "sha256": "a80c6df33623b4af296ae9f317a6647e369db7e8ce7e7baed0e1bf44b9d979e5",
+      "expected_rows": 92331
+    },
+    {
+      "name": "campaigns.rda",
+      "url": "https://raw.githubusercontent.com/bradleyboehmke/completejourney/5b5d06192b9856edd04e4d405787af2f2e4a1fef/data/campaigns.rda",
+      "bytes": 8264,
+      "sha256": "33c7b3dc1bc722d465f97416fb1327c6a9a640190e464c73e354bce8c001a772",
+      "expected_rows": 6589
+    },
+    {
+      "name": "campaign_descriptions.rda",
+      "url": "https://raw.githubusercontent.com/bradleyboehmke/completejourney/5b5d06192b9856edd04e4d405787af2f2e4a1fef/data/campaign_descriptions.rda",
+      "bytes": 496,
+      "sha256": "601bd17ea1a6de92cc288f393164813fbaf293b997d44054dcf1f3ebbe8dacee",
+      "expected_rows": 27
+    },
+    {
+      "name": "coupons.rda",
+      "url": "https://raw.githubusercontent.com/bradleyboehmke/completejourney/5b5d06192b9856edd04e4d405787af2f2e4a1fef/data/coupons.rda",
+      "bytes": 324969,
+      "sha256": "4d87effce5b8813c0934b581a83292707347577743320ca746878de89cc16f34",
+      "expected_rows": 116204
+    },
+    {
+      "name": "coupon_redemptions.rda",
+      "url": "https://raw.githubusercontent.com/bradleyboehmke/completejourney/5b5d06192b9856edd04e4d405787af2f2e4a1fef/data/coupon_redemptions.rda",
+      "bytes": 8370,
+      "sha256": "4b68148175ed19300bb2615d68d1a0300a5f971db3240819ab5d92e5919e1598",
+      "expected_rows": 2102
+    },
+    {
+      "name": "demographics.rda",
+      "url": "https://raw.githubusercontent.com/bradleyboehmke/completejourney/5b5d06192b9856edd04e4d405787af2f2e4a1fef/data/demographics.rda",
+      "bytes": 4237,
+      "sha256": "8b80455bc841003b64e47f5e5c2221f6093b995e923d59e72a1f852c7e268980",
+      "expected_rows": 801
+    }
+  ]
+}

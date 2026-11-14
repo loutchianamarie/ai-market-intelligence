@@ -43,7 +43,8 @@ def test_future_changes_do_not_change_features(tiny):
     tx2 = pd.concat([tx2, tx2[tx2.week > 5]])               # and add future rows
     p2 = prepare(tx2, tiny["products"], ["CAT1", "CAT2"])
     f2 = build_cutoff(p2, 5, 4, 4, tiny["red"], tiny["campaigns"], tiny["camp_desc"])
-    feats = ["cat_baskets_4w", "cat_spend_12w", "hh_spend_12w", "hh_baskets_12w", "cat_pop_4w", "hh_redemptions_12w"]
+    from mi.model.features import FEATURES
+    feats = list(FEATURES)                                   # every model feature, incl. the long-history ones
     pd.testing.assert_frame_equal(f1[feats].reset_index(drop=True), f2[feats].reset_index(drop=True))
 
 

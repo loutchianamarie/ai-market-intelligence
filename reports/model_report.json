@@ -1,6 +1,6 @@
 {
-  "run_id": "run-0a53542e4e",
-  "created_at": "2026-11-14T08:54:39+00:00",
+  "run_id": "run-fb9020ccd9",
+  "created_at": "2026-11-14T14:57:26+00:00",
   "status": "OBSERVED (historical backtest) \u2014 predicts observed purchase under historical conditions, NOT response to a coupon",
   "seed": 20261114,
   "config_hash": "562d203b67791ea9",
@@ -24,7 +24,10 @@
     "hh_coupon_disc_12w",
     "hh_redemptions_12w",
     "hh_campaigns_started",
-    "cat_private_share_12w"
+    "cat_private_share_12w",
+    "cat_weeks_active_prior14",
+    "cat_bought_before_lookback",
+    "history_weeks_available"
   ],
   "split_counts": {
     "train": {
@@ -71,9 +74,9 @@
     }
   },
   "validation_AP": {
-    "logreg_l2": 0.6614921496000338,
-    "hgb_small": 0.6651821207836169,
-    "hgb_deeper": 0.6625640813484175,
+    "logreg_l2": 0.6743297028241075,
+    "hgb_small": 0.6789846102237661,
+    "hgb_deeper": 0.6782656383956984,
     "rule_repeat": 0.627952498473635,
     "rule_popularity": 0.3408531304510077
   },
@@ -83,14 +86,14 @@
     "model_hgb_small": {
       "n": 18480,
       "prevalence": 0.275,
-      "AP": 0.6623996291847538,
-      "ROC_AUC": 0.8178948760260083,
-      "precision_top10pct": 0.795995670995671,
-      "recall_at_3": 0.6151154401154401,
-      "Brier": 0.14383075210943236,
-      "log_loss": 0.44759379629719714
+      "AP": 0.6717374137892858,
+      "ROC_AUC": 0.8269187533731768,
+      "precision_top10pct": 0.8062770562770563,
+      "recall_at_3": 0.6253857820184351,
+      "Brier": 0.14115631232215514,
+      "log_loss": 0.43909898438094663
     },
-    "model_uncalibrated_brier": 0.1436304065106058,
+    "model_uncalibrated_brier": 0.1412167777545495,
     "rule_repeat": {
       "n": 18480,
       "prevalence": 0.275,
@@ -114,67 +117,67 @@
   },
   "bootstrap_model_minus_rule_repeat": {
     "n_boot": 200,
-    "AP_diff_mean": 0.041470059264980916,
+    "AP_diff_mean": 0.05044998897715656,
     "AP_diff_95ci": [
-      0.037617078654803335,
-      0.045460937689187485
+      0.045305102142999404,
+      0.055625755158393485
     ],
-    "Brier_diff_mean": -0.0046882557339326895,
+    "Brier_diff_mean": -0.0073153982157559035,
     "Brier_diff_95ci": [
-      -0.005759878920746667,
-      -0.003602011800094241
+      -0.008443661469067288,
+      -0.005948489385868713
     ]
   },
   "decision_score_used": "model",
   "calibration_deciles_model": [
     {
-      "mean_pred": 0.0377890630779837,
-      "observed": 0.030844155844155844,
+      "mean_pred": 0.030579216423041202,
+      "observed": 0.027597402597402596,
       "n": 1848
     },
     {
-      "mean_pred": 0.06498924440088473,
-      "observed": 0.06818181818181818,
+      "mean_pred": 0.05408061461932824,
+      "observed": 0.05303030303030303,
       "n": 1848
     },
     {
-      "mean_pred": 0.08449063460261882,
-      "observed": 0.08279220779220779,
+      "mean_pred": 0.0881792215917404,
+      "observed": 0.0762987012987013,
       "n": 1848
     },
     {
-      "mean_pred": 0.11799644975006297,
-      "observed": 0.1038961038961039,
+      "mean_pred": 0.11858069648628672,
+      "observed": 0.10281385281385282,
       "n": 1848
     },
     {
-      "mean_pred": 0.16782708770782098,
-      "observed": 0.17153679653679654,
+      "mean_pred": 0.16094461430785734,
+      "observed": 0.16774891774891776,
       "n": 1848
     },
     {
-      "mean_pred": 0.2261707103112997,
-      "observed": 0.23484848484848486,
+      "mean_pred": 0.21815677302070544,
+      "observed": 0.23322510822510822,
       "n": 1848
     },
     {
-      "mean_pred": 0.30108101274971594,
-      "observed": 0.3068181818181818,
+      "mean_pred": 0.3047434403187373,
+      "observed": 0.3262987012987013,
       "n": 1848
     },
     {
-      "mean_pred": 0.39783297764012054,
-      "observed": 0.4025974025974026,
+      "mean_pred": 0.4084169866952606,
+      "observed": 0.4134199134199134,
       "n": 1848
     },
     {
-      "mean_pred": 0.5616592601560658,
-      "observed": 0.5546536796536796,
+      "mean_pred": 0.5493258405153828,
+      "observed": 0.5422077922077922,
       "n": 1848
     },
     {
-      "mean_pred": 0.7919871722836662,
-      "observed": 0.7938311688311688,
+      "mean_pred": 0.8052134626296579,
+      "observed": 0.8073593073593074,
       "n": 1848
     }
   ],
@@ -183,7 +186,7 @@
       "category": "BAG SNACKS",
       "n": 2310,
       "prevalence": 0.43203463203463205,
-      "AP_model": 0.7631622925332813,
+      "AP_model": 0.767646708489573,
       "AP_rule": 0.7266077875192485,
       "AP_popularity_baseline": 0.43203463203463205
     },
@@ -191,7 +194,7 @@
       "category": "COFFEE",
       "n": 2310,
       "prevalence": 0.1683982683982684,
-      "AP_model": 0.5798118400868548,
+      "AP_model": 0.6097323668580696,
       "AP_rule": 0.5371362551011855,
       "AP_popularity_baseline": 0.1683982683982684
     },
@@ -199,7 +202,7 @@
       "category": "COLD CEREAL",
       "n": 2310,
       "prevalence": 0.29653679653679654,
-      "AP_model": 0.6501210235707798,
+      "AP_model": 0.6594707893217262,
       "AP_rule": 0.6141008392819953,
       "AP_popularity_baseline": 0.29653679653679654
     },
@@ -207,7 +210,7 @@
       "category": "FROZEN PIZZA",
       "n": 2310,
       "prevalence": 0.2852813852813853,
-      "AP_model": 0.6392363899852808,
+      "AP_model": 0.6542285922633122,
       "AP_rule": 0.5932218670434459,
       "AP_popularity_baseline": 0.2852813852813853
     },
@@ -215,7 +218,7 @@
       "category": "ICE CREAM/MILK/SHERBTS",
       "n": 2310,
       "prevalence": 0.23982683982683983,
-      "AP_model": 0.5518179853191312,
+      "AP_model": 0.5668513032488435,
       "AP_rule": 0.5213922391612474,
       "AP_popularity_baseline": 0.23982683982683983
     },
@@ -223,7 +226,7 @@
       "category": "REFRGRATD JUICES/DRNKS",
       "n": 2310,
       "prevalence": 0.2818181818181818,
-      "AP_model": 0.6780330371235644,
+      "AP_model": 0.6872270953687127,
       "AP_rule": 0.6466598298443796,
       "AP_popularity_baseline": 0.2818181818181818
     },
@@ -231,7 +234,7 @@
       "category": "SOUP",
       "n": 2310,
       "prevalence": 0.3329004329004329,
-      "AP_model": 0.6771871291194627,
+      "AP_model": 0.6781705425967585,
       "AP_rule": 0.6436523122603663,
       "AP_popularity_baseline": 0.3329004329004329
     },
@@ -239,7 +242,7 @@
       "category": "YOGURT",
       "n": 2310,
       "prevalence": 0.1632034632034632,
-      "AP_model": 0.6119019577927994,
+      "AP_model": 0.6295876778241869,
       "AP_rule": 0.5829302247932069,
       "AP_popularity_baseline": 0.1632034632034632
     }
@@ -249,83 +252,83 @@
       "segment": "ACTIVE_NONBUYER",
       "n": 5564,
       "prevalence": 0.12670740474478792,
-      "mean_pred_model": 0.13163421034709,
+      "mean_pred_model": 0.1321611506862781,
       "mean_pred_rule": 0.10932509015971151,
-      "Brier_model": 0.10654741265001752,
+      "Brier_model": 0.10412588080589934,
       "Brier_rule": 0.11095478318796298,
-      "AP_model": 0.21403976799304947,
+      "AP_model": 0.2432796140072701,
       "AP_rule": 0.12670740474478792
     },
     {
       "segment": "LAPSING",
       "n": 3226,
       "prevalence": 0.2994420334779913,
-      "mean_pred_model": 0.2925289245186495,
+      "mean_pred_model": 0.29246252808481393,
       "mean_pred_rule": 0.2983072526561876,
-      "Brier_model": 0.20111519058926638,
+      "Brier_model": 0.1972834191628914,
       "Brier_rule": 0.20774569615283658,
-      "AP_model": 0.4026375851919893,
+      "AP_model": 0.42448133732863513,
       "AP_rule": 0.3533040042877843
     },
     {
       "segment": "LOW_ACTIVITY",
       "n": 4071,
       "prevalence": 0.07344632768361582,
-      "mean_pred_model": 0.07142893412326493,
+      "mean_pred_model": 0.07367438360934118,
       "mean_pred_rule": 0.10932509015971154,
-      "Brier_model": 0.06572901045278003,
+      "Brier_model": 0.06519983065725778,
       "Brier_rule": 0.06933925023022283,
-      "AP_model": 0.15254988215795862,
+      "AP_model": 0.1671450006677143,
       "AP_rule": 0.07344632768361582
     },
     {
       "segment": "RECENT_LIGHT",
       "n": 2373,
       "prevalence": 0.3683101559207754,
-      "mean_pred_model": 0.37064804378496324,
+      "mean_pred_model": 0.3630093791459356,
       "mean_pred_rule": 0.3562556192964782,
-      "Brier_model": 0.2174549180722871,
+      "Brier_model": 0.21414935037578767,
       "Brier_rule": 0.2253793747973141,
-      "AP_model": 0.5118966806740674,
+      "AP_model": 0.5251550086071284,
       "AP_rule": 0.42799830132248934
     },
     {
       "segment": "REGULAR",
       "n": 3246,
       "prevalence": 0.6894639556377079,
-      "mean_pred_model": 0.6897486077163221,
+      "mean_pred_model": 0.6839352221455902,
       "mean_pred_rule": 0.6909012460388692,
-      "Brier_model": 0.1949357892845875,
+      "Brier_model": 0.19074892964953769,
       "Brier_rule": 0.19713656100110355,
-      "AP_model": 0.8378802797189733,
+      "AP_model": 0.8446220221878418,
       "AP_rule": 0.8200953399891024
     }
   ],
   "failure_case": {
     "weakest_category_vs_rule": {
-      "category": "YOGURT",
+      "category": "SOUP",
       "n": 2310,
-      "prevalence": 0.1632034632034632,
-      "AP_model": 0.6119019577927994,
-      "AP_rule": 0.5829302247932069,
-      "AP_popularity_baseline": 0.1632034632034632
+      "prevalence": 0.3329004329004329,
+      "AP_model": 0.6781705425967585,
+      "AP_rule": 0.6436523122603663,
+      "AP_popularity_baseline": 0.3329004329004329
     },
     "missed_buyers_pred_below_5pct": {
-      "n": 50,
-      "share_of_positives": 0.009838646202282565,
+      "n": 73,
+      "share_of_positives": 0.014364423455332545,
       "segment_mix": {
-        "LOW_ACTIVITY": 45,
-        "ACTIVE_NONBUYER": 5
+        "LOW_ACTIVITY": 52,
+        "ACTIVE_NONBUYER": 21
       }
     },
     "interpretation": "Households with no category purchase in 12 weeks who then buy are near-unpredictable from behaviour alone; the model gives them low scores. This is the cold-start limit."
   },
   "ablation_test_AP": {
-    "no_campaign_coupon_features": 0.6640414233548894,
-    "no_popularity_features": 0.6618200180845693
+    "no_campaign_coupon_features": 0.6743744544746381,
+    "no_popularity_features": 0.6729296819800805
   },
   "robustness": {
-    "backtest_cutoff_45_AP_model": 0.6651663258750253,
+    "backtest_cutoff_45_AP_model": 0.6744887480592767,
     "backtest_cutoff_45_AP_rule": 0.6216834324267566
   },
   "economics_inputs_observed": {
@@ -594,23 +597,23 @@
   },
   "window_gaps_model_vs_rule": {
     "validation_41": {
-      "model": 0.6651821207836169,
+      "model": 0.6789846102237661,
       "rule": 0.627952498473635
     },
     "calibration_45": {
-      "model": 0.6651663258750253,
+      "model": 0.6744887480592767,
       "rule": 0.6216834324267566
     },
     "test_49": {
-      "model": 0.6623996291847538,
+      "model": 0.6717374137892858,
       "rule": 0.6210149195951625
     }
   },
-  "seconds": 87.5,
+  "seconds": 30.0,
   "artifacts": {
     "scores": "data/processed/scores_latest.parquet",
-    "scores_sha16": "c65e158357f2f128",
+    "scores_sha16": "67046eb13d931d6a",
     "model": "data/processed/model.pkl",
-    "model_sha16": "e693db50e28b4641"
+    "model_sha16": "851fbca8d325f4c4"
   }
 }

@@ -1,0 +1,65 @@
+{
+  "lock": "data\\manifest.lock.json",
+  "source_commit": "5b5d06192b9856edd04e4d405787af2f2e4a1fef",
+  "licence": "CC0 (package DESCRIPTION)",
+  "files": [
+    {
+      "name": "transactions.rds",
+      "present": true,
+      "bytes_ok": true,
+      "sha256_ok": true,
+      "rows": 1469307,
+      "rows_ok": true
+    },
+    {
+      "name": "products.rda",
+      "present": true,
+      "bytes_ok": true,
+      "sha256_ok": true,
+      "rows": 92331,
+      "rows_ok": true
+    },
+    {
+      "name": "campaigns.rda",
+      "present": true,
+      "bytes_ok": true,
+      "sha256_ok": true,
+      "rows": 6589,
+      "rows_ok": true
+    },
+    {
+      "name": "campaign_descriptions.rda",
+      "present": true,
+      "bytes_ok": true,
+      "sha256_ok": true,
+      "rows": 27,
+      "rows_ok": true
+    },
+    {
+      "name": "coupons.rda",
+      "present": true,
+      "bytes_ok": true,
+      "sha256_ok": true,
+      "rows": 116204,
+      "rows_ok": true
+    },
+    {
+      "name": "coupon_redemptions.rda",
+      "present": true,
+      "bytes_ok": true,
+      "sha256_ok": true,
+      "rows": 2102,
+      "rows_ok": true
+    },
+    {
+      "name": "demographics.rda",
+      "present": true,
+      "bytes_ok": true,
+      "sha256_ok": true,
+      "rows": 801,
+      "rows_ok": true
+    }
+  ],
+  "ok": true,
+  "problems": []
+}

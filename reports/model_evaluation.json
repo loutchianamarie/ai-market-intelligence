@@ -1,0 +1,569 @@
+{
+  "protocol": "data\\eval\\model_eval_protocol_v1.json",
+  "protocol_status": "PRE-REGISTERED 2026-11-14 before running mi.model.evaluate. Do not edit after the first run; write v2 instead.",
+  "production_model": "hgb_small",
+  "adopted_model": "hgb_small_longhist",
+  "adoption_rule": "Replace hgb_small only if a candidate improves AP by >= 0.005 on the selection window 41 AND on the rolling-origin window 45, AND does not lower AP on the no-recent-history subgroup (LOW_ACTIVITY + ACTIVE_NONBUYER) at window 41. Otherwise keep hgb_small and report the negative result.",
+  "adoption_log": [
+    {
+      "candidate": "logreg_l2",
+      "AP_gain_41": -0.0037,
+      "AP_gain_rolling_45": -0.0053,
+      "AP_change_no_recent_41": -0.0228,
+      "passes": false
+    },
+    {
+      "candidate": "hgb_small_longhist",
+      "AP_gain_41": 0.0138,
+      "AP_gain_rolling_45": 0.01,
+      "AP_change_no_recent_41": 0.0311,
+      "passes": true
+    }
+  ],
+  "selection_window_41": {
+    "rule_popularity": {
+      "AP": 0.3408531304510077,
+      "AP_no_recent_history": 0.13743960810215564
+    },
+    "rule_repeat": {
+      "AP": 0.627952498473635,
+      "AP_no_recent_history": 0.10797495637893872
+    },
+    "logreg_l2": {
+      "AP": 0.6614921496000338,
+      "AP_no_recent_history": 0.18150993692701484
+    },
+    "hgb_small": {
+      "AP": 0.6651821207836169,
+      "AP_no_recent_history": 0.20427276822997747
+    },
+    "hgb_small_longhist": {
+      "AP": 0.6789846102237661,
+      "AP_no_recent_history": 0.2353383145132153
+    }
+  },
+  "rolling_origin_AP": {
+    "41": {
+      "train_cutoffs": [
+        13,
+        17,
+        21,
+        25,
+        29,
+        33,
+        37
+      ],
+      "prevalence": 0.2788253142609449,
+      "n": 18456,
+      "rule_popularity": 0.3408531304510077,
+      "rule_repeat": 0.627952498473635,
+      "logreg_l2": 0.6614921496000338,
+      "hgb_small": 0.6651821207836169,
+      "hgb_small_longhist": 0.6789846102237661
+    },
+    "45": {
+      "train_cutoffs": [
+        13,
+        17,
+        21,
+        25,
+        29,
+        33,
+        37,
+        41
+      ],
+      "prevalence": 0.27509799651567945,
+      "n": 18368,
+      "rule_popularity": 0.343723654080091,
+      "rule_repeat": 0.6216834324267566,
+      "logreg_l2": 0.6606644002901177,
+      "hgb_small": 0.6659367384838111,
+      "hgb_small_longhist": 0.6759096558853364
+    },
+    "49": {
+      "train_cutoffs": [
+        13,
+        17,
+        21,
+        25,
+        29,
+        33,
+        37,
+        41,
+        45
+      ],
+      "prevalence": 0.275,
+      "n": 18480,
+      "rule_popularity": 0.35228292125407995,
+      "rule_repeat": 0.6210149195951625,
+      "logreg_l2": 0.6639594224381555,
+      "hgb_small": 0.6635914498455178,
+      "hgb_small_longhist": 0.674455636216181
+    }
+  },
+  "calibration": {
+    "rule_popularity": {
+      "fit45_eval49": {
+        "Brier": 0.193386312095884,
+        "ECE": 0.024777397976015504
+      },
+      "fit41_eval45": {
+        "Brier": 0.1943719300729255,
+        "ECE": 0.010807316643124471
+      },
+      "fit41_eval49": {
+        "Brier": 0.19322349020954155,
+        "ECE": 0.01964132699625255
+      }
+    },
+    "rule_repeat": {
+      "fit45_eval49": {
+        "Brier": 0.1485146455918681,
+        "ECE": 0.007573053071011549
+      },
+      "fit41_eval45": {
+        "Brier": 0.1488307204367646,
+        "ECE": 0.016466406846200297
+      },
+      "fit41_eval49": {
+        "Brier": 0.1486413957930687,
+        "ECE": 0.013425431580346802
+      }
+    },
+    "logreg_l2": {
+      "fit45_eval49": {
+        "Brier": 0.14382186302612976,
+        "ECE": 0.004694142327396313
+      },
+      "fit41_eval45": {
+        "Brier": 0.14514267294521213,
+        "ECE": 0.008120183663201292
+      },
+      "fit41_eval49": {
+        "Brier": 0.14403059089314904,
+        "ECE": 0.008181953233597009
+      }
+    },
+    "hgb_small": {
+      "fit45_eval49": {
+        "Brier": 0.14383075232587914,
+        "ECE": 0.005767490812092884
+      },
+      "fit41_eval45": {
+        "Brier": 0.14395174657724497,
+        "ECE": 0.008941973320925277
+      },
+      "fit41_eval49": {
+        "Brier": 0.14385677103448163,
+        "ECE": 0.012290072950984556
+      }
+    },
+    "hgb_small_longhist": {
+      "fit45_eval49": {
+        "Brier": 0.14115631253860125,
+        "ECE": 0.008937420876745691
+      },
+      "fit41_eval45": {
+        "Brier": 0.14148815331522055,
+        "ECE": 0.006012227783555904
+      },
+      "fit41_eval49": {
+        "Brier": 0.14123519826324332,
+        "ECE": 0.012226554790112714
+      }
+    }
+  },
+  "repeated_evaluation_49": {
+    "note": "Window 49 has been inspected in earlier passes; results on it are REPEATED evaluation, not an untouched test.",
+    "overall": {
+      "rule_popularity": {
+        "AP": 0.35228292125407995,
+        "ROC_AUC": 0.6124998303681689,
+        "top5pct": {
+          "contacts": 924,
+          "precision": 0.4134199134199134,
+          "recall": 0.0751672569854388
+        },
+        "top10pct": {
+          "contacts": 1848,
+          "precision": 0.4258658008658009,
+          "recall": 0.15486029122392758
+        },
+        "top20pct": {
+          "contacts": 3696,
+          "precision": 0.3958333333333333,
+          "recall": 0.2878787878787879
+        }
+      },
+      "rule_repeat": {
+        "AP": 0.6210149195951625,
+        "ROC_AUC": 0.7865093596529089,
+        "top5pct": {
+          "contacts": 924,
+          "precision": 0.8603896103896104,
+          "recall": 0.15643447461629278
+        },
+        "top10pct": {
+          "contacts": 1848,
+          "precision": 0.783008658008658,
+          "recall": 0.28473042109405744
+        },
+        "top20pct": {
+          "contacts": 3696,
+          "precision": 0.6612554112554112,
+          "recall": 0.4809130263675718
+        }
+      },
+      "logreg_l2": {
+        "AP": 0.6624829357240665,
+        "ROC_AUC": 0.8160115000688221,
+        "top5pct": {
+          "contacts": 924,
+          "precision": 0.8798701298701299,
+          "recall": 0.15997638724911453
+        },
+        "top10pct": {
+          "contacts": 1848,
+          "precision": 0.788961038961039,
+          "recall": 0.28689492325855964
+        },
+        "top20pct": {
+          "contacts": 3696,
+          "precision": 0.6734307359307359,
+          "recall": 0.48976780794962615
+        }
+      },
+      "hgb_small": {
+        "AP": 0.6623996291847538,
+        "ROC_AUC": 0.8178948760260083,
+        "top5pct": {
+          "contacts": 924,
+          "precision": 0.8679653679653679,
+          "recall": 0.15781188508461236
+        },
+        "top10pct": {
+          "contacts": 1848,
+          "precision": 0.795995670995671,
+          "recall": 0.2894529712711531
+        },
+        "top20pct": {
+          "contacts": 3696,
+          "precision": 0.6747835497835498,
+          "recall": 0.4907516725698544
+        }
+      },
+      "hgb_small_longhist": {
+        "AP": 0.6717374137892858,
+        "ROC_AUC": 0.8269187533731768,
+        "top5pct": {
+          "contacts": 924,
+          "precision": 0.8777056277056277,
+          "recall": 0.15958284140102322
+        },
+        "top10pct": {
+          "contacts": 1848,
+          "precision": 0.8062770562770563,
+          "recall": 0.29319165682802045
+        },
+        "top20pct": {
+          "contacts": 3696,
+          "precision": 0.6737012987012987,
+          "recall": 0.4899645808736718
+        }
+      }
+    },
+    "per_category_at_250": [
+      {
+        "category": "BAG SNACKS",
+        "k": 250,
+        "precision_at_k": 0.908,
+        "recall_at_k": 0.22745490981963928,
+        "prevalence": 0.43203463203463205
+      },
+      {
+        "category": "COFFEE",
+        "k": 250,
+        "precision_at_k": 0.656,
+        "recall_at_k": 0.42159383033419023,
+        "prevalence": 0.1683982683982684
+      },
+      {
+        "category": "COLD CEREAL",
+        "k": 250,
+        "precision_at_k": 0.788,
+        "recall_at_k": 0.2875912408759124,
+        "prevalence": 0.29653679653679654
+      },
+      {
+        "category": "FROZEN PIZZA",
+        "k": 250,
+        "precision_at_k": 0.772,
+        "recall_at_k": 0.2928679817905918,
+        "prevalence": 0.2852813852813853
+      },
+      {
+        "category": "ICE CREAM/MILK/SHERBTS",
+        "k": 250,
+        "precision_at_k": 0.652,
+        "recall_at_k": 0.29422382671480146,
+        "prevalence": 0.23982683982683983
+      },
+      {
+        "category": "REFRGRATD JUICES/DRNKS",
+        "k": 250,
+        "precision_at_k": 0.832,
+        "recall_at_k": 0.3195084485407066,
+        "prevalence": 0.2818181818181818
+      },
+      {
+        "category": "SOUP",
+        "k": 250,
+        "precision_at_k": 0.808,
+        "recall_at_k": 0.2626788036410923,
+        "prevalence": 0.3329004329004329
+      },
+      {
+        "category": "YOGURT",
+        "k": 250,
+        "precision_at_k": 0.68,
+        "recall_at_k": 0.4509283819628647,
+        "prevalence": 0.1632034632034632
+      }
+    ],
+    "subgroups_model_vs_rule": [
+      {
+        "slice": "all",
+        "n": 18480,
+        "positives": 5082,
+        "prevalence": 0.275,
+        "AP_model": 0.6717374137892858,
+        "AP_rule": 0.6210149195951625,
+        "Brier_model": 0.14115631253860125,
+        "Brier_rule": 0.1485146455918681,
+        "AP_diff_95ci": [
+          0.0453,
+          0.0556
+        ]
+      },
+      {
+        "slice": "category=BAG SNACKS",
+        "n": 2310,
+        "positives": 998,
+        "prevalence": 0.43203463203463205,
+        "AP_model": 0.767646708489573,
+        "AP_rule": 0.7266077875192485,
+        "Brier_model": 0.1790058750153174,
+        "Brier_rule": 0.1953950804855311,
+        "AP_diff_95ci": [
+          0.0327,
+          0.0497
+        ]
+      },
+      {
+        "slice": "category=FROZEN PIZZA",
+        "n": 2310,
+        "positives": 659,
+        "prevalence": 0.2852813852813853,
+        "AP_model": 0.6542285922633122,
+        "AP_rule": 0.5932218670434459,
+        "Brier_model": 0.1501875582055019,
+        "Brier_rule": 0.15819802632407567,
+        "AP_diff_95ci": [
+          0.0488,
+          0.0754
+        ]
+      },
+      {
+        "slice": "category=COLD CEREAL",
+        "n": 2310,
+        "positives": 685,
+        "prevalence": 0.29653679653679654,
+        "AP_model": 0.6594707893217262,
+        "AP_rule": 0.6141008392819953,
+        "Brier_model": 0.15556665387887125,
+        "Brier_rule": 0.16167225920450248,
+        "AP_diff_95ci": [
+          0.0305,
+          0.0603
+        ]
+      },
+      {
+        "slice": "category=SOUP",
+        "n": 2310,
+        "positives": 769,
+        "prevalence": 0.3329004329004329,
+        "AP_model": 0.6781705425967585,
+        "AP_rule": 0.6436523122603663,
+        "Brier_model": 0.1654695857677517,
+        "Brier_rule": 0.1700089339355571,
+        "AP_diff_95ci": [
+          0.0227,
+          0.0485
+        ]
+      },
+      {
+        "slice": "category=ICE CREAM/MILK/SHERBTS",
+        "n": 2310,
+        "positives": 554,
+        "prevalence": 0.23982683982683983,
+        "AP_model": 0.5668513032488435,
+        "AP_rule": 0.5213922391612474,
+        "Brier_model": 0.14386402686933542,
+        "Brier_rule": 0.1489365127049791,
+        "AP_diff_95ci": [
+          0.0299,
+          0.0618
+        ]
+      },
+      {
+        "slice": "category=YOGURT",
+        "n": 2310,
+        "positives": 377,
+        "prevalence": 0.1632034632034632,
+        "AP_model": 0.6295876778241869,
+        "AP_rule": 0.5829302247932069,
+        "Brier_model": 0.09478393729888542,
+        "Brier_rule": 0.10131027460842353,
+        "AP_diff_95ci": [
+          0.0303,
+          0.0599
+        ]
+      },
+      {
+        "slice": "category=COFFEE",
+        "n": 2310,
+        "positives": 389,
+        "prevalence": 0.1683982683982684,
+        "AP_model": 0.6097323668580696,
+        "AP_rule": 0.5371362551011855,
+        "Brier_model": 0.09725950672896386,
+        "Brier_rule": 0.10484309621166162,
+        "AP_diff_95ci": [
+          0.0512,
+          0.0901
+        ]
+      },
+      {
+        "slice": "category=REFRGRATD JUICES/DRNKS",
+        "n": 2310,
+        "positives": 651,
+        "prevalence": 0.2818181818181818,
+        "AP_model": 0.6872270953687127,
+        "AP_rule": 0.6466598298443796,
+        "Brier_model": 0.14311335654418314,
+        "Brier_rule": 0.14775298126021427,
+        "AP_diff_95ci": [
+          0.0273,
+          0.0533
+        ]
+      },
+      {
+        "slice": "segment=ACTIVE_NONBUYER",
+        "n": 5564,
+        "positives": 705,
+        "prevalence": 0.12670740474478792,
+        "AP_model": 0.2432796140072701,
+        "AP_rule": 0.12670740474478792,
+        "Brier_model": 0.10412588080589934,
+        "Brier_rule": 0.11095478318796298,
+        "AP_diff_95ci": [
+          0.0965,
+          0.146
+        ]
+      },
+      {
+        "slice": "segment=LAPSING",
+        "n": 3226,
+        "positives": 966,
+        "prevalence": 0.2994420334779913,
+        "AP_model": 0.42448133732863513,
+        "AP_rule": 0.3533040042877843,
+        "Brier_model": 0.1972834191628914,
+        "Brier_rule": 0.20774569615283658,
+        "AP_diff_95ci": [
+          0.043,
+          0.0987
+        ]
+      },
+      {
+        "slice": "segment=LOW_ACTIVITY",
+        "n": 4071,
+        "positives": 299,
+        "prevalence": 0.07344632768361582,
+        "AP_model": 0.1671450006677143,
+        "AP_rule": 0.07344632768361582,
+        "Brier_model": 0.06519983065725778,
+        "Brier_rule": 0.06933925023022283,
+        "AP_diff_95ci": [
+          0.0661,
+          0.1241
+        ]
+      },
+      {
+        "slice": "segment=RECENT_LIGHT",
+        "n": 2373,
+        "positives": 874,
+        "prevalence": 0.3683101559207754,
+        "AP_model": 0.5251550086071284,
+        "AP_rule": 0.42799830132248934,
+        "Brier_model": 0.21414935037578767,
+        "Brier_rule": 0.2253793747973141,
+        "AP_diff_95ci": [
+          0.0681,
+          0.1285
+        ]
+      },
+      {
+        "slice": "segment=REGULAR",
+        "n": 3246,
+        "positives": 2238,
+        "prevalence": 0.6894639556377079,
+        "AP_model": 0.8446220221878418,
+        "AP_rule": 0.8200953399891024,
+        "Brier_model": 0.19074892964953769,
+        "Brier_rule": 0.19713656100110355,
+        "AP_diff_95ci": [
+          0.0171,
+          0.0326
+        ]
+      },
+      {
+        "slice": "no_recent_history",
+        "n": 9635,
+        "positives": 1004,
+        "prevalence": 0.10420342501297353,
+        "AP_model": 0.22317897550685062,
+        "AP_rule": 0.10420342501297353,
+        "Brier_model": 0.08767876610375924,
+        "Brier_rule": 0.09337130268241443,
+        "AP_diff_95ci": [
+          0.1015,
+          0.1457
+        ]
+      }
+    ]
+  },
+  "by_window": {
+    "41": {
+      "month": "Oct 2017",
+      "prevalence": 0.2788253142609449,
+      "AP_model": 0.6789846102237661,
+      "AP_rule": 0.627952498473635
+    },
+    "45": {
+      "month": "Nov 2017",
+      "prevalence": 0.27509799651567945,
+      "AP_model": 0.6744887480592767,
+      "AP_rule": 0.6216834324267566
+    },
+    "49": {
+      "month": "Dec 2017",
+      "prevalence": 0.275,
+      "AP_model": 0.6717374137892858,
+      "AP_rule": 0.6210149195951625
+    }
+  },
+  "seed": 20261114,
+  "seconds": 65.4,
+  "intended_use": "ranking existing households by probability of buying a category under historical conditions; NOT coupon uplift or persuadability"
+}

@@ -44,12 +44,27 @@ def _read_r(fname: str, key):
     return res[key] if key in res else next(iter(res.values()))
 
 
+def _source_sha(fname: str) -> str | None:
+    import hashlib
+    p = RAW / fname
+    if not p.exists():
+        return None
+    h = hashlib.sha256()
+    with open(p, "rb") as f:
+        for b in iter(lambda: f.read(1 << 20), b""):
+            h.update(b)
+    return h.hexdigest()
+
+
 @lru_cache(maxsize=None)
 def load(name: str) -> pd.DataFrame:
-    cache = PROCESSED / f"{name}.parquet"
-    if cache.exists():
-        return pd.read_parquet(cache)
+    """Parquet cache keyed by the raw file's SHA-256: a changed raw file always rebuilds its cache."""
     fname, key = TABLES[name]
+    cache, meta = PROCESSED / f"{name}.parquet", PROCESSED / f"{name}.parquet.source.json"
+    src = _source_sha(fname)
+    if cache.exists() and meta.exists() and src is not None:
+        if json.loads(meta.read_text()).get("source_sha256") == src:
+            return pd.read_parquet(cache)
     df = _read_r(fname, key)
     for col in df.columns:
         if isinstance(df[col].dtype, pd.CategoricalDtype):
@@ -59,7 +74,9 @@ def load(name: str) -> pd.DataFrame:
         df["end_date"] = pd.to_datetime(df["end_date"])
     if name == "coupon_redemptions":
         df["redemption_date"] = pd.to_datetime(df["redemption_date"])
+    PROCESSED.mkdir(parents=True, exist_ok=True)
     df.to_parquet(cache, index=False)
+    meta.write_text(json.dumps({"source_file": fname, "source_sha256": src}))
     return df
 
 
