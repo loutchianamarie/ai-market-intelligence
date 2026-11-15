@@ -88,7 +88,7 @@ if d:
     c4.markdown(badge("SIMULATED WORKFLOW"), unsafe_allow_html=True)
 
 tabs = st.tabs(["1 Evidence & segment", "2 Model vs rule", "3 Plans & reversal", "4 Pilot & approval",
-                "5 SEO / GEO", "6 Learning", "7 Agent trace"])
+                "5 SEO / GEO", "6 Learning", "7 Agent trace", "8 Buyer outcomes", "9 Work queue"])
 
 # ---------------------------------------------------------------- 1 evidence
 with tabs[0]:
@@ -365,3 +365,68 @@ with tabs[6]:
         from mi.agents.llm import credentials_available
         st.caption("Runtime LLM: " + ("available — roles run as Claude tool-use nodes" if credentials_available()
                                        else "NOT configured — roles ran as typed deterministic nodes through the same allowlisted tools"))
+
+
+# ---------------------------------------------------------------- 8 buyer outcomes
+with tabs[7]:
+    bo = rj("buyer_outcomes.json")
+    st.subheader("Buyer-outcome panel: forecast vs scenario vs observed (never mixed)")
+    if not bo:
+        st.info("Run python -m mi.decision.buyer_outcomes")
+    else:
+        st.caption(f"Objective: {bo['objective']['primary']}. Buyer = {bo['objective']['units']['buyer']}. "
+                   f"Horizon {bo['objective']['decision_horizon_weeks']} weeks. Not measurable here: {bo['objective']['not_measurable_here']}.")
+        a = bo["actions"]["A_coupon"]
+        p, add = a["current_pattern_buyers_panel"], a["additional_buyers_reachable_hypothetical"]
+        rows = [("Eligible panel households (contactable)", f"{a['eligible']['panel_households']:,} (0)", "OBSERVED"),
+                ("Eligible / reachable / consent unknown (company)", f"{a['eligible']['company_eligible_hypothetical']:,} / {a['eligible']['reachable_hypothetical']:,} / {a['eligible']['consent_unknown_or_suppressed_hypothetical']:,}", "COMPANY SCALE ASSUMED"),
+                ("Expected buyers, current patterns (panel, 4 wks)", f"{p['expected_buyers']} of {p['households']} (95% {p['poisson_binomial_95']}; calibration-adjusted {p.get('calibration_adjusted_range')})", "MODEL ESTIMATE, not a no-contact counterfactual"),
+                ("Additional buyers from the coupon (low / base / high)", f"{add['low']:,} / {add['base']:,} / {add['high']:,}", "SCENARIO (assumed response)"),
+                ("Break-even additional buyers", f"{a['break_even_additional_buyers']:,}", "SCENARIO"),
+                ("Incremental contribution, USD (low / base / high)", " / ".join(f"{a['incremental_contribution_usd'][k]:+,.0f}" for k in ("low", "base", "high")), "SCENARIO"),
+                ("Observed after action", str(a["observed_after_action"]), "OBSERVED only after a run")]
+        st.markdown(f"**{a['action']}**")
+        st.dataframe(pd.DataFrame(rows, columns=["row", "value", "label"]), width="stretch", hide_index=True)
+        for k in ("B_yogurt_investigation", "C_content", "D_none", "E_extra"):
+            x = bo["actions"].get(k)
+            if x:
+                st.markdown(f"**{x['action']}** — additional buyers: {x.get('additional_buyers')}; budget ${x.get('budget_usd', 0)}")
+
+# ---------------------------------------------------------------- 9 work queue
+with tabs[8]:
+    from mi.workflow.store import WorkQueue
+    st.subheader("Advisor work queue (simulated CRM; nothing is sent, spent or launched)")
+    if not d:
+        st.info("Run the agents to build the queue.")
+    else:
+        wq = WorkQueue(store)
+        items = wq.list(oid)
+        if not items:
+            st.info("No work items for this dossier (dossiers created before this pass have none; run the agents).")
+        else:
+            st.dataframe(pd.DataFrame([{"item": w["item_id"], "status": w["status"], "kind": w["payload"]["kind"], "title": w["payload"]["title"],
+                                        "owner": w["payload"]["owner"], "budget_usd": w["payload"]["budget_usd"], "due": w["payload"]["due_date"],
+                                        "success_metric": w["payload"]["success_metric"]} for w in items]).astype(str), width="stretch", hide_index=True)
+            pick = st.selectbox("Work item", [w["item_id"] for w in items])
+            who = st.text_input("Your full name (human)", key="wq_name")
+            why = st.text_input("Reason / source (required)", key="wq_reason")
+            c1, c2, c3, c4 = st.columns(4)
+            for col, dec in ((c1, "approve"), (c2, "reject"), (c3, "defer")):
+                if col.button(dec.capitalize(), key=f"wq_{dec}", disabled=not who or not why):
+                    try:
+                        st.success(f"{dec}: {wq.decide(pick, who, 'approver', dec, why)['status']}")
+                    except Exception as e:
+                        st.error(f"BLOCKED: {e}")
+            if c4.button("Verify consent + stock", disabled=not who or not why):
+                try:
+                    wq.verify_requirement(pick, "consent_verified", True, who, "approver", why)
+                    wq.verify_requirement(pick, "stock_confirmed", True, who, "approver", why)
+                    st.success("verified (recorded with your name and source)")
+                except Exception as e:
+                    st.error(str(e))
+            outcome = st.text_input("Observed outcome to record on completion (facts only)", key="wq_outcome")
+            if st.button("Mark done with observed outcome", disabled=not who or not outcome):
+                try:
+                    st.success(wq.complete(pick, who, "human", {"note": outcome})["status"])
+                except Exception as e:
+                    st.error(f"BLOCKED: {e}")

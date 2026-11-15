@@ -87,7 +87,7 @@
     }
   ],
   "status": "SCENARIO (one input varied, others at ASSUMED base values); not a forecast",
-  "seconds": 13.2,
+  "seconds": 26.6,
   "combinations": {
     "see": "reports/funding_contracts.json#reversal_grid",
     "note": "joint-input reversals are computed per explicit funding contract; counts of selected cases are not probabilities"

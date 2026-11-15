@@ -68,6 +68,9 @@ CREATE TABLE IF NOT EXISTS dossier_versions(
 CREATE TABLE IF NOT EXISTS audit_events(
   id INTEGER PRIMARY KEY AUTOINCREMENT, opportunity_id TEXT, version INTEGER, ts TEXT,
   actor TEXT, role TEXT, event TEXT, detail TEXT);
+CREATE TABLE IF NOT EXISTS work_items(
+  item_id TEXT PRIMARY KEY, opportunity_id TEXT, idempotency_key TEXT UNIQUE, created_at TEXT, updated_at TEXT,
+  status TEXT, payload TEXT);
 CREATE TABLE IF NOT EXISTS crm_actions(
   action_id TEXT PRIMARY KEY, opportunity_id TEXT, version INTEGER, idempotency_key TEXT UNIQUE,
   plan_hash TEXT, kind TEXT, payload TEXT, ts TEXT, sandbox INTEGER DEFAULT 1);
@@ -287,3 +290,121 @@ class DossierStore:
     def crm_actions(self, oid) -> list[dict]:
         with self._conn() as c:
             return [dict(r) for r in c.execute("SELECT * FROM crm_actions WHERE opportunity_id=?", (oid,)).fetchall()]
+
+
+# ---------------------------------------------------------------- advisor work queue (simulated CRM; never sends)
+PAID_KINDS = {"paid_contact", "public_content"}
+WORK_STATUSES = {"READY", "BLOCKED_PENDING_APPROVAL", "APPROVED", "REJECTED", "DEFERRED", "IN_PROGRESS", "DONE"}
+WORK_REQUIRED = ["kind", "title", "owner", "segment", "channel", "draft", "evidence", "budget_usd", "due_date", "success_metric", "follow_up_date"]
+
+
+def _is_paid(item: dict) -> bool:
+    return item["kind"] in PAID_KINDS or float(item.get("budget_usd") or 0) > 0
+
+
+class WorkQueue:
+    """Work items tied to a dossier. Agents may create drafts; only a named human approver can approve/reject/defer
+    (with a reason); only humans verify consent/stock and record completion with OBSERVED outcomes. No method sends,
+    spends or launches anything."""
+
+    def __init__(self, store: DossierStore):
+        self.s = store
+
+    def _get(self, c, item_id):
+        r = c.execute("SELECT * FROM work_items WHERE item_id=?", (item_id,)).fetchone()
+        if not r:
+            raise WorkflowError(f"unknown work item {item_id}")
+        return dict(r) | {"payload": json.loads(r["payload"])}
+
+    def _save(self, c, item_id, status, payload):
+        c.execute("UPDATE work_items SET status=?, payload=?, updated_at=? WHERE item_id=?", (status, json.dumps(payload, default=str), now(), item_id))
+
+    def create(self, oid, item: dict, idempotency_key: str, actor: str, role: str = "agent") -> dict:
+        missing = [k for k in WORK_REQUIRED if k not in item]
+        if missing:
+            raise WorkflowError(f"work item missing {missing}")
+        with self.s._conn() as c:
+            dup = c.execute("SELECT * FROM work_items WHERE idempotency_key=?", (idempotency_key,)).fetchone()
+            if dup:
+                self.s._event(c, oid, None, actor, role, "WORK_ITEM_DUPLICATE_IGNORED", {"idempotency_key": idempotency_key})
+                return dict(dup) | {"payload": json.loads(dup["payload"]), "duplicate": True}
+            iid = f"WI-{uuid.uuid4().hex[:8].upper()}"
+            status = "BLOCKED_PENDING_APPROVAL" if _is_paid(item) else "READY"
+            payload = {**item, "requirements": item.get("requirements", {}), "history": [{"ts": now(), "by": actor, "role": role, "event": "created", "status": status}],
+                       "observed_outcome": None, "sandbox_only": True}
+            c.execute("INSERT INTO work_items VALUES(?,?,?,?,?,?,?)", (iid, oid, idempotency_key, now(), now(), status, json.dumps(payload, default=str)))
+            self.s._event(c, oid, None, actor, role, "WORK_ITEM_CREATED", {"item_id": iid, "kind": item["kind"], "status": status})
+        return self.get(iid)
+
+    def get(self, item_id) -> dict:
+        with self.s._conn() as c:
+            return self._get(c, item_id)
+
+    def list(self, oid) -> list[dict]:
+        with self.s._conn() as c:
+            rows = c.execute("SELECT * FROM work_items WHERE opportunity_id=? ORDER BY created_at", (oid,)).fetchall()
+        return [dict(r) | {"payload": json.loads(r["payload"])} for r in rows]
+
+    def verify_requirement(self, item_id, field: str, value: bool, actor: str, role: str, source: str) -> dict:
+        if role not in ("approver", "human"):
+            self._blocked(item_id, actor, role, f"role {role} cannot verify {field}")
+        if field not in ("consent_verified", "stock_confirmed"):
+            raise WorkflowError(f"unknown requirement {field}")
+        if not source:
+            raise WorkflowError("verification needs a source")
+        with self.s._conn() as c:
+            it = self._get(c, item_id)
+            p = it["payload"]
+            p["requirements"][field] = {"value": bool(value), "by": actor, "source": source, "ts": now()}
+            p["history"].append({"ts": now(), "by": actor, "role": role, "event": f"{field}={value}"})
+            self._save(c, item_id, it["status"], p)
+            self.s._event(c, it["opportunity_id"], None, actor, role, "WORK_ITEM_REQUIREMENT", {"item_id": item_id, field: value, "source": source})
+        return self.get(item_id)
+
+    def _blocked(self, item_id, actor, role, reason):
+        it = self.get(item_id)
+        self.s._log(it["opportunity_id"], None, actor, role, "WORK_ITEM_BLOCKED", {"item_id": item_id, "reason": reason})
+        raise PermissionDenied(reason)
+
+    def decide(self, item_id, approver: str, role: str, decision: str, reason: str) -> dict:
+        if role != "approver":
+            self._blocked(item_id, approver, role, f"role {role} cannot {decision} work items")
+        if decision not in ("approve", "reject", "defer"):
+            raise WorkflowError("decision must be approve, reject or defer")
+        if not (reason or "").strip():
+            raise WorkflowError("a decision needs a written reason")
+        it = self.get(item_id)
+        p = it["payload"]
+        if decision == "approve" and _is_paid(p):
+            req = p.get("requirements", {})
+            unmet = [k for k in ("consent_verified", "stock_confirmed") if not (req.get(k) or {}).get("value")]
+            if unmet:
+                self._blocked(item_id, approver, role, f"cannot approve a paid/public item before {unmet} are verified")
+            active = [w for w in self.list(it["opportunity_id"]) if w["item_id"] != item_id and _is_paid(w["payload"])
+                      and w["status"] in ("APPROVED", "IN_PROGRESS") and w["payload"].get("segment") == p.get("segment")]
+            if active:
+                self._blocked(item_id, approver, role, f"duplicate contact: {active[0]['item_id']} already targets {p.get('segment')}")
+        new = {"approve": "APPROVED", "reject": "REJECTED", "defer": "DEFERRED"}[decision]
+        with self.s._conn() as c:
+            p["history"].append({"ts": now(), "by": approver, "role": role, "event": decision, "reason": reason, "status": new})
+            p["decision"] = {"by": approver, "decision": decision, "reason": reason, "ts": now(),
+                             "scope": "sandbox record only; no send, spend or launch exists in this system"}
+            self._save(c, item_id, new, p)
+            self.s._event(c, it["opportunity_id"], None, approver, role, f"WORK_ITEM_{new}", {"item_id": item_id, "reason": reason})
+        return self.get(item_id)
+
+    def complete(self, item_id, actor: str, role: str, outcome: dict) -> dict:
+        if role not in ("approver", "human"):
+            self._blocked(item_id, actor, role, f"role {role} cannot complete work items")
+        it = self.get(item_id)
+        if _is_paid(it["payload"]) and it["status"] != "APPROVED":
+            self._blocked(item_id, actor, role, "a paid/public item cannot be completed without approval")
+        if it["status"] in ("REJECTED", "DONE"):
+            raise WorkflowError(f"item is {it['status']}")
+        p = it["payload"]
+        p["observed_outcome"] = {**outcome, "status": "OBSERVED (recorded by a person)", "recorded_by": actor, "ts": now()}
+        p["history"].append({"ts": now(), "by": actor, "role": role, "event": "completed", "status": "DONE"})
+        with self.s._conn() as c:
+            self._save(c, item_id, "DONE", p)
+            self.s._event(c, it["opportunity_id"], None, actor, role, "WORK_ITEM_DONE", {"item_id": item_id})
+        return self.get(item_id)

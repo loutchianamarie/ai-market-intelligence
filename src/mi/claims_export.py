@@ -71,6 +71,23 @@ def claims() -> list[dict]:
     add("advisor.status", rec.get("decision"), "-", "ADVISORY (a named human decides)", f"dossier {man.get('dossier')}#advisor_recommendation")
     add("advisor.base_case", rec.get("base_case"), "-", "ASSUMPTION", f"dossier {man.get('dossier')}#advisor_recommendation")
     add("advisor.reopen_if", rec.get("reopen_if"), "-", "CHECKLIST", f"dossier {man.get('dossier')}#advisor_recommendation")
+    bo, ev, ex = _r("buyer_outcomes.json"), _r("advisor_eval.json"), _r("extra_opportunity.json")
+    if bo:
+        A = bo["actions"]["A_coupon"]
+        add("buyers.planA_current_pattern_panel", A["current_pattern_buyers_panel"]["expected_buyers"], "unique households buying in 4 weeks (of 406)",
+            "MODEL ESTIMATE (not a no-contact counterfactual)", "reports/buyer_outcomes.json#A_coupon")
+        add("buyers.planA_additional_low_base_high", [A["additional_buyers_reachable_hypothetical"][k] for k in ("low", "base", "high")],
+            "additional unique households (company scale)", "SCENARIO (assumed response)", "reports/buyer_outcomes.json#A_coupon")
+        add("buyers.planA_break_even_additional", A["break_even_additional_buyers"], "additional households", "SCENARIO", "reports/buyer_outcomes.json#A_coupon")
+        add("buyers.planA_observed", A["observed_after_action"], "-", "OBSERVED only after a run", "reports/buyer_outcomes.json#A_coupon")
+    if ev:
+        add("advisor.eval_cases_passed", f"{ev['passed']}/{ev['total']}", "pre-registered cases", "OBSERVED (deterministic roles)", "reports/advisor_eval.json")
+    if ex:
+        add("opportunity.extra_category", ex.get("selected") or "none qualified", "-", "OBSERVED (pre-registered criteria)", "reports/extra_opportunity.json")
+    if man.get("dossier"):
+        from mi.workflow.store import DossierStore, WorkQueue
+        wq = WorkQueue(DossierStore()).list(man["dossier"])
+        add("queue.items", {w["item_id"]: f"{w['status']} {w['payload']['kind']} ${w['payload']['budget_usd']:,.0f}" for w in wq}, "-", "SANDBOX", f"dossier {man['dossier']} work_items")
     fa, fc = _r("funding_audit.json"), _r("funding_contracts.json")
     if fa:
         add("funding.historical_match_share_all", fa["all_couponed_lines"]["value_weighted_match_share"], "value-weighted share of manufacturer coupon value",

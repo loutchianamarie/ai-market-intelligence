@@ -43,6 +43,8 @@ STEPS = [
     ("category trend robustness (Yogurt)", ["mi.decision.trend_check", "YOGURT"], None, False),
     ("opportunity cards", ["mi.decision.opportunities"], None, False),
     ("client inputs check (form answers)", ["mi.decision.client_inputs", "check"], None, False),
+    ("extra opportunity (pre-registered criteria)", ["mi.decision.extra_opportunity"], None, False),
+    ("buyer-outcome panel", ["mi.decision.buyer_outcomes"], None, False),
     ("rag eval", ["mi.evidence.rag", "eval"], None, False),
     ("geo check", ["mi.seo.geo", "check"], None, False),
     ("geo analysis", ["mi.seo.geo", "analyze"], None, False),
@@ -52,7 +54,9 @@ STEPS = [
     ("blocked demo", ["mi.agents.coordinator", "blocked-demo"], None, False),
     ("agents to human checkpoint", ["mi.agents.coordinator", "run"], None, False),
 ]
-POST = [("current claims + decision card", ["mi.claims_export"], None, False)]
+POST = [("advisor evaluation (pre-registered cases)", ["mi.agents.advisor_eval"], None, False),
+        ("current claims + decision card", ["mi.claims_export"], None, False),
+        ("marketing brief + slide sync list", ["mi.decision.marketing_brief"], None, False)]
 PACKAGES = ["numpy", "pandas", "scikit-learn", "pyreadr", "pyarrow", "streamlit", "anthropic"]
 
 
@@ -109,9 +113,9 @@ def run_all() -> int:
     if trace.exists() and rc_final == 0:
         man["dossier"] = json.loads(trace.read_text()).get("opportunity_id")
         (REPORTS / "run_manifest.json").write_text(json.dumps(man, indent=2))   # claims export reads the dossier id
-        for name, mod, _, _ in POST:
+        for k, (name, mod, _, _) in enumerate(POST, 1):
             t = time.time()
-            log = logs / f"{len(STEPS) + 1:02d}_{re.sub(r'[^a-z0-9]+', '_', name.lower()).strip('_')}.log"
+            log = logs / f"{len(STEPS) + k:02d}_{re.sub(r'[^a-z0-9]+', '_', name.lower()).strip('_')}.log"
             with open(log, "w", encoding="utf-8") as f:
                 rc = subprocess.call([py, "-m", *mod], cwd=ROOT, stdout=f, stderr=subprocess.STDOUT)
             print(f"[{'ok' if rc == 0 else 'FAIL'}] {name} ({time.time() - t:.0f}s) -> {log.relative_to(ROOT)}")

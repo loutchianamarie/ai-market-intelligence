@@ -1,0 +1,123 @@
+{
+  "cases": [
+    {
+      "id": "A1_negative_coupon_economics",
+      "expected": {
+        "recommendation_is_none": true,
+        "paid_item_status": "BLOCKED_PENDING_APPROVAL",
+        "creates_zero_cost_tasks": true,
+        "total_vs_additional_buyers_separate": true
+      },
+      "observed": {
+        "recommendation_is_none": true,
+        "paid_item_status": "BLOCKED_PENDING_APPROVAL",
+        "creates_zero_cost_tasks": true,
+        "total_vs_additional_buyers_separate": true
+      },
+      "checks": {
+        "recommendation_is_none": true,
+        "paid_item_status": true,
+        "creates_zero_cost_tasks": true,
+        "total_vs_additional_buyers_separate": true
+      },
+      "pass": true
+    },
+    {
+      "id": "A2_joint_funding_and_pool",
+      "expected": {
+        "recommendation_is_none": false,
+        "paid_item_status": "BLOCKED_PENDING_APPROVAL",
+        "still_requires_named_approval": true
+      },
+      "observed": {
+        "recommendation_is_none": false,
+        "recommendation": "FROZEN PIZZA/LAPSING/digital_coupon/ALL",
+        "paid_item_status": "BLOCKED_PENDING_APPROVAL",
+        "still_requires_named_approval": true
+      },
+      "checks": {
+        "recommendation_is_none": true,
+        "paid_item_status": true,
+        "still_requires_named_approval": true
+      },
+      "pass": true
+    },
+    {
+      "id": "A3_yogurt_operations_signal",
+      "expected": {
+        "action_type": "operations",
+        "budget_usd": 0,
+        "claims_cause": false,
+        "additional_buyers": "unknown"
+      },
+      "observed": {
+        "action_type": "operations",
+        "budget_usd": 0,
+        "claims_cause": false,
+        "additional_buyers": "unknown"
+      },
+      "checks": {
+        "action_type": true,
+        "budget_usd": true,
+        "claims_cause": true,
+        "additional_buyers": true
+      },
+      "pass": true
+    },
+    {
+      "id": "A4_missing_stock_or_consent",
+      "expected": {
+        "approval_possible": false,
+        "launch_possible": false
+      },
+      "observed": {
+        "approval_possible": false,
+        "launch_possible": false
+      },
+      "checks": {
+        "approval_possible": true,
+        "launch_possible": true
+      },
+      "pass": true
+    },
+    {
+      "id": "A5_conflicting_retailer_source",
+      "expected": {
+        "abstains_or_flags_conflict": true,
+        "asserts_single_value": false
+      },
+      "observed": {
+        "abstains_or_flags_conflict": true,
+        "asserts_single_value": false
+      },
+      "checks": {
+        "abstains_or_flags_conflict": true,
+        "asserts_single_value": true
+      },
+      "pass": true
+    },
+    {
+      "id": "A6_geo_no_answers",
+      "expected": {
+        "reports_visibility_metric": false,
+        "creates_collection_task": true,
+        "content_action_conditional": true
+      },
+      "observed": {
+        "reports_visibility_metric": false,
+        "creates_collection_task": true,
+        "content_action_conditional": true
+      },
+      "checks": {
+        "reports_visibility_metric": true,
+        "creates_collection_task": true,
+        "content_action_conditional": true
+      },
+      "pass": true
+    }
+  ],
+  "passed": 6,
+  "total": 6,
+  "mode": "deterministic role workflow (live LLM PENDING)",
+  "store": "throwaway; live dossiers untouched"
+}

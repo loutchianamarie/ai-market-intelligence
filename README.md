@@ -4,7 +4,7 @@
 
 **Decision:** where should a retailer put its next limited CRM budget (product category × existing-household segment × channel), and is any test worth funding before expanding?
 **Data:** the authentic 84.51° Complete Journey tables (2,469 households, 1.47M transaction lines, 2017; CC0, via the R package maintainers). See `docs/dataset_decision.md` for why H&M was not used.
-**Manager summary:** `docs/decision_card.md` · opportunity cards `docs/opportunity_cards.md` · data dictionary `docs/data_dictionary.md`.
+**Manager summary:** `docs/marketing_brief.md` (buyer outcomes, 4P options, work queue) · `docs/decision_card.md` · opportunity cards `docs/opportunity_cards.md` · data dictionary `docs/data_dictionary.md`.
 **Current recommendation:** no rollout and no funded test at base assumptions; $0 research first (`docs/decision_brief.md`). Advisor status: DEFER FUNDING / NO SPEND WHILE TERMS ARE UNCONFIRMED (base case: retailer-funded); live dossier in `NEXT_DAY_STATUS.md`, and a named person decides.
 
 ## Quick start (Windows, Python 3.12)
@@ -13,7 +13,7 @@ python -m venv .venv && .venv\Scripts\activate
 pip install -r requirements.lock.txt
 pip install -e .                      # or add src/ to PYTHONPATH
 python -m mi.cli all                  # download → VERIFY (data/manifest.lock.json) → audit → train → evaluate → portfolio, sensitivity & reversal → claim audit → RAG → GEO/interview checks → Hillstrom method track → agents to the human checkpoint (~8.5 min incl. the full promotions table; logs in reports/run_logs, record in reports/run_manifest.json, current claims in reports/current_claims.json)
-python -m mi.cli test                 # 82 tests
+python -m mi.cli test                 # 98 tests
 python -m mi.cli demo                 # Streamlit manager app (offline; uses saved, hashed artifacts)
 python -m mi.claim_audit              # independent re-derivation of every headline number → reports/claim_audit.json
 python -m mi.seo.geo check            # which of the 20 GEO answers are still missing

@@ -1,0 +1,175 @@
+{
+  "objective": {
+    "primary": "increase unique category buyers (incl. returning lapsed buyers) and incremental contribution",
+    "not_measurable_here": "new-to-retailer acquisition; a live company's growth",
+    "decision_horizon_weeks": 4,
+    "units": {
+      "buyer": "unique household buying the category in the horizon",
+      "net_sales": "retailer receipts (USD)",
+      "contribution": "receipts x assumed margin after retailer coupon cost, contact, setup (USD)"
+    },
+    "growth_target": "PROPOSED only: no business baseline beyond the panel exists"
+  },
+  "labels": {
+    "forecast": "current-pattern MODEL ESTIMATE",
+    "scenario": "with an ASSUMED response",
+    "observed": "after an action ran",
+    "causal": "difference vs randomized control"
+  },
+  "actions": {
+    "A_coupon": {
+      "action": "FROZEN PIZZA / LAPSING / digital_coupon coupon (plan A)",
+      "unit": "unique households buying the category in 4 weeks",
+      "eligible": {
+        "panel_households": 406,
+        "panel_contactable": 0,
+        "company_eligible_hypothetical": 16240,
+        "reachable_hypothetical": 7308,
+        "consent_unknown_or_suppressed_hypothetical": 8932,
+        "status": "panel is anonymous and NOT contactable; company counts = panel x 40 (COMPANY SCALE ASSUMED) x 0.45 reach (ASSUMED)"
+      },
+      "current_pattern_buyers_panel": {
+        "households": 406,
+        "expected_buyers": 120.3,
+        "poisson_binomial_95": [
+          103.0,
+          137.7
+        ],
+        "expected_rate": 0.2964,
+        "calibration_adjusted_range": [
+          99.2,
+          173.3
+        ],
+        "status": "MODEL ESTIMATE (historical normal promotions; not a no-contact counterfactual)"
+      },
+      "calibration_check": {
+        "available": true,
+        "window": "cutoff 49 (weeks 50-53, repeated evaluation)",
+        "households": 412,
+        "observed_buyers": 135,
+        "predicted_buyers": 122.3,
+        "observed_over_predicted": 1.104,
+        "ratio_ci95": [
+          0.963,
+          1.259
+        ]
+      },
+      "current_pattern_buyers_reachable_hypothetical": 2166.1,
+      "additional_buyers_reachable_hypothetical": {
+        "low": 146.2,
+        "base": 292.3,
+        "high": 511.6,
+        "cap_headroom": 5141.9,
+        "dq_range_points": [
+          0.02,
+          0.04,
+          0.07
+        ],
+        "status": "SCENARIO: ASSUMED incremental-response range (config), not measured"
+      },
+      "total_buyers_with_action_hypothetical": {
+        "low": 2312.3,
+        "base": 2458.4,
+        "high": 2677.7
+      },
+      "break_even_additional_buyers": 1209.4,
+      "break_even_note": "additional buyers needed so that extra margin covers contact, the coupon subsidy to baseline buyers and setup",
+      "incremental_receipts_usd": {
+        "low": 1510.64,
+        "base": 3020.25,
+        "high": 5286.21
+      },
+      "incremental_contribution_usd": {
+        "low": -2114.33,
+        "base": -1823.8,
+        "high": -1387.71
+      },
+      "unit_values": {
+        "receipts_per_buyer_4w_observed": 10.33,
+        "margin_assumed": 0.28,
+        "retailer_coupon_cost": 0.9046,
+        "funding_contract": "retailer share 1.0",
+        "contact_cost": 0.03,
+        "setup": 1500
+      },
+      "double_counting_guard": "additional buyers are added to the current-pattern total once; households already expected to buy contribute only the coupon subsidy",
+      "observed_after_action": "NOT RUN: no action has been executed; no observed buyers exist"
+    },
+    "B_yogurt_investigation": {
+      "action": "Yogurt availability / assortment / placement investigation (plan B)",
+      "unit": "unique households buying yogurt",
+      "eligible": {
+        "panel_households_scored": 2319,
+        "contact": "none needed (store / operations investigation)"
+      },
+      "current_pattern_buyers_panel": {
+        "households": 2319,
+        "expected_buyers": 422.0,
+        "poisson_binomial_95": [
+          391.5,
+          452.6
+        ],
+        "expected_rate": 0.182,
+        "calibration_adjusted_range": [
+          281.9,
+          379.7
+        ],
+        "status": "MODEL ESTIMATE (4 weeks after cutoff 53)"
+      },
+      "additional_buyers": "UNKNOWN: no sourced or assumed effect of a fix exists; cause not diagnosed",
+      "break_even_additional_buyers": "not applicable ($0 investigation)",
+      "incremental_contribution_usd": "unknown",
+      "budget_usd": 0,
+      "target": {
+        "metric": "unique yogurt buyers per 25-week window among active panel households",
+        "baseline_latest_window": 1111,
+        "earlier_window": 1194,
+        "proposed_target": "restore buyer rate to 49.9% (\u2248 +93 households on the latest active base)",
+        "status": "PROPOSED TARGET with observed baseline; not a forecast"
+      },
+      "observed_after_action": "NOT RUN"
+    },
+    "C_content": {
+      "action": "Discovery content for the public analogue (plan C)",
+      "unit": "assistant answers mentioning / recommending the analogue (of 20); owned-page search clicks if a site owner supplies Search Console",
+      "eligible": "not linkable to the anonymous panel households",
+      "current_pattern_buyers_panel": "not applicable",
+      "additional_buyers": "UNKNOWN: content effects on buyers cannot be measured from this data",
+      "answers_logged": 0,
+      "status": "CONDITIONAL on 20 real GEO answers",
+      "budget_usd": 0,
+      "observed_after_action": "NOT RUN"
+    },
+    "D_none": {
+      "action": "No paid action / research first (plan D)",
+      "unit": "unique households buying the category in 4 weeks",
+      "current_pattern_buyers_panel": {
+        "households": 406,
+        "expected_buyers": 120.3,
+        "poisson_binomial_95": [
+          103.0,
+          137.7
+        ],
+        "expected_rate": 0.2964,
+        "calibration_adjusted_range": [
+          99.2,
+          173.3
+        ],
+        "status": "MODEL ESTIMATE (historical normal promotions; not a no-contact counterfactual)"
+      },
+      "additional_buyers": {
+        "low": 0,
+        "base": 0,
+        "high": 0
+      },
+      "incremental_contribution_usd": {
+        "low": 0,
+        "base": 0,
+        "high": 0
+      },
+      "budget_usd": 0,
+      "note": "buyers still buy under current patterns; no incremental cost or claimed effect"
+    },
+    "E_extra": null
+  }
+}

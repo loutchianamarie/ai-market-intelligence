@@ -366,8 +366,58 @@ class Run:
                     f"both lose at base, but the candidate needs {m1['candidate']}x the assumed uplift to break even per household "
                     f"(best base plan {m1['best_base']}x) and {m2['candidate']}x after setup at assumed scale ({m2['best_base']}x), "
                     "so it is the cohort where the smallest change in true uplift would flip the decision.")
+            self.build_work_queue(oid, out)
             out.next_agent = "HUMAN_APPROVER" if rq["status"] == "ok" else None
         return self.finish(out, oid)
+
+    def build_work_queue(self, oid, out: AgentOutput) -> None:
+        """Turn the decision into owned work items. $0 tasks are READY; paid/public items start BLOCKED pending a named approver."""
+        from datetime import date, timedelta
+        d = self.store.get(oid)
+        today = date.today()
+        due = lambda days: (today + timedelta(days=days)).isoformat()  # noqa: E731
+        pilot = d.get("pilot") or {}
+        bud = (pilot.get("budget") or {}).get("total", 0)
+        items = [
+            ("R1", {"kind": "research", "title": "2-3 consented interviews (lapsed frozen-pizza buyers, 1 nonbuyer)", "owner": "Loutchiana (I01-I02), Charbel (I03)",
+                    "segment": "FROZEN PIZZA|LAPSING", "channel": "in person / call (consented)", "draft": "data/interviews/interview_template.md",
+                    "evidence": ["reports/opportunities.json#C1", "docs/market_research_memo.md"], "budget_usd": 0, "due_date": due(7),
+                    "success_metric": "mi.evidence.interviews check = OK; barrier codes recorded", "follow_up_date": due(10),
+                    "decision_it_changes": "coupon vs product/availability vs no action for plan A"}),
+            ("R2", {"kind": "research", "title": "Freeze GEO panel and collect 20 fresh-chat answers", "owner": "Loutchiana (Assistant 1), Charbel (Assistant 2)",
+                    "segment": "public analogue (not panel)", "channel": "AI assistants (no personal data)", "draft": "docs/seo_geo_protocol.md",
+                    "evidence": ["reports/seo_geo_audit.json"], "budget_usd": 0, "due_date": due(7), "success_metric": "mi.seo.geo check complete_rows = 20",
+                    "follow_up_date": due(10), "decision_it_changes": "whether plan C (content) is worth doing"}),
+            ("R3", {"kind": "research", "title": "Verify Kroger / Target / Walmart / ALDI offer pages by hand", "owner": "Charbel",
+                    "segment": "public analogue", "channel": "browser + screenshots", "draft": "docs/decision_brief.md section 6",
+                    "evidence": ["docs/decision_brief.md#6"], "budget_usd": 0, "due_date": due(5), "success_metric": "each row VERIFIED with date or stays UNVERIFIED",
+                    "follow_up_date": due(7), "decision_it_changes": "offer-mechanics assumptions (reach, redemption)"}),
+            ("R4", {"kind": "research", "title": "Send the client input form and load confirmed answers", "owner": "both",
+                    "segment": "client", "channel": "email to client contact", "draft": "docs/client_input_form.md",
+                    "evidence": ["reports/funding_contracts.json", "reports/funding_audit.json"], "budget_usd": 0, "due_date": due(5),
+                    "success_metric": "mi.decision.client_inputs check applies funding, pool, margin, costs, stock", "follow_up_date": due(8),
+                    "decision_it_changes": "the funding contract and pool thresholds that could reopen plan A"}),
+            ("OPS1", {"kind": "operations", "title": "Yogurt availability / assortment / placement check", "owner": "client store operations (via team)",
+                      "segment": "YOGURT (all buyers)", "channel": "store audit", "draft": "check stock-outs, delistings, price moves, shelf changes in weeks 27-51",
+                      "evidence": ["reports/trend_check_yogurt.json", "docs/opportunity_cards.md#C3"], "budget_usd": 0, "due_date": due(10),
+                      "success_metric": "cause identified or ruled out (stock / assortment / price / none)", "follow_up_date": due(14),
+                      "decision_it_changes": "whether plan B becomes a product/place fix"}),
+            ("CONTENT1", {"kind": "public_content", "title": "Discovery content for the public analogue (only after R2 shows a gap)", "owner": "both (draft only)",
+                          "segment": "public web / AI assistants", "channel": "owned pages (publication blocked)", "draft": "to be written from GEO source gaps",
+                          "evidence": ["reports/seo_geo_audit.json"], "budget_usd": 0, "due_date": due(21),
+                          "success_metric": "mention/recommendation rate on a re-run panel; owned-page clicks (separately)",
+                          "follow_up_date": due(35), "decision_it_changes": "content investment", "depends_on": "R2"}),
+            ("PAID1", {"kind": "paid_contact", "title": "Frozen Pizza lapsing digital coupon test (design only)", "owner": "category manager (named approver)",
+                       "segment": "FROZEN PIZZA|LAPSING", "channel": "digital_coupon", "draft": pilot.get("message", ""),
+                       "evidence": ["reports/funding_contracts.json", "reports/buyer_outcomes.json#A_coupon", "reports/claim_audit.json"],
+                       "budget_usd": bud, "due_date": due(30), "success_metric": "incremental contribution per randomized household above the rollout hurdle",
+                       "follow_up_date": due(60), "requirements": {"consent_verified": None, "stock_confirmed": None},
+                       "advisor_note": "advisor status DEFER FUNDING / NO SPEND WHILE TERMS ARE UNCONFIRMED; base case retailer-funded"}),
+        ]
+        for code, item in items:
+            r = self.call(out, oid, "queue_work_item", opportunity_id=oid, item=item, idempotency_key=f"{oid}:{code}")
+            if r["status"] == "ok":
+                self.num(out, f"work_item_{code}", f"{r['data']['item_id']} {r['data']['status']}", "work item", "SANDBOX", "queue_work_item")
 
     def activation_record(self, oid) -> AgentOutput:
         out = AgentOutput(role="activation", mode="deterministic")

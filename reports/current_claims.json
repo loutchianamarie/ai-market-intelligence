@@ -249,7 +249,7 @@
     },
     {
       "id": "run.dossier",
-      "value": "OPP-0CB758BD",
+      "value": "OPP-FC7CDD82",
       "unit": "-",
       "status": "OBSERVED",
       "source": "reports/run_manifest.json"
@@ -259,14 +259,14 @@
       "value": "DEFER FUNDING / NO SPEND WHILE TERMS ARE UNCONFIRMED",
       "unit": "-",
       "status": "ADVISORY (a named human decides)",
-      "source": "dossier OPP-0CB758BD#advisor_recommendation"
+      "source": "dossier OPP-FC7CDD82#advisor_recommendation"
     },
     {
       "id": "advisor.base_case",
       "value": "RETAILER-FUNDED offer (retailer pays the full coupon face value): the current base case",
       "unit": "-",
       "status": "ASSUMPTION",
-      "source": "dossier OPP-0CB758BD#advisor_recommendation"
+      "source": "dossier OPP-FC7CDD82#advisor_recommendation"
     },
     {
       "id": "advisor.reopen_if",
@@ -282,7 +282,68 @@
       ],
       "unit": "-",
       "status": "CHECKLIST",
-      "source": "dossier OPP-0CB758BD#advisor_recommendation"
+      "source": "dossier OPP-FC7CDD82#advisor_recommendation"
+    },
+    {
+      "id": "buyers.planA_current_pattern_panel",
+      "value": 120.3,
+      "unit": "unique households buying in 4 weeks (of 406)",
+      "status": "MODEL ESTIMATE (not a no-contact counterfactual)",
+      "source": "reports/buyer_outcomes.json#A_coupon"
+    },
+    {
+      "id": "buyers.planA_additional_low_base_high",
+      "value": [
+        146.2,
+        292.3,
+        511.6
+      ],
+      "unit": "additional unique households (company scale)",
+      "status": "SCENARIO (assumed response)",
+      "source": "reports/buyer_outcomes.json#A_coupon"
+    },
+    {
+      "id": "buyers.planA_break_even_additional",
+      "value": 1209.4,
+      "unit": "additional households",
+      "status": "SCENARIO",
+      "source": "reports/buyer_outcomes.json#A_coupon"
+    },
+    {
+      "id": "buyers.planA_observed",
+      "value": "NOT RUN: no action has been executed; no observed buyers exist",
+      "unit": "-",
+      "status": "OBSERVED only after a run",
+      "source": "reports/buyer_outcomes.json#A_coupon"
+    },
+    {
+      "id": "advisor.eval_cases_passed",
+      "value": "6/6",
+      "unit": "pre-registered cases",
+      "status": "OBSERVED (deterministic roles)",
+      "source": "reports/advisor_eval.json"
+    },
+    {
+      "id": "opportunity.extra_category",
+      "value": "none qualified",
+      "unit": "-",
+      "status": "OBSERVED (pre-registered criteria)",
+      "source": "reports/extra_opportunity.json"
+    },
+    {
+      "id": "queue.items",
+      "value": {
+        "WI-D7FBDF1C": "READY research $0",
+        "WI-91662CE4": "READY research $0",
+        "WI-7F43B3F8": "READY research $0",
+        "WI-EC881DC0": "READY research $0",
+        "WI-E2954CF5": "READY operations $0",
+        "WI-CC201570": "BLOCKED_PENDING_APPROVAL public_content $0",
+        "WI-C6C216BF": "BLOCKED_PENDING_APPROVAL paid_contact $1,938"
+      },
+      "unit": "-",
+      "status": "SANDBOX",
+      "source": "dossier OPP-FC7CDD82 work_items"
     },
     {
       "id": "funding.historical_match_share_all",

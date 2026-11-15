@@ -25,7 +25,7 @@ ROLE_ALLOWLIST = {
     "intelligence": {"get_dossier", "get_data_audit", "run_model_pipeline", "get_model_run", "segment_profile"},
     "portfolio": {"get_dossier", "compare_plans", "sensitivity_summary", "break_even", "demand_baseline", "calculate_metric"},
     "activation": {"get_dossier", "retrieve_sources", "pilot_sample_size", "pilot_design", "draft_pilot", "request_approval", "record_sandbox_action",
-                   "record_research_followup"},
+                   "record_research_followup", "queue_work_item"},
     "measurement": {"get_dossier", "campaign_history", "pilot_sample_size", "pilot_design", "evaluate_outcome", "record_outcome",
                     "method_evidence"},
 }
@@ -76,6 +76,7 @@ class Toolbox:
         "record_sandbox_action": ("Record an APPROVED pilot in the local CRM sandbox (never sends).", {"opportunity_id": {"type": "string"}, "idempotency_key": {"type": "string"}}, ["opportunity_id", "idempotency_key"]),
         "record_research_followup": ("After a HUMAN rejection that approved a research checklist, record that checklist in the sandbox (no contact, spend or send).", {"opportunity_id": {"type": "string"}, "idempotency_key": {"type": "string"}}, ["opportunity_id", "idempotency_key"]),
         "campaign_history": ("Descriptive history of real campaigns (selection-biased).", {}, []),
+        "queue_work_item": ("Create a DRAFT advisor work item (research / operations / content / paid contact). Paid or public items start BLOCKED pending a named human approval; nothing is sent.", {"opportunity_id": {"type": "string"}, "item": {"type": "object"}, "idempotency_key": {"type": "string"}}, ["opportunity_id", "item", "idempotency_key"]),
         "method_evidence": ("Summary of a randomized e-mail experiment from ANOTHER retailer (method illustration only; never grocery uplift).", {}, []),
         "evaluate_outcome": ("Apply the prewritten decision rule to an outcome record.", {"outcome": {"type": "object"}}, ["outcome"]),
         "record_outcome": ("Attach an outcome + decision to the dossier.", {"opportunity_id": {"type": "string"}, "outcome": {"type": "object"}, "decision": {"type": "string"}}, ["opportunity_id", "outcome", "decision"]),
@@ -323,6 +324,12 @@ class Toolbox:
     def t_record_research_followup(self, opportunity_id, idempotency_key):
         r = self.store.record_research_followup(opportunity_id, idempotency_key, actor="activation_agent")
         return _ok("record_research_followup", r, live_send=False, spend=0, status="SANDBOX research checklist (not executed)")
+
+    def t_queue_work_item(self, opportunity_id, item, idempotency_key):
+        from mi.workflow.store import WorkQueue
+        w = WorkQueue(self.store).create(opportunity_id, item, idempotency_key, actor="activation_agent", role="agent")
+        return _ok("queue_work_item", {"item_id": w["item_id"], "status": w["status"], "duplicate": w.get("duplicate", False)},
+                   live_send=False, spend=0, status="DRAFT work item (sandbox)")
 
     def t_record_sandbox_action(self, opportunity_id, idempotency_key):
         r = self.store.record_sandbox_action(opportunity_id, idempotency_key, actor="activation_agent")

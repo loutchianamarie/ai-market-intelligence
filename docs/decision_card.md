@@ -1,7 +1,7 @@
 # Decision card: next CRM / category budget
 
 **Advisor status:** DEFER FUNDING / NO SPEND WHILE TERMS ARE UNCONFIRMED. **Base case:** RETAILER-FUNDED offer (retailer pays the full coupon face value): the current base case.
-**Recommendation now:** NONE: research / measure first: no rollout, no funded coupon test, no spend or send. Live dossier `OPP-0CB758BD`; a named person still has to decide in app tab 4.
+**Recommendation now:** NONE: research / measure first: no rollout, no funded coupon test, no spend or send. Live dossier `OPP-FC7CDD82`; a named person still has to decide in app tab 4.
 
 ## Why
 - Under the retailer-funded base case every modelled coupon plan loses money (best: COFFEE/LAPSING/digital_coupon/ALL -1,724 USD per 4-week cycle at an assumed scale).
