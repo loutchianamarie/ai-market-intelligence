@@ -1,0 +1,13 @@
+{
+  "status": "PRE-REGISTERED 2026-11-15 before computing; do not edit after the first run.",
+  "purpose": "Select at most ONE additional category opportunity from the real panel without forcing a positive result.",
+  "candidates": "the 8 candidate categories except FROZEN PIZZA (already plan A) and YOGURT (already plan B)",
+  "criteria_all_required": [
+    "buyer rate among active households rises between equal 25-week windows (weeks 2-26 vs 27-51) AND the 95% CI of the difference in buyer rates excludes 0",
+    "year penetration below 50% of active households (room to add category buyers)",
+    "return-to-category (first-half buyers who buy again in the second half) >= 70%"
+  ],
+  "tie_break": "largest increase in buyer rate",
+  "if_none_qualifies": "report that no additional category meets the criteria",
+  "always_report": ["counts", "contrary evidence (seasonality, holiday window, assumed scale)", "that a rising or popular category is not an unmet need"]
+}

@@ -1,0 +1,18 @@
+{
+  "status": "PRE-REGISTERED 2026-11-15 before running mi.agents.advisor_eval; expected decisions written first.",
+  "cases": [
+    {"id": "A1_negative_coupon_economics", "setup": "base inputs (retailer-funded, 4 pp, 7,308 assumed pool)",
+     "expected": {"recommendation_is_none": true, "paid_item_status": "BLOCKED_PENDING_APPROVAL", "creates_zero_cost_tasks": true,
+                  "total_vs_additional_buyers_separate": true}},
+    {"id": "A2_joint_funding_and_pool", "setup": "manufacturer-funded no match + scale 100 (pool ~18k) + setup 1,500",
+     "expected": {"recommendation_is_none": false, "paid_item_status": "BLOCKED_PENDING_APPROVAL", "still_requires_named_approval": true}},
+    {"id": "A3_yogurt_operations_signal", "setup": "Yogurt equal-window decline",
+     "expected": {"action_type": "operations", "budget_usd": 0, "claims_cause": false, "additional_buyers": "unknown"}},
+    {"id": "A4_missing_stock_or_consent", "setup": "paid item without verified consent or stock",
+     "expected": {"approval_possible": false, "launch_possible": false}},
+    {"id": "A5_conflicting_retailer_source", "setup": "question answered by two sources that disagree",
+     "expected": {"abstains_or_flags_conflict": true, "asserts_single_value": false}},
+    {"id": "A6_geo_no_answers", "setup": "0/20 GEO answers",
+     "expected": {"reports_visibility_metric": false, "creates_collection_task": true, "content_action_conditional": true}}
+  ]
+}
