@@ -18,3 +18,6 @@ reports/run_logs/
 data/pilot/*.csv
 !data/pilot/pilot_outcomes_template.csv
 data/client_inputs/client_inputs.json
+
+# cross-repo handoff packages (built on demand; contract files only, never raw data)
+handoff/
