@@ -2174,6 +2174,14 @@
       "note": "Metric definitions only (uplift at k, Qini). The library is not a dependency; metrics are implemented locally."
     },
     {
+      "source_id": "SRC_FTC_CANSPAM",
+      "kind": "DOCUMENTATION",
+      "title": "FTC, CAN-SPAM Act: A Compliance Guide for Business (eight requirements, postal address, opt-out within 10 business days)",
+      "url": "https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business",
+      "accessed": "2026-11-17",
+      "note": "US law only; an opt-out regime. Page dated August 2023, edited January 2024; the penalty figure was not re-checked. EU/UK and other regimes can require opt-in and are not covered."
+    },
+    {
       "source_id": "SRC_LOCAL_PROTOCOL_V2",
       "kind": "LOCAL_ARTIFACT",
       "title": "Pre-registered conversion-uplift protocol v2 (split, features, policies, primary metric, decision rule)",
@@ -2194,6 +2202,7 @@
     "SRC_HILLSTROM_2008_DATA",
     "SRC_RADCLIFFE_2008",
     "SRC_SKLIFT_DOCS",
+    "SRC_FTC_CANSPAM",
     "SRC_LOCAL_PROTOCOL_V2",
     "SRC_LOCAL_RUN"
   ],

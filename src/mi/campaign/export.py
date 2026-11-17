@@ -50,6 +50,11 @@ def _git_commit() -> str | None:
 
 
 # ---------------------------------------------------------------- full-sample randomized evidence
+def trimmed_spend_diff(treated: np.ndarray, control: np.ndarray, k: int = 25) -> float:
+    """Sensitivity: incremental spend per customer after dropping the k largest purchases from EACH arm (spend is heavy-tailed)."""
+    return float(np.sort(treated)[:-k].mean() - np.sort(control)[:-k].mean())
+
+
 def full_sample(df: pd.DataFrame) -> dict:
     a = df[ASSIGNMENT].to_numpy()
     arms = {arm: {"n": int((a == arm).sum()), "buyers": int(df.conversion[a == arm].sum()), "spend_mean": float(df.spend[a == arm].mean())} for arm in K.ARMS}
@@ -60,7 +65,8 @@ def full_sample(df: pd.DataFrame) -> dict:
         w = U.wald(t["n"], t["buyers"], c["n"], c["buyers"])
         s = U.wald_means(df.spend[a == arm].to_numpy(float), df.spend[a == CONTROL].to_numpy(float))
         eff[arm] = {"rate_diff": w["diff"], "rate_ci": w["ci95"], "per_1000": 1000 * w["diff"], "per_1000_ci": [1000 * v for v in w["ci95"]],
-                    "relative_lift": w["diff"] / (c["buyers"] / c["n"]) if c["buyers"] else None, "spend_diff": s["diff"], "spend_ci": s["ci95"]}
+                    "relative_lift": w["diff"] / (c["buyers"] / c["n"]) if c["buyers"] else None, "spend_diff": s["diff"], "spend_ci": s["ci95"],
+                    "spend_diff_trim25": trimmed_spend_diff(df.spend[a == arm].to_numpy(float), df.spend[a == CONTROL].to_numpy(float))}
     return {"arms": arms, "effects": eff}
 
 
@@ -180,10 +186,13 @@ def build(df: pd.DataFrame, facts: dict, proto: dict, *, n_boot: int | None = No
         f"so no profit is claimed; at an assumed 35% margin the e-mail may cost up to {_f(be_c['break_even_cost_per_contact']['value'], 2)} USD "
         f"({_f(be_c['break_even_cost_per_contact_conservative']['value'], 2)} USD on the lower bound) before it loses money, setup aside.",
     ]
+    rationale.append(f"Spend is heavy-tailed: dropping the 25 largest purchases from each arm lowers the {SHORT[best]} incremental spend from {_f(eb['spend_diff'], 2)} to "
+                     f"{_f(eb['spend_diff_trim25'], 2)} USD per e-mail, so break-even cost falls by about {100 * (1 - eb['spend_diff_trim25'] / eb['spend_diff']):.0f}%; it stays positive. "
+                     f"The e-mail adds buyers, not larger baskets (mean spend per buyer {df[(df.segment == best) & (df.conversion == 1)].spend.mean():.0f} vs {df[(df.segment == CONTROL) & (df.conversion == 1)].spend.mean():.0f} USD).")
     conditions = [
         f"Finance confirms the contribution margin on incremental sales and CRM confirms the full cost per e-mail (delivery, offer, handling); the cost must be below "
         f"margin x {_f(eb['spend_diff'], 2)} USD, and below margin x {_f(eb['spend_ci'][0], 2)} USD to be safe on the lower bound.",
-        "E-mail consent and unsubscribe handling are verified for every recipient.",
+        "The legal basis for e-mailing each recipient is verified for their jurisdiction (US CAN-SPAM is an opt-out regime; EU/UK and other rules can require opt-in), the opt-out list is applied and unsubscribe requests are honored within 10 business days (SRC_FTC_CANSPAM).",
         f"A {K.ASSUMED_HOLDOUT_SHARE:.0%} randomized no-e-mail holdout is drawn and frozen before sending"
         + (f" (at least {n_hold:,} customers per arm to detect an effect of the 2008 size with 80% power)." if n_hold else "."),
         "A named human approves the final draft; any change to the plan requires a new review.",
@@ -244,15 +253,15 @@ def build(df: pd.DataFrame, facts: dict, proto: dict, *, n_boot: int | None = No
         "message_drafts": [
             {"draft_id": "DRAFT_MENS_A", "arm": MENS, "subject": "New in menswear, picked for returning customers",
              "body": "Hello {first_name}, thank you for shopping with {brand} this year. The new men's collection has arrived: {three_featured_items}. "
-                     "See what is new: {landing_page_url}. No price or discount is stated because offer terms are not approved. {unsubscribe_link}",
+                     "See what is new: {landing_page_url}. No price or discount is stated because offer terms are not approved. This is a marketing message from {brand}, {postal_address}. To stop receiving these messages: {unsubscribe_link}",
              "status": "DRAFT_HYPOTHESIS_NOT_SENT"},
             {"draft_id": "DRAFT_WOMENS_A", "arm": WOMENS, "subject": "New in womenswear, picked for returning customers",
              "body": "Hello {first_name}, thank you for shopping with {brand} this year. The new women's collection has arrived: {three_featured_items}. "
-                     "See what is new: {landing_page_url}. No price or discount is stated because offer terms are not approved. {unsubscribe_link}",
+                     "See what is new: {landing_page_url}. No price or discount is stated because offer terms are not approved. This is a marketing message from {brand}, {postal_address}. To stop receiving these messages: {unsubscribe_link}",
              "status": "DRAFT_HYPOTHESIS_NOT_SENT"}],
         "action_plan": [
             {"step": 1, "owner_role": "CRM owner", "action": "Review the eligible segment (purchased in the past twelve months) and report its current size.", "status": "PENDING_HUMAN"},
-            {"step": 2, "owner_role": "CRM owner with legal", "action": "Verify e-mail consent and unsubscribe handling for every eligible customer.", "status": "PENDING_HUMAN"},
+            {"step": 2, "owner_role": "CRM owner with legal", "action": "Check the draft and the send list against the FTC CAN-SPAM requirements (SRC_FTC_CANSPAM): accurate sender and subject, message identified as an ad, valid postal address, working opt-out honored within 10 business days, opted-out customers suppressed. Confirm the legal basis for each recipient's jurisdiction (the US is opt-out; EU/UK and others can require opt-in).", "status": "PENDING_HUMAN"},
             {"step": 3, "owner_role": "Finance with CRM owner", "action": "Supply the contribution margin and the full cost per e-mail; compare with the break-even thresholds.", "status": "PENDING_HUMAN"},
             {"step": 4, "owner_role": "Analyst", "action": f"Draw and freeze a {K.ASSUMED_HOLDOUT_SHARE:.0%} randomized no-e-mail holdout before any send.", "status": "PENDING_HUMAN"},
             {"step": 5, "owner_role": "Marketing manager", "action": "Approve or reject the draft with name, reason and plan version; re-review after any change.", "status": "PENDING_HUMAN"},
@@ -290,6 +299,9 @@ def build(df: pd.DataFrame, facts: dict, proto: dict, *, n_boot: int | None = No
             unc="ratio of two small rates; use the absolute figure first", safe=False)
         obs(f"CLM_SPEND_PER_CONTACT_{k}", f"Incremental spend per customer sent the {SHORT[a]}, versus no e-mail", round(e["spend_diff"], 4), "USD per customer e-mailed",
             f"mean spend of {arms[a]['n']:,} ({a}) minus mean spend of {ctrl['n']:,} ({CONTROL})", arm=a, unc=f"{ci_w}: {_ci(e['spend_ci'], 2)}")
+        obs(f"CLM_SPEND_TRIM25_{k}", f"Sensitivity: incremental spend per customer sent the {SHORT[a]} after dropping the 25 largest purchases from each arm", round(e["spend_diff_trim25"], 4),
+            "USD per customer e-mailed", f"as the full-sample claim, minus the 25 largest purchases in each of the two arms", arm=a,
+            unc=f"point estimate falls {100 * (1 - e['spend_diff_trim25'] / e['spend_diff']):.0f}% against the full sample; spend is heavy-tailed (maximum purchase 499 USD in both arms)", safe=False)
     for s in seg:
         k = f"{'MENSONLY' if s['segment'].startswith('Mens') else 'WOMENSONLY' if s['segment'].startswith('Womens') else 'BOTH'}_{ARM_KEY[s['treatment_arm']]}"
         obs(f"CLM_SEGMENT_{k}", f"Additional buyers per 1,000, {SHORT[s['treatment_arm']]}, customers whose past-year purchases were: {s['segment']} (descriptive)",
@@ -580,7 +592,8 @@ def capability_status() -> list[tuple[str, str, str]]:
         ("Portfolio optimization", "VERIFIED as a campaign portfolio", "Mens e-mail, Womens e-mail and no e-mail compared under contact caps. The product-portfolio optimizer is validated only on the separate grocery case, under assumptions."),
         ("Demand and risk", "SCENARIO", "Additional buyers per 1,000 with intervals; cost and margin scenarios and break-even thresholds. No long-term demand forecast."),
         ("Advisor and CRM", "PENDING in this repo", "The export, the draft messages and the owned action plan are ready for the ConsultAI agents. No send, spend, approve or publish tool exists. A live LLM run is not verified here."),
-        ("SEO / GEO", f"PENDING ({geo if geo is not None else 'UNKNOWN'} of 20 answers logged)", "No SEO or GEO effect is attributed to e-mail data. The audit needs the 20 real answers first."),
+        ("SEO / GEO", (f"OBSERVED ({geo} of 20 answers, two Claude models; ChatGPT and Gemini rerun PENDING)" if geo else "PENDING (0 of 20 answers logged)"),
+         "A separate grocery-analogue audit; no SEO or GEO effect is attributed to e-mail data. See docs/geo_audit_results.md."),
         ("Outcome learning", "HISTORICAL ONLY", "Historical randomized control comparison plus a planned randomized holdout. No live deployment and no observed outcome of a new campaign."),
     ]
 

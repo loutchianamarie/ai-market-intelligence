@@ -374,6 +374,9 @@ def test_live_export_matches_its_checksum_and_the_contract(proto):
     man = json.loads((X.OUT / "run_manifest.json").read_text(encoding="utf-8"))
     assert man["data"]["sha256"] == proto["source"]["sha256"] and man["model_version"] == doc["model_version"] and man["seed"] == proto["split"]["seed"]
     assert man["split"]["test"]["n"] == doc["model"]["split"]["n_test"]
+    full = {c["claim_id"][len("CLM_SPEND_PER_CONTACT_"):]: c["value"] for c in doc["claims"] if c["claim_id"].startswith("CLM_SPEND_PER_CONTACT_")}
+    trims = {c["claim_id"][len("CLM_SPEND_TRIM25_"):]: c["value"] for c in doc["claims"] if c["claim_id"].startswith("CLM_SPEND_TRIM25_")}
+    assert set(trims) == set(full) == {"MENS", "WOMENS"} and all(0 < trims[k] < full[k] for k in full)      # heavy tail: trimming lowers it but it stays positive
 
 
 # ------------------------------------------------------------------ manager-app view (read-only, checksum-gated)
@@ -414,3 +417,24 @@ def test_view_economics_stay_unknown_until_a_person_supplies_inputs_and_match_th
     assert len(V.arm_rows(doc)) == 3 and all(r["label"] == "OBSERVED" for r in V.arm_rows(doc))
     rows = V.policy_rows(doc)
     assert rows and all(r["label"] == "HELD_OUT_ESTIMATE" for r in rows) and sum(r["primary"] == "yes" for r in rows) == 3
+
+
+# ------------------------------------------------------------------ compliance text and heavy-tail spend sensitivity
+def test_trimmed_spend_sensitivity_drops_the_largest_purchases_from_each_arm():
+    t, c = np.array([0.0] * 80 + [10.0] * 10 + [500.0] * 5 + [900.0] * 5), np.array([0.0] * 90 + [10.0] * 5 + [500.0] * 5)      # SYNTHETIC
+    assert X.trimmed_spend_diff(t, c, k=5) == pytest.approx(np.sort(t)[:-5].mean() - np.sort(c)[:-5].mean())
+    assert X.trimmed_spend_diff(t, c, k=5) < t.mean() - c.mean()                       # heavy tail in the treated arm: the estimate falls
+
+
+def test_export_drafts_and_plan_carry_the_can_spam_basics(built):
+    doc, _, _ = built
+    for d in doc["marketing"]["message_drafts"]:
+        assert "{postal_address}" in d["body"] and "marketing message" in d["body"] and "{unsubscribe_link}" in d["body"]
+        assert d["status"] == "DRAFT_HYPOTHESIS_NOT_SENT"
+    step2 = next(a for a in doc["marketing"]["action_plan"] if a["step"] == 2)
+    assert "SRC_FTC_CANSPAM" in step2["action"] and "postal address" in step2["action"] and "10 business days" in step2["action"]
+    assert any("opt-out regime" in c and "10 business days" in c for c in doc["recommendation"]["conditions"])
+    assert "SRC_FTC_CANSPAM" in doc["evidence_ids"] and any(s["source_id"] == "SRC_FTC_CANSPAM" and s["url"].startswith("https://www.ftc.gov/") for s in doc["sources"])
+    trims = [c for c in doc["claims"] if c["claim_id"].startswith("CLM_SPEND_TRIM25_")]
+    assert len(trims) == 2 and all(c["tag"] == "OBSERVED" and c["slide_safe"] is False for c in trims)
+    assert all(isinstance(c["value"], float) for c in trims)                         # the direction is data-dependent; checked on the live export below
