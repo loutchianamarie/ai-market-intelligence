@@ -272,7 +272,7 @@ class DossierStore:
             oid = cur["opportunity_id"]
             aid = f"SBX-{uuid.uuid4().hex[:10]}"
             c.execute("INSERT INTO crm_actions VALUES(?,?,?,?,?,?,?,?,1)",
-                      (aid, oid, cur["version"], idempotency_key, appr["plan_hash"], "coupon_pilot_record",
+                      (aid, oid, cur["version"], idempotency_key, appr["plan_hash"], cur.get("action_kind") or "coupon_pilot_record",
                        json.dumps(cur["pilot"], default=str), now()))
             self._transition(c, cur, "SANDBOX_RECORDED", actor, role, {"action_id": aid, "live_send": False},
                              extra={"crm_action_ids": cur.get("crm_action_ids", []) + [aid]})

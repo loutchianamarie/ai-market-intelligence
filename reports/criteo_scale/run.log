@@ -1,0 +1,56 @@
+rows 13,979,592 test 2,795,918 pool 11,183,674 treated share 0.850 conv 0.292% (27s)
+  n_64k draw 0 S_LOGIT fit 2s
+  n_64k draw 0 T_LOGIT fit 1s
+  n_64k draw 0 S_HGB fit 7s
+  n_64k draw 0 T_HGB fit 8s
+n_64k draw 0: gap top25 {'S_LOGIT': np.float64(2.68), 'T_LOGIT': np.float64(2.66), 'S_HGB': np.float64(2.84), 'T_HGB': np.float64(2.32)}
+  n_64k draw 1 S_LOGIT fit 2s
+  n_64k draw 1 T_LOGIT fit 1s
+  n_64k draw 1 S_HGB fit 4s
+  n_64k draw 1 T_HGB fit 7s
+n_64k draw 1: gap top25 {'S_LOGIT': np.float64(1.63), 'T_LOGIT': np.float64(1.93), 'S_HGB': np.float64(1.65), 'T_HGB': np.float64(1.57)}
+  n_64k draw 2 S_LOGIT fit 1s
+  n_64k draw 2 T_LOGIT fit 1s
+  n_64k draw 2 S_HGB fit 4s
+  n_64k draw 2 T_HGB fit 7s
+n_64k draw 2: gap top25 {'S_LOGIT': np.float64(1.75), 'T_LOGIT': np.float64(1.59), 'S_HGB': np.float64(2.33), 'T_HGB': np.float64(1.72)}
+  n_64k draw 3 S_LOGIT fit 1s
+  n_64k draw 3 T_LOGIT fit 1s
+  n_64k draw 3 S_HGB fit 5s
+  n_64k draw 3 T_HGB fit 8s
+n_64k draw 3: gap top25 {'S_LOGIT': np.float64(1.59), 'T_LOGIT': np.float64(1.69), 'S_HGB': np.float64(0.13), 'T_HGB': np.float64(1.87)}
+  n_64k draw 4 S_LOGIT fit 1s
+  n_64k draw 4 T_LOGIT fit 1s
+  n_64k draw 4 S_HGB fit 3s
+  n_64k draw 4 T_HGB fit 7s
+n_64k draw 4: gap top25 {'S_LOGIT': np.float64(2.47), 'T_LOGIT': np.float64(2.48), 'S_HGB': np.float64(2.29), 'T_HGB': np.float64(1.99)}
+  n_256k draw 0 S_LOGIT fit 2s
+  n_256k draw 0 T_LOGIT fit 1s
+  n_256k draw 0 S_HGB fit 9s
+  n_256k draw 0 T_HGB fit 5s
+n_256k draw 0: gap top25 {'S_LOGIT': np.float64(2.7), 'T_LOGIT': np.float64(2.49), 'S_HGB': np.float64(2.79), 'T_HGB': np.float64(2.49)}
+  n_256k draw 1 S_LOGIT fit 2s
+  n_256k draw 1 T_LOGIT fit 1s
+  n_256k draw 1 S_HGB fit 5s
+  n_256k draw 1 T_HGB fit 4s
+n_256k draw 1: gap top25 {'S_LOGIT': np.float64(2.55), 'T_LOGIT': np.float64(2.72), 'S_HGB': np.float64(2.85), 'T_HGB': np.float64(2.45)}
+  n_256k draw 2 S_LOGIT fit 2s
+  n_256k draw 2 T_LOGIT fit 1s
+  n_256k draw 2 S_HGB fit 6s
+  n_256k draw 2 T_HGB fit 5s
+n_256k draw 2: gap top25 {'S_LOGIT': np.float64(2.69), 'T_LOGIT': np.float64(2.68), 'S_HGB': np.float64(2.86), 'T_HGB': np.float64(2.72)}
+  n_1m draw 0 S_LOGIT fit 4s
+  n_1m draw 0 T_LOGIT fit 2s
+  n_1m draw 0 S_HGB fit 10s
+  n_1m draw 0 T_HGB fit 10s
+n_1m draw 0: gap top25 {'S_LOGIT': np.float64(2.77), 'T_LOGIT': np.float64(2.77), 'S_HGB': np.float64(2.88), 'T_HGB': np.float64(2.38)}
+  n_1m draw 1 S_LOGIT fit 4s
+  n_1m draw 1 T_LOGIT fit 2s
+  n_1m draw 1 S_HGB fit 12s
+  n_1m draw 1 T_HGB fit 8s
+n_1m draw 1: gap top25 {'S_LOGIT': np.float64(2.67), 'T_LOGIT': np.float64(2.63), 'S_HGB': np.float64(2.88), 'T_HGB': np.float64(2.47)}
+  n_4m draw 0 S_LOGIT fit 11s
+  n_4m draw 0 T_LOGIT fit 4s
+  n_4m draw 0 S_HGB fit 35s
+  n_4m draw 0 T_HGB fit 21s
+n_4m draw 0: gap top25 {'S_LOGIT': np.float64(2.72), 'T_LOGIT': np.float64(2.81), 'S_HGB': np.float64(2.93), 'T_HGB': np.float64(2.62)}

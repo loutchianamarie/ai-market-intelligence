@@ -22,6 +22,26 @@ python -m mi.campaign.contract sample         # rewrite the SYNTHETIC_FIXTURE (d
 python -m pytest -q tests/test_campaign_contract.py tests/test_campaign_case.py
 ```
 
+**Consumer side (advisor, screen, deck).** The agent path reads the export only through `src/mi/consumer/adapter.py` (checksum, contract validation, `DATA_PENDING` when absent, synthetic fixture refused):
+
+```
+python -m mi.consumer.advisor run             # coordinator, analyst, research, strategist, checker -> human checkpoint (trace saved)
+python -m mi.consumer.advisor blocked-demo    # send, self-approval and early CRM record all blocked
+streamlit run app/buyer_decision.py           # ONE screen: buyers -> decision -> guarded action
+python deck/build_campaign_deck.py            # five slides, notes, timings
+python -m pytest -q tests/test_campaign_advisor.py
+```
+
+Mode is `DETERMINISTIC_SPECIALISTS`; a live LLM tool-use run is PENDING. See `docs/demo_runbook.md`, `docs/reference_patterns.md`, `docs/marketing_decision_brief.md`. `.gitattributes` pins the export byte-exact: a CRLF checkout changes its SHA-256.
+
+**Scale replication (v4, pre-registered).** The same question on 14M randomized Criteo rows, with training sizes from 64,000 to 4M: `python -m mi.campaign.scale` then `python -m mi.campaign.scale_report` (needs `data/raw/criteo/`, hash pinned in `data/eval/criteo_protocol_v4_scale.json`). Result in `reports/criteo_scale/report.md`. Start with `START_HERE.md`.
+
+**Visit-outcome lab (v5, pre-registered).** The same lab on website visits (15x more events, an intermediate outcome): `python -m mi.campaign.lab_visit` then `python -m mi.campaign.lab_visit report`; result in `reports/campaign_lab_visit/report.md` (not detectable on the test split).
+
+**Master project report:** `docs/MASTER_PROJECT_REPORT.md` (generated from the computed artifacts by `python -m mi.report.master_report`): problem, methods, results, system, limits, ethics, reproducibility, references.
+
+**Model lab (v3, pre-registered).** Eight fixed candidates compared by cross-fitted Qini area, a permutation null and one test-split confirmation: `python -m mi.campaign.lab` then `python -m mi.campaign.lab_extras` (about 1 minute). Results, six figures and a generated report are in `reports/campaign_lab/` (`report.md`). **Finding: no challenger beats the v2 baseline, and the targeting signal is not distinguishable from noise with 578 buyers; the decision rests on the randomized effect.** Needs the raw CSV in `data/raw/hillstrom/` (SHA-256 checked).
+
 Protocol `data/eval/hillstrom_protocol_v2.json` was committed before the conversion model was fitted. The earlier visit analysis (`mi.experiments.hillstrom`, protocol v1) is unchanged.
 
 ## Quick start (Windows, Python 3.12)
@@ -30,7 +50,7 @@ python -m venv .venv && .venv\Scripts\activate
 pip install -r requirements.lock.txt
 pip install -e .                      # or add src/ to PYTHONPATH
 python -m mi.cli all                  # download → VERIFY (data/manifest.lock.json) → audit → train → evaluate → portfolio, sensitivity & reversal → claim audit → RAG → GEO/interview checks → Hillstrom method track → agents to the human checkpoint (~8.5 min incl. the full promotions table; logs in reports/run_logs, record in reports/run_manifest.json, current claims in reports/current_claims.json)
-python -m mi.cli test                 # 137 tests (98 grocery + advisor, 39 campaign case)
+python -m mi.cli test                 # 202 tests (grocery + advisor, campaign case, Charbel's consumer, model lab and report)
 python -m mi.cli demo                 # Streamlit manager app (offline; uses saved, hashed artifacts)
 python -m mi.claim_audit              # independent re-derivation of every headline number → reports/claim_audit.json
 python -m mi.seo.geo check            # which of the 20 GEO answers are still missing

@@ -1,0 +1,53 @@
+{
+  "status": "PRE-REGISTERED 2026-11-17, committed before any Criteo model was fitted or evaluated. Edit only by writing v5.",
+  "purpose": "Hillstrom (64,000 customers) cannot show whether an uplift model beats random targeting: the power calculation needs about 284,000 customers. This protocol tests the SAME question on a randomized dataset about 200x larger and asks how the answer changes with training-set size, including a Hillstrom-sized training set.",
+  "relation_to_other_protocols": "Independent of v2/v3 and of the exported case HILLSTROM_EMAIL_2008. Nothing here changes reports/campaign_case.latest.json. Criteo is a different (anonymised, advertising) setting; it is a methodological replication, not evidence about Hillstrom customers.",
+  "data": {
+    "name": "Criteo Uplift Prediction Dataset v2.1 (Diemert, Betlei, Renaudin, Amini; AdKDD 2018)",
+    "file": "criteo-research-uplift-v2.1.csv.gz",
+    "sha256": "2716e1bf0fd157a93b5bf86924d9088419dfbac2022c6cd90030220634f616dc",
+    "source": "https://huggingface.co/datasets/criteo/criteo-uplift",
+    "licence_note": "Released by Criteo AI Lab for research (CC BY-NC-SA 4.0 per the dataset card). Raw file is gitignored and never redistributed here.",
+    "design": "randomized advertising exposure: roughly 85% treated, 15% control; outcome = conversion (about 0.3%). Randomization is by Criteo, so treated-minus-control differences are causal estimates.",
+    "features": ["f0", "f1", "f2", "f3", "f4", "f5", "f6", "f7", "f8", "f9", "f10", "f11"],
+    "forbidden_as_features": ["treatment", "conversion", "visit", "exposure"],
+    "outcome": "conversion",
+    "treatment": "treatment"
+  },
+  "split": {
+    "rule": "one seeded random permutation of all rows (seed 20261117): first 20% of the permutation = TEST (touched once, after all fits), remaining 80% = TRAIN POOL. Training subsets are drawn from the pool only.",
+    "test_use": "The test split is read once, for the evaluation specified below. No tuning, no peeking at test results to change settings."
+  },
+  "candidates": {
+    "S_LOGIT": "baseline: single logistic regression on features, treatment and treatment x feature interactions, L2 C=1.0 on standardised features",
+    "T_LOGIT": "two separate logistic regressions (treated, control); score = difference of predicted probabilities",
+    "S_HGB": "single HistGradientBoosting classifier with the treatment flag as a feature (max_depth 4, learning_rate 0.1, max_iter 200, min_samples_leaf 200, l2 10)",
+    "T_HGB": "two HistGradientBoosting classifiers (same settings); score = difference"
+  },
+  "training_sizes": {
+    "hillstrom_sized": {"n": 64000, "draws": 5},
+    "n_256k": {"n": 256000, "draws": 3},
+    "n_1m": {"n": 1000000, "draws": 2},
+    "n_4m": {"n": 4000000, "draws": 1},
+    "note": "Draws are independent random subsets of the TRAIN POOL (seeds derived from 20261117). Hyper-parameters are fixed above for every size; nothing is tuned per size."
+  },
+  "estimands": {
+    "policy": "contact the top 25% of the TEST split by model score",
+    "primary_metric": "additional conversions per 1,000 contacts among the selected 25% (treated conversion rate minus control conversion rate, times 1,000)",
+    "random_reference": "the same estimator on the whole TEST split (equals random targeting in expectation)",
+    "primary_contrast": "GAP = selected-25% uplift per 1,000 minus whole-test uplift per 1,000",
+    "secondary": ["same GAP for the top 10%", "paired difference in GAP versus S_LOGIT at the same training subset"],
+    "uncertainty": "customer bootstrap on the test split, 100 resamples (Poisson(1) weights), the same weights for all candidates of one fit so differences are paired; 95% percentile intervals"
+  },
+  "decision_rules": {
+    "model_beats_random_at_a_size": "the 95% interval of the GAP excludes zero (lower bound > 0) in a majority of that size's draws",
+    "challenger_beats_baseline_at_a_size": "the 95% interval of the paired GAP difference versus S_LOGIT excludes zero (lower bound > 0) in a majority of that size's draws",
+    "reading": "If no candidate beats random at the Hillstrom-sized training set but one does at larger sizes, the Hillstrom 'not stable' verdict is a data-size limit, not evidence that targeting cannot work. If none beats random at any size, say so. Report whichever outcome occurs."
+  },
+  "honesty": [
+    "Nothing in this protocol was fitted or looked at before commit; only column names and row count were inspected.",
+    "Accuracy is not reported: conversion is about 0.3%, so 'nobody converts' scores about 99.7%.",
+    "Results describe advertising exposure in an anonymised dataset; no profit claim is made.",
+    "Four candidates x 11 subsets are all reported; there is no selection of the best run."
+  ]
+}

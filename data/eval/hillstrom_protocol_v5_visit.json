@@ -1,0 +1,26 @@
+{
+  "status": "PRE-REGISTERED 2026-11-17, committed before any model was fitted on the visit outcome. Edit only by writing v6.",
+  "purpose": "Purchases are rare (about 1%), which is why the Hillstrom targeting question is underpowered. The same randomized e-mail also changed website visits (about 15% of customers visit). This protocol asks the same targeting question on the visit outcome, which has roughly 15 times more events, to see whether targeting is detectable when the outcome is less rare.",
+  "relation_to_other_protocols": "Reuses v3 exactly: same data, same customer split, same 8 candidates and fixed settings, same selection rule, permutation test and single test-split confirmation. Only the outcome changes (visit instead of conversion). Nothing here changes reports/campaign_case.latest.json or the purchase conclusions.",
+  "case_id": "HILLSTROM_EMAIL_2008",
+  "outcome": {"column": "visit", "meaning": "1 = the customer visited the website in the two weeks after the e-mail", "business_status": "INTERMEDIATE OUTCOME. A visit is not a purchase and not revenue. A visit result must never be reported as buyers or profit."},
+  "prior_exposure": "REPEATED EVALUATION. Seen before this protocol: all purchase results (v2, v3); the earlier visit analysis of average effects (protocol v1, mi.experiments.hillstrom). Candidate models were never fitted on the visit outcome before this protocol. The v2 test split is not untouched data for these customers (it was used for purchase), but visit scores have not been computed on it.",
+  "data": {
+    "sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+    "split": "identical to v2/v3: train 25,598 / validation 12,799 / test 25,603. Selection uses train + validation only; the test split is read once for the selected model and the baseline.",
+    "features": ["recency", "history", "mens", "womens", "newbie", "zip_code", "channel"],
+    "forbidden_as_features": ["visit", "conversion", "spend"]
+  },
+  "candidates": "the eight v3 candidates, unchanged: S_LOGIT (baseline), S_LOGIT_SPARSE, T_LOGIT, S_HGB, T_HGB, TO_RIDGE, TO_HGB, ENSEMBLE(S_LOGIT,T_LOGIT,S_HGB)",
+  "selection_rule": "cross-fitted (5 folds x 3 repeats) Qini area on train + validation; a challenger replaces the baseline only if its paired 90% bootstrap interval for the AUQ difference is above zero; otherwise the baseline is kept",
+  "tests": ["permutation null (40 shuffles of arm labels) for the selected model", "single test-split confirmation: model vs random vs recency rule vs past-spend rule at 25% and 50% of contacts, paired customer bootstrap, 95% intervals"],
+  "decision_rules": {
+    "targeting_detectable_on_visits": "the 95% interval for MODEL_MENS_25 minus RANDOM_MENS_25 on the test split excludes zero (lower bound above zero)",
+    "reading": "If detectable on visits, that supports 'targeting signal exists but purchases are too rare to confirm it' as a hypothesis for a larger purchase test; it does not prove it for purchases. If not detectable, report that the data show no stable targeting signal even on the 15x more frequent outcome."
+  },
+  "honesty": [
+    "Visit uplift is reported in 'additional visits per 1,000 contacts', never as buyers.",
+    "All eight candidates and both selection outcomes are reported.",
+    "Accuracy is not reported."
+  ]
+}

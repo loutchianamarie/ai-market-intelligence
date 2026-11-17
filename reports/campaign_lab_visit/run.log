@@ -1,0 +1,2 @@
+[visit] 38,397 customers for selection; visit rate 0.147
+[visit] selected S_LOGIT_SPARSE; best challenger S_LOGIT_SPARSE [8.151719612728963, 36.9803289114997]; permutation p=0.024; MENS25 model-random {'value': 11.968991464573406, 'ci95': [-8.433196722386036, 32.844452397091516]}; 33.9 s
