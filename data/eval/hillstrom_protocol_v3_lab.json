@@ -1,0 +1,49 @@
+{
+  "status": "PRE-REGISTERED 2026-11-17, committed before any v3 candidate was fitted or evaluated. Edit only by writing v4.",
+  "relation_to_v2": "v2 (hillstrom_protocol_v2.json) and the exported case HILLSTROM_EMAIL_2008 v1.0 stay valid and unchanged. v3 is a model-improvement lab: it never overwrites reports/campaign_case.latest.json. If a challenger wins under the rules below, a separate export (v1 contract, new model_version) can be produced from it.",
+  "case_id": "HILLSTROM_EMAIL_2008",
+  "goal": "Find the uplift model that best ranks existing customers by the additional purchases an e-mail creates, with the fewest assumptions the data can support, and measure honestly whether it beats random targeting and simple rules.",
+  "prior_exposure": "REPEATED EVALUATION. Seen before this protocol: full-sample average effects and descriptive segment effects (the Womens e-mail works mainly among customers who bought Womens merchandise); the v2 held-out test result (model ahead of random and of the recency rule on the point estimate, not stable; past-spend rule scored higher); the published figures. The v2 test split (seed 2008-split in v2) is therefore NOT untouched data. Candidate S_LOGIT_SPARSE is motivated by those segment effects and is flagged as such.",
+  "data": {
+    "sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+    "rows": 64000,
+    "split": "the v2 customer split is reused unchanged (train 25,598 / validation 12,799 / test 25,603). Candidate SELECTION uses train + validation only (38,397 customers). The test split is touched ONCE, at the end, for the single selected model and the baseline.",
+    "features": ["recency", "history", "mens", "womens", "newbie", "zip_code", "channel"],
+    "forbidden": ["visit", "conversion", "spend", "segment as a feature (it is the treatment, used only as the arm indicator the way each candidate defines)"]
+  },
+  "outcome": "conversion within two weeks (unique customer)",
+  "arms": ["Mens E-Mail", "Womens E-Mail", "No E-Mail"],
+  "control": "No E-Mail",
+  "candidates": [
+    {"id": "S_LOGIT", "role": "BASELINE (the v2 model)", "spec": "L2 logistic S-learner, treatment x all features interactions, C=0.1"},
+    {"id": "S_LOGIT_SPARSE", "spec": "L2 logistic S-learner; treatment interacts only with the two past-purchase flags (mens, womens); C=0.1. Motivated by seen segment effects (flagged)."},
+    {"id": "T_LOGIT", "spec": "One L2 logistic model per arm on the same features, C=0.1; uplift = p(arm) - p(no e-mail)"},
+    {"id": "S_HGB", "spec": "Gradient boosting S-learner (sklearn HistGradientBoostingClassifier): arm one-hot as features; max_depth=3, learning_rate=0.05, max_iter=150, min_samples_leaf=200, l2_regularization=10, random_state=20261117"},
+    {"id": "T_HGB", "spec": "One HistGradientBoostingClassifier per arm, same hyperparameters as S_HGB"},
+    {"id": "TO_RIDGE", "spec": "Transformed-outcome regression: for each e-mail vs No E-Mail on the two arms only, z = 2*y if e-mailed else -2*y (valid under 1/2 randomization, E[z|x] = uplift); ridge regression alpha=1000 on standardized features"},
+    {"id": "TO_HGB", "spec": "Same transformed outcome, HistGradientBoostingRegressor: max_depth=2, learning_rate=0.05, max_iter=100, min_samples_leaf=400, l2_regularization=10"},
+    {"id": "ENSEMBLE", "spec": "Mean of the uplift predictions of S_LOGIT, T_LOGIT and S_HGB (members fixed now)"}
+  ],
+  "no_tuning": "Hyperparameters above are fixed in advance. No candidate is tuned on any split. This keeps the number of comparisons countable (8 candidates).",
+  "selection": {
+    "data": "train + validation only",
+    "scheme": "repeated stratified K-fold: 5 folds x 3 repeats, seed 20261117, stratified by arm and outcome. Every customer is scored by models that never saw them (cross-fitting).",
+    "metric": "AUQ = area between a candidate's cumulative incremental-buyers (Qini) curve and the random line, in buyers, on the pooled out-of-fold predictions; mean of the Mens and Womens e-mail curves; mean over the 3 repeats",
+    "rule": "The challenger with the highest mean AUQ is selected over the baseline S_LOGIT ONLY IF the paired customer bootstrap (500 resamples, repeat 1 out-of-fold predictions) 90% interval of its AUQ minus the baseline AUQ lies above zero. Otherwise the baseline is retained and the best challenger is reported as 'not shown better'.",
+    "reference_scores": "RECENCY rule, PAST-SPEND rule and a seeded RANDOM order are scored with the same AUQ"
+  },
+  "null_check": {
+    "what": "Permutation test of the selected model: shuffle the arm labels among customers (within the same CV folds), repeat the whole cross-fitted AUQ 40 times, report where the real AUQ falls in the null distribution. A signal exists only if the real AUQ is above the 95th percentile of the null.",
+    "seed": 77
+  },
+  "confirmation": {
+    "data": "test split, once",
+    "model": "the selected model (or the baseline if the rule retains it), refit on train + validation",
+    "policies": "the v2 policy catalog at contact caps 25% and 50% and all eligible, evaluated with the v2 randomized-policy estimators and a 2,000-resample customer bootstrap (seed 20261117)",
+    "primary": "additional buyers per 1,000 contacts at the 25% cap, Mens e-mail: selected model minus random, minus the recency rule, and minus the baseline model (paired bootstrap, 95% intervals)",
+    "stable_gain": "a gain is called stable only if its paired 95% interval lies above zero"
+  },
+  "descriptive_full_sample": "Cross-fitted (5-fold, seed 20261117) uplift curves for ALL 64,000 customers are reported for every candidate as descriptive curves with bootstrap bands. They are selection-biased across candidates and carry no confirmatory weight.",
+  "outputs": "reports/campaign_lab/ (results.json, report.md, figures). No file of the frozen export is modified.",
+  "intended_use": "Group-level targeting decisions in a future randomized pilot; never an individual causal effect."
+}
