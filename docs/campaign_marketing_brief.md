@@ -1,7 +1,7 @@
 # Campaign case: marketing brief and slide claims
 
 Case `HILLSTROM_EMAIL_2008`, contract 1.0, run `CAMP-24B4793860DC`, model `hillstrom-conv-slearner-p2-3ce8fb1cd1`.
-Export `reports/campaign_case.latest.json`, SHA-256 `a3ee6a640ad9a9021c10f7bb3601fd1d79ae2619cb87e1f5c7d4db1e76cd75e4`. Every figure below is copied from that file by code.
+Export `reports/campaign_case.latest.json`, SHA-256 `e10868f2b6631500fed64ed44f1986726b9d837fc9b9fdc2e0799157452c927c`. Every figure below is copied from that file by code.
 
 ## The decision in one paragraph
 
@@ -92,7 +92,7 @@ Published reference figures (Radcliffe 2008, Table 2, page 3), for comparison on
 | Portfolio optimization | VERIFIED as a campaign portfolio | Mens e-mail, Womens e-mail and no e-mail compared under contact caps. The product-portfolio optimizer is validated only on the separate grocery case, under assumptions. |
 | Demand and risk | SCENARIO | Additional buyers per 1,000 with intervals; cost and margin scenarios and break-even thresholds. No long-term demand forecast. |
 | Advisor and CRM | PENDING in this repo | The export, the draft messages and the owned action plan are ready for the ConsultAI agents. No send, spend, approve or publish tool exists. A live LLM run is not verified here. |
-| SEO / GEO | PENDING (0 of 20 answers logged) | No SEO or GEO effect is attributed to e-mail data. The audit needs the 20 real answers first. |
+| SEO / GEO | OBSERVED (20 of 20 answers, two Claude models; ChatGPT and Gemini rerun PENDING) | A separate grocery-analogue audit; no SEO or GEO effect is attributed to e-mail data. See docs/geo_audit_results.md. |
 | Outcome learning | HISTORICAL ONLY | Historical randomized control comparison plus a planned randomized holdout. No live deployment and no observed outcome of a new campaign. |
 
 ## What ConsultAI must integrate

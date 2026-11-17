@@ -1,6 +1,6 @@
 # Model card: buyer-uplift model for the e-mail campaign case (HILLSTROM_EMAIL_2008)
 
-Model version `hillstrom-conv-slearner-p2-3ce8fb1cd1`. Run `CAMP-24B4793860DC`. Generated 2026-11-17T06:35:29Z by `python -m mi.campaign.export`. Every figure is computed from the local raw file.
+Model version `hillstrom-conv-slearner-p2-3ce8fb1cd1`. Run `CAMP-24B4793860DC`. Generated 2026-11-17T19:50:43Z by `python -m mi.campaign.export`. Every figure is computed from the local raw file.
 
 ## Verdict
 

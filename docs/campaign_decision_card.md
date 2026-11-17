@@ -13,7 +13,7 @@ We have an existing customer base (64,000 customers who bought in the past year)
 Conditions:
 
 1. Finance confirms the contribution margin on incremental sales and CRM confirms the full cost per e-mail (delivery, offer, handling); the cost must be below margin x 0.77 USD, and below margin x 0.49 USD to be safe on the lower bound.
-2. E-mail consent and unsubscribe handling are verified for every recipient.
+2. The legal basis for e-mailing each recipient is verified for their jurisdiction (US CAN-SPAM is an opt-out regime; EU/UK and other rules can require opt-in), the opt-out list is applied and unsubscribe requests are honored within 10 business days (SRC_FTC_CANSPAM).
 3. A 10% randomized no-e-mail holdout is drawn and frozen before sending (at least 3,063 customers per arm to detect an effect of the 2008 size with 80% power).
 4. A named human approves the final draft; any change to the plan requires a new review.
 5. The 2008 effect is a prior, not a forecast: the first send is itself the pilot and is judged on its own holdout.
@@ -106,7 +106,7 @@ If only a share of customers may be contacted, do not present the model as a pro
 | Step | Owner | Action | Status |
 |---:|---|---|---|
 | 1 | CRM owner | Review the eligible segment (purchased in the past twelve months) and report its current size. | PENDING_HUMAN |
-| 2 | CRM owner with legal | Verify e-mail consent and unsubscribe handling for every eligible customer. | PENDING_HUMAN |
+| 2 | CRM owner with legal | Check the draft and the send list against the FTC CAN-SPAM requirements (SRC_FTC_CANSPAM): accurate sender and subject, message identified as an ad, valid postal address, working opt-out honored within 10 business days, opted-out customers suppressed. Confirm the legal basis for each recipient's jurisdiction (the US is opt-out; EU/UK and others can require opt-in). | PENDING_HUMAN |
 | 3 | Finance with CRM owner | Supply the contribution margin and the full cost per e-mail; compare with the break-even thresholds. | PENDING_HUMAN |
 | 4 | Analyst | Draw and freeze a 10% randomized no-e-mail holdout before any send. | PENDING_HUMAN |
 | 5 | Marketing manager | Approve or reject the draft with name, reason and plan version; re-review after any change. | PENDING_HUMAN |

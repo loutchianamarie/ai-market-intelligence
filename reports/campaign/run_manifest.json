@@ -1,9 +1,9 @@
 {
   "case_id": "HILLSTROM_EMAIL_2008",
   "run_id": "CAMP-24B4793860DC",
-  "generated_at": "2026-11-17T06:35:29Z",
+  "generated_at": "2026-11-17T19:50:43Z",
   "command": "python -m mi.campaign.export",
-  "code_commit": "80c1bb511ba386a08b2af65ca3350f8ad904b3df",
+  "code_commit": "e047e90a810a8761b78ed4ad9f4495aaa3f6bf86",
   "data": {
     "sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
     "bytes": 3964977,
@@ -81,8 +81,8 @@
   },
   "export": {
     "path": "reports/campaign_case.latest.json",
-    "sha256": "a3ee6a640ad9a9021c10f7bb3601fd1d79ae2619cb87e1f5c7d4db1e76cd75e4",
+    "sha256": "e10868f2b6631500fed64ed44f1986726b9d837fc9b9fdc2e0799157452c927c",
     "contract_version": "1.0"
   },
-  "seconds": 19.8
+  "seconds": 20.1
 }

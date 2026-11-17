@@ -1,7 +1,7 @@
 {
   "case_id": "HILLSTROM_EMAIL_2008",
   "run_id": "CAMP-24B4793860DC",
-  "export_sha256": "a3ee6a640ad9a9021c10f7bb3601fd1d79ae2619cb87e1f5c7d4db1e76cd75e4",
+  "export_sha256": "e10868f2b6631500fed64ed44f1986726b9d837fc9b9fdc2e0799157452c927c",
   "note": "identical to $.claims in the export; one line per displayable figure",
   "claims": [
     {
@@ -226,6 +226,23 @@
       "slide_safe": true
     },
     {
+      "claim_id": "CLM_SPEND_TRIM25_MENS",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Sensitivity: incremental spend per customer sent the Mens e-mail after dropping the 25 largest purchases from each arm",
+      "value": 0.6307,
+      "unit": "USD per customer e-mailed",
+      "tag": "OBSERVED",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "as the full-sample claim, minus the 25 largest purchases in each of the two arms",
+      "period": "two weeks after the e-mail",
+      "arm": "Mens E-Mail",
+      "split": "full_sample",
+      "model_version": null,
+      "uncertainty": "point estimate falls 18% against the full sample; spend is heavy-tailed (maximum purchase 499 USD in both arms)",
+      "source_id": "SRC_HILLSTROM_2008_DATA",
+      "slide_safe": false
+    },
+    {
       "claim_id": "CLM_BUYERS_PER_1000_WOMENS",
       "case_id": "HILLSTROM_EMAIL_2008",
       "text": "Additional purchasing customers per 1,000 customers sent the Womens e-mail, versus no e-mail",
@@ -275,6 +292,23 @@
       "uncertainty": "95% interval, normal approximation: 0.17 to 0.68",
       "source_id": "SRC_HILLSTROM_2008_DATA",
       "slide_safe": true
+    },
+    {
+      "claim_id": "CLM_SPEND_TRIM25_WOMENS",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Sensitivity: incremental spend per customer sent the Womens e-mail after dropping the 25 largest purchases from each arm",
+      "value": 0.3516,
+      "unit": "USD per customer e-mailed",
+      "tag": "OBSERVED",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "as the full-sample claim, minus the 25 largest purchases in each of the two arms",
+      "period": "two weeks after the e-mail",
+      "arm": "Womens E-Mail",
+      "split": "full_sample",
+      "model_version": null,
+      "uncertainty": "point estimate falls 17% against the full sample; spend is heavy-tailed (maximum purchase 499 USD in both arms)",
+      "source_id": "SRC_HILLSTROM_2008_DATA",
+      "slide_safe": false
     },
     {
       "claim_id": "CLM_SEGMENT_MENSONLY_MENS",

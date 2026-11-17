@@ -2,10 +2,10 @@
   "contract_version": "1.0",
   "record_type": "COMPUTED_EXPORT",
   "case_id": "HILLSTROM_EMAIL_2008",
-  "generated_at": "2026-11-17T06:35:29Z",
+  "generated_at": "2026-11-17T19:50:43Z",
   "producer": {
     "repo": "ai-market-intelligence",
-    "code_commit": "80c1bb511ba386a08b2af65ca3350f8ad904b3df",
+    "code_commit": "e047e90a810a8761b78ed4ad9f4495aaa3f6bf86",
     "command": "python -m mi.campaign.export"
   },
   "dataset_provenance": {
@@ -2376,7 +2376,7 @@
     "contact_share": 0.9,
     "conditions": [
       "Finance confirms the contribution margin on incremental sales and CRM confirms the full cost per e-mail (delivery, offer, handling); the cost must be below margin x 0.77 USD, and below margin x 0.49 USD to be safe on the lower bound.",
-      "E-mail consent and unsubscribe handling are verified for every recipient.",
+      "The legal basis for e-mailing each recipient is verified for their jurisdiction (US CAN-SPAM is an opt-out regime; EU/UK and other rules can require opt-in), the opt-out list is applied and unsubscribe requests are honored within 10 business days (SRC_FTC_CANSPAM).",
       "A 10% randomized no-e-mail holdout is drawn and frozen before sending (at least 3,063 customers per arm to detect an effect of the 2008 size with 80% power).",
       "A named human approves the final draft; any change to the plan requires a new review.",
       "The 2008 effect is a prior, not a forecast: the first send is itself the pilot and is judged on its own holdout."
@@ -2386,7 +2386,8 @@
       "That is 6.8 additional purchasing customers per 1,000 e-mailed (95% interval 5.0 to 8.6). The Womens e-mail added 3.1 per 1,000 (interval 1.5 to 4.7) against the same control.",
       "On the held-out test split the Mens e-mail sent to everyone added 7.4 per 1,000 (interval 4.6 to 10.3), consistent with the full sample.",
       "At a 25% contact cap, the model's top customers gave 10.0 additional buyers per 1,000 Mens e-mails (95% interval 2.8 to 17.2), against 7.4 for random contacts (difference +2.6, interval -3.5 to 8.7) and 8.6 for the recency rule (difference +1.4, interval -5.5 to 8.2). The model is ahead on the point estimate, but both intervals must exclude zero for a stable gain and they do not: no stable targeting gain is shown. The past-spend rule, which validation did not select as the primary rule, scored 11.6 (model minus that rule -1.6, interval -7.0 to 3.9).",
-      "Incremental spend is 0.77 USD per customer e-mailed (interval 0.49 to 1.05). Margin and cost per e-mail are UNKNOWN, so no profit is claimed; at an assumed 35% margin the e-mail may cost up to 0.27 USD (0.17 USD on the lower bound) before it loses money, setup aside."
+      "Incremental spend is 0.77 USD per customer e-mailed (interval 0.49 to 1.05). Margin and cost per e-mail are UNKNOWN, so no profit is claimed; at an assumed 35% margin the e-mail may cost up to 0.27 USD (0.17 USD on the lower bound) before it loses money, setup aside.",
+      "Spend is heavy-tailed: dropping the 25 largest purchases from each arm lowers the Mens e-mail incremental spend from 0.77 to 0.63 USD per e-mail, so break-even cost falls by about 18%; it stays positive. The e-mail adds buyers, not larger baskets (mean spend per buyer 114 vs 114 USD)."
     ],
     "would_reverse_if": [
       "Verified cost per e-mail above the break-even for the verified margin (point: margin x 0.77 USD): choose no e-mail.",
@@ -2462,14 +2463,14 @@
         "draft_id": "DRAFT_MENS_A",
         "arm": "Mens E-Mail",
         "subject": "New in menswear, picked for returning customers",
-        "body": "Hello {first_name}, thank you for shopping with {brand} this year. The new men's collection has arrived: {three_featured_items}. See what is new: {landing_page_url}. No price or discount is stated because offer terms are not approved. {unsubscribe_link}",
+        "body": "Hello {first_name}, thank you for shopping with {brand} this year. The new men's collection has arrived: {three_featured_items}. See what is new: {landing_page_url}. No price or discount is stated because offer terms are not approved. This is a marketing message from {brand}, {postal_address}. To stop receiving these messages: {unsubscribe_link}",
         "status": "DRAFT_HYPOTHESIS_NOT_SENT"
       },
       {
         "draft_id": "DRAFT_WOMENS_A",
         "arm": "Womens E-Mail",
         "subject": "New in womenswear, picked for returning customers",
-        "body": "Hello {first_name}, thank you for shopping with {brand} this year. The new women's collection has arrived: {three_featured_items}. See what is new: {landing_page_url}. No price or discount is stated because offer terms are not approved. {unsubscribe_link}",
+        "body": "Hello {first_name}, thank you for shopping with {brand} this year. The new women's collection has arrived: {three_featured_items}. See what is new: {landing_page_url}. No price or discount is stated because offer terms are not approved. This is a marketing message from {brand}, {postal_address}. To stop receiving these messages: {unsubscribe_link}",
         "status": "DRAFT_HYPOTHESIS_NOT_SENT"
       }
     ],
@@ -2483,7 +2484,7 @@
       {
         "step": 2,
         "owner_role": "CRM owner with legal",
-        "action": "Verify e-mail consent and unsubscribe handling for every eligible customer.",
+        "action": "Check the draft and the send list against the FTC CAN-SPAM requirements (SRC_FTC_CANSPAM): accurate sender and subject, message identified as an ad, valid postal address, working opt-out honored within 10 business days, opted-out customers suppressed. Confirm the legal basis for each recipient's jurisdiction (the US is opt-out; EU/UK and others can require opt-in).",
         "status": "PENDING_HUMAN"
       },
       {
@@ -2987,6 +2988,23 @@
       "slide_safe": true
     },
     {
+      "claim_id": "CLM_SPEND_TRIM25_MENS",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Sensitivity: incremental spend per customer sent the Mens e-mail after dropping the 25 largest purchases from each arm",
+      "value": 0.6307,
+      "unit": "USD per customer e-mailed",
+      "tag": "OBSERVED",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "as the full-sample claim, minus the 25 largest purchases in each of the two arms",
+      "period": "two weeks after the e-mail",
+      "arm": "Mens E-Mail",
+      "split": "full_sample",
+      "model_version": null,
+      "uncertainty": "point estimate falls 18% against the full sample; spend is heavy-tailed (maximum purchase 499 USD in both arms)",
+      "source_id": "SRC_HILLSTROM_2008_DATA",
+      "slide_safe": false
+    },
+    {
       "claim_id": "CLM_BUYERS_PER_1000_WOMENS",
       "case_id": "HILLSTROM_EMAIL_2008",
       "text": "Additional purchasing customers per 1,000 customers sent the Womens e-mail, versus no e-mail",
@@ -3036,6 +3054,23 @@
       "uncertainty": "95% interval, normal approximation: 0.17 to 0.68",
       "source_id": "SRC_HILLSTROM_2008_DATA",
       "slide_safe": true
+    },
+    {
+      "claim_id": "CLM_SPEND_TRIM25_WOMENS",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Sensitivity: incremental spend per customer sent the Womens e-mail after dropping the 25 largest purchases from each arm",
+      "value": 0.3516,
+      "unit": "USD per customer e-mailed",
+      "tag": "OBSERVED",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "as the full-sample claim, minus the 25 largest purchases in each of the two arms",
+      "period": "two weeks after the e-mail",
+      "arm": "Womens E-Mail",
+      "split": "full_sample",
+      "model_version": null,
+      "uncertainty": "point estimate falls 17% against the full sample; spend is heavy-tailed (maximum purchase 499 USD in both arms)",
+      "source_id": "SRC_HILLSTROM_2008_DATA",
+      "slide_safe": false
     },
     {
       "claim_id": "CLM_SEGMENT_MENSONLY_MENS",
@@ -3795,6 +3830,14 @@
       "note": "Metric definitions only (uplift at k, Qini). The library is not a dependency; metrics are implemented locally."
     },
     {
+      "source_id": "SRC_FTC_CANSPAM",
+      "kind": "DOCUMENTATION",
+      "title": "FTC, CAN-SPAM Act: A Compliance Guide for Business (eight requirements, postal address, opt-out within 10 business days)",
+      "url": "https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business",
+      "accessed": "2026-11-17",
+      "note": "US law only; an opt-out regime. Page dated August 2023, edited January 2024; the penalty figure was not re-checked. EU/UK and other regimes can require opt-in and are not covered."
+    },
+    {
       "source_id": "SRC_LOCAL_PROTOCOL_V2",
       "kind": "LOCAL_ARTIFACT",
       "title": "Pre-registered conversion-uplift protocol v2 (split, features, policies, primary metric, decision rule)",
@@ -3815,6 +3858,7 @@
     "SRC_HILLSTROM_2008_DATA",
     "SRC_RADCLIFFE_2008",
     "SRC_SKLIFT_DOCS",
+    "SRC_FTC_CANSPAM",
     "SRC_LOCAL_PROTOCOL_V2",
     "SRC_LOCAL_RUN"
   ],
