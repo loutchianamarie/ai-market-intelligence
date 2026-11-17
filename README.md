@@ -30,7 +30,7 @@ python -m venv .venv && .venv\Scripts\activate
 pip install -r requirements.lock.txt
 pip install -e .                      # or add src/ to PYTHONPATH
 python -m mi.cli all                  # download → VERIFY (data/manifest.lock.json) → audit → train → evaluate → portfolio, sensitivity & reversal → claim audit → RAG → GEO/interview checks → Hillstrom method track → agents to the human checkpoint (~8.5 min incl. the full promotions table; logs in reports/run_logs, record in reports/run_manifest.json, current claims in reports/current_claims.json)
-python -m mi.cli test                 # 136 tests (98 grocery + advisor, 38 campaign case)
+python -m mi.cli test                 # 137 tests (98 grocery + advisor, 39 campaign case)
 python -m mi.cli demo                 # Streamlit manager app (offline; uses saved, hashed artifacts)
 python -m mi.claim_audit              # independent re-derivation of every headline number → reports/claim_audit.json
 python -m mi.seo.geo check            # which of the 20 GEO answers are still missing

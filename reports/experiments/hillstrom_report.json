@@ -695,5 +695,5 @@
     "note": "spend policy values are 'incremental dollars per 1,000 targeted' (estimator reused on spend); conversion is rare: wide CIs expected"
   },
   "use_restriction": "Methodological demonstration of what a RANDOMIZED marketing test identifies. Different retailer (apparel, 2008), channel (email) and outcome window (2 weeks): its effects must NEVER be used as grocery coupon uplift or to change the Frozen Pizza plan.",
-  "seconds": 69.6
+  "seconds": 69.0
 }

@@ -249,7 +249,7 @@
     },
     {
       "id": "run.dossier",
-      "value": "OPP-FC7CDD82",
+      "value": "OPP-B2B80821",
       "unit": "-",
       "status": "OBSERVED",
       "source": "reports/run_manifest.json"
@@ -259,14 +259,14 @@
       "value": "DEFER FUNDING / NO SPEND WHILE TERMS ARE UNCONFIRMED",
       "unit": "-",
       "status": "ADVISORY (a named human decides)",
-      "source": "dossier OPP-FC7CDD82#advisor_recommendation"
+      "source": "dossier OPP-B2B80821#advisor_recommendation"
     },
     {
       "id": "advisor.base_case",
       "value": "RETAILER-FUNDED offer (retailer pays the full coupon face value): the current base case",
       "unit": "-",
       "status": "ASSUMPTION",
-      "source": "dossier OPP-FC7CDD82#advisor_recommendation"
+      "source": "dossier OPP-B2B80821#advisor_recommendation"
     },
     {
       "id": "advisor.reopen_if",
@@ -282,7 +282,7 @@
       ],
       "unit": "-",
       "status": "CHECKLIST",
-      "source": "dossier OPP-FC7CDD82#advisor_recommendation"
+      "source": "dossier OPP-B2B80821#advisor_recommendation"
     },
     {
       "id": "buyers.planA_current_pattern_panel",
@@ -333,17 +333,17 @@
     {
       "id": "queue.items",
       "value": {
-        "WI-D7FBDF1C": "READY research $0",
-        "WI-91662CE4": "READY research $0",
-        "WI-7F43B3F8": "READY research $0",
-        "WI-EC881DC0": "READY research $0",
-        "WI-E2954CF5": "READY operations $0",
-        "WI-CC201570": "BLOCKED_PENDING_APPROVAL public_content $0",
-        "WI-C6C216BF": "BLOCKED_PENDING_APPROVAL paid_contact $1,938"
+        "WI-F2031770": "READY research $0",
+        "WI-66880A54": "READY research $0",
+        "WI-DA062A84": "READY research $0",
+        "WI-682EC652": "READY research $0",
+        "WI-BFF5C649": "READY operations $0",
+        "WI-673F452D": "BLOCKED_PENDING_APPROVAL public_content $0",
+        "WI-7B888BD2": "BLOCKED_PENDING_APPROVAL paid_contact $1,938"
       },
       "unit": "-",
       "status": "SANDBOX",
-      "source": "dossier OPP-FC7CDD82 work_items"
+      "source": "dossier OPP-B2B80821 work_items"
     },
     {
       "id": "funding.historical_match_share_all",

@@ -1,0 +1,88 @@
+{
+  "case_id": "HILLSTROM_EMAIL_2008",
+  "run_id": "CAMP-24B4793860DC",
+  "generated_at": "2026-11-17T06:35:29Z",
+  "command": "python -m mi.campaign.export",
+  "code_commit": "80c1bb511ba386a08b2af65ca3350f8ad904b3df",
+  "data": {
+    "sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+    "bytes": 3964977,
+    "rows": 64000
+  },
+  "protocol": {
+    "path": "data/eval/hillstrom_protocol_v2.json",
+    "sha256": "bada4f40aee836afeb08c6eb699f013ae090cbd0ae25e72a8ea0696b7c0c7f97"
+  },
+  "seed": 20261117,
+  "split": {
+    "train": {
+      "n": 25598,
+      "sha256_of_customer_ids": "3215692e5933c29af2033cbc25db1f780663384e63d27a4ff14ca1bb4324228a"
+    },
+    "validation": {
+      "n": 12799,
+      "sha256_of_customer_ids": "62dffa5805521c5fb082c8c89225a607c928543756d7d16ae4ddf8e81c031b68"
+    },
+    "test": {
+      "n": 25603,
+      "sha256_of_customer_ids": "28d102d74eeff9f711045b54101b7595877d5c434a1c2bb5d5429f478780b6c5"
+    }
+  },
+  "feature_list": [
+    "recency",
+    "log_history",
+    "mens",
+    "womens",
+    "newbie",
+    "zip_code=Surburban",
+    "zip_code=Urban",
+    "channel=Phone",
+    "channel=Web",
+    "T_mens",
+    "T_womens",
+    "T_mens x recency",
+    "T_mens x log_history",
+    "T_mens x mens",
+    "T_mens x womens",
+    "T_mens x newbie",
+    "T_mens x zip_code=Surburban",
+    "T_mens x zip_code=Urban",
+    "T_mens x channel=Phone",
+    "T_mens x channel=Web",
+    "T_womens x recency",
+    "T_womens x log_history",
+    "T_womens x mens",
+    "T_womens x womens",
+    "T_womens x newbie",
+    "T_womens x zip_code=Surburban",
+    "T_womens x zip_code=Urban",
+    "T_womens x channel=Phone",
+    "T_womens x channel=Web"
+  ],
+  "raw_columns_read_by_model": [
+    "recency",
+    "history",
+    "mens",
+    "womens",
+    "newbie",
+    "zip_code",
+    "channel"
+  ],
+  "model_version": "hillstrom-conv-slearner-p2-3ce8fb1cd1",
+  "coef_sha256": "3ce8fb1cd174a9ee01410c0f0d10aaf05ea84ced44efe91c3ed44be3e7236438",
+  "bootstrap_resamples": 2000,
+  "versions": {
+    "python": "3.12.10",
+    "numpy": "2.5.4",
+    "pandas": "2.3.3",
+    "scikit-learn": "1.7.2",
+    "scipy": "1.18.1",
+    "jsonschema": "4.26.0"
+  },
+  "export": {
+    "path": "reports/campaign_case.latest.json",
+    "sha256": "a3ee6a640ad9a9021c10f7bb3601fd1d79ae2619cb87e1f5c7d4db1e76cd75e4",
+    "contract_version": "1.0"
+  },
+  "seconds": 19.8
+}

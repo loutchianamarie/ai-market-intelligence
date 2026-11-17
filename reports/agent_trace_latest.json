@@ -1,5 +1,5 @@
 {
-  "opportunity_id": "OPP-FC7CDD82",
+  "opportunity_id": "OPP-B2B80821",
   "state": "REVIEW_REQUESTED",
   "version": 9,
   "llm_available": false,
@@ -7,7 +7,7 @@
     {
       "role": "research",
       "mode": "deterministic",
-      "ts": "2026-11-15T05:16:46+00:00",
+      "ts": "2026-11-17T06:33:58+00:00",
       "tool_calls": [
         {
           "tool": "retrieve_sources",
@@ -56,7 +56,7 @@
     {
       "role": "intelligence",
       "mode": "deterministic",
-      "ts": "2026-11-15T05:16:46+00:00",
+      "ts": "2026-11-17T06:33:59+00:00",
       "tool_calls": [
         {
           "tool": "get_data_audit",
@@ -96,7 +96,7 @@
     {
       "role": "portfolio",
       "mode": "deterministic",
-      "ts": "2026-11-15T05:16:47+00:00",
+      "ts": "2026-11-17T06:33:59+00:00",
       "tool_calls": [
         {
           "tool": "compare_plans",
@@ -131,7 +131,7 @@
     {
       "role": "activation",
       "mode": "deterministic",
-      "ts": "2026-11-15T05:16:47+00:00",
+      "ts": "2026-11-17T06:33:59+00:00",
       "tool_calls": [
         {
           "tool": "pilot_design",
@@ -154,7 +154,7 @@
           "tool": "draft_pilot",
           "status": "ok",
           "args": {
-            "opportunity_id": "OPP-FC7CDD82",
+            "opportunity_id": "OPP-B2B80821",
             "expected_version": 5
           }
         },
@@ -162,7 +162,7 @@
           "tool": "request_approval",
           "status": "ok",
           "args": {
-            "opportunity_id": "OPP-FC7CDD82",
+            "opportunity_id": "OPP-B2B80821",
             "expected_version": 7
           }
         },
@@ -170,7 +170,7 @@
           "tool": "queue_work_item",
           "status": "ok",
           "args": {
-            "opportunity_id": "OPP-FC7CDD82",
+            "opportunity_id": "OPP-B2B80821",
             "item": {
               "kind": "research",
               "title": "2-3 consented interviews (lapsed frozen-pizza buyers, 1 nonbuyer)",
@@ -183,19 +183,19 @@
                 "docs/market_research_memo.md"
               ],
               "budget_usd": 0,
-              "due_date": "2026-11-22",
+              "due_date": "2026-11-24",
               "success_metric": "mi.evidence.interviews check = OK; barrier codes recorded",
-              "follow_up_date": "2026-11-25",
+              "follow_up_date": "2026-11-27",
               "decision_it_changes": "coupon vs product/availability vs no action for plan A"
             },
-            "idempotency_key": "OPP-FC7CDD82:R1"
+            "idempotency_key": "OPP-B2B80821:R1"
           }
         },
         {
           "tool": "queue_work_item",
           "status": "ok",
           "args": {
-            "opportunity_id": "OPP-FC7CDD82",
+            "opportunity_id": "OPP-B2B80821",
             "item": {
               "kind": "research",
               "title": "Freeze GEO panel and collect 20 fresh-chat answers",
@@ -207,19 +207,19 @@
                 "reports/seo_geo_audit.json"
               ],
               "budget_usd": 0,
-              "due_date": "2026-11-22",
+              "due_date": "2026-11-24",
               "success_metric": "mi.seo.geo check complete_rows = 20",
-              "follow_up_date": "2026-11-25",
+              "follow_up_date": "2026-11-27",
               "decision_it_changes": "whether plan C (content) is worth doing"
             },
-            "idempotency_key": "OPP-FC7CDD82:R2"
+            "idempotency_key": "OPP-B2B80821:R2"
           }
         },
         {
           "tool": "queue_work_item",
           "status": "ok",
           "args": {
-            "opportunity_id": "OPP-FC7CDD82",
+            "opportunity_id": "OPP-B2B80821",
             "item": {
               "kind": "research",
               "title": "Verify Kroger / Target / Walmart / ALDI offer pages by hand",
@@ -231,19 +231,19 @@
                 "docs/decision_brief.md#6"
               ],
               "budget_usd": 0,
-              "due_date": "2026-11-20",
+              "due_date": "2026-11-22",
               "success_metric": "each row VERIFIED with date or stays UNVERIFIED",
-              "follow_up_date": "2026-11-22",
+              "follow_up_date": "2026-11-24",
               "decision_it_changes": "offer-mechanics assumptions (reach, redemption)"
             },
-            "idempotency_key": "OPP-FC7CDD82:R3"
+            "idempotency_key": "OPP-B2B80821:R3"
           }
         },
         {
           "tool": "queue_work_item",
           "status": "ok",
           "args": {
-            "opportunity_id": "OPP-FC7CDD82",
+            "opportunity_id": "OPP-B2B80821",
             "item": {
               "kind": "research",
               "title": "Send the client input form and load confirmed answers",
@@ -256,19 +256,19 @@
                 "reports/funding_audit.json"
               ],
               "budget_usd": 0,
-              "due_date": "2026-11-20",
+              "due_date": "2026-11-22",
               "success_metric": "mi.decision.client_inputs check applies funding, pool, margin, costs, stock",
-              "follow_up_date": "2026-11-23",
+              "follow_up_date": "2026-11-25",
               "decision_it_changes": "the funding contract and pool thresholds that could reopen plan A"
             },
-            "idempotency_key": "OPP-FC7CDD82:R4"
+            "idempotency_key": "OPP-B2B80821:R4"
           }
         },
         {
           "tool": "queue_work_item",
           "status": "ok",
           "args": {
-            "opportunity_id": "OPP-FC7CDD82",
+            "opportunity_id": "OPP-B2B80821",
             "item": {
               "kind": "operations",
               "title": "Yogurt availability / assortment / placement check",
@@ -281,19 +281,19 @@
                 "docs/opportunity_cards.md#C3"
               ],
               "budget_usd": 0,
-              "due_date": "2026-11-25",
+              "due_date": "2026-11-27",
               "success_metric": "cause identified or ruled out (stock / assortment / price / none)",
-              "follow_up_date": "2026-11-29",
+              "follow_up_date": "2026-12-01",
               "decision_it_changes": "whether plan B becomes a product/place fix"
             },
-            "idempotency_key": "OPP-FC7CDD82:OPS1"
+            "idempotency_key": "OPP-B2B80821:OPS1"
           }
         },
         {
           "tool": "queue_work_item",
           "status": "ok",
           "args": {
-            "opportunity_id": "OPP-FC7CDD82",
+            "opportunity_id": "OPP-B2B80821",
             "item": {
               "kind": "public_content",
               "title": "Discovery content for the public analogue (only after R2 shows a gap)",
@@ -305,20 +305,20 @@
                 "reports/seo_geo_audit.json"
               ],
               "budget_usd": 0,
-              "due_date": "2026-12-06",
+              "due_date": "2026-12-08",
               "success_metric": "mention/recommendation rate on a re-run panel; owned-page clicks (separately)",
-              "follow_up_date": "2026-12-20",
+              "follow_up_date": "2026-12-22",
               "decision_it_changes": "content investment",
               "depends_on": "R2"
             },
-            "idempotency_key": "OPP-FC7CDD82:CONTENT1"
+            "idempotency_key": "OPP-B2B80821:CONTENT1"
           }
         },
         {
           "tool": "queue_work_item",
           "status": "ok",
           "args": {
-            "opportunity_id": "OPP-FC7CDD82",
+            "opportunity_id": "OPP-B2B80821",
             "item": {
               "kind": "paid_contact",
               "title": "Frozen Pizza lapsing digital coupon test (design only)",
@@ -332,16 +332,16 @@
                 "reports/claim_audit.json"
               ],
               "budget_usd": 1938.0,
-              "due_date": "2026-12-15",
+              "due_date": "2026-12-17",
               "success_metric": "incremental contribution per randomized household above the rollout hurdle",
-              "follow_up_date": "2027-01-14",
+              "follow_up_date": "2027-01-16",
               "requirements": {
                 "consent_verified": null,
                 "stock_confirmed": null
               },
               "advisor_note": "advisor status DEFER FUNDING / NO SPEND WHILE TERMS ARE UNCONFIRMED; base case retailer-funded"
             },
-            "idempotency_key": "OPP-FC7CDD82:PAID1"
+            "idempotency_key": "OPP-B2B80821:PAID1"
           }
         }
       ],
@@ -351,20 +351,20 @@
   ],
   "events": [
     {
-      "id": 156,
-      "opportunity_id": "OPP-FC7CDD82",
+      "id": 176,
+      "opportunity_id": "OPP-B2B80821",
       "version": 1,
-      "ts": "2026-11-15T05:16:46+00:00",
+      "ts": "2026-11-17T06:33:58+00:00",
       "actor": "coordinator",
       "role": "agent",
       "event": "DOSSIER_CREATED",
       "detail": {}
     },
     {
-      "id": 157,
-      "opportunity_id": "OPP-FC7CDD82",
+      "id": 177,
+      "opportunity_id": "OPP-B2B80821",
       "version": 2,
-      "ts": "2026-11-15T05:16:46+00:00",
+      "ts": "2026-11-17T06:33:58+00:00",
       "actor": "research_agent",
       "role": "agent",
       "event": "DOSSIER_UPDATED",
@@ -376,10 +376,10 @@
       }
     },
     {
-      "id": 158,
-      "opportunity_id": "OPP-FC7CDD82",
+      "id": 178,
+      "opportunity_id": "OPP-B2B80821",
       "version": 3,
-      "ts": "2026-11-15T05:16:46+00:00",
+      "ts": "2026-11-17T06:33:59+00:00",
       "actor": "intelligence_agent",
       "role": "agent",
       "event": "DOSSIER_UPDATED",
@@ -391,10 +391,10 @@
       }
     },
     {
-      "id": 159,
-      "opportunity_id": "OPP-FC7CDD82",
+      "id": 179,
+      "opportunity_id": "OPP-B2B80821",
       "version": 4,
-      "ts": "2026-11-15T05:16:47+00:00",
+      "ts": "2026-11-17T06:33:59+00:00",
       "actor": "portfolio_agent",
       "role": "agent",
       "event": "DOSSIER_UPDATED",
@@ -406,10 +406,10 @@
       }
     },
     {
-      "id": 160,
-      "opportunity_id": "OPP-FC7CDD82",
+      "id": 180,
+      "opportunity_id": "OPP-B2B80821",
       "version": 5,
-      "ts": "2026-11-15T05:16:47+00:00",
+      "ts": "2026-11-17T06:33:59+00:00",
       "actor": "coordinator",
       "role": "agent",
       "event": "DOSSIER_UPDATED",
@@ -420,10 +420,10 @@
       }
     },
     {
-      "id": 161,
-      "opportunity_id": "OPP-FC7CDD82",
+      "id": 181,
+      "opportunity_id": "OPP-B2B80821",
       "version": 6,
-      "ts": "2026-11-15T05:16:47+00:00",
+      "ts": "2026-11-17T06:33:59+00:00",
       "actor": "activation_agent",
       "role": "agent",
       "event": "DOSSIER_UPDATED",
@@ -434,10 +434,10 @@
       }
     },
     {
-      "id": 162,
-      "opportunity_id": "OPP-FC7CDD82",
+      "id": 182,
+      "opportunity_id": "OPP-B2B80821",
       "version": 7,
-      "ts": "2026-11-15T05:16:47+00:00",
+      "ts": "2026-11-17T06:33:59+00:00",
       "actor": "activation_agent",
       "role": "agent",
       "event": "DOSSIER_UPDATED",
@@ -448,10 +448,10 @@
       }
     },
     {
-      "id": 163,
-      "opportunity_id": "OPP-FC7CDD82",
+      "id": 183,
+      "opportunity_id": "OPP-B2B80821",
       "version": 8,
-      "ts": "2026-11-15T05:16:47+00:00",
+      "ts": "2026-11-17T06:33:59+00:00",
       "actor": "activation_agent",
       "role": "agent",
       "event": "STATE_REVIEW_REQUESTED",
@@ -460,108 +460,108 @@
       }
     },
     {
-      "id": 164,
-      "opportunity_id": "OPP-FC7CDD82",
+      "id": 184,
+      "opportunity_id": "OPP-B2B80821",
       "version": null,
-      "ts": "2026-11-15T05:16:47+00:00",
+      "ts": "2026-11-17T06:33:59+00:00",
       "actor": "activation_agent",
       "role": "agent",
       "event": "WORK_ITEM_CREATED",
       "detail": {
-        "item_id": "WI-D7FBDF1C",
+        "item_id": "WI-F2031770",
         "kind": "research",
         "status": "READY"
       }
     },
     {
-      "id": 165,
-      "opportunity_id": "OPP-FC7CDD82",
+      "id": 185,
+      "opportunity_id": "OPP-B2B80821",
       "version": null,
-      "ts": "2026-11-15T05:16:47+00:00",
+      "ts": "2026-11-17T06:33:59+00:00",
       "actor": "activation_agent",
       "role": "agent",
       "event": "WORK_ITEM_CREATED",
       "detail": {
-        "item_id": "WI-91662CE4",
+        "item_id": "WI-66880A54",
         "kind": "research",
         "status": "READY"
       }
     },
     {
-      "id": 166,
-      "opportunity_id": "OPP-FC7CDD82",
+      "id": 186,
+      "opportunity_id": "OPP-B2B80821",
       "version": null,
-      "ts": "2026-11-15T05:16:47+00:00",
+      "ts": "2026-11-17T06:33:59+00:00",
       "actor": "activation_agent",
       "role": "agent",
       "event": "WORK_ITEM_CREATED",
       "detail": {
-        "item_id": "WI-7F43B3F8",
+        "item_id": "WI-DA062A84",
         "kind": "research",
         "status": "READY"
       }
     },
     {
-      "id": 167,
-      "opportunity_id": "OPP-FC7CDD82",
+      "id": 187,
+      "opportunity_id": "OPP-B2B80821",
       "version": null,
-      "ts": "2026-11-15T05:16:47+00:00",
+      "ts": "2026-11-17T06:33:59+00:00",
       "actor": "activation_agent",
       "role": "agent",
       "event": "WORK_ITEM_CREATED",
       "detail": {
-        "item_id": "WI-EC881DC0",
+        "item_id": "WI-682EC652",
         "kind": "research",
         "status": "READY"
       }
     },
     {
-      "id": 168,
-      "opportunity_id": "OPP-FC7CDD82",
+      "id": 188,
+      "opportunity_id": "OPP-B2B80821",
       "version": null,
-      "ts": "2026-11-15T05:16:47+00:00",
+      "ts": "2026-11-17T06:33:59+00:00",
       "actor": "activation_agent",
       "role": "agent",
       "event": "WORK_ITEM_CREATED",
       "detail": {
-        "item_id": "WI-E2954CF5",
+        "item_id": "WI-BFF5C649",
         "kind": "operations",
         "status": "READY"
       }
     },
     {
-      "id": 169,
-      "opportunity_id": "OPP-FC7CDD82",
+      "id": 189,
+      "opportunity_id": "OPP-B2B80821",
       "version": null,
-      "ts": "2026-11-15T05:16:47+00:00",
+      "ts": "2026-11-17T06:33:59+00:00",
       "actor": "activation_agent",
       "role": "agent",
       "event": "WORK_ITEM_CREATED",
       "detail": {
-        "item_id": "WI-CC201570",
+        "item_id": "WI-673F452D",
         "kind": "public_content",
         "status": "BLOCKED_PENDING_APPROVAL"
       }
     },
     {
-      "id": 170,
-      "opportunity_id": "OPP-FC7CDD82",
+      "id": 190,
+      "opportunity_id": "OPP-B2B80821",
       "version": null,
-      "ts": "2026-11-15T05:16:47+00:00",
+      "ts": "2026-11-17T06:33:59+00:00",
       "actor": "activation_agent",
       "role": "agent",
       "event": "WORK_ITEM_CREATED",
       "detail": {
-        "item_id": "WI-C6C216BF",
+        "item_id": "WI-7B888BD2",
         "kind": "paid_contact",
         "status": "BLOCKED_PENDING_APPROVAL"
       }
     },
     {
-      "id": 171,
-      "opportunity_id": "OPP-FC7CDD82",
+      "id": 191,
+      "opportunity_id": "OPP-B2B80821",
       "version": 9,
-      "ts": "2026-11-15T05:16:47+00:00",
+      "ts": "2026-11-17T06:33:59+00:00",
       "actor": "activation_agent",
       "role": "agent",
       "event": "DOSSIER_UPDATED",
@@ -576,75 +576,75 @@
   "history": [
     {
       "version": 1,
-      "created_at": "2026-11-15T05:16:46+00:00",
+      "created_at": "2026-11-17T06:33:58+00:00",
       "actor": "coordinator",
       "role": "agent",
       "note": "created",
-      "payload_hash": "ed3ca3bd098270aec3c782cc6fcfab416f8505133eccbefb99ecea17f88e3a66"
+      "payload_hash": "94a039fc5c3b477b17c13f571dbdfc6fd4310e3b4fab7b16c310cec7e8be66bd"
     },
     {
       "version": 2,
-      "created_at": "2026-11-15T05:16:46+00:00",
+      "created_at": "2026-11-17T06:33:58+00:00",
       "actor": "research_agent",
       "role": "agent",
       "note": "research output",
-      "payload_hash": "0b19ee79213b6a5ed59a92e1c981e7a55fc11d0af57b14bc43db3a017083d281"
+      "payload_hash": "3855b4591ba3d0cb92a0abafbd88c8d530c5d848318fdca74f4f594df8b0a019"
     },
     {
       "version": 3,
-      "created_at": "2026-11-15T05:16:46+00:00",
+      "created_at": "2026-11-17T06:33:59+00:00",
       "actor": "intelligence_agent",
       "role": "agent",
       "note": "intelligence output",
-      "payload_hash": "88946446214a0c6f2586d3e4c0ae7d13556a80a02c202300915f79e5b8f901ce"
+      "payload_hash": "1c9ea931762ae0e7a67f63c37f3dfde93741ff48075e3caea6482696bb1482bf"
     },
     {
       "version": 4,
-      "created_at": "2026-11-15T05:16:47+00:00",
+      "created_at": "2026-11-17T06:33:59+00:00",
       "actor": "portfolio_agent",
       "role": "agent",
       "note": "portfolio output",
-      "payload_hash": "e0954196c3ecc52d41b0f59c2d21ae051134930b105a26e587c277741d7cdaa4"
+      "payload_hash": "93ee9dcb8b313f310b6371dbbd3186e0829e6086d1872e0c5d70f2ce552550e6"
     },
     {
       "version": 5,
-      "created_at": "2026-11-15T05:16:47+00:00",
+      "created_at": "2026-11-17T06:33:59+00:00",
       "actor": "coordinator",
       "role": "agent",
       "note": "reconcile",
-      "payload_hash": "9cf0417c0282b84e400e411aa1ca467ad2d170015ecd01eb13b0be22ecf75839"
+      "payload_hash": "2624e039a46a54b97c1e704a6cd5bee648cc4e795f81c39a039a235f5b88a1f4"
     },
     {
       "version": 6,
-      "created_at": "2026-11-15T05:16:47+00:00",
+      "created_at": "2026-11-17T06:33:59+00:00",
       "actor": "activation_agent",
       "role": "agent",
       "note": "pilot drafted",
-      "payload_hash": "fca7f846b0907fd2dcf8472f93d291d2e6cb6211885728415565c2cfa41d622b"
+      "payload_hash": "650aa01ff2bbb2d5b521d7f0fc398761f742bc30c41c8a02e20fdf5c8269ffba"
     },
     {
       "version": 7,
-      "created_at": "2026-11-15T05:16:47+00:00",
+      "created_at": "2026-11-17T06:33:59+00:00",
       "actor": "activation_agent",
       "role": "agent",
       "note": "advisor recommends rejecting funding",
-      "payload_hash": "597ca06d5d3299b9bc977a62826ab52b3dc1f79e6d218185815b99b8a48d1db6"
+      "payload_hash": "fac573a56628cf295d421d0f32d9ecc53f4811b8320d869651f2eb86518702f9"
     },
     {
       "version": 8,
-      "created_at": "2026-11-15T05:16:47+00:00",
+      "created_at": "2026-11-17T06:33:59+00:00",
       "actor": "activation_agent",
       "role": "agent",
       "note": "-> REVIEW_REQUESTED",
-      "payload_hash": "d10df8ef235fab5a7c60f5dcf5d1da8f5bafae731d25cbfb1bfd3a03d746eff3"
+      "payload_hash": "97db29acbe2722282817f9f96e3f63f06b5429e1c39acbc666e166b45f6187df"
     },
     {
       "version": 9,
-      "created_at": "2026-11-15T05:16:47+00:00",
+      "created_at": "2026-11-17T06:33:59+00:00",
       "actor": "activation_agent",
       "role": "agent",
       "note": "activation output",
-      "payload_hash": "0d2eb3403934319a74063e39b0ed8ce9f57e7a38e5aef9c3adc2707c8c655c23"
+      "payload_hash": "8c0058afaf60fe58f76b1f3780d1c4026f66b6fd22550dff7da99a85314e2bf5"
     }
   ],
   "crm_actions": []

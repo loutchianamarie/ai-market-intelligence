@@ -1,0 +1,1517 @@
+{
+  "case_id": "HILLSTROM_EMAIL_2008",
+  "run_id": "CAMP-24B4793860DC",
+  "model_version": "hillstrom-conv-slearner-p2-3ce8fb1cd1",
+  "full_sample": {
+    "arms": {
+      "No E-Mail": {
+        "n": 21306,
+        "buyers": 122,
+        "spend_mean": 0.6527893551112361
+      },
+      "Mens E-Mail": {
+        "n": 21307,
+        "buyers": 267,
+        "spend_mean": 1.422616511005773
+      },
+      "Womens E-Mail": {
+        "n": 21387,
+        "buyers": 189,
+        "spend_mean": 1.0772015710478329
+      }
+    },
+    "effects": {
+      "Mens E-Mail": {
+        "rate_diff": 0.006805006519615695,
+        "rate_ci": [
+          0.005000138215573684,
+          0.008609874823657705
+        ],
+        "per_1000": 6.805006519615695,
+        "per_1000_ci": [
+          5.000138215573684,
+          8.609874823657705
+        ],
+        "relative_lift": 1.188421876286328,
+        "spend_diff": 0.7698271558945368,
+        "spend_ci": [
+          0.4851438978071107,
+          1.0545104139819628
+        ]
+      },
+      "Womens E-Mail": {
+        "rate_diff": 0.003111057511085258,
+        "rate_ci": [
+          0.0014986481930026369,
+          0.004723466829167879
+        ],
+        "per_1000": 3.111057511085258,
+        "per_1000_ci": [
+          1.498648193002637,
+          4.723466829167879
+        ],
+        "relative_lift": 0.5433130436982172,
+        "spend_diff": 0.4244122159365967,
+        "spend_ci": [
+          0.16895981321938208,
+          0.6798646186538113
+        ]
+      }
+    }
+  },
+  "decision": {
+    "status": "BROAD_SEND_WITH_HOLDOUT_IF_ECONOMICS_CONFIRMED",
+    "policy_id": "SEND_ALL_MENS_100",
+    "arm": "Mens E-Mail",
+    "contact_share": 0.9,
+    "best_arm": "Mens E-Mail",
+    "verdict": "MODEL_AHEAD_NOT_STABLE",
+    "beats_random": true,
+    "beats_rule": true,
+    "stable_random": false,
+    "stable_rule": false
+  },
+  "selection": {
+    "C_grid": [
+      {
+        "C": 0.01,
+        "validation_log_loss": 0.05251744457685545,
+        "train_log_loss": 0.04788801685557028
+      },
+      {
+        "C": 0.1,
+        "validation_log_loss": 0.05246903776949787,
+        "train_log_loss": 0.04743679735031157
+      },
+      {
+        "C": 1.0,
+        "validation_log_loss": 0.05285492570069751,
+        "train_log_loss": 0.04730641449197629
+      }
+    ],
+    "C": 0.1,
+    "ate_train_validation_per_1000": {
+      "Mens E-Mail": 6.4147696158961125,
+      "Womens E-Mail": 3.0963791543417734
+    },
+    "best_overall_arm": "Mens E-Mail",
+    "rule_uplift_at_cap_validation_per_1000": {
+      "RULE_RECENCY": 14.16857758321173,
+      "RULE_HISTORY": 10.73348701032947
+    },
+    "primary_rule": "RULE_RECENCY",
+    "model_uplift_at_cap_validation_per_1000": 11.898020982439602
+  },
+  "primary": {
+    "cap": 0.25,
+    "ids": {
+      "model": "MODEL_MENS_25",
+      "random": "RANDOM_MENS_25",
+      "rule": "RULE_RECENCY_MENS_25"
+    },
+    "model_minus_random": {
+      "value": 2.6300957840514037,
+      "ci95": [
+        -3.515450155035369,
+        8.748261697170404
+      ]
+    },
+    "model_minus_rule": {
+      "value": 1.4170185483069857,
+      "ci95": [
+        -5.498045054435089,
+        8.157080990397226
+      ]
+    }
+  },
+  "test": {
+    "n": 25603,
+    "arms": {
+      "No E-Mail": {
+        "n": 8523,
+        "buyers": 50
+      },
+      "Mens E-Mail": {
+        "n": 8524,
+        "buyers": 113
+      },
+      "Womens E-Mail": {
+        "n": 8556,
+        "buyers": 77
+      }
+    }
+  },
+  "split_hashes": {
+    "train": {
+      "n": 25598,
+      "sha256_of_customer_ids": "3215692e5933c29af2033cbc25db1f780663384e63d27a4ff14ca1bb4324228a"
+    },
+    "validation": {
+      "n": 12799,
+      "sha256_of_customer_ids": "62dffa5805521c5fb082c8c89225a607c928543756d7d16ae4ddf8e81c031b68"
+    },
+    "test": {
+      "n": 25603,
+      "sha256_of_customer_ids": "28d102d74eeff9f711045b54101b7595877d5c434a1c2bb5d5429f478780b6c5"
+    }
+  },
+  "policies": [
+    {
+      "eligible_n": 25603,
+      "contacted_n": 0,
+      "treated_n": 0,
+      "treated_buyers": 0,
+      "control_n": 0,
+      "control_buyers": 0,
+      "assigned_split": {},
+      "per_contact": 0.0,
+      "per_contact_ci": [
+        0.0,
+        0.0
+      ],
+      "spend_per_contact": 0.0,
+      "spend_ci": [
+        0.0,
+        0.0
+      ],
+      "comparisons": {},
+      "per_eligible": 0.0,
+      "per_eligible_ci": [
+        0.0,
+        0.0
+      ],
+      "is_primary": false,
+      "policy_id": "NO_EMAIL_0",
+      "policy_family": "NO_EMAIL",
+      "arm_assignment": "NONE",
+      "contact_share": 0.0,
+      "label": "Send nothing (reference: the randomized no-e-mail control)"
+    },
+    {
+      "eligible_n": 25603,
+      "contacted_n": 25603,
+      "treated_n": 8524,
+      "treated_buyers": 113,
+      "control_n": 8523,
+      "control_buyers": 50,
+      "assigned_split": {
+        "Mens E-Mail": 25603
+      },
+      "per_contact": 0.007390208062067183,
+      "per_contact_ci": [
+        0.004578098997579937,
+        0.010285715997619032
+      ],
+      "spend_per_contact": 0.9364160109616985,
+      "spend_ci": [
+        0.48303947598927655,
+        1.450000003456545
+      ],
+      "comparisons": {},
+      "per_eligible": 0.007390208062067183,
+      "per_eligible_ci": [
+        0.004578098997579937,
+        0.010285715997619032
+      ],
+      "is_primary": false,
+      "policy_id": "SEND_ALL_MENS_100",
+      "policy_family": "SEND_ALL",
+      "arm_assignment": "Mens E-Mail",
+      "contact_share": 1.0,
+      "label": "Mens E-Mail to every eligible customer"
+    },
+    {
+      "eligible_n": 25603,
+      "contacted_n": 25603,
+      "treated_n": 8556,
+      "treated_buyers": 77,
+      "control_n": 8523,
+      "control_buyers": 50,
+      "assigned_split": {
+        "Womens E-Mail": 25603
+      },
+      "per_contact": 0.0031330535524779985,
+      "per_contact_ci": [
+        0.0004861540779193939,
+        0.005694621584402195
+      ],
+      "spend_per_contact": 0.3695666848338274,
+      "spend_ci": [
+        -0.04708143415640242,
+        0.7935251621703328
+      ],
+      "comparisons": {},
+      "per_eligible": 0.0031330535524779985,
+      "per_eligible_ci": [
+        0.0004861540779193939,
+        0.005694621584402195
+      ],
+      "is_primary": false,
+      "policy_id": "SEND_ALL_WOMENS_100",
+      "policy_family": "SEND_ALL",
+      "arm_assignment": "Womens E-Mail",
+      "contact_share": 1.0,
+      "label": "Womens E-Mail to every eligible customer"
+    },
+    {
+      "eligible_n": 25603,
+      "contacted_n": 6401,
+      "treated_n": 8524,
+      "treated_buyers": 113,
+      "control_n": 8523,
+      "control_buyers": 50,
+      "assigned_split": {
+        "Mens E-Mail": 25603
+      },
+      "per_contact": 0.007390208062067183,
+      "per_contact_ci": [
+        0.004578098997579937,
+        0.010285715997619032
+      ],
+      "spend_per_contact": 0.9364160109616985,
+      "spend_ci": [
+        0.48303947598927655,
+        1.450000003456545
+      ],
+      "comparisons": {},
+      "per_eligible": 0.0018475520155167957,
+      "per_eligible_ci": [
+        0.0011445247493949843,
+        0.002571428999404758
+      ],
+      "is_primary": true,
+      "policy_id": "RANDOM_MENS_25",
+      "policy_family": "RANDOM",
+      "arm_assignment": "Mens E-Mail",
+      "contact_share": 0.25,
+      "label": "Mens E-Mail to a random 25% (expected value: the average effect over the whole held-out arms)"
+    },
+    {
+      "eligible_n": 25603,
+      "contacted_n": 6401,
+      "treated_n": 2122,
+      "treated_buyers": 40,
+      "control_n": 2147,
+      "control_buyers": 22,
+      "assigned_split": {
+        "Mens E-Mail": 6401
+      },
+      "per_contact": 0.0086032852978116,
+      "per_contact_ci": [
+        0.001632787949929948,
+        0.01574225982499624
+      ],
+      "spend_per_contact": 1.2452323892312747,
+      "spend_ci": [
+        0.025410012578378792,
+        2.554902054642036
+      ],
+      "comparisons": {
+        "RANDOM_MENS_25": {
+          "value": 1.2130772357444177,
+          "ci95": [
+            -4.5716303587872495,
+            6.956807667105004
+          ]
+        }
+      },
+      "per_eligible": 0.0021508213244529,
+      "per_eligible_ci": [
+        0.000408196987482487,
+        0.00393556495624906
+      ],
+      "is_primary": true,
+      "policy_id": "RULE_RECENCY_MENS_25",
+      "policy_family": "RULE",
+      "arm_assignment": "Mens E-Mail",
+      "contact_share": 0.25,
+      "label": "Mens E-Mail to the 25% who purchased most recently"
+    },
+    {
+      "eligible_n": 25603,
+      "contacted_n": 6401,
+      "treated_n": 2110,
+      "treated_buyers": 43,
+      "control_n": 2160,
+      "control_buyers": 19,
+      "assigned_split": {
+        "Mens E-Mail": 6401
+      },
+      "per_contact": 0.011582850623134982,
+      "per_contact_ci": [
+        0.004323927708777222,
+        0.01924139970740941
+      ],
+      "spend_per_contact": 1.6394731437598733,
+      "spend_ci": [
+        0.5712389691168752,
+        2.79298158289322
+      ],
+      "comparisons": {
+        "RANDOM_MENS_25": {
+          "value": 4.192642561067799,
+          "ci95": [
+            -1.6537609061426979,
+            10.185744790697736
+          ]
+        }
+      },
+      "per_eligible": 0.0028957126557837454,
+      "per_eligible_ci": [
+        0.0010809819271943054,
+        0.004810349926852353
+      ],
+      "is_primary": false,
+      "policy_id": "RULE_HISTORY_MENS_25",
+      "policy_family": "RULE",
+      "arm_assignment": "Mens E-Mail",
+      "contact_share": 0.25,
+      "label": "Mens E-Mail to the 25% with the highest past-year spend"
+    },
+    {
+      "eligible_n": 25603,
+      "contacted_n": 6401,
+      "treated_n": 2159,
+      "treated_buyers": 43,
+      "control_n": 2122,
+      "control_buyers": 21,
+      "assigned_split": {
+        "Mens E-Mail": 6401
+      },
+      "per_contact": 0.010020303846118586,
+      "per_contact_ci": [
+        0.0028024598905382666,
+        0.017181066724973895
+      ],
+      "spend_per_contact": 1.3429020290313127,
+      "spend_ci": [
+        0.05418659033321789,
+        2.6152360890308155
+      ],
+      "comparisons": {
+        "RANDOM_MENS_25": {
+          "value": 2.6300957840514037,
+          "ci95": [
+            -3.515450155035369,
+            8.748261697170404
+          ]
+        },
+        "RULE_RECENCY_MENS_25": {
+          "value": 1.4170185483069857,
+          "ci95": [
+            -5.498045054435089,
+            8.157080990397226
+          ]
+        },
+        "RULE_HISTORY_MENS_25": {
+          "value": -1.5625467770163954,
+          "ci95": [
+            -6.9687184858386315,
+            3.917912873950752
+          ]
+        }
+      },
+      "per_eligible": 0.0025050759615296465,
+      "per_eligible_ci": [
+        0.0007006149726345666,
+        0.004295266681243474
+      ],
+      "is_primary": true,
+      "policy_id": "MODEL_MENS_25",
+      "policy_family": "MODEL",
+      "arm_assignment": "Mens E-Mail",
+      "contact_share": 0.25,
+      "label": "Mens E-Mail to the 25% with the highest model-predicted uplift for that e-mail"
+    },
+    {
+      "eligible_n": 25603,
+      "contacted_n": 6401,
+      "treated_n": 8556,
+      "treated_buyers": 77,
+      "control_n": 8523,
+      "control_buyers": 50,
+      "assigned_split": {
+        "Womens E-Mail": 25603
+      },
+      "per_contact": 0.0031330535524779985,
+      "per_contact_ci": [
+        0.0004861540779193939,
+        0.005694621584402195
+      ],
+      "spend_per_contact": 0.3695666848338274,
+      "spend_ci": [
+        -0.04708143415640242,
+        0.7935251621703328
+      ],
+      "comparisons": {},
+      "per_eligible": 0.0007832633881194996,
+      "per_eligible_ci": [
+        0.00012153851947984847,
+        0.0014236553961005486
+      ],
+      "is_primary": false,
+      "policy_id": "RANDOM_WOMENS_25",
+      "policy_family": "RANDOM",
+      "arm_assignment": "Womens E-Mail",
+      "contact_share": 0.25,
+      "label": "Womens E-Mail to a random 25% (expected value: the average effect over the whole held-out arms)"
+    },
+    {
+      "eligible_n": 25603,
+      "contacted_n": 6401,
+      "treated_n": 2132,
+      "treated_buyers": 20,
+      "control_n": 2147,
+      "control_buyers": 22,
+      "assigned_split": {
+        "Womens E-Mail": 6401
+      },
+      "per_contact": -0.000865993038849093,
+      "per_contact_ci": [
+        -0.006809767290249333,
+        0.004995221148960098
+      ],
+      "spend_per_contact": -0.03462669888871517,
+      "spend_ci": [
+        -1.0187729325149744,
+        0.9537703066748264
+      ],
+      "comparisons": {
+        "RANDOM_WOMENS_25": {
+          "value": -3.9990465913270916,
+          "ci95": [
+            -8.95732481835778,
+            1.0676225347736177
+          ]
+        }
+      },
+      "per_eligible": -0.00021649825971227325,
+      "per_eligible_ci": [
+        -0.0017024418225623332,
+        0.0012488052872400245
+      ],
+      "is_primary": false,
+      "policy_id": "RULE_RECENCY_WOMENS_25",
+      "policy_family": "RULE",
+      "arm_assignment": "Womens E-Mail",
+      "contact_share": 0.25,
+      "label": "Womens E-Mail to the 25% who purchased most recently"
+    },
+    {
+      "eligible_n": 25603,
+      "contacted_n": 6401,
+      "treated_n": 2131,
+      "treated_buyers": 22,
+      "control_n": 2160,
+      "control_buyers": 19,
+      "assigned_split": {
+        "Womens E-Mail": 6401
+      },
+      "per_contact": 0.0015274953508177345,
+      "per_contact_ci": [
+        -0.0041706347811780765,
+        0.007159042718404622
+      ],
+      "spend_per_contact": 0.5061299077115591,
+      "spend_ci": [
+        -0.3755251646168556,
+        1.5091820238844615
+      ],
+      "comparisons": {
+        "RANDOM_WOMENS_25": {
+          "value": -1.605558201660264,
+          "ci95": [
+            -6.454283898290834,
+            2.9874936418531086
+          ]
+        }
+      },
+      "per_eligible": 0.0003818738377044336,
+      "per_eligible_ci": [
+        -0.0010426586952945191,
+        0.0017897606796011556
+      ],
+      "is_primary": false,
+      "policy_id": "RULE_HISTORY_WOMENS_25",
+      "policy_family": "RULE",
+      "arm_assignment": "Womens E-Mail",
+      "contact_share": 0.25,
+      "label": "Womens E-Mail to the 25% with the highest past-year spend"
+    },
+    {
+      "eligible_n": 25603,
+      "contacted_n": 6401,
+      "treated_n": 2167,
+      "treated_buyers": 26,
+      "control_n": 2098,
+      "control_buyers": 17,
+      "assigned_split": {
+        "Womens E-Mail": 6401
+      },
+      "per_contact": 0.0038951989347096126,
+      "per_contact_ci": [
+        -0.0018798012302614913,
+        0.009780460388601614
+      ],
+      "spend_per_contact": 0.6021318147285104,
+      "spend_ci": [
+        -0.09384534828951364,
+        1.358935226993186
+      ],
+      "comparisons": {
+        "RANDOM_WOMENS_25": {
+          "value": 0.7621453822316141,
+          "ci95": [
+            -4.087445202677146,
+            5.993810274817752
+          ]
+        },
+        "RULE_RECENCY_WOMENS_25": {
+          "value": 4.761191973558706,
+          "ci95": [
+            -0.5056898632644995,
+            9.970180788067955
+          ]
+        },
+        "RULE_HISTORY_WOMENS_25": {
+          "value": 2.367703583891878,
+          "ci95": [
+            -2.929799095898903,
+            7.9886422703541635
+          ]
+        }
+      },
+      "per_eligible": 0.0009737997336774031,
+      "per_eligible_ci": [
+        -0.0004699503075653728,
+        0.0024451150971504035
+      ],
+      "is_primary": false,
+      "policy_id": "MODEL_WOMENS_25",
+      "policy_family": "MODEL",
+      "arm_assignment": "Womens E-Mail",
+      "contact_share": 0.25,
+      "label": "Womens E-Mail to the 25% with the highest model-predicted uplift for that e-mail"
+    },
+    {
+      "eligible_n": 25603,
+      "contacted_n": 6401,
+      "treated_n": 2182,
+      "treated_buyers": 40,
+      "control_n": 2126,
+      "control_buyers": 23,
+      "assigned_split": {
+        "Mens E-Mail": 5700,
+        "Womens E-Mail": 701
+      },
+      "per_contact": 0.007572406992571702,
+      "per_contact_ci": [
+        0.0004018789057070491,
+        0.014897139713540166
+      ],
+      "spend_per_contact": 1.1162631984468647,
+      "spend_ci": [
+        -0.12695758635998453,
+        2.3756815044976998
+      ],
+      "comparisons": {
+        "RANDOM_MENS_25": {
+          "value": 0.18219893050451952,
+          "ci95": [
+            -5.8839351170146985,
+            6.040135318183912
+          ]
+        },
+        "RULE_RECENCY_MENS_25": {
+          "value": -1.0308783052398982,
+          "ci95": [
+            -7.953014559021276,
+            5.841454101498942
+          ]
+        },
+        "RULE_HISTORY_MENS_25": {
+          "value": -4.010443630563279,
+          "ci95": [
+            -9.548236610080828,
+            1.1108169958413465
+          ]
+        }
+      },
+      "per_eligible": 0.0018931017481429255,
+      "per_eligible_ci": [
+        0.00010046972642676228,
+        0.0037242849283850416
+      ],
+      "is_primary": false,
+      "policy_id": "MODEL_BESTARM_25",
+      "policy_family": "MODEL",
+      "arm_assignment": "MODEL_CHOOSES_ARM",
+      "contact_share": 0.25,
+      "label": "Model picks the e-mail per customer; contact the 25% with the highest predicted uplift"
+    },
+    {
+      "eligible_n": 25603,
+      "contacted_n": 12802,
+      "treated_n": 8524,
+      "treated_buyers": 113,
+      "control_n": 8523,
+      "control_buyers": 50,
+      "assigned_split": {
+        "Mens E-Mail": 25603
+      },
+      "per_contact": 0.007390208062067183,
+      "per_contact_ci": [
+        0.004578098997579937,
+        0.010285715997619032
+      ],
+      "spend_per_contact": 0.9364160109616985,
+      "spend_ci": [
+        0.48303947598927655,
+        1.450000003456545
+      ],
+      "comparisons": {},
+      "per_eligible": 0.0036951040310335913,
+      "per_eligible_ci": [
+        0.0022890494987899686,
+        0.005142857998809516
+      ],
+      "is_primary": false,
+      "policy_id": "RANDOM_MENS_50",
+      "policy_family": "RANDOM",
+      "arm_assignment": "Mens E-Mail",
+      "contact_share": 0.5,
+      "label": "Mens E-Mail to a random 50% (expected value: the average effect over the whole held-out arms)"
+    },
+    {
+      "eligible_n": 25603,
+      "contacted_n": 12802,
+      "treated_n": 4210,
+      "treated_buyers": 64,
+      "control_n": 4294,
+      "control_buyers": 32,
+      "assigned_split": {
+        "Mens E-Mail": 12802
+      },
+      "per_contact": 0.0077496412715306225,
+      "per_contact_ci": [
+        0.0035500839121102674,
+        0.012391113847713338
+      ],
+      "spend_per_contact": 1.1372675500366745,
+      "spend_ci": [
+        0.43259552591206085,
+        1.9088945075996253
+      ],
+      "comparisons": {
+        "RANDOM_MENS_50": {
+          "value": 0.3594332094634398,
+          "ci95": [
+            -2.428656185472152,
+            3.2575545012877507
+          ]
+        }
+      },
+      "per_eligible": 0.0038748206357653112,
+      "per_eligible_ci": [
+        0.0017750419560551337,
+        0.006195556923856669
+      ],
+      "is_primary": false,
+      "policy_id": "RULE_RECENCY_MENS_50",
+      "policy_family": "RULE",
+      "arm_assignment": "Mens E-Mail",
+      "contact_share": 0.5,
+      "label": "Mens E-Mail to the 50% who purchased most recently"
+    },
+    {
+      "eligible_n": 25603,
+      "contacted_n": 12802,
+      "treated_n": 4254,
+      "treated_buyers": 72,
+      "control_n": 4241,
+      "control_buyers": 34,
+      "assigned_split": {
+        "Mens E-Mail": 12802
+      },
+      "per_contact": 0.008908269698480381,
+      "per_contact_ci": [
+        0.004178058546014431,
+        0.013713054928937147
+      ],
+      "spend_per_contact": 1.2561470364466598,
+      "spend_ci": [
+        0.4804784339789925,
+        2.0207572753095886
+      ],
+      "comparisons": {
+        "RANDOM_MENS_50": {
+          "value": 1.5180616364131985,
+          "ci95": [
+            -1.4923851810043498,
+            4.436032972615991
+          ]
+        }
+      },
+      "per_eligible": 0.0044541348492401905,
+      "per_eligible_ci": [
+        0.0020890292730072154,
+        0.006856527464468573
+      ],
+      "is_primary": false,
+      "policy_id": "RULE_HISTORY_MENS_50",
+      "policy_family": "RULE",
+      "arm_assignment": "Mens E-Mail",
+      "contact_share": 0.5,
+      "label": "Mens E-Mail to the 50% with the highest past-year spend"
+    },
+    {
+      "eligible_n": 25603,
+      "contacted_n": 12802,
+      "treated_n": 4204,
+      "treated_buyers": 68,
+      "control_n": 4244,
+      "control_buyers": 34,
+      "assigned_split": {
+        "Mens E-Mail": 12802
+      },
+      "per_contact": 0.008163761275783308,
+      "per_contact_ci": [
+        0.0034673954185455392,
+        0.012769042436323402
+      ],
+      "spend_per_contact": 1.292666552926121,
+      "spend_ci": [
+        0.5109851008821691,
+        2.1855208387787863
+      ],
+      "comparisons": {
+        "RANDOM_MENS_50": {
+          "value": 0.7735532137161253,
+          "ci95": [
+            -2.2294008630028688,
+            3.854172043923933
+          ]
+        },
+        "RULE_RECENCY_MENS_50": {
+          "value": 0.41412000425268547,
+          "ci95": [
+            -3.202172674191252,
+            3.882885137227358
+          ]
+        },
+        "RULE_HISTORY_MENS_50": {
+          "value": -0.7445084226970732,
+          "ci95": [
+            -2.9157829733769924,
+            1.4144705527072654
+          ]
+        }
+      },
+      "per_eligible": 0.004081880637891654,
+      "per_eligible_ci": [
+        0.0017336977092727696,
+        0.006384521218161701
+      ],
+      "is_primary": false,
+      "policy_id": "MODEL_MENS_50",
+      "policy_family": "MODEL",
+      "arm_assignment": "Mens E-Mail",
+      "contact_share": 0.5,
+      "label": "Mens E-Mail to the 50% with the highest model-predicted uplift for that e-mail"
+    },
+    {
+      "eligible_n": 25603,
+      "contacted_n": 12802,
+      "treated_n": 8556,
+      "treated_buyers": 77,
+      "control_n": 8523,
+      "control_buyers": 50,
+      "assigned_split": {
+        "Womens E-Mail": 25603
+      },
+      "per_contact": 0.0031330535524779985,
+      "per_contact_ci": [
+        0.0004861540779193939,
+        0.005694621584402195
+      ],
+      "spend_per_contact": 0.3695666848338274,
+      "spend_ci": [
+        -0.04708143415640242,
+        0.7935251621703328
+      ],
+      "comparisons": {},
+      "per_eligible": 0.0015665267762389992,
+      "per_eligible_ci": [
+        0.00024307703895969695,
+        0.0028473107922010973
+      ],
+      "is_primary": false,
+      "policy_id": "RANDOM_WOMENS_50",
+      "policy_family": "RANDOM",
+      "arm_assignment": "Womens E-Mail",
+      "contact_share": 0.5,
+      "label": "Womens E-Mail to a random 50% (expected value: the average effect over the whole held-out arms)"
+    },
+    {
+      "eligible_n": 25603,
+      "contacted_n": 12802,
+      "treated_n": 4298,
+      "treated_buyers": 45,
+      "control_n": 4294,
+      "control_buyers": 32,
+      "assigned_split": {
+        "Womens E-Mail": 12802
+      },
+      "per_contact": 0.0030177270740195453,
+      "per_contact_ci": [
+        -0.0008687801856520923,
+        0.006958352565916389
+      ],
+      "spend_per_contact": 0.604673863971566,
+      "spend_ci": [
+        -0.05451807029814751,
+        1.3125216871047172
+      ],
+      "comparisons": {
+        "RANDOM_WOMENS_50": {
+          "value": -0.1153264784584532,
+          "ci95": [
+            -2.717773738908316,
+            2.499756330718218
+          ]
+        }
+      },
+      "per_eligible": 0.0015088635370097726,
+      "per_eligible_ci": [
+        -0.00043439009282604616,
+        0.0034791762829581947
+      ],
+      "is_primary": false,
+      "policy_id": "RULE_RECENCY_WOMENS_50",
+      "policy_family": "RULE",
+      "arm_assignment": "Womens E-Mail",
+      "contact_share": 0.5,
+      "label": "Womens E-Mail to the 50% who purchased most recently"
+    },
+    {
+      "eligible_n": 25603,
+      "contacted_n": 12802,
+      "treated_n": 4307,
+      "treated_buyers": 43,
+      "control_n": 4241,
+      "control_buyers": 34,
+      "assigned_split": {
+        "Womens E-Mail": 12802
+      },
+      "per_contact": 0.001966770259937226,
+      "per_contact_ci": [
+        -0.0020536156166616267,
+        0.005944366450954925
+      ],
+      "spend_per_contact": 0.33752632639013747,
+      "spend_ci": [
+        -0.29415071755043515,
+        1.0076499307780111
+      ],
+      "comparisons": {
+        "RANDOM_WOMENS_50": {
+          "value": -1.1662832925407727,
+          "ci95": [
+            -3.6788654434554853,
+            1.3835835052218142
+          ]
+        }
+      },
+      "per_eligible": 0.000983385129968613,
+      "per_eligible_ci": [
+        -0.0010268078083308133,
+        0.0029721832254774624
+      ],
+      "is_primary": false,
+      "policy_id": "RULE_HISTORY_WOMENS_50",
+      "policy_family": "RULE",
+      "arm_assignment": "Womens E-Mail",
+      "contact_share": 0.5,
+      "label": "Womens E-Mail to the 50% with the highest past-year spend"
+    },
+    {
+      "eligible_n": 25603,
+      "contacted_n": 12802,
+      "treated_n": 4295,
+      "treated_buyers": 45,
+      "control_n": 4223,
+      "control_buyers": 29,
+      "assigned_split": {
+        "Womens E-Mail": 12802
+      },
+      "per_contact": 0.0036101431348976734,
+      "per_contact_ci": [
+        -5.293760026675512e-05,
+        0.007511826953250272
+      ],
+      "spend_per_contact": 0.7204095604838183,
+      "spend_ci": [
+        0.2009548219682335,
+        1.291661542382207
+      ],
+      "comparisons": {
+        "RANDOM_WOMENS_50": {
+          "value": 0.477089582419675,
+          "ci95": [
+            -1.9679123665704568,
+            3.0252755932624265
+          ]
+        },
+        "RULE_RECENCY_WOMENS_50": {
+          "value": 0.5924160608781281,
+          "ci95": [
+            -2.215467156263225,
+            3.483812288322213
+          ]
+        },
+        "RULE_HISTORY_WOMENS_50": {
+          "value": 1.6433728749604475,
+          "ci95": [
+            -1.5342023398887321,
+            5.034318558383057
+          ]
+        }
+      },
+      "per_eligible": 0.0018050715674488367,
+      "per_eligible_ci": [
+        -2.646880013337756e-05,
+        0.003755913476625136
+      ],
+      "is_primary": false,
+      "policy_id": "MODEL_WOMENS_50",
+      "policy_family": "MODEL",
+      "arm_assignment": "Womens E-Mail",
+      "contact_share": 0.5,
+      "label": "Womens E-Mail to the 50% with the highest model-predicted uplift for that e-mail"
+    },
+    {
+      "eligible_n": 25603,
+      "contacted_n": 12802,
+      "treated_n": 4263,
+      "treated_buyers": 70,
+      "control_n": 4238,
+      "control_buyers": 33,
+      "assigned_split": {
+        "Mens E-Mail": 11142,
+        "Womens E-Mail": 1660
+      },
+      "per_contact": 0.008646394946268707,
+      "per_contact_ci": [
+        0.0040204670774432886,
+        0.013424706193139499
+      ],
+      "spend_per_contact": 1.4013313016198414,
+      "spend_ci": [
+        0.6277794245034141,
+        2.303327648301266
+      ],
+      "comparisons": {
+        "RANDOM_MENS_50": {
+          "value": 1.2561868842015247,
+          "ci95": [
+            -1.892486136435643,
+            4.509951597667542
+          ]
+        },
+        "RULE_RECENCY_MENS_50": {
+          "value": 0.896753674738085,
+          "ci95": [
+            -2.7531830223439315,
+            4.448430787668598
+          ]
+        },
+        "RULE_HISTORY_MENS_50": {
+          "value": -0.26187475221167367,
+          "ci95": [
+            -2.7027470465480015,
+            2.148827114367373
+          ]
+        }
+      },
+      "per_eligible": 0.004323197473134354,
+      "per_eligible_ci": [
+        0.0020102335387216443,
+        0.0067123530965697495
+      ],
+      "is_primary": false,
+      "policy_id": "MODEL_BESTARM_50",
+      "policy_family": "MODEL",
+      "arm_assignment": "MODEL_CHOOSES_ARM",
+      "contact_share": 0.5,
+      "label": "Model picks the e-mail per customer; contact the 50% with the highest predicted uplift"
+    },
+    {
+      "eligible_n": 25603,
+      "contacted_n": 25603,
+      "treated_n": 8561,
+      "treated_buyers": 113,
+      "control_n": 8523,
+      "control_buyers": 50,
+      "assigned_split": {
+        "Mens E-Mail": 22460,
+        "Womens E-Mail": 3143
+      },
+      "per_contact": 0.00733870135079093,
+      "per_contact_ci": [
+        0.004486647562817294,
+        0.010189072459022716
+      ],
+      "spend_per_contact": 0.9626718164425186,
+      "spend_ci": [
+        0.49775022027675686,
+        1.4749580396683093
+      ],
+      "comparisons": {
+        "SEND_ALL_MENS_100": {
+          "value": -0.05150671127625295,
+          "ci95": [
+            -1.1238460063443363,
+            1.0295074759335392
+          ]
+        }
+      },
+      "per_eligible": 0.00733870135079093,
+      "per_eligible_ci": [
+        0.004486647562817294,
+        0.010189072459022716
+      ],
+      "is_primary": false,
+      "policy_id": "MODEL_BESTARM_100",
+      "policy_family": "MODEL",
+      "arm_assignment": "MODEL_CHOOSES_ARM",
+      "contact_share": 1.0,
+      "label": "Model picks the e-mail per customer; contact every eligible customer"
+    }
+  ],
+  "qini": [
+    {
+      "arm": "Mens E-Mail",
+      "score": "model predicted uplift",
+      "value": 0.06095379089734324,
+      "ci95": [
+        -0.2287393254722772,
+        0.32202663095110234
+      ],
+      "undefined_resamples": 0
+    },
+    {
+      "arm": "Mens E-Mail",
+      "score": "recency rule",
+      "value": 0.031530360727206184,
+      "ci95": [
+        -0.30025307028549725,
+        0.2592266935607342
+      ],
+      "undefined_resamples": 0
+    },
+    {
+      "arm": "Mens E-Mail",
+      "score": "history rule",
+      "value": 0.12093590939067288,
+      "ci95": [
+        -0.13592303983229062,
+        0.374179233352236
+      ],
+      "undefined_resamples": 0
+    },
+    {
+      "arm": "Womens E-Mail",
+      "score": "model predicted uplift",
+      "value": 0.2561724664941052,
+      "ci95": [
+        -0.49738737593649907,
+        1.0288408355340763
+      ],
+      "undefined_resamples": 4
+    },
+    {
+      "arm": "Womens E-Mail",
+      "score": "recency rule",
+      "value": -0.3626782087725762,
+      "ci95": [
+        -2.6733427739496465,
+        0.0963537858010352
+      ],
+      "undefined_resamples": 4
+    },
+    {
+      "arm": "Womens E-Mail",
+      "score": "history rule",
+      "value": -0.212055689235635,
+      "ci95": [
+        -2.136827992726233,
+        0.308124683212903
+      ],
+      "undefined_resamples": 4
+    }
+  ],
+  "quartiles": {
+    "Mens E-Mail": [
+      {
+        "quartile": "Q1",
+        "treated_n": 2166,
+        "treated_buyers": 25,
+        "control_n": 2116,
+        "control_buyers": 11,
+        "observed_additional_buyers_per_1000": 6.343525214389072,
+        "ci95_per_1000": [
+          0.9007922034057637,
+          11.786258225372382
+        ],
+        "mean_predicted_additional_buyers_per_1000": 2.383620198470071,
+        "small_cell_warning": false
+      },
+      {
+        "quartile": "Q2",
+        "treated_n": 2154,
+        "treated_buyers": 20,
+        "control_n": 2164,
+        "control_buyers": 5,
+        "observed_additional_buyers_per_1000": 6.97451502341858,
+        "ci95_per_1000": [
+          2.4470283770712253,
+          11.502001669765935
+        ],
+        "mean_predicted_additional_buyers_per_1000": 3.9002339672066157,
+        "small_cell_warning": true
+      },
+      {
+        "quartile": "Q3",
+        "treated_n": 2045,
+        "treated_buyers": 25,
+        "control_n": 2121,
+        "control_buyers": 13,
+        "observed_additional_buyers_per_1000": 6.095754528299495,
+        "ci95_per_1000": [
+          0.28907972667577364,
+          11.902429329923216
+        ],
+        "mean_predicted_additional_buyers_per_1000": 5.761002702358624,
+        "small_cell_warning": false
+      },
+      {
+        "quartile": "Q4",
+        "treated_n": 2159,
+        "treated_buyers": 43,
+        "control_n": 2122,
+        "control_buyers": 21,
+        "observed_additional_buyers_per_1000": 10.020303846118587,
+        "ci95_per_1000": [
+          2.7765917257116897,
+          17.26401596652548
+        ],
+        "mean_predicted_additional_buyers_per_1000": 11.027198080326354,
+        "small_cell_warning": false
+      }
+    ],
+    "Womens E-Mail": [
+      {
+        "quartile": "Q1",
+        "treated_n": 2113,
+        "treated_buyers": 7,
+        "control_n": 2179,
+        "control_buyers": 14,
+        "observed_additional_buyers_per_1000": -3.1121402137644387,
+        "ci95_per_1000": [
+          -7.266358364568537,
+          1.0420779370396591
+        ],
+        "mean_predicted_additional_buyers_per_1000": -0.14044054473613915,
+        "small_cell_warning": true
+      },
+      {
+        "quartile": "Q2",
+        "treated_n": 2148,
+        "treated_buyers": 25,
+        "control_n": 2122,
+        "control_buyers": 7,
+        "observed_additional_buyers_per_1000": 8.339958964962255,
+        "ci95_per_1000": [
+          3.1896798898067438,
+          13.490238040117768
+        ],
+        "mean_predicted_additional_buyers_per_1000": 1.2134870911457478,
+        "small_cell_warning": true
+      },
+      {
+        "quartile": "Q3",
+        "treated_n": 2128,
+        "treated_buyers": 19,
+        "control_n": 2124,
+        "control_buyers": 12,
+        "observed_additional_buyers_per_1000": 3.2788539144471343,
+        "ci95_per_1000": [
+          -1.8334068159076913,
+          8.39111464480196
+        ],
+        "mean_predicted_additional_buyers_per_1000": 2.811273623573207,
+        "small_cell_warning": false
+      },
+      {
+        "quartile": "Q4",
+        "treated_n": 2167,
+        "treated_buyers": 26,
+        "control_n": 2098,
+        "control_buyers": 17,
+        "observed_additional_buyers_per_1000": 3.8951989347096125,
+        "ci95_per_1000": [
+          -2.082402580279077,
+          9.872800449698302
+        ],
+        "mean_predicted_additional_buyers_per_1000": 6.526615998208488,
+        "small_cell_warning": false
+      }
+    ]
+  },
+  "calibration": [
+    {
+      "arm": "No E-Mail",
+      "n": 8523,
+      "buyers": 50,
+      "observed_rate": 0.0058664789393406075,
+      "mean_predicted_rate": 0.006025696213068193
+    },
+    {
+      "arm": "Mens E-Mail",
+      "n": 8524,
+      "buyers": 113,
+      "observed_rate": 0.01325668700140779,
+      "mean_predicted_rate": 0.01176850772788983
+    },
+    {
+      "arm": "Womens E-Mail",
+      "n": 8556,
+      "buyers": 77,
+      "observed_rate": 0.008999532491818606,
+      "mean_predicted_rate": 0.008641226437927198
+    }
+  ],
+  "segment_effects": [
+    {
+      "segment": "Mens merchandise only",
+      "treatment_arm": "Mens E-Mail",
+      "control_arm": "No E-Mail",
+      "treated_n": 9558,
+      "treated_buyers": 110,
+      "control_n": 9638,
+      "control_buyers": 53,
+      "additional_buyers_per_1000": 6.009617628761718,
+      "ci95_per_1000": [
+        3.411116618582724,
+        8.608118638940713
+      ],
+      "ci_excludes_zero": true,
+      "small_cell_warning": false
+    },
+    {
+      "segment": "Mens merchandise only",
+      "treatment_arm": "Womens E-Mail",
+      "control_arm": "No E-Mail",
+      "treated_n": 9622,
+      "treated_buyers": 59,
+      "control_n": 9638,
+      "control_buyers": 53,
+      "additional_buyers_per_1000": 0.6327151381356165,
+      "ci95_per_1000": [
+        -1.5150573077641625,
+        2.7804875840353955
+      ],
+      "ci_excludes_zero": false,
+      "small_cell_warning": false
+    },
+    {
+      "segment": "Womens merchandise only",
+      "treatment_arm": "Mens E-Mail",
+      "control_arm": "No E-Mail",
+      "treated_n": 9568,
+      "treated_buyers": 104,
+      "control_n": 9519,
+      "control_buyers": 49,
+      "additional_buyers_per_1000": 5.7219656796247325,
+      "ci95_per_1000": [
+        3.1954106249101346,
+        8.24852073433933
+      ],
+      "ci_excludes_zero": true,
+      "small_cell_warning": false
+    },
+    {
+      "segment": "Womens merchandise only",
+      "treatment_arm": "Womens E-Mail",
+      "control_arm": "No E-Mail",
+      "treated_n": 9647,
+      "treated_buyers": 99,
+      "control_n": 9519,
+      "control_buyers": 49,
+      "additional_buyers_per_1000": 5.114658158926701,
+      "ci95_per_1000": [
+        2.642533449142961,
+        7.586782868710441
+      ],
+      "ci_excludes_zero": true,
+      "small_cell_warning": false
+    },
+    {
+      "segment": "Both",
+      "treatment_arm": "Mens E-Mail",
+      "control_arm": "No E-Mail",
+      "treated_n": 2181,
+      "treated_buyers": 53,
+      "control_n": 2149,
+      "control_buyers": 20,
+      "additional_buyers_per_1000": 14.994125201169455,
+      "ci95_per_1000": [
+        7.362281389043619,
+        22.62596901329529
+      ],
+      "ci_excludes_zero": true,
+      "small_cell_warning": false
+    },
+    {
+      "segment": "Both",
+      "treatment_arm": "Womens E-Mail",
+      "control_arm": "No E-Mail",
+      "treated_n": 2118,
+      "treated_buyers": 31,
+      "control_n": 2149,
+      "control_buyers": 20,
+      "additional_buyers_per_1000": 5.3297952228477925,
+      "ci95_per_1000": [
+        -1.200195949634649,
+        11.859786395330234
+      ],
+      "ci_excludes_zero": false,
+      "small_cell_warning": false
+    }
+  ],
+  "predicted_uplift_summary": {
+    "Mens E-Mail": {
+      "mean_per_1000": 5.76801401092687,
+      "min_per_1000": 0.9409541723142462,
+      "max_per_1000": 31.36303225740345,
+      "share_negative": 0.0
+    },
+    "Womens E-Mail": {
+      "mean_per_1000": 2.602725896924929,
+      "min_per_1000": -0.8425922833984814,
+      "max_per_1000": 16.163870144410723,
+      "share_negative": 0.1492403233996016
+    }
+  },
+  "bestarm_assignment_share_all_test": {
+    "Mens E-Mail": 0.877240948326368,
+    "Womens E-Mail": 0.12275905167363199
+  },
+  "model": {
+    "coef": {
+      "intercept": -4.876161340687122,
+      "coefficients": {
+        "recency": -0.2596932037721106,
+        "log_history": 0.1280830129209989,
+        "mens": 0.1112363960089529,
+        "womens": 0.14014039969860956,
+        "newbie": -0.3791608801794104,
+        "zip_code=Surburban": -0.19355785161257735,
+        "zip_code=Urban": -0.17600734299164575,
+        "channel=Phone": -0.20820263081952017,
+        "channel=Web": -0.007151927784058598,
+        "T_mens": 0.12269918209239489,
+        "T_womens": 0.11453004267387593,
+        "T_mens x recency": 0.0785367062281663,
+        "T_mens x log_history": 0.1325920024430434,
+        "T_mens x mens": 0.31897939851491036,
+        "T_mens x womens": 0.3134829519192346,
+        "T_mens x newbie": 0.1663406589051663,
+        "T_mens x zip_code=Surburban": 0.07977517741935164,
+        "T_mens x zip_code=Urban": -0.13922806619198838,
+        "T_mens x channel=Phone": 0.143393942399343,
+        "T_mens x channel=Web": 0.13599630576973382,
+        "T_womens x recency": -0.0670082558178273,
+        "T_womens x log_history": 0.02043329773144073,
+        "T_womens x mens": -0.01502842876818479,
+        "T_womens x womens": 0.3692754863580286,
+        "T_womens x newbie": 0.2158062218019977,
+        "T_womens x zip_code=Surburban": -0.0325556493508322,
+        "T_womens x zip_code=Urban": -0.019922776063866957,
+        "T_womens x channel=Phone": -0.18801068273992078,
+        "T_womens x channel=Web": -0.018619635297801095
+      },
+      "scaling": {
+        "mean": {
+          "recency": 5.771232127509962,
+          "log_history": 5.009748837845279
+        },
+        "std": {
+          "recency": 3.5021247183282793,
+          "log_history": 1.0187677669483965
+        }
+      },
+      "C": 0.1,
+      "reference_levels": {
+        "zip_code": "Rural",
+        "channel": "Multichannel"
+      }
+    },
+    "coef_sha256": "3ce8fb1cd174a9ee01410c0f0d10aaf05ea84ced44efe91c3ed44be3e7236438",
+    "version": "hillstrom-conv-slearner-p2-3ce8fb1cd1",
+    "feature_names": [
+      "recency",
+      "log_history",
+      "mens",
+      "womens",
+      "newbie",
+      "zip_code=Surburban",
+      "zip_code=Urban",
+      "channel=Phone",
+      "channel=Web",
+      "T_mens",
+      "T_womens",
+      "T_mens x recency",
+      "T_mens x log_history",
+      "T_mens x mens",
+      "T_mens x womens",
+      "T_mens x newbie",
+      "T_mens x zip_code=Surburban",
+      "T_mens x zip_code=Urban",
+      "T_mens x channel=Phone",
+      "T_mens x channel=Web",
+      "T_womens x recency",
+      "T_womens x log_history",
+      "T_womens x mens",
+      "T_womens x womens",
+      "T_womens x newbie",
+      "T_womens x zip_code=Surburban",
+      "T_womens x zip_code=Urban",
+      "T_womens x channel=Phone",
+      "T_womens x channel=Web"
+    ],
+    "raw_features": [
+      "recency",
+      "history",
+      "mens",
+      "womens",
+      "newbie",
+      "zip_code",
+      "channel"
+    ],
+    "n_fit": 38397,
+    "buyers_fit": 338
+  },
+  "n_boot": 2000,
+  "n_boot_qini": 500,
+  "holdout_per_arm": 3063,
+  "expected_buyers_broad": {
+    "contacts": 57600.0,
+    "value": 391.96837552986403,
+    "ci95": [
+      288.0079612170442,
+      495.92878984268384
+    ]
+  },
+  "seconds": 19.2
+}

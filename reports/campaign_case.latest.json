@@ -1,0 +1,3833 @@
+{
+  "contract_version": "1.0",
+  "record_type": "COMPUTED_EXPORT",
+  "case_id": "HILLSTROM_EMAIL_2008",
+  "generated_at": "2026-11-17T06:35:29Z",
+  "producer": {
+    "repo": "ai-market-intelligence",
+    "code_commit": "80c1bb511ba386a08b2af65ca3350f8ad904b3df",
+    "command": "python -m mi.campaign.export"
+  },
+  "dataset_provenance": {
+    "source_id": "SRC_HILLSTROM_2008_DATA",
+    "source_url": "https://blog.minethatdata.com/2008/03/minethatdata-e-mail-analytics-and-data.html",
+    "file_url": "http://www.minethatdata.com/Kevin_Hillstrom_MineThatData_E-MailAnalytics_DataMiningChallenge_2008.03.20.csv",
+    "sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+    "bytes": 3964977,
+    "rows": 64000,
+    "period": "two_weeks_after_email",
+    "period_note": "outcomes tracked for two weeks after the e-mail; the campaign date is not published (data released 20 March 2008)",
+    "terms": "no licence or terms of use stated on the source page (checked 2026-11-14 and 2026-11-17)",
+    "redistribution": "RAW_FILE_LOCAL_ONLY_NOT_REDISTRIBUTED"
+  },
+  "unit": "unique_existing_customer",
+  "outcome": {
+    "name": "conversion_within_two_weeks",
+    "horizon_days": 14,
+    "definition": "A unique existing customer who purchased merchandise in the two weeks after the e-mail (source column 'conversion' = 1). A customer who would have purchased anyway is not an additional buyer; treated-minus-control differences estimate additional repeat buyers for a group, never an individual's effect, and never new-customer acquisition."
+  },
+  "arms": [
+    {
+      "name": "No E-Mail",
+      "role": "control"
+    },
+    {
+      "name": "Mens E-Mail",
+      "role": "treatment"
+    },
+    {
+      "name": "Womens E-Mail",
+      "role": "treatment"
+    }
+  ],
+  "observed_arm_metrics": [
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "arm": "No E-Mail",
+      "role": "control",
+      "split": "full_sample",
+      "n_customers": 21306,
+      "buyers": 122,
+      "purchase_rate": {
+        "value": 0.005726086548390125,
+        "tag": "OBSERVED",
+        "unit": "share of this arm's customers who purchased within two weeks"
+      },
+      "spend_per_customer": {
+        "value": 0.6527893551112361,
+        "tag": "OBSERVED",
+        "unit": "USD per customer in this arm, two weeks"
+      }
+    },
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "arm": "Mens E-Mail",
+      "role": "treatment",
+      "split": "full_sample",
+      "n_customers": 21307,
+      "buyers": 267,
+      "purchase_rate": {
+        "value": 0.01253109306800582,
+        "tag": "OBSERVED",
+        "unit": "share of this arm's customers who purchased within two weeks"
+      },
+      "spend_per_customer": {
+        "value": 1.422616511005773,
+        "tag": "OBSERVED",
+        "unit": "USD per customer in this arm, two weeks"
+      }
+    },
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "arm": "Womens E-Mail",
+      "role": "treatment",
+      "split": "full_sample",
+      "n_customers": 21387,
+      "buyers": 189,
+      "purchase_rate": {
+        "value": 0.008837144059475383,
+        "tag": "OBSERVED",
+        "unit": "share of this arm's customers who purchased within two weeks"
+      },
+      "spend_per_customer": {
+        "value": 1.0772015710478329,
+        "tag": "OBSERVED",
+        "unit": "USD per customer in this arm, two weeks"
+      }
+    }
+  ],
+  "average_effects": [
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "treatment_arm": "Mens E-Mail",
+      "control_arm": "No E-Mail",
+      "split": "full_sample",
+      "treated_n": 21307,
+      "treated_buyers": 267,
+      "control_n": 21306,
+      "control_buyers": 122,
+      "rate_difference": {
+        "value": 0.006805006519615695,
+        "tag": "OBSERVED",
+        "unit": "difference in purchase rate (treated minus control)",
+        "ci95": [
+          0.005000138215573684,
+          0.008609874823657705
+        ],
+        "ci_method": "normal approximation (unpooled Wald)"
+      },
+      "additional_buyers_per_1000": {
+        "value": 6.805006519615695,
+        "tag": "OBSERVED",
+        "unit": "additional purchasing customers per 1,000 customers e-mailed, vs no e-mail, two weeks",
+        "ci95": [
+          5.000138215573684,
+          8.609874823657705
+        ],
+        "ci_method": "normal approximation (unpooled Wald)"
+      },
+      "relative_lift": {
+        "value": 1.188421876286328,
+        "tag": "OBSERVED",
+        "unit": "rate difference divided by the control purchase rate"
+      },
+      "incremental_spend_per_contact": {
+        "value": 0.7698271558945368,
+        "tag": "OBSERVED",
+        "unit": "USD per customer e-mailed (treated mean spend minus control mean spend), two weeks",
+        "ci95": [
+          0.4851438978071107,
+          1.0545104139819628
+        ],
+        "ci_method": "normal approximation (unpooled Wald)"
+      }
+    },
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "treatment_arm": "Womens E-Mail",
+      "control_arm": "No E-Mail",
+      "split": "full_sample",
+      "treated_n": 21387,
+      "treated_buyers": 189,
+      "control_n": 21306,
+      "control_buyers": 122,
+      "rate_difference": {
+        "value": 0.003111057511085258,
+        "tag": "OBSERVED",
+        "unit": "difference in purchase rate (treated minus control)",
+        "ci95": [
+          0.0014986481930026369,
+          0.004723466829167879
+        ],
+        "ci_method": "normal approximation (unpooled Wald)"
+      },
+      "additional_buyers_per_1000": {
+        "value": 3.111057511085258,
+        "tag": "OBSERVED",
+        "unit": "additional purchasing customers per 1,000 customers e-mailed, vs no e-mail, two weeks",
+        "ci95": [
+          1.498648193002637,
+          4.723466829167879
+        ],
+        "ci_method": "normal approximation (unpooled Wald)"
+      },
+      "relative_lift": {
+        "value": 0.5433130436982172,
+        "tag": "OBSERVED",
+        "unit": "rate difference divided by the control purchase rate"
+      },
+      "incremental_spend_per_contact": {
+        "value": 0.4244122159365967,
+        "tag": "OBSERVED",
+        "unit": "USD per customer e-mailed (treated mean spend minus control mean spend), two weeks",
+        "ci95": [
+          0.16895981321938208,
+          0.6798646186538113
+        ],
+        "ci_method": "normal approximation (unpooled Wald)"
+      }
+    }
+  ],
+  "model": {
+    "model_version": "hillstrom-conv-slearner-p2-3ce8fb1cd1",
+    "status": "FITTED_REPEATED_EVALUATION",
+    "model_type": "regularized logistic S-learner (one model, three arms, treatment x feature interactions; L2, C = 0.1)",
+    "outcome": "conversion_within_two_weeks",
+    "features_pre_treatment": [
+      "recency",
+      "history",
+      "mens",
+      "womens",
+      "newbie",
+      "zip_code",
+      "channel"
+    ],
+    "forbidden_post_treatment": [
+      "visit",
+      "conversion",
+      "spend"
+    ],
+    "split": {
+      "method": "seeded customer-level train / validation / test, stratified by arm",
+      "seed": 20261117,
+      "n_train": 25598,
+      "n_validation": 12799,
+      "n_test": 25603
+    },
+    "protocol_path": "data/eval/hillstrom_protocol_v2.json",
+    "model_card_path": "reports/campaign/model_card.md",
+    "secondary_metrics": [
+      {
+        "name": "qini_coefficient",
+        "arm": "Mens E-Mail",
+        "score": "model predicted uplift",
+        "metric": {
+          "value": 0.06095379089734324,
+          "tag": "HELD_OUT_ESTIMATE",
+          "unit": "normalised area between the Qini curve and the random line",
+          "ci95": [
+            -0.2287393254722772,
+            0.32202663095110234
+          ],
+          "ci_method": "customer-level bootstrap percentile, 500 resamples"
+        }
+      },
+      {
+        "name": "qini_coefficient",
+        "arm": "Mens E-Mail",
+        "score": "recency rule",
+        "metric": {
+          "value": 0.031530360727206184,
+          "tag": "HELD_OUT_ESTIMATE",
+          "unit": "normalised area between the Qini curve and the random line",
+          "ci95": [
+            -0.30025307028549725,
+            0.2592266935607342
+          ],
+          "ci_method": "customer-level bootstrap percentile, 500 resamples"
+        }
+      },
+      {
+        "name": "qini_coefficient",
+        "arm": "Mens E-Mail",
+        "score": "history rule",
+        "metric": {
+          "value": 0.12093590939067288,
+          "tag": "HELD_OUT_ESTIMATE",
+          "unit": "normalised area between the Qini curve and the random line",
+          "ci95": [
+            -0.13592303983229062,
+            0.374179233352236
+          ],
+          "ci_method": "customer-level bootstrap percentile, 500 resamples"
+        }
+      },
+      {
+        "name": "qini_coefficient",
+        "arm": "Womens E-Mail",
+        "score": "model predicted uplift",
+        "metric": {
+          "value": 0.2561724664941052,
+          "tag": "HELD_OUT_ESTIMATE",
+          "unit": "normalised area between the Qini curve and the random line",
+          "ci95": [
+            -0.49738737593649907,
+            1.0288408355340763
+          ],
+          "ci_method": "customer-level bootstrap percentile, 500 resamples"
+        }
+      },
+      {
+        "name": "qini_coefficient",
+        "arm": "Womens E-Mail",
+        "score": "recency rule",
+        "metric": {
+          "value": -0.3626782087725762,
+          "tag": "HELD_OUT_ESTIMATE",
+          "unit": "normalised area between the Qini curve and the random line",
+          "ci95": [
+            -2.6733427739496465,
+            0.0963537858010352
+          ],
+          "ci_method": "customer-level bootstrap percentile, 500 resamples"
+        }
+      },
+      {
+        "name": "qini_coefficient",
+        "arm": "Womens E-Mail",
+        "score": "history rule",
+        "metric": {
+          "value": -0.212055689235635,
+          "tag": "HELD_OUT_ESTIMATE",
+          "unit": "normalised area between the Qini curve and the random line",
+          "ci95": [
+            -2.136827992726233,
+            0.308124683212903
+          ],
+          "ci_method": "customer-level bootstrap percentile, 500 resamples"
+        }
+      }
+    ],
+    "repeated_evaluation_caveat": "REPEATED EVALUATION, not an untouched test: this dataset was analysed before under protocol v1 (visit model, full-sample effects, an exploratory conversion model at a 30% cap). Protocol v2 froze the split, features, caps and decision rule before this fit."
+  },
+  "held_out_policy_metrics": [
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "policy_id": "NO_EMAIL_0",
+      "policy_family": "NO_EMAIL",
+      "label": "Send nothing (reference: the randomized no-e-mail control)",
+      "arm_assignment": "NONE",
+      "control_arm": "No E-Mail",
+      "split": "test",
+      "contact_share": 0.0,
+      "eligible_n": 25603,
+      "contacted_n": 0,
+      "treated_n": 0,
+      "treated_buyers": 0,
+      "control_n": 8523,
+      "control_buyers": 50,
+      "additional_buyers_per_1000_contacts": {
+        "value": null,
+        "tag": "UNKNOWN",
+        "unit": "additional purchasing customers per 1,000 customers contacted, vs no e-mail, two weeks",
+        "ci95": null,
+        "ci_method": null,
+        "note": "NOT APPLICABLE: this policy contacts nobody"
+      },
+      "additional_buyers_per_1000_eligible": {
+        "value": 0.0,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 eligible customers (contacted or not), vs no e-mail, two weeks",
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "ci_method": "by definition",
+        "note": "reference policy: zero additional buyers by definition"
+      },
+      "incremental_spend_per_contact": {
+        "value": null,
+        "tag": "UNKNOWN",
+        "unit": "USD per customer contacted, two weeks",
+        "ci95": null,
+        "ci_method": null,
+        "note": "NOT APPLICABLE: this policy contacts nobody"
+      },
+      "comparisons": [],
+      "small_cell_warning": false,
+      "is_primary": false
+    },
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "policy_id": "SEND_ALL_MENS_100",
+      "policy_family": "SEND_ALL",
+      "label": "Mens E-Mail to every eligible customer",
+      "arm_assignment": "Mens E-Mail",
+      "control_arm": "No E-Mail",
+      "split": "test",
+      "contact_share": 1.0,
+      "eligible_n": 25603,
+      "contacted_n": 25603,
+      "treated_n": 8524,
+      "treated_buyers": 113,
+      "control_n": 8523,
+      "control_buyers": 50,
+      "additional_buyers_per_1000_contacts": {
+        "value": 7.390208062067183,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 customers contacted, vs no e-mail, two weeks",
+        "ci95": [
+          4.5780989975799375,
+          10.285715997619032
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "additional_buyers_per_1000_eligible": {
+        "value": 7.390208062067183,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 eligible customers (contacted or not), vs no e-mail, two weeks",
+        "ci95": [
+          4.5780989975799375,
+          10.285715997619032
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "incremental_spend_per_contact": {
+        "value": 0.9364160109616985,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "USD per customer contacted (treated minus control inside the selected set), two weeks",
+        "ci95": [
+          0.48303947598927655,
+          1.450000003456545
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "comparisons": [],
+      "small_cell_warning": false,
+      "is_primary": false
+    },
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "policy_id": "SEND_ALL_WOMENS_100",
+      "policy_family": "SEND_ALL",
+      "label": "Womens E-Mail to every eligible customer",
+      "arm_assignment": "Womens E-Mail",
+      "control_arm": "No E-Mail",
+      "split": "test",
+      "contact_share": 1.0,
+      "eligible_n": 25603,
+      "contacted_n": 25603,
+      "treated_n": 8556,
+      "treated_buyers": 77,
+      "control_n": 8523,
+      "control_buyers": 50,
+      "additional_buyers_per_1000_contacts": {
+        "value": 3.1330535524779983,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 customers contacted, vs no e-mail, two weeks",
+        "ci95": [
+          0.4861540779193939,
+          5.694621584402195
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "additional_buyers_per_1000_eligible": {
+        "value": 3.1330535524779983,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 eligible customers (contacted or not), vs no e-mail, two weeks",
+        "ci95": [
+          0.4861540779193939,
+          5.694621584402195
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "incremental_spend_per_contact": {
+        "value": 0.3695666848338274,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "USD per customer contacted (treated minus control inside the selected set), two weeks",
+        "ci95": [
+          -0.04708143415640242,
+          0.7935251621703328
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "comparisons": [],
+      "small_cell_warning": false,
+      "is_primary": false
+    },
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "policy_id": "RANDOM_MENS_25",
+      "policy_family": "RANDOM",
+      "label": "Mens E-Mail to a random 25% (expected value: the average effect over the whole held-out arms)",
+      "arm_assignment": "Mens E-Mail",
+      "control_arm": "No E-Mail",
+      "split": "test",
+      "contact_share": 0.25,
+      "eligible_n": 25603,
+      "contacted_n": 6401,
+      "treated_n": 8524,
+      "treated_buyers": 113,
+      "control_n": 8523,
+      "control_buyers": 50,
+      "additional_buyers_per_1000_contacts": {
+        "value": 7.390208062067183,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 customers contacted, vs no e-mail, two weeks",
+        "ci95": [
+          4.5780989975799375,
+          10.285715997619032
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "additional_buyers_per_1000_eligible": {
+        "value": 1.8475520155167957,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 eligible customers (contacted or not), vs no e-mail, two weeks",
+        "ci95": [
+          1.1445247493949844,
+          2.571428999404758
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "incremental_spend_per_contact": {
+        "value": 0.9364160109616985,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "USD per customer contacted (treated minus control inside the selected set), two weeks",
+        "ci95": [
+          0.48303947598927655,
+          1.450000003456545
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "comparisons": [],
+      "small_cell_warning": false,
+      "is_primary": true
+    },
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "policy_id": "RULE_RECENCY_MENS_25",
+      "policy_family": "RULE",
+      "label": "Mens E-Mail to the 25% who purchased most recently",
+      "arm_assignment": "Mens E-Mail",
+      "control_arm": "No E-Mail",
+      "split": "test",
+      "contact_share": 0.25,
+      "eligible_n": 25603,
+      "contacted_n": 6401,
+      "treated_n": 2122,
+      "treated_buyers": 40,
+      "control_n": 2147,
+      "control_buyers": 22,
+      "additional_buyers_per_1000_contacts": {
+        "value": 8.6032852978116,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 customers contacted, vs no e-mail, two weeks",
+        "ci95": [
+          1.632787949929948,
+          15.742259824996239
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "additional_buyers_per_1000_eligible": {
+        "value": 2.1508213244529,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 eligible customers (contacted or not), vs no e-mail, two weeks",
+        "ci95": [
+          0.408196987482487,
+          3.9355649562490598
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "incremental_spend_per_contact": {
+        "value": 1.2452323892312747,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "USD per customer contacted (treated minus control inside the selected set), two weeks",
+        "ci95": [
+          0.025410012578378792,
+          2.554902054642036
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "comparisons": [
+        {
+          "against_policy_id": "RANDOM_MENS_25",
+          "difference_per_1000_contacts": {
+            "value": 1.2130772357444177,
+            "tag": "HELD_OUT_ESTIMATE",
+            "unit": "this policy minus the other, additional buyers per 1,000 contacts",
+            "ci95": [
+              -4.5716303587872495,
+              6.956807667105004
+            ],
+            "ci_method": "customer-level bootstrap percentile (paired: same resamples)"
+          },
+          "ci_excludes_zero": false
+        }
+      ],
+      "small_cell_warning": false,
+      "is_primary": true
+    },
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "policy_id": "RULE_HISTORY_MENS_25",
+      "policy_family": "RULE",
+      "label": "Mens E-Mail to the 25% with the highest past-year spend",
+      "arm_assignment": "Mens E-Mail",
+      "control_arm": "No E-Mail",
+      "split": "test",
+      "contact_share": 0.25,
+      "eligible_n": 25603,
+      "contacted_n": 6401,
+      "treated_n": 2110,
+      "treated_buyers": 43,
+      "control_n": 2160,
+      "control_buyers": 19,
+      "additional_buyers_per_1000_contacts": {
+        "value": 11.582850623134982,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 customers contacted, vs no e-mail, two weeks",
+        "ci95": [
+          4.323927708777222,
+          19.24139970740941
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "additional_buyers_per_1000_eligible": {
+        "value": 2.8957126557837456,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 eligible customers (contacted or not), vs no e-mail, two weeks",
+        "ci95": [
+          1.0809819271943055,
+          4.810349926852353
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "incremental_spend_per_contact": {
+        "value": 1.6394731437598733,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "USD per customer contacted (treated minus control inside the selected set), two weeks",
+        "ci95": [
+          0.5712389691168752,
+          2.79298158289322
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "comparisons": [
+        {
+          "against_policy_id": "RANDOM_MENS_25",
+          "difference_per_1000_contacts": {
+            "value": 4.192642561067799,
+            "tag": "HELD_OUT_ESTIMATE",
+            "unit": "this policy minus the other, additional buyers per 1,000 contacts",
+            "ci95": [
+              -1.6537609061426979,
+              10.185744790697736
+            ],
+            "ci_method": "customer-level bootstrap percentile (paired: same resamples)"
+          },
+          "ci_excludes_zero": false
+        }
+      ],
+      "small_cell_warning": false,
+      "is_primary": false
+    },
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "policy_id": "MODEL_MENS_25",
+      "policy_family": "MODEL",
+      "label": "Mens E-Mail to the 25% with the highest model-predicted uplift for that e-mail",
+      "arm_assignment": "Mens E-Mail",
+      "control_arm": "No E-Mail",
+      "split": "test",
+      "contact_share": 0.25,
+      "eligible_n": 25603,
+      "contacted_n": 6401,
+      "treated_n": 2159,
+      "treated_buyers": 43,
+      "control_n": 2122,
+      "control_buyers": 21,
+      "additional_buyers_per_1000_contacts": {
+        "value": 10.020303846118587,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 customers contacted, vs no e-mail, two weeks",
+        "ci95": [
+          2.8024598905382665,
+          17.181066724973896
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "additional_buyers_per_1000_eligible": {
+        "value": 2.5050759615296467,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 eligible customers (contacted or not), vs no e-mail, two weeks",
+        "ci95": [
+          0.7006149726345666,
+          4.295266681243474
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "incremental_spend_per_contact": {
+        "value": 1.3429020290313127,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "USD per customer contacted (treated minus control inside the selected set), two weeks",
+        "ci95": [
+          0.05418659033321789,
+          2.6152360890308155
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "comparisons": [
+        {
+          "against_policy_id": "RANDOM_MENS_25",
+          "difference_per_1000_contacts": {
+            "value": 2.6300957840514037,
+            "tag": "HELD_OUT_ESTIMATE",
+            "unit": "this policy minus the other, additional buyers per 1,000 contacts",
+            "ci95": [
+              -3.515450155035369,
+              8.748261697170404
+            ],
+            "ci_method": "customer-level bootstrap percentile (paired: same resamples)"
+          },
+          "ci_excludes_zero": false
+        },
+        {
+          "against_policy_id": "RULE_RECENCY_MENS_25",
+          "difference_per_1000_contacts": {
+            "value": 1.4170185483069857,
+            "tag": "HELD_OUT_ESTIMATE",
+            "unit": "this policy minus the other, additional buyers per 1,000 contacts",
+            "ci95": [
+              -5.498045054435089,
+              8.157080990397226
+            ],
+            "ci_method": "customer-level bootstrap percentile (paired: same resamples)"
+          },
+          "ci_excludes_zero": false
+        },
+        {
+          "against_policy_id": "RULE_HISTORY_MENS_25",
+          "difference_per_1000_contacts": {
+            "value": -1.5625467770163954,
+            "tag": "HELD_OUT_ESTIMATE",
+            "unit": "this policy minus the other, additional buyers per 1,000 contacts",
+            "ci95": [
+              -6.9687184858386315,
+              3.917912873950752
+            ],
+            "ci_method": "customer-level bootstrap percentile (paired: same resamples)"
+          },
+          "ci_excludes_zero": false
+        }
+      ],
+      "small_cell_warning": false,
+      "is_primary": true
+    },
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "policy_id": "RANDOM_WOMENS_25",
+      "policy_family": "RANDOM",
+      "label": "Womens E-Mail to a random 25% (expected value: the average effect over the whole held-out arms)",
+      "arm_assignment": "Womens E-Mail",
+      "control_arm": "No E-Mail",
+      "split": "test",
+      "contact_share": 0.25,
+      "eligible_n": 25603,
+      "contacted_n": 6401,
+      "treated_n": 8556,
+      "treated_buyers": 77,
+      "control_n": 8523,
+      "control_buyers": 50,
+      "additional_buyers_per_1000_contacts": {
+        "value": 3.1330535524779983,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 customers contacted, vs no e-mail, two weeks",
+        "ci95": [
+          0.4861540779193939,
+          5.694621584402195
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "additional_buyers_per_1000_eligible": {
+        "value": 0.7832633881194996,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 eligible customers (contacted or not), vs no e-mail, two weeks",
+        "ci95": [
+          0.12153851947984848,
+          1.4236553961005487
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "incremental_spend_per_contact": {
+        "value": 0.3695666848338274,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "USD per customer contacted (treated minus control inside the selected set), two weeks",
+        "ci95": [
+          -0.04708143415640242,
+          0.7935251621703328
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "comparisons": [],
+      "small_cell_warning": false,
+      "is_primary": false
+    },
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "policy_id": "RULE_RECENCY_WOMENS_25",
+      "policy_family": "RULE",
+      "label": "Womens E-Mail to the 25% who purchased most recently",
+      "arm_assignment": "Womens E-Mail",
+      "control_arm": "No E-Mail",
+      "split": "test",
+      "contact_share": 0.25,
+      "eligible_n": 25603,
+      "contacted_n": 6401,
+      "treated_n": 2132,
+      "treated_buyers": 20,
+      "control_n": 2147,
+      "control_buyers": 22,
+      "additional_buyers_per_1000_contacts": {
+        "value": -0.8659930388490931,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 customers contacted, vs no e-mail, two weeks",
+        "ci95": [
+          -6.809767290249333,
+          4.9952211489600975
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "additional_buyers_per_1000_eligible": {
+        "value": -0.21649825971227327,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 eligible customers (contacted or not), vs no e-mail, two weeks",
+        "ci95": [
+          -1.7024418225623332,
+          1.2488052872400244
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "incremental_spend_per_contact": {
+        "value": -0.03462669888871517,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "USD per customer contacted (treated minus control inside the selected set), two weeks",
+        "ci95": [
+          -1.0187729325149744,
+          0.9537703066748264
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "comparisons": [
+        {
+          "against_policy_id": "RANDOM_WOMENS_25",
+          "difference_per_1000_contacts": {
+            "value": -3.9990465913270916,
+            "tag": "HELD_OUT_ESTIMATE",
+            "unit": "this policy minus the other, additional buyers per 1,000 contacts",
+            "ci95": [
+              -8.95732481835778,
+              1.0676225347736177
+            ],
+            "ci_method": "customer-level bootstrap percentile (paired: same resamples)"
+          },
+          "ci_excludes_zero": false
+        }
+      ],
+      "small_cell_warning": false,
+      "is_primary": false
+    },
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "policy_id": "RULE_HISTORY_WOMENS_25",
+      "policy_family": "RULE",
+      "label": "Womens E-Mail to the 25% with the highest past-year spend",
+      "arm_assignment": "Womens E-Mail",
+      "control_arm": "No E-Mail",
+      "split": "test",
+      "contact_share": 0.25,
+      "eligible_n": 25603,
+      "contacted_n": 6401,
+      "treated_n": 2131,
+      "treated_buyers": 22,
+      "control_n": 2160,
+      "control_buyers": 19,
+      "additional_buyers_per_1000_contacts": {
+        "value": 1.5274953508177345,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 customers contacted, vs no e-mail, two weeks",
+        "ci95": [
+          -4.170634781178077,
+          7.159042718404622
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "additional_buyers_per_1000_eligible": {
+        "value": 0.3818738377044336,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 eligible customers (contacted or not), vs no e-mail, two weeks",
+        "ci95": [
+          -1.0426586952945192,
+          1.7897606796011556
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "incremental_spend_per_contact": {
+        "value": 0.5061299077115591,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "USD per customer contacted (treated minus control inside the selected set), two weeks",
+        "ci95": [
+          -0.3755251646168556,
+          1.5091820238844615
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "comparisons": [
+        {
+          "against_policy_id": "RANDOM_WOMENS_25",
+          "difference_per_1000_contacts": {
+            "value": -1.605558201660264,
+            "tag": "HELD_OUT_ESTIMATE",
+            "unit": "this policy minus the other, additional buyers per 1,000 contacts",
+            "ci95": [
+              -6.454283898290834,
+              2.9874936418531086
+            ],
+            "ci_method": "customer-level bootstrap percentile (paired: same resamples)"
+          },
+          "ci_excludes_zero": false
+        }
+      ],
+      "small_cell_warning": false,
+      "is_primary": false
+    },
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "policy_id": "MODEL_WOMENS_25",
+      "policy_family": "MODEL",
+      "label": "Womens E-Mail to the 25% with the highest model-predicted uplift for that e-mail",
+      "arm_assignment": "Womens E-Mail",
+      "control_arm": "No E-Mail",
+      "split": "test",
+      "contact_share": 0.25,
+      "eligible_n": 25603,
+      "contacted_n": 6401,
+      "treated_n": 2167,
+      "treated_buyers": 26,
+      "control_n": 2098,
+      "control_buyers": 17,
+      "additional_buyers_per_1000_contacts": {
+        "value": 3.8951989347096125,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 customers contacted, vs no e-mail, two weeks",
+        "ci95": [
+          -1.8798012302614913,
+          9.780460388601615
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "additional_buyers_per_1000_eligible": {
+        "value": 0.9737997336774031,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 eligible customers (contacted or not), vs no e-mail, two weeks",
+        "ci95": [
+          -0.4699503075653728,
+          2.4451150971504036
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "incremental_spend_per_contact": {
+        "value": 0.6021318147285104,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "USD per customer contacted (treated minus control inside the selected set), two weeks",
+        "ci95": [
+          -0.09384534828951364,
+          1.358935226993186
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "comparisons": [
+        {
+          "against_policy_id": "RANDOM_WOMENS_25",
+          "difference_per_1000_contacts": {
+            "value": 0.7621453822316141,
+            "tag": "HELD_OUT_ESTIMATE",
+            "unit": "this policy minus the other, additional buyers per 1,000 contacts",
+            "ci95": [
+              -4.087445202677146,
+              5.993810274817752
+            ],
+            "ci_method": "customer-level bootstrap percentile (paired: same resamples)"
+          },
+          "ci_excludes_zero": false
+        },
+        {
+          "against_policy_id": "RULE_RECENCY_WOMENS_25",
+          "difference_per_1000_contacts": {
+            "value": 4.761191973558706,
+            "tag": "HELD_OUT_ESTIMATE",
+            "unit": "this policy minus the other, additional buyers per 1,000 contacts",
+            "ci95": [
+              -0.5056898632644995,
+              9.970180788067955
+            ],
+            "ci_method": "customer-level bootstrap percentile (paired: same resamples)"
+          },
+          "ci_excludes_zero": false
+        },
+        {
+          "against_policy_id": "RULE_HISTORY_WOMENS_25",
+          "difference_per_1000_contacts": {
+            "value": 2.367703583891878,
+            "tag": "HELD_OUT_ESTIMATE",
+            "unit": "this policy minus the other, additional buyers per 1,000 contacts",
+            "ci95": [
+              -2.929799095898903,
+              7.9886422703541635
+            ],
+            "ci_method": "customer-level bootstrap percentile (paired: same resamples)"
+          },
+          "ci_excludes_zero": false
+        }
+      ],
+      "small_cell_warning": false,
+      "is_primary": false
+    },
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "policy_id": "MODEL_BESTARM_25",
+      "policy_family": "MODEL",
+      "label": "Model picks the e-mail per customer; contact the 25% with the highest predicted uplift",
+      "arm_assignment": "MODEL_CHOOSES_ARM",
+      "control_arm": "No E-Mail",
+      "split": "test",
+      "contact_share": 0.25,
+      "eligible_n": 25603,
+      "contacted_n": 6401,
+      "treated_n": 2182,
+      "treated_buyers": 40,
+      "control_n": 2126,
+      "control_buyers": 23,
+      "additional_buyers_per_1000_contacts": {
+        "value": 7.572406992571702,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 customers contacted, vs no e-mail, two weeks",
+        "ci95": [
+          0.4018789057070491,
+          14.897139713540167
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "additional_buyers_per_1000_eligible": {
+        "value": 1.8931017481429255,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 eligible customers (contacted or not), vs no e-mail, two weeks",
+        "ci95": [
+          0.10046972642676227,
+          3.7242849283850417
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "incremental_spend_per_contact": {
+        "value": 1.1162631984468647,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "USD per customer contacted (treated minus control inside the selected set), two weeks",
+        "ci95": [
+          -0.12695758635998453,
+          2.3756815044976998
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "comparisons": [
+        {
+          "against_policy_id": "RANDOM_MENS_25",
+          "difference_per_1000_contacts": {
+            "value": 0.18219893050451952,
+            "tag": "HELD_OUT_ESTIMATE",
+            "unit": "this policy minus the other, additional buyers per 1,000 contacts",
+            "ci95": [
+              -5.8839351170146985,
+              6.040135318183912
+            ],
+            "ci_method": "customer-level bootstrap percentile (paired: same resamples)"
+          },
+          "ci_excludes_zero": false
+        },
+        {
+          "against_policy_id": "RULE_RECENCY_MENS_25",
+          "difference_per_1000_contacts": {
+            "value": -1.0308783052398982,
+            "tag": "HELD_OUT_ESTIMATE",
+            "unit": "this policy minus the other, additional buyers per 1,000 contacts",
+            "ci95": [
+              -7.953014559021276,
+              5.841454101498942
+            ],
+            "ci_method": "customer-level bootstrap percentile (paired: same resamples)"
+          },
+          "ci_excludes_zero": false
+        },
+        {
+          "against_policy_id": "RULE_HISTORY_MENS_25",
+          "difference_per_1000_contacts": {
+            "value": -4.010443630563279,
+            "tag": "HELD_OUT_ESTIMATE",
+            "unit": "this policy minus the other, additional buyers per 1,000 contacts",
+            "ci95": [
+              -9.548236610080828,
+              1.1108169958413465
+            ],
+            "ci_method": "customer-level bootstrap percentile (paired: same resamples)"
+          },
+          "ci_excludes_zero": false
+        }
+      ],
+      "small_cell_warning": false,
+      "is_primary": false
+    },
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "policy_id": "RANDOM_MENS_50",
+      "policy_family": "RANDOM",
+      "label": "Mens E-Mail to a random 50% (expected value: the average effect over the whole held-out arms)",
+      "arm_assignment": "Mens E-Mail",
+      "control_arm": "No E-Mail",
+      "split": "test",
+      "contact_share": 0.5,
+      "eligible_n": 25603,
+      "contacted_n": 12802,
+      "treated_n": 8524,
+      "treated_buyers": 113,
+      "control_n": 8523,
+      "control_buyers": 50,
+      "additional_buyers_per_1000_contacts": {
+        "value": 7.390208062067183,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 customers contacted, vs no e-mail, two weeks",
+        "ci95": [
+          4.5780989975799375,
+          10.285715997619032
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "additional_buyers_per_1000_eligible": {
+        "value": 3.6951040310335914,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 eligible customers (contacted or not), vs no e-mail, two weeks",
+        "ci95": [
+          2.2890494987899688,
+          5.142857998809516
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "incremental_spend_per_contact": {
+        "value": 0.9364160109616985,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "USD per customer contacted (treated minus control inside the selected set), two weeks",
+        "ci95": [
+          0.48303947598927655,
+          1.450000003456545
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "comparisons": [],
+      "small_cell_warning": false,
+      "is_primary": false
+    },
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "policy_id": "RULE_RECENCY_MENS_50",
+      "policy_family": "RULE",
+      "label": "Mens E-Mail to the 50% who purchased most recently",
+      "arm_assignment": "Mens E-Mail",
+      "control_arm": "No E-Mail",
+      "split": "test",
+      "contact_share": 0.5,
+      "eligible_n": 25603,
+      "contacted_n": 12802,
+      "treated_n": 4210,
+      "treated_buyers": 64,
+      "control_n": 4294,
+      "control_buyers": 32,
+      "additional_buyers_per_1000_contacts": {
+        "value": 7.749641271530622,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 customers contacted, vs no e-mail, two weeks",
+        "ci95": [
+          3.550083912110267,
+          12.391113847713337
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "additional_buyers_per_1000_eligible": {
+        "value": 3.874820635765311,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 eligible customers (contacted or not), vs no e-mail, two weeks",
+        "ci95": [
+          1.7750419560551336,
+          6.195556923856668
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "incremental_spend_per_contact": {
+        "value": 1.1372675500366745,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "USD per customer contacted (treated minus control inside the selected set), two weeks",
+        "ci95": [
+          0.43259552591206085,
+          1.9088945075996253
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "comparisons": [
+        {
+          "against_policy_id": "RANDOM_MENS_50",
+          "difference_per_1000_contacts": {
+            "value": 0.3594332094634398,
+            "tag": "HELD_OUT_ESTIMATE",
+            "unit": "this policy minus the other, additional buyers per 1,000 contacts",
+            "ci95": [
+              -2.428656185472152,
+              3.2575545012877507
+            ],
+            "ci_method": "customer-level bootstrap percentile (paired: same resamples)"
+          },
+          "ci_excludes_zero": false
+        }
+      ],
+      "small_cell_warning": false,
+      "is_primary": false
+    },
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "policy_id": "RULE_HISTORY_MENS_50",
+      "policy_family": "RULE",
+      "label": "Mens E-Mail to the 50% with the highest past-year spend",
+      "arm_assignment": "Mens E-Mail",
+      "control_arm": "No E-Mail",
+      "split": "test",
+      "contact_share": 0.5,
+      "eligible_n": 25603,
+      "contacted_n": 12802,
+      "treated_n": 4254,
+      "treated_buyers": 72,
+      "control_n": 4241,
+      "control_buyers": 34,
+      "additional_buyers_per_1000_contacts": {
+        "value": 8.908269698480382,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 customers contacted, vs no e-mail, two weeks",
+        "ci95": [
+          4.178058546014431,
+          13.713054928937147
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "additional_buyers_per_1000_eligible": {
+        "value": 4.454134849240191,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 eligible customers (contacted or not), vs no e-mail, two weeks",
+        "ci95": [
+          2.0890292730072155,
+          6.856527464468574
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "incremental_spend_per_contact": {
+        "value": 1.2561470364466598,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "USD per customer contacted (treated minus control inside the selected set), two weeks",
+        "ci95": [
+          0.4804784339789925,
+          2.0207572753095886
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "comparisons": [
+        {
+          "against_policy_id": "RANDOM_MENS_50",
+          "difference_per_1000_contacts": {
+            "value": 1.5180616364131985,
+            "tag": "HELD_OUT_ESTIMATE",
+            "unit": "this policy minus the other, additional buyers per 1,000 contacts",
+            "ci95": [
+              -1.4923851810043498,
+              4.436032972615991
+            ],
+            "ci_method": "customer-level bootstrap percentile (paired: same resamples)"
+          },
+          "ci_excludes_zero": false
+        }
+      ],
+      "small_cell_warning": false,
+      "is_primary": false
+    },
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "policy_id": "MODEL_MENS_50",
+      "policy_family": "MODEL",
+      "label": "Mens E-Mail to the 50% with the highest model-predicted uplift for that e-mail",
+      "arm_assignment": "Mens E-Mail",
+      "control_arm": "No E-Mail",
+      "split": "test",
+      "contact_share": 0.5,
+      "eligible_n": 25603,
+      "contacted_n": 12802,
+      "treated_n": 4204,
+      "treated_buyers": 68,
+      "control_n": 4244,
+      "control_buyers": 34,
+      "additional_buyers_per_1000_contacts": {
+        "value": 8.163761275783308,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 customers contacted, vs no e-mail, two weeks",
+        "ci95": [
+          3.4673954185455393,
+          12.769042436323403
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "additional_buyers_per_1000_eligible": {
+        "value": 4.081880637891654,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 eligible customers (contacted or not), vs no e-mail, two weeks",
+        "ci95": [
+          1.7336977092727697,
+          6.3845212181617015
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "incremental_spend_per_contact": {
+        "value": 1.292666552926121,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "USD per customer contacted (treated minus control inside the selected set), two weeks",
+        "ci95": [
+          0.5109851008821691,
+          2.1855208387787863
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "comparisons": [
+        {
+          "against_policy_id": "RANDOM_MENS_50",
+          "difference_per_1000_contacts": {
+            "value": 0.7735532137161253,
+            "tag": "HELD_OUT_ESTIMATE",
+            "unit": "this policy minus the other, additional buyers per 1,000 contacts",
+            "ci95": [
+              -2.2294008630028688,
+              3.854172043923933
+            ],
+            "ci_method": "customer-level bootstrap percentile (paired: same resamples)"
+          },
+          "ci_excludes_zero": false
+        },
+        {
+          "against_policy_id": "RULE_RECENCY_MENS_50",
+          "difference_per_1000_contacts": {
+            "value": 0.41412000425268547,
+            "tag": "HELD_OUT_ESTIMATE",
+            "unit": "this policy minus the other, additional buyers per 1,000 contacts",
+            "ci95": [
+              -3.202172674191252,
+              3.882885137227358
+            ],
+            "ci_method": "customer-level bootstrap percentile (paired: same resamples)"
+          },
+          "ci_excludes_zero": false
+        },
+        {
+          "against_policy_id": "RULE_HISTORY_MENS_50",
+          "difference_per_1000_contacts": {
+            "value": -0.7445084226970732,
+            "tag": "HELD_OUT_ESTIMATE",
+            "unit": "this policy minus the other, additional buyers per 1,000 contacts",
+            "ci95": [
+              -2.9157829733769924,
+              1.4144705527072654
+            ],
+            "ci_method": "customer-level bootstrap percentile (paired: same resamples)"
+          },
+          "ci_excludes_zero": false
+        }
+      ],
+      "small_cell_warning": false,
+      "is_primary": false
+    },
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "policy_id": "RANDOM_WOMENS_50",
+      "policy_family": "RANDOM",
+      "label": "Womens E-Mail to a random 50% (expected value: the average effect over the whole held-out arms)",
+      "arm_assignment": "Womens E-Mail",
+      "control_arm": "No E-Mail",
+      "split": "test",
+      "contact_share": 0.5,
+      "eligible_n": 25603,
+      "contacted_n": 12802,
+      "treated_n": 8556,
+      "treated_buyers": 77,
+      "control_n": 8523,
+      "control_buyers": 50,
+      "additional_buyers_per_1000_contacts": {
+        "value": 3.1330535524779983,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 customers contacted, vs no e-mail, two weeks",
+        "ci95": [
+          0.4861540779193939,
+          5.694621584402195
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "additional_buyers_per_1000_eligible": {
+        "value": 1.5665267762389992,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 eligible customers (contacted or not), vs no e-mail, two weeks",
+        "ci95": [
+          0.24307703895969696,
+          2.8473107922010974
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "incremental_spend_per_contact": {
+        "value": 0.3695666848338274,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "USD per customer contacted (treated minus control inside the selected set), two weeks",
+        "ci95": [
+          -0.04708143415640242,
+          0.7935251621703328
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "comparisons": [],
+      "small_cell_warning": false,
+      "is_primary": false
+    },
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "policy_id": "RULE_RECENCY_WOMENS_50",
+      "policy_family": "RULE",
+      "label": "Womens E-Mail to the 50% who purchased most recently",
+      "arm_assignment": "Womens E-Mail",
+      "control_arm": "No E-Mail",
+      "split": "test",
+      "contact_share": 0.5,
+      "eligible_n": 25603,
+      "contacted_n": 12802,
+      "treated_n": 4298,
+      "treated_buyers": 45,
+      "control_n": 4294,
+      "control_buyers": 32,
+      "additional_buyers_per_1000_contacts": {
+        "value": 3.0177270740195454,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 customers contacted, vs no e-mail, two weeks",
+        "ci95": [
+          -0.8687801856520924,
+          6.958352565916389
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "additional_buyers_per_1000_eligible": {
+        "value": 1.5088635370097727,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 eligible customers (contacted or not), vs no e-mail, two weeks",
+        "ci95": [
+          -0.4343900928260462,
+          3.4791762829581945
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "incremental_spend_per_contact": {
+        "value": 0.604673863971566,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "USD per customer contacted (treated minus control inside the selected set), two weeks",
+        "ci95": [
+          -0.05451807029814751,
+          1.3125216871047172
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "comparisons": [
+        {
+          "against_policy_id": "RANDOM_WOMENS_50",
+          "difference_per_1000_contacts": {
+            "value": -0.1153264784584532,
+            "tag": "HELD_OUT_ESTIMATE",
+            "unit": "this policy minus the other, additional buyers per 1,000 contacts",
+            "ci95": [
+              -2.717773738908316,
+              2.499756330718218
+            ],
+            "ci_method": "customer-level bootstrap percentile (paired: same resamples)"
+          },
+          "ci_excludes_zero": false
+        }
+      ],
+      "small_cell_warning": false,
+      "is_primary": false
+    },
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "policy_id": "RULE_HISTORY_WOMENS_50",
+      "policy_family": "RULE",
+      "label": "Womens E-Mail to the 50% with the highest past-year spend",
+      "arm_assignment": "Womens E-Mail",
+      "control_arm": "No E-Mail",
+      "split": "test",
+      "contact_share": 0.5,
+      "eligible_n": 25603,
+      "contacted_n": 12802,
+      "treated_n": 4307,
+      "treated_buyers": 43,
+      "control_n": 4241,
+      "control_buyers": 34,
+      "additional_buyers_per_1000_contacts": {
+        "value": 1.9667702599372259,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 customers contacted, vs no e-mail, two weeks",
+        "ci95": [
+          -2.053615616661627,
+          5.9443664509549246
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "additional_buyers_per_1000_eligible": {
+        "value": 0.9833851299686129,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 eligible customers (contacted or not), vs no e-mail, two weeks",
+        "ci95": [
+          -1.0268078083308134,
+          2.9721832254774623
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "incremental_spend_per_contact": {
+        "value": 0.33752632639013747,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "USD per customer contacted (treated minus control inside the selected set), two weeks",
+        "ci95": [
+          -0.29415071755043515,
+          1.0076499307780111
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "comparisons": [
+        {
+          "against_policy_id": "RANDOM_WOMENS_50",
+          "difference_per_1000_contacts": {
+            "value": -1.1662832925407727,
+            "tag": "HELD_OUT_ESTIMATE",
+            "unit": "this policy minus the other, additional buyers per 1,000 contacts",
+            "ci95": [
+              -3.6788654434554853,
+              1.3835835052218142
+            ],
+            "ci_method": "customer-level bootstrap percentile (paired: same resamples)"
+          },
+          "ci_excludes_zero": false
+        }
+      ],
+      "small_cell_warning": false,
+      "is_primary": false
+    },
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "policy_id": "MODEL_WOMENS_50",
+      "policy_family": "MODEL",
+      "label": "Womens E-Mail to the 50% with the highest model-predicted uplift for that e-mail",
+      "arm_assignment": "Womens E-Mail",
+      "control_arm": "No E-Mail",
+      "split": "test",
+      "contact_share": 0.5,
+      "eligible_n": 25603,
+      "contacted_n": 12802,
+      "treated_n": 4295,
+      "treated_buyers": 45,
+      "control_n": 4223,
+      "control_buyers": 29,
+      "additional_buyers_per_1000_contacts": {
+        "value": 3.6101431348976734,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 customers contacted, vs no e-mail, two weeks",
+        "ci95": [
+          -0.052937600266755126,
+          7.511826953250273
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "additional_buyers_per_1000_eligible": {
+        "value": 1.8050715674488367,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 eligible customers (contacted or not), vs no e-mail, two weeks",
+        "ci95": [
+          -0.026468800133377563,
+          3.7559134766251363
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "incremental_spend_per_contact": {
+        "value": 0.7204095604838183,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "USD per customer contacted (treated minus control inside the selected set), two weeks",
+        "ci95": [
+          0.2009548219682335,
+          1.291661542382207
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "comparisons": [
+        {
+          "against_policy_id": "RANDOM_WOMENS_50",
+          "difference_per_1000_contacts": {
+            "value": 0.477089582419675,
+            "tag": "HELD_OUT_ESTIMATE",
+            "unit": "this policy minus the other, additional buyers per 1,000 contacts",
+            "ci95": [
+              -1.9679123665704568,
+              3.0252755932624265
+            ],
+            "ci_method": "customer-level bootstrap percentile (paired: same resamples)"
+          },
+          "ci_excludes_zero": false
+        },
+        {
+          "against_policy_id": "RULE_RECENCY_WOMENS_50",
+          "difference_per_1000_contacts": {
+            "value": 0.5924160608781281,
+            "tag": "HELD_OUT_ESTIMATE",
+            "unit": "this policy minus the other, additional buyers per 1,000 contacts",
+            "ci95": [
+              -2.215467156263225,
+              3.483812288322213
+            ],
+            "ci_method": "customer-level bootstrap percentile (paired: same resamples)"
+          },
+          "ci_excludes_zero": false
+        },
+        {
+          "against_policy_id": "RULE_HISTORY_WOMENS_50",
+          "difference_per_1000_contacts": {
+            "value": 1.6433728749604475,
+            "tag": "HELD_OUT_ESTIMATE",
+            "unit": "this policy minus the other, additional buyers per 1,000 contacts",
+            "ci95": [
+              -1.5342023398887321,
+              5.034318558383057
+            ],
+            "ci_method": "customer-level bootstrap percentile (paired: same resamples)"
+          },
+          "ci_excludes_zero": false
+        }
+      ],
+      "small_cell_warning": false,
+      "is_primary": false
+    },
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "policy_id": "MODEL_BESTARM_50",
+      "policy_family": "MODEL",
+      "label": "Model picks the e-mail per customer; contact the 50% with the highest predicted uplift",
+      "arm_assignment": "MODEL_CHOOSES_ARM",
+      "control_arm": "No E-Mail",
+      "split": "test",
+      "contact_share": 0.5,
+      "eligible_n": 25603,
+      "contacted_n": 12802,
+      "treated_n": 4263,
+      "treated_buyers": 70,
+      "control_n": 4238,
+      "control_buyers": 33,
+      "additional_buyers_per_1000_contacts": {
+        "value": 8.646394946268707,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 customers contacted, vs no e-mail, two weeks",
+        "ci95": [
+          4.020467077443288,
+          13.4247061931395
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "additional_buyers_per_1000_eligible": {
+        "value": 4.323197473134353,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 eligible customers (contacted or not), vs no e-mail, two weeks",
+        "ci95": [
+          2.010233538721644,
+          6.71235309656975
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "incremental_spend_per_contact": {
+        "value": 1.4013313016198414,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "USD per customer contacted (treated minus control inside the selected set), two weeks",
+        "ci95": [
+          0.6277794245034141,
+          2.303327648301266
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "comparisons": [
+        {
+          "against_policy_id": "RANDOM_MENS_50",
+          "difference_per_1000_contacts": {
+            "value": 1.2561868842015247,
+            "tag": "HELD_OUT_ESTIMATE",
+            "unit": "this policy minus the other, additional buyers per 1,000 contacts",
+            "ci95": [
+              -1.892486136435643,
+              4.509951597667542
+            ],
+            "ci_method": "customer-level bootstrap percentile (paired: same resamples)"
+          },
+          "ci_excludes_zero": false
+        },
+        {
+          "against_policy_id": "RULE_RECENCY_MENS_50",
+          "difference_per_1000_contacts": {
+            "value": 0.896753674738085,
+            "tag": "HELD_OUT_ESTIMATE",
+            "unit": "this policy minus the other, additional buyers per 1,000 contacts",
+            "ci95": [
+              -2.7531830223439315,
+              4.448430787668598
+            ],
+            "ci_method": "customer-level bootstrap percentile (paired: same resamples)"
+          },
+          "ci_excludes_zero": false
+        },
+        {
+          "against_policy_id": "RULE_HISTORY_MENS_50",
+          "difference_per_1000_contacts": {
+            "value": -0.26187475221167367,
+            "tag": "HELD_OUT_ESTIMATE",
+            "unit": "this policy minus the other, additional buyers per 1,000 contacts",
+            "ci95": [
+              -2.7027470465480015,
+              2.148827114367373
+            ],
+            "ci_method": "customer-level bootstrap percentile (paired: same resamples)"
+          },
+          "ci_excludes_zero": false
+        }
+      ],
+      "small_cell_warning": false,
+      "is_primary": false
+    },
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "policy_id": "MODEL_BESTARM_100",
+      "policy_family": "MODEL",
+      "label": "Model picks the e-mail per customer; contact every eligible customer",
+      "arm_assignment": "MODEL_CHOOSES_ARM",
+      "control_arm": "No E-Mail",
+      "split": "test",
+      "contact_share": 1.0,
+      "eligible_n": 25603,
+      "contacted_n": 25603,
+      "treated_n": 8561,
+      "treated_buyers": 113,
+      "control_n": 8523,
+      "control_buyers": 50,
+      "additional_buyers_per_1000_contacts": {
+        "value": 7.33870135079093,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 customers contacted, vs no e-mail, two weeks",
+        "ci95": [
+          4.486647562817295,
+          10.189072459022716
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "additional_buyers_per_1000_eligible": {
+        "value": 7.33870135079093,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "additional purchasing customers per 1,000 eligible customers (contacted or not), vs no e-mail, two weeks",
+        "ci95": [
+          4.486647562817295,
+          10.189072459022716
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "incremental_spend_per_contact": {
+        "value": 0.9626718164425186,
+        "tag": "HELD_OUT_ESTIMATE",
+        "unit": "USD per customer contacted (treated minus control inside the selected set), two weeks",
+        "ci95": [
+          0.49775022027675686,
+          1.4749580396683093
+        ],
+        "ci_method": "customer-level bootstrap percentile"
+      },
+      "comparisons": [
+        {
+          "against_policy_id": "SEND_ALL_MENS_100",
+          "difference_per_1000_contacts": {
+            "value": -0.05150671127625295,
+            "tag": "HELD_OUT_ESTIMATE",
+            "unit": "this policy minus the other, additional buyers per 1,000 contacts",
+            "ci95": [
+              -1.1238460063443363,
+              1.0295074759335392
+            ],
+            "ci_method": "customer-level bootstrap percentile (paired: same resamples)"
+          },
+          "ci_excludes_zero": false
+        }
+      ],
+      "small_cell_warning": false,
+      "is_primary": false
+    }
+  ],
+  "model_vs_baselines": {
+    "primary_contact_share": 0.25,
+    "model_policy_id": "MODEL_MENS_25",
+    "random_policy_id": "RANDOM_MENS_25",
+    "rule_policy_id": "RULE_RECENCY_MENS_25",
+    "model_minus_random_per_1000_contacts": {
+      "value": 2.6300957840514037,
+      "tag": "HELD_OUT_ESTIMATE",
+      "unit": "additional buyers per 1,000 contacts",
+      "ci95": [
+        -3.515450155035369,
+        8.748261697170404
+      ],
+      "ci_method": "customer-level bootstrap percentile (paired: same resamples)"
+    },
+    "model_minus_rule_per_1000_contacts": {
+      "value": 1.4170185483069857,
+      "tag": "HELD_OUT_ESTIMATE",
+      "unit": "additional buyers per 1,000 contacts",
+      "ci95": [
+        -5.498045054435089,
+        8.157080990397226
+      ],
+      "ci_method": "customer-level bootstrap percentile (paired: same resamples)"
+    },
+    "point_estimate_beats_random": true,
+    "point_estimate_beats_rule": true,
+    "stable_vs_random": false,
+    "stable_vs_rule": false,
+    "verdict": "MODEL_AHEAD_NOT_STABLE",
+    "verdict_text": "At a 25% contact cap, the model's top customers gave 10.0 additional buyers per 1,000 Mens e-mails (95% interval 2.8 to 17.2), against 7.4 for random contacts (difference +2.6, interval -3.5 to 8.7) and 8.6 for the recency rule (difference +1.4, interval -5.5 to 8.2). The model is ahead on the point estimate, but both intervals must exclude zero for a stable gain and they do not: no stable targeting gain is shown. The past-spend rule, which validation did not select as the primary rule, scored 11.6 (model minus that rule -1.6, interval -7.0 to 3.9)."
+  },
+  "buyer_impact_per_1000": {
+    "value": 6.805006519615695,
+    "tag": "OBSERVED",
+    "unit": "additional purchasing customers per 1,000 customers e-mailed, vs no e-mail, two weeks",
+    "policy_id": "SEND_ALL_MENS_100",
+    "arm": "Mens E-Mail",
+    "control_arm": "No E-Mail",
+    "split": "full_sample",
+    "treated_n": 21307,
+    "treated_buyers": 267,
+    "control_n": 21306,
+    "control_buyers": 122,
+    "note": "Randomized average effect of the Mens e-mail on the full sample; the held-out test estimate for the same policy is 7.4 (interval 4.6 to 10.3)."
+  },
+  "buyer_impact_interval_per_1000": {
+    "low": 5.000138215573684,
+    "high": 8.609874823657705,
+    "level": 0.95,
+    "method": "normal approximation (unpooled Wald)"
+  },
+  "business_scenarios": [
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "scenario_id": "SEND_ALL_MENS_100__UNKNOWN_INPUTS",
+      "label": "Unknown Inputs assumptions, Mens E-Mail",
+      "value_kind": "SCENARIO_NOT_MEASURED_PROFIT",
+      "policy_id": "SEND_ALL_MENS_100",
+      "arm": "Mens E-Mail",
+      "contacts": {
+        "value": 57600.0,
+        "tag": "ASSUMPTION",
+        "unit": "customers e-mailed",
+        "note": "assumed mailable base 64,000 x contact share, less a 10% randomized holdout for a broad send"
+      },
+      "incremental_spend_per_contact": {
+        "value": 0.7698271558945368,
+        "tag": "OBSERVED",
+        "unit": "USD per customer e-mailed, two weeks",
+        "ci95": [
+          0.4851438978071107,
+          1.0545104139819628
+        ],
+        "ci_method": "normal approximation (unpooled Wald)"
+      },
+      "assumed_margin": {
+        "value": null,
+        "tag": "UNKNOWN",
+        "unit": "share of incremental revenue kept as contribution"
+      },
+      "cost_per_contact": {
+        "value": null,
+        "tag": "UNKNOWN",
+        "unit": "USD per e-mail sent (delivery, offer and handling)"
+      },
+      "fixed_setup_cost": {
+        "value": null,
+        "tag": "UNKNOWN",
+        "unit": "USD per campaign"
+      },
+      "contribution": {
+        "value": null,
+        "tag": "UNKNOWN",
+        "unit": "USD per campaign (scenario arithmetic, not measured profit)",
+        "ci95": null,
+        "ci_method": "range from the 95% interval of incremental spend; assumptions held fixed"
+      },
+      "formula": "contribution = contacts * (incremental_spend_per_contact * assumed_margin - cost_per_contact) - fixed_setup_cost"
+    },
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "scenario_id": "SEND_ALL_MENS_100__CONSERVATIVE",
+      "label": "Conservative assumptions, Mens E-Mail",
+      "value_kind": "SCENARIO_NOT_MEASURED_PROFIT",
+      "policy_id": "SEND_ALL_MENS_100",
+      "arm": "Mens E-Mail",
+      "contacts": {
+        "value": 57600.0,
+        "tag": "ASSUMPTION",
+        "unit": "customers e-mailed",
+        "note": "assumed mailable base 64,000 x contact share, less a 10% randomized holdout for a broad send"
+      },
+      "incremental_spend_per_contact": {
+        "value": 0.7698271558945368,
+        "tag": "OBSERVED",
+        "unit": "USD per customer e-mailed, two weeks",
+        "ci95": [
+          0.4851438978071107,
+          1.0545104139819628
+        ],
+        "ci_method": "normal approximation (unpooled Wald)"
+      },
+      "assumed_margin": {
+        "value": 0.2,
+        "tag": "ASSUMPTION",
+        "unit": "share of incremental revenue kept as contribution"
+      },
+      "cost_per_contact": {
+        "value": 0.1,
+        "tag": "ASSUMPTION",
+        "unit": "USD per e-mail sent (delivery, offer and handling)"
+      },
+      "fixed_setup_cost": {
+        "value": 2000.0,
+        "tag": "ASSUMPTION",
+        "unit": "USD per campaign"
+      },
+      "contribution": {
+        "value": 1108.4088359050643,
+        "tag": "ASSUMPTION",
+        "unit": "USD per campaign (scenario arithmetic, not measured profit)",
+        "ci95": [
+          -2171.142297262085,
+          4387.959969072211
+        ],
+        "ci_method": "range from the 95% interval of incremental spend; assumptions held fixed"
+      },
+      "formula": "contribution = contacts * (incremental_spend_per_contact * assumed_margin - cost_per_contact) - fixed_setup_cost"
+    },
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "scenario_id": "SEND_ALL_MENS_100__CENTRAL",
+      "label": "Central assumptions, Mens E-Mail",
+      "value_kind": "SCENARIO_NOT_MEASURED_PROFIT",
+      "policy_id": "SEND_ALL_MENS_100",
+      "arm": "Mens E-Mail",
+      "contacts": {
+        "value": 57600.0,
+        "tag": "ASSUMPTION",
+        "unit": "customers e-mailed",
+        "note": "assumed mailable base 64,000 x contact share, less a 10% randomized holdout for a broad send"
+      },
+      "incremental_spend_per_contact": {
+        "value": 0.7698271558945368,
+        "tag": "OBSERVED",
+        "unit": "USD per customer e-mailed, two weeks",
+        "ci95": [
+          0.4851438978071107,
+          1.0545104139819628
+        ],
+        "ci_method": "normal approximation (unpooled Wald)"
+      },
+      "assumed_margin": {
+        "value": 0.35,
+        "tag": "ASSUMPTION",
+        "unit": "share of incremental revenue kept as contribution"
+      },
+      "cost_per_contact": {
+        "value": 0.03,
+        "tag": "ASSUMPTION",
+        "unit": "USD per e-mail sent (delivery, offer and handling)"
+      },
+      "fixed_setup_cost": {
+        "value": 1000.0,
+        "tag": "ASSUMPTION",
+        "unit": "USD per campaign"
+      },
+      "contribution": {
+        "value": 12791.71546283386,
+        "tag": "ASSUMPTION",
+        "unit": "USD per campaign (scenario arithmetic, not measured profit)",
+        "ci95": [
+          7052.500979791351,
+          18530.92994587637
+        ],
+        "ci_method": "range from the 95% interval of incremental spend; assumptions held fixed"
+      },
+      "formula": "contribution = contacts * (incremental_spend_per_contact * assumed_margin - cost_per_contact) - fixed_setup_cost"
+    },
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "scenario_id": "SEND_ALL_MENS_100__FAVOURABLE",
+      "label": "Favourable assumptions, Mens E-Mail",
+      "value_kind": "SCENARIO_NOT_MEASURED_PROFIT",
+      "policy_id": "SEND_ALL_MENS_100",
+      "arm": "Mens E-Mail",
+      "contacts": {
+        "value": 57600.0,
+        "tag": "ASSUMPTION",
+        "unit": "customers e-mailed",
+        "note": "assumed mailable base 64,000 x contact share, less a 10% randomized holdout for a broad send"
+      },
+      "incremental_spend_per_contact": {
+        "value": 0.7698271558945368,
+        "tag": "OBSERVED",
+        "unit": "USD per customer e-mailed, two weeks",
+        "ci95": [
+          0.4851438978071107,
+          1.0545104139819628
+        ],
+        "ci_method": "normal approximation (unpooled Wald)"
+      },
+      "assumed_margin": {
+        "value": 0.5,
+        "tag": "ASSUMPTION",
+        "unit": "share of incremental revenue kept as contribution"
+      },
+      "cost_per_contact": {
+        "value": 0.005,
+        "tag": "ASSUMPTION",
+        "unit": "USD per e-mail sent (delivery, offer and handling)"
+      },
+      "fixed_setup_cost": {
+        "value": 500.0,
+        "tag": "ASSUMPTION",
+        "unit": "USD per campaign"
+      },
+      "contribution": {
+        "value": 21383.022089762657,
+        "tag": "ASSUMPTION",
+        "unit": "USD per campaign (scenario arithmetic, not measured profit)",
+        "ci95": [
+          13184.144256844787,
+          29581.899922680528
+        ],
+        "ci_method": "range from the 95% interval of incremental spend; assumptions held fixed"
+      },
+      "formula": "contribution = contacts * (incremental_spend_per_contact * assumed_margin - cost_per_contact) - fixed_setup_cost"
+    },
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "scenario_id": "SEND_ALL_WOMENS_100__UNKNOWN_INPUTS",
+      "label": "Unknown Inputs assumptions, Womens E-Mail",
+      "value_kind": "SCENARIO_NOT_MEASURED_PROFIT",
+      "policy_id": "SEND_ALL_WOMENS_100",
+      "arm": "Womens E-Mail",
+      "contacts": {
+        "value": 57600.0,
+        "tag": "ASSUMPTION",
+        "unit": "customers e-mailed",
+        "note": "assumed mailable base 64,000 x contact share, less a 10% randomized holdout for a broad send"
+      },
+      "incremental_spend_per_contact": {
+        "value": 0.4244122159365967,
+        "tag": "OBSERVED",
+        "unit": "USD per customer e-mailed, two weeks",
+        "ci95": [
+          0.16895981321938208,
+          0.6798646186538113
+        ],
+        "ci_method": "normal approximation (unpooled Wald)"
+      },
+      "assumed_margin": {
+        "value": null,
+        "tag": "UNKNOWN",
+        "unit": "share of incremental revenue kept as contribution"
+      },
+      "cost_per_contact": {
+        "value": null,
+        "tag": "UNKNOWN",
+        "unit": "USD per e-mail sent (delivery, offer and handling)"
+      },
+      "fixed_setup_cost": {
+        "value": null,
+        "tag": "UNKNOWN",
+        "unit": "USD per campaign"
+      },
+      "contribution": {
+        "value": null,
+        "tag": "UNKNOWN",
+        "unit": "USD per campaign (scenario arithmetic, not measured profit)",
+        "ci95": null,
+        "ci_method": "range from the 95% interval of incremental spend; assumptions held fixed"
+      },
+      "formula": "contribution = contacts * (incremental_spend_per_contact * assumed_margin - cost_per_contact) - fixed_setup_cost"
+    },
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "scenario_id": "SEND_ALL_WOMENS_100__CONSERVATIVE",
+      "label": "Conservative assumptions, Womens E-Mail",
+      "value_kind": "SCENARIO_NOT_MEASURED_PROFIT",
+      "policy_id": "SEND_ALL_WOMENS_100",
+      "arm": "Womens E-Mail",
+      "contacts": {
+        "value": 57600.0,
+        "tag": "ASSUMPTION",
+        "unit": "customers e-mailed",
+        "note": "assumed mailable base 64,000 x contact share, less a 10% randomized holdout for a broad send"
+      },
+      "incremental_spend_per_contact": {
+        "value": 0.4244122159365967,
+        "tag": "OBSERVED",
+        "unit": "USD per customer e-mailed, two weeks",
+        "ci95": [
+          0.16895981321938208,
+          0.6798646186538113
+        ],
+        "ci_method": "normal approximation (unpooled Wald)"
+      },
+      "assumed_margin": {
+        "value": 0.2,
+        "tag": "ASSUMPTION",
+        "unit": "share of incremental revenue kept as contribution"
+      },
+      "cost_per_contact": {
+        "value": 0.1,
+        "tag": "ASSUMPTION",
+        "unit": "USD per e-mail sent (delivery, offer and handling)"
+      },
+      "fixed_setup_cost": {
+        "value": 2000.0,
+        "tag": "ASSUMPTION",
+        "unit": "USD per campaign"
+      },
+      "contribution": {
+        "value": -2870.7712724104053,
+        "tag": "ASSUMPTION",
+        "unit": "USD per campaign (scenario arithmetic, not measured profit)",
+        "ci95": [
+          -5813.582951712719,
+          72.04040689190697
+        ],
+        "ci_method": "range from the 95% interval of incremental spend; assumptions held fixed"
+      },
+      "formula": "contribution = contacts * (incremental_spend_per_contact * assumed_margin - cost_per_contact) - fixed_setup_cost"
+    },
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "scenario_id": "SEND_ALL_WOMENS_100__CENTRAL",
+      "label": "Central assumptions, Womens E-Mail",
+      "value_kind": "SCENARIO_NOT_MEASURED_PROFIT",
+      "policy_id": "SEND_ALL_WOMENS_100",
+      "arm": "Womens E-Mail",
+      "contacts": {
+        "value": 57600.0,
+        "tag": "ASSUMPTION",
+        "unit": "customers e-mailed",
+        "note": "assumed mailable base 64,000 x contact share, less a 10% randomized holdout for a broad send"
+      },
+      "incremental_spend_per_contact": {
+        "value": 0.4244122159365967,
+        "tag": "OBSERVED",
+        "unit": "USD per customer e-mailed, two weeks",
+        "ci95": [
+          0.16895981321938208,
+          0.6798646186538113
+        ],
+        "ci_method": "normal approximation (unpooled Wald)"
+      },
+      "assumed_margin": {
+        "value": 0.35,
+        "tag": "ASSUMPTION",
+        "unit": "share of incremental revenue kept as contribution"
+      },
+      "cost_per_contact": {
+        "value": 0.03,
+        "tag": "ASSUMPTION",
+        "unit": "USD per e-mail sent (delivery, offer and handling)"
+      },
+      "fixed_setup_cost": {
+        "value": 1000.0,
+        "tag": "ASSUMPTION",
+        "unit": "USD per campaign"
+      },
+      "contribution": {
+        "value": 5828.150273281789,
+        "tag": "ASSUMPTION",
+        "unit": "USD per campaign (scenario arithmetic, not measured profit)",
+        "ci95": [
+          678.2298345027425,
+          10978.070712060837
+        ],
+        "ci_method": "range from the 95% interval of incremental spend; assumptions held fixed"
+      },
+      "formula": "contribution = contacts * (incremental_spend_per_contact * assumed_margin - cost_per_contact) - fixed_setup_cost"
+    },
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "scenario_id": "SEND_ALL_WOMENS_100__FAVOURABLE",
+      "label": "Favourable assumptions, Womens E-Mail",
+      "value_kind": "SCENARIO_NOT_MEASURED_PROFIT",
+      "policy_id": "SEND_ALL_WOMENS_100",
+      "arm": "Womens E-Mail",
+      "contacts": {
+        "value": 57600.0,
+        "tag": "ASSUMPTION",
+        "unit": "customers e-mailed",
+        "note": "assumed mailable base 64,000 x contact share, less a 10% randomized holdout for a broad send"
+      },
+      "incremental_spend_per_contact": {
+        "value": 0.4244122159365967,
+        "tag": "OBSERVED",
+        "unit": "USD per customer e-mailed, two weeks",
+        "ci95": [
+          0.16895981321938208,
+          0.6798646186538113
+        ],
+        "ci_method": "normal approximation (unpooled Wald)"
+      },
+      "assumed_margin": {
+        "value": 0.5,
+        "tag": "ASSUMPTION",
+        "unit": "share of incremental revenue kept as contribution"
+      },
+      "cost_per_contact": {
+        "value": 0.005,
+        "tag": "ASSUMPTION",
+        "unit": "USD per e-mail sent (delivery, offer and handling)"
+      },
+      "fixed_setup_cost": {
+        "value": 500.0,
+        "tag": "ASSUMPTION",
+        "unit": "USD per campaign"
+      },
+      "contribution": {
+        "value": 11435.071818973986,
+        "tag": "ASSUMPTION",
+        "unit": "USD per campaign (scenario arithmetic, not measured profit)",
+        "ci95": [
+          4078.0426207182036,
+          18792.101017229765
+        ],
+        "ci_method": "range from the 95% interval of incremental spend; assumptions held fixed"
+      },
+      "formula": "contribution = contacts * (incremental_spend_per_contact * assumed_margin - cost_per_contact) - fixed_setup_cost"
+    }
+  ],
+  "economic_thresholds": [
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "threshold_id": "BREAK_EVEN_COST_MENS_M20",
+      "arm": "Mens E-Mail",
+      "label": "Break-even cost per e-mail, Mens E-Mail, at an assumed 20% margin (before fixed setup)",
+      "assumed_margin": {
+        "value": 0.2,
+        "tag": "ASSUMPTION",
+        "unit": "share of incremental revenue kept as contribution"
+      },
+      "break_even_cost_per_contact": {
+        "value": 0.15396543117890737,
+        "tag": "ASSUMPTION",
+        "unit": "USD per e-mail",
+        "note": "incremental spend per contact x assumed margin"
+      },
+      "break_even_cost_per_contact_conservative": {
+        "value": 0.09702877956142214,
+        "tag": "ASSUMPTION",
+        "unit": "USD per e-mail",
+        "note": "uses the lower 95% bound of incremental spend per contact"
+      }
+    },
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "threshold_id": "BREAK_EVEN_COST_MENS_M35",
+      "arm": "Mens E-Mail",
+      "label": "Break-even cost per e-mail, Mens E-Mail, at an assumed 35% margin (before fixed setup)",
+      "assumed_margin": {
+        "value": 0.35,
+        "tag": "ASSUMPTION",
+        "unit": "share of incremental revenue kept as contribution"
+      },
+      "break_even_cost_per_contact": {
+        "value": 0.26943950456308785,
+        "tag": "ASSUMPTION",
+        "unit": "USD per e-mail",
+        "note": "incremental spend per contact x assumed margin"
+      },
+      "break_even_cost_per_contact_conservative": {
+        "value": 0.16980036423248873,
+        "tag": "ASSUMPTION",
+        "unit": "USD per e-mail",
+        "note": "uses the lower 95% bound of incremental spend per contact"
+      }
+    },
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "threshold_id": "BREAK_EVEN_COST_MENS_M50",
+      "arm": "Mens E-Mail",
+      "label": "Break-even cost per e-mail, Mens E-Mail, at an assumed 50% margin (before fixed setup)",
+      "assumed_margin": {
+        "value": 0.5,
+        "tag": "ASSUMPTION",
+        "unit": "share of incremental revenue kept as contribution"
+      },
+      "break_even_cost_per_contact": {
+        "value": 0.3849135779472684,
+        "tag": "ASSUMPTION",
+        "unit": "USD per e-mail",
+        "note": "incremental spend per contact x assumed margin"
+      },
+      "break_even_cost_per_contact_conservative": {
+        "value": 0.24257194890355535,
+        "tag": "ASSUMPTION",
+        "unit": "USD per e-mail",
+        "note": "uses the lower 95% bound of incremental spend per contact"
+      }
+    },
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "threshold_id": "BREAK_EVEN_COST_WOMENS_M20",
+      "arm": "Womens E-Mail",
+      "label": "Break-even cost per e-mail, Womens E-Mail, at an assumed 20% margin (before fixed setup)",
+      "assumed_margin": {
+        "value": 0.2,
+        "tag": "ASSUMPTION",
+        "unit": "share of incremental revenue kept as contribution"
+      },
+      "break_even_cost_per_contact": {
+        "value": 0.08488244318731936,
+        "tag": "ASSUMPTION",
+        "unit": "USD per e-mail",
+        "note": "incremental spend per contact x assumed margin"
+      },
+      "break_even_cost_per_contact_conservative": {
+        "value": 0.03379196264387642,
+        "tag": "ASSUMPTION",
+        "unit": "USD per e-mail",
+        "note": "uses the lower 95% bound of incremental spend per contact"
+      }
+    },
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "threshold_id": "BREAK_EVEN_COST_WOMENS_M35",
+      "arm": "Womens E-Mail",
+      "label": "Break-even cost per e-mail, Womens E-Mail, at an assumed 35% margin (before fixed setup)",
+      "assumed_margin": {
+        "value": 0.35,
+        "tag": "ASSUMPTION",
+        "unit": "share of incremental revenue kept as contribution"
+      },
+      "break_even_cost_per_contact": {
+        "value": 0.14854427557780883,
+        "tag": "ASSUMPTION",
+        "unit": "USD per e-mail",
+        "note": "incremental spend per contact x assumed margin"
+      },
+      "break_even_cost_per_contact_conservative": {
+        "value": 0.05913593462678372,
+        "tag": "ASSUMPTION",
+        "unit": "USD per e-mail",
+        "note": "uses the lower 95% bound of incremental spend per contact"
+      }
+    },
+    {
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "threshold_id": "BREAK_EVEN_COST_WOMENS_M50",
+      "arm": "Womens E-Mail",
+      "label": "Break-even cost per e-mail, Womens E-Mail, at an assumed 50% margin (before fixed setup)",
+      "assumed_margin": {
+        "value": 0.5,
+        "tag": "ASSUMPTION",
+        "unit": "share of incremental revenue kept as contribution"
+      },
+      "break_even_cost_per_contact": {
+        "value": 0.21220610796829836,
+        "tag": "ASSUMPTION",
+        "unit": "USD per e-mail",
+        "note": "incremental spend per contact x assumed margin"
+      },
+      "break_even_cost_per_contact_conservative": {
+        "value": 0.08447990660969104,
+        "tag": "ASSUMPTION",
+        "unit": "USD per e-mail",
+        "note": "uses the lower 95% bound of incremental spend per contact"
+      }
+    }
+  ],
+  "recommendation": {
+    "status": "BROAD_SEND_WITH_HOLDOUT_IF_ECONOMICS_CONFIRMED",
+    "decision": "Send the Mens e-mail to every eligible, consented existing customer except a 10% randomized no-e-mail holdout, but only after finance and CRM confirm that the full cost per e-mail is below the break-even for the confirmed margin. Do not use the targeting model to exclude customers yet. A named human approves; this system sends nothing.",
+    "recommended_policy_id": "SEND_ALL_MENS_100",
+    "recommended_arm": "Mens E-Mail",
+    "contact_share": 0.9,
+    "conditions": [
+      "Finance confirms the contribution margin on incremental sales and CRM confirms the full cost per e-mail (delivery, offer, handling); the cost must be below margin x 0.77 USD, and below margin x 0.49 USD to be safe on the lower bound.",
+      "E-mail consent and unsubscribe handling are verified for every recipient.",
+      "A 10% randomized no-e-mail holdout is drawn and frozen before sending (at least 3,063 customers per arm to detect an effect of the 2008 size with 80% power).",
+      "A named human approves the final draft; any change to the plan requires a new review.",
+      "The 2008 effect is a prior, not a forecast: the first send is itself the pilot and is judged on its own holdout."
+    ],
+    "rationale": [
+      "Randomized evidence on 64,000 existing customers: 267 of 21,307 customers bought within two weeks after the Mens e-mail (1.25%) against 122 of 21,306 with no e-mail (0.57%).",
+      "That is 6.8 additional purchasing customers per 1,000 e-mailed (95% interval 5.0 to 8.6). The Womens e-mail added 3.1 per 1,000 (interval 1.5 to 4.7) against the same control.",
+      "On the held-out test split the Mens e-mail sent to everyone added 7.4 per 1,000 (interval 4.6 to 10.3), consistent with the full sample.",
+      "At a 25% contact cap, the model's top customers gave 10.0 additional buyers per 1,000 Mens e-mails (95% interval 2.8 to 17.2), against 7.4 for random contacts (difference +2.6, interval -3.5 to 8.7) and 8.6 for the recency rule (difference +1.4, interval -5.5 to 8.2). The model is ahead on the point estimate, but both intervals must exclude zero for a stable gain and they do not: no stable targeting gain is shown. The past-spend rule, which validation did not select as the primary rule, scored 11.6 (model minus that rule -1.6, interval -7.0 to 3.9).",
+      "Incremental spend is 0.77 USD per customer e-mailed (interval 0.49 to 1.05). Margin and cost per e-mail are UNKNOWN, so no profit is claimed; at an assumed 35% margin the e-mail may cost up to 0.27 USD (0.17 USD on the lower bound) before it loses money, setup aside."
+    ],
+    "would_reverse_if": [
+      "Verified cost per e-mail above the break-even for the verified margin (point: margin x 0.77 USD): choose no e-mail.",
+      "Consent cannot be verified, or unsubscribe and complaint costs are material: choose no e-mail or a smaller consented group.",
+      "A new randomized pilot on the current base gives an interval for additional buyers that includes zero: stop and research before spending more.",
+      "A larger test shows the model beating random and the simple rule with intervals above zero: switch to model-targeted sending.",
+      "A binding contact cap (budget or frequency policy): prioritise by a simple auditable rule and randomize inside the cap, as described in the alternative."
+    ],
+    "alternative_if_model_inconclusive": "If only a share of customers may be contacted, do not present the model as a proven gain. At a 25% cap the model (10.0), the recency rule (8.6) and the past-spend rule (11.6) all sit above random (7.4) on the point estimate, none with an interval that excludes zero. Use the simplest auditable ranking (past-year spend or recency) to fill the cap, and randomize e-mail versus no e-mail inside both the selected and the unselected group, so the next campaign measures whether targeting works.",
+    "no_email_option": "Always allowed. Without an e-mail 0.57% of customers still bought within two weeks; those purchases are not caused by the campaign. Choose no e-mail when cost per contact exceeds break-even, when consent is missing, or when a manager prefers to wait for a current pilot. Under the conservative assumption set the Womens e-mail loses money (-2,871 USD scenario contribution).",
+    "holdout_plan": {
+      "randomized": true,
+      "holdout_share": 0.1,
+      "customers_per_arm_needed": 3063,
+      "primary_metric": "unique purchasing customers within two weeks, treated minus holdout",
+      "review_after_days": 14
+    },
+    "human_decision_required": true
+  },
+  "marketing": {
+    "research_question": "Among existing customers who bought in the past twelve months, does a merchandise e-mail create additional purchasing customers within two weeks compared with no e-mail, which of the two e-mails does it better, and is a targeting model worth using under a contact cap?",
+    "audience": "Existing customers who purchased in the past twelve months (64,000 in the experiment). This is repeat-purchase stimulation of a known base, not acquisition of new customers.",
+    "segmentation": "Bases available before the e-mail: months since last purchase, past-year spend, past-year purchase category (Mens, Womens or both; product history, not gender), new-in-the-past-year flag, zip type and purchase channel. Descriptive only, by past-year category: Mens e-mail: Mens merchandise only: 6.0 per 1,000 (interval 3.4 to 8.6); Womens merchandise only: 5.7 per 1,000 (interval 3.2 to 8.2); Both: 15.0 per 1,000 (interval 7.4 to 22.6). Womens e-mail: Mens merchandise only: 0.6 per 1,000 (interval -1.5 to 2.8); Womens merchandise only: 5.1 per 1,000 (interval 2.6 to 7.6); Both: 5.3 per 1,000 (interval -1.2 to 11.9).",
+    "targeting": "Default target: every eligible, consented customer except the randomized holdout. The Mens e-mail added buyers in all three purchase categories; the Womens e-mail shows a clear effect only among customers who bought Womens merchandise. The model's ranking is not shown to beat random or a simple rule with a stable margin, so it is not used to suppress anyone.",
+    "positioning": "For customers who bought from us this year: a timely reminder of new merchandise from a retailer they already know, giving a reason to return within two weeks. Lead with the Mens e-mail focus because it produced more additional buyers. Copy is a hypothesis: the 2008 creative is not available.",
+    "four_ps": [
+      {
+        "p": "Product",
+        "decision": "Lead with the Mens-merchandise e-mail.",
+        "alternatives": [
+          "Womens e-mail: 3.1 additional buyers per 1,000 (interval 1.5 to 4.7)",
+          "No e-mail"
+        ],
+        "tag": "OBSERVED",
+        "note": "Product here means the merchandise focus of the e-mail. The dataset has no SKU, assortment or stock data."
+      },
+      {
+        "p": "Price",
+        "decision": "No price or discount change is recommended.",
+        "alternatives": [
+          "Test a plain reminder against an offer in the next randomized pilot"
+        ],
+        "tag": "UNKNOWN",
+        "note": "Price and discount terms of the 2008 e-mails are unknown; any offer cost belongs in cost per contact."
+      },
+      {
+        "p": "Place",
+        "decision": "E-mail to existing customers, compared with no contact.",
+        "alternatives": [
+          "No e-mail (the randomized control)",
+          "Other channels: not tested in this experiment"
+        ],
+        "tag": "OBSERVED",
+        "note": "The customer's past purchase channel (phone, web, multichannel) is a feature, not the campaign channel."
+      },
+      {
+        "p": "Promotion",
+        "decision": "Two draft messages prepared as hypotheses; a human approves or rejects them.",
+        "alternatives": [
+          "Merchandise-matched variant for Womens-category buyers, to be tested rather than assumed"
+        ],
+        "tag": "ASSUMPTION",
+        "note": "The actual creative, subject line and products shown in 2008 are not available. Drafts are never sent by this system."
+      }
+    ],
+    "journey_barrier_hypotheses": [
+      "UNVERIFIED: recent buyers have no trigger to return within two weeks; an e-mail supplies one.",
+      "UNVERIFIED: a message about merchandise a customer has never bought is less relevant (the Womens e-mail added 0.6 per 1,000 among customers who bought only Mens merchandise; this describes a group and does not prove the reason).",
+      "UNVERIFIED: something between the visit and the purchase stops most e-mail-driven visitors; site and checkout friction are not observed in this dataset."
+    ],
+    "message_drafts": [
+      {
+        "draft_id": "DRAFT_MENS_A",
+        "arm": "Mens E-Mail",
+        "subject": "New in menswear, picked for returning customers",
+        "body": "Hello {first_name}, thank you for shopping with {brand} this year. The new men's collection has arrived: {three_featured_items}. See what is new: {landing_page_url}. No price or discount is stated because offer terms are not approved. {unsubscribe_link}",
+        "status": "DRAFT_HYPOTHESIS_NOT_SENT"
+      },
+      {
+        "draft_id": "DRAFT_WOMENS_A",
+        "arm": "Womens E-Mail",
+        "subject": "New in womenswear, picked for returning customers",
+        "body": "Hello {first_name}, thank you for shopping with {brand} this year. The new women's collection has arrived: {three_featured_items}. See what is new: {landing_page_url}. No price or discount is stated because offer terms are not approved. {unsubscribe_link}",
+        "status": "DRAFT_HYPOTHESIS_NOT_SENT"
+      }
+    ],
+    "action_plan": [
+      {
+        "step": 1,
+        "owner_role": "CRM owner",
+        "action": "Review the eligible segment (purchased in the past twelve months) and report its current size.",
+        "status": "PENDING_HUMAN"
+      },
+      {
+        "step": 2,
+        "owner_role": "CRM owner with legal",
+        "action": "Verify e-mail consent and unsubscribe handling for every eligible customer.",
+        "status": "PENDING_HUMAN"
+      },
+      {
+        "step": 3,
+        "owner_role": "Finance with CRM owner",
+        "action": "Supply the contribution margin and the full cost per e-mail; compare with the break-even thresholds.",
+        "status": "PENDING_HUMAN"
+      },
+      {
+        "step": 4,
+        "owner_role": "Analyst",
+        "action": "Draw and freeze a 10% randomized no-e-mail holdout before any send.",
+        "status": "PENDING_HUMAN"
+      },
+      {
+        "step": 5,
+        "owner_role": "Marketing manager",
+        "action": "Approve or reject the draft with name, reason and plan version; re-review after any change.",
+        "status": "PENDING_HUMAN"
+      },
+      {
+        "step": 6,
+        "owner_role": "Marketing operations (human)",
+        "action": "Send only after step 5 is approved. This system has no send tool.",
+        "status": "BLOCKED_UNTIL_APPROVED"
+      },
+      {
+        "step": 7,
+        "owner_role": "Analyst with marketing manager",
+        "action": "After two weeks, compare unique buyers, incremental spend, cost and unsubscribes between e-mailed customers and the holdout; decide to continue, change or stop.",
+        "status": "PENDING_HUMAN"
+      }
+    ],
+    "success_metric": "Additional unique purchasing customers per 1,000 e-mailed versus the randomized holdout within two weeks, with a 95% interval above zero. Secondary: incremental spend per contact times margin minus cost per contact. Guardrail: unsubscribe and complaint rate."
+  },
+  "assumptions_and_unknowns": [
+    {
+      "id": "A_ELIGIBLE_BASE",
+      "name": "Mailable customer base",
+      "value": 64000,
+      "tag": "ASSUMPTION",
+      "unit": "customers",
+      "needed_from": "CRM owner",
+      "note": "set equal to the 64,000 customers in the experiment; the retailer's current consented base is unknown"
+    },
+    {
+      "id": "A_HOLDOUT_SHARE",
+      "name": "Randomized no-e-mail holdout",
+      "value": 0.1,
+      "tag": "ASSUMPTION",
+      "unit": "share of the base",
+      "needed_from": "marketing manager",
+      "note": "kept out of any send so the next campaign can be measured"
+    },
+    {
+      "id": "A_MARGIN_CONSERVATIVE",
+      "name": "Contribution margin (conservative)",
+      "value": 0.2,
+      "tag": "ASSUMPTION",
+      "unit": "share of revenue",
+      "needed_from": "finance",
+      "note": "illustrative; no margin is in the dataset"
+    },
+    {
+      "id": "A_COST_PER_CONTACT_CONSERVATIVE",
+      "name": "Cost per e-mail (conservative)",
+      "value": 0.1,
+      "tag": "ASSUMPTION",
+      "unit": "USD per e-mail",
+      "needed_from": "CRM owner",
+      "note": "illustrative; delivery, offer and handling cost are not in the dataset"
+    },
+    {
+      "id": "A_SETUP_CONSERVATIVE",
+      "name": "Fixed campaign setup (conservative)",
+      "value": 2000.0,
+      "tag": "ASSUMPTION",
+      "unit": "USD per campaign",
+      "needed_from": "marketing manager",
+      "note": "illustrative; creative and setup cost are not in the dataset"
+    },
+    {
+      "id": "A_MARGIN_CENTRAL",
+      "name": "Contribution margin (central)",
+      "value": 0.35,
+      "tag": "ASSUMPTION",
+      "unit": "share of revenue",
+      "needed_from": "finance",
+      "note": "illustrative; no margin is in the dataset"
+    },
+    {
+      "id": "A_COST_PER_CONTACT_CENTRAL",
+      "name": "Cost per e-mail (central)",
+      "value": 0.03,
+      "tag": "ASSUMPTION",
+      "unit": "USD per e-mail",
+      "needed_from": "CRM owner",
+      "note": "illustrative; delivery, offer and handling cost are not in the dataset"
+    },
+    {
+      "id": "A_SETUP_CENTRAL",
+      "name": "Fixed campaign setup (central)",
+      "value": 1000.0,
+      "tag": "ASSUMPTION",
+      "unit": "USD per campaign",
+      "needed_from": "marketing manager",
+      "note": "illustrative; creative and setup cost are not in the dataset"
+    },
+    {
+      "id": "A_MARGIN_FAVOURABLE",
+      "name": "Contribution margin (favourable)",
+      "value": 0.5,
+      "tag": "ASSUMPTION",
+      "unit": "share of revenue",
+      "needed_from": "finance",
+      "note": "illustrative; no margin is in the dataset"
+    },
+    {
+      "id": "A_COST_PER_CONTACT_FAVOURABLE",
+      "name": "Cost per e-mail (favourable)",
+      "value": 0.005,
+      "tag": "ASSUMPTION",
+      "unit": "USD per e-mail",
+      "needed_from": "CRM owner",
+      "note": "illustrative; delivery, offer and handling cost are not in the dataset"
+    },
+    {
+      "id": "A_SETUP_FAVOURABLE",
+      "name": "Fixed campaign setup (favourable)",
+      "value": 500.0,
+      "tag": "ASSUMPTION",
+      "unit": "USD per campaign",
+      "needed_from": "marketing manager",
+      "note": "illustrative; creative and setup cost are not in the dataset"
+    },
+    {
+      "id": "U_MARGIN",
+      "name": "Actual contribution margin on incremental sales",
+      "value": null,
+      "tag": "UNKNOWN",
+      "unit": "share of revenue",
+      "needed_from": "finance",
+      "note": "not in the dataset; shown as unknown, never as zero"
+    },
+    {
+      "id": "U_COST_PER_CONTACT",
+      "name": "Actual cost per e-mail including any offer or discount",
+      "value": null,
+      "tag": "UNKNOWN",
+      "unit": "USD per e-mail",
+      "needed_from": "CRM owner",
+      "note": "not in the dataset; shown as unknown, never as zero"
+    },
+    {
+      "id": "U_OFFER_TERMS",
+      "name": "Price or discount terms shown in the 2008 e-mails",
+      "value": null,
+      "tag": "UNKNOWN",
+      "unit": "-",
+      "needed_from": "not recoverable from the source",
+      "note": "not in the dataset; shown as unknown, never as zero"
+    },
+    {
+      "id": "U_CREATIVE",
+      "name": "The creative, subject line and products shown in the 2008 e-mails",
+      "value": null,
+      "tag": "UNKNOWN",
+      "unit": "-",
+      "needed_from": "not recoverable from the source",
+      "note": "not in the dataset; shown as unknown, never as zero"
+    },
+    {
+      "id": "U_CONSENT_RATE",
+      "name": "Share of the current base with valid e-mail consent",
+      "value": null,
+      "tag": "UNKNOWN",
+      "unit": "share of the base",
+      "needed_from": "CRM owner / legal",
+      "note": "not in the dataset; shown as unknown, never as zero"
+    },
+    {
+      "id": "U_RETAILER_IDENTITY",
+      "name": "Retailer name, market and campaign date",
+      "value": null,
+      "tag": "UNKNOWN",
+      "unit": "-",
+      "needed_from": "not published by the source",
+      "note": "not in the dataset; shown as unknown, never as zero"
+    },
+    {
+      "id": "U_EFFECT_BEYOND_TWO_WEEKS",
+      "name": "Effect after the two-week window (pull-forward, unsubscribes, fatigue)",
+      "value": null,
+      "tag": "UNKNOWN",
+      "unit": "-",
+      "needed_from": "new measurement",
+      "note": "not in the dataset; shown as unknown, never as zero"
+    },
+    {
+      "id": "U_EFFECT_TODAY",
+      "name": "Whether a 2008 effect holds for a current customer base",
+      "value": null,
+      "tag": "UNKNOWN",
+      "unit": "-",
+      "needed_from": "a new randomized pilot",
+      "note": "not in the dataset; shown as unknown, never as zero"
+    }
+  ],
+  "published_references": [
+    {
+      "id": "REF_PURCHASE_RATE_MENS",
+      "label": "Published purchase rate, Mens e-mail (full sample)",
+      "value": 1.25,
+      "unit": "percent",
+      "tag": "PUBLISHED_REFERENCE",
+      "source_id": "SRC_RADCLIFFE_2008",
+      "locator": "Table 2, page 3",
+      "note": "published full-sample figure; not recomputed by, and not an output of, this project's model"
+    },
+    {
+      "id": "REF_PURCHASE_RATE_WOMENS",
+      "label": "Published purchase rate, Womens e-mail (full sample)",
+      "value": 0.88,
+      "unit": "percent",
+      "tag": "PUBLISHED_REFERENCE",
+      "source_id": "SRC_RADCLIFFE_2008",
+      "locator": "Table 2, page 3",
+      "note": "published full-sample figure; not recomputed by, and not an output of, this project's model"
+    },
+    {
+      "id": "REF_PURCHASE_RATE_CONTROL",
+      "label": "Published purchase rate, no e-mail control (full sample)",
+      "value": 0.57,
+      "unit": "percent",
+      "tag": "PUBLISHED_REFERENCE",
+      "source_id": "SRC_RADCLIFFE_2008",
+      "locator": "Table 2, page 3",
+      "note": "published full-sample figure; not recomputed by, and not an output of, this project's model"
+    },
+    {
+      "id": "REF_PURCHASE_UPLIFT_MENS",
+      "label": "Published purchase-rate uplift, Mens e-mail vs control",
+      "value": 0.68,
+      "unit": "percentage points",
+      "tag": "PUBLISHED_REFERENCE",
+      "source_id": "SRC_RADCLIFFE_2008",
+      "locator": "Table 2, page 3",
+      "note": "published full-sample figure; not recomputed by, and not an output of, this project's model"
+    },
+    {
+      "id": "REF_PURCHASE_UPLIFT_WOMENS",
+      "label": "Published purchase-rate uplift, Womens e-mail vs control",
+      "value": 0.31,
+      "unit": "percentage points",
+      "tag": "PUBLISHED_REFERENCE",
+      "source_id": "SRC_RADCLIFFE_2008",
+      "locator": "Table 2, page 3",
+      "note": "published full-sample figure; not recomputed by, and not an output of, this project's model"
+    },
+    {
+      "id": "REF_SPEND_UPLIFT_MENS",
+      "label": "Published spend uplift per head, Mens e-mail vs control",
+      "value": 0.77,
+      "unit": "USD per customer",
+      "tag": "PUBLISHED_REFERENCE",
+      "source_id": "SRC_RADCLIFFE_2008",
+      "locator": "Table 2, page 3",
+      "note": "published full-sample figure; not recomputed by, and not an output of, this project's model"
+    },
+    {
+      "id": "REF_SPEND_UPLIFT_WOMENS",
+      "label": "Published spend uplift per head, Womens e-mail vs control",
+      "value": 0.42,
+      "unit": "USD per customer",
+      "tag": "PUBLISHED_REFERENCE",
+      "source_id": "SRC_RADCLIFFE_2008",
+      "locator": "Table 2, page 3",
+      "note": "published full-sample figure; not recomputed by, and not an output of, this project's model"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "CLM_DATA_ROWS",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Existing customers in the randomized e-mail experiment",
+      "value": 64000,
+      "unit": "customers",
+      "tag": "OBSERVED",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "64,000 rows, one per customer",
+      "period": "two weeks after the e-mail",
+      "arm": null,
+      "split": "full_sample",
+      "model_version": null,
+      "uncertainty": null,
+      "source_id": "SRC_HILLSTROM_2008_DATA",
+      "slide_safe": true
+    },
+    {
+      "claim_id": "CLM_N_CONTROL",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Customers randomized to No E-Mail",
+      "value": 21306,
+      "unit": "customers",
+      "tag": "OBSERVED",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "64,000 customers in the experiment",
+      "period": "two weeks after the e-mail",
+      "arm": "No E-Mail",
+      "split": "full_sample",
+      "model_version": null,
+      "uncertainty": null,
+      "source_id": "SRC_HILLSTROM_2008_DATA",
+      "slide_safe": false
+    },
+    {
+      "claim_id": "CLM_BUYERS_CONTROL",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Unique customers who purchased within two weeks, No E-Mail",
+      "value": 122,
+      "unit": "customers",
+      "tag": "OBSERVED",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "21,306 customers randomized to No E-Mail",
+      "period": "two weeks after the e-mail",
+      "arm": "No E-Mail",
+      "split": "full_sample",
+      "model_version": null,
+      "uncertainty": null,
+      "source_id": "SRC_HILLSTROM_2008_DATA",
+      "slide_safe": true
+    },
+    {
+      "claim_id": "CLM_RATE_CONTROL",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Purchase rate, No E-Mail",
+      "value": 0.5726,
+      "unit": "percent",
+      "tag": "OBSERVED",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "122 buyers / 21,306 customers randomized to No E-Mail",
+      "period": "two weeks after the e-mail",
+      "arm": "No E-Mail",
+      "split": "full_sample",
+      "model_version": null,
+      "uncertainty": null,
+      "source_id": "SRC_HILLSTROM_2008_DATA",
+      "slide_safe": true
+    },
+    {
+      "claim_id": "CLM_N_MENS",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Customers randomized to Mens E-Mail",
+      "value": 21307,
+      "unit": "customers",
+      "tag": "OBSERVED",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "64,000 customers in the experiment",
+      "period": "two weeks after the e-mail",
+      "arm": "Mens E-Mail",
+      "split": "full_sample",
+      "model_version": null,
+      "uncertainty": null,
+      "source_id": "SRC_HILLSTROM_2008_DATA",
+      "slide_safe": false
+    },
+    {
+      "claim_id": "CLM_BUYERS_MENS",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Unique customers who purchased within two weeks, Mens E-Mail",
+      "value": 267,
+      "unit": "customers",
+      "tag": "OBSERVED",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "21,307 customers randomized to Mens E-Mail",
+      "period": "two weeks after the e-mail",
+      "arm": "Mens E-Mail",
+      "split": "full_sample",
+      "model_version": null,
+      "uncertainty": null,
+      "source_id": "SRC_HILLSTROM_2008_DATA",
+      "slide_safe": true
+    },
+    {
+      "claim_id": "CLM_RATE_MENS",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Purchase rate, Mens E-Mail",
+      "value": 1.2531,
+      "unit": "percent",
+      "tag": "OBSERVED",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "267 buyers / 21,307 customers randomized to Mens E-Mail",
+      "period": "two weeks after the e-mail",
+      "arm": "Mens E-Mail",
+      "split": "full_sample",
+      "model_version": null,
+      "uncertainty": null,
+      "source_id": "SRC_HILLSTROM_2008_DATA",
+      "slide_safe": true
+    },
+    {
+      "claim_id": "CLM_N_WOMENS",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Customers randomized to Womens E-Mail",
+      "value": 21387,
+      "unit": "customers",
+      "tag": "OBSERVED",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "64,000 customers in the experiment",
+      "period": "two weeks after the e-mail",
+      "arm": "Womens E-Mail",
+      "split": "full_sample",
+      "model_version": null,
+      "uncertainty": null,
+      "source_id": "SRC_HILLSTROM_2008_DATA",
+      "slide_safe": false
+    },
+    {
+      "claim_id": "CLM_BUYERS_WOMENS",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Unique customers who purchased within two weeks, Womens E-Mail",
+      "value": 189,
+      "unit": "customers",
+      "tag": "OBSERVED",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "21,387 customers randomized to Womens E-Mail",
+      "period": "two weeks after the e-mail",
+      "arm": "Womens E-Mail",
+      "split": "full_sample",
+      "model_version": null,
+      "uncertainty": null,
+      "source_id": "SRC_HILLSTROM_2008_DATA",
+      "slide_safe": true
+    },
+    {
+      "claim_id": "CLM_RATE_WOMENS",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Purchase rate, Womens E-Mail",
+      "value": 0.8837,
+      "unit": "percent",
+      "tag": "OBSERVED",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "189 buyers / 21,387 customers randomized to Womens E-Mail",
+      "period": "two weeks after the e-mail",
+      "arm": "Womens E-Mail",
+      "split": "full_sample",
+      "model_version": null,
+      "uncertainty": null,
+      "source_id": "SRC_HILLSTROM_2008_DATA",
+      "slide_safe": true
+    },
+    {
+      "claim_id": "CLM_BUYERS_PER_1000_MENS",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Additional purchasing customers per 1,000 customers sent the Mens e-mail, versus no e-mail",
+      "value": 6.805,
+      "unit": "per 1,000 e-mailed",
+      "tag": "OBSERVED",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "267/21,307 (Mens E-Mail) minus 122/21,306 (No E-Mail)",
+      "period": "two weeks after the e-mail",
+      "arm": "Mens E-Mail",
+      "split": "full_sample",
+      "model_version": null,
+      "uncertainty": "95% interval, normal approximation: 5.00 to 8.61",
+      "source_id": "SRC_HILLSTROM_2008_DATA",
+      "slide_safe": true
+    },
+    {
+      "claim_id": "CLM_RELATIVE_LIFT_MENS",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Relative lift in purchase rate, Mens e-mail versus no e-mail",
+      "value": 118.8,
+      "unit": "percent of the control rate",
+      "tag": "OBSERVED",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "267/21,307 (Mens E-Mail) minus 122/21,306 (No E-Mail)",
+      "period": "two weeks after the e-mail",
+      "arm": "Mens E-Mail",
+      "split": "full_sample",
+      "model_version": null,
+      "uncertainty": "ratio of two small rates; use the absolute figure first",
+      "source_id": "SRC_HILLSTROM_2008_DATA",
+      "slide_safe": false
+    },
+    {
+      "claim_id": "CLM_SPEND_PER_CONTACT_MENS",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Incremental spend per customer sent the Mens e-mail, versus no e-mail",
+      "value": 0.7698,
+      "unit": "USD per customer e-mailed",
+      "tag": "OBSERVED",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "mean spend of 21,307 (Mens E-Mail) minus mean spend of 21,306 (No E-Mail)",
+      "period": "two weeks after the e-mail",
+      "arm": "Mens E-Mail",
+      "split": "full_sample",
+      "model_version": null,
+      "uncertainty": "95% interval, normal approximation: 0.49 to 1.05",
+      "source_id": "SRC_HILLSTROM_2008_DATA",
+      "slide_safe": true
+    },
+    {
+      "claim_id": "CLM_BUYERS_PER_1000_WOMENS",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Additional purchasing customers per 1,000 customers sent the Womens e-mail, versus no e-mail",
+      "value": 3.111,
+      "unit": "per 1,000 e-mailed",
+      "tag": "OBSERVED",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "189/21,387 (Womens E-Mail) minus 122/21,306 (No E-Mail)",
+      "period": "two weeks after the e-mail",
+      "arm": "Womens E-Mail",
+      "split": "full_sample",
+      "model_version": null,
+      "uncertainty": "95% interval, normal approximation: 1.50 to 4.72",
+      "source_id": "SRC_HILLSTROM_2008_DATA",
+      "slide_safe": true
+    },
+    {
+      "claim_id": "CLM_RELATIVE_LIFT_WOMENS",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Relative lift in purchase rate, Womens e-mail versus no e-mail",
+      "value": 54.3,
+      "unit": "percent of the control rate",
+      "tag": "OBSERVED",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "189/21,387 (Womens E-Mail) minus 122/21,306 (No E-Mail)",
+      "period": "two weeks after the e-mail",
+      "arm": "Womens E-Mail",
+      "split": "full_sample",
+      "model_version": null,
+      "uncertainty": "ratio of two small rates; use the absolute figure first",
+      "source_id": "SRC_HILLSTROM_2008_DATA",
+      "slide_safe": false
+    },
+    {
+      "claim_id": "CLM_SPEND_PER_CONTACT_WOMENS",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Incremental spend per customer sent the Womens e-mail, versus no e-mail",
+      "value": 0.4244,
+      "unit": "USD per customer e-mailed",
+      "tag": "OBSERVED",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "mean spend of 21,387 (Womens E-Mail) minus mean spend of 21,306 (No E-Mail)",
+      "period": "two weeks after the e-mail",
+      "arm": "Womens E-Mail",
+      "split": "full_sample",
+      "model_version": null,
+      "uncertainty": "95% interval, normal approximation: 0.17 to 0.68",
+      "source_id": "SRC_HILLSTROM_2008_DATA",
+      "slide_safe": true
+    },
+    {
+      "claim_id": "CLM_SEGMENT_MENSONLY_MENS",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Additional buyers per 1,000, Mens e-mail, customers whose past-year purchases were: Mens merchandise only (descriptive)",
+      "value": 6.01,
+      "unit": "per 1,000 e-mailed",
+      "tag": "OBSERVED",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "110/9,558 (Mens E-Mail) minus 53/9,638 (No E-Mail) in this segment",
+      "period": "two weeks after the e-mail",
+      "arm": "Mens E-Mail",
+      "split": "full_sample",
+      "model_version": null,
+      "uncertainty": "95% interval, normal approximation: 3.41 to 8.61; one pre-declared descriptive segmentation, hypothesis-generating",
+      "source_id": "SRC_HILLSTROM_2008_DATA",
+      "slide_safe": false
+    },
+    {
+      "claim_id": "CLM_SEGMENT_MENSONLY_WOMENS",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Additional buyers per 1,000, Womens e-mail, customers whose past-year purchases were: Mens merchandise only (descriptive)",
+      "value": 0.633,
+      "unit": "per 1,000 e-mailed",
+      "tag": "OBSERVED",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "59/9,622 (Womens E-Mail) minus 53/9,638 (No E-Mail) in this segment",
+      "period": "two weeks after the e-mail",
+      "arm": "Womens E-Mail",
+      "split": "full_sample",
+      "model_version": null,
+      "uncertainty": "95% interval, normal approximation: -1.52 to 2.78; one pre-declared descriptive segmentation, hypothesis-generating",
+      "source_id": "SRC_HILLSTROM_2008_DATA",
+      "slide_safe": false
+    },
+    {
+      "claim_id": "CLM_SEGMENT_WOMENSONLY_MENS",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Additional buyers per 1,000, Mens e-mail, customers whose past-year purchases were: Womens merchandise only (descriptive)",
+      "value": 5.722,
+      "unit": "per 1,000 e-mailed",
+      "tag": "OBSERVED",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "104/9,568 (Mens E-Mail) minus 49/9,519 (No E-Mail) in this segment",
+      "period": "two weeks after the e-mail",
+      "arm": "Mens E-Mail",
+      "split": "full_sample",
+      "model_version": null,
+      "uncertainty": "95% interval, normal approximation: 3.20 to 8.25; one pre-declared descriptive segmentation, hypothesis-generating",
+      "source_id": "SRC_HILLSTROM_2008_DATA",
+      "slide_safe": false
+    },
+    {
+      "claim_id": "CLM_SEGMENT_WOMENSONLY_WOMENS",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Additional buyers per 1,000, Womens e-mail, customers whose past-year purchases were: Womens merchandise only (descriptive)",
+      "value": 5.115,
+      "unit": "per 1,000 e-mailed",
+      "tag": "OBSERVED",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "99/9,647 (Womens E-Mail) minus 49/9,519 (No E-Mail) in this segment",
+      "period": "two weeks after the e-mail",
+      "arm": "Womens E-Mail",
+      "split": "full_sample",
+      "model_version": null,
+      "uncertainty": "95% interval, normal approximation: 2.64 to 7.59; one pre-declared descriptive segmentation, hypothesis-generating",
+      "source_id": "SRC_HILLSTROM_2008_DATA",
+      "slide_safe": false
+    },
+    {
+      "claim_id": "CLM_SEGMENT_BOTH_MENS",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Additional buyers per 1,000, Mens e-mail, customers whose past-year purchases were: Both (descriptive)",
+      "value": 14.994,
+      "unit": "per 1,000 e-mailed",
+      "tag": "OBSERVED",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "53/2,181 (Mens E-Mail) minus 20/2,149 (No E-Mail) in this segment",
+      "period": "two weeks after the e-mail",
+      "arm": "Mens E-Mail",
+      "split": "full_sample",
+      "model_version": null,
+      "uncertainty": "95% interval, normal approximation: 7.36 to 22.63; one pre-declared descriptive segmentation, hypothesis-generating",
+      "source_id": "SRC_HILLSTROM_2008_DATA",
+      "slide_safe": false
+    },
+    {
+      "claim_id": "CLM_SEGMENT_BOTH_WOMENS",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Additional buyers per 1,000, Womens e-mail, customers whose past-year purchases were: Both (descriptive)",
+      "value": 5.33,
+      "unit": "per 1,000 e-mailed",
+      "tag": "OBSERVED",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "31/2,118 (Womens E-Mail) minus 20/2,149 (No E-Mail) in this segment",
+      "period": "two weeks after the e-mail",
+      "arm": "Womens E-Mail",
+      "split": "full_sample",
+      "model_version": null,
+      "uncertainty": "95% interval, normal approximation: -1.20 to 11.86; one pre-declared descriptive segmentation, hypothesis-generating",
+      "source_id": "SRC_HILLSTROM_2008_DATA",
+      "slide_safe": false
+    },
+    {
+      "claim_id": "CLM_SPLIT_SIZES",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Customers in train / validation / test",
+      "value": "25598 / 12799 / 25603",
+      "unit": "customers",
+      "tag": "OBSERVED",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "64,000 customers, seeded split stratified by arm",
+      "period": "two weeks after the e-mail",
+      "arm": null,
+      "split": "full_sample",
+      "model_version": null,
+      "uncertainty": null,
+      "source_id": "SRC_LOCAL_RUN",
+      "slide_safe": false
+    },
+    {
+      "claim_id": "CLM_TEST_BUYERS",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Buyers in the held-out test split: no e-mail / Mens e-mail / Womens e-mail",
+      "value": "50 / 113 / 77",
+      "unit": "customers",
+      "tag": "OBSERVED",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "8,523 / 8,524 / 8,556 held-out customers per arm",
+      "period": "two weeks after the e-mail",
+      "arm": null,
+      "split": "full_sample",
+      "model_version": null,
+      "uncertainty": null,
+      "source_id": "SRC_LOCAL_RUN",
+      "slide_safe": true
+    },
+    {
+      "claim_id": "CLM_TEST_SEND_ALL_MENS",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Held-out: additional buyers per 1,000 when every customer gets the Mens e-mail",
+      "value": 7.39,
+      "unit": "per 1,000 contacted",
+      "tag": "HELD_OUT_ESTIMATE",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "113/8,524 e-mailed minus 50/8,523 not e-mailed, over the whole held-out arms",
+      "period": "two weeks after the e-mail",
+      "arm": "Mens E-Mail",
+      "split": "test",
+      "model_version": "hillstrom-conv-slearner-p2-3ce8fb1cd1",
+      "uncertainty": "95% interval, customer bootstrap (2000 resamples): 4.58 to 10.29",
+      "source_id": "SRC_LOCAL_RUN",
+      "slide_safe": true
+    },
+    {
+      "claim_id": "CLM_TEST_SEND_ALL_WOMENS",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Held-out: additional buyers per 1,000 when every customer gets the Womens e-mail",
+      "value": 3.133,
+      "unit": "per 1,000 contacted",
+      "tag": "HELD_OUT_ESTIMATE",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "77/8,556 e-mailed minus 50/8,523 not e-mailed, over the whole held-out arms",
+      "period": "two weeks after the e-mail",
+      "arm": "Womens E-Mail",
+      "split": "test",
+      "model_version": "hillstrom-conv-slearner-p2-3ce8fb1cd1",
+      "uncertainty": "95% interval, customer bootstrap (2000 resamples): 0.49 to 5.69",
+      "source_id": "SRC_LOCAL_RUN",
+      "slide_safe": true
+    },
+    {
+      "claim_id": "CLM_CAP25_MODEL",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Held-out, 25% contact cap, Mens e-mail: additional buyers per 1,000 contacted, model targeting",
+      "value": 10.02,
+      "unit": "per 1,000 contacted",
+      "tag": "HELD_OUT_ESTIMATE",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "43/2,159 e-mailed minus 21/2,122 not e-mailed, inside the selected held-out customers",
+      "period": "two weeks after the e-mail",
+      "arm": "Mens E-Mail",
+      "split": "test",
+      "model_version": "hillstrom-conv-slearner-p2-3ce8fb1cd1",
+      "uncertainty": "95% interval, customer bootstrap (2000 resamples): 2.80 to 17.18",
+      "source_id": "SRC_LOCAL_RUN",
+      "slide_safe": true
+    },
+    {
+      "claim_id": "CLM_CAP25_RANDOM",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Held-out, 25% contact cap, Mens e-mail: additional buyers per 1,000 contacted, random contacts (expected value)",
+      "value": 7.39,
+      "unit": "per 1,000 contacted",
+      "tag": "HELD_OUT_ESTIMATE",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "113/8,524 e-mailed minus 50/8,523 not e-mailed, over the whole held-out arms",
+      "period": "two weeks after the e-mail",
+      "arm": "Mens E-Mail",
+      "split": "test",
+      "model_version": "hillstrom-conv-slearner-p2-3ce8fb1cd1",
+      "uncertainty": "95% interval, customer bootstrap (2000 resamples): 4.58 to 10.29",
+      "source_id": "SRC_LOCAL_RUN",
+      "slide_safe": true
+    },
+    {
+      "claim_id": "CLM_CAP25_RULE",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Held-out, 25% contact cap, Mens e-mail: additional buyers per 1,000 contacted, recency rule",
+      "value": 8.603,
+      "unit": "per 1,000 contacted",
+      "tag": "HELD_OUT_ESTIMATE",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "40/2,122 e-mailed minus 22/2,147 not e-mailed, inside the selected held-out customers",
+      "period": "two weeks after the e-mail",
+      "arm": "Mens E-Mail",
+      "split": "test",
+      "model_version": "hillstrom-conv-slearner-p2-3ce8fb1cd1",
+      "uncertainty": "95% interval, customer bootstrap (2000 resamples): 1.63 to 15.74",
+      "source_id": "SRC_LOCAL_RUN",
+      "slide_safe": true
+    },
+    {
+      "claim_id": "CLM_CAP25_OTHER_RULE",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Held-out, 25% contact cap, Mens e-mail: additional buyers per 1,000 contacted, past-spend rule",
+      "value": 11.583,
+      "unit": "per 1,000 contacted",
+      "tag": "HELD_OUT_ESTIMATE",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "43/2,110 e-mailed minus 19/2,160 not e-mailed, inside the selected held-out customers",
+      "period": "two weeks after the e-mail",
+      "arm": "Mens E-Mail",
+      "split": "test",
+      "model_version": "hillstrom-conv-slearner-p2-3ce8fb1cd1",
+      "uncertainty": "95% interval, customer bootstrap (2000 resamples): 4.32 to 19.24",
+      "source_id": "SRC_LOCAL_RUN",
+      "slide_safe": true
+    },
+    {
+      "claim_id": "CLM_MODEL_VS_RANDOM",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Model targeting minus random contacts at the 25% cap (Mens e-mail)",
+      "value": 2.63,
+      "unit": "additional buyers per 1,000 contacts",
+      "tag": "HELD_OUT_ESTIMATE",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "model: 43/2,159 e-mailed minus 21/2,122 not e-mailed, inside the selected held-out customers; random: 113/8,524 e-mailed minus 50/8,523 not e-mailed, over the whole held-out arms",
+      "period": "two weeks after the e-mail",
+      "arm": "Mens E-Mail",
+      "split": "test",
+      "model_version": "hillstrom-conv-slearner-p2-3ce8fb1cd1",
+      "uncertainty": "paired 95% interval, customer bootstrap (2000 resamples): -3.52 to 8.75; includes zero",
+      "source_id": "SRC_LOCAL_RUN",
+      "slide_safe": true
+    },
+    {
+      "claim_id": "CLM_MODEL_VS_RULE",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Model targeting minus the recency rule at the 25% cap (Mens e-mail)",
+      "value": 1.417,
+      "unit": "additional buyers per 1,000 contacts",
+      "tag": "HELD_OUT_ESTIMATE",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "model: 43/2,159 e-mailed minus 21/2,122 not e-mailed, inside the selected held-out customers; rule: 40/2,122 e-mailed minus 22/2,147 not e-mailed, inside the selected held-out customers",
+      "period": "two weeks after the e-mail",
+      "arm": "Mens E-Mail",
+      "split": "test",
+      "model_version": "hillstrom-conv-slearner-p2-3ce8fb1cd1",
+      "uncertainty": "paired 95% interval, customer bootstrap (2000 resamples): -5.50 to 8.16; includes zero",
+      "source_id": "SRC_LOCAL_RUN",
+      "slide_safe": true
+    },
+    {
+      "claim_id": "CLM_MODEL_VS_OTHER_RULE",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Model targeting minus the past-spend rule at the 25% cap (Mens e-mail); this rule was not the one chosen on validation",
+      "value": -1.563,
+      "unit": "additional buyers per 1,000 contacts",
+      "tag": "HELD_OUT_ESTIMATE",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "model: 43/2,159 e-mailed minus 21/2,122 not e-mailed, inside the selected held-out customers; rule: 43/2,110 e-mailed minus 19/2,160 not e-mailed, inside the selected held-out customers",
+      "period": "two weeks after the e-mail",
+      "arm": "Mens E-Mail",
+      "split": "test",
+      "model_version": "hillstrom-conv-slearner-p2-3ce8fb1cd1",
+      "uncertainty": "paired 95% interval, customer bootstrap (2000 resamples): -6.97 to 3.92",
+      "source_id": "SRC_LOCAL_RUN",
+      "slide_safe": true
+    },
+    {
+      "claim_id": "CLM_MODEL_VERDICT",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Pre-registered verdict on model targeting versus random and the primary rule",
+      "value": "MODEL_AHEAD_NOT_STABLE",
+      "unit": "verdict",
+      "tag": "HELD_OUT_ESTIMATE",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "25% cap on 25,603 held-out customers",
+      "period": "two weeks after the e-mail",
+      "arm": "Mens E-Mail",
+      "split": "test",
+      "model_version": "hillstrom-conv-slearner-p2-3ce8fb1cd1",
+      "uncertainty": "stable only if both paired 95% intervals lie above zero",
+      "source_id": "SRC_LOCAL_RUN",
+      "slide_safe": true
+    },
+    {
+      "claim_id": "CLM_BESTARM_VS_SEND_ALL",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Letting the model choose the e-mail per customer, minus sending everyone the Mens e-mail",
+      "value": -0.052,
+      "unit": "additional buyers per 1,000 contacts",
+      "tag": "HELD_OUT_ESTIMATE",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "model: 113/8,561 e-mailed minus 50/8,523 not e-mailed, over the whole held-out arms; send-all: 113/8,524 e-mailed minus 50/8,523 not e-mailed, over the whole held-out arms",
+      "period": "two weeks after the e-mail",
+      "arm": "MODEL_CHOOSES_ARM",
+      "split": "test",
+      "model_version": "hillstrom-conv-slearner-p2-3ce8fb1cd1",
+      "uncertainty": "paired 95% interval, customer bootstrap (2000 resamples): -1.12 to 1.03",
+      "source_id": "SRC_LOCAL_RUN",
+      "slide_safe": false
+    },
+    {
+      "claim_id": "CLM_BREAK_EVEN_COST_MENS_M20",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Break-even cost per e-mail, Mens e-mail, at an ASSUMED 20% margin (before setup)",
+      "value": 0.154,
+      "unit": "USD per e-mail",
+      "tag": "ASSUMPTION",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "incremental spend per contact x 20%",
+      "period": "two weeks after the e-mail",
+      "arm": "Mens E-Mail",
+      "split": "not_applicable",
+      "model_version": null,
+      "uncertainty": "0.097 USD using the lower 95% bound of incremental spend",
+      "source_id": "SRC_LOCAL_RUN",
+      "slide_safe": false
+    },
+    {
+      "claim_id": "CLM_BREAK_EVEN_COST_MENS_M35",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Break-even cost per e-mail, Mens e-mail, at an ASSUMED 35% margin (before setup)",
+      "value": 0.2694,
+      "unit": "USD per e-mail",
+      "tag": "ASSUMPTION",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "incremental spend per contact x 35%",
+      "period": "two weeks after the e-mail",
+      "arm": "Mens E-Mail",
+      "split": "not_applicable",
+      "model_version": null,
+      "uncertainty": "0.170 USD using the lower 95% bound of incremental spend",
+      "source_id": "SRC_LOCAL_RUN",
+      "slide_safe": true
+    },
+    {
+      "claim_id": "CLM_BREAK_EVEN_COST_MENS_M50",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Break-even cost per e-mail, Mens e-mail, at an ASSUMED 50% margin (before setup)",
+      "value": 0.3849,
+      "unit": "USD per e-mail",
+      "tag": "ASSUMPTION",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "incremental spend per contact x 50%",
+      "period": "two weeks after the e-mail",
+      "arm": "Mens E-Mail",
+      "split": "not_applicable",
+      "model_version": null,
+      "uncertainty": "0.243 USD using the lower 95% bound of incremental spend",
+      "source_id": "SRC_LOCAL_RUN",
+      "slide_safe": false
+    },
+    {
+      "claim_id": "CLM_SCENARIO_MENS_CONSERVATIVE",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "SCENARIO contribution, Mens e-mail to 57,600 customers, conservative assumptions (not measured profit)",
+      "value": 1108,
+      "unit": "USD per campaign",
+      "tag": "ASSUMPTION",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "57,600 assumed contacts; margin 20%, cost 0.100 USD per e-mail, setup 2,000 USD",
+      "period": "two weeks after the e-mail",
+      "arm": "Mens E-Mail",
+      "split": "not_applicable",
+      "model_version": null,
+      "uncertainty": "range over the 95% interval of incremental spend: -2,171 to 4,388 USD",
+      "source_id": "SRC_LOCAL_RUN",
+      "slide_safe": true
+    },
+    {
+      "claim_id": "CLM_SCENARIO_MENS_CENTRAL",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "SCENARIO contribution, Mens e-mail to 57,600 customers, central assumptions (not measured profit)",
+      "value": 12792,
+      "unit": "USD per campaign",
+      "tag": "ASSUMPTION",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "57,600 assumed contacts; margin 35%, cost 0.030 USD per e-mail, setup 1,000 USD",
+      "period": "two weeks after the e-mail",
+      "arm": "Mens E-Mail",
+      "split": "not_applicable",
+      "model_version": null,
+      "uncertainty": "range over the 95% interval of incremental spend: 7,053 to 18,531 USD",
+      "source_id": "SRC_LOCAL_RUN",
+      "slide_safe": true
+    },
+    {
+      "claim_id": "CLM_SCENARIO_MENS_FAVOURABLE",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "SCENARIO contribution, Mens e-mail to 57,600 customers, favourable assumptions (not measured profit)",
+      "value": 21383,
+      "unit": "USD per campaign",
+      "tag": "ASSUMPTION",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "57,600 assumed contacts; margin 50%, cost 0.005 USD per e-mail, setup 500 USD",
+      "period": "two weeks after the e-mail",
+      "arm": "Mens E-Mail",
+      "split": "not_applicable",
+      "model_version": null,
+      "uncertainty": "range over the 95% interval of incremental spend: 13,184 to 29,582 USD",
+      "source_id": "SRC_LOCAL_RUN",
+      "slide_safe": true
+    },
+    {
+      "claim_id": "CLM_BREAK_EVEN_COST_WOMENS_M20",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Break-even cost per e-mail, Womens e-mail, at an ASSUMED 20% margin (before setup)",
+      "value": 0.0849,
+      "unit": "USD per e-mail",
+      "tag": "ASSUMPTION",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "incremental spend per contact x 20%",
+      "period": "two weeks after the e-mail",
+      "arm": "Womens E-Mail",
+      "split": "not_applicable",
+      "model_version": null,
+      "uncertainty": "0.034 USD using the lower 95% bound of incremental spend",
+      "source_id": "SRC_LOCAL_RUN",
+      "slide_safe": false
+    },
+    {
+      "claim_id": "CLM_BREAK_EVEN_COST_WOMENS_M35",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Break-even cost per e-mail, Womens e-mail, at an ASSUMED 35% margin (before setup)",
+      "value": 0.1485,
+      "unit": "USD per e-mail",
+      "tag": "ASSUMPTION",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "incremental spend per contact x 35%",
+      "period": "two weeks after the e-mail",
+      "arm": "Womens E-Mail",
+      "split": "not_applicable",
+      "model_version": null,
+      "uncertainty": "0.059 USD using the lower 95% bound of incremental spend",
+      "source_id": "SRC_LOCAL_RUN",
+      "slide_safe": true
+    },
+    {
+      "claim_id": "CLM_BREAK_EVEN_COST_WOMENS_M50",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Break-even cost per e-mail, Womens e-mail, at an ASSUMED 50% margin (before setup)",
+      "value": 0.2122,
+      "unit": "USD per e-mail",
+      "tag": "ASSUMPTION",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "incremental spend per contact x 50%",
+      "period": "two weeks after the e-mail",
+      "arm": "Womens E-Mail",
+      "split": "not_applicable",
+      "model_version": null,
+      "uncertainty": "0.084 USD using the lower 95% bound of incremental spend",
+      "source_id": "SRC_LOCAL_RUN",
+      "slide_safe": false
+    },
+    {
+      "claim_id": "CLM_SCENARIO_WOMENS_CONSERVATIVE",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "SCENARIO contribution, Womens e-mail to 57,600 customers, conservative assumptions (not measured profit)",
+      "value": -2871,
+      "unit": "USD per campaign",
+      "tag": "ASSUMPTION",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "57,600 assumed contacts; margin 20%, cost 0.100 USD per e-mail, setup 2,000 USD",
+      "period": "two weeks after the e-mail",
+      "arm": "Womens E-Mail",
+      "split": "not_applicable",
+      "model_version": null,
+      "uncertainty": "range over the 95% interval of incremental spend: -5,814 to 72 USD",
+      "source_id": "SRC_LOCAL_RUN",
+      "slide_safe": false
+    },
+    {
+      "claim_id": "CLM_SCENARIO_WOMENS_CENTRAL",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "SCENARIO contribution, Womens e-mail to 57,600 customers, central assumptions (not measured profit)",
+      "value": 5828,
+      "unit": "USD per campaign",
+      "tag": "ASSUMPTION",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "57,600 assumed contacts; margin 35%, cost 0.030 USD per e-mail, setup 1,000 USD",
+      "period": "two weeks after the e-mail",
+      "arm": "Womens E-Mail",
+      "split": "not_applicable",
+      "model_version": null,
+      "uncertainty": "range over the 95% interval of incremental spend: 678 to 10,978 USD",
+      "source_id": "SRC_LOCAL_RUN",
+      "slide_safe": false
+    },
+    {
+      "claim_id": "CLM_SCENARIO_WOMENS_FAVOURABLE",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "SCENARIO contribution, Womens e-mail to 57,600 customers, favourable assumptions (not measured profit)",
+      "value": 11435,
+      "unit": "USD per campaign",
+      "tag": "ASSUMPTION",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "57,600 assumed contacts; margin 50%, cost 0.005 USD per e-mail, setup 500 USD",
+      "period": "two weeks after the e-mail",
+      "arm": "Womens E-Mail",
+      "split": "not_applicable",
+      "model_version": null,
+      "uncertainty": "range over the 95% interval of incremental spend: 4,078 to 18,792 USD",
+      "source_id": "SRC_LOCAL_RUN",
+      "slide_safe": false
+    },
+    {
+      "claim_id": "CLM_EXPECTED_BUYERS_BROAD",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "SCENARIO: additional purchasing customers if the Mens e-mail goes to 57,600 customers and the 2008 effect holds",
+      "value": 392,
+      "unit": "customers",
+      "tag": "ASSUMPTION",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "57,600 assumed contacts x 6.81 per 1,000",
+      "period": "two weeks after the e-mail",
+      "arm": "Mens E-Mail",
+      "split": "not_applicable",
+      "model_version": null,
+      "uncertainty": "288 to 496 from the 95% interval of the effect; a 2008 effect is not a forecast for a current base",
+      "source_id": "SRC_LOCAL_RUN",
+      "slide_safe": true
+    },
+    {
+      "claim_id": "CLM_HOLDOUT_PER_ARM",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Customers per arm needed in a future randomized test to detect an effect of the 2008 size (80% power, two-sided 5%)",
+      "value": 3063,
+      "unit": "customers per arm",
+      "tag": "ASSUMPTION",
+      "dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "denominator": "control rate 0.0057, treated rate 0.0125",
+      "period": "two weeks after the e-mail",
+      "arm": "Mens E-Mail",
+      "split": "not_applicable",
+      "model_version": null,
+      "uncertainty": "design calculation; assumes the historical effect",
+      "source_id": "SRC_LOCAL_RUN",
+      "slide_safe": true
+    },
+    {
+      "claim_id": "CLM_MARGIN",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Contribution margin on incremental sales",
+      "value": null,
+      "unit": "share of revenue",
+      "tag": "UNKNOWN",
+      "dataset_sha256": null,
+      "denominator": null,
+      "period": null,
+      "arm": null,
+      "split": "not_applicable",
+      "model_version": null,
+      "uncertainty": "not in the dataset; must be supplied by the business",
+      "source_id": "SRC_HILLSTROM_2008_DATA",
+      "slide_safe": true
+    },
+    {
+      "claim_id": "CLM_COST_PER_CONTACT",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Full cost per e-mail",
+      "value": null,
+      "unit": "USD per e-mail",
+      "tag": "UNKNOWN",
+      "dataset_sha256": null,
+      "denominator": null,
+      "period": null,
+      "arm": null,
+      "split": "not_applicable",
+      "model_version": null,
+      "uncertainty": "not in the dataset; must be supplied by the business",
+      "source_id": "SRC_HILLSTROM_2008_DATA",
+      "slide_safe": true
+    },
+    {
+      "claim_id": "CLM_MEASURED_PROFIT",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Measured profit of the campaign",
+      "value": null,
+      "unit": "USD",
+      "tag": "UNKNOWN",
+      "dataset_sha256": null,
+      "denominator": null,
+      "period": null,
+      "arm": null,
+      "split": "not_applicable",
+      "model_version": null,
+      "uncertainty": "not in the dataset; must be supplied by the business",
+      "source_id": "SRC_HILLSTROM_2008_DATA",
+      "slide_safe": true
+    },
+    {
+      "claim_id": "CLM_REF_PURCHASE_RATE_MENS",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Published purchase rate, Mens e-mail (full sample) (published, not our output)",
+      "value": 1.25,
+      "unit": "percent",
+      "tag": "PUBLISHED_REFERENCE",
+      "dataset_sha256": null,
+      "denominator": "as published",
+      "period": "two weeks after the e-mail",
+      "arm": null,
+      "split": "full_sample",
+      "model_version": null,
+      "uncertainty": "Table 2, page 3",
+      "source_id": "SRC_RADCLIFFE_2008",
+      "slide_safe": true
+    },
+    {
+      "claim_id": "CLM_REF_PURCHASE_RATE_WOMENS",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Published purchase rate, Womens e-mail (full sample) (published, not our output)",
+      "value": 0.88,
+      "unit": "percent",
+      "tag": "PUBLISHED_REFERENCE",
+      "dataset_sha256": null,
+      "denominator": "as published",
+      "period": "two weeks after the e-mail",
+      "arm": null,
+      "split": "full_sample",
+      "model_version": null,
+      "uncertainty": "Table 2, page 3",
+      "source_id": "SRC_RADCLIFFE_2008",
+      "slide_safe": true
+    },
+    {
+      "claim_id": "CLM_REF_PURCHASE_RATE_CONTROL",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Published purchase rate, no e-mail control (full sample) (published, not our output)",
+      "value": 0.57,
+      "unit": "percent",
+      "tag": "PUBLISHED_REFERENCE",
+      "dataset_sha256": null,
+      "denominator": "as published",
+      "period": "two weeks after the e-mail",
+      "arm": null,
+      "split": "full_sample",
+      "model_version": null,
+      "uncertainty": "Table 2, page 3",
+      "source_id": "SRC_RADCLIFFE_2008",
+      "slide_safe": true
+    },
+    {
+      "claim_id": "CLM_REF_PURCHASE_UPLIFT_MENS",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Published purchase-rate uplift, Mens e-mail vs control (published, not our output)",
+      "value": 0.68,
+      "unit": "percentage points",
+      "tag": "PUBLISHED_REFERENCE",
+      "dataset_sha256": null,
+      "denominator": "as published",
+      "period": "two weeks after the e-mail",
+      "arm": null,
+      "split": "full_sample",
+      "model_version": null,
+      "uncertainty": "Table 2, page 3",
+      "source_id": "SRC_RADCLIFFE_2008",
+      "slide_safe": true
+    },
+    {
+      "claim_id": "CLM_REF_PURCHASE_UPLIFT_WOMENS",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Published purchase-rate uplift, Womens e-mail vs control (published, not our output)",
+      "value": 0.31,
+      "unit": "percentage points",
+      "tag": "PUBLISHED_REFERENCE",
+      "dataset_sha256": null,
+      "denominator": "as published",
+      "period": "two weeks after the e-mail",
+      "arm": null,
+      "split": "full_sample",
+      "model_version": null,
+      "uncertainty": "Table 2, page 3",
+      "source_id": "SRC_RADCLIFFE_2008",
+      "slide_safe": true
+    },
+    {
+      "claim_id": "CLM_REF_SPEND_UPLIFT_MENS",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Published spend uplift per head, Mens e-mail vs control (published, not our output)",
+      "value": 0.77,
+      "unit": "USD per customer",
+      "tag": "PUBLISHED_REFERENCE",
+      "dataset_sha256": null,
+      "denominator": "as published",
+      "period": "two weeks after the e-mail",
+      "arm": null,
+      "split": "full_sample",
+      "model_version": null,
+      "uncertainty": "Table 2, page 3",
+      "source_id": "SRC_RADCLIFFE_2008",
+      "slide_safe": false
+    },
+    {
+      "claim_id": "CLM_REF_SPEND_UPLIFT_WOMENS",
+      "case_id": "HILLSTROM_EMAIL_2008",
+      "text": "Published spend uplift per head, Womens e-mail vs control (published, not our output)",
+      "value": 0.42,
+      "unit": "USD per customer",
+      "tag": "PUBLISHED_REFERENCE",
+      "dataset_sha256": null,
+      "denominator": "as published",
+      "period": "two weeks after the e-mail",
+      "arm": null,
+      "split": "full_sample",
+      "model_version": null,
+      "uncertainty": "Table 2, page 3",
+      "source_id": "SRC_RADCLIFFE_2008",
+      "slide_safe": false
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "SRC_HILLSTROM_2008_DATA",
+      "kind": "DATASET",
+      "title": "Kevin Hillstrom, MineThatData E-Mail Analytics and Data Mining Challenge (blog post, 20 March 2008)",
+      "url": "https://blog.minethatdata.com/2008/03/minethatdata-e-mail-analytics-and-data.html",
+      "accessed": "2026-11-17",
+      "note": "64,000 customers who last purchased within twelve months; thirds randomly assigned to Mens e-mail, Womens e-mail or no e-mail; results tracked for two weeks. No licence or terms stated on the page: raw file kept local."
+    },
+    {
+      "source_id": "SRC_RADCLIFFE_2008",
+      "kind": "PUBLICATION",
+      "title": "N. J. Radcliffe, Hillstrom's MineThatData Email Analytics Challenge: An Approach Using Uplift Modelling (Stochastic Solutions Limited, 2008)",
+      "url": "https://stochasticsolutions.com/pdf/HillstromChallenge.pdf",
+      "accessed": "2026-11-17",
+      "note": "Winning analysis. Its figures are PUBLISHED_REFERENCE values, never this project's model output."
+    },
+    {
+      "source_id": "SRC_SKLIFT_DOCS",
+      "kind": "DOCUMENTATION",
+      "title": "scikit-uplift documentation: quick start, uplift_at_k (strategy='overall'), qini_auc_score",
+      "url": "https://www.uplift-modeling.com/en/latest/quick_start.html",
+      "accessed": "2026-11-17",
+      "note": "Metric definitions only (uplift at k, Qini). The library is not a dependency; metrics are implemented locally."
+    },
+    {
+      "source_id": "SRC_LOCAL_PROTOCOL_V2",
+      "kind": "LOCAL_ARTIFACT",
+      "title": "Pre-registered conversion-uplift protocol v2 (split, features, policies, primary metric, decision rule)",
+      "url": "data/eval/hillstrom_protocol_v2.json",
+      "accessed": null,
+      "note": "Committed before the conversion model was fitted on the new split."
+    },
+    {
+      "source_id": "SRC_LOCAL_RUN",
+      "kind": "LOCAL_ARTIFACT",
+      "title": "Campaign run manifest (data hash, code commit, seed, feature list, split hashes, model version)",
+      "url": "reports/campaign/run_manifest.json",
+      "accessed": null,
+      "note": "Written by python -m mi.campaign.export."
+    }
+  ],
+  "evidence_ids": [
+    "SRC_HILLSTROM_2008_DATA",
+    "SRC_RADCLIFFE_2008",
+    "SRC_SKLIFT_DOCS",
+    "SRC_LOCAL_PROTOCOL_V2",
+    "SRC_LOCAL_RUN"
+  ],
+  "model_version": "hillstrom-conv-slearner-p2-3ce8fb1cd1",
+  "run_id": "CAMP-24B4793860DC",
+  "approval_required": true,
+  "approval_status": "DRAFT_REQUIRES_HUMAN",
+  "warnings": [
+    "REPEATED EVALUATION: the dataset was analysed before; the test split is not untouched data.",
+    "RARE OUTCOME: 578 buyers among 64,000 customers. Top-k and subgroup cells hold few buyers, so targeting comparisons are imprecise.",
+    "GROUP EFFECTS ONLY: differences between randomized groups estimate additional repeat buyers for a population; they are not an individual's effect and not customer acquisition.",
+    "HISTORICAL: a 2008 effect for one anonymous apparel retailer. Do not transfer it to another retailer or to a current base without a new randomized pilot.",
+    "ECONOMICS ARE SCENARIOS: margin and cost per e-mail are unknown; no contribution figure is a measured profit.",
+    "No e-mail is ever sent, scheduled or approved by this system; a named human decides."
+  ]
+}

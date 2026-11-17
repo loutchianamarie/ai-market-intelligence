@@ -1,0 +1,82 @@
+{
+  "model_version": "hillstrom-conv-slearner-p2-3ce8fb1cd1",
+  "coef_sha256": "3ce8fb1cd174a9ee01410c0f0d10aaf05ea84ced44efe91c3ed44be3e7236438",
+  "intercept": -4.876161340687122,
+  "coefficients": {
+    "recency": -0.2596932037721106,
+    "log_history": 0.1280830129209989,
+    "mens": 0.1112363960089529,
+    "womens": 0.14014039969860956,
+    "newbie": -0.3791608801794104,
+    "zip_code=Surburban": -0.19355785161257735,
+    "zip_code=Urban": -0.17600734299164575,
+    "channel=Phone": -0.20820263081952017,
+    "channel=Web": -0.007151927784058598,
+    "T_mens": 0.12269918209239489,
+    "T_womens": 0.11453004267387593,
+    "T_mens x recency": 0.0785367062281663,
+    "T_mens x log_history": 0.1325920024430434,
+    "T_mens x mens": 0.31897939851491036,
+    "T_mens x womens": 0.3134829519192346,
+    "T_mens x newbie": 0.1663406589051663,
+    "T_mens x zip_code=Surburban": 0.07977517741935164,
+    "T_mens x zip_code=Urban": -0.13922806619198838,
+    "T_mens x channel=Phone": 0.143393942399343,
+    "T_mens x channel=Web": 0.13599630576973382,
+    "T_womens x recency": -0.0670082558178273,
+    "T_womens x log_history": 0.02043329773144073,
+    "T_womens x mens": -0.01502842876818479,
+    "T_womens x womens": 0.3692754863580286,
+    "T_womens x newbie": 0.2158062218019977,
+    "T_womens x zip_code=Surburban": -0.0325556493508322,
+    "T_womens x zip_code=Urban": -0.019922776063866957,
+    "T_womens x channel=Phone": -0.18801068273992078,
+    "T_womens x channel=Web": -0.018619635297801095
+  },
+  "scaling": {
+    "mean": {
+      "recency": 5.771232127509962,
+      "log_history": 5.009748837845279
+    },
+    "std": {
+      "recency": 3.5021247183282793,
+      "log_history": 1.0187677669483965
+    }
+  },
+  "C": 0.1,
+  "reference_levels": {
+    "zip_code": "Rural",
+    "channel": "Multichannel"
+  },
+  "feature_order": [
+    "recency",
+    "log_history",
+    "mens",
+    "womens",
+    "newbie",
+    "zip_code=Surburban",
+    "zip_code=Urban",
+    "channel=Phone",
+    "channel=Web",
+    "T_mens",
+    "T_womens",
+    "T_mens x recency",
+    "T_mens x log_history",
+    "T_mens x mens",
+    "T_mens x womens",
+    "T_mens x newbie",
+    "T_mens x zip_code=Surburban",
+    "T_mens x zip_code=Urban",
+    "T_mens x channel=Phone",
+    "T_mens x channel=Web",
+    "T_womens x recency",
+    "T_womens x log_history",
+    "T_womens x mens",
+    "T_womens x womens",
+    "T_womens x newbie",
+    "T_womens x zip_code=Surburban",
+    "T_womens x zip_code=Urban",
+    "T_womens x channel=Phone",
+    "T_womens x channel=Web"
+  ]
+}

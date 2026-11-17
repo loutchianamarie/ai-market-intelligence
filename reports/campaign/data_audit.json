@@ -1,0 +1,213 @@
+{
+  "case_id": "HILLSTROM_EMAIL_2008",
+  "source": {
+    "page": "https://blog.minethatdata.com/2008/03/minethatdata-e-mail-analytics-and-data.html",
+    "file": "http://www.minethatdata.com/Kevin_Hillstrom_MineThatData_E-MailAnalytics_DataMiningChallenge_2008.03.20.csv",
+    "sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+    "bytes": 3964977,
+    "terms": "none stated on the source page (checked 2026-11-14 and 2026-11-17): raw file kept local and NOT committed or shared"
+  },
+  "file": {
+    "sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+    "bytes": 3964977,
+    "rows": 64000
+  },
+  "rows": 64000,
+  "columns": [
+    "recency",
+    "history_segment",
+    "history",
+    "mens",
+    "womens",
+    "zip_code",
+    "newbie",
+    "channel",
+    "segment",
+    "visit",
+    "conversion",
+    "spend"
+  ],
+  "customer_unit": {
+    "statement": "one row = one unique existing customer who last purchased within twelve months (source description). The file has no customer id: the zero-based row index is the customer key.",
+    "has_customer_id_column": false,
+    "distinct_customers_assumed": 64000
+  },
+  "missing_values": {
+    "recency": 0,
+    "history_segment": 0,
+    "history": 0,
+    "mens": 0,
+    "womens": 0,
+    "zip_code": 0,
+    "newbie": 0,
+    "channel": 0,
+    "segment": 0,
+    "visit": 0,
+    "conversion": 0,
+    "spend": 0
+  },
+  "duplicates": {
+    "fully_identical_rows_beyond_first": 6562,
+    "identical_on_pre_email_fields_beyond_first": 7791,
+    "handling": "Fully identical rows are counted and reported. They are KEPT: the source states one row per customer and there is no id to deduplicate on, so identical rows are treated as different customers with the same coarse attributes."
+  },
+  "arms": {
+    "counts": {
+      "No E-Mail": 21306,
+      "Mens E-Mail": 21307,
+      "Womens E-Mail": 21387
+    },
+    "shares": {
+      "No E-Mail": 0.33291,
+      "Mens E-Mail": 0.33292,
+      "Womens E-Mail": 0.33417
+    },
+    "chi_square_vs_equal_thirds": {
+      "statistic": 0.2025,
+      "p_value": 0.9037
+    }
+  },
+  "balance_vs_control": [
+    {
+      "arm": "Mens E-Mail",
+      "max_abs_smd": 0.0164,
+      "feature_at_max": "history_segment_2) $100 - $200",
+      "features_checked": 18,
+      "all_below_0.1": true
+    },
+    {
+      "arm": "Womens E-Mail",
+      "max_abs_smd": 0.0143,
+      "feature_at_max": "history_segment_2) $100 - $200",
+      "features_checked": 18,
+      "all_below_0.1": true
+    }
+  ],
+  "outcomes_by_arm": {
+    "No E-Mail": {
+      "n_customers": 21306,
+      "buyers": 122,
+      "purchase_rate": 0.005726086548390125,
+      "visitors": 2262,
+      "spend_total": 13908.33,
+      "spend_per_customer": 0.6527893551112361
+    },
+    "Mens E-Mail": {
+      "n_customers": 21307,
+      "buyers": 267,
+      "purchase_rate": 0.01253109306800582,
+      "visitors": 3894,
+      "spend_total": 30311.69,
+      "spend_per_customer": 1.422616511005773
+    },
+    "Womens E-Mail": {
+      "n_customers": 21387,
+      "buyers": 189,
+      "purchase_rate": 0.008837144059475383,
+      "visitors": 3238,
+      "spend_total": 23038.11,
+      "spend_per_customer": 1.0772015710478329
+    }
+  },
+  "outcome_integrity": {
+    "conversion_without_visit": 0,
+    "spend_without_conversion": 0,
+    "conversion_without_spend": 0,
+    "overall_purchase_rate": 0.00903125,
+    "total_buyers": 578
+  },
+  "ranges": {
+    "recency_months": [
+      1,
+      12
+    ],
+    "history_usd": [
+      29.99,
+      3345.93
+    ],
+    "zip_code_levels": [
+      "Rural",
+      "Surburban",
+      "Urban"
+    ],
+    "channel_levels": [
+      "Multichannel",
+      "Phone",
+      "Web"
+    ],
+    "neither_mens_nor_womens": 0,
+    "both_mens_and_womens": 6448,
+    "history_segment_bounds": {
+      "1) $0 - $100": {
+        "min": 29.99,
+        "max": 99.99,
+        "count": 22970
+      },
+      "2) $100 - $200": {
+        "min": 100.0,
+        "max": 199.98,
+        "count": 14254
+      },
+      "3) $200 - $350": {
+        "min": 200.0,
+        "max": 349.96,
+        "count": 12289
+      },
+      "4) $350 - $500": {
+        "min": 350.01,
+        "max": 499.95,
+        "count": 6409
+      },
+      "5) $500 - $750": {
+        "min": 500.0,
+        "max": 749.79,
+        "count": 4911
+      },
+      "6) $750 - $1,000": {
+        "min": 750.01,
+        "max": 999.75,
+        "count": 1859
+      },
+      "7) $1,000 +": {
+        "min": 1000.15,
+        "max": 3345.93,
+        "count": 1308
+      }
+    }
+  },
+  "feature_timing": {
+    "pre_email": [
+      "recency",
+      "history_segment",
+      "history",
+      "mens",
+      "womens",
+      "zip_code",
+      "newbie",
+      "channel"
+    ],
+    "assignment": "segment",
+    "post_email_forbidden_as_features": [
+      "visit",
+      "conversion",
+      "spend"
+    ],
+    "model_reads": [
+      "recency",
+      "history",
+      "mens",
+      "womens",
+      "newbie",
+      "zip_code",
+      "channel"
+    ],
+    "leak_check": []
+  },
+  "rare_outcome_warning": "578 buyers among 64,000 customers (0.90%); any subgroup or top-k cell holds few buyers, so targeting comparisons are imprecise.",
+  "rights": {
+    "publication": "public blog post by the data owner (Kevin Hillstrom, MineThatData), 20 March 2008, issued as an open analytics challenge",
+    "data_use": "the page invites anyone to analyse the file",
+    "redistribution": "no licence or redistribution permission stated",
+    "handling": "raw file kept local (data/raw/, gitignored); never committed, zipped or sent; only aggregates leave this repo"
+  }
+}

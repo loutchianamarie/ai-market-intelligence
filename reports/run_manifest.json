@@ -1,5 +1,5 @@
 {
-  "started_at": "2026-11-15T04:55:00+00:00",
+  "started_at": "2026-11-17T06:24:09+00:00",
   "versions": {
     "python": "3.12.10",
     "platform": "Windows-11-10.0.26300-SP0",
@@ -12,17 +12,8 @@
     "anthropic": "2.8.0"
   },
   "git": {
-    "commit": "eafb1e789856a8352c83134007bc2452e1bced15",
-    "dirty_tracked_files": [
-      "app/streamlit_app.py",
-      "configs/agents.json",
-      "reports/agent_trace_latest.json",
-      "src/mi/agents/coordinator.py",
-      "src/mi/agents/tools.py",
-      "src/mi/claims_export.py",
-      "src/mi/cli.py",
-      "src/mi/workflow/store.py"
-    ]
+    "commit": "ed81a47dc9e2884c1d7b310c04e5bcb7a3d7b16d",
+    "dirty_tracked_files": []
   },
   "data_lock_sha16": "29655981c5dafa28",
   "seed": 20261114,
@@ -34,126 +25,126 @@
     {
       "step": "verify data",
       "rc": 0,
-      "seconds": 3.6,
+      "seconds": 3.3,
       "log": "reports\\run_logs\\02_verify_data.log",
       "status": "ok"
     },
     {
       "step": "audit",
       "rc": 0,
-      "seconds": 12.2,
+      "seconds": 7.7,
       "log": "reports\\run_logs\\03_audit.log",
       "status": "ok"
     },
     {
       "step": "accounting audit + data dictionary",
       "rc": 0,
-      "seconds": 5.8,
+      "seconds": 4.3,
       "log": "reports\\run_logs\\04_accounting_audit_data_dictionary.log",
       "status": "ok"
     },
     {
       "step": "promotions load + join audit",
       "rc": 0,
-      "seconds": 118.4,
+      "seconds": 66.6,
       "log": "reports\\run_logs\\05_promotions_load_join_audit.log",
       "status": "ok"
     },
     {
       "step": "train",
       "rc": 0,
-      "seconds": 107.5,
+      "seconds": 34.4,
       "log": "reports\\run_logs\\06_train.log",
       "status": "ok"
     },
     {
       "step": "evaluate model",
       "rc": 0,
-      "seconds": 195.9,
+      "seconds": 64.3,
       "log": "reports\\run_logs\\07_evaluate_model.log",
       "status": "ok"
     },
     {
       "step": "model commercial diagnostic + promo ablation",
       "rc": 0,
-      "seconds": 193.6,
+      "seconds": 78.0,
       "log": "reports\\run_logs\\08_model_commercial_diagnostic_promo_ablation.log",
       "status": "ok"
     },
     {
       "step": "portfolio+sensitivity",
       "rc": 0,
-      "seconds": 68.1,
+      "seconds": 29.5,
       "log": "reports\\run_logs\\09_portfolio_sensitivity.log",
       "status": "ok"
     },
     {
       "step": "decision inputs + reversal",
       "rc": 0,
-      "seconds": 28.7,
+      "seconds": 14.0,
       "log": "reports\\run_logs\\10_decision_inputs_reversal.log",
       "status": "ok"
     },
     {
       "step": "claim audit",
       "rc": 0,
-      "seconds": 56.4,
+      "seconds": 26.5,
       "log": "reports\\run_logs\\11_claim_audit.log",
       "status": "ok"
     },
     {
       "step": "funding audit (historical coupon lines)",
       "rc": 0,
-      "seconds": 12.2,
+      "seconds": 7.0,
       "log": "reports\\run_logs\\12_funding_audit_historical_coupon_lines.log",
       "status": "ok"
     },
     {
       "step": "funding contracts (same plan) + reversal grid",
       "rc": 0,
-      "seconds": 207.9,
+      "seconds": 87.5,
       "log": "reports\\run_logs\\13_funding_contracts_same_plan_reversal_grid.log",
       "status": "ok"
     },
     {
       "step": "category trend robustness (Yogurt)",
       "rc": 0,
-      "seconds": 88.0,
+      "seconds": 41.1,
       "log": "reports\\run_logs\\14_category_trend_robustness_yogurt.log",
       "status": "ok"
     },
     {
       "step": "opportunity cards",
       "rc": 0,
-      "seconds": 34.4,
+      "seconds": 15.0,
       "log": "reports\\run_logs\\15_opportunity_cards.log",
       "status": "ok"
     },
     {
       "step": "client inputs check (form answers)",
       "rc": 0,
-      "seconds": 0.3,
+      "seconds": 0.2,
       "log": "reports\\run_logs\\16_client_inputs_check_form_answers.log",
       "status": "ok"
     },
     {
       "step": "extra opportunity (pre-registered criteria)",
       "rc": 0,
-      "seconds": 87.3,
+      "seconds": 1.9,
       "log": "reports\\run_logs\\17_extra_opportunity_pre_registered_criteria.log",
       "status": "ok"
     },
     {
       "step": "buyer-outcome panel",
       "rc": 0,
-      "seconds": 2.2,
+      "seconds": 2.1,
       "log": "reports\\run_logs\\18_buyer_outcome_panel.log",
       "status": "ok"
     },
     {
       "step": "rag eval",
       "rc": 0,
-      "seconds": 0.9,
+      "seconds": 0.6,
       "log": "reports\\run_logs\\19_rag_eval.log",
       "status": "ok"
     },
@@ -167,66 +158,73 @@
     {
       "step": "geo analysis",
       "rc": 0,
-      "seconds": 0.3,
+      "seconds": 0.2,
       "log": "reports\\run_logs\\21_geo_analysis.log",
       "status": "ok"
     },
     {
       "step": "interview intake check",
       "rc": 0,
-      "seconds": 0.3,
+      "seconds": 0.2,
       "log": "reports\\run_logs\\22_interview_intake_check.log",
       "status": "ok"
     },
     {
       "step": "fashionforward fixture",
       "rc": 0,
-      "seconds": 2.1,
+      "seconds": 2.0,
       "log": "reports\\run_logs\\23_fashionforward_fixture.log",
       "status": "ok"
     },
     {
       "step": "hillstrom experiment (separate track)",
       "rc": 0,
-      "seconds": 76.8,
+      "seconds": 74.1,
       "log": "reports\\run_logs\\24_hillstrom_experiment_separate_track.log",
+      "status": "ok"
+    },
+    {
+      "step": "campaign case export (HILLSTROM_EMAIL_2008, contract v1)",
+      "rc": 0,
+      "seconds": 24.4,
+      "log": "reports\\run_logs\\25_campaign_case_export_hillstrom_email_2008_contract_v1.log",
       "status": "ok"
     },
     {
       "step": "blocked demo",
       "rc": 0,
-      "seconds": 0.7,
-      "log": "reports\\run_logs\\25_blocked_demo.log",
+      "seconds": 1.9,
+      "log": "reports\\run_logs\\26_blocked_demo.log",
       "status": "ok"
     },
     {
       "step": "agents to human checkpoint",
       "rc": 0,
-      "seconds": 3.0,
-      "log": "reports\\run_logs\\26_agents_to_human_checkpoint.log",
+      "seconds": 3.2,
+      "log": "reports\\run_logs\\27_agents_to_human_checkpoint.log",
       "status": "ok"
     },
     {
       "step": "advisor evaluation (pre-registered cases)",
       "rc": 0,
-      "seconds": 3.2,
-      "log": "reports\\run_logs\\27_advisor_evaluation_pre_registered_cases.log"
+      "seconds": 3.7,
+      "log": "reports\\run_logs\\28_advisor_evaluation_pre_registered_cases.log"
     },
     {
       "step": "current claims + decision card",
       "rc": 0,
       "seconds": 0.5,
-      "log": "reports\\run_logs\\27_current_claims_decision_card.log"
+      "log": "reports\\run_logs\\29_current_claims_decision_card.log"
     },
     {
       "step": "marketing brief + slide sync list",
       "rc": 0,
-      "seconds": 0.4,
-      "log": "reports\\run_logs\\27_marketing_brief_slide_sync_list.log"
+      "seconds": 0.3,
+      "log": "reports\\run_logs\\30_marketing_brief_slide_sync_list.log"
     }
   ],
-  "dossier": "OPP-FC7CDD82",
-  "finished_at": "2026-11-15T05:16:51+00:00",
-  "seconds_total": 1310.8,
+  "dossier": "OPP-B2B80821",
+  "finished_at": "2026-11-17T06:34:04+00:00",
+  "seconds_total": 594.7,
   "ok": true
 }

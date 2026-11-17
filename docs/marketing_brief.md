@@ -1,6 +1,6 @@
 # Marketing brief (generated from the current dossier)
 
-Dossier `OPP-FC7CDD82` · advisor status **DEFER FUNDING / NO SPEND WHILE TERMS ARE UNCONFIRMED** · base case: RETAILER-FUNDED offer (retailer pays the full coupon face value): the current base case.
+Dossier `OPP-B2B80821` · advisor status **DEFER FUNDING / NO SPEND WHILE TERMS ARE UNCONFIRMED** · base case: RETAILER-FUNDED offer (retailer pays the full coupon face value): the current base case.
 
 ## 1. Objective
 - **Goal:** increase unique category buyers (incl. returning lapsed buyers) and incremental contribution.
@@ -49,13 +49,13 @@ Verified inputs that would reopen it:
 
 | item | status | kind | title | owner | budget | due | success metric |
 |---|---|---|---|---|---:|---|---|
-| WI-D7FBDF1C | READY | research | 2-3 consented interviews (lapsed frozen-pizza buyers, 1 nonbuyer) | Loutchiana (I01-I02), Charbel (I03) | $0 | 2026-11-22 | mi.evidence.interviews check = OK; barrier codes recorded |
-| WI-91662CE4 | READY | research | Freeze GEO panel and collect 20 fresh-chat answers | Loutchiana (Assistant 1), Charbel (Assistant 2) | $0 | 2026-11-22 | mi.seo.geo check complete_rows = 20 |
-| WI-7F43B3F8 | READY | research | Verify Kroger / Target / Walmart / ALDI offer pages by hand | Charbel | $0 | 2026-11-20 | each row VERIFIED with date or stays UNVERIFIED |
-| WI-EC881DC0 | READY | research | Send the client input form and load confirmed answers | both | $0 | 2026-11-20 | mi.decision.client_inputs check applies funding, pool, margin, costs, stock |
-| WI-E2954CF5 | READY | operations | Yogurt availability / assortment / placement check | client store operations (via team) | $0 | 2026-11-25 | cause identified or ruled out (stock / assortment / price / none) |
-| WI-CC201570 | BLOCKED_PENDING_APPROVAL | public_content | Discovery content for the public analogue (only after R2 shows a gap) | both (draft only) | $0 | 2026-12-06 | mention/recommendation rate on a re-run panel; owned-page clicks (separately) |
-| WI-C6C216BF | BLOCKED_PENDING_APPROVAL | paid_contact | Frozen Pizza lapsing digital coupon test (design only) | category manager (named approver) | $1,938 | 2026-12-15 | incremental contribution per randomized household above the rollout hurdle |
+| WI-F2031770 | READY | research | 2-3 consented interviews (lapsed frozen-pizza buyers, 1 nonbuyer) | Loutchiana (I01-I02), Charbel (I03) | $0 | 2026-11-24 | mi.evidence.interviews check = OK; barrier codes recorded |
+| WI-66880A54 | READY | research | Freeze GEO panel and collect 20 fresh-chat answers | Loutchiana (Assistant 1), Charbel (Assistant 2) | $0 | 2026-11-24 | mi.seo.geo check complete_rows = 20 |
+| WI-DA062A84 | READY | research | Verify Kroger / Target / Walmart / ALDI offer pages by hand | Charbel | $0 | 2026-11-22 | each row VERIFIED with date or stays UNVERIFIED |
+| WI-682EC652 | READY | research | Send the client input form and load confirmed answers | both | $0 | 2026-11-22 | mi.decision.client_inputs check applies funding, pool, margin, costs, stock |
+| WI-BFF5C649 | READY | operations | Yogurt availability / assortment / placement check | client store operations (via team) | $0 | 2026-11-27 | cause identified or ruled out (stock / assortment / price / none) |
+| WI-673F452D | BLOCKED_PENDING_APPROVAL | public_content | Discovery content for the public analogue (only after R2 shows a gap) | both (draft only) | $0 | 2026-12-08 | mention/recommendation rate on a re-run panel; owned-page clicks (separately) |
+| WI-7B888BD2 | BLOCKED_PENDING_APPROVAL | paid_contact | Frozen Pizza lapsing digital coupon test (design only) | category manager (named approver) | $1,938 | 2026-12-17 | incremental contribution per randomized household above the rollout hurdle |
 
 READY items are $0 research or operations tasks. BLOCKED items need a named approver with a reason, plus verified consent and stock. No agent can approve, send, spend or launch.
 
