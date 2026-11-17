@@ -1,0 +1,103 @@
+{
+ "status": "EXPLORATORY: data already seen; not confirmatory",
+ "noise_floor": {
+  "n_orders": 300,
+  "mean": 0.231938182892406,
+  "sd": 3.379001330033721,
+  "p95": 5.909767754932307,
+  "p05": -5.3010654559633785
+ },
+ "noise_floor_full": {
+  "n_orders": 300,
+  "mean": 0.39799581939829937,
+  "sd": 3.969423663940152,
+  "p95": 7.465924428303331,
+  "p05": -5.801987828288609
+ },
+ "heterogeneity": {
+  "global": {
+   "lr_stat": 27.131359202171552,
+   "df": 18,
+   "p_value": 0.07656444197785217,
+   "reading": "tests whether ANY feature changes the e-mail effect on the log-odds scale; exploratory"
+  },
+  "per_feature": [
+   {
+    "feature": "newbie",
+    "lr_stat": 9.859835890219074,
+    "df": 2,
+    "p_raw": 0.0072270962756403505,
+    "p_holm": 0.06504386648076316
+   },
+   {
+    "feature": "mens",
+    "lr_stat": 7.53870990724954,
+    "df": 2,
+    "p_raw": 0.023066937733928778,
+    "p_holm": 0.18453550187143022
+   },
+   {
+    "feature": "recency",
+    "lr_stat": 2.5591917270157865,
+    "df": 2,
+    "p_raw": 0.2781496881809355,
+    "p_holm": 1.0
+   },
+   {
+    "feature": "womens",
+    "lr_stat": 1.1949616549873099,
+    "df": 2,
+    "p_raw": 0.5501959301845563,
+    "p_holm": 1.0
+   },
+   {
+    "feature": "log_history",
+    "lr_stat": 0.8445740375682362,
+    "df": 2,
+    "p_raw": 0.6555458584137799,
+    "p_holm": 1.0
+   },
+   {
+    "feature": "zip_code=Surburban",
+    "lr_stat": -0.9120873502097311,
+    "df": 2,
+    "p_raw": 1.0,
+    "p_holm": 1.0
+   },
+   {
+    "feature": "zip_code=Urban",
+    "lr_stat": -2.5513743466708547,
+    "df": 2,
+    "p_raw": 1.0,
+    "p_holm": 1.0
+   },
+   {
+    "feature": "channel=Phone",
+    "lr_stat": -3.9482212595112287,
+    "df": 2,
+    "p_raw": 1.0,
+    "p_holm": 1.0
+   },
+   {
+    "feature": "channel=Web",
+    "lr_stat": -4.352422618332639,
+    "df": 2,
+    "p_raw": 1.0,
+    "p_holm": 1.0
+   }
+  ]
+ },
+ "power": {
+  "observed_gap_per_1000": 2.6300957840514037,
+  "ci95": [
+   -3.515450155035369,
+   8.748261697170404
+  ],
+  "se_per_1000": 3.1284979214810646,
+  "n_test_now": 25603,
+  "customers_needed_for_80pct_power_if_gap_is_real": 284012,
+  "scale_factor": 11.092889171702026,
+  "min_detectable_gap_per_1000_at_current_n": 8.759794180146981,
+  "reading": "rough: assumes the estimated gap is the true gap and that interval width scales with 1/sqrt(n); the estimated gap itself is uncertain"
+ }
+}

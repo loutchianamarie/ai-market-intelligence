@@ -34,6 +34,8 @@ python -m pytest -q tests/test_campaign_advisor.py
 
 Mode is `DETERMINISTIC_SPECIALISTS`; a live LLM tool-use run is PENDING. See `docs/demo_runbook.md`, `docs/reference_patterns.md`, `docs/marketing_decision_brief.md`. `.gitattributes` pins the export byte-exact: a CRLF checkout changes its SHA-256.
 
+**Model lab (v3, pre-registered).** Eight fixed candidates compared by cross-fitted Qini area, a permutation null and one test-split confirmation: `python -m mi.campaign.lab` then `python -m mi.campaign.lab_extras` (about 1 minute). Results, six figures and a generated report are in `reports/campaign_lab/` (`report.md`). **Finding: no challenger beats the v2 baseline, and the targeting signal is not distinguishable from noise with 578 buyers; the decision rests on the randomized effect.** Needs the raw CSV in `data/raw/hillstrom/` (SHA-256 checked).
+
 Protocol `data/eval/hillstrom_protocol_v2.json` was committed before the conversion model was fitted. The earlier visit analysis (`mi.experiments.hillstrom`, protocol v1) is unchanged.
 
 ## Quick start (Windows, Python 3.12)

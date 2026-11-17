@@ -396,7 +396,7 @@ def figures(R: dict, out: Path) -> list[str]:
             x, q = v.qini_points(s[a])
             ax[i].plot(x, q, label=k, color=col.get(k), lw=2.4 if k == sel["selected"] else 1.3, ls="--" if k.startswith(("RULE", "RANDOM")) else "-")
         ax[i].plot([0, 1], [0, v.qini_points(oof0["S_LOGIT"][a])[1][-1]], color="k", lw=0.8, ls=":")
-        ax[i].set_title(f"{a}: cumulative incremental buyers (out-of-fold, train+val)")
+        ax[i].set_title(f"{a}: cumulative incremental buyers\n(out-of-fold, train+validation)", fontsize=10)
         ax[i].set_xlabel("share of customers contacted (ranked by score)")
         ax[i].set_ylabel("incremental buyers")
     ax[0].legend(fontsize=7)
@@ -425,14 +425,14 @@ def figures(R: dict, out: Path) -> list[str]:
     dc = R["descriptive"]
     fig, ax = plt.subplots(1, 2, figsize=(13, 5))
     for i, a in enumerate(TREATMENTS):
-        for k in ("S_LOGIT", sel["selected"], sel["best_challenger"], "ENSEMBLE", "RULE_RECENCY", "RULE_HISTORY"):
+        for k in dict.fromkeys(("S_LOGIT", sel["selected"], sel["best_challenger"], "ENSEMBLE", "RULE_RECENCY", "RULE_HISTORY")):
             if k in dc["curves"][a]:
                 c = dc["curves"][a][k]
                 ax[i].plot(dc["shares"], c["value"], label=k, color=col.get(k))
                 if k in (sel["selected"], "S_LOGIT"):
                     ax[i].fill_between(dc["shares"], c["lo"], c["hi"], color=col.get(k), alpha=0.12)
         ax[i].axhline(dc["curves"][a]["RANDOM_ORDER"]["value"][-1], color="k", ls=":", lw=1, label="send to all")
-        ax[i].set_title(f"{a}: incremental buyers per 1,000 contacts, all 64,000 customers (cross-fitted)")
+        ax[i].set_title(f"{a}: uplift per 1,000 contacts by contact share\n(all 64,000 customers, cross-fitted)", fontsize=10)
         ax[i].set_xlabel("contact share")
         ax[i].set_ylabel("per 1,000 contacts")
     ax[0].legend(fontsize=7)
@@ -477,7 +477,7 @@ def figures(R: dict, out: Path) -> list[str]:
         ax[i].errorbar([r["pred_per_1000"] for r in rows], [r["obs_per_1000"] for r in rows], yerr=[1.96 * r["se"] for r in rows], fmt="o", color="#2a78d6")
         lim = [min(r["pred_per_1000"] for r in rows) - 2, max(r["pred_per_1000"] for r in rows) + 2]
         ax[i].plot(lim, lim, "k:", lw=1)
-        ax[i].set_title(f"{a}: predicted vs observed uplift by quintile ({R['selection']['selected']}, cross-fitted)")
+        ax[i].set_title(f"{a}: predicted vs observed uplift by quintile\n({R['selection']['selected']}, cross-fitted)", fontsize=10)
         ax[i].set_xlabel("mean predicted uplift per 1,000")
         ax[i].set_ylabel("observed uplift per 1,000 (95%)")
     fig.tight_layout()
