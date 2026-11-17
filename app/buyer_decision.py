@@ -26,6 +26,20 @@ BLUE, ORANGE, GREY = "#2a78d6", "#eb6834", "#8a8a86"
 COLORS = {"OBSERVED": "#1f6f43", "ESTIMATE": "#2a5ca8", "ASSUMPTION": "#8a5a00", "UNKNOWN": "#555555", "PENDING": "#555555"}
 
 
+
+def live_note() -> str:
+    """Status of live LLM use, read from the saved check files (never hard-coded as pending once a check passed)."""
+    import json as _j
+    p = Path(__file__).resolve().parents[1] / "reports" / "marketing_live_llm_check.json"
+    try:
+        c = _j.loads(p.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return "PENDING: no live LLM run recorded; this path calls no LLM."
+    if c.get("live_llm") and c.get("matches_export"):
+        return ("The decision path itself calls no LLM (deterministic specialists). A separate live check passed: the analyst role, driven by "
+                f"{c.get('model')}, called only its read tools and reported {c.get('findings_returned')} claims that all match the export. Strategist and checker are not LLM-driven.")
+    return "PENDING: the saved live LLM check did not pass or did not run; this path calls no LLM."
+
 def badge(label: str) -> str:
     c = COLORS.get(label, "#555")
     return f"<span style='border:1.5px solid {c};color:{c};border-radius:4px;padding:1px 6px;font-size:.75rem;font-weight:600'>{label}</span>"
@@ -160,7 +174,7 @@ else:
     st.dataframe(pd.DataFrame([{"item": w["item_id"], "kind": w["kind"], "status": w["status"], "title": w["title"]} for w in dz["work_items"]]),
                  hide_index=True, use_container_width=True)
     ph = pilot_hash(d["pilot"])
-    st.markdown(f"**Dossier** `{dz['id']}` state **{d['state']}**; plan hash `{ph[:16]}...`; mode `{dz['mode']}`. {dz['llm_status']}.")
+    st.markdown(f"**Dossier** `{dz['id']}` state **{d['state']}**; plan hash `{ph[:16]}...`; mode `{dz['mode']}`. {live_note()}")
     if d["state"] == "REVIEW_REQUESTED":
         with st.form("human"):
             name = st.text_input("Approver full name (a human decision)")

@@ -32,7 +32,7 @@ def test_report_has_every_section_and_no_placeholders(text):
 
 def test_report_states_the_honest_limits(text):
     low = text.lower()
-    for phrase in ("repeated evaluation", "not shown to beat random", "scenario", "0 of 20 geo", "deterministic_specialists", "must be checked against the sources"):
+    for phrase in ("repeated evaluation", "not shown to beat random", "scenario", "0 of 20 geo", "deterministic_specialists", "references were checked against", "radcliffe (2007) journal issue could not be found"):
         assert phrase in low, phrase
     body = low.split("## appendix a")[0]                                   # the claim ledger legitimately lists an UNKNOWN "measured profit"
     assert "the model wins" not in body and "profit of" not in body

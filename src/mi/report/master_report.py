@@ -318,16 +318,19 @@ The defensible finding is the randomized average effect: a Mens e-mail creates a
 
 - Hillstrom, K. (2008). MineThatData E-Mail Analytics and Data Mining Challenge. https://blog.minethatdata.com/2008/03/minethatdata-e-mail-analytics-and-data.html
 - Radcliffe, N. J. (2008). Hillstrom's MineThatData Email Analytics Challenge: An Approach Using Uplift Modelling. Stochastic Solutions. https://stochasticsolutions.com/pdf/HillstromChallenge.pdf
-- Radcliffe, N. J. (2007). Using control groups to target on predicted lift: building and assessing uplift models. Direct Marketing Analytics Journal.
-- Rzepakowski, P., and Jaroszewicz, S. (2012). Decision trees for uplift modeling with single and multiple treatments. Knowledge and Information Systems, 32, 303-327.
-- Gutierrez, P., and Gerardy, J.-Y. (2017). Causal inference and uplift modelling: a review of the literature. JMLR Workshop and Conference Proceedings, 67.
-- Kunzel, S. R., Sekhon, J. S., Bickel, P. J., and Yu, B. (2019). Metalearners for estimating heterogeneous treatment effects using machine learning. PNAS, 116(10), 4156-4165.
+- Radcliffe, N. J. (2007). Using control groups to target on predicted lift: building and assessing uplift models. Direct Marketing Journal (Direct Marketing Association Analytics Council), 14-21. Journal name and pages confirmed from one secondary listing only (scientificmarketer.com); the original issue was not found online.
+- Rzepakowski, P., and Jaroszewicz, S. (2012). Decision trees for uplift modeling with single and multiple treatments. Knowledge and Information Systems, 32(2), 303-327. https://doi.org/10.1007/s10115-011-0434-0
+- Gutierrez, P., and Gerardy, J.-Y. (2017). Causal inference and uplift modelling: a review of the literature. Proceedings of Machine Learning Research (PMLR), 67, 1-13 (3rd International Conference on Predictive Applications and APIs). https://proceedings.mlr.press/v67/gutierrez17a.html
+- Künzel, S. R., Sekhon, J. S., Bickel, P. J., and Yu, B. (2019). Metalearners for estimating heterogeneous treatment effects using machine learning. PNAS, 116(10), 4156-4165. https://doi.org/10.1073/pnas.1804597116
 - scikit-uplift documentation. https://www.uplift-modeling.com/en/latest/quick_start.html
-- Microsoft Research (2024). Magentic-One. https://www.microsoft.com/en-us/research/articles/magentic-one-a-generalist-multi-agent-system-for-solving-complex-tasks/
+- Fourney, A., Bansal, G., Mozannar, H., Tan, C., et al. (2024). Magentic-One: A generalist multi-agent system for solving complex tasks. Microsoft Research (MSR-TR-2024-47); arXiv:2411.04468. https://www.microsoft.com/en-us/research/publication/magentic-one/
 - Anthropic (2025). How we built our multi-agent research system. https://www.anthropic.com/research/multi-agent-research-system
 - Google Search Central. AI features and your website. https://developers.google.com/search/docs/appearance/ai-features
 
-*Bibliographic details of the journal references were written from memory and must be checked against the sources before submission.*
+- Diemert, E., Betlei, A., Renaudin, C., and Amini, M.-R. (2018). A large scale benchmark for uplift modeling. AdKDD & TargetAd Workshop (ADKDD'18), ACM. Dataset: Criteo Uplift Prediction Dataset v2.1, https://huggingface.co/datasets/criteo/criteo-uplift (CC BY-NC-SA 4.0).
+- Diemert, E., Betlei, A., Renaudin, C., Amini, M.-R., Gregoir, T., and Rahier, T. (2021). A large scale benchmark for individual treatment effect prediction and uplift modeling. arXiv:2111.10106 (describes the 14-million-row version used here).
+
+*References were checked against publisher, DOI, PMLR, arXiv and project pages in November 2026. Remaining caveat: the Radcliffe (2007) journal issue could not be found online, so its journal name and page range rest on a single secondary listing; cite it as "per secondary source" or replace it with the Radcliffe (2008) Hillstrom paper above.*
 
 ## Appendix A. Claim ledger (slide-safe claims, from the export)
 
