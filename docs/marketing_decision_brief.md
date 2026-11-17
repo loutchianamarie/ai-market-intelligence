@@ -48,6 +48,12 @@ Margin and cost per e-mail are UNKNOWN. Break-even cost per e-mail by assumed ma
 | Central assumptions, Mens E-Mail | 35% | 0.030 | 1,000 | 12,792 USD | 7,053 to 18,531 |
 | Favourable assumptions, Mens E-Mail | 50% | 0.005 | 500 | 21,383 USD | 13,184 to 29,582 |
 
+## Scale replication (Criteo, protocol v4)
+
+Replication on 13,979,592 randomized Criteo rows (a different, anonymised advertising setting): targeting the top 25% beat random by about +2.0 extra conversions per 1,000 contacts with 64,000 training customers and +2.8 with 4,000,000, measured on 2,795,918 held-out customers. The Hillstrom 'not stable' verdict is therefore mostly a limit of its small test set, not proof that targeting cannot work. It is not evidence about Hillstrom customers.
+
+Details: `reports/criteo_scale/report.md`.
+
 ## Model lab: could a better model fix this?
 
 8 model candidates were tested under a pre-registered protocol; none was shown better than the baseline (best challenger S_LOGIT_SPARSE: paired 90% interval -1.0 to +4.9 buyers of Qini area). The baseline's out-of-fold signal is not distinguishable from shuffled arm labels (p = 0.15). Proving a targeting gain would need roughly 284,012 customers, against 25,603 in the test split.

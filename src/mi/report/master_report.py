@@ -91,6 +91,14 @@ def build() -> str:
             "![Gap versus training size](../reports/criteo_scale/fig_gap_vs_size.png)\n")
     else:
         scale_md = ""
+    VS = _j(REPORTS / "campaign_lab_visit" / "results.json")
+    if VS:
+        vc = VS["confirmation"]["comparisons"]["MODEL_MENS_25 minus RANDOM_MENS_25"]
+        scale_md += ("\n\n### 5.3c Targeting on the visit outcome (protocol v5, pre-registered)\n\n"
+                     f"Purchases are rare, so the same lab was rerun on website visits (about {VS['visit_rate'] * 100:.0f}% of customers; an intermediate outcome, not buyers). "
+                     f"The selected model ({VS['selection']['selected']}) beat the baseline in cross-fitting and its permutation test gave p = {VS['permutation']['p_value']:.3f}, "
+                     f"but on the untouched test split the gain over random at a 25% cap was {vc['value']:+.1f} additional visits per 1,000 contacts with a 95% interval of {vc['ci95'][0]:+.1f} to {vc['ci95'][1]:+.1f}. "
+                     "Under the pre-registered rule targeting is therefore not detectable even on the more frequent outcome; the in-sample hint remains a hypothesis. Details: `reports/campaign_lab_visit/report.md`.\n")
     cand = [k for k in sel["mean_auq"] if k not in ("RULE_RECENCY", "RULE_HISTORY", "RANDOM_ORDER")]
     lab_rows = "\n".join(f"| {k} | {sel['mean_auq'][k]:.2f} | {sel['sd_auq_over_repeats'][k]:.2f} | "
                          + (ci(sel["paired_diff_vs_baseline_ci90"][k], 2) if k in sel["paired_diff_vs_baseline_ci90"] else "baseline") + " |" for k in cand)

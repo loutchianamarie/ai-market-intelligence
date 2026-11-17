@@ -50,6 +50,39 @@ def what_if(spend: float, spend_ci: list[float], margin: float, cost_per_email: 
             "kind": "SCENARIO, NOT MEASURED PROFIT"}
 
 
+def share_curve(shares, per1000, lo, hi, random_per1000: float, spend_per_buyer: float, margin: float, cost_per_email: float, pool: int = 1000) -> dict:
+    """Scenario contribution by share of customers contacted, from the cross-fitted uplift curve (additional buyers per 1,000
+    contacts when the top `share` by model score is e-mailed) and an assumed margin and cost. NOT measured profit.
+    contribution(share) = pool * share * (buyers_per_contact * spend_per_buyer * margin - cost_per_email)."""
+    f = lambda b: [pool * s * (v / 1000.0 * spend_per_buyer * margin - cost_per_email) for s, v in zip(shares, b)]
+    model, low, high = f(per1000), f(lo), f(hi)
+    rand = f([random_per1000] * len(shares))
+    best = max(range(len(shares)), key=lambda i: model[i])
+    return {"shares": list(shares), "model": model, "low": low, "high": high, "random": rand, "best_share": shares[best],
+            "best_contribution": model[best], "all_in_contribution": model[-1], "kind": "SCENARIO, NOT MEASURED PROFIT"}
+
+
+def diff_cases(old: dict, new: dict) -> dict:
+    """What changed between two VALIDATED exports (dicts). Compares the claim ledger, verdict, recommendation and approval status.
+    Pure function; the caller validates both documents first (an invalid one must never be diffed)."""
+    oc = {c["claim_id"]: c for c in old.get("claims", [])}
+    nc = {c["claim_id"]: c for c in new.get("claims", [])}
+    changed = [{"claim_id": k, "old": oc[k].get("value"), "new": nc[k].get("value"), "old_tag": oc[k].get("tag"), "new_tag": nc[k].get("tag")}
+               for k in sorted(oc.keys() & nc.keys()) if (oc[k].get("value"), oc[k].get("tag")) != (nc[k].get("value"), nc[k].get("tag"))]
+    top = lambda d, *ks: _dig(d, ks)
+    fields = {"verdict": ("model_vs_baselines", "verdict"), "recommendation status": ("recommendation", "status"),
+              "approval status": ("approval_status",), "model version": ("model_version",), "run id": ("run_id",)}
+    scalar = [{"field": f, "old": top(old, *ks), "new": top(new, *ks)} for f, ks in fields.items() if top(old, *ks) != top(new, *ks)]
+    return {"changed_claims": changed, "added_claims": sorted(nc.keys() - oc.keys()), "removed_claims": sorted(oc.keys() - nc.keys()),
+            "changed_fields": scalar, "identical": not (changed or scalar or (nc.keys() ^ oc.keys()))}
+
+
+def _dig(d, keys):
+    for k in keys:
+        d = d.get(k) if isinstance(d, dict) else None
+    return d
+
+
 def build(case: CaseResult, trace: dict | None = None, blocked: dict | None = None) -> dict:
     """Return the view model. Raises if the case is not a validated COMPUTED_EXPORT (caller shows DATA_PENDING instead)."""
     if not case.ok:
@@ -103,7 +136,7 @@ def build(case: CaseResult, trace: dict | None = None, blocked: dict | None = No
         "marketing": {k: d["marketing"][k] for k in ("positioning", "four_ps", "message_drafts", "action_plan", "success_metric", "targeting")},
         "warnings": d["warnings"], "sources": d["sources"], "published_refs": d["published_references"],
         "claims": {k: cl[k] for k in cl}, "approval_status": d["approval_status"],
-        "trace": trace, "blocked": blocked, "lab": lab_summary(),
+        "trace": trace, "blocked": blocked, "lab": lab_summary(), "scale": scale_summary(), "curve": _curve_inputs(d),
     }
     if trace:
         v["dossier"] = {"id": trace["opportunity_id"], "state": trace["state"], "mode": trace["mode"], "llm_status": trace["llm_status"],
@@ -111,6 +144,37 @@ def build(case: CaseResult, trace: dict | None = None, blocked: dict | None = No
                                    "tools": [f"{c['tool']}:{c['status']}" for c in s["tool_calls"]]} for s in trace["agent_trace"]],
                         "checker": trace.get("checker_verdict"), "work_items": trace.get("work_items", []), "approval": trace.get("approval")}
     return v
+
+
+def _curve_inputs(d: dict, path: Path = REPORTS / "campaign_lab" / "results.json") -> dict | None:
+    """Cross-fitted uplift-by-share curve (Mens e-mail, baseline model) from the model lab, plus the observed spend per additional buyer."""
+    if not path.exists():
+        return None
+    c = json.loads(path.read_text(encoding="utf-8"))["descriptive"]
+    cv = c["curves"]["Mens E-Mail"]["S_LOGIT"]
+    e = next(x for x in d["average_effects"] if x["treatment_arm"] == "Mens E-Mail")
+    rate = e["rate_difference"]["value"]
+    return {"shares": c["shares"], "per1000": cv["value"], "lo": cv["lo"], "hi": cv["hi"], "random_per1000": e["additional_buyers_per_1000"]["value"],
+            "spend_per_buyer": e["incremental_spend_per_contact"]["value"] / rate, "note": "cross-fitted on all customers; baseline model S_LOGIT; intervals are wide"}
+
+
+def scale_summary(path: Path = REPORTS / "criteo_scale" / "results.json") -> dict | None:
+    """Headline of the Criteo scale replication (protocol v4), read from its generated results; None if not run."""
+    if not path.exists():
+        return None
+    r = json.loads(path.read_text(encoding="utf-8"))
+    sv = r["verdicts"]
+    ks = list(sv)
+    mg = lambda k: sum(x["mean_gap"] for x in sv[k].values()) / len(sv[k])
+    n_small = next(f["n_train"] for f in r["fits"] if f["size"] == ks[0])
+    n_big = next(f["n_train"] for f in r["fits"] if f["size"] == ks[-1])
+    any_small = any(x["beats_random"] for x in sv[ks[0]].values())
+    return {"rows": r["rows"], "test_rows": r["test_rows"], "n_small": n_small, "n_big": n_big, "gap_small": mg(ks[0]), "gap_big": mg(ks[-1]),
+            "beats_random_at_small": any_small,
+            "sentence": (f"Replication on {r['rows']:,} randomized Criteo rows (a different, anonymised advertising setting): targeting the top 25% beat random by about "
+                         f"{mg(ks[0]):+.1f} extra conversions per 1,000 contacts with {n_small:,} training customers and {mg(ks[-1]):+.1f} with {n_big:,}, "
+                         f"measured on {r['test_rows']:,} held-out customers. The Hillstrom 'not stable' verdict is therefore mostly a limit of its small test set, "
+                         "not proof that targeting cannot work. It is not evidence about Hillstrom customers.")}
 
 
 def lab_summary(path: Path = REPORTS / "campaign_lab" / "results.json") -> dict | None:
@@ -161,6 +225,8 @@ def brief_markdown(v: dict) -> str:
     L += ["", "| Scenario (assumption set) | Margin | Cost per e-mail | Setup | Contribution (SCENARIO) | Range |", "|---|---|---|---|---|---|"]
     L += [f"| {s['label']} | {'unknown' if s['margin'] is None else format(s['margin'], '.0%')} | {n(s['cost'], 3)} | {n(s['setup'], 0)} | "
           f"{n(s['contribution'], 0)} USD | {s['range'] or 'unknown'} |" for s in v["scenarios"]]
+    if v.get("scale"):
+        L += ["", "## Scale replication (Criteo, protocol v4)", "", v["scale"]["sentence"], "", "Details: `reports/criteo_scale/report.md`."]
     if v.get("lab"):
         L += ["", "## Model lab: could a better model fix this?", "", v["lab"]["sentence"], "",
               "Exploratory test of whether any feature changes the e-mail effect: global p = " + f"{v['lab']['heterogeneity_p']:.3f}" + ". Details: `reports/campaign_lab/report.md`."]

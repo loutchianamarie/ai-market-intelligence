@@ -448,3 +448,37 @@ def test_what_if_is_scenario_arithmetic_and_validates():
     import pytest
     with pytest.raises(ValueError):
         what_if(0.77, [0.49, 1.05], 1.5, 0.02, 1000)
+
+
+def test_share_curve_arithmetic():
+    from mi.consumer.viewmodel import share_curve
+    r = share_curve([0.5, 1.0], [10.0, 5.0], [5.0, 2.0], [15.0, 8.0], 5.0, spend_per_buyer=100.0, margin=0.5, cost_per_email=0.1, pool=1000)
+    assert abs(r["model"][0] - 1000 * 0.5 * (0.010 * 100 * 0.5 - 0.1)) < 1e-9
+    assert r["best_share"] == 0.5 and r["kind"] == "SCENARIO, NOT MEASURED PROFIT"
+    assert all(h >= l for h, l in zip(r["high"], r["low"]))
+
+
+def test_proposed_draft_guardrails_and_pending_strategist(case, monkeypatch):
+    assert A.check_proposed_draft("A look at our new men's line", "Hello. Unsubscribe: [unsubscribe link]") == []
+    bad = A.check_proposed_draft("Save 20% today", "Limited time! Free shipping")
+    assert any("unsubscribe" in p for p in bad) and any("unverifiable" in p for p in bad)
+    assert A.check_proposed_draft("x" * 200, "[unsubscribe link]")
+    assert A.check_proposed_draft("Hi", "the model beats random [unsubscribe link]")
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    out = A.live_strategist_check(case, persist=False)
+    assert out["live_llm"] is False and out["status"].startswith("PENDING")
+
+
+def test_diff_cases_detects_changes_and_identity(case):
+    import copy
+    from mi.consumer.viewmodel import diff_cases
+    a = case.doc
+    assert diff_cases(a, a)["identical"] is True
+    b = copy.deepcopy(a)
+    b["claims"][0]["value"] = (b["claims"][0]["value"] or 0) + 1
+    b["model_vs_baselines"]["verdict"] = "CHANGED_FOR_TEST"
+    d = diff_cases(a, b)
+    assert not d["identical"] and d["changed_claims"][0]["claim_id"] == a["claims"][0]["claim_id"]
+    assert any(f["field"] == "verdict" and f["new"] == "CHANGED_FOR_TEST" for f in d["changed_fields"])
+    b["claims"].pop()
+    assert len(diff_cases(a, b)["removed_claims"]) == 1

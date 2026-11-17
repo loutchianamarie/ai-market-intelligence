@@ -1,0 +1,675 @@
+{
+ "protocol": "hillstrom_protocol_v5_visit.json",
+ "outcome": "visit (intermediate outcome, not purchase)",
+ "visit_rate": 0.14678125,
+ "selection": {
+  "mean_auq": {
+   "S_LOGIT": 57.433443667712844,
+   "S_LOGIT_SPARSE": 71.69066938235306,
+   "T_LOGIT": 54.76819677589057,
+   "S_HGB": 56.922139458357954,
+   "T_HGB": 49.75465473770007,
+   "TO_RIDGE": 58.81468549053262,
+   "TO_HGB": 44.712523672737994,
+   "ENSEMBLE": 55.21810290161585,
+   "RULE_RECENCY": 6.795290937897984,
+   "RULE_HISTORY": 13.928513815224862,
+   "RANDOM_ORDER": -14.743813058113806
+  },
+  "sd_auq_over_repeats": {
+   "S_LOGIT": 5.512572483872372,
+   "S_LOGIT_SPARSE": 0.3429365937259657,
+   "T_LOGIT": 6.846683437910111,
+   "S_HGB": 3.0263256041834583,
+   "T_HGB": 2.6253639226158376,
+   "TO_RIDGE": 5.535821322226317,
+   "TO_HGB": 3.1353382256125513,
+   "ENSEMBLE": 4.740134322744159,
+   "RULE_RECENCY": 0.0,
+   "RULE_HISTORY": 0.0,
+   "RANDOM_ORDER": 1.7763568394002505e-15
+  },
+  "per_repeat": [
+   {
+    "S_LOGIT": {
+     "Mens E-Mail": 22.071480576925875,
+     "Womens E-Mail": 77.22538037983719,
+     "mean": 49.648430478381535
+    },
+    "S_LOGIT_SPARSE": {
+     "Mens E-Mail": 58.25247986624713,
+     "Womens E-Mail": 85.94918148978778,
+     "mean": 72.10083067801745
+    },
+    "T_LOGIT": {
+     "Mens E-Mail": 13.837605342494845,
+     "Womens E-Mail": 76.37555542739652,
+     "mean": 45.10658038494568
+    },
+    "S_HGB": {
+     "Mens E-Mail": 26.483468011935948,
+     "Womens E-Mail": 78.84434386033271,
+     "mean": 52.66390593613433
+    },
+    "T_HGB": {
+     "Mens E-Mail": 8.309301380661946,
+     "Womens E-Mail": 95.24243345500923,
+     "mean": 51.77586741783559
+    },
+    "TO_RIDGE": {
+     "Mens E-Mail": 18.209468024359943,
+     "Womens E-Mail": 83.9436819045311,
+     "mean": 51.07657496444553
+    },
+    "TO_HGB": {
+     "Mens E-Mail": -9.246199121299467,
+     "Womens E-Mail": 95.39000779434147,
+     "mean": 43.071904336521
+    },
+    "ENSEMBLE": {
+     "Mens E-Mail": 21.578301806720496,
+     "Womens E-Mail": 75.45080184437785,
+     "mean": 48.51455182554918
+    },
+    "RULE_RECENCY": {
+     "Mens E-Mail": 13.753132253268983,
+     "Womens E-Mail": -0.16255037747301637,
+     "mean": 6.795290937897984
+    },
+    "RULE_HISTORY": {
+     "Mens E-Mail": 30.856402932721252,
+     "Womens E-Mail": -2.9993753022715266,
+     "mean": 13.928513815224862
+    },
+    "RANDOM_ORDER": {
+     "Mens E-Mail": -11.320108905229688,
+     "Womens E-Mail": -18.16751721099792,
+     "mean": -14.743813058113805
+    }
+   },
+   {
+    "S_LOGIT": {
+     "Mens E-Mail": 39.823451900841334,
+     "Womens E-Mail": 82.11329740529574,
+     "mean": 60.96837465306854
+    },
+    "S_LOGIT_SPARSE": {
+     "Mens E-Mail": 57.32404387859291,
+     "Womens E-Mail": 86.09539264335794,
+     "mean": 71.70971826097542
+    },
+    "T_LOGIT": {
+     "Mens E-Mail": 36.25795607556307,
+     "Womens E-Mail": 84.04547267304183,
+     "mean": 60.15171437430245
+    },
+    "S_HGB": {
+     "Mens E-Mail": 31.5888850349596,
+     "Womens E-Mail": 87.25808813890897,
+     "mean": 59.42348658693429
+    },
+    "T_HGB": {
+     "Mens E-Mail": 17.989412465254247,
+     "Womens E-Mail": 84.89306216828007,
+     "mean": 51.44123731676716
+    },
+    "TO_RIDGE": {
+     "Mens E-Mail": 38.14060710149628,
+     "Womens E-Mail": 85.16851517367701,
+     "mean": 61.65456113758664
+    },
+    "TO_HGB": {
+     "Mens E-Mail": -2.0526004414071055,
+     "Womens E-Mail": 100.25319384415451,
+     "mean": 49.1002967013737
+    },
+    "ENSEMBLE": {
+     "Mens E-Mail": 34.853936748463134,
+     "Womens E-Mail": 82.30701677301138,
+     "mean": 58.580476760737255
+    },
+    "RULE_RECENCY": {
+     "Mens E-Mail": 13.753132253268983,
+     "Womens E-Mail": -0.16255037747301637,
+     "mean": 6.795290937897984
+    },
+    "RULE_HISTORY": {
+     "Mens E-Mail": 30.856402932721252,
+     "Womens E-Mail": -2.9993753022715266,
+     "mean": 13.928513815224862
+    },
+    "RANDOM_ORDER": {
+     "Mens E-Mail": -11.320108905229688,
+     "Womens E-Mail": -18.16751721099792,
+     "mean": -14.743813058113805
+    }
+   },
+   {
+    "S_LOGIT": {
+     "Mens E-Mail": 43.77303219061119,
+     "Womens E-Mail": 79.59401955276573,
+     "mean": 61.68352587168846
+    },
+    "S_LOGIT_SPARSE": {
+     "Mens E-Mail": 56.39511775704666,
+     "Womens E-Mail": 86.12780065908598,
+     "mean": 71.26145920806633
+    },
+    "T_LOGIT": {
+     "Mens E-Mail": 38.47147021431128,
+     "Womens E-Mail": 79.6211209225359,
+     "mean": 59.04629556842359
+    },
+    "S_HGB": {
+     "Mens E-Mail": 31.422070415379086,
+     "Womens E-Mail": 85.93598128863142,
+     "mean": 58.67902585200525
+    },
+    "T_HGB": {
+     "Mens E-Mail": 7.129644555840381,
+     "Womens E-Mail": 84.96407440115456,
+     "mean": 46.046859478497474
+    },
+    "TO_RIDGE": {
+     "Mens E-Mail": 41.81832576958726,
+     "Womens E-Mail": 85.60751496954414,
+     "mean": 63.7129203695657
+    },
+    "TO_HGB": {
+     "Mens E-Mail": 6.3514572286922135,
+     "Womens E-Mail": 77.57928273194636,
+     "mean": 41.96536998031929
+    },
+    "ENSEMBLE": {
+     "Mens E-Mail": 37.73089680429335,
+     "Womens E-Mail": 79.38766343282886,
+     "mean": 58.559280118561105
+    },
+    "RULE_RECENCY": {
+     "Mens E-Mail": 13.753132253268983,
+     "Womens E-Mail": -0.16255037747301637,
+     "mean": 6.795290937897984
+    },
+    "RULE_HISTORY": {
+     "Mens E-Mail": 30.856402932721252,
+     "Womens E-Mail": -2.9993753022715266,
+     "mean": 13.928513815224862
+    },
+    "RANDOM_ORDER": {
+     "Mens E-Mail": -11.320108905229688,
+     "Womens E-Mail": -18.16751721099792,
+     "mean": -14.743813058113805
+    }
+   }
+  ],
+  "paired_diff_vs_baseline_ci90": {
+   "S_LOGIT_SPARSE": [
+    8.151719612728963,
+    36.9803289114997
+   ],
+   "T_LOGIT": [
+    -7.844003962870067,
+    -1.2766907349963181
+   ],
+   "S_HGB": [
+    -8.574305805826317,
+    14.721500902826552
+   ],
+   "T_HGB": [
+    -14.715674073093794,
+    19.55565452431078
+   ],
+   "TO_RIDGE": [
+    -8.516240584107734,
+    11.588210793714934
+   ],
+   "TO_HGB": [
+    -24.683165864142723,
+    12.479656013219971
+   ],
+   "ENSEMBLE": [
+    -6.16517836469979,
+    3.69979376828242
+   ]
+  },
+  "best_challenger": "S_LOGIT_SPARSE",
+  "selected": "S_LOGIT_SPARSE",
+  "challenger_shown_better": true,
+  "rule": "challenger replaces S_LOGIT only if its paired 90% bootstrap interval for AUQ difference is above zero",
+  "n_customers": 38397,
+  "seconds": 24.3
+ },
+ "permutation": {
+  "model": "S_LOGIT_SPARSE",
+  "real_auq_repeat0": 72.10083067801745,
+  "null_mean": -4.7558882054212654,
+  "null_sd": 16.373863027601896,
+  "null_p95": 26.25904904556009,
+  "p_value": 0.024390243902439025,
+  "signal_above_null_p95": true,
+  "null": [
+   -11.857774178863783,
+   19.94672725869833,
+   -15.951486098378053,
+   -8.356499844492376,
+   -4.246329319369486,
+   -7.147736063732378,
+   -31.386341870353384,
+   -39.744667378325474,
+   -19.17556688273946,
+   3.015782061696779,
+   23.19279391621981,
+   -19.158912306114292,
+   -1.8550854079874064,
+   -1.9221273462635544,
+   -19.96771055585857,
+   34.24765377733989,
+   -11.00006553848043,
+   -9.30474874301012,
+   4.908420584034598,
+   2.7122195332284527,
+   -1.9022237779209696,
+   -23.768044341635054,
+   -13.742954689995514,
+   7.265161005112716,
+   25.89265296257456,
+   -15.209443949329723,
+   3.7375734256524042,
+   0.05932457940362745,
+   -10.68708374321436,
+   -14.503929057942807,
+   -4.846224545395232,
+   -21.89067973081757,
+   11.528830450805994,
+   0.08958875420817103,
+   33.22057462228562,
+   -27.32500536688621,
+   -22.000715741624337,
+   1.0036374897919451,
+   -3.2516450231052336,
+   -0.8534671360677288
+  ],
+  "n_perm": 40
+ },
+ "confirmation": {
+  "model": "S_LOGIT_SPARSE",
+  "n_test": 25603,
+  "test_buyers": 3803,
+  "policies": {
+   "MODEL_MENS_25": {
+    "eligible_n": 25603,
+    "contacted_n": 6401,
+    "treated_n": 2119,
+    "treated_buyers": 570,
+    "control_n": 2131,
+    "control_buyers": 400,
+    "assigned_split": {
+     "Mens E-Mail": 6401
+    },
+    "per_1000_contacts": 81.2895061973089,
+    "ci95": [
+     55.44966776895543,
+     106.14867454487599
+    ]
+   },
+   "MODEL_WOMENS_25": {
+    "eligible_n": 25603,
+    "contacted_n": 6401,
+    "treated_n": 2134,
+    "treated_buyers": 465,
+    "control_n": 2157,
+    "control_buyers": 351,
+    "assigned_split": {
+     "Womens E-Mail": 6401
+    },
+    "per_1000_contacts": 55.174647700062415,
+    "ci95": [
+     32.2297045890595,
+     78.75371113001206
+    ]
+   },
+   "RANDOM_MENS_25": {
+    "eligible_n": 25603,
+    "contacted_n": 6401,
+    "treated_n": 8524,
+    "treated_buyers": 1545,
+    "control_n": 8523,
+    "control_buyers": 954,
+    "assigned_split": {
+     "Mens E-Mail": 25603
+    },
+    "per_1000_contacts": 69.3205147327355,
+    "ci95": [
+     58.3456899407463,
+     79.48673520108264
+    ]
+   },
+   "RANDOM_WOMENS_25": {
+    "eligible_n": 25603,
+    "contacted_n": 6401,
+    "treated_n": 8556,
+    "treated_buyers": 1304,
+    "control_n": 8523,
+    "control_buyers": 954,
+    "assigned_split": {
+     "Womens E-Mail": 25603
+    },
+    "per_1000_contacts": 40.475248971556034,
+    "ci95": [
+     30.175904078466317,
+     50.3923710378677
+    ]
+   },
+   "RULE_RECENCY_MENS_25": {
+    "eligible_n": 25603,
+    "contacted_n": 6401,
+    "treated_n": 2122,
+    "treated_buyers": 493,
+    "control_n": 2147,
+    "control_buyers": 331,
+    "assigned_split": {
+     "Mens E-Mail": 6401
+    },
+    "per_1000_contacts": 78.15938510083772,
+    "ci95": [
+     53.87530082799803,
+     100.91142948376718
+    ]
+   },
+   "RULE_RECENCY_WOMENS_25": {
+    "eligible_n": 25603,
+    "contacted_n": 6401,
+    "treated_n": 2132,
+    "treated_buyers": 397,
+    "control_n": 2147,
+    "control_buyers": 331,
+    "assigned_split": {
+     "Womens E-Mail": 6401
+    },
+    "per_1000_contacts": 32.041523972976826,
+    "ci95": [
+     9.227213176458143,
+     54.85574105455602
+    ]
+   },
+   "RULE_HISTORY_MENS_25": {
+    "eligible_n": 25603,
+    "contacted_n": 6401,
+    "treated_n": 2110,
+    "treated_buyers": 489,
+    "control_n": 2160,
+    "control_buyers": 314,
+    "assigned_split": {
+     "Mens E-Mail": 6401
+    },
+    "per_1000_contacts": 86.3831841319993,
+    "ci95": [
+     65.11225002282418,
+     108.43425530845352
+    ]
+   },
+   "RULE_HISTORY_WOMENS_25": {
+    "eligible_n": 25603,
+    "contacted_n": 6401,
+    "treated_n": 2131,
+    "treated_buyers": 400,
+    "control_n": 2160,
+    "control_buyers": 314,
+    "assigned_split": {
+     "Womens E-Mail": 6401
+    },
+    "per_1000_contacts": 42.3349323044302,
+    "ci95": [
+     20.294771914135712,
+     63.99852299973421
+    ]
+   },
+   "MODEL_MENS_50": {
+    "eligible_n": 25603,
+    "contacted_n": 12802,
+    "treated_n": 4215,
+    "treated_buyers": 983,
+    "control_n": 4306,
+    "control_buyers": 671,
+    "assigned_split": {
+     "Mens E-Mail": 12802
+    },
+    "per_1000_contacts": 77.38563366297902,
+    "ci95": [
+     60.237512988236446,
+     94.80349299437653
+    ]
+   },
+   "MODEL_WOMENS_50": {
+    "eligible_n": 25603,
+    "contacted_n": 12802,
+    "treated_n": 4290,
+    "treated_buyers": 824,
+    "control_n": 4262,
+    "control_buyers": 526,
+    "assigned_split": {
+     "Womens E-Mail": 12802
+    },
+    "per_1000_contacts": 68.6583555659107,
+    "ci95": [
+     53.23281571131247,
+     83.80745726016306
+    ]
+   },
+   "RANDOM_MENS_50": {
+    "eligible_n": 25603,
+    "contacted_n": 12802,
+    "treated_n": 8524,
+    "treated_buyers": 1545,
+    "control_n": 8523,
+    "control_buyers": 954,
+    "assigned_split": {
+     "Mens E-Mail": 25603
+    },
+    "per_1000_contacts": 69.3205147327355,
+    "ci95": [
+     58.3456899407463,
+     79.48673520108264
+    ]
+   },
+   "RANDOM_WOMENS_50": {
+    "eligible_n": 25603,
+    "contacted_n": 12802,
+    "treated_n": 8556,
+    "treated_buyers": 1304,
+    "control_n": 8523,
+    "control_buyers": 954,
+    "assigned_split": {
+     "Womens E-Mail": 25603
+    },
+    "per_1000_contacts": 40.475248971556034,
+    "ci95": [
+     30.175904078466317,
+     50.3923710378677
+    ]
+   },
+   "RULE_RECENCY_MENS_50": {
+    "eligible_n": 25603,
+    "contacted_n": 12802,
+    "treated_n": 4210,
+    "treated_buyers": 891,
+    "control_n": 4294,
+    "control_buyers": 582,
+    "assigned_split": {
+     "Mens E-Mail": 12802
+    },
+    "per_1000_contacts": 76.1009949252506,
+    "ci95": [
+     59.809117180933995,
+     91.79200482915594
+    ]
+   },
+   "RULE_RECENCY_WOMENS_50": {
+    "eligible_n": 25603,
+    "contacted_n": 12802,
+    "treated_n": 4298,
+    "treated_buyers": 739,
+    "control_n": 4294,
+    "control_buyers": 582,
+    "assigned_split": {
+     "Womens E-Mail": 12802
+    },
+    "per_1000_contacts": 36.40247746864206,
+    "ci95": [
+     21.142549436631008,
+     51.972855276878065
+    ]
+   },
+   "RULE_HISTORY_MENS_50": {
+    "eligible_n": 25603,
+    "contacted_n": 12802,
+    "treated_n": 4254,
+    "treated_buyers": 896,
+    "control_n": 4241,
+    "control_buyers": 571,
+    "assigned_split": {
+     "Mens E-Mail": 12802
+    },
+    "per_1000_contacts": 75.98723677907707,
+    "ci95": [
+     59.70506591195764,
+     92.69954199834088
+    ]
+   },
+   "RULE_HISTORY_WOMENS_50": {
+    "eligible_n": 25603,
+    "contacted_n": 12802,
+    "treated_n": 4307,
+    "treated_buyers": 754,
+    "control_n": 4241,
+    "control_buyers": 571,
+    "assigned_split": {
+     "Womens E-Mail": 12802
+    },
+    "per_1000_contacts": 40.42579248523498,
+    "ci95": [
+     24.832525901767998,
+     55.356786824247074
+    ]
+   }
+  },
+  "comparisons": {
+   "MODEL_MENS_25 minus RANDOM_MENS_25": {
+    "value": 11.968991464573406,
+    "ci95": [
+     -8.433196722386036,
+     32.844452397091516
+    ]
+   },
+   "MODEL_MENS_25 minus RULE_RECENCY_MENS_25": {
+    "value": 3.1301210964711776,
+    "ci95": [
+     -20.614436656626392,
+     27.20000074871083
+    ]
+   },
+   "MODEL_MENS_25 minus RULE_HISTORY_MENS_25": {
+    "value": -5.093677934690399,
+    "ci95": [
+     -28.249591626658745,
+     19.27989126887666
+    ]
+   },
+   "MODEL_MENS_25: S_LOGIT_SPARSE minus S_LOGIT baseline": {
+    "value": 2.287838092672412,
+    "ci95": [
+     -18.273237685617474,
+     23.659737586778682
+    ]
+   },
+   "MODEL_WOMENS_25 minus RANDOM_WOMENS_25": {
+    "value": 14.699398728506383,
+    "ci95": [
+     -5.238040958603246,
+     34.266940497992756
+    ]
+   },
+   "MODEL_WOMENS_25 minus RULE_RECENCY_WOMENS_25": {
+    "value": 23.133123727085593,
+    "ci95": [
+     0.1358342875380824,
+     46.752602819593626
+    ]
+   },
+   "MODEL_WOMENS_25 minus RULE_HISTORY_WOMENS_25": {
+    "value": 12.839715395632222,
+    "ci95": [
+     -12.063452426456049,
+     37.284675405666974
+    ]
+   },
+   "MODEL_WOMENS_25: S_LOGIT_SPARSE minus S_LOGIT baseline": {
+    "value": -13.705337283247076,
+    "ci95": [
+     -35.794896273491325,
+     8.984715272907277
+    ]
+   },
+   "MODEL_MENS_50 minus RANDOM_MENS_50": {
+    "value": 8.065118930243518,
+    "ci95": [
+     -2.7087098107077905,
+     19.83266504187923
+    ]
+   },
+   "MODEL_MENS_50 minus RULE_RECENCY_MENS_50": {
+    "value": 1.2846387377284108,
+    "ci95": [
+     -10.771237077739235,
+     14.375634417655121
+    ]
+   },
+   "MODEL_MENS_50 minus RULE_HISTORY_MENS_50": {
+    "value": 1.3983968839019478,
+    "ci95": [
+     -10.573525092086378,
+     13.46268402915878
+    ]
+   },
+   "MODEL_MENS_50: S_LOGIT_SPARSE minus S_LOGIT baseline": {
+    "value": 3.054706066608542,
+    "ci95": [
+     -7.483309216070015,
+     14.187634022856752
+    ]
+   },
+   "MODEL_WOMENS_50 minus RANDOM_WOMENS_50": {
+    "value": 28.183106594354662,
+    "ci95": [
+     18.078695194488578,
+     38.37511451873039
+    ]
+   },
+   "MODEL_WOMENS_50 minus RULE_RECENCY_WOMENS_50": {
+    "value": 32.25587809726864,
+    "ci95": [
+     18.670002905622262,
+     45.639808809134166
+    ]
+   },
+   "MODEL_WOMENS_50 minus RULE_HISTORY_WOMENS_50": {
+    "value": 28.232563080675718,
+    "ci95": [
+     14.647980116487862,
+     40.72660980039073
+    ]
+   },
+   "MODEL_WOMENS_50: S_LOGIT_SPARSE minus S_LOGIT baseline": {
+    "value": -2.572919903853832,
+    "ci95": [
+     -7.681809062556533,
+     2.519453551571248
+    ]
+   }
+  },
+  "baseline_S_LOGIT_per_1000_MENS_25": 79.0016681046365,
+  "stable_vs_random_mens_25": false,
+  "stable_vs_recency_mens_25": false
+ },
+ "seconds": 33.9
+}

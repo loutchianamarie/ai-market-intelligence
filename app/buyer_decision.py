@@ -125,6 +125,18 @@ with st.expander("What-if: enter your own margin and cost (scenario arithmetic, 
                 f"(range {out['low']:,.0f} to {out['high']:,.0f} from the experiment's spend interval). "
                 f"Break-even cost per e-mail at this margin: {out['break_even_cost_per_email']:.3f} USD. Verdict: `{out['verdict']}`.", unsafe_allow_html=True)
     st.caption("Spend per e-mailed customer is OBSERVED in the randomized test; every number you type is an assumption. Nothing is saved or sent.")
+    cv = v.get("curve")
+    if cv:
+        sc2 = VM.share_curve(cv["shares"], cv["per1000"], cv["lo"], cv["hi"], cv["random_per1000"], cv["spend_per_buyer"], m_in, c_in)
+        cdf = pd.DataFrame({"share of customers e-mailed": sc2["shares"], "model order": sc2["model"], "random order": sc2["random"],
+                            "model low": sc2["low"], "model high": sc2["high"]})
+        base = alt.Chart(cdf).encode(x=alt.X("share of customers e-mailed:Q", axis=alt.Axis(format="%")))
+        band = base.mark_area(opacity=0.15).encode(y="model low:Q", y2="model high:Q")
+        ln = base.transform_fold(["model order", "random order"], as_=["policy", "USD"]).mark_line().encode(y=alt.Y("USD:Q", title="scenario contribution per 1,000 customers (USD)"), color="policy:N")
+        st.altair_chart(band + ln, use_container_width=True)
+        st.caption(f"{sc2['kind']}. Uses the cross-fitted uplift curve of the baseline model (wide intervals: the model's ordering is NOT proven better than random) and about "
+                   f"{cv['spend_per_buyer']:.0f} USD of observed incremental spend per additional buyer. At your inputs the model-order curve peaks at {sc2['best_share']:.0%} "
+                   f"({sc2['best_contribution']:,.0f} USD per 1,000) versus {sc2['all_in_contribution']:,.0f} USD for e-mailing everyone; treat that difference as within noise.")
 
 st.subheader("5. Research, unknowns and SEO/GEO status")
 dz = v.get("dossier")
@@ -183,5 +195,35 @@ if v.get("lab"):
     with st.expander("Model lab: could a better model fix this?"):
         st.markdown(v["lab"]["sentence"])
         st.caption("Pre-registered protocol v3; figures and the full report are in reports/campaign_lab/.")
+if v.get("scale"):
+    with st.expander("Scale replication: is it just too little data? (Criteo, 14M rows)"):
+        st.markdown(v["scale"]["sentence"])
+        fig = Path(__file__).resolve().parents[1] / "reports" / "criteo_scale" / "fig_gap_vs_size.png"
+        if fig.exists():
+            st.image(str(fig))
+        st.caption("Pre-registered protocol v4; details in reports/criteo_scale/report.md.")
+with st.expander("What changed? Compare with another export"):
+    up = st.file_uploader("Upload an older or newer campaign_case JSON (it is validated first; nothing is saved)", type="json")
+    if up is not None:
+        import json as _json
+        from mi.campaign.contract import validate_case
+        try:
+            other = _json.loads(up.getvalue().decode("utf-8"))
+            errs = validate_case(other)
+        except Exception as ex:  # unreadable file
+            other, errs = None, [f"not readable as JSON: {ex}"]
+        if errs:
+            st.error("Rejected: this file does not satisfy the contract, so it is not compared. " + "; ".join(errs[:3]))
+        else:
+            dd = VM.diff_cases(other, case.doc)
+            st.markdown("**Identical to the loaded export.**" if dd["identical"] else "**Differences (uploaded file -> loaded export)**")
+            if dd["changed_fields"]:
+                st.dataframe(pd.DataFrame(dd["changed_fields"]), hide_index=True, use_container_width=True)
+            if dd["changed_claims"]:
+                st.dataframe(pd.DataFrame(dd["changed_claims"]), hide_index=True, use_container_width=True)
+            if dd["added_claims"] or dd["removed_claims"]:
+                st.write({"added": dd["added_claims"], "removed": dd["removed_claims"]})
+    else:
+        st.caption("Use this after the producer re-exports: it shows which claims, verdicts or statuses moved, so nothing changes silently.")
 with st.expander("Limits"):
     st.markdown("\n".join(f"- {w}" for w in v["warnings"]))

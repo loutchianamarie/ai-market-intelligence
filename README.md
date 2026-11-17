@@ -36,6 +36,8 @@ Mode is `DETERMINISTIC_SPECIALISTS`; a live LLM tool-use run is PENDING. See `do
 
 **Scale replication (v4, pre-registered).** The same question on 14M randomized Criteo rows, with training sizes from 64,000 to 4M: `python -m mi.campaign.scale` then `python -m mi.campaign.scale_report` (needs `data/raw/criteo/`, hash pinned in `data/eval/criteo_protocol_v4_scale.json`). Result in `reports/criteo_scale/report.md`. Start with `START_HERE.md`.
 
+**Visit-outcome lab (v5, pre-registered).** The same lab on website visits (15x more events, an intermediate outcome): `python -m mi.campaign.lab_visit` then `python -m mi.campaign.lab_visit report`; result in `reports/campaign_lab_visit/report.md` (not detectable on the test split).
+
 **Master project report:** `docs/MASTER_PROJECT_REPORT.md` (generated from the computed artifacts by `python -m mi.report.master_report`): problem, methods, results, system, limits, ethics, reproducibility, references.
 
 **Model lab (v3, pre-registered).** Eight fixed candidates compared by cross-fitted Qini area, a permutation null and one test-split confirmation: `python -m mi.campaign.lab` then `python -m mi.campaign.lab_extras` (about 1 minute). Results, six figures and a generated report are in `reports/campaign_lab/` (`report.md`). **Finding: no challenger beats the v2 baseline, and the targeting signal is not distinguishable from noise with 578 buyers; the decision rests on the randomized effect.** Needs the raw CSV in `data/raw/hillstrom/` (SHA-256 checked).
