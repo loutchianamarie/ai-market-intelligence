@@ -34,6 +34,22 @@ def _counts(p) -> str:
     return f"{p['treated_buyers']}/{p['treated_n']:,} e-mailed vs {p['control_buyers']}/{p['control_n']:,} not"
 
 
+def what_if(spend: float, spend_ci: list[float], margin: float, cost_per_email: float, contacts: int, setup: float = 0.0) -> dict:
+    """Interactive scenario arithmetic for a reader-chosen margin/cost. NOT measured profit.
+
+    spend / spend_ci come from the randomized experiment (OBSERVED incremental spend per customer e-mailed);
+    margin, cost, contacts and setup are the reader's ASSUMPTIONS. Contribution = contacts * (spend*margin - cost) - setup.
+    The range uses the experiment's 95% interval for spend only (assumptions are taken as given)."""
+    if not 0 <= margin <= 1 or cost_per_email < 0 or contacts < 0 or setup < 0:
+        raise ValueError("margin must be in [0,1]; cost, contacts and setup must be >= 0")
+    f = lambda sp: contacts * (sp * margin - cost_per_email) - setup
+    lo, hi = f(spend_ci[0]), f(spend_ci[1])
+    be = (spend * margin) if margin else 0.0
+    verdict = "PAYS_EVEN_AT_LOW_END" if lo > 0 else ("DOES_NOT_PAY_EVEN_AT_HIGH_END" if hi <= 0 else "UNCERTAIN_INTERVAL_INCLUDES_ZERO")
+    return {"contribution": f(spend), "low": lo, "high": hi, "break_even_cost_per_email": be, "verdict": verdict,
+            "kind": "SCENARIO, NOT MEASURED PROFIT"}
+
+
 def build(case: CaseResult, trace: dict | None = None, blocked: dict | None = None) -> dict:
     """Return the view model. Raises if the case is not a validated COMPUTED_EXPORT (caller shows DATA_PENDING instead)."""
     if not case.ok:
@@ -48,7 +64,9 @@ def build(case: CaseResult, trace: dict | None = None, blocked: dict | None = No
                      "per1000": n(e["additional_buyers_per_1000"]["value"]) if e else "reference",
                      "per1000_ci": ci(e["additional_buyers_per_1000"]["ci95"]) if e else "",
                      "spend": n(e["incremental_spend_per_contact"]["value"], 2) if e else "reference",
-                     "spend_ci": ci(e["incremental_spend_per_contact"]["ci95"], 2) if e else ""})
+                     "spend_ci": ci(e["incremental_spend_per_contact"]["ci95"], 2) if e else "",
+                     "spend_num": e["incremental_spend_per_contact"]["value"] if e else None,
+                     "spend_ci_num": e["incremental_spend_per_contact"]["ci95"] if e else None})
     pol = {p["policy_id"]: p for p in d["held_out_policy_metrics"]}
     policies = []
     for pid, lab in POLICY_LABEL.items():

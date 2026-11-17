@@ -17,6 +17,7 @@ import streamlit as st  # noqa: E402
 
 from mi.consumer import advisor as A  # noqa: E402
 from mi.consumer.adapter import load_case  # noqa: E402
+from mi.consumer import viewmodel as VM  # noqa: E402
 from mi.consumer.viewmodel import TAG_KEY, build, latest_blocked, latest_trace, n  # noqa: E402
 from mi.workflow.store import DossierStore, PermissionDenied, WorkflowError, pilot_hash  # noqa: E402
 
@@ -111,6 +112,19 @@ e2.markdown(badge("ASSUMPTION") + " **SCENARIO, NOT MEASURED PROFIT.** Margin, c
             unsafe_allow_html=True)
 e2.dataframe(pd.DataFrame({"scenario": sc.label, "contribution": sc.contribution.map(lambda x: "unknown" if pd.isna(x) else f"{x:,.0f} USD"),
                            "range": sc.range.replace("", "unknown")}), hide_index=True, use_container_width=True)
+
+with st.expander("What-if: enter your own margin and cost (scenario arithmetic, not profit)"):
+    mens = next(x for x in v["arms"] if x["role"] != "control" and x["spend_num"] is not None)
+    w1, w2, w3, w4 = st.columns(4)
+    m_in = w1.slider("Margin on incremental revenue", 0.05, 0.90, 0.30, 0.05)
+    c_in = w2.number_input("Cost per e-mail (USD)", 0.0, 5.0, 0.02, 0.005, format="%.3f")
+    n_in = w3.number_input("Customers e-mailed", 1000, 1000000, 57600, 1000)
+    s_in = w4.number_input("Fixed setup (USD)", 0, 1000000, 0, 500)
+    out = VM.what_if(mens["spend_num"], mens["spend_ci_num"], m_in, c_in, int(n_in), float(s_in))
+    st.markdown(badge("ASSUMPTION") + f" **{out['kind']}**: contribution {out['contribution']:,.0f} USD "
+                f"(range {out['low']:,.0f} to {out['high']:,.0f} from the experiment's spend interval). "
+                f"Break-even cost per e-mail at this margin: {out['break_even_cost_per_email']:.3f} USD. Verdict: `{out['verdict']}`.", unsafe_allow_html=True)
+    st.caption("Spend per e-mailed customer is OBSERVED in the randomized test; every number you type is an assumption. Nothing is saved or sent.")
 
 st.subheader("5. Research, unknowns and SEO/GEO status")
 dz = v.get("dossier")

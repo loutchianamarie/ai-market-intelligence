@@ -436,3 +436,15 @@ def test_rehearsal_scoring_flags_overruns_and_records_nothing_by_itself(tmp_path
     monkeypatch.setattr(m, "LOG", tmp_path / "log.json")
     m.record(ok, "test")
     assert json.loads((tmp_path / "log.json").read_text())[0]["rehearsal_of"] == "human"
+
+
+def test_what_if_is_scenario_arithmetic_and_validates():
+    from mi.consumer.viewmodel import what_if
+    r = what_if(0.77, [0.49, 1.05], margin=0.30, cost_per_email=0.02, contacts=1000)
+    assert abs(r["contribution"] - 1000 * (0.77 * 0.30 - 0.02)) < 1e-6
+    assert r["kind"] == "SCENARIO, NOT MEASURED PROFIT" and r["verdict"] == "PAYS_EVEN_AT_LOW_END"
+    assert what_if(0.77, [0.49, 1.05], 0.30, 0.50, 1000)["verdict"] == "DOES_NOT_PAY_EVEN_AT_HIGH_END"
+    assert what_if(0.77, [0.49, 1.05], 0.30, 0.20, 1000)["verdict"] == "UNCERTAIN_INTERVAL_INCLUDES_ZERO"
+    import pytest
+    with pytest.raises(ValueError):
+        what_if(0.77, [0.49, 1.05], 1.5, 0.02, 1000)
