@@ -39,8 +39,10 @@ TAGS: tuple[str, ...] = ("OBSERVED", "HELD_OUT_ESTIMATE", "ASSUMPTION", "PUBLISH
 Number = Optional[float]
 CI = Optional[Sequence[float]]
 
-_REPO = Path(__file__).resolve().parents[3]
-SCHEMA_PATH = _REPO / "docs" / "contracts" / "campaign_case.v1.schema.json"
+_HERE = Path(__file__).resolve()
+_REPO = _HERE.parents[3] if len(_HERE.parents) > 3 else _HERE.parent
+_BESIDE = _HERE.with_name("campaign_case.v1.schema.json")       # a consumer may copy this file next to the schema
+SCHEMA_PATH = _BESIDE if _BESIDE.exists() else _REPO / "docs" / "contracts" / "campaign_case.v1.schema.json"
 SAMPLE_PATH = _REPO / "docs" / "contracts" / "campaign_case.sample.json"
 EXPORT_RELPATH = "reports/campaign_case.latest.json"
 

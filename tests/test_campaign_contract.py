@@ -194,3 +194,19 @@ def test_sample_json_on_disk_parses_and_names_only_known_sources():
     d = json.loads(C.SAMPLE_PATH.read_text(encoding="utf-8"))
     src = {s["source_id"] for s in d["sources"]}
     assert set(d["evidence_ids"]) == src and all(c["source_id"] in src for c in d["claims"])
+
+
+def test_validator_works_when_copied_next_to_the_schema_in_another_repo(tmp_path, doc):
+    """The consumer copies contract.py and the schema into its own tree; nothing else from this repo is needed."""
+    import importlib.util
+    import shutil
+    shutil.copy(C.__file__, tmp_path / "contract.py")
+    shutil.copy(C.SCHEMA_PATH, tmp_path / "campaign_case.v1.schema.json")
+    spec = importlib.util.spec_from_file_location("consumer_copy_of_contract", tmp_path / "contract.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    assert mod.SCHEMA_PATH == tmp_path / "campaign_case.v1.schema.json"
+    assert mod.validate_case(doc) == []
+    bad = copy.deepcopy(doc)
+    bad["observed_arm_metrics"][0]["buyers"] = -1
+    assert mod.validate_case(bad)
