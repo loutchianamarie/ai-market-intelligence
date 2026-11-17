@@ -47,7 +47,7 @@ def agenda() -> list[dict]:
          "rag": rag_cite("Did the retailer have yogurt stock-outs or delistings in the second half of 2017?"),
          "task": "OPS1 operations check", "changes": "whether plan B becomes a product/place fix"},
         {"problem": "Unverified discovery of offers (public analogue)", "question": "Do assistants surface the analogue, and which sources are cited?",
-         "evidence": [("PENDING", f"{geo.get('answers_logged', 0)}/20 answers"),
+         "evidence": [("OBSERVED (two Claude models)" if geo.get('answers_logged', 0) else "PENDING", f"{geo.get('answers_logged', 0)}/20 answers"),
                       ("VERIFIED EXTERNAL", "Google: no special requirements to appear in AI features (google_ai_features)")],
          "rag": rag_cite("Does Google require special markup or schema to appear in AI Overviews?"),
          "task": "R2 GEO answers", "changes": "whether plan C is worth doing"},

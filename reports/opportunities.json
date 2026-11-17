@@ -669,7 +669,7 @@
         "reachability": "public web and AI assistants; not linkable to the anonymous panel"
       },
       "observed": [
-        "0/20 assistant answers collected; no Search Console data"
+        "20/20 assistant answers collected (two Claude models, not ChatGPT or Gemini); no Search Console data"
       ],
       "counterevidence": [
         "a mention in a small prompt panel does not show reach, traffic or conversion"
@@ -687,8 +687,8 @@
         "Search Console impressions/clicks for owned pages (if a real site owner)"
       ],
       "success_metric": "mention/recommendation rate in a re-run panel AND owned-page search clicks (separately)",
-      "evidence_level": "PENDING",
-      "recommendation": "collect evidence first; zero cost to collect"
+      "evidence_level": "OBSERVED answers (Claude models only); no traffic or conversion evidence",
+      "recommendation": "low-cost content action only where the audit shows a gap; repeat the panel in ChatGPT and Gemini before claiming anything about them"
     },
     {
       "id": "C0",
@@ -732,7 +732,7 @@
       "feasibility_rank_now": 3,
       "information_value": "MEDIUM: 20 answers + analytics",
       "assumed_financial_upside": "not modelled",
-      "evidence_level": "PENDING"
+      "evidence_level": "OBSERVED answers (Claude models only); no traffic or conversion evidence"
     },
     {
       "card": "C0",

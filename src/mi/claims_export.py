@@ -60,7 +60,7 @@ def claims() -> list[dict]:
     if v:
         add("hillstrom.visit_effect_mens_pp", round(100 * v["Mens E-Mail vs No E-Mail"]["visit"]["diff"], 1), "pp (2 weeks)", "METHOD EVIDENCE (other retailer)", "reports/experiments/hillstrom_report.json")
         add("hillstrom.visit_effect_womens_pp", round(100 * v["Womens E-Mail vs No E-Mail"]["visit"]["diff"], 1), "pp (2 weeks)", "METHOD EVIDENCE (other retailer)", "reports/experiments/hillstrom_report.json")
-    add("geo.answers_logged", geo.get("answers_logged", 0), "of 20", "PENDING", "reports/seo_geo_audit.json")
+    add("geo.answers_logged", geo.get("answers_logged", 0), "of 20", "PENDING" if not geo.get("answers_logged") else "OBSERVED (two Claude models, not ChatGPT or Gemini)", "reports/seo_geo_audit.json")
     add("interviews.completed", 0, "of 2-3", "PENDING", "data/interviews/coding_sheet.csv")
     add("agents.live_llm", "PENDING (no runtime key)", "-", "PENDING", "configs/agents.json")
     add("run.dossier", man.get("dossier"), "-", "OBSERVED", "reports/run_manifest.json")

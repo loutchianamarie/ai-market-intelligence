@@ -9,8 +9,8 @@
   ],
   "linked_pilot_question": "Do shoppers looking for coffee / frozen pizza savings encounter digital grocery coupons, and which sources do assistants cite when they do?",
   "assistants": [
-    "ASSISTANT_1 (team fills: name, version, region)",
-    "ASSISTANT_2 (team fills)"
+    "ASSISTANT_1 = Claude Sonnet 5.5 (fresh sub-agent per question, web search tool, no project context)",
+    "ASSISTANT_2 = Claude Opus 5.5 (fresh sub-agent per question, web search tool, no project context)"
   ],
   "rules": "Fresh chat per prompt, same language/region settings, record date/time/model/version, exact cited URLs. Brand named in at most one prompt. Do not paste personal data.",
   "language_note": "ADAPTATION, not the literal class worksheet. The worksheet is a solo Lebanon-brand exercise requiring >= 2 prompts in Arabic, French or English; this US grocery panel keeps its method (4/3/3, two assistants, fresh chats, five rates) and uses Spanish, the largest non-English US language, as the second language. Fit with the official brief is PENDING (see docs/seo_geo_protocol.md for the fallback).",
@@ -77,5 +77,15 @@
       "text": "Best grocery store to order coffee and frozen pizza for pickup with coupons."
     }
   ],
-  "revision_log": []
+  "revision_log": [
+    {
+      "date": "2026-11-17",
+      "change": "assistants filled in before the first run: two Claude models, because ChatGPT and Gemini cannot be queried from this environment. The prompts are unchanged. Both assistants are from one vendor, so the audit says what these two Claude models answered, not what ChatGPT or Gemini would."
+    }
+  ],
+  "frozen": {
+    "at_utc": "2026-11-17T19:15:45+00:00",
+    "by": "Claude Sonnet 5.5 on behalf of the team, approved by the user's request 2026-11-17",
+    "prompts_sha16": "1b0f0cf38c72a773"
+  }
 }

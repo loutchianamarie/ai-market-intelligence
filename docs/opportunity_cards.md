@@ -65,16 +65,16 @@ OBSERVED behaviour (2017 panel) + labelled hypotheses; no ROI is claimed for non
 - **Recommendation:** operational investigation; no spend
 
 ## C4. Discovery content for the public analogue (SEO/GEO)
-- **Strategy class:** content / discovery · **Evidence level:** PENDING
+- **Strategy class:** content / discovery · **Evidence level:** OBSERVED answers (Claude models only); no traffic or conversion evidence
 - **Segment / reach:** {'reachability': 'public web and AI assistants; not linkable to the anonymous panel'}
-- **Observed:** 0/20 assistant answers collected; no Search Console data
+- **Observed:** 20/20 assistant answers collected (two Claude models, not ChatGPT or Gemini); no Search Console data
 - **Counterevidence:** a mention in a small prompt panel does not show reach, traffic or conversion
 - **Evidence that would decide:** 20 GEO answers; Search Console impressions/clicks for owned pages (if a real site owner)
 - **Hypothesized need:** shoppers asking how to save on frozen pizza/coffee may not find the retailer's offers (HYPOTHESIS)
 - **Positioning (to test):** clear, factual answers to buyer questions
 - **Success metric:** mention/recommendation rate in a re-run panel AND owned-page search clicks (separately)
 - **4 Ps:** Product: none; Price: none; Place: owned pages / listings; Promotion: content where cited sources are
-- **Recommendation:** collect evidence first; zero cost to collect
+- **Recommendation:** low-cost content action only where the audit shows a gap; repeat the panel in ChatGPT and Gemini before claiming anything about them
 
 ## C0. Do nothing now / research first
 - **Strategy class:** no action · **Evidence level:** decision rule
@@ -88,7 +88,7 @@ OBSERVED behaviour (2017 panel) + labelled hypotheses; no ROI is claimed for non
 | C1 | coupon / paid contact | 4 | LOW at current cost: decision-grade test infeasible in the assumed pool | negative at base; positive only under unconfirmed joint changes | OBSERVED behaviour + ASSUMED economics |
 | C2 | place / merchandising (non-discount) | 3 | LOW-MEDIUM: association barely beats a popularity suggestion | not modelled (no causal data) | OBSERVED association, WEAK (negligible margin over a popularity suggestion); effect UNKNOWN |
 | C3 | product / place investigation (non-discount) | 2 | HIGH: an operations check is cheap | not modelled | OBSERVED trend; cause UNKNOWN |
-| C4 | content / discovery | 3 | MEDIUM: 20 answers + analytics | not modelled | PENDING |
+| C4 | content / discovery | 3 | MEDIUM: 20 answers + analytics | not modelled | OBSERVED answers (Claude models only); no traffic or conversion evidence |
 | C0 | no action | 1 | n/a | $0 | decision rule |
 
 ## What to learn next

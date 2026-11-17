@@ -1,6 +1,6 @@
 # SEO / AEO / GEO audit protocol (two-person task, about 90 minutes in total)
 
-Status: **0 of 20 answers collected. PENDING.**
+Status: **20 of 20 answers collected on 2026-11-17, from two Claude models (Sonnet 5.5 and Opus 5.5), not ChatGPT or Gemini.** Results and limits: `docs/geo_audit_results.md`. A rerun in ChatGPT and Gemini with the same frozen questions is still open. The text below is the original plan.
 - **Panel:** `data/seo/prompt_panel.json`, currently a *draft*. It is frozen with `python -m mi.seo.geo freeze` before the first assistant run.
 - **Log:** `data/seo/answer_log.csv` (20 rows: 10 prompts × 2 assistants).
 - **Progress check:** `python -m mi.seo.geo check`.

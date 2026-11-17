@@ -143,7 +143,7 @@ def content_action() -> dict:
     return {"action": "Discovery content for the public analogue (plan C)", "unit": "assistant answers mentioning / recommending the analogue (of 20); owned-page search clicks if a site owner supplies Search Console",
             "eligible": "not linkable to the anonymous panel households", "current_pattern_buyers_panel": "not applicable",
             "additional_buyers": "UNKNOWN: content effects on buyers cannot be measured from this data",
-            "answers_logged": geo.get("answers_logged", 0), "status": "CONDITIONAL on 20 real GEO answers", "budget_usd": 0,
+            "answers_logged": geo.get("answers_logged", 0), "status": ("CONDITIONAL on 20 real GEO answers" if not geo.get("answers_logged") else "answers logged from two Claude models (not ChatGPT or Gemini); effect on buyers still UNKNOWN"), "budget_usd": 0,
             "observed_after_action": "NOT RUN"}
 
 

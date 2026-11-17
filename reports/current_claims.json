@@ -205,7 +205,7 @@
         "C1: do not fund now; research first",
         "C2: low priority: weak evidence; consider only as a zero-cost app 'goes well with' default after operations sign-off",
         "C3: operational investigation; no spend",
-        "C4: collect evidence first; zero cost to collect",
+        "C4: low-cost content action only where the audit shows a gap; repeat the panel in ChatGPT and Gemini before claiming anything about them",
         "C0: default until a card's discriminating evidence arrives"
       ],
       "unit": "-",
@@ -228,9 +228,9 @@
     },
     {
       "id": "geo.answers_logged",
-      "value": 0,
+      "value": 20,
       "unit": "of 20",
-      "status": "PENDING",
+      "status": "OBSERVED (two Claude models, not ChatGPT or Gemini)",
       "source": "reports/seo_geo_audit.json"
     },
     {

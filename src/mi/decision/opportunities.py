@@ -20,6 +20,15 @@ from mi.config import load_config
 from mi.ingest.load import load
 from mi.paths import REPORTS, ROOT
 
+
+def _geo_n() -> int:
+    """GEO answers actually logged (read from the generated audit; never a typed number)."""
+    p = REPORTS / "seo_geo_audit.json"
+    try:
+        return int(json.loads(p.read_text(encoding="utf-8", errors="replace")).get("answers_logged", 0)) if p.exists() else 0
+    except ValueError:
+        return 0
+
 H1, H2 = (1, 26), (27, 53)
 
 
@@ -160,14 +169,15 @@ def cards(facts, xs, coh, promo, port, dev) -> list[dict]:
               "evidence_level": "OBSERVED trend; cause UNKNOWN", "recommendation": "operational investigation; no spend"})
     C.append({"id": "C4", "title": "Discovery content for the public analogue (SEO/GEO)", "strategy_class": "content / discovery",
               "segment": {"reachability": "public web and AI assistants; not linkable to the anonymous panel"},
-              "observed": ["0/20 assistant answers collected; no Search Console data"],
+              "observed": [f"{_geo_n()}/20 assistant answers collected" + (" (two Claude models, not ChatGPT or Gemini)" if _geo_n() else "") + "; no Search Console data"],
               "counterevidence": ["a mention in a small prompt panel does not show reach, traffic or conversion"],
               "hypothesized_need": "shoppers asking how to save on frozen pizza/coffee may not find the retailer's offers (HYPOTHESIS)",
               "positioning": "clear, factual answers to buyer questions",
               "four_ps": {"Product": "none", "Price": "none", "Place": "owned pages / listings", "Promotion": "content where cited sources are"},
               "discriminating_evidence": ["20 GEO answers", "Search Console impressions/clicks for owned pages (if a real site owner)"],
               "success_metric": "mention/recommendation rate in a re-run panel AND owned-page search clicks (separately)",
-              "evidence_level": "PENDING", "recommendation": "collect evidence first; zero cost to collect"})
+              "evidence_level": "PENDING" if not _geo_n() else "OBSERVED answers (Claude models only); no traffic or conversion evidence",
+              "recommendation": "collect evidence first; zero cost to collect" if not _geo_n() else "low-cost content action only where the audit shows a gap; repeat the panel in ChatGPT and Gemini before claiming anything about them"})
     C.append({"id": "C0", "title": "Do nothing now / research first", "strategy_class": "no action",
               "observed": ["no modelled coupon plan beats doing nothing at base assumptions"], "evidence_level": "decision rule",
               "recommendation": "default until a card's discriminating evidence arrives"})

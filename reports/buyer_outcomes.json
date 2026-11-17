@@ -135,8 +135,8 @@
       "eligible": "not linkable to the anonymous panel households",
       "current_pattern_buyers_panel": "not applicable",
       "additional_buyers": "UNKNOWN: content effects on buyers cannot be measured from this data",
-      "answers_logged": 0,
-      "status": "CONDITIONAL on 20 real GEO answers",
+      "answers_logged": 20,
+      "status": "answers logged from two Claude models (not ChatGPT or Gemini); effect on buyers still UNKNOWN",
       "budget_usd": 0,
       "observed_after_action": "NOT RUN"
     },

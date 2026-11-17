@@ -30,7 +30,7 @@ Guard: additional buyers are added to the current-pattern total once; households
 ## C. Discovery content for the public analogue (plan C)
 
 - Unit: assistant answers mentioning / recommending the analogue (of 20); owned-page search clicks if a site owner supplies Search Console.
-- Answers logged: 0/20. CONDITIONAL on 20 real GEO answers. Additional buyers: UNKNOWN: content effects on buyers cannot be measured from this data.
+- Answers logged: 20/20. answers logged from two Claude models (not ChatGPT or Gemini); effect on buyers still UNKNOWN. Additional buyers: UNKNOWN: content effects on buyers cannot be measured from this data.
 
 ## D. No paid action / research first (plan D)
 

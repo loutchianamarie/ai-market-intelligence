@@ -62,7 +62,7 @@ Verified and corrected on 2026-11-14 (three passes): see `docs/verification_and_
 | Interviews | 0 of 2–3; intake check ready (`mi.evidence.interviews`) | PENDING (human) |
 | RAG | locked pre-registered set 11/12, conflict 0/1 (before fix); after a source-scope/conflict fix: v3 12/12 (no longer unseen), new adversarial set 3/3, conflict 1/1 | HISTORICAL OBSERVATION (small sets) |
 | Retailer offer pages | ALDI terms fetched; Kroger/Target/Walmart blocked our automated check, so those details are unverified | PENDING (team check) |
-| GEO audit | 0 / 20 real answers collected; panel adapts the class worksheet to a US grocery analogue | PENDING (human) |
+| GEO audit | 20 / 20 answers logged on 2026-11-17 from two **Claude** models (not ChatGPT or Gemini): Kroger analogue mentioned 17/20, recommended 12/20, top pick 8/20 (prompt 7 names the brand; 15/18, 10/18, 6/18 without it); recommended in 0/8 Learn answers. No traffic or sales claim. `docs/geo_audit_results.md` | OBSERVED (small, one vendor); ChatGPT/Gemini rerun PENDING |
 | Live LLM agents | Claude loop unit-tested with a mocked client only; no live call (no key) | PENDING |
 
 ## Layout

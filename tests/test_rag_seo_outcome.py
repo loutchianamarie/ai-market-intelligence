@@ -139,7 +139,13 @@ def test_geo_check_lists_missing_incomplete_and_drift(tmp_path):
         w = csv.DictWriter(f, COLUMNS, extrasaction="ignore")
         w.writeheader()
         w.writerows(rows)
-    c = check(path)
+    import json
+    from mi.seo.geo import PANEL
+    panel = json.loads(PANEL.read_text(encoding="utf-8"))
+    panel.pop("frozen", None)                              # isolated unfrozen copy: the live panel is frozen now
+    ppath = tmp_path / "panel.json"
+    ppath.write_text(json.dumps(panel), encoding="utf-8")
+    c = check(path, ppath)
     assert c["complete_rows"] == 1 and len(c["missing_rows"]) == 18
     assert c["incomplete_rows"][0]["row"] == "P02/ASSISTANT_1" and c["incomplete_rows"][0]["not_Y_or_N"] == ["brand_top_pick"]
     assert "ASSISTANT_1" in c["settings_drift"]          # version changed mid-run

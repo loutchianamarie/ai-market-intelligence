@@ -1,6 +1,6 @@
 {
-  "status": "PENDING — 0 real answers collected",
-  "answers_logged": 0,
+  "status": "OBSERVED answer log",
+  "answers_logged": 20,
   "answers_target": 20,
   "brand": "Kroger",
   "competitors": [
@@ -8,5 +8,78 @@
     "Target",
     "Aldi"
   ],
-  "note": "Run the frozen panel in two assistants and fill data/seo/answer_log.csv. No metric is computed from zero answers."
+  "mention_rate": {
+    "value": 0.85,
+    "num": 17,
+    "den": 20
+  },
+  "recommendation_rate": {
+    "value": 0.6,
+    "num": 12,
+    "den": 20
+  },
+  "primary_pick_rate": {
+    "value": 0.4,
+    "num": 8,
+    "den": 20
+  },
+  "share_of_voice": {
+    "value": 0.30357142857142855,
+    "num": 17,
+    "den": 56
+  },
+  "share_of_recommendations": {
+    "value": 0.35294117647058826,
+    "num": 12,
+    "den": 34
+  },
+  "brand_appearances": {
+    "target": 16,
+    "kroger": 17,
+    "walmart": 14,
+    "aldi": 9
+  },
+  "funnel": {
+    "mention": 0.85,
+    "recommend_given_mention": 0.7058823529411765,
+    "top_given_recommend": 0.6666666666666666
+  },
+  "largest_leak": "top_given_recommend",
+  "by_intent": {
+    "Learn": {
+      "n": 8,
+      "mentioned": 5,
+      "recommended": 0
+    },
+    "Browse": {
+      "n": 6,
+      "mentioned": 6,
+      "recommended": 6
+    },
+    "Buy": {
+      "n": 6,
+      "mentioned": 6,
+      "recommended": 6
+    }
+  },
+  "source_gap_top3": [],
+  "assistants": [
+    "ASSISTANT_1",
+    "ASSISTANT_2"
+  ],
+  "candidate_actions": [
+    {
+      "action": "Publish a factual FAQ/comparison page for Learn-intent questions (how digital coupons work, limits, categories)",
+      "evidence": "lowest mention rate in Learn prompts",
+      "impact": null,
+      "effort": null
+    },
+    {
+      "action": "Keep one consistent brand/offer description and Organization/Product markup that matches visible content",
+      "evidence": "largest funnel leak: top_given_recommend",
+      "impact": null,
+      "effort": null
+    }
+  ],
+  "caveat": "Assistant answers vary by run, version and settings; these are observations of specific answers, not search ranking, traffic or sales."
 }
