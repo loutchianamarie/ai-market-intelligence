@@ -88,7 +88,7 @@ if d:
     c4.markdown(badge("SIMULATED WORKFLOW"), unsafe_allow_html=True)
 
 tabs = st.tabs(["1 Evidence & segment", "2 Model vs rule", "3 Plans & reversal", "4 Pilot & approval",
-                "5 SEO / GEO", "6 Learning", "7 Agent trace", "8 Buyer outcomes", "9 Work queue"])
+                "5 SEO / GEO", "6 Learning", "7 Agent trace", "8 Buyer outcomes", "9 Work queue", "10 E-mail campaign case"])
 
 # ---------------------------------------------------------------- 1 evidence
 with tabs[0]:
@@ -430,3 +430,55 @@ with tabs[8]:
                     st.success(wq.complete(pick, who, "human", {"note": outcome})["status"])
                 except Exception as e:
                     st.error(f"BLOCKED: {e}")
+
+# ---------------------------------------------------------------- 10 e-mail campaign case (separate client case)
+with tabs[9]:
+    from mi.campaign import view as cv
+    st.subheader("E-mail campaign case: Hillstrom 2008 (a separate client case, never grocery evidence)")
+    try:
+        cdoc, csha = cv.load_export()
+    except cv.ExportRefused as e:
+        st.error(f"Campaign export not shown: {e}")
+        cdoc = None
+    if cdoc:
+        rec, mvb, bi = cdoc["recommendation"], cdoc["model_vs_baselines"], cdoc["buyer_impact_per_1000"]
+        st.caption(f"Run {cdoc['run_id']} · model {cdoc['model_version']} · export SHA-256 {csha[:16]}… (checked) · contract {cdoc['contract_version']} · "
+                   f"approval: {cdoc['approval_status']} · nothing is sent")
+        st.markdown("**Buyer problem.** Existing customers, a contact cap and a margin to protect: which merchandise e-mail creates "
+                    "*additional purchasing customers* within two weeks, for whom, and at what cost? Repeat purchase, not new-customer acquisition.")
+        st.markdown("#### 1. What the randomized experiment observed (all customers) " + badge("HISTORICAL OBSERVATION"), unsafe_allow_html=True)
+        st.dataframe(pd.DataFrame(cv.arm_rows(cdoc)).astype(str), width="stretch", hide_index=True)
+        st.markdown(f"#### 2. Does a targeting model help under a {int(100 * mvb['primary_contact_share'])}% contact cap? (held-out customers) "
+                    + badge("MODEL ESTIMATE"), unsafe_allow_html=True)
+        st.dataframe(pd.DataFrame(cv.policy_rows(cdoc)).astype(str), width="stretch", hide_index=True)
+        (st.success if mvb["verdict"] == "MODEL_WIN_STABLE" else st.warning)(f"Verdict {mvb['verdict']}: {mvb['verdict_text']}")
+        st.markdown("#### 3. Economics: scenarios, not profit " + badge("ASSUMPTION"), unsafe_allow_html=True)
+        st.write("Margin and cost per e-mail are **UNKNOWN** in the data. Enter verified values to see a scenario; leave a box empty and the result stays UNKNOWN.")
+        c1, c2, c3, c4 = st.columns(4)
+        arm = c1.selectbox("E-mail", list(cv.TREATMENTS), key="cc_arm")
+        mg = c2.number_input("Margin on incremental sales (0 to 1)", min_value=0.0, max_value=1.0, value=None, step=0.01, key="cc_m")
+        co = c3.number_input("Cost per e-mail (USD)", min_value=0.0, value=None, step=0.005, format="%.3f", key="cc_c")
+        su = c4.number_input("Fixed setup (USD)", min_value=0.0, value=None, step=100.0, key="cc_s")
+        sc = cv.human_scenario(cdoc, arm, mg, co, su)
+        k1, k2 = st.columns(2)
+        k1.metric("Scenario contribution", "UNKNOWN" if sc["contribution"] is None else f"${sc['contribution']:,.0f}",
+                  None if not sc["range"] else f"range ${sc['range'][0]:,.0f} to ${sc['range'][1]:,.0f}", delta_color="off")
+        k2.metric("Break-even cost per e-mail", "UNKNOWN" if sc["break_even_cost"] is None else f"${sc['break_even_cost']:.3f}")
+        st.caption(f"{sc['label']} · contacts {sc['contacts']:,.0f} (assumed base less holdout) · formula: {cv.K.FORMULA}")
+        with st.expander("Break-even cost at assumed margins (before setup)"):
+            st.dataframe(pd.DataFrame(cv.threshold_rows(cdoc)).astype(str), width="stretch", hide_index=True)
+        st.markdown("#### 4. Recommendation (a named human decides)")
+        st.info(rec["decision"])
+        a1, a2 = st.columns(2)
+        a1.markdown("**Conditions**\n" + "\n".join(f"- {x}" for x in rec["conditions"]))
+        a2.markdown("**What would reverse it**\n" + "\n".join(f"- {x}" for x in rec["would_reverse_if"]))
+        st.markdown("**No e-mail:** " + rec["no_email_option"])
+        st.markdown("**If the model stays inconclusive:** " + rec["alternative_if_model_inconclusive"])
+        st.markdown("#### 5. Owned action plan and drafts (none is sent)")
+        st.dataframe(pd.DataFrame(cdoc["marketing"]["action_plan"]).astype(str), width="stretch", hide_index=True)
+        for dft in cdoc["marketing"]["message_drafts"]:
+            st.text_area(f"{dft['draft_id']} · {dft['status']}", f"Subject: {dft['subject']}\n\n{dft['body']}", height=110, disabled=True, key=f"cc_{dft['draft_id']}")
+        with st.expander("Warnings and unknowns"):
+            st.markdown("\n".join(f"- {w}" for w in cdoc["warnings"]))
+            st.dataframe(pd.DataFrame([{"unknown": a["name"], "needed from": a["needed_from"]} for a in cdoc["assumptions_and_unknowns"] if a["tag"] == "UNKNOWN"]).astype(str),
+                         width="stretch", hide_index=True)

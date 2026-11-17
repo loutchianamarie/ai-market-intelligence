@@ -374,3 +374,43 @@ def test_live_export_matches_its_checksum_and_the_contract(proto):
     man = json.loads((X.OUT / "run_manifest.json").read_text(encoding="utf-8"))
     assert man["data"]["sha256"] == proto["source"]["sha256"] and man["model_version"] == doc["model_version"] and man["seed"] == proto["split"]["seed"]
     assert man["split"]["test"]["n"] == doc["model"]["split"]["n_test"]
+
+
+# ------------------------------------------------------------------ manager-app view (read-only, checksum-gated)
+@pytest.mark.skipif(not X.EXPORT.exists(), reason="run python -m mi.campaign.export")
+def test_view_refuses_a_tampered_export_and_a_fixture(tmp_path):
+    from mi.campaign import view as V
+    doc, sha = V.load_export()
+    assert doc["record_type"] == "COMPUTED_EXPORT" and sha == X.CHECKSUM.read_text(encoding="utf-8").split()[0]
+    bad = json.loads(X.EXPORT.read_text(encoding="utf-8"))
+    bad["average_effects"][0]["treated_buyers"] += 1                      # one buyer more than the computed run
+    p = tmp_path / "campaign_case.latest.json"
+    p.write_text(K.dumps(bad), encoding="utf-8")
+    with pytest.raises(V.ExportRefused, match="checksum"):
+        V.load_export(p, X.CHECKSUM)
+    (tmp_path / "c.sha256").write_text(hashlib.sha256(p.read_bytes()).hexdigest() + "  x\n")     # checksum fixed, content still invalid
+    with pytest.raises(V.ExportRefused, match="contract violation"):
+        V.load_export(p, tmp_path / "c.sha256")
+    fx = tmp_path / "fixture.json"
+    fx.write_text(K.dumps(K.build_fixture()), encoding="utf-8")
+    (tmp_path / "f.sha256").write_text(hashlib.sha256(fx.read_bytes()).hexdigest() + "  x\n")
+    with pytest.raises(V.ExportRefused, match="COMPUTED_EXPORT"):
+        V.load_export(fx, tmp_path / "f.sha256")
+    with pytest.raises(V.ExportRefused, match="not found"):
+        V.load_export(tmp_path / "missing.json", X.CHECKSUM)
+
+
+@pytest.mark.skipif(not X.EXPORT.exists(), reason="run python -m mi.campaign.export")
+def test_view_economics_stay_unknown_until_a_person_supplies_inputs_and_match_the_export():
+    from mi.campaign import view as V
+    doc, _ = V.load_export()
+    assert V.human_scenario(doc, MENS, None, 0.03, 1000.0)["contribution"] is None            # missing margin -> UNKNOWN, never 0
+    assert V.human_scenario(doc, MENS, 0.35, None, 1000.0)["contribution"] is None
+    assert V.human_scenario(doc, MENS, None, None, None)["break_even_cost"] is None
+    central = next(s for s in doc["business_scenarios"] if s["scenario_id"] == "SEND_ALL_MENS_100__CENTRAL")
+    mine = V.human_scenario(doc, MENS, 0.35, 0.03, 1000.0)
+    assert mine["contribution"] == pytest.approx(central["contribution"]["value"]) and mine["range"][0] < mine["contribution"] < mine["range"][1]
+    assert "not measured profit" in mine["label"]
+    assert len(V.arm_rows(doc)) == 3 and all(r["label"] == "OBSERVED" for r in V.arm_rows(doc))
+    rows = V.policy_rows(doc)
+    assert rows and all(r["label"] == "HELD_OUT_ESTIMATE" for r in rows) and sum(r["primary"] == "yes" for r in rows) == 3
