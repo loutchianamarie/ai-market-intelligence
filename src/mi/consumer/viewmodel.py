@@ -85,7 +85,7 @@ def build(case: CaseResult, trace: dict | None = None, blocked: dict | None = No
         "marketing": {k: d["marketing"][k] for k in ("positioning", "four_ps", "message_drafts", "action_plan", "success_metric", "targeting")},
         "warnings": d["warnings"], "sources": d["sources"], "published_refs": d["published_references"],
         "claims": {k: cl[k] for k in cl}, "approval_status": d["approval_status"],
-        "trace": trace, "blocked": blocked,
+        "trace": trace, "blocked": blocked, "lab": lab_summary(),
     }
     if trace:
         v["dossier"] = {"id": trace["opportunity_id"], "state": trace["state"], "mode": trace["mode"], "llm_status": trace["llm_status"],
@@ -93,6 +93,25 @@ def build(case: CaseResult, trace: dict | None = None, blocked: dict | None = No
                                    "tools": [f"{c['tool']}:{c['status']}" for c in s["tool_calls"]]} for s in trace["agent_trace"]],
                         "checker": trace.get("checker_verdict"), "work_items": trace.get("work_items", []), "approval": trace.get("approval")}
     return v
+
+
+def lab_summary(path: Path = REPORTS / "campaign_lab" / "results.json") -> dict | None:
+    """Headline of the model lab (protocol v3), read from its generated files; None if the lab has not been run."""
+    ex = path.with_name("extras.json")
+    if not (path.exists() and ex.exists()):
+        return None
+    r, e = json.loads(path.read_text(encoding="utf-8")), json.loads(ex.read_text(encoding="utf-8"))
+    s, pn = r["selection"], r["permutation"]
+    best = s["best_challenger"]
+    return {"n_candidates": len(s["mean_auq"]) - 3, "selected": s["selected"], "best_challenger": best,
+            "best_challenger_ci90": s["paired_diff_vs_baseline_ci90"][best], "challenger_shown_better": s["challenger_shown_better"],
+            "perm_p": pn["p_value"], "real_auq": pn["real_auq_repeat0"], "null_p95": pn["null_p95"],
+            "heterogeneity_p": e["heterogeneity"]["global"]["p_value"], "customers_needed": e["power"]["customers_needed_for_80pct_power_if_gap_is_real"],
+            "n_test": e["power"]["n_test_now"], "mde_per_1000": e["power"]["min_detectable_gap_per_1000_at_current_n"],
+            "sentence": (f"{len(s['mean_auq']) - 3} model candidates were tested under a pre-registered protocol; none was shown better than the baseline "
+                         f"(best challenger {best}: paired 90% interval {s['paired_diff_vs_baseline_ci90'][best][0]:+.1f} to {s['paired_diff_vs_baseline_ci90'][best][1]:+.1f} buyers of Qini area). "
+                         f"The baseline's out-of-fold signal is not distinguishable from shuffled arm labels (p = {pn['p_value']:.2f}). "
+                         f"Proving a targeting gain would need roughly {e['power']['customers_needed_for_80pct_power_if_gap_is_real']:,} customers, against {e['power']['n_test_now']:,} in the test split.")}
 
 
 def latest_trace(path: Path = REPORTS / "marketing_agent_trace.json") -> dict | None:
@@ -124,6 +143,9 @@ def brief_markdown(v: dict) -> str:
     L += ["", "| Scenario (assumption set) | Margin | Cost per e-mail | Setup | Contribution (SCENARIO) | Range |", "|---|---|---|---|---|---|"]
     L += [f"| {s['label']} | {'unknown' if s['margin'] is None else format(s['margin'], '.0%')} | {n(s['cost'], 3)} | {n(s['setup'], 0)} | "
           f"{n(s['contribution'], 0)} USD | {s['range'] or 'unknown'} |" for s in v["scenarios"]]
+    if v.get("lab"):
+        L += ["", "## Model lab: could a better model fix this?", "", v["lab"]["sentence"], "",
+              "Exploratory test of whether any feature changes the e-mail effect: global p = " + f"{v['lab']['heterogeneity_p']:.3f}" + ". Details: `reports/campaign_lab/report.md`."]
     L += ["", "## Conditions, reversal and no-send", ""] + [f"- {c}" for c in r["conditions"]]
     L += ["", "Would reverse the decision:"] + [f"- {x}" for x in r["reverse_if"]]
     L += ["", f"**No e-mail.** {r['no_email']}", "", f"**If only a share can be contacted.** {r['alternative']}"]
@@ -168,6 +190,7 @@ def backup_html(v: dict) -> str:
                   f"<li>Strategist calls send_email: <b>{e(str(b['strategist_calls_send_email']))}</b></li>"
                   f"<li>Agent self-approval: <b>{e(str(b['agent_self_approval']))}</b></li>"
                   f"<li>CRM record before approval: <b>{e(str(b['crm_records_before_approval']['status']))}</b></li></ul>")
+    lab_html = f"<h2>Model lab</h2><p>{e(v['lab']['sentence'])}</p>" if v.get("lab") else ""
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Buyer decision (offline backup)</title><style>
 body{{font:16px/1.5 system-ui,Segoe UI,sans-serif;max-width:980px;margin:24px auto;padding:0 16px;color:#1d1d1b;background:#fff}}
@@ -182,7 +205,7 @@ table{{border-collapse:collapse;width:100%;margin:8px 0 20px}}td,th{{border:1px 
 <div class="warn"><b>{e(vd['headline'])}</b></div>
 <h2>Three arms (full randomized sample)</h2><table><tr><th>Arm</th><th>Buyers / customers</th><th>Rate</th><th>Additional per 1,000 vs no e-mail</th></tr>{rows}</table>
 <h2>Model versus baselines, 25% contact cap (held-out)</h2><table><tr><th>Policy</th><th>Additional per 1,000 contacts</th><th>95% interval</th><th>Counts</th><th>Tag</th></tr>{pol}</table>
-<h2>Decision</h2><p><b>{e(r['status'])}</b> (approval {e(v['approval_status'])})<br>{e(r['decision'])}</p>
+{lab_html}<h2>Decision</h2><p><b>{e(r['status'])}</b> (approval {e(v['approval_status'])})<br>{e(r['decision'])}</p>
 <h2>Economics are scenarios, not profit</h2><p>Margin and cost per e-mail are UNKNOWN.</p>
 <table><tr><th>Assumed margin</th><th>Break-even cost per e-mail, point (USD)</th><th>Conservative (USD)</th></tr>{thr}</table>
 <table><tr><th>Scenario</th><th>Contribution (USD)</th><th>Range</th><th>Kind</th></tr>{scn}</table>

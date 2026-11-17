@@ -400,3 +400,14 @@ def test_live_check_is_pending_without_a_key_and_never_fabricates(case, monkeypa
     monkeypatch.delenv("ANTHROPIC_AUTH_TOKEN", raising=False)
     out = A.live_analyst_check(case, persist=False)
     assert out["live_llm"] is False and out["status"].startswith("PENDING")
+
+
+def test_lab_summary_reaches_brief_and_backup_from_generated_files(case):
+    from mi.consumer.viewmodel import backup_html, brief_markdown, build, lab_summary
+    lab = lab_summary()
+    if lab is None:
+        pytest.skip("model lab not run")
+    assert lab["n_candidates"] == 8 and lab["selected"] == "S_LOGIT" and lab["challenger_shown_better"] is False
+    v = build(case)
+    assert "none was shown better" in brief_markdown(v) and "Model lab" in backup_html(v)
+    assert lab["customers_needed"] > lab["n_test"]            # proving a gain needs more customers than the test split has

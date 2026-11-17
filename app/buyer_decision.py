@@ -165,5 +165,9 @@ with st.expander("Agent trace (saved, real tool calls)"):
         st.markdown("**Blocked on purpose** (scripted attempts, not human decisions)")
         st.json({k: blocked[k] for k in ("strategist_calls_send_email", "analyst_calls_draft_action", "crm_records_before_approval",
                                          "agent_self_approval", "outcome_before_any_action")})
+if v.get("lab"):
+    with st.expander("Model lab: could a better model fix this?"):
+        st.markdown(v["lab"]["sentence"])
+        st.caption("Pre-registered protocol v3; figures and the full report are in reports/campaign_lab/.")
 with st.expander("Limits"):
     st.markdown("\n".join(f"- {w}" for w in v["warnings"]))

@@ -48,6 +48,12 @@ Margin and cost per e-mail are UNKNOWN. Break-even cost per e-mail by assumed ma
 | Central assumptions, Mens E-Mail | 35% | 0.030 | 1,000 | 12,792 USD | 7,053 to 18,531 |
 | Favourable assumptions, Mens E-Mail | 50% | 0.005 | 500 | 21,383 USD | 13,184 to 29,582 |
 
+## Model lab: could a better model fix this?
+
+8 model candidates were tested under a pre-registered protocol; none was shown better than the baseline (best challenger S_LOGIT_SPARSE: paired 90% interval -1.0 to +4.9 buyers of Qini area). The baseline's out-of-fold signal is not distinguishable from shuffled arm labels (p = 0.15). Proving a targeting gain would need roughly 284,012 customers, against 25,603 in the test split.
+
+Exploratory test of whether any feature changes the e-mail effect: global p = 0.077. Details: `reports/campaign_lab/report.md`.
+
 ## Conditions, reversal and no-send
 
 - Finance confirms the contribution margin on incremental sales and CRM confirms the full cost per e-mail (delivery, offer, handling); the cost must be below margin x 0.77 USD, and below margin x 0.49 USD to be safe on the lower bound.
