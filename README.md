@@ -7,13 +7,30 @@
 **Manager summary:** `docs/marketing_brief.md` (buyer outcomes, 4P options, work queue) · `docs/decision_card.md` · opportunity cards `docs/opportunity_cards.md` · data dictionary `docs/data_dictionary.md`.
 **Current recommendation:** no rollout and no funded test at base assumptions; $0 research first (`docs/decision_brief.md`). Advisor status: DEFER FUNDING / NO SPEND WHILE TERMS ARE UNCONFIRMED (base case: retailer-funded); live dossier in `NEXT_DAY_STATUS.md`, and a named person decides.
 
+## Second client case: randomized e-mail campaign (`HILLSTROM_EMAIL_2008`)
+A separate case with its own data, model and claims. Nothing here is grocery evidence, and no grocery number enters it.
+
+**Decision:** which merchandise e-mail to send to which existing customers under a contact cap, how many additional purchasing customers that creates versus no e-mail, and at what cost it stops paying.
+**Data:** Hillstrom / MineThatData 2008: 64,000 existing customers, randomized thirds (Mens e-mail, Womens e-mail, no e-mail), two-week purchase outcome. The raw file stays local.
+**Read first:** `docs/campaign_decision_card.md` (manager), `docs/campaign_marketing_brief.md` (slide claims), `reports/campaign/model_card.md`, `docs/campaign_data_dictionary.md`.
+**Cross-repo contract:** `docs/contracts/` (schema v1, synthetic fixture, handoff note). The export `reports/campaign_case.latest.json` is consumed read-only by the ConsultAI repo.
+
+```
+python -m mi.campaign.export                  # audit -> fit -> held-out policy evaluation -> economics -> export + cards (~25 s)
+python -m mi.campaign.contract validate reports/campaign_case.latest.json
+python -m mi.campaign.contract sample         # rewrite the SYNTHETIC_FIXTURE (deterministic)
+python -m pytest -q tests/test_campaign_contract.py tests/test_campaign_case.py
+```
+
+Protocol `data/eval/hillstrom_protocol_v2.json` was committed before the conversion model was fitted. The earlier visit analysis (`mi.experiments.hillstrom`, protocol v1) is unchanged.
+
 ## Quick start (Windows, Python 3.12)
 ```
 python -m venv .venv && .venv\Scripts\activate
 pip install -r requirements.lock.txt
 pip install -e .                      # or add src/ to PYTHONPATH
 python -m mi.cli all                  # download → VERIFY (data/manifest.lock.json) → audit → train → evaluate → portfolio, sensitivity & reversal → claim audit → RAG → GEO/interview checks → Hillstrom method track → agents to the human checkpoint (~8.5 min incl. the full promotions table; logs in reports/run_logs, record in reports/run_manifest.json, current claims in reports/current_claims.json)
-python -m mi.cli test                 # 98 tests
+python -m mi.cli test                 # 136 tests (98 grocery + advisor, 38 campaign case)
 python -m mi.cli demo                 # Streamlit manager app (offline; uses saved, hashed artifacts)
 python -m mi.claim_audit              # independent re-derivation of every headline number → reports/claim_audit.json
 python -m mi.seo.geo check            # which of the 20 GEO answers are still missing
@@ -66,6 +83,9 @@ src/mi/model/evaluate.py     pre-registered evaluation (rolling origin, calibrat
 src/mi/decision/reversal.py  decision inputs (measured vs assumed) + one-at-a-time reversal
 src/mi/outcome/pilot.py      randomized pilot ingestion, ITT estimate, decision rule with commercial hurdle
 src/mi/experiments/          Hillstrom randomized e-mail method track (raw data local only)
+src/mi/campaign/             campaign case HILLSTROM_EMAIL_2008: contract + validator, data audit, conversion uplift model,
+                             randomized-policy evaluation, economics, export and generated cards (isolated from grocery code)
+docs/contracts/              frozen cross-repo contract v1: schema, synthetic fixture, integration handoff
 app/streamlit_app.py         manager demo
 deck/                        build_deck.js → AI_Market_Intelligence_Deck.pptx (12 slides + appendix)
 docs/                        decision brief, research memo, agents canvas, traceability, metrics, protocols, presentation, claim audit

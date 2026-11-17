@@ -623,14 +623,16 @@ def dumps(doc: dict) -> str:
 
 
 def structure_paths(doc: Any, path: str = "$") -> set[str]:
-    """Key paths with list indices collapsed: the fixture and the real export must expose the same structure."""
+    """Object key paths with list indices collapsed (scalar list items are not paths): the fixture and the real
+    export must expose the same structure, whatever the values and however many rows a list holds."""
     out = {path}
     if isinstance(doc, dict):
         for k, v in doc.items():
             out |= structure_paths(v, f"{path}.{k}")
     elif isinstance(doc, list):
         for v in doc:
-            out |= structure_paths(v, f"{path}[]")
+            if isinstance(v, (dict, list)):
+                out |= structure_paths(v, f"{path}[]")
     return out
 
 

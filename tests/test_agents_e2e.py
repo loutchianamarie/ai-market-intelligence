@@ -38,6 +38,7 @@ def test_tool_errors_are_returned_not_raised(tmp_path):
 def test_end_to_end_single_dossier_trace(tmp_path):
     store = DossierStore(tmp_path / "e2e.sqlite")
     run = Run(store, llm=NoLLM())
+    run.persist_traces = False          # throwaway store: never overwrite the live reports/agent_trace_latest.json
     oid = run.run_to_checkpoint()
     d = store.get(oid)
     assert d["state"] == "REVIEW_REQUESTED" and d["pilot"]["budget"]["total"] <= d["pilot"]["budget"]["cap"]
@@ -46,7 +47,9 @@ def test_end_to_end_single_dossier_trace(tmp_path):
     assert "UNAPPROVED_ACTION_BLOCKED" in [e["event"] for e in store.events(oid)]
     # TEST FIXTURE approver (not a real person's approval)
     store.approve(oid, "TEST_FIXTURE_APPROVER", "approver", pilot_hash(store.get(oid)["pilot"]), "test")
-    state = Run(store, llm=NoLLM()).resume_after_approval(oid)
+    resumed = Run(store, llm=NoLLM())
+    resumed.persist_traces = False
+    state = resumed.resume_after_approval(oid)
     assert state in ("EXPAND", "CHANGE", "STOP", "INCONCLUSIVE")
     d = store.get(oid)
     roles = [t["role"] for t in d["agent_trace"]]

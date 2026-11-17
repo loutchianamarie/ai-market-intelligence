@@ -3,7 +3,8 @@
   python -m mi.cli all      download (if missing) -> verify against the committed lock -> audit -> train ->
                             extended evaluation -> portfolio, sensitivity & decision inputs -> claim audit (same-plan
                             economics, cohort turnover) -> RAG eval -> GEO check/analysis -> interview intake check ->
-                            FashionForward fixture -> blocked demo -> agents to the human checkpoint
+                            FashionForward fixture -> Hillstrom visit track -> campaign case export (separate
+                            client case, reports/campaign_case.latest.json) -> blocked demo -> agents to the human checkpoint
   python -m mi.cli test     run the test suite
   python -m mi.cli demo     launch the Streamlit manager app
 
@@ -51,6 +52,7 @@ STEPS = [
     ("interview intake check", ["mi.evidence.interviews", "check"], None, False),
     ("fashionforward fixture", ["mi.decision.fashionforward"], None, True),
     ("hillstrom experiment (separate track)", ["mi.experiments.hillstrom"], None, True),
+    ("campaign case export (HILLSTROM_EMAIL_2008, contract v1)", ["mi.campaign.export"], None, True),
     ("blocked demo", ["mi.agents.coordinator", "blocked-demo"], None, False),
     ("agents to human checkpoint", ["mi.agents.coordinator", "run"], None, False),
 ]
