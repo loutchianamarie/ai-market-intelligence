@@ -87,3 +87,26 @@ def test_protocol_v3_declares_the_same_candidates_as_the_code():
     proto = json.loads(L.PROTOCOL_V3.read_text(encoding="utf-8"))
     assert [c["id"] for c in proto["candidates"]] == L.ALL
     assert proto["selection"]["scheme"].startswith("repeated stratified K-fold: 5 folds x 3 repeats")
+
+
+def test_scale_gap_recovers_planted_effect_and_rules():
+    import numpy as np
+    from mi.campaign import scale as S
+    rng = np.random.default_rng(3)
+    n = 40_000
+    X = rng.normal(size=(n, 12)).astype(np.float32)
+    t = rng.binomial(1, 0.5, n).astype(np.int8)
+    y = rng.binomial(1, 0.02 + 0.08 * t * (X[:, 0] > 0.3)).astype(np.int8)
+    sc = {m: S.fit_predict(m, X[:25000], t[:25000].astype(np.float32), y[:25000], X[25000:]) for m in ("S_LOGIT", "T_HGB")}
+    r = S.bootstrap_gaps(y[25000:], t[25000:], sc, n_boot=20)
+    assert r["T_HGB|0.25"]["gap"] > 10 and r["T_HGB|0.25"]["ci95"][0] > 0
+    assert "vs_baseline" in r["T_HGB|0.25"]
+    # random scores carry no information: gap is far below the planted-effect gap
+    rs = {"S_LOGIT": rng.normal(size=15000), "T_HGB": rng.normal(size=15000)}
+    z = S.bootstrap_gaps(y[25000:], t[25000:], rs, n_boot=20)
+    assert abs(z["T_HGB|0.25"]["gap"]) < 0.5 * r["T_HGB|0.25"]["gap"]
+    # majority rule: 2 of 3 draws with lower bound > 0 -> beats random
+    def fake(lo):
+        return {f"{m}|0.25": {"gap": 5.0, "ci95": [lo, 9.0], "vs_baseline": {"diff": 1.0, "ci95": [-1.0, 3.0]}} for m in S.MODELS}
+    v = S.verdicts([{"size": "n_64k", "results": fake(1.0)}, {"size": "n_64k", "results": fake(1.0)}, {"size": "n_64k", "results": fake(-1.0)}])
+    assert v["n_64k"]["T_HGB"]["beats_random"] is True and v["n_64k"]["T_HGB"]["beats_baseline"] is False

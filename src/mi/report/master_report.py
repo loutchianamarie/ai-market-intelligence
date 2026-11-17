@@ -75,6 +75,22 @@ def build() -> str:
     comp = cf["comparisons"]
     pw, het, nf = X["power"], X["heterogeneity"], X["noise_floor"]
     nfull = X["noise_floor_full"]
+    SC = _j(REPORTS / "criteo_scale" / "results.json")
+    if SC:
+        sv = SC["verdicts"]
+        sz = list(sv)
+        mg = lambda k: sum(sv[k][m]["mean_gap"] for m in sv[k]) / len(sv[k])
+        scale_md = (
+            "### 5.3b Scale replication on 14 million randomized rows (protocol v4, pre-registered)\n\n"
+            f"To ask whether the Hillstrom verdict reflects too little data, the same method was run on the public Criteo uplift data ({SC['rows']:,} rows, {SC['treated_share'] * 100:.0f}% treated, "
+            f"{SC['overall_conv_pct']:.2f}% conversion; a different, anonymised advertising setting). Four fixed candidates were trained on {len(sz)} nested sizes and scored on one untouched test set of {SC['test_rows']:,} customers. "
+            f"Selecting the top 25% by score beat random targeting by about {mg(sz[0]):+.1f} extra conversions per 1,000 contacts already with a Hillstrom-sized training set and {mg(sz[-1]):+.1f} with about 11 million; "
+            "the gain grew only modestly with 60 times more training data, and no challenger beat the logistic baseline. "
+            "The difference from Hillstrom is mainly the size of the evaluation set (about 110 times larger here, so the interval is about 0.4 per 1,000 instead of about 6), plus a stronger signal in this dataset. "
+            "This is evidence that the method can detect targeting value when the test is large enough, not evidence that the Hillstrom model works. Full table and limits: `reports/criteo_scale/report.md`.\n\n"
+            "![Gap versus training size](../reports/criteo_scale/fig_gap_vs_size.png)\n")
+    else:
+        scale_md = ""
     cand = [k for k in sel["mean_auq"] if k not in ("RULE_RECENCY", "RULE_HISTORY", "RANDOM_ORDER")]
     lab_rows = "\n".join(f"| {k} | {sel['mean_auq'][k]:.2f} | {sel['sd_auq_over_repeats'][k]:.2f} | "
                          + (ci(sel["paired_diff_vs_baseline_ci90"][k], 2) if k in sel["paired_diff_vs_baseline_ci90"] else "baseline") + " |" for k in cand)
@@ -190,6 +206,7 @@ Classification accuracy is meaningless here (predicting that nobody buys is righ
 ![Permutation null](../reports/campaign_lab/fig5_permutation_null.png)
 ![Uplift calibration](../reports/campaign_lab/fig6_uplift_calibration.png)
 
+{scale_md}
 ### 5.4 Economics and the decision (RQ4)
 
 Break-even cost per e-mail for the Mens e-mail, by assumed margin (before setup):
