@@ -99,5 +99,22 @@
   "scale_factor": 11.092889171702026,
   "min_detectable_gap_per_1000_at_current_n": 8.759794180146981,
   "reading": "rough: assumes the estimated gap is the true gap and that interval width scales with 1/sqrt(n); the estimated gap itself is uncertain"
+ },
+ "predictive": {
+  "model": "S_LOGIT (v2 baseline)",
+  "n_test": 25603,
+  "buyers": 240,
+  "base_rate": 0.009373901495918447,
+  "roc_auc": 0.6419736262797514,
+  "average_precision": 0.015770979272940182,
+  "log_loss": 0.05199371907251331,
+  "log_loss_constant_rate": 0.05310431642833735,
+  "accuracy_at_0.5": 0.9906260985040816,
+  "accuracy_all_no_purchase": 0.9906260985040816,
+  "auc_by_arm": {
+   "No E-Mail": 0.7076525433730674,
+   "Mens E-Mail": 0.6018830166564433,
+   "Womens E-Mail": 0.5740033053395478
+  }
  }
 }

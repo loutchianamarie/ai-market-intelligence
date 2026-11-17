@@ -70,6 +70,23 @@ def heterogeneity(df: pd.DataFrame) -> dict:
     return out
 
 
+def predictive(df: pd.DataFrame, lab_split: np.ndarray, name: str = "S_LOGIT") -> dict:
+    """Ordinary predictive metrics of the purchase probability on the test split (the model is fitted on train+validation).
+    They are context only: with a ~1% purchase rate, accuracy cannot separate a model from 'nobody buys'."""
+    from sklearn.metrics import accuracy_score, average_precision_score, log_loss, roc_auc_score
+    trva, te = df[lab_split != "test"], df[lab_split == "test"].reset_index(drop=True)
+    d, clf = U.fit_slearner(trva, 0.1)
+    P = U.predict_arms(d, clf, te)
+    a = te[ASSIGNMENT].to_numpy()
+    p = np.where(a == MENS, P[MENS], np.where(a == WOMENS, P[WOMENS], P[CONTROL]))
+    y = te[Y].to_numpy()
+    return {"model": "S_LOGIT (v2 baseline)", "n_test": int(len(y)), "buyers": int(y.sum()), "base_rate": float(y.mean()),
+            "roc_auc": float(roc_auc_score(y, p)), "average_precision": float(average_precision_score(y, p)),
+            "log_loss": float(log_loss(y, p)), "log_loss_constant_rate": float(log_loss(y, np.full(len(y), y.mean()))),
+            "accuracy_at_0.5": float(accuracy_score(y, p > 0.5)), "accuracy_all_no_purchase": float(1 - y.mean()),
+            "auc_by_arm": {arm: float(roc_auc_score(y[a == arm], p[a == arm])) for arm in (CONTROL, MENS, WOMENS)}}
+
+
 def power(conf: dict) -> dict:
     """Sample size for a confirmatory test of the model-minus-random gap at the 25% cap, scaled from the observed interval width."""
     c = conf["comparisons"]["MODEL_MENS_25 minus RANDOM_MENS_25"]
@@ -159,7 +176,7 @@ def main() -> int:
     df_tv = df[lab_split != "test"].reset_index(drop=True)
     res = json.loads((L.OUT / "results.json").read_text(encoding="utf-8"))
     extras = {"status": "EXPLORATORY: data already seen; not confirmatory", "noise_floor": noise_floor(df_tv), "noise_floor_full": noise_floor(df), "heterogeneity": heterogeneity(df),
-              "power": power(res["confirmation"])}
+              "power": power(res["confirmation"]), "predictive": predictive(df, lab_split)}
     (L.OUT / "extras.json").write_text(json.dumps(extras, indent=1), encoding="utf-8")
     (L.OUT / "report.md").write_text(report(res, extras), encoding="utf-8")
     print(json.dumps({"noise_floor": extras["noise_floor"], "global_het": extras["heterogeneity"]["global"], "top_features": extras["heterogeneity"]["per_feature"][:4],
