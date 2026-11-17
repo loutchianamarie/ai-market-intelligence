@@ -1,0 +1,56 @@
+{
+  "tabs": {
+    "1 Evidence & segment": {
+      "chars": 4030,
+      "bad_text": []
+    },
+    "2 Model vs rule": {
+      "chars": 1891,
+      "bad_text": []
+    },
+    "3 Plans & reversal": {
+      "chars": 2600,
+      "bad_text": []
+    },
+    "4 Pilot & approval": {
+      "chars": 5658,
+      "bad_text": []
+    },
+    "5 SEO / GEO": {
+      "chars": 2764,
+      "bad_text": []
+    },
+    "6 Learning": {
+      "chars": 1749,
+      "bad_text": []
+    },
+    "7 Agent trace": {
+      "chars": 2067,
+      "bad_text": []
+    },
+    "8 Buyer outcomes": {
+      "chars": 1874,
+      "bad_text": []
+    },
+    "9 Work queue": {
+      "chars": 1324,
+      "bad_text": []
+    },
+    "10 E-mail campaign case": {
+      "chars": 5803,
+      "bad_text": []
+    }
+  },
+  "checks": {
+    "tab10_has_counts": false,
+    "tab10_verdict": true,
+    "tab10_unknown_before_inputs": true,
+    "tab10_nothing_sent_banner": true,
+    "tab10_contribution_after_inputs": true,
+    "tab10_break_even_after_inputs": true
+  },
+  "tab_count": 10,
+  "tab10_number_inputs": 5,
+  "page_errors": [],
+  "all_tabs_clean": true
+}
