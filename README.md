@@ -22,6 +22,18 @@ python -m mi.campaign.contract sample         # rewrite the SYNTHETIC_FIXTURE (d
 python -m pytest -q tests/test_campaign_contract.py tests/test_campaign_case.py
 ```
 
+**Consumer side (advisor, screen, deck).** The agent path reads the export only through `src/mi/consumer/adapter.py` (checksum, contract validation, `DATA_PENDING` when absent, synthetic fixture refused):
+
+```
+python -m mi.consumer.advisor run             # coordinator, analyst, research, strategist, checker -> human checkpoint (trace saved)
+python -m mi.consumer.advisor blocked-demo    # send, self-approval and early CRM record all blocked
+streamlit run app/buyer_decision.py           # ONE screen: buyers -> decision -> guarded action
+python deck/build_campaign_deck.py            # five slides, notes, timings
+python -m pytest -q tests/test_campaign_advisor.py
+```
+
+Mode is `DETERMINISTIC_SPECIALISTS`; a live LLM tool-use run is PENDING. See `docs/demo_runbook.md`, `docs/reference_patterns.md`, `docs/marketing_decision_brief.md`. `.gitattributes` pins the export byte-exact: a CRLF checkout changes its SHA-256.
+
 Protocol `data/eval/hillstrom_protocol_v2.json` was committed before the conversion model was fitted. The earlier visit analysis (`mi.experiments.hillstrom`, protocol v1) is unchanged.
 
 ## Quick start (Windows, Python 3.12)

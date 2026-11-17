@@ -1,0 +1,4 @@
+# The export is checksummed: never let autocrlf rewrite its bytes (a CRLF checkout changes the SHA-256).
+reports/campaign_case.latest.json -text
+reports/campaign_case.latest.sha256 -text
+docs/contracts/*.json -text

@@ -1,0 +1,702 @@
+{
+  "opportunity_id": "OPP-234024F9",
+  "case_id": "HILLSTROM_EMAIL_2008",
+  "mode": "DETERMINISTIC_SPECIALISTS",
+  "llm_status": "PENDING: no LLM is called by this path; a live tool-using run is not verified",
+  "export_sha256": "a3ee6a640ad9a9021c10f7bb3601fd1d79ae2619cb87e1f5c7d4db1e76cd75e4",
+  "state": "REVIEW_REQUESTED",
+  "version": 8,
+  "total_runtime_ms": 74.2,
+  "case_plan": {
+    "objective": "Maximise additional purchasing existing customers within two weeks per 1,000 e-mailed, subject to cost, consent and evidence",
+    "window_days": 14,
+    "unit": "unique_existing_customer",
+    "alternatives": [
+      "Mens E-Mail",
+      "Womens E-Mail",
+      "NO E-MAIL"
+    ],
+    "contact_caps_evaluated": [
+      0.25,
+      0.5,
+      1.0
+    ],
+    "tasks": [
+      {
+        "id": "T1",
+        "role": "analyst",
+        "task": "Read arm metrics, policy comparison and economics from the export",
+        "depends_on": [],
+        "status": "DONE"
+      },
+      {
+        "id": "T2",
+        "role": "research",
+        "task": "List sources, abstain on unknowns, report SEO/GEO collection status",
+        "depends_on": [],
+        "status": "DONE"
+      },
+      {
+        "id": "T3",
+        "role": "strategist",
+        "task": "Draft the action, two messages, holdout and owned work items",
+        "depends_on": [
+          "T1",
+          "T2"
+        ],
+        "status": "DONE"
+      },
+      {
+        "id": "T4",
+        "role": "checker",
+        "task": "Validate claims, tags, unknowns, authorization",
+        "depends_on": [
+          "T3"
+        ],
+        "status": "DONE"
+      },
+      {
+        "id": "T5",
+        "role": "human",
+        "task": "Named approver reviews the exact plan version",
+        "depends_on": [
+          "T4"
+        ],
+        "status": "PENDING"
+      }
+    ],
+    "stop_rule": "Fixed order, one pass, at most 5 agent steps; stop at the human checkpoint; no research loop-back; error => DATA_PENDING/REJECTED, never substitute figures.",
+    "max_steps": 5
+  },
+  "agent_trace": [
+    {
+      "role": "analyst",
+      "task_id": "T1",
+      "mode": "DETERMINISTIC_SPECIALISTS",
+      "tool_calls": [
+        {
+          "tool": "read_arm_metrics",
+          "args": {},
+          "status": "ok",
+          "runtime_ms": 0.1,
+          "evidence_ids": [
+            "CLM_N_CONTROL",
+            "CLM_BUYERS_CONTROL",
+            "CLM_RATE_CONTROL",
+            "CLM_N_MENS",
+            "CLM_BUYERS_MENS",
+            "CLM_RATE_MENS",
+            "CLM_N_WOMENS",
+            "CLM_BUYERS_WOMENS",
+            "CLM_RATE_WOMENS",
+            "CLM_BUYERS_PER_1000_MENS",
+            "CLM_BUYERS_PER_1000_WOMENS",
+            "CLM_SPEND_PER_CONTACT_MENS",
+            "CLM_SPEND_PER_CONTACT_WOMENS"
+          ]
+        },
+        {
+          "tool": "read_policy_comparison",
+          "args": {},
+          "status": "ok",
+          "runtime_ms": 0.0,
+          "evidence_ids": [
+            "CLM_TEST_SEND_ALL_MENS",
+            "CLM_CAP25_MODEL",
+            "CLM_CAP25_RANDOM",
+            "CLM_CAP25_RULE",
+            "CLM_CAP25_OTHER_RULE",
+            "CLM_MODEL_VS_RANDOM",
+            "CLM_MODEL_VS_RULE",
+            "CLM_MODEL_VERDICT"
+          ]
+        },
+        {
+          "tool": "read_economics",
+          "args": {},
+          "status": "ok",
+          "runtime_ms": 0.0,
+          "evidence_ids": [
+            "CLM_BREAK_EVEN_COST_MENS_M35",
+            "CLM_SCENARIO_MENS_CONSERVATIVE",
+            "CLM_SCENARIO_MENS_CENTRAL",
+            "CLM_EXPECTED_BUYERS_BROAD",
+            "CLM_HOLDOUT_PER_ARM",
+            "CLM_MARGIN",
+            "CLM_COST_PER_CONTACT",
+            "CLM_MEASURED_PROFIT"
+          ]
+        }
+      ],
+      "transition": "ANALYSIS_DONE",
+      "runtime_ms": 0.1,
+      "violations": [],
+      "ts": "2026-11-17T08:47:16+00:00"
+    },
+    {
+      "role": "research",
+      "task_id": "T2",
+      "mode": "DETERMINISTIC_SPECIALISTS",
+      "tool_calls": [
+        {
+          "tool": "list_sources",
+          "args": {},
+          "status": "ok",
+          "runtime_ms": 0.0,
+          "evidence_ids": []
+        },
+        {
+          "tool": "check_known_unknowns",
+          "args": {},
+          "status": "ok",
+          "runtime_ms": 0.0,
+          "evidence_ids": []
+        },
+        {
+          "tool": "seo_status",
+          "args": {},
+          "status": "ok",
+          "runtime_ms": 0.2,
+          "evidence_ids": []
+        }
+      ],
+      "transition": "RESEARCH_DONE",
+      "runtime_ms": 0.3,
+      "violations": [],
+      "ts": "2026-11-17T08:47:16+00:00"
+    },
+    {
+      "role": "strategist",
+      "task_id": "T3",
+      "mode": "DETERMINISTIC_SPECIALISTS",
+      "tool_calls": [
+        {
+          "tool": "read_marketing_plan",
+          "args": {},
+          "status": "ok",
+          "runtime_ms": 0.0,
+          "evidence_ids": []
+        },
+        {
+          "tool": "draft_action",
+          "args": {
+            "opportunity_id": "OPP-234024F9",
+            "expected_version": 3
+          },
+          "status": "ok",
+          "runtime_ms": 5.2,
+          "evidence_ids": []
+        },
+        {
+          "tool": "queue_work_item",
+          "args": {
+            "opportunity_id": "OPP-234024F9",
+            "idempotency_key": "OPP-234024F9:S1"
+          },
+          "status": "ok",
+          "runtime_ms": 3.9,
+          "evidence_ids": []
+        },
+        {
+          "tool": "queue_work_item",
+          "args": {
+            "opportunity_id": "OPP-234024F9",
+            "idempotency_key": "OPP-234024F9:S2"
+          },
+          "status": "ok",
+          "runtime_ms": 3.6,
+          "evidence_ids": []
+        },
+        {
+          "tool": "queue_work_item",
+          "args": {
+            "opportunity_id": "OPP-234024F9",
+            "idempotency_key": "OPP-234024F9:S3"
+          },
+          "status": "ok",
+          "runtime_ms": 3.8,
+          "evidence_ids": []
+        },
+        {
+          "tool": "queue_work_item",
+          "args": {
+            "opportunity_id": "OPP-234024F9",
+            "idempotency_key": "OPP-234024F9:S4"
+          },
+          "status": "ok",
+          "runtime_ms": 3.8,
+          "evidence_ids": []
+        },
+        {
+          "tool": "queue_work_item",
+          "args": {
+            "opportunity_id": "OPP-234024F9",
+            "idempotency_key": "OPP-234024F9:S5"
+          },
+          "status": "ok",
+          "runtime_ms": 3.3,
+          "evidence_ids": []
+        },
+        {
+          "tool": "queue_work_item",
+          "args": {
+            "opportunity_id": "OPP-234024F9",
+            "idempotency_key": "OPP-234024F9:S6"
+          },
+          "status": "ok",
+          "runtime_ms": 3.4,
+          "evidence_ids": []
+        },
+        {
+          "tool": "queue_work_item",
+          "args": {
+            "opportunity_id": "OPP-234024F9",
+            "idempotency_key": "OPP-234024F9:S7"
+          },
+          "status": "ok",
+          "runtime_ms": 3.4,
+          "evidence_ids": []
+        },
+        {
+          "tool": "queue_work_item",
+          "args": {
+            "opportunity_id": "OPP-234024F9",
+            "idempotency_key": "OPP-234024F9:R_GEO"
+          },
+          "status": "ok",
+          "runtime_ms": 3.5,
+          "evidence_ids": []
+        },
+        {
+          "tool": "queue_work_item",
+          "args": {
+            "opportunity_id": "OPP-234024F9",
+            "idempotency_key": "OPP-234024F9:R_NOSEND"
+          },
+          "status": "ok",
+          "runtime_ms": 3.8,
+          "evidence_ids": []
+        },
+        {
+          "tool": "request_approval",
+          "args": {
+            "opportunity_id": "OPP-234024F9",
+            "expected_version": 4
+          },
+          "status": "ok",
+          "runtime_ms": 4.8,
+          "evidence_ids": []
+        }
+      ],
+      "transition": "REVIEW_REQUESTED",
+      "runtime_ms": 43.6,
+      "violations": [],
+      "ts": "2026-11-17T08:47:16+00:00"
+    },
+    {
+      "role": "checker",
+      "task_id": "T4",
+      "mode": "DETERMINISTIC_SPECIALISTS",
+      "tool_calls": [
+        {
+          "tool": "check_dossier",
+          "args": {
+            "opportunity_id": "OPP-234024F9"
+          },
+          "status": "ok",
+          "runtime_ms": 0.7,
+          "evidence_ids": []
+        }
+      ],
+      "transition": "PASS_DRAFT_HOLD_FOR_INPUTS",
+      "runtime_ms": 0.7,
+      "violations": [],
+      "ts": "2026-11-17T08:47:16+00:00"
+    }
+  ],
+  "events": [
+    {
+      "id": 90,
+      "opportunity_id": "OPP-234024F9",
+      "version": 1,
+      "ts": "2026-11-17T08:47:16+00:00",
+      "actor": "coordinator",
+      "role": "agent",
+      "event": "DOSSIER_CREATED",
+      "detail": {}
+    },
+    {
+      "id": 91,
+      "opportunity_id": "OPP-234024F9",
+      "version": 2,
+      "ts": "2026-11-17T08:47:16+00:00",
+      "actor": "analyst_agent",
+      "role": "agent",
+      "event": "DOSSIER_UPDATED",
+      "detail": {
+        "fields": [
+          "agent_trace",
+          "analyst_output",
+          "case_plan"
+        ]
+      }
+    },
+    {
+      "id": 92,
+      "opportunity_id": "OPP-234024F9",
+      "version": 3,
+      "ts": "2026-11-17T08:47:16+00:00",
+      "actor": "research_agent",
+      "role": "agent",
+      "event": "DOSSIER_UPDATED",
+      "detail": {
+        "fields": [
+          "agent_trace",
+          "case_plan",
+          "research_output"
+        ]
+      }
+    },
+    {
+      "id": 93,
+      "opportunity_id": "OPP-234024F9",
+      "version": 4,
+      "ts": "2026-11-17T08:47:16+00:00",
+      "actor": "strategist_agent",
+      "role": "agent",
+      "event": "DOSSIER_UPDATED",
+      "detail": {
+        "fields": [
+          "pilot"
+        ]
+      }
+    },
+    {
+      "id": 94,
+      "opportunity_id": "OPP-234024F9",
+      "version": null,
+      "ts": "2026-11-17T08:47:16+00:00",
+      "actor": "strategist_agent",
+      "role": "agent",
+      "event": "WORK_ITEM_CREATED",
+      "detail": {
+        "item_id": "WI-25110A0F",
+        "kind": "operations",
+        "status": "READY"
+      }
+    },
+    {
+      "id": 95,
+      "opportunity_id": "OPP-234024F9",
+      "version": null,
+      "ts": "2026-11-17T08:47:16+00:00",
+      "actor": "strategist_agent",
+      "role": "agent",
+      "event": "WORK_ITEM_CREATED",
+      "detail": {
+        "item_id": "WI-18CE7305",
+        "kind": "operations",
+        "status": "READY"
+      }
+    },
+    {
+      "id": 96,
+      "opportunity_id": "OPP-234024F9",
+      "version": null,
+      "ts": "2026-11-17T08:47:16+00:00",
+      "actor": "strategist_agent",
+      "role": "agent",
+      "event": "WORK_ITEM_CREATED",
+      "detail": {
+        "item_id": "WI-A302E5BB",
+        "kind": "operations",
+        "status": "READY"
+      }
+    },
+    {
+      "id": 97,
+      "opportunity_id": "OPP-234024F9",
+      "version": null,
+      "ts": "2026-11-17T08:47:16+00:00",
+      "actor": "strategist_agent",
+      "role": "agent",
+      "event": "WORK_ITEM_CREATED",
+      "detail": {
+        "item_id": "WI-73D4EDCF",
+        "kind": "operations",
+        "status": "READY"
+      }
+    },
+    {
+      "id": 98,
+      "opportunity_id": "OPP-234024F9",
+      "version": null,
+      "ts": "2026-11-17T08:47:16+00:00",
+      "actor": "strategist_agent",
+      "role": "agent",
+      "event": "WORK_ITEM_CREATED",
+      "detail": {
+        "item_id": "WI-E4660966",
+        "kind": "operations",
+        "status": "READY"
+      }
+    },
+    {
+      "id": 99,
+      "opportunity_id": "OPP-234024F9",
+      "version": null,
+      "ts": "2026-11-17T08:47:16+00:00",
+      "actor": "strategist_agent",
+      "role": "agent",
+      "event": "WORK_ITEM_CREATED",
+      "detail": {
+        "item_id": "WI-0DA24137",
+        "kind": "paid_contact",
+        "status": "BLOCKED_PENDING_APPROVAL"
+      }
+    },
+    {
+      "id": 100,
+      "opportunity_id": "OPP-234024F9",
+      "version": null,
+      "ts": "2026-11-17T08:47:16+00:00",
+      "actor": "strategist_agent",
+      "role": "agent",
+      "event": "WORK_ITEM_CREATED",
+      "detail": {
+        "item_id": "WI-E00D6C3E",
+        "kind": "operations",
+        "status": "READY"
+      }
+    },
+    {
+      "id": 101,
+      "opportunity_id": "OPP-234024F9",
+      "version": null,
+      "ts": "2026-11-17T08:47:16+00:00",
+      "actor": "strategist_agent",
+      "role": "agent",
+      "event": "WORK_ITEM_CREATED",
+      "detail": {
+        "item_id": "WI-C9CDBD3F",
+        "kind": "research",
+        "status": "READY"
+      }
+    },
+    {
+      "id": 102,
+      "opportunity_id": "OPP-234024F9",
+      "version": null,
+      "ts": "2026-11-17T08:47:16+00:00",
+      "actor": "strategist_agent",
+      "role": "agent",
+      "event": "WORK_ITEM_CREATED",
+      "detail": {
+        "item_id": "WI-6E9659BE",
+        "kind": "research",
+        "status": "READY"
+      }
+    },
+    {
+      "id": 103,
+      "opportunity_id": "OPP-234024F9",
+      "version": 5,
+      "ts": "2026-11-17T08:47:16+00:00",
+      "actor": "strategist_agent",
+      "role": "agent",
+      "event": "STATE_REVIEW_REQUESTED",
+      "detail": {
+        "plan_hash": "32ed8acbca9c9050baa9599b86863f46bf39d359cf7456937629569a4882d7ac"
+      }
+    },
+    {
+      "id": 104,
+      "opportunity_id": "OPP-234024F9",
+      "version": 6,
+      "ts": "2026-11-17T08:47:16+00:00",
+      "actor": "strategist_agent",
+      "role": "agent",
+      "event": "DOSSIER_UPDATED",
+      "detail": {
+        "fields": [
+          "agent_trace",
+          "case_plan",
+          "strategist_output"
+        ]
+      }
+    },
+    {
+      "id": 105,
+      "opportunity_id": "OPP-234024F9",
+      "version": 7,
+      "ts": "2026-11-17T08:47:16+00:00",
+      "actor": "checker_agent",
+      "role": "agent",
+      "event": "DOSSIER_UPDATED",
+      "detail": {
+        "fields": [
+          "agent_trace",
+          "case_plan",
+          "checker_output"
+        ]
+      }
+    },
+    {
+      "id": 106,
+      "opportunity_id": "OPP-234024F9",
+      "version": 8,
+      "ts": "2026-11-17T08:47:16+00:00",
+      "actor": "coordinator",
+      "role": "agent",
+      "event": "DOSSIER_UPDATED",
+      "detail": {
+        "fields": [
+          "awaiting",
+          "checker_verdict"
+        ]
+      }
+    }
+  ],
+  "history": [
+    {
+      "version": 1,
+      "created_at": "2026-11-17T08:47:16+00:00",
+      "actor": "coordinator",
+      "role": "agent",
+      "note": "created",
+      "payload_hash": "4cb6e73f4bffb42ecac426abb9dab1dca5740466006684fe291536655fe63692"
+    },
+    {
+      "version": 2,
+      "created_at": "2026-11-17T08:47:16+00:00",
+      "actor": "analyst_agent",
+      "role": "agent",
+      "note": "analyst output",
+      "payload_hash": "b29c17cf93ddcf75e9552e81dcfe3c586a496f4c867b0f4270538700fc46c366"
+    },
+    {
+      "version": 3,
+      "created_at": "2026-11-17T08:47:16+00:00",
+      "actor": "research_agent",
+      "role": "agent",
+      "note": "research output",
+      "payload_hash": "694450c97aaf6f234fa03e40c1000dd821b1ed07aea355a90a1fce3c656ffd80"
+    },
+    {
+      "version": 4,
+      "created_at": "2026-11-17T08:47:16+00:00",
+      "actor": "strategist_agent",
+      "role": "agent",
+      "note": "campaign action drafted",
+      "payload_hash": "26de4140936a62cb1ac2aa7e7bd35b25939238cd648f14482611cdc3587da210"
+    },
+    {
+      "version": 5,
+      "created_at": "2026-11-17T08:47:16+00:00",
+      "actor": "strategist_agent",
+      "role": "agent",
+      "note": "-> REVIEW_REQUESTED",
+      "payload_hash": "ea6031c7fa959eede0046dcb1538542c625c87d3c17b9707c75325947edfb8b9"
+    },
+    {
+      "version": 6,
+      "created_at": "2026-11-17T08:47:16+00:00",
+      "actor": "strategist_agent",
+      "role": "agent",
+      "note": "strategist output",
+      "payload_hash": "1e5f9aa69362e98880a6ae4a24517f5bf6587718d058b5534f4c350ded71279a"
+    },
+    {
+      "version": 7,
+      "created_at": "2026-11-17T08:47:16+00:00",
+      "actor": "checker_agent",
+      "role": "agent",
+      "note": "checker output",
+      "payload_hash": "7dd74ccf92628766ca74b9795601cd091aa8f924220b7dae75546d6e00571b32"
+    },
+    {
+      "version": 8,
+      "created_at": "2026-11-17T08:47:16+00:00",
+      "actor": "coordinator",
+      "role": "agent",
+      "note": "coordinator: stop at checkpoint",
+      "payload_hash": "ec1a9e93ec54b8a432d11b811048c7ac6729264329e636cfc43d6216cedcab54"
+    }
+  ],
+  "work_items": [
+    {
+      "item_id": "WI-25110A0F",
+      "status": "READY",
+      "title": "Review the eligible segment (purchased in the past twelve months) and report its current size.",
+      "kind": "operations"
+    },
+    {
+      "item_id": "WI-18CE7305",
+      "status": "READY",
+      "title": "Verify e-mail consent and unsubscribe handling for every eligible customer.",
+      "kind": "operations"
+    },
+    {
+      "item_id": "WI-A302E5BB",
+      "status": "READY",
+      "title": "Supply the contribution margin and the full cost per e-mail; compare with the break-even thresholds.",
+      "kind": "operations"
+    },
+    {
+      "item_id": "WI-73D4EDCF",
+      "status": "READY",
+      "title": "Draw and freeze a 10% randomized no-e-mail holdout before any send.",
+      "kind": "operations"
+    },
+    {
+      "item_id": "WI-E4660966",
+      "status": "READY",
+      "title": "Approve or reject the draft with name, reason and plan version; re-review after any change.",
+      "kind": "operations"
+    },
+    {
+      "item_id": "WI-0DA24137",
+      "status": "BLOCKED_PENDING_APPROVAL",
+      "title": "Send only after step 5 is approved. This system has no send tool.",
+      "kind": "paid_contact"
+    },
+    {
+      "item_id": "WI-E00D6C3E",
+      "status": "READY",
+      "title": "After two weeks, compare unique buyers, incremental spend, cost and unsubscribes between e-mailed customers an",
+      "kind": "operations"
+    },
+    {
+      "item_id": "WI-C9CDBD3F",
+      "status": "READY",
+      "title": "Collect 20 real GEO answers (separate real-brand workstream)",
+      "kind": "research"
+    },
+    {
+      "item_id": "WI-6E9659BE",
+      "status": "READY",
+      "title": "No-send path: obtain margin, cost per e-mail and consent, then re-run the decision",
+      "kind": "research"
+    }
+  ],
+  "crm_actions": [],
+  "checker_verdict": {
+    "passed": true,
+    "problems": [],
+    "launch_ready": false,
+    "launch_blockers": [
+      "contribution margin UNKNOWN",
+      "cost per e-mail UNKNOWN",
+      "consent status UNKNOWN (CRM owner with legal)",
+      "holdout not yet drawn",
+      "no named human approval"
+    ],
+    "verdict": "PASS_DRAFT_HOLD_FOR_INPUTS",
+    "findings_checked": 31,
+    "notes": [
+      "31 findings re-checked against export a3ee6a640ad9..."
+    ],
+    "approval_required": true
+  },
+  "approval": null
+}

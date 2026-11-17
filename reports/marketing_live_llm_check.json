@@ -1,0 +1,24 @@
+{
+  "live_llm": true,
+  "model": "claude-opus-5-5",
+  "status": "ok",
+  "tool_calls": [
+    {
+      "tool": "read_arm_metrics",
+      "status": "ok"
+    },
+    {
+      "tool": "read_economics",
+      "status": "ok"
+    },
+    {
+      "tool": "read_policy_comparison",
+      "status": "ok"
+    }
+  ],
+  "findings_returned": 5,
+  "matches_export": true,
+  "problems": [],
+  "export_sha256": "a3ee6a640ad9a9021c10f7bb3601fd1d79ae2619cb87e1f5c7d4db1e76cd75e4",
+  "scope": "analyst role only; the full path (strategist, checker, approval) remains DETERMINISTIC_SPECIALISTS"
+}
