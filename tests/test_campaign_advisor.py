@@ -411,3 +411,28 @@ def test_lab_summary_reaches_brief_and_backup_from_generated_files(case):
     v = build(case)
     assert "none was shown better" in brief_markdown(v) and "Model lab" in backup_html(v)
     assert lab["customers_needed"] > lab["n_test"]            # proving a gain needs more customers than the test split has
+
+
+def test_geo_sheet_lists_the_panel_prompts_and_never_contains_answers():
+    from mi.seo.sheet import build
+    t = build()
+    import json
+    panel = json.loads((EXPORT_PATH.parents[1] / "data" / "seo" / "prompt_panel.json").read_text(encoding="utf-8"))
+    assert all(q["text"] in t for q in panel["prompts"])
+    assert "no answer may be written by the team" in t and "fresh chat" in t.lower()
+
+
+def test_rehearsal_scoring_flags_overruns_and_records_nothing_by_itself(tmp_path, monkeypatch):
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("reh", EXPORT_PATH.parents[1] / "deck" / "rehearse.py")
+    m = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(m)
+    ok = m.score([30, 45, 70, 95, 60])
+    assert ok["pass"] and ok["total_s"] == 300
+    over = m.score([40, 45, 70, 95, 70])
+    assert not over["pass"] and over["rows"][0]["status"] == "TOO LONG" and over["total_status"] == "OVER 5:00"
+    with pytest.raises(ValueError):
+        m.score([30, 45])
+    monkeypatch.setattr(m, "LOG", tmp_path / "log.json")
+    m.record(ok, "test")
+    assert json.loads((tmp_path / "log.json").read_text())[0]["rehearsal_of"] == "human"
