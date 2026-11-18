@@ -1,0 +1,590 @@
+{
+ "schema_version": "decision_card.v1",
+ "case_id": "CJ-GROCERY-001",
+ "category": "COFFEE",
+ "generated_utc": "2026-11-18T18:51:15Z",
+ "scoring_cutoff_week": 53,
+ "data": "84.51 Complete Journey 2017 panel (anonymous; not contactable)",
+ "headline": {
+  "decision": "LEARN FIRST (NO PAID SCALE-UP)",
+  "one_line": "Coffee: 374 of 2,319 scored households are expected to buy in the next 4 weeks (model estimate); learn first (no paid scale-up).",
+  "action": "Free actions now, plus a randomized holdout test design for the lapsing segment"
+ },
+ "situation": {
+  "households_scored": 2319,
+  "expected_buyers_4w": 374.14803819247925,
+  "lead_segment_by_expected_buyers": "REGULAR",
+  "segments": [
+   {
+    "segment": "ACTIVE_NONBUYER",
+    "households": 983,
+    "mean_chance_of_buying": 0.07071998809984438,
+    "expected_buyers_4w": 69.51774830214703,
+    "meaning": "shops often but has not bought the category in 12 weeks"
+   },
+   {
+    "segment": "LAPSING",
+    "households": 355,
+    "mean_chance_of_buying": 0.23148026556155274,
+    "expected_buyers_4w": 82.17549427435122,
+    "meaning": "bought earlier in the 12 weeks, nothing in the last 4"
+   },
+   {
+    "segment": "LOW_ACTIVITY",
+    "households": 562,
+    "mean_chance_of_buying": 0.040120364146807086,
+    "expected_buyers_4w": 22.547644650505582,
+    "meaning": "few baskets in 12 weeks"
+   },
+   {
+    "segment": "RECENT_LIGHT",
+    "households": 206,
+    "mean_chance_of_buying": 0.31667920803399513,
+    "expected_buyers_4w": 65.235916855003,
+    "meaning": "bought 1-2 times in 12 weeks, at least once in the last 4"
+   },
+   {
+    "segment": "REGULAR",
+    "households": 213,
+    "mean_chance_of_buying": 0.6322593150726408,
+    "expected_buyers_4w": 134.67123411047248,
+    "meaning": "buys the category in 3+ of the last 12 weeks"
+   }
+  ]
+ },
+ "options": [
+  {
+   "option": "Lapsing: digital coupon",
+   "segment": "LAPSING",
+   "kind": "paid",
+   "verdict": "PAYS ONLY IF OPTIMISTIC",
+   "households_in_panel": 355,
+   "contribution_usd": {
+    "low": -2663.037282535158,
+    "base": -1724.4105070476633,
+    "high": 983.5354467187362
+   },
+   "net_per_1000_contacted_before_setup": -35.119015187427756,
+   "cost_usd_base": 2287.2999838476635,
+   "additional_buyers_assumed": {
+    "low": 127.8,
+    "base": 255.6,
+    "high": 447.3
+   },
+   "break_even_additional_buyers": 1459.8,
+   "needed_response_multiple": 1.61,
+   "assumed_response_points": [
+    0.02,
+    0.04,
+    0.07
+   ],
+   "status": "SCENARIO: assumed response, margin, cost and company scale; low/high move all assumptions together (as in the portfolio); not measured",
+   "metric_ids": [
+    "net_base_lapsing",
+    "net_low_lapsing",
+    "net_high_lapsing",
+    "mult_lapsing"
+   ],
+   "mean_chance_of_buying": 0.23148026556155274
+  },
+  {
+   "option": "Active Nonbuyer: digital coupon",
+   "segment": "ACTIVE_NONBUYER",
+   "kind": "paid",
+   "verdict": "PAYS ONLY IF OPTIMISTIC",
+   "households_in_panel": 983,
+   "contribution_usd": {
+    "low": -2804.3962737134707,
+    "base": -1988.063637896576,
+    "high": 1275.6750620922353
+   },
+   "net_per_1000_contacted_before_setup": -27.583567192075048,
+   "cost_usd_base": 2572.556971376576,
+   "additional_buyers_assumed": {
+    "low": 88.5,
+    "base": 265.4,
+    "high": 530.8
+   },
+   "break_even_additional_buyers": 1653.7,
+   "needed_response_multiple": 2.28,
+   "assumed_response_points": [
+    0.005,
+    0.015,
+    0.03
+   ],
+   "status": "SCENARIO: assumed response, margin, cost and company scale; low/high move all assumptions together (as in the portfolio); not measured",
+   "metric_ids": [
+    "net_base_active_nonbuyer",
+    "net_low_active_nonbuyer",
+    "net_high_active_nonbuyer",
+    "mult_active_nonbuyer"
+   ],
+   "mean_chance_of_buying": 0.07071998809984438
+  },
+  {
+   "option": "Recent Light: digital coupon",
+   "segment": "RECENT_LIGHT",
+   "kind": "paid",
+   "verdict": "DOES NOT PAY",
+   "households_in_panel": 206,
+   "contribution_usd": {
+    "low": -2619.845627142585,
+    "base": -1795.0326343188567,
+    "high": -623.8226609406798
+   },
+   "net_per_1000_contacted_before_setup": -79.56651410972405,
+   "cost_usd_base": 1999.1791699188568,
+   "additional_buyers_assumed": {
+    "low": 37.1,
+    "base": 92.7,
+    "high": 166.9
+   },
+   "break_even_additional_buyers": 1346.2,
+   "needed_response_multiple": 3.22,
+   "assumed_response_points": [
+    0.01,
+    0.025,
+    0.045
+   ],
+   "status": "SCENARIO: assumed response, margin, cost and company scale; low/high move all assumptions together (as in the portfolio); not measured",
+   "metric_ids": [
+    "net_base_recent_light",
+    "net_low_recent_light",
+    "net_high_recent_light",
+    "mult_recent_light"
+   ],
+   "mean_chance_of_buying": 0.31667920803399513
+  },
+  {
+   "option": "Regular: digital coupon",
+   "segment": "REGULAR",
+   "kind": "paid",
+   "verdict": "DOES NOT PAY",
+   "households_in_panel": 213,
+   "contribution_usd": {
+    "low": -2704.1406668678287,
+    "base": -2213.575888904881,
+    "high": -1865.736688142631
+   },
+   "net_per_1000_contacted_before_setup": -186.11786356413174,
+   "cost_usd_base": 2298.0093104248813,
+   "additional_buyers_assumed": {
+    "low": 19.2,
+    "base": 38.3,
+    "high": 76.7
+   },
+   "break_even_additional_buyers": 1584.1,
+   "needed_response_multiple": 14.0,
+   "assumed_response_points": [
+    0.005,
+    0.01,
+    0.02
+   ],
+   "status": "SCENARIO: assumed response, margin, cost and company scale; low/high move all assumptions together (as in the portfolio); not measured",
+   "metric_ids": [
+    "net_base_regular",
+    "net_low_regular",
+    "net_high_regular",
+    "mult_regular"
+   ],
+   "mean_chance_of_buying": 0.6322593150726408
+  }
+ ],
+ "next_best_action": [
+  {
+   "segment": "REGULAR",
+   "households": 213,
+   "goal": "protect and grow basket",
+   "do_now_free": "No discount: these households buy anyway, so a coupon mostly gives margin away. Recognise loyalty and cross-sell a partner category.",
+   "paid_offer": "DOES NOT PAY",
+   "kpi": "category purchase frequency and basket size; discount cost per buyer stays at zero"
+  },
+  {
+   "segment": "RECENT_LIGHT",
+   "households": 206,
+   "goal": "turn light buyers into regulars",
+   "do_now_free": "Replenishment reminder and recipe or usage content in owned channels before any discount; confirm the product is in stock.",
+   "paid_offer": "DOES NOT PAY",
+   "kpi": "share who buy again within 4 weeks"
+  },
+  {
+   "segment": "LAPSING",
+   "households": 355,
+   "goal": "win back before they switch",
+   "do_now_free": "Check availability, assortment and price versus competitors first (a reason to stop buying is often stock or range), then a reminder message.",
+   "paid_offer": "PAYS ONLY IF OPTIMISTIC",
+   "kpi": "distinct buyers back within 4 weeks, versus a randomized no-message holdout"
+  },
+  {
+   "segment": "ACTIVE_NONBUYER",
+   "households": 983,
+   "goal": "awareness and trial",
+   "do_now_free": "Educational content and placement near related categories; no paid offer until a test shows response.",
+   "paid_offer": "PAYS ONLY IF OPTIMISTIC",
+   "kpi": "first-time category buyers in 4 weeks, versus holdout"
+  },
+  {
+   "segment": "LOW_ACTIVITY",
+   "households": 562,
+   "goal": "do not spend here",
+   "do_now_free": "General brand communication only; no category action.",
+   "paid_offer": "NOT EVALUATED (no paid action for this segment)",
+   "kpi": "none (no action)"
+  }
+ ],
+ "recommendation": {
+  "decision": "LEARN FIRST (NO PAID SCALE-UP)",
+  "action": "Free actions now, plus a randomized holdout test design for the lapsing segment",
+  "segment": "LAPSING",
+  "why": "No segment pays in the base case. The lapsing coupon is positive only if every assumption is favourable at once, so measure the real response before spending.",
+  "conditions": [
+   "Consent to contact is verified (UNKNOWN today)",
+   "Stock is confirmed for the category (UNKNOWN today)",
+   "Finance confirms margin and cost per message (ASSUMED today)",
+   "A named person approves the exact plan"
+  ],
+  "would_reverse_if": [
+   "A randomized test shows a measured response above the break-even response",
+   "A manufacturer funds the coupon, or the confirmed margin is higher than assumed",
+   "Stock or range problems are found: fix those first"
+  ]
+ },
+ "test_design": {
+  "segment": "LAPSING",
+  "design": "randomized: eligible households split at random into message and no-message holdout (about 10-20% holdout)",
+  "duration": "4 weeks of outcome after the message, plus the 28-day window in the outcome rule",
+  "primary_metric": "incremental contribution per randomized eligible household after coupon and contact cost, 28 days",
+  "households_per_arm_for_assumed_response": 1846,
+  "households_per_arm_for_break_even_response": 734,
+  "baseline_chance_of_buying": 0.23148026556155274,
+  "decision_rules": {
+   "expand": "95% CI lower bound > 0 and all guardrails pass",
+   "stop": "95% CI upper bound < 0 or any guardrail fails",
+   "change": "point estimate > 0 but CI includes 0 and guardrails pass",
+   "else": "INCONCLUSIVE"
+  },
+  "guardrails": {
+   "opt_out_rate_max": 0.02,
+   "complaint_rate_max": 0.005,
+   "stockout_flag": false
+  },
+  "status": "SCENARIO: sample sizes use the model's baseline chance and assumed response points; panel is not contactable"
+ },
+ "cross_sell": [
+  {
+   "if_buys": "COFFEE",
+   "then_offer": "SOUP",
+   "lift_H1": 2.972,
+   "lift_H2": 2.844,
+   "lift_H2_ci95": [
+    2.681,
+    3.007
+   ],
+   "status": "OBSERVED association (basket level); not proof that promoting A causes B"
+  },
+  {
+   "if_buys": "COFFEE",
+   "then_offer": "COLD CEREAL",
+   "lift_H1": 2.87,
+   "lift_H2": 2.638,
+   "lift_H2_ci95": [
+    2.483,
+    2.793
+   ],
+   "status": "OBSERVED association (basket level); not proof that promoting A causes B"
+  }
+ ],
+ "discovery": {
+  "audited_brand": "Kroger",
+  "status": "OBSERVED answer log of a public analogue, not this retailer",
+  "answers": 20,
+  "learn": {
+   "mentioned": 5,
+   "recommended": 0,
+   "of": 8
+  },
+  "reading": "Shoppers who are still learning are not being recommended a store",
+  "action": "Publish a factual page for the learning questions (how digital coupons work, store brand versus name brand); needs human approval; no sales effect is claimed"
+ },
+ "marketing_mix_4ps": {
+  "Product": "Confirm Coffee availability and range first; partner offer: Soup",
+  "Price": "No blanket discount; a coupon only where the test shows response and the margin covers it",
+  "Place": "Digital owned channels and in-store placement near related categories",
+  "Promotion": "Reminder and content in owned channels; a paid coupon only after a randomized test"
+ },
+ "kpis": {
+  "primary": "incremental contribution per randomized eligible household after coupon and contact cost, 28 days",
+  "secondary": [
+   "distinct buyers in the category",
+   "repeat purchase within 4 weeks",
+   "opt-out rate"
+  ],
+  "guardrails": {
+   "opt_out_rate_max": 0.02,
+   "complaint_rate_max": 0.005,
+   "stockout_flag": false
+  }
+ },
+ "confidence": {
+  "who_is_likely_to_buy": {
+   "level": "MEDIUM-HIGH",
+   "tag": "MODEL ESTIMATE",
+   "basis": "locked test average precision 0.672 versus 0.621 for the repeat rule; gain +0.050 (95% interval +0.045 to +0.056); history only, 2017"
+  },
+  "what_an_offer_would_do": {
+   "level": "LOW",
+   "tag": "UNKNOWN",
+   "basis": "coupon exposure was not randomized; response is an assumed range"
+  },
+  "profit": {
+   "level": "NONE",
+   "tag": "UNKNOWN",
+   "basis": "margin, cost, consent and stock are not confirmed; contributions are scenarios"
+  }
+ },
+ "unknowns": [
+  {
+   "item": "contribution margin",
+   "status": "ASSUMED",
+   "value": 0.28,
+   "owner": "finance"
+  },
+  {
+   "item": "cost per message",
+   "status": "ASSUMED",
+   "value": null,
+   "owner": "CRM"
+  },
+  {
+   "item": "consent to contact",
+   "status": "UNKNOWN",
+   "value": null,
+   "owner": "legal / CRM"
+  },
+  {
+   "item": "stock and capacity",
+   "status": "UNKNOWN",
+   "value": null,
+   "owner": "operations"
+  },
+  {
+   "item": "who funds the coupon",
+   "status": "ASSUMED",
+   "value": null,
+   "owner": "merchandising"
+  },
+  {
+   "item": "real response to an offer",
+   "status": "UNKNOWN",
+   "value": null,
+   "owner": "a randomized test"
+  }
+ ],
+ "metrics": [
+  {
+   "id": "m_ap",
+   "label": "Model average precision (locked test)",
+   "value": 0.6717374137892858,
+   "unit": "x3",
+   "text": "0.672",
+   "tag": "OBSERVED",
+   "source": "reports/model_report.json"
+  },
+  {
+   "id": "m_ap_rule",
+   "label": "Repeat-rule average precision",
+   "value": 0.6210149195951625,
+   "unit": "x3",
+   "text": "0.621",
+   "tag": "OBSERVED",
+   "source": "reports/model_report.json"
+  },
+  {
+   "id": "m_hh",
+   "label": "Households scored for COFFEE",
+   "value": 2319,
+   "unit": "count",
+   "text": "2,319",
+   "tag": "OBSERVED",
+   "source": "data/processed/scores_latest.parquet"
+  },
+  {
+   "id": "m_exp",
+   "label": "Expected buyers in the next 4 weeks (all scored households)",
+   "value": 374.14803819247925,
+   "unit": "count",
+   "text": "374",
+   "tag": "MODEL ESTIMATE",
+   "source": "calibrated model scores"
+  },
+  {
+   "id": "net_base_regular",
+   "label": "Scenario net per 4-week cycle, REGULAR digital coupon (base assumptions)",
+   "value": -2213.575888904881,
+   "unit": "usd",
+   "text": "-2,214",
+   "tag": "SCENARIO",
+   "source": "optimizer.Universe.evaluate"
+  },
+  {
+   "id": "net_low_regular",
+   "label": "... all assumptions unfavourable",
+   "value": -2704.1406668678287,
+   "unit": "usd",
+   "text": "-2,704",
+   "tag": "SCENARIO",
+   "source": "optimizer.Universe.evaluate"
+  },
+  {
+   "id": "net_high_regular",
+   "label": "... all assumptions favourable",
+   "value": -1865.736688142631,
+   "unit": "usd",
+   "text": "-1,866",
+   "tag": "SCENARIO",
+   "source": "optimizer.Universe.evaluate"
+  },
+  {
+   "id": "mult_regular",
+   "label": "Response needed to break even, as a multiple of the assumed response (REGULAR)",
+   "value": 13.996803384021241,
+   "unit": "x",
+   "text": "14.0",
+   "tag": "SCENARIO",
+   "source": "break-even / assumed response"
+  },
+  {
+   "id": "net_base_recent_light",
+   "label": "Scenario net per 4-week cycle, RECENT_LIGHT digital coupon (base assumptions)",
+   "value": -1795.0326343188567,
+   "unit": "usd",
+   "text": "-1,795",
+   "tag": "SCENARIO",
+   "source": "optimizer.Universe.evaluate"
+  },
+  {
+   "id": "net_low_recent_light",
+   "label": "... all assumptions unfavourable",
+   "value": -2619.845627142585,
+   "unit": "usd",
+   "text": "-2,620",
+   "tag": "SCENARIO",
+   "source": "optimizer.Universe.evaluate"
+  },
+  {
+   "id": "net_high_recent_light",
+   "label": "... all assumptions favourable",
+   "value": -623.8226609406798,
+   "unit": "usd",
+   "text": "-624",
+   "tag": "SCENARIO",
+   "source": "optimizer.Universe.evaluate"
+  },
+  {
+   "id": "mult_recent_light",
+   "label": "Response needed to break even, as a multiple of the assumed response (RECENT_LIGHT)",
+   "value": 3.2224848706791773,
+   "unit": "x",
+   "text": "3.2",
+   "tag": "SCENARIO",
+   "source": "break-even / assumed response"
+  },
+  {
+   "id": "net_base_lapsing",
+   "label": "Scenario net per 4-week cycle, LAPSING digital coupon (base assumptions)",
+   "value": -1724.4105070476633,
+   "unit": "usd",
+   "text": "-1,724",
+   "tag": "SCENARIO",
+   "source": "optimizer.Universe.evaluate"
+  },
+  {
+   "id": "net_low_lapsing",
+   "label": "... all assumptions unfavourable",
+   "value": -2663.037282535158,
+   "unit": "usd",
+   "text": "-2,663",
+   "tag": "SCENARIO",
+   "source": "optimizer.Universe.evaluate"
+  },
+  {
+   "id": "net_high_lapsing",
+   "label": "... all assumptions favourable",
+   "value": 983.5354467187362,
+   "unit": "usd",
+   "text": "984",
+   "tag": "SCENARIO",
+   "source": "optimizer.Universe.evaluate"
+  },
+  {
+   "id": "mult_lapsing",
+   "label": "Response needed to break even, as a multiple of the assumed response (LAPSING)",
+   "value": 1.613099310687845,
+   "unit": "x",
+   "text": "1.6",
+   "tag": "SCENARIO",
+   "source": "break-even / assumed response"
+  },
+  {
+   "id": "net_base_active_nonbuyer",
+   "label": "Scenario net per 4-week cycle, ACTIVE_NONBUYER digital coupon (base assumptions)",
+   "value": -1988.063637896576,
+   "unit": "usd",
+   "text": "-1,988",
+   "tag": "SCENARIO",
+   "source": "optimizer.Universe.evaluate"
+  },
+  {
+   "id": "net_low_active_nonbuyer",
+   "label": "... all assumptions unfavourable",
+   "value": -2804.3962737134707,
+   "unit": "usd",
+   "text": "-2,804",
+   "tag": "SCENARIO",
+   "source": "optimizer.Universe.evaluate"
+  },
+  {
+   "id": "net_high_active_nonbuyer",
+   "label": "... all assumptions favourable",
+   "value": 1275.6750620922353,
+   "unit": "usd",
+   "text": "1,276",
+   "tag": "SCENARIO",
+   "source": "optimizer.Universe.evaluate"
+  },
+  {
+   "id": "mult_active_nonbuyer",
+   "label": "Response needed to break even, as a multiple of the assumed response (ACTIVE_NONBUYER)",
+   "value": 2.2841260642052172,
+   "unit": "x",
+   "text": "2.3",
+   "tag": "SCENARIO",
+   "source": "break-even / assumed response"
+  },
+  {
+   "id": "n_assumed",
+   "label": "Households per arm to detect the assumed response",
+   "value": 1846,
+   "unit": "count",
+   "text": "1,846",
+   "tag": "SCENARIO",
+   "source": "learning.sample_size"
+  },
+  {
+   "id": "n_be",
+   "label": "Households per arm to detect the break-even response",
+   "value": 734,
+   "unit": "count",
+   "text": "734",
+   "tag": "SCENARIO",
+   "source": "learning.sample_size"
+  }
+ ],
+ "decision_rule": "robust: positive even with every assumption unfavourable; base case: positive under base assumptions; only if optimistic: positive only with every assumption favourable; does not pay: never positive",
+ "approval": {
+  "state": "PENDING_HUMAN",
+  "sandbox_only": true,
+  "note": "Nothing is sent, spent or published by this card."
+ },
+ "checker": []
+}

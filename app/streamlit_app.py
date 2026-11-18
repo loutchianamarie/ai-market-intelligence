@@ -326,8 +326,40 @@ with tabs[4]:
             st.markdown(" · ".join(f"**{k}**: mentioned {v['mentioned']}/{v['n']}, recommended {v['recommended']}/{v['n']}" for k, v in bi.items()))
             st.caption(f"{gs['answers_logged']}/{gs['answers_target']} answers from {' and '.join(gs['assistants'])} (not ChatGPT or Gemini); one dated run {', '.join(gs['dates'])}; "
                        f"region not set; {gs['answers_target'] - gs['answers_citing_urls']} answers made without web search. {gs['brand']} is a public analogue, not the dataset retailer. "
-                       "Recommended in 0/8 Learn answers is not zero visibility (it is mentioned in 5/8) and is not measured lost sales. "
+                       f"Recommended in {bi['Learn']['recommended']}/{bi['Learn']['n']} Learn answers is not zero visibility (it is mentioned in "
+                       f"{bi['Learn']['mentioned']}/{bi['Learn']['n']}) and is not measured lost sales. "
                        "Content actions below are hypotheses: impact and effort are unscored and any publication needs human approval.")
+        from mi.seo.geo import LOG as GEO_LOG
+        lg = pd.read_csv(GEO_LOG, dtype=str).fillna("")
+        lg["prompt_id"] = lg["prompt_id"].astype(int)
+        pr = pd.DataFrame(panel["prompts"]).rename(columns={"id": "prompt_id", "text": "question"})
+        pr["prompt_id"] = pr["prompt_id"].astype(int)
+        ans = lg.merge(pr[["prompt_id", "question"]], on="prompt_id", how="left").sort_values("prompt_id")
+        ans["assistant"] = ans["assistant_version"].str.extract(r"(Claude \w+ [\d.]+)", expand=False).fillna(ans["assistant"])
+        st.subheader("The 20 answers, one row each")
+        st.caption("Each row is one logged answer, coded by the team: was Kroger mentioned, recommended, or the top pick, and which competitors "
+                   "the assistant named. The raw answer text is not stored here; its SHA-256 is in the log. Single run per question.")
+        view = st.radio("Show", ["All 20", "Learn", "Browse", "Buy"], horizontal=True, key="geo_intent")
+        shown = ans if view == "All 20" else ans[ans["intent"] == view]
+        tbl = shown[["prompt_id", "intent", "question", "assistant", "brand_mentioned", "brand_recommended", "brand_top_pick",
+                     "competitors_named", "competitors_recommended", "cited_urls", "source_quality_notes"]].rename(columns={
+            "prompt_id": "id", "brand_mentioned": "mentioned", "brand_recommended": "recommended", "brand_top_pick": "top pick",
+            "competitors_named": "competitors named", "competitors_recommended": "competitors recommended",
+            "cited_urls": "sources cited", "source_quality_notes": "how it was coded"}).set_index("id")
+        st.dataframe(tbl, width="stretch", height=420)
+
+        @st.cache_data
+        def _geo_workbook(_sig):
+            from mi.seo import qa as geo_qa
+            p = geo_qa.export_xlsx(REPORTS / "geo_audit_answers.xlsx")
+            return (REPORTS / "geo_audit_answers.xlsx").read_bytes() if p.endswith(".xlsx") else b""
+
+        wb = _geo_workbook(GEO_LOG.stat().st_mtime)
+        d1, d2 = st.columns(2)
+        if wb:
+            d1.download_button("Download all answers + rates + QA (Excel)", wb, "geo_audit_answers.xlsx",
+                               "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+        d2.download_button("Download the answers shown (CSV)", tbl.to_csv().encode("utf-8"), "geo_answers.csv", "text/csv")
         st.dataframe(pd.DataFrame(res["candidate_actions"]))
     st.caption(panel["audited_brand_rationale"])
 
@@ -416,9 +448,12 @@ with tabs[8]:
             st.dataframe(pd.DataFrame([{"item": w["item_id"], "status": w["status"], "kind": w["payload"]["kind"], "title": w["payload"]["title"],
                                         "owner": w["payload"]["owner"], "budget_usd": w["payload"]["budget_usd"], "due": w["payload"]["due_date"],
                                         "success_metric": w["payload"]["success_metric"]} for w in items]).astype(str), width="stretch", hide_index=True)
-            pick = st.selectbox("Work item", [w["item_id"] for w in items])
-            who = st.text_input("Your full name (human)", key="wq_name")
-            why = st.text_input("Reason / source (required)", key="wq_reason")
+            _ids = [w["item_id"] for w in items]
+            _paid = next((i for i, w in enumerate(items) if w["payload"].get("kind") == "paid_contact"), 0)
+            pick = st.selectbox("Work item", _ids, index=_paid)
+            st.caption("Example values are pre-filled for a rehearsal of the blocked path. Replace the name with a real person's for a real decision.")
+            who = st.text_input("Your full name (human)", value="Demo gate check (not a decision)", key="wq_name")
+            why = st.text_input("Reason / source (required)", value="rehearsal of the blocked path", key="wq_reason")
             c1, c2, c3, c4 = st.columns(4)
             for col, dec in ((c1, "approve"), (c2, "reject"), (c3, "defer")):
                 if col.button(dec.capitalize(), key=f"wq_{dec}", disabled=not who or not why):
@@ -465,9 +500,11 @@ with tabs[9]:
         st.write("Margin and cost per e-mail are **UNKNOWN** in the data. Enter verified values to see a scenario; leave a box empty and the result stays UNKNOWN.")
         c1, c2, c3, c4 = st.columns(4)
         arm = c1.selectbox("E-mail", list(cv.TREATMENTS), key="cc_arm")
-        mg = c2.number_input("Margin on incremental sales (0 to 1)", min_value=0.0, max_value=1.0, value=None, step=0.01, key="cc_m")
-        co = c3.number_input("Cost per e-mail (USD)", min_value=0.0, value=None, step=0.005, format="%.3f", key="cc_c")
-        su = c4.number_input("Fixed setup (USD)", min_value=0.0, value=None, step=100.0, key="cc_s")
+        st.caption("EXAMPLE values are pre-filled (35% margin, 0.10 USD per e-mail, 1,000 USD setup). They are assumptions, not verified; "
+                   "clear a box and the result returns to UNKNOWN.")
+        mg = c2.number_input("Margin on incremental sales (0 to 1)", min_value=0.0, max_value=1.0, value=0.35, step=0.01, key="cc_m")
+        co = c3.number_input("Cost per e-mail (USD)", min_value=0.0, value=0.10, step=0.005, format="%.3f", key="cc_c")
+        su = c4.number_input("Fixed setup (USD)", min_value=0.0, value=1000.0, step=100.0, key="cc_s")
         sc = cv.human_scenario(cdoc, arm, mg, co, su)
         k1, k2 = st.columns(2)
         k1.metric("Scenario contribution", "UNKNOWN" if sc["contribution"] is None else f"${sc['contribution']:,.0f}",
