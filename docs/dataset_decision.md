@@ -28,7 +28,7 @@ The business question is unchanged from the blueprint: *where should a retailer 
 | The model predicts coupon response or incremental sales | **No** | No randomized treatment in the data |
 | Historical campaigns worked | **No**. We can show only that recipients were heavier shoppers *before* campaigns (selection) | `campaign_history()` |
 | Plan X is profitable | **No**. Only *conditional on labelled assumptions* | `reports/portfolio.md` |
-| The audited brand's AI-search visibility | Only for the analogue, and only after the team logs 20 real answers | `data/seo/` |
+| The audited brand's AI-search visibility | Only for the analogue (20 real answers from two Claude models are logged; see `docs/geo_audit_results.md`) | `data/seo/` |
 | The households are Kroger's customers | **No**. The dataset is anonymous; the GEO analogue is a separate public brand | — |
 
 **Fallbacks not needed:** Olist (it reframes the project as B2B seller acquisition) and X5 (a treatment benchmark with unverified rights and assignment) were not evaluated further because a core route worked.

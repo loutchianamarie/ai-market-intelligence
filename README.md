@@ -5,10 +5,11 @@
 **Decision:** where should a retailer put its next limited CRM budget (product category × existing-household segment × channel), and is any test worth funding before expanding?
 **Data:** the authentic 84.51° Complete Journey tables (2,469 households, 1.47M transaction lines, 2017; CC0, via the R package maintainers). See `docs/dataset_decision.md` for why H&M was not used.
 **Manager summary:** `docs/marketing_brief.md` (buyer outcomes, 4P options, work queue) · `docs/decision_card.md` · opportunity cards `docs/opportunity_cards.md` · data dictionary `docs/data_dictionary.md`.
+**Two cases, one advisor method (read `START_HERE.md` first; run sheet in `docs/presentation/DEMO_5MIN.md`).** The presentation leads with this grocery decision. The Hillstrom e-mail experiment below is a **different retailer and dataset**, used to show how randomized evidence measures additional repeat buyers; its effect is never applied to grocery. The e-mail case has its own detailed report, `docs/MASTER_PROJECT_REPORT.md`.
 **Current recommendation:** no rollout and no funded test at base assumptions; $0 research first (`docs/decision_brief.md`). Advisor status: DEFER FUNDING / NO SPEND WHILE TERMS ARE UNCONFIRMED (base case: retailer-funded); live dossier in `NEXT_DAY_STATUS.md`, and a named person decides.
 
-## Second client case: randomized e-mail campaign (`HILLSTROM_EMAIL_2008`)
-A separate case with its own data, model and claims. Nothing here is grocery evidence, and no grocery number enters it.
+## Second, separate case: randomized e-mail campaign (`HILLSTROM_EMAIL_2008`, a different retailer)
+A separate case with its own data, model and claims. Nothing here is grocery evidence, and no grocery number enters it. It is shown on its own slide in the talk.
 
 **Decision:** which merchandise e-mail to send to which existing customers under a contact cap, how many additional purchasing customers that creates versus no e-mail, and at what cost it stops paying.
 **Data:** Hillstrom / MineThatData 2008: 64,000 existing customers, randomized thirds (Mens e-mail, Womens e-mail, no e-mail), two-week purchase outcome. The raw file stays local.
@@ -50,10 +51,10 @@ python -m venv .venv && .venv\Scripts\activate
 pip install -r requirements.lock.txt
 pip install -e .                      # or add src/ to PYTHONPATH
 python -m mi.cli all                  # download → VERIFY (data/manifest.lock.json) → audit → train → evaluate → portfolio, sensitivity & reversal → claim audit → RAG → GEO/interview checks → Hillstrom method track → agents to the human checkpoint (~8.5 min incl. the full promotions table; logs in reports/run_logs, record in reports/run_manifest.json, current claims in reports/current_claims.json)
-python -m mi.cli test                 # 202 tests (grocery + advisor, campaign case, Charbel's consumer, model lab and report)
+python -m mi.cli test                 # 216 tests (grocery + advisor, campaign case, Charbel's consumer, model lab and report)
 python -m mi.cli demo                 # Streamlit manager app (offline; uses saved, hashed artifacts)
 python -m mi.claim_audit              # independent re-derivation of every headline number → reports/claim_audit.json
-python -m mi.seo.geo check            # which of the 20 GEO answers are still missing
+python -m mi.seo.geo check            # GEO log check: expect complete_rows 20 of 20 (two Claude models; ChatGPT/Gemini retest pending)
 python -m mi.evidence.interviews check   # validate coded interviews (summarize → n of N)
 python -m mi.agents.coordinator rejection-rehearsal   # scripted reject + research-checklist path (throwaway store)
 ```
@@ -83,7 +84,7 @@ Verified and corrected on 2026-11-14 (three passes): see `docs/verification_and_
 | RAG | locked pre-registered set 11/12, conflict 0/1 (before fix); after a source-scope/conflict fix: v3 12/12 (no longer unseen), new adversarial set 3/3, conflict 1/1 | HISTORICAL OBSERVATION (small sets) |
 | Retailer offer pages | ALDI terms fetched; Kroger/Target/Walmart blocked our automated check, so those details are unverified | PENDING (team check) |
 | GEO audit | 20 / 20 answers logged on 2026-11-17 from two **Claude** models (not ChatGPT or Gemini): Kroger analogue mentioned 17/20, recommended 12/20, top pick 8/20 (prompt 7 names the brand; 15/18, 10/18, 6/18 without it); recommended in 0/8 Learn answers. No traffic or sales claim. `docs/geo_audit_results.md` | OBSERVED (small, one vendor); ChatGPT/Gemini rerun PENDING |
-| Live LLM agents | Claude loop unit-tested with a mocked client only; no live call (no key) | PENDING |
+| Live LLM agents | The grocery roles (decision path above) are deterministic; their Claude loop is unit-tested with a mocked client only and was never run live. Separate: one live Claude check of the **e-mail analyst role** only (5 claims matched), run on an earlier export revision and not repeated (the app labels it HISTORICAL) | PENDING for the grocery roles; HISTORICAL for the e-mail analyst |
 
 ## Layout
 ```
@@ -107,7 +108,7 @@ src/mi/campaign/             campaign case HILLSTROM_EMAIL_2008: contract + vali
                              randomized-policy evaluation, economics, export and generated cards (isolated from grocery code)
 docs/contracts/              frozen cross-repo contract v1: schema, synthetic fixture, integration handoff
 app/streamlit_app.py         manager demo
-deck/                        build_deck.js → AI_Market_Intelligence_Deck.pptx (12 slides + appendix)
+deck/                        earlier builds: build_deck.js → AI_Market_Intelligence_Deck.pptx (grocery, 12 slides + appendix, 2026-11-14); build_campaign_deck.py → Campaign_Decision_5min.pptx (e-mail case). Superseded figures: docs/presentation/DEMO_5MIN.md section 6
 docs/                        decision brief, research memo, agents canvas, traceability, metrics, protocols, presentation, claim audit
 data/interviews/, data/seo/  human evidence templates (no fabricated rows)
 reports/                     generated evidence (model card, portfolio, sensitivity, RAG evals, traces)

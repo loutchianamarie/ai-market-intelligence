@@ -11,7 +11,7 @@ Which product category × existing-household segment × channel deserves the nex
 | Historical transactions (2,469 households, 2017) | Who bought what, when; segment sizes; purchase propensity; demand baseline | Why people lapsed; anyone *outside* the panel; response to a *new* coupon |
 | Campaign/redemption records | Who received and redeemed what | Causal effect: recipients were pre-selected heavy shoppers (2.0–2.6× pre-period spend) |
 | Interviews (to do; none conducted yet) | Reasons, alternatives, friction, language | Frequencies or market size |
-| AI-answer audit (to do; 0/20 answers logged) | What specific assistants said on a dated run | Rankings, traffic, sales |
+| AI-answer audit (done: 20/20 answers from two Claude models, one dated run, public analogue; ChatGPT/Gemini retest pending) | What specific assistants said on a dated run | Rankings, traffic, sales |
 | Randomized pilot (future) | Incremental contribution | — |
 
 ## 3. Evidence ledger (source → claim)
