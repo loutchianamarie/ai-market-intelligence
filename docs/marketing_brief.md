@@ -1,6 +1,6 @@
 # Marketing brief (generated from the current dossier)
 
-Dossier `OPP-B2B80821` · advisor status **DEFER FUNDING / NO SPEND WHILE TERMS ARE UNCONFIRMED** · base case: RETAILER-FUNDED offer (retailer pays the full coupon face value): the current base case.
+Dossier `OPP-7177E5FC` · advisor status **DEFER FUNDING / NO SPEND WHILE TERMS ARE UNCONFIRMED** · base case: RETAILER-FUNDED offer (retailer pays the full coupon face value): the current base case.
 
 ## 1. Objective
 - **Goal:** increase unique category buyers (incl. returning lapsed buyers) and incremental contribution.
@@ -17,7 +17,7 @@ Dossier `OPP-B2B80821` · advisor status **DEFER FUNDING / NO SPEND WHILE TERMS 
 |---|---|---|---|---|---|
 | Lapsing frozen-pizza buyers (406 panel households) and whether to contact them | Why did they stop: habit, price, store brand, stock, taste? | **MEASURED**: return to category, cohort turnover (reports/opportunities.json, reports/cohort_turnover.json); **MODEL ESTIMATE**: 120 of 406 expected to buy in 4 weeks under current patterns (reports/buyer_outcomes.json); **ASSUMED**: 4 pp coupon response; funding contract; margin; pool; **HYPOTHESIS**: an easy dinner restarted after a lapse (HYPOTHESIS); **PENDING**: 0 interviews | ABSTAIN: corpus does not support an answer | R1 interviews; R4 client form | coupon vs product/availability vs no action (plan A) |
 | Yogurt buyer loss | Is the drop an availability, assortment, price or seasonal effect? | **MEASURED**: equal-window buyers 1194 -> 1111; not attrition, promotion or coverage (reports/trend_check_yogurt.json); **HYPOTHESIS**: availability / assortment fit; seasonality not separable; **PENDING**: store operations data | ABSTAIN: corpus does not support an answer | OPS1 operations check | whether plan B becomes a product/place fix |
-| Unverified discovery of offers (public analogue) | Do assistants surface the analogue, and which sources are cited? | **OBSERVED (two Claude models)**: 20/20 answers; **VERIFIED EXTERNAL**: Google: no special requirements to appear in AI features (google_ai_features) | cites google_ai_features | R2 GEO answers | whether plan C is worth doing |
+| Unverified discovery of offers (public analogue) | Do assistants surface the analogue, and which sources are cited? | **OBSERVED (two Claude models)**: 20/20 answers; **VERIFIED EXTERNAL**: Google: no special requirements to appear in AI features (google_ai_features) | cites google_ai_features | R2 GEO audit | whether plan C is worth doing |
 | Expensive / unconfirmed contact economics | Who funds the offer, how many consented households, what margin and costs? | **MEASURED**: historical retailer match 0.1723 of manufacturer coupon value (past lines only); **ASSUMED**: retailer-funded base; 7,308 reachable; $1,500 setup; $0.03 contact; **VERIFIED EXTERNAL**: ALDI online terms allow promotion codes (fetched); Kroger/Target/Walmart pages UNVERIFIED | CONFLICT between sources: 2469 (cj_pkg_index); 801 (cj_py_port_readme, report_model_card) | R4 client form; R3 retailer checks | the contract-specific pool thresholds that could reopen plan A |
 
 ## 3. Options compared (STP and 4 Ps; the lever must fit the diagnosed barrier)
@@ -26,7 +26,7 @@ Dossier `OPP-B2B80821` · advisor status **DEFER FUNDING / NO SPEND WHILE TERMS 
 |---|---|---|---|---|---|---|
 | A Frozen Pizza coupon | lapsing; 406 panel hh / consent unknown / 7,308 assumed | price lever only if price or habit is the barrier (unknown) | as is / $0.90 coupon / app / one message | 120.3 expected (current patterns, panel); +146 to +512 additional at assumed response (company); break-even +1,209 | -2,114 to -1,388 USD | no paid test (DEFER) |
 | B Yogurt investigation | all yogurt buyers; store-level / no contact | product or place if the cause is availability or assortment; no discount until diagnosed | assortment review / check price moves / stock and shelf / none | 422.0 expected (panel); additional: unknown | unknown ($0 check) | READY task OPS1 |
-| C Discovery content | public analogue; not linkable to the panel | promotion via content only if assistants show a gap | none / none / owned pages / content | not measurable from this data | unknown | conditional on 20 answers |
+| C Discovery content | public analogue; not linkable to the panel | promotion via content only if assistants show a gap | none / none / owned pages / content | not measurable from this data | unknown | conditional on team scoring of the GEO audit and a ChatGPT/Gemini retest |
 | D No paid action | — | default until evidence arrives | — | current patterns continue | $0 | **current choice** |
 | E extra category (pre-registered criteria) | none qualified | — | — | — | — | report that no additional category meets the criteria |
 
@@ -49,13 +49,13 @@ Verified inputs that would reopen it:
 
 | item | status | kind | title | owner | budget | due | success metric |
 |---|---|---|---|---|---:|---|---|
-| WI-F2031770 | READY | research | 2-3 consented interviews (lapsed frozen-pizza buyers, 1 nonbuyer) | Loutchiana (I01-I02), Charbel (I03) | $0 | 2026-11-24 | mi.evidence.interviews check = OK; barrier codes recorded |
-| WI-66880A54 | READY | research | Freeze GEO panel and collect 20 fresh-chat answers | Loutchiana (Assistant 1), Charbel (Assistant 2) | $0 | 2026-11-24 | mi.seo.geo check complete_rows = 20 |
-| WI-DA062A84 | READY | research | Verify Kroger / Target / Walmart / ALDI offer pages by hand | Charbel | $0 | 2026-11-22 | each row VERIFIED with date or stays UNVERIFIED |
-| WI-682EC652 | READY | research | Send the client input form and load confirmed answers | both | $0 | 2026-11-22 | mi.decision.client_inputs check applies funding, pool, margin, costs, stock |
-| WI-BFF5C649 | READY | operations | Yogurt availability / assortment / placement check | client store operations (via team) | $0 | 2026-11-27 | cause identified or ruled out (stock / assortment / price / none) |
-| WI-673F452D | BLOCKED_PENDING_APPROVAL | public_content | Discovery content for the public analogue (only after R2 shows a gap) | both (draft only) | $0 | 2026-12-08 | mention/recommendation rate on a re-run panel; owned-page clicks (separately) |
-| WI-7B888BD2 | BLOCKED_PENDING_APPROVAL | paid_contact | Frozen Pizza lapsing digital coupon test (design only) | category manager (named approver) | $1,938 | 2026-12-17 | incremental contribution per randomized household above the rollout hurdle |
+| WI-708DF08E | READY | research | 2-3 consented interviews (lapsed frozen-pizza buyers, 1 nonbuyer) | Loutchiana (I01-I02), Charbel (I03) | $0 | 2026-11-25 | mi.evidence.interviews check = OK; barrier codes recorded |
+| WI-21BE18CA | READY | research | Review the completed 20-answer GEO audit (Kroger analogue), score impact and effort, and plan the ChatGPT/Gemini retest | Loutchiana and Charbel | $0 | 2026-11-25 | team scores impact and effort (1 to 3) for each candidate action; frozen panel re-run in ChatGPT and Gemini before any claim about them |
+| WI-42CFC19D | READY | research | Verify Kroger / Target / Walmart / ALDI offer pages by hand | Charbel | $0 | 2026-11-23 | each row VERIFIED with date or stays UNVERIFIED |
+| WI-5E167084 | READY | research | Send the client input form and load confirmed answers | both | $0 | 2026-11-23 | mi.decision.client_inputs check applies funding, pool, margin, costs, stock |
+| WI-DCC9181C | READY | operations | Yogurt availability / assortment / placement check | client store operations (via team) | $0 | 2026-11-28 | cause identified or ruled out (stock / assortment / price / none) |
+| WI-AE7F4D2C | BLOCKED_PENDING_APPROVAL | public_content | Discovery content draft for the public analogue (only if the team scores a gap worth acting on; publication blocked until approved) | both (draft only) | $0 | 2026-12-09 | mention/recommendation rate on a re-run panel; owned-page clicks (separately) |
+| WI-F2DB95EE | BLOCKED_PENDING_APPROVAL | paid_contact | Frozen Pizza lapsing digital coupon test (design only) | category manager (named approver) | $1,938 | 2026-12-18 | incremental contribution per randomized household above the rollout hurdle |
 
 READY items are $0 research or operations tasks. BLOCKED items need a named approver with a reason, plus verified consent and stock. No agent can approve, send, spend or launch.
 

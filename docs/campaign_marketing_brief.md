@@ -108,4 +108,4 @@ Published reference figures (Radcliffe 2008, Table 2, page 3), for comparison on
 - Contribution margin and full cost per e-mail (finance, CRM).
 - Consent status of the current base (CRM, legal).
 - A named approver and the holdout draw.
-- The 20 GEO answers and 2-3 interviews for the separate research tracks.
+- For the separate research tracks: team scoring of the GEO audit and a ChatGPT/Gemini retest and 2-3 customer interviews.

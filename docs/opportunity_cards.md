@@ -69,7 +69,7 @@ OBSERVED behaviour (2017 panel) + labelled hypotheses; no ROI is claimed for non
 - **Segment / reach:** {'reachability': 'public web and AI assistants; not linkable to the anonymous panel'}
 - **Observed:** 20/20 assistant answers collected (two Claude models, not ChatGPT or Gemini); no Search Console data
 - **Counterevidence:** a mention in a small prompt panel does not show reach, traffic or conversion
-- **Evidence that would decide:** 20 GEO answers; Search Console impressions/clicks for owned pages (if a real site owner)
+- **Evidence that would decide:** the GEO audit (20 answers when complete); Search Console impressions/clicks for owned pages (if a real site owner)
 - **Hypothesized need:** shoppers asking how to save on frozen pizza/coffee may not find the retailer's offers (HYPOTHESIS)
 - **Positioning (to test):** clear, factual answers to buyer questions
 - **Success metric:** mention/recommendation rate in a re-run panel AND owned-page search clicks (separately)
@@ -88,7 +88,7 @@ OBSERVED behaviour (2017 panel) + labelled hypotheses; no ROI is claimed for non
 | C1 | coupon / paid contact | 4 | LOW at current cost: decision-grade test infeasible in the assumed pool | negative at base; positive only under unconfirmed joint changes | OBSERVED behaviour + ASSUMED economics |
 | C2 | place / merchandising (non-discount) | 3 | LOW-MEDIUM: association barely beats a popularity suggestion | not modelled (no causal data) | OBSERVED association, WEAK (negligible margin over a popularity suggestion); effect UNKNOWN |
 | C3 | product / place investigation (non-discount) | 2 | HIGH: an operations check is cheap | not modelled | OBSERVED trend; cause UNKNOWN |
-| C4 | content / discovery | 3 | MEDIUM: 20 answers + analytics | not modelled | OBSERVED answers (Claude models only); no traffic or conversion evidence |
+| C4 | content / discovery | 3 | MEDIUM: GEO audit + analytics | not modelled | OBSERVED answers (Claude models only); no traffic or conversion evidence |
 | C0 | no action | 1 | n/a | $0 | decision rule |
 
 ## What to learn next
@@ -96,6 +96,6 @@ OBSERVED behaviour (2017 panel) + labelled hypotheses; no ROI is claimed for non
 1. who funds a coupon and the consented pool size (flip the coupon economics or not)
 2. interviews: barrier for lapsed frozen-pizza buyers
 3. operations: stock/assortment for the shrinking category; feasibility of an adjacency test
-4. 20 GEO answers before any content work
+4. team scoring of the GEO audit and a ChatGPT/Gemini retest before any content work
 
 Unavailable: market size, LTV, CAC, ROAS: numerator/denominator/attribution/costs not in the data.

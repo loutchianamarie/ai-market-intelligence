@@ -1,12 +1,12 @@
 {
-  "opportunity_id": "OPP-234024F9",
+  "opportunity_id": "OPP-305E6A31",
   "case_id": "HILLSTROM_EMAIL_2008",
   "mode": "DETERMINISTIC_SPECIALISTS",
   "llm_status": "PENDING: no LLM is called by this path; a live tool-using run is not verified",
-  "export_sha256": "a3ee6a640ad9a9021c10f7bb3601fd1d79ae2619cb87e1f5c7d4db1e76cd75e4",
+  "export_sha256": "e10868f2b6631500fed64ed44f1986726b9d837fc9b9fdc2e0799157452c927c",
   "state": "REVIEW_REQUESTED",
   "version": 8,
-  "total_runtime_ms": 74.2,
+  "total_runtime_ms": 260.5,
   "case_plan": {
     "objective": "Maximise additional purchasing existing customers within two weeks per 1,000 e-mailed, subject to cost, consent and evidence",
     "window_days": 14,
@@ -78,7 +78,7 @@
           "tool": "read_arm_metrics",
           "args": {},
           "status": "ok",
-          "runtime_ms": 0.1,
+          "runtime_ms": 0.2,
           "evidence_ids": [
             "CLM_N_CONTROL",
             "CLM_BUYERS_CONTROL",
@@ -99,7 +99,7 @@
           "tool": "read_policy_comparison",
           "args": {},
           "status": "ok",
-          "runtime_ms": 0.0,
+          "runtime_ms": 0.1,
           "evidence_ids": [
             "CLM_TEST_SEND_ALL_MENS",
             "CLM_CAP25_MODEL",
@@ -115,7 +115,7 @@
           "tool": "read_economics",
           "args": {},
           "status": "ok",
-          "runtime_ms": 0.0,
+          "runtime_ms": 0.1,
           "evidence_ids": [
             "CLM_BREAK_EVEN_COST_MENS_M35",
             "CLM_SCENARIO_MENS_CONSERVATIVE",
@@ -129,9 +129,9 @@
         }
       ],
       "transition": "ANALYSIS_DONE",
-      "runtime_ms": 0.1,
+      "runtime_ms": 0.4,
       "violations": [],
-      "ts": "2026-11-17T08:47:16+00:00"
+      "ts": "2026-11-18T04:08:51+00:00"
     },
     {
       "role": "research",
@@ -142,7 +142,7 @@
           "tool": "list_sources",
           "args": {},
           "status": "ok",
-          "runtime_ms": 0.0,
+          "runtime_ms": 0.1,
           "evidence_ids": []
         },
         {
@@ -156,14 +156,14 @@
           "tool": "seo_status",
           "args": {},
           "status": "ok",
-          "runtime_ms": 0.2,
+          "runtime_ms": 0.7,
           "evidence_ids": []
         }
       ],
       "transition": "RESEARCH_DONE",
-      "runtime_ms": 0.3,
+      "runtime_ms": 0.8,
       "violations": [],
-      "ts": "2026-11-17T08:47:16+00:00"
+      "ts": "2026-11-18T04:08:51+00:00"
     },
     {
       "role": "strategist",
@@ -174,124 +174,124 @@
           "tool": "read_marketing_plan",
           "args": {},
           "status": "ok",
-          "runtime_ms": 0.0,
+          "runtime_ms": 0.1,
           "evidence_ids": []
         },
         {
           "tool": "draft_action",
           "args": {
-            "opportunity_id": "OPP-234024F9",
+            "opportunity_id": "OPP-305E6A31",
             "expected_version": 3
           },
           "status": "ok",
-          "runtime_ms": 5.2,
+          "runtime_ms": 16.5,
           "evidence_ids": []
         },
         {
           "tool": "queue_work_item",
           "args": {
-            "opportunity_id": "OPP-234024F9",
-            "idempotency_key": "OPP-234024F9:S1"
+            "opportunity_id": "OPP-305E6A31",
+            "idempotency_key": "OPP-305E6A31:S1"
           },
           "status": "ok",
-          "runtime_ms": 3.9,
+          "runtime_ms": 12.2,
           "evidence_ids": []
         },
         {
           "tool": "queue_work_item",
           "args": {
-            "opportunity_id": "OPP-234024F9",
-            "idempotency_key": "OPP-234024F9:S2"
+            "opportunity_id": "OPP-305E6A31",
+            "idempotency_key": "OPP-305E6A31:S2"
           },
           "status": "ok",
-          "runtime_ms": 3.6,
+          "runtime_ms": 11.3,
           "evidence_ids": []
         },
         {
           "tool": "queue_work_item",
           "args": {
-            "opportunity_id": "OPP-234024F9",
-            "idempotency_key": "OPP-234024F9:S3"
+            "opportunity_id": "OPP-305E6A31",
+            "idempotency_key": "OPP-305E6A31:S3"
           },
           "status": "ok",
-          "runtime_ms": 3.8,
+          "runtime_ms": 12.2,
           "evidence_ids": []
         },
         {
           "tool": "queue_work_item",
           "args": {
-            "opportunity_id": "OPP-234024F9",
-            "idempotency_key": "OPP-234024F9:S4"
+            "opportunity_id": "OPP-305E6A31",
+            "idempotency_key": "OPP-305E6A31:S4"
           },
           "status": "ok",
-          "runtime_ms": 3.8,
+          "runtime_ms": 11.5,
           "evidence_ids": []
         },
         {
           "tool": "queue_work_item",
           "args": {
-            "opportunity_id": "OPP-234024F9",
-            "idempotency_key": "OPP-234024F9:S5"
+            "opportunity_id": "OPP-305E6A31",
+            "idempotency_key": "OPP-305E6A31:S5"
           },
           "status": "ok",
-          "runtime_ms": 3.3,
+          "runtime_ms": 13.9,
           "evidence_ids": []
         },
         {
           "tool": "queue_work_item",
           "args": {
-            "opportunity_id": "OPP-234024F9",
-            "idempotency_key": "OPP-234024F9:S6"
+            "opportunity_id": "OPP-305E6A31",
+            "idempotency_key": "OPP-305E6A31:S6"
           },
           "status": "ok",
-          "runtime_ms": 3.4,
+          "runtime_ms": 11.3,
           "evidence_ids": []
         },
         {
           "tool": "queue_work_item",
           "args": {
-            "opportunity_id": "OPP-234024F9",
-            "idempotency_key": "OPP-234024F9:S7"
+            "opportunity_id": "OPP-305E6A31",
+            "idempotency_key": "OPP-305E6A31:S7"
           },
           "status": "ok",
-          "runtime_ms": 3.4,
+          "runtime_ms": 11.5,
           "evidence_ids": []
         },
         {
           "tool": "queue_work_item",
           "args": {
-            "opportunity_id": "OPP-234024F9",
-            "idempotency_key": "OPP-234024F9:R_GEO"
+            "opportunity_id": "OPP-305E6A31",
+            "idempotency_key": "OPP-305E6A31:R_GEO"
           },
           "status": "ok",
-          "runtime_ms": 3.5,
+          "runtime_ms": 10.6,
           "evidence_ids": []
         },
         {
           "tool": "queue_work_item",
           "args": {
-            "opportunity_id": "OPP-234024F9",
-            "idempotency_key": "OPP-234024F9:R_NOSEND"
+            "opportunity_id": "OPP-305E6A31",
+            "idempotency_key": "OPP-305E6A31:R_NOSEND"
           },
           "status": "ok",
-          "runtime_ms": 3.8,
+          "runtime_ms": 11.3,
           "evidence_ids": []
         },
         {
           "tool": "request_approval",
           "args": {
-            "opportunity_id": "OPP-234024F9",
+            "opportunity_id": "OPP-305E6A31",
             "expected_version": 4
           },
           "status": "ok",
-          "runtime_ms": 4.8,
+          "runtime_ms": 12.6,
           "evidence_ids": []
         }
       ],
       "transition": "REVIEW_REQUESTED",
-      "runtime_ms": 43.6,
+      "runtime_ms": 151.2,
       "violations": [],
-      "ts": "2026-11-17T08:47:16+00:00"
+      "ts": "2026-11-18T04:08:51+00:00"
     },
     {
       "role": "checker",
@@ -301,35 +301,35 @@
         {
           "tool": "check_dossier",
           "args": {
-            "opportunity_id": "OPP-234024F9"
+            "opportunity_id": "OPP-305E6A31"
           },
           "status": "ok",
-          "runtime_ms": 0.7,
+          "runtime_ms": 3.2,
           "evidence_ids": []
         }
       ],
       "transition": "PASS_DRAFT_HOLD_FOR_INPUTS",
-      "runtime_ms": 0.7,
+      "runtime_ms": 3.2,
       "violations": [],
-      "ts": "2026-11-17T08:47:16+00:00"
+      "ts": "2026-11-18T04:08:51+00:00"
     }
   ],
   "events": [
     {
-      "id": 90,
-      "opportunity_id": "OPP-234024F9",
+      "id": 1,
+      "opportunity_id": "OPP-305E6A31",
       "version": 1,
-      "ts": "2026-11-17T08:47:16+00:00",
+      "ts": "2026-11-18T04:08:51+00:00",
       "actor": "coordinator",
       "role": "agent",
       "event": "DOSSIER_CREATED",
       "detail": {}
     },
     {
-      "id": 91,
-      "opportunity_id": "OPP-234024F9",
+      "id": 2,
+      "opportunity_id": "OPP-305E6A31",
       "version": 2,
-      "ts": "2026-11-17T08:47:16+00:00",
+      "ts": "2026-11-18T04:08:51+00:00",
       "actor": "analyst_agent",
       "role": "agent",
       "event": "DOSSIER_UPDATED",
@@ -342,10 +342,10 @@
       }
     },
     {
-      "id": 92,
-      "opportunity_id": "OPP-234024F9",
+      "id": 3,
+      "opportunity_id": "OPP-305E6A31",
       "version": 3,
-      "ts": "2026-11-17T08:47:16+00:00",
+      "ts": "2026-11-18T04:08:51+00:00",
       "actor": "research_agent",
       "role": "agent",
       "event": "DOSSIER_UPDATED",
@@ -358,10 +358,10 @@
       }
     },
     {
-      "id": 93,
-      "opportunity_id": "OPP-234024F9",
+      "id": 4,
+      "opportunity_id": "OPP-305E6A31",
       "version": 4,
-      "ts": "2026-11-17T08:47:16+00:00",
+      "ts": "2026-11-18T04:08:51+00:00",
       "actor": "strategist_agent",
       "role": "agent",
       "event": "DOSSIER_UPDATED",
@@ -372,148 +372,148 @@
       }
     },
     {
-      "id": 94,
-      "opportunity_id": "OPP-234024F9",
+      "id": 5,
+      "opportunity_id": "OPP-305E6A31",
       "version": null,
-      "ts": "2026-11-17T08:47:16+00:00",
+      "ts": "2026-11-18T04:08:51+00:00",
       "actor": "strategist_agent",
       "role": "agent",
       "event": "WORK_ITEM_CREATED",
       "detail": {
-        "item_id": "WI-25110A0F",
+        "item_id": "WI-60BB4945",
         "kind": "operations",
         "status": "READY"
       }
     },
     {
-      "id": 95,
-      "opportunity_id": "OPP-234024F9",
+      "id": 6,
+      "opportunity_id": "OPP-305E6A31",
       "version": null,
-      "ts": "2026-11-17T08:47:16+00:00",
+      "ts": "2026-11-18T04:08:51+00:00",
       "actor": "strategist_agent",
       "role": "agent",
       "event": "WORK_ITEM_CREATED",
       "detail": {
-        "item_id": "WI-18CE7305",
+        "item_id": "WI-0AEDC44E",
         "kind": "operations",
         "status": "READY"
       }
     },
     {
-      "id": 96,
-      "opportunity_id": "OPP-234024F9",
+      "id": 7,
+      "opportunity_id": "OPP-305E6A31",
       "version": null,
-      "ts": "2026-11-17T08:47:16+00:00",
+      "ts": "2026-11-18T04:08:51+00:00",
       "actor": "strategist_agent",
       "role": "agent",
       "event": "WORK_ITEM_CREATED",
       "detail": {
-        "item_id": "WI-A302E5BB",
+        "item_id": "WI-EF6E71C8",
         "kind": "operations",
         "status": "READY"
       }
     },
     {
-      "id": 97,
-      "opportunity_id": "OPP-234024F9",
+      "id": 8,
+      "opportunity_id": "OPP-305E6A31",
       "version": null,
-      "ts": "2026-11-17T08:47:16+00:00",
+      "ts": "2026-11-18T04:08:51+00:00",
       "actor": "strategist_agent",
       "role": "agent",
       "event": "WORK_ITEM_CREATED",
       "detail": {
-        "item_id": "WI-73D4EDCF",
+        "item_id": "WI-6787030C",
         "kind": "operations",
         "status": "READY"
       }
     },
     {
-      "id": 98,
-      "opportunity_id": "OPP-234024F9",
+      "id": 9,
+      "opportunity_id": "OPP-305E6A31",
       "version": null,
-      "ts": "2026-11-17T08:47:16+00:00",
+      "ts": "2026-11-18T04:08:51+00:00",
       "actor": "strategist_agent",
       "role": "agent",
       "event": "WORK_ITEM_CREATED",
       "detail": {
-        "item_id": "WI-E4660966",
+        "item_id": "WI-D0A3F162",
         "kind": "operations",
         "status": "READY"
       }
     },
     {
-      "id": 99,
-      "opportunity_id": "OPP-234024F9",
+      "id": 10,
+      "opportunity_id": "OPP-305E6A31",
       "version": null,
-      "ts": "2026-11-17T08:47:16+00:00",
+      "ts": "2026-11-18T04:08:51+00:00",
       "actor": "strategist_agent",
       "role": "agent",
       "event": "WORK_ITEM_CREATED",
       "detail": {
-        "item_id": "WI-0DA24137",
+        "item_id": "WI-822C7C8B",
         "kind": "paid_contact",
         "status": "BLOCKED_PENDING_APPROVAL"
       }
     },
     {
-      "id": 100,
-      "opportunity_id": "OPP-234024F9",
+      "id": 11,
+      "opportunity_id": "OPP-305E6A31",
       "version": null,
-      "ts": "2026-11-17T08:47:16+00:00",
+      "ts": "2026-11-18T04:08:51+00:00",
       "actor": "strategist_agent",
       "role": "agent",
       "event": "WORK_ITEM_CREATED",
       "detail": {
-        "item_id": "WI-E00D6C3E",
+        "item_id": "WI-00650681",
         "kind": "operations",
         "status": "READY"
       }
     },
     {
-      "id": 101,
-      "opportunity_id": "OPP-234024F9",
+      "id": 12,
+      "opportunity_id": "OPP-305E6A31",
       "version": null,
-      "ts": "2026-11-17T08:47:16+00:00",
+      "ts": "2026-11-18T04:08:51+00:00",
       "actor": "strategist_agent",
       "role": "agent",
       "event": "WORK_ITEM_CREATED",
       "detail": {
-        "item_id": "WI-C9CDBD3F",
+        "item_id": "WI-2801AC24",
         "kind": "research",
         "status": "READY"
       }
     },
     {
-      "id": 102,
-      "opportunity_id": "OPP-234024F9",
+      "id": 13,
+      "opportunity_id": "OPP-305E6A31",
       "version": null,
-      "ts": "2026-11-17T08:47:16+00:00",
+      "ts": "2026-11-18T04:08:51+00:00",
       "actor": "strategist_agent",
       "role": "agent",
       "event": "WORK_ITEM_CREATED",
       "detail": {
-        "item_id": "WI-6E9659BE",
+        "item_id": "WI-FCFD685B",
         "kind": "research",
         "status": "READY"
       }
     },
     {
-      "id": 103,
-      "opportunity_id": "OPP-234024F9",
+      "id": 14,
+      "opportunity_id": "OPP-305E6A31",
       "version": 5,
-      "ts": "2026-11-17T08:47:16+00:00",
+      "ts": "2026-11-18T04:08:51+00:00",
       "actor": "strategist_agent",
       "role": "agent",
       "event": "STATE_REVIEW_REQUESTED",
       "detail": {
-        "plan_hash": "32ed8acbca9c9050baa9599b86863f46bf39d359cf7456937629569a4882d7ac"
+        "plan_hash": "00bb3c5677a017aeb5d0d403dbabc0ef55e03e8319a5256fe74c08107b967cb5"
       }
     },
     {
-      "id": 104,
-      "opportunity_id": "OPP-234024F9",
+      "id": 15,
+      "opportunity_id": "OPP-305E6A31",
       "version": 6,
-      "ts": "2026-11-17T08:47:16+00:00",
+      "ts": "2026-11-18T04:08:51+00:00",
       "actor": "strategist_agent",
       "role": "agent",
       "event": "DOSSIER_UPDATED",
@@ -526,10 +526,10 @@
       }
     },
     {
-      "id": 105,
-      "opportunity_id": "OPP-234024F9",
+      "id": 16,
+      "opportunity_id": "OPP-305E6A31",
       "version": 7,
-      "ts": "2026-11-17T08:47:16+00:00",
+      "ts": "2026-11-18T04:08:51+00:00",
       "actor": "checker_agent",
       "role": "agent",
       "event": "DOSSIER_UPDATED",
@@ -542,10 +542,10 @@
       }
     },
     {
-      "id": 106,
-      "opportunity_id": "OPP-234024F9",
+      "id": 17,
+      "opportunity_id": "OPP-305E6A31",
       "version": 8,
-      "ts": "2026-11-17T08:47:16+00:00",
+      "ts": "2026-11-18T04:08:51+00:00",
       "actor": "coordinator",
       "role": "agent",
       "event": "DOSSIER_UPDATED",
@@ -560,120 +560,120 @@
   "history": [
     {
       "version": 1,
-      "created_at": "2026-11-17T08:47:16+00:00",
+      "created_at": "2026-11-18T04:08:51+00:00",
       "actor": "coordinator",
       "role": "agent",
       "note": "created",
-      "payload_hash": "4cb6e73f4bffb42ecac426abb9dab1dca5740466006684fe291536655fe63692"
+      "payload_hash": "e8aabe6e807908472f2fd8be3f87271e64441bef3ebbe3ff69671a7df9887397"
     },
     {
       "version": 2,
-      "created_at": "2026-11-17T08:47:16+00:00",
+      "created_at": "2026-11-18T04:08:51+00:00",
       "actor": "analyst_agent",
       "role": "agent",
       "note": "analyst output",
-      "payload_hash": "b29c17cf93ddcf75e9552e81dcfe3c586a496f4c867b0f4270538700fc46c366"
+      "payload_hash": "bbeb55112b8933339817b44094678b3c65d0055fc0f8e4c77bbf8c87fea3556c"
     },
     {
       "version": 3,
-      "created_at": "2026-11-17T08:47:16+00:00",
+      "created_at": "2026-11-18T04:08:51+00:00",
       "actor": "research_agent",
       "role": "agent",
       "note": "research output",
-      "payload_hash": "694450c97aaf6f234fa03e40c1000dd821b1ed07aea355a90a1fce3c656ffd80"
+      "payload_hash": "941fb675041124af2289985cc4498bc5d2ed9ed5eb7bb684c40b8e457fe2093b"
     },
     {
       "version": 4,
-      "created_at": "2026-11-17T08:47:16+00:00",
+      "created_at": "2026-11-18T04:08:51+00:00",
       "actor": "strategist_agent",
       "role": "agent",
       "note": "campaign action drafted",
-      "payload_hash": "26de4140936a62cb1ac2aa7e7bd35b25939238cd648f14482611cdc3587da210"
+      "payload_hash": "985e32030db34af72d36bf50741345af7abd3c2d404fbe8ee6897e0df6b64d36"
     },
     {
       "version": 5,
-      "created_at": "2026-11-17T08:47:16+00:00",
+      "created_at": "2026-11-18T04:08:51+00:00",
       "actor": "strategist_agent",
       "role": "agent",
       "note": "-> REVIEW_REQUESTED",
-      "payload_hash": "ea6031c7fa959eede0046dcb1538542c625c87d3c17b9707c75325947edfb8b9"
+      "payload_hash": "3673a2d5da05e213180f21bdb6c037aa84e6e7156c7b1ad6e8ba3016c86e68ce"
     },
     {
       "version": 6,
-      "created_at": "2026-11-17T08:47:16+00:00",
+      "created_at": "2026-11-18T04:08:51+00:00",
       "actor": "strategist_agent",
       "role": "agent",
       "note": "strategist output",
-      "payload_hash": "1e5f9aa69362e98880a6ae4a24517f5bf6587718d058b5534f4c350ded71279a"
+      "payload_hash": "27bc49df942eac9bdbd9d1e598e1c5e9ec6bd7dc4505dc4fef27eadbf4522041"
     },
     {
       "version": 7,
-      "created_at": "2026-11-17T08:47:16+00:00",
+      "created_at": "2026-11-18T04:08:51+00:00",
       "actor": "checker_agent",
       "role": "agent",
       "note": "checker output",
-      "payload_hash": "7dd74ccf92628766ca74b9795601cd091aa8f924220b7dae75546d6e00571b32"
+      "payload_hash": "1180f9d5ede596ba4b7a4df1b19dc7da8515cd27eed035258da85c52ea33cd6e"
     },
     {
       "version": 8,
-      "created_at": "2026-11-17T08:47:16+00:00",
+      "created_at": "2026-11-18T04:08:51+00:00",
       "actor": "coordinator",
       "role": "agent",
       "note": "coordinator: stop at checkpoint",
-      "payload_hash": "ec1a9e93ec54b8a432d11b811048c7ac6729264329e636cfc43d6216cedcab54"
+      "payload_hash": "10576bdcde3de5b19b1e1bc1cda159c54fbf29eb34b641825d62a3c3b7495e56"
     }
   ],
   "work_items": [
     {
-      "item_id": "WI-25110A0F",
+      "item_id": "WI-60BB4945",
       "status": "READY",
       "title": "Review the eligible segment (purchased in the past twelve months) and report its current size.",
       "kind": "operations"
     },
     {
-      "item_id": "WI-18CE7305",
+      "item_id": "WI-0AEDC44E",
       "status": "READY",
-      "title": "Verify e-mail consent and unsubscribe handling for every eligible customer.",
+      "title": "Check the draft and the send list against the FTC CAN-SPAM requirements (SRC_FTC_CANSPAM): accurate sender and",
       "kind": "operations"
     },
     {
-      "item_id": "WI-A302E5BB",
+      "item_id": "WI-EF6E71C8",
       "status": "READY",
       "title": "Supply the contribution margin and the full cost per e-mail; compare with the break-even thresholds.",
       "kind": "operations"
     },
     {
-      "item_id": "WI-73D4EDCF",
+      "item_id": "WI-6787030C",
       "status": "READY",
       "title": "Draw and freeze a 10% randomized no-e-mail holdout before any send.",
       "kind": "operations"
     },
     {
-      "item_id": "WI-E4660966",
+      "item_id": "WI-D0A3F162",
       "status": "READY",
       "title": "Approve or reject the draft with name, reason and plan version; re-review after any change.",
       "kind": "operations"
     },
     {
-      "item_id": "WI-0DA24137",
+      "item_id": "WI-822C7C8B",
       "status": "BLOCKED_PENDING_APPROVAL",
       "title": "Send only after step 5 is approved. This system has no send tool.",
       "kind": "paid_contact"
     },
     {
-      "item_id": "WI-E00D6C3E",
+      "item_id": "WI-00650681",
       "status": "READY",
       "title": "After two weeks, compare unique buyers, incremental spend, cost and unsubscribes between e-mailed customers an",
       "kind": "operations"
     },
     {
-      "item_id": "WI-C9CDBD3F",
+      "item_id": "WI-2801AC24",
       "status": "READY",
-      "title": "Collect 20 real GEO answers (separate real-brand workstream)",
+      "title": "Review the completed 20-answer GEO audit (Kroger analogue), score impact and effort, and plan the ChatGPT/Gemini retest (separate real-brand workstream)",
       "kind": "research"
     },
     {
-      "item_id": "WI-6E9659BE",
+      "item_id": "WI-FCFD685B",
       "status": "READY",
       "title": "No-send path: obtain margin, cost per e-mail and consent, then re-run the decision",
       "kind": "research"
@@ -694,7 +694,7 @@
     "verdict": "PASS_DRAFT_HOLD_FOR_INPUTS",
     "findings_checked": 31,
     "notes": [
-      "31 findings re-checked against export a3ee6a640ad9..."
+      "31 findings re-checked against export e10868f2b663..."
     ],
     "approval_required": true
   },

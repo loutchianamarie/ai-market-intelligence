@@ -683,7 +683,7 @@
         "Promotion": "content where cited sources are"
       },
       "discriminating_evidence": [
-        "20 GEO answers",
+        "the GEO audit (20 answers when complete)",
         "Search Console impressions/clicks for owned pages (if a real site owner)"
       ],
       "success_metric": "mention/recommendation rate in a re-run panel AND owned-page search clicks (separately)",
@@ -730,7 +730,7 @@
       "card": "C4",
       "strategy_class": "content / discovery",
       "feasibility_rank_now": 3,
-      "information_value": "MEDIUM: 20 answers + analytics",
+      "information_value": "MEDIUM: GEO audit + analytics",
       "assumed_financial_upside": "not modelled",
       "evidence_level": "OBSERVED answers (Claude models only); no traffic or conversion evidence"
     },
@@ -747,7 +747,7 @@
     "who funds a coupon and the consented pool size (flip the coupon economics or not)",
     "interviews: barrier for lapsed frozen-pizza buyers",
     "operations: stock/assortment for the shrinking category; feasibility of an adjacency test",
-    "20 GEO answers before any content work"
+    "team scoring of the GEO audit and a ChatGPT/Gemini retest before any content work"
   ],
   "unavailable_metrics": "market size, LTV, CAC, ROAS: numerator/denominator/attribution/costs not in the data"
 }

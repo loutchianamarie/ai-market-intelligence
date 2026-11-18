@@ -1,7 +1,7 @@
 # Decision card: next CRM / category budget
 
 **Advisor status:** DEFER FUNDING / NO SPEND WHILE TERMS ARE UNCONFIRMED. **Base case:** RETAILER-FUNDED offer (retailer pays the full coupon face value): the current base case.
-**Recommendation now:** NONE: research / measure first: no rollout, no funded coupon test, no spend or send. Live dossier `OPP-B2B80821`; a named person still has to decide in app tab 4.
+**Recommendation now:** NONE: research / measure first: no rollout, no funded coupon test, no spend or send. Live dossier `OPP-7177E5FC`; a named person still has to decide in app tab 4.
 
 ## Why
 - Under the retailer-funded base case every modelled coupon plan loses money (best: COFFEE/LAPSING/digital_coupon/ALL -1,724 USD per 4-week cycle at an assumed scale).
@@ -33,6 +33,6 @@ Grid cases were selected by us, so counts are not probabilities. The minimal rev
 1. Send the client input form (`docs/client_input_form.md`); load the answers with `python -m mi.decision.client_inputs` and re-run `python -m mi.cli all`.
 2. Interviews: why did lapsed buyers stop? This decides between a coupon, the product, availability and no action.
 3. Operations check on the Yogurt signal (card C3); keep the weak cross-sell (C2) as a negative finding.
-4. Collect the 20 GEO answers before any content work (card C4).
+4. Before any content work (card C4): the GEO audit is complete (20/20, Claude models only): score impact and effort, then re-run the frozen panel in ChatGPT and Gemini.
 
 Full cards: `docs/opportunity_cards.md`. Claims with provenance: `reports/current_claims.json`.
