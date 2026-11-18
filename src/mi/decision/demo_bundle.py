@@ -29,6 +29,7 @@ LAPSE_ACTIVE, LAPSE_RECENT = (38, 49), (50, 53)   # simple descriptive lapsing r
 TX_COLS = ["household_id", "basket_id", "product_id", "week", "transaction_timestamp", "quantity", "sales_value", "retail_disc", "coupon_disc", "coupon_match_disc"]
 PROD_COLS = ["product_id", "manufacturer_id", "department", "brand", "product_category", "product_type", "package_size"]
 CASE_ID = "GROCERY_84_51_2017_BUNDLE"
+MANIFEST_COPY = REPORTS / "grocery_bundle_manifest.json"
 
 
 def sha256_file(p) -> str:
@@ -126,6 +127,12 @@ def build(out=OUT, zip_it=True) -> dict:
     mp = out / "bundle_manifest.json"
     mp.write_text(json.dumps(manifest, indent=2, ensure_ascii=False), encoding="utf-8", newline="\n")
     (out / "bundle_manifest.sha256").write_text(sha256_file(mp) + "  bundle_manifest.json\n", encoding="utf-8", newline="\n")
+    if out == OUT:          # a small derived copy (no raw rows) that the web and CI can read without the git-ignored bundle
+        import shutil
+        shutil.copyfile(mp, MANIFEST_COPY)
+        MANIFEST_COPY.with_suffix(".sha256").write_text(sha256_file(mp) + "  grocery_bundle_manifest.json
+", encoding="utf-8", newline="
+")
     if zip_it:
         z = out.with_suffix(".zip")
         with zipfile.ZipFile(z, "w", zipfile.ZIP_DEFLATED) as f:

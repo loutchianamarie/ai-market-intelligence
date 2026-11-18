@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "consultant_review.v1",
+  "title": "ConsultAI consultant review of the shared grocery bundle (read-only for the marketing web)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "review_id", "generated_at", "run", "input", "roles", "metrics", "headline", "options", "action_card", "unavailable", "checker"],
+  "properties": {
+    "schema": {"const": "consultant_review.v1"},
+    "review_id": {"type": "string", "minLength": 1},
+    "generated_at": {"type": "string", "minLength": 10},
+    "is_sample": {"type": "boolean"},
+    "run": {
+      "type": "object", "additionalProperties": false, "required": ["mode", "model_id", "cost_usd", "calls", "consultai_commit"],
+      "properties": {
+        "mode": {"enum": ["OFFLINE_DETERMINISTIC", "LIVE_LLM"]},
+        "model_id": {"type": ["string", "null"]},
+        "cost_usd": {"type": ["number", "null"], "minimum": 0},
+        "calls": {"type": "integer", "minimum": 0},
+        "consultai_commit": {"type": "string", "minLength": 1}
+      }
+    },
+    "input": {
+      "type": "object", "additionalProperties": false, "required": ["case_id", "bundle_manifest_sha256"],
+      "properties": {
+        "case_id": {"const": "GROCERY_84_51_2017_BUNDLE"},
+        "bundle_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "roles": {
+      "type": "array", "minItems": 1, "maxItems": 5,
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["role", "tools", "status", "summary"],
+        "properties": {
+          "role": {"enum": ["analyst", "researcher", "strategist", "checker", "human"]},
+          "tools": {"type": "array", "items": {"type": "string"}},
+          "status": {"enum": ["OK", "ABSTAINED", "BLOCKED", "PENDING_HUMAN"]},
+          "summary": {"type": "string"}
+        }
+      }
+    },
+    "metrics": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["metric_id", "label", "value", "unit", "tag", "period", "denominator", "formula"],
+        "properties": {
+          "metric_id": {"type": "string", "minLength": 1},
+          "label": {"type": "string"},
+          "value": {"type": ["number", "string"]},
+          "unit": {"type": "string", "minLength": 1},
+          "tag": {"enum": ["COMPUTED FROM UPLOADED DATA", "OBSERVED", "SCENARIO", "UNKNOWN"]},
+          "period": {"type": "string"},
+          "denominator": {"type": ["number", "null"]},
+          "formula": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "headline": {
+      "type": "object", "additionalProperties": false, "required": ["decision", "numbers"],
+      "properties": {
+        "decision": {"type": "string", "minLength": 1},
+        "numbers": {
+          "type": "array", "minItems": 3, "maxItems": 3,
+          "items": {"type": "object", "additionalProperties": false, "required": ["label", "metric_id"],
+                    "properties": {"label": {"type": "string"}, "metric_id": {"type": "string"}}}
+        }
+      }
+    },
+    "options": {
+      "type": "array", "minItems": 1, "maxItems": 8,
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["option", "tag", "metric_ids", "verdict", "condition"],
+        "properties": {
+          "option": {"type": "string"}, "tag": {"type": "string"},
+          "metric_ids": {"type": "array", "items": {"type": "string"}},
+          "verdict": {"type": "string"}, "condition": {"type": "string"}
+        }
+      }
+    },
+    "action_card": {
+      "type": "object", "additionalProperties": false,
+      "required": ["segment", "four_ps", "alternative", "owner", "kpi", "approval_state", "sandbox_only"],
+      "properties": {
+        "segment": {"type": "string"},
+        "four_ps": {"type": "object", "additionalProperties": false, "required": ["product", "price", "place", "promotion"],
+                    "properties": {"product": {"type": "string"}, "price": {"type": "string"}, "place": {"type": "string"}, "promotion": {"type": "string"}}},
+        "alternative": {"type": "string"}, "owner": {"type": "string"}, "kpi": {"type": "string"},
+        "approval_state": {"const": "PENDING_HUMAN"},
+        "sandbox_only": {"const": true}
+      }
+    },
+    "unavailable": {"type": "array", "items": {"type": "string"}},
+    "checker": {
+      "type": "object", "additionalProperties": false, "required": ["verdict", "problems"],
+      "properties": {"verdict": {"type": "string"}, "problems": {"type": "array", "items": {"type": "string"}}}
+    }
+  }
+}

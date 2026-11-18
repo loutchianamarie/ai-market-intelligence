@@ -1,0 +1,523 @@
+{
+  "schema": "grocery_demo_bundle.v1",
+  "case_id": "GROCERY_84_51_2017_BUNDLE",
+  "generated": "2026-11-18",
+  "source": "84.51 Complete Journey panel (anonymous US grocery retailer), calendar 2017; derived CSV copy of the project's processed tables",
+  "extraction_rule": "transactions.csv = every purchase line (no filtering), the columns listed; products.csv = the full product table; households.csv = every household id that has at least one line, with demographics where the panel provides them (801 of 2,469). Built by python -m mi.decision.demo_bundle.",
+  "complete_dataset": true,
+  "date_first": "2017-01-01",
+  "date_last": "2018-01-01",
+  "weeks": [
+    1,
+    53
+  ],
+  "focus_categories": [
+    "BAG SNACKS",
+    "FROZEN PIZZA",
+    "COLD CEREAL",
+    "SOUP",
+    "ICE CREAM/MILK/SHERBTS",
+    "YOGURT",
+    "COFFEE",
+    "REFRGRATD JUICES/DRNKS"
+  ],
+  "files": {
+    "transactions.csv": {
+      "rows": 1469307,
+      "bytes": 101671209,
+      "sha256": "a56eb90cb6c1680f93cd6090d8e244dff8261b93bc6b5ea310b1c8fa944c9cf7",
+      "columns": [
+        "household_id",
+        "basket_id",
+        "product_id",
+        "week",
+        "transaction_timestamp",
+        "quantity",
+        "sales_value",
+        "retail_disc",
+        "coupon_disc",
+        "coupon_match_disc"
+      ]
+    },
+    "products.csv": {
+      "rows": 92331,
+      "bytes": 6463913,
+      "sha256": "f2e9f6c31d11e0524b55c3c70edc625be1ace63ef7322ff7e6a9f9c26e6261ea",
+      "columns": [
+        "product_id",
+        "manufacturer_id",
+        "department",
+        "brand",
+        "product_category",
+        "product_type",
+        "package_size"
+      ]
+    },
+    "households.csv": {
+      "rows": 2469,
+      "bytes": 63956,
+      "sha256": "9b0cee7ce467e048847b27de51cc744cdcfe9dc021c7faef9467927db0fbd136",
+      "columns": [
+        "household_id",
+        "age",
+        "income",
+        "home_ownership",
+        "marital_status",
+        "household_size",
+        "household_comp",
+        "kids_count"
+      ]
+    }
+  },
+  "can_reproduce": [
+    "row and household counts",
+    "sales over time",
+    "distinct buyers by category and period",
+    "category-only lapse versus left the retailer",
+    "descriptive lapsing segments",
+    "basket cross-sell"
+  ],
+  "cannot_reproduce": [
+    "the trained purchase-propensity model's scores (needs the project's feature pipeline and coupon tables)",
+    "any coupon or campaign effect (exposure was not randomized; the campaign tables are not in the bundle)",
+    "stock, margin, consent, contact constraints, any year other than 2017"
+  ],
+  "model_segment_note": {
+    "text": "The trained model uses a stricter activity-week lapsing segment; its counts are not reference metrics for this bundle.",
+    "model_lapsing_counts_at_week_53": {
+      "BAG SNACKS": 443,
+      "FROZEN PIZZA": 406,
+      "COLD CEREAL": 421,
+      "SOUP": 502,
+      "ICE CREAM/MILK/SHERBTS": 444,
+      "YOGURT": 330,
+      "COFFEE": 355,
+      "REFRGRATD JUICES/DRNKS": 404
+    }
+  },
+  "reference_metrics": [
+    {
+      "metric_id": "households_total",
+      "label": "Households with at least one purchase line",
+      "value": 2469,
+      "unit": "households",
+      "period": "2017",
+      "denominator": null,
+      "formula": "count distinct household_id"
+    },
+    {
+      "metric_id": "lines_total",
+      "label": "Purchase lines",
+      "value": 1469307,
+      "unit": "lines",
+      "period": "2017",
+      "denominator": null,
+      "formula": "count rows of transactions"
+    },
+    {
+      "metric_id": "baskets_total",
+      "label": "Baskets",
+      "value": 155848,
+      "unit": "baskets",
+      "period": "2017",
+      "denominator": null,
+      "formula": "count distinct basket_id"
+    },
+    {
+      "metric_id": "sales_total",
+      "label": "Total sales value",
+      "value": 4596039.58,
+      "unit": "USD",
+      "period": "2017",
+      "denominator": null,
+      "formula": "sum sales_value"
+    },
+    {
+      "metric_id": "distinct_buyers_h1__BAG_SNACKS",
+      "label": "Distinct buyers of BAG SNACKS, weeks 1-26",
+      "value": 1854,
+      "unit": "households",
+      "period": "weeks 1-26",
+      "denominator": 2469,
+      "formula": "count distinct household_id with a line in this category in weeks 1-26"
+    },
+    {
+      "metric_id": "distinct_buyers_h2__BAG_SNACKS",
+      "label": "Distinct buyers of BAG SNACKS, weeks 27-53",
+      "value": 1915,
+      "unit": "households",
+      "period": "weeks 27-53",
+      "denominator": 2469,
+      "formula": "count distinct household_id with a line in this category in weeks 27-53"
+    },
+    {
+      "metric_id": "lines_h1__BAG_SNACKS",
+      "label": "Purchase lines of BAG SNACKS, weeks 1-26",
+      "value": 18316,
+      "unit": "lines",
+      "period": "weeks 1-26",
+      "denominator": null,
+      "formula": "count rows (lines are NOT buyers)"
+    },
+    {
+      "metric_id": "buyer_change__BAG_SNACKS",
+      "label": "Change in distinct buyers of BAG SNACKS, second half against first",
+      "value": 0.0329,
+      "unit": "ratio",
+      "period": "weeks 27-53 vs 1-26",
+      "denominator": 1854,
+      "formula": "distinct_buyers_h2 / distinct_buyers_h1 - 1"
+    },
+    {
+      "metric_id": "distinct_buyers_h1__FROZEN_PIZZA",
+      "label": "Distinct buyers of FROZEN PIZZA, weeks 1-26",
+      "value": 1439,
+      "unit": "households",
+      "period": "weeks 1-26",
+      "denominator": 2469,
+      "formula": "count distinct household_id with a line in this category in weeks 1-26"
+    },
+    {
+      "metric_id": "distinct_buyers_h2__FROZEN_PIZZA",
+      "label": "Distinct buyers of FROZEN PIZZA, weeks 27-53",
+      "value": 1473,
+      "unit": "households",
+      "period": "weeks 27-53",
+      "denominator": 2469,
+      "formula": "count distinct household_id with a line in this category in weeks 27-53"
+    },
+    {
+      "metric_id": "lines_h1__FROZEN_PIZZA",
+      "label": "Purchase lines of FROZEN PIZZA, weeks 1-26",
+      "value": 11618,
+      "unit": "lines",
+      "period": "weeks 1-26",
+      "denominator": null,
+      "formula": "count rows (lines are NOT buyers)"
+    },
+    {
+      "metric_id": "buyer_change__FROZEN_PIZZA",
+      "label": "Change in distinct buyers of FROZEN PIZZA, second half against first",
+      "value": 0.0236,
+      "unit": "ratio",
+      "period": "weeks 27-53 vs 1-26",
+      "denominator": 1439,
+      "formula": "distinct_buyers_h2 / distinct_buyers_h1 - 1"
+    },
+    {
+      "metric_id": "distinct_buyers_h1__COLD_CEREAL",
+      "label": "Distinct buyers of COLD CEREAL, weeks 1-26",
+      "value": 1518,
+      "unit": "households",
+      "period": "weeks 1-26",
+      "denominator": 2469,
+      "formula": "count distinct household_id with a line in this category in weeks 1-26"
+    },
+    {
+      "metric_id": "distinct_buyers_h2__COLD_CEREAL",
+      "label": "Distinct buyers of COLD CEREAL, weeks 27-53",
+      "value": 1601,
+      "unit": "households",
+      "period": "weeks 27-53",
+      "denominator": 2469,
+      "formula": "count distinct household_id with a line in this category in weeks 27-53"
+    },
+    {
+      "metric_id": "lines_h1__COLD_CEREAL",
+      "label": "Purchase lines of COLD CEREAL, weeks 1-26",
+      "value": 10280,
+      "unit": "lines",
+      "period": "weeks 1-26",
+      "denominator": null,
+      "formula": "count rows (lines are NOT buyers)"
+    },
+    {
+      "metric_id": "buyer_change__COLD_CEREAL",
+      "label": "Change in distinct buyers of COLD CEREAL, second half against first",
+      "value": 0.0547,
+      "unit": "ratio",
+      "period": "weeks 27-53 vs 1-26",
+      "denominator": 1518,
+      "formula": "distinct_buyers_h2 / distinct_buyers_h1 - 1"
+    },
+    {
+      "metric_id": "distinct_buyers_h1__SOUP",
+      "label": "Distinct buyers of SOUP, weeks 1-26",
+      "value": 1546,
+      "unit": "households",
+      "period": "weeks 1-26",
+      "denominator": 2469,
+      "formula": "count distinct household_id with a line in this category in weeks 1-26"
+    },
+    {
+      "metric_id": "distinct_buyers_h2__SOUP",
+      "label": "Distinct buyers of SOUP, weeks 27-53",
+      "value": 1648,
+      "unit": "households",
+      "period": "weeks 27-53",
+      "denominator": 2469,
+      "formula": "count distinct household_id with a line in this category in weeks 27-53"
+    },
+    {
+      "metric_id": "lines_h1__SOUP",
+      "label": "Purchase lines of SOUP, weeks 1-26",
+      "value": 11801,
+      "unit": "lines",
+      "period": "weeks 1-26",
+      "denominator": null,
+      "formula": "count rows (lines are NOT buyers)"
+    },
+    {
+      "metric_id": "buyer_change__SOUP",
+      "label": "Change in distinct buyers of SOUP, second half against first",
+      "value": 0.066,
+      "unit": "ratio",
+      "period": "weeks 27-53 vs 1-26",
+      "denominator": 1546,
+      "formula": "distinct_buyers_h2 / distinct_buyers_h1 - 1"
+    },
+    {
+      "metric_id": "distinct_buyers_h1__ICE_CREAM_MILK_SHERBTS",
+      "label": "Distinct buyers of ICE CREAM/MILK/SHERBTS, weeks 1-26",
+      "value": 1472,
+      "unit": "households",
+      "period": "weeks 1-26",
+      "denominator": 2469,
+      "formula": "count distinct household_id with a line in this category in weeks 1-26"
+    },
+    {
+      "metric_id": "distinct_buyers_h2__ICE_CREAM_MILK_SHERBTS",
+      "label": "Distinct buyers of ICE CREAM/MILK/SHERBTS, weeks 27-53",
+      "value": 1551,
+      "unit": "households",
+      "period": "weeks 27-53",
+      "denominator": 2469,
+      "formula": "count distinct household_id with a line in this category in weeks 27-53"
+    },
+    {
+      "metric_id": "lines_h1__ICE_CREAM_MILK_SHERBTS",
+      "label": "Purchase lines of ICE CREAM/MILK/SHERBTS, weeks 1-26",
+      "value": 7545,
+      "unit": "lines",
+      "period": "weeks 1-26",
+      "denominator": null,
+      "formula": "count rows (lines are NOT buyers)"
+    },
+    {
+      "metric_id": "buyer_change__ICE_CREAM_MILK_SHERBTS",
+      "label": "Change in distinct buyers of ICE CREAM/MILK/SHERBTS, second half against first",
+      "value": 0.0537,
+      "unit": "ratio",
+      "period": "weeks 27-53 vs 1-26",
+      "denominator": 1472,
+      "formula": "distinct_buyers_h2 / distinct_buyers_h1 - 1"
+    },
+    {
+      "metric_id": "distinct_buyers_h1__YOGURT",
+      "label": "Distinct buyers of YOGURT, weeks 1-26",
+      "value": 1196,
+      "unit": "households",
+      "period": "weeks 1-26",
+      "denominator": 2469,
+      "formula": "count distinct household_id with a line in this category in weeks 1-26"
+    },
+    {
+      "metric_id": "distinct_buyers_h2__YOGURT",
+      "label": "Distinct buyers of YOGURT, weeks 27-53",
+      "value": 1136,
+      "unit": "households",
+      "period": "weeks 27-53",
+      "denominator": 2469,
+      "formula": "count distinct household_id with a line in this category in weeks 27-53"
+    },
+    {
+      "metric_id": "lines_h1__YOGURT",
+      "label": "Purchase lines of YOGURT, weeks 1-26",
+      "value": 13405,
+      "unit": "lines",
+      "period": "weeks 1-26",
+      "denominator": null,
+      "formula": "count rows (lines are NOT buyers)"
+    },
+    {
+      "metric_id": "buyer_change__YOGURT",
+      "label": "Change in distinct buyers of YOGURT, second half against first",
+      "value": -0.0502,
+      "unit": "ratio",
+      "period": "weeks 27-53 vs 1-26",
+      "denominator": 1196,
+      "formula": "distinct_buyers_h2 / distinct_buyers_h1 - 1"
+    },
+    {
+      "metric_id": "distinct_buyers_h1__COFFEE",
+      "label": "Distinct buyers of COFFEE, weeks 1-26",
+      "value": 921,
+      "unit": "households",
+      "period": "weeks 1-26",
+      "denominator": 2469,
+      "formula": "count distinct household_id with a line in this category in weeks 1-26"
+    },
+    {
+      "metric_id": "distinct_buyers_h2__COFFEE",
+      "label": "Distinct buyers of COFFEE, weeks 27-53",
+      "value": 1029,
+      "unit": "households",
+      "period": "weeks 27-53",
+      "denominator": 2469,
+      "formula": "count distinct household_id with a line in this category in weeks 27-53"
+    },
+    {
+      "metric_id": "lines_h1__COFFEE",
+      "label": "Purchase lines of COFFEE, weeks 1-26",
+      "value": 3551,
+      "unit": "lines",
+      "period": "weeks 1-26",
+      "denominator": null,
+      "formula": "count rows (lines are NOT buyers)"
+    },
+    {
+      "metric_id": "buyer_change__COFFEE",
+      "label": "Change in distinct buyers of COFFEE, second half against first",
+      "value": 0.1173,
+      "unit": "ratio",
+      "period": "weeks 27-53 vs 1-26",
+      "denominator": 921,
+      "formula": "distinct_buyers_h2 / distinct_buyers_h1 - 1"
+    },
+    {
+      "metric_id": "distinct_buyers_h1__REFRGRATD_JUICES_DRNKS",
+      "label": "Distinct buyers of REFRGRATD JUICES/DRNKS, weeks 1-26",
+      "value": 1481,
+      "unit": "households",
+      "period": "weeks 1-26",
+      "denominator": 2469,
+      "formula": "count distinct household_id with a line in this category in weeks 1-26"
+    },
+    {
+      "metric_id": "distinct_buyers_h2__REFRGRATD_JUICES_DRNKS",
+      "label": "Distinct buyers of REFRGRATD JUICES/DRNKS, weeks 27-53",
+      "value": 1491,
+      "unit": "households",
+      "period": "weeks 27-53",
+      "denominator": 2469,
+      "formula": "count distinct household_id with a line in this category in weeks 27-53"
+    },
+    {
+      "metric_id": "lines_h1__REFRGRATD_JUICES_DRNKS",
+      "label": "Purchase lines of REFRGRATD JUICES/DRNKS, weeks 1-26",
+      "value": 8875,
+      "unit": "lines",
+      "period": "weeks 1-26",
+      "denominator": null,
+      "formula": "count rows (lines are NOT buyers)"
+    },
+    {
+      "metric_id": "buyer_change__REFRGRATD_JUICES_DRNKS",
+      "label": "Change in distinct buyers of REFRGRATD JUICES/DRNKS, second half against first",
+      "value": 0.0068,
+      "unit": "ratio",
+      "period": "weeks 27-53 vs 1-26",
+      "denominator": 1481,
+      "formula": "distinct_buyers_h2 / distinct_buyers_h1 - 1"
+    },
+    {
+      "metric_id": "yogurt_stopped_category",
+      "label": "Yogurt buyers in weeks 1-26 who did not buy yogurt in weeks 27-53",
+      "value": 357,
+      "unit": "households",
+      "period": "weeks 27-53",
+      "denominator": 1196,
+      "formula": "households in H1 yogurt buyers minus H2 yogurt buyers"
+    },
+    {
+      "metric_id": "yogurt_stopped_but_still_shopping",
+      "label": "...of those, still bought something else in weeks 27-53",
+      "value": 345,
+      "unit": "households",
+      "period": "weeks 27-53",
+      "denominator": 357,
+      "formula": "stopped yogurt households with any line in weeks 27-53"
+    },
+    {
+      "metric_id": "yogurt_left_retailer",
+      "label": "...of those, no purchase of any kind in weeks 27-53",
+      "value": 12,
+      "unit": "households",
+      "period": "weeks 27-53",
+      "denominator": 357,
+      "formula": "stopped yogurt households with no line in weeks 27-53"
+    },
+    {
+      "metric_id": "lapsing_simple__BAG_SNACKS",
+      "label": "Simple lapsing households in BAG SNACKS",
+      "value": 656,
+      "unit": "households",
+      "period": "weeks 38-53",
+      "denominator": 1505,
+      "formula": "bought the category in weeks 38-49 and not in weeks 50-53"
+    },
+    {
+      "metric_id": "lapsing_simple__FROZEN_PIZZA",
+      "label": "Simple lapsing households in FROZEN PIZZA",
+      "value": 589,
+      "unit": "households",
+      "period": "weeks 38-53",
+      "denominator": 1100,
+      "formula": "bought the category in weeks 38-49 and not in weeks 50-53"
+    },
+    {
+      "metric_id": "lapsing_simple__COLD_CEREAL",
+      "label": "Simple lapsing households in COLD CEREAL",
+      "value": 621,
+      "unit": "households",
+      "period": "weeks 38-53",
+      "denominator": 1160,
+      "formula": "bought the category in weeks 38-49 and not in weeks 50-53"
+    },
+    {
+      "metric_id": "lapsing_simple__SOUP",
+      "label": "Simple lapsing households in SOUP",
+      "value": 697,
+      "unit": "households",
+      "period": "weeks 38-53",
+      "denominator": 1343,
+      "formula": "bought the category in weeks 38-49 and not in weeks 50-53"
+    },
+    {
+      "metric_id": "lapsing_simple__ICE_CREAM_MILK_SHERBTS",
+      "label": "Simple lapsing households in ICE CREAM/MILK/SHERBTS",
+      "value": 656,
+      "unit": "households",
+      "period": "weeks 38-53",
+      "denominator": 1081,
+      "formula": "bought the category in weeks 38-49 and not in weeks 50-53"
+    },
+    {
+      "metric_id": "lapsing_simple__YOGURT",
+      "label": "Simple lapsing households in YOGURT",
+      "value": 519,
+      "unit": "households",
+      "period": "weeks 38-53",
+      "denominator": 818,
+      "formula": "bought the category in weeks 38-49 and not in weeks 50-53"
+    },
+    {
+      "metric_id": "lapsing_simple__COFFEE",
+      "label": "Simple lapsing households in COFFEE",
+      "value": 476,
+      "unit": "households",
+      "period": "weeks 38-53",
+      "denominator": 777,
+      "formula": "bought the category in weeks 38-49 and not in weeks 50-53"
+    },
+    {
+      "metric_id": "lapsing_simple__REFRGRATD_JUICES_DRNKS",
+      "label": "Simple lapsing households in REFRGRATD JUICES/DRNKS",
+      "value": 553,
+      "unit": "households",
+      "period": "weeks 38-53",
+      "denominator": 1061,
+      "formula": "bought the category in weeks 38-49 and not in weeks 50-53"
+    }
+  ]
+}

@@ -1,0 +1,193 @@
+{
+  "schema": "consultant_review.v1",
+  "review_id": "SAMPLE-NOT-A-CONSULTANT-RUN",
+  "generated_at": "2026-11-18T00:00:00Z",
+  "is_sample": true,
+  "run": {
+    "mode": "OFFLINE_DETERMINISTIC",
+    "model_id": null,
+    "cost_usd": null,
+    "calls": 0,
+    "consultai_commit": "SAMPLE"
+  },
+  "input": {
+    "case_id": "GROCERY_84_51_2017_BUNDLE",
+    "bundle_manifest_sha256": "05959ae7f83e5c11727e342a661fe0704f08ae5fe779c0807cb76ef12c663fe0"
+  },
+  "roles": [
+    {
+      "role": "analyst",
+      "tools": [
+        "kpi",
+        "sql"
+      ],
+      "status": "OK",
+      "summary": "Sample only."
+    },
+    {
+      "role": "checker",
+      "tools": [
+        "checker"
+      ],
+      "status": "OK",
+      "summary": "Sample only."
+    },
+    {
+      "role": "human",
+      "tools": [],
+      "status": "PENDING_HUMAN",
+      "summary": "A named person approves; nothing is sent."
+    }
+  ],
+  "metrics": [
+    {
+      "metric_id": "households_total",
+      "label": "Households with at least one purchase line",
+      "value": 2469,
+      "unit": "households",
+      "period": "2017",
+      "denominator": null,
+      "formula": "count distinct household_id",
+      "tag": "COMPUTED FROM UPLOADED DATA"
+    },
+    {
+      "metric_id": "lines_total",
+      "label": "Purchase lines",
+      "value": 1469307,
+      "unit": "lines",
+      "period": "2017",
+      "denominator": null,
+      "formula": "count rows of transactions",
+      "tag": "COMPUTED FROM UPLOADED DATA"
+    },
+    {
+      "metric_id": "distinct_buyers_h1__YOGURT",
+      "label": "Distinct buyers of YOGURT, weeks 1-26",
+      "value": 1196,
+      "unit": "households",
+      "period": "weeks 1-26",
+      "denominator": 2469,
+      "formula": "count distinct household_id with a line in this category in weeks 1-26",
+      "tag": "COMPUTED FROM UPLOADED DATA"
+    },
+    {
+      "metric_id": "distinct_buyers_h2__YOGURT",
+      "label": "Distinct buyers of YOGURT, weeks 27-53",
+      "value": 1136,
+      "unit": "households",
+      "period": "weeks 27-53",
+      "denominator": 2469,
+      "formula": "count distinct household_id with a line in this category in weeks 27-53",
+      "tag": "COMPUTED FROM UPLOADED DATA"
+    },
+    {
+      "metric_id": "buyer_change__YOGURT",
+      "label": "Change in distinct buyers of YOGURT, second half against first",
+      "value": -0.0502,
+      "unit": "ratio",
+      "period": "weeks 27-53 vs 1-26",
+      "denominator": 1196,
+      "formula": "distinct_buyers_h2 / distinct_buyers_h1 - 1",
+      "tag": "COMPUTED FROM UPLOADED DATA"
+    },
+    {
+      "metric_id": "yogurt_stopped_category",
+      "label": "Yogurt buyers in weeks 1-26 who did not buy yogurt in weeks 27-53",
+      "value": 357,
+      "unit": "households",
+      "period": "weeks 27-53",
+      "denominator": 1196,
+      "formula": "households in H1 yogurt buyers minus H2 yogurt buyers",
+      "tag": "COMPUTED FROM UPLOADED DATA"
+    },
+    {
+      "metric_id": "yogurt_stopped_but_still_shopping",
+      "label": "...of those, still bought something else in weeks 27-53",
+      "value": 345,
+      "unit": "households",
+      "period": "weeks 27-53",
+      "denominator": 357,
+      "formula": "stopped yogurt households with any line in weeks 27-53",
+      "tag": "COMPUTED FROM UPLOADED DATA"
+    },
+    {
+      "metric_id": "yogurt_left_retailer",
+      "label": "...of those, no purchase of any kind in weeks 27-53",
+      "value": 12,
+      "unit": "households",
+      "period": "weeks 27-53",
+      "denominator": 357,
+      "formula": "stopped yogurt households with no line in weeks 27-53",
+      "tag": "COMPUTED FROM UPLOADED DATA"
+    },
+    {
+      "metric_id": "lapsing_simple__YOGURT",
+      "label": "Simple lapsing households in YOGURT",
+      "value": 519,
+      "unit": "households",
+      "period": "weeks 38-53",
+      "denominator": 818,
+      "formula": "bought the category in weeks 38-49 and not in weeks 50-53",
+      "tag": "COMPUTED FROM UPLOADED DATA"
+    }
+  ],
+  "headline": {
+    "decision": "SAMPLE: check availability and assortment of the shrinking category before any discount.",
+    "numbers": [
+      {
+        "label": "Yogurt buyers, first half",
+        "metric_id": "distinct_buyers_h1__YOGURT"
+      },
+      {
+        "label": "Yogurt buyers, second half",
+        "metric_id": "distinct_buyers_h2__YOGURT"
+      },
+      {
+        "label": "Stopped yogurt but still shopping",
+        "metric_id": "yogurt_stopped_but_still_shopping"
+      }
+    ]
+  },
+  "options": [
+    {
+      "option": "Check availability and assortment",
+      "tag": "COMPUTED FROM UPLOADED DATA",
+      "metric_ids": [
+        "yogurt_stopped_but_still_shopping"
+      ],
+      "verdict": "first",
+      "condition": "most lost yogurt buyers still shop here"
+    },
+    {
+      "option": "No spend",
+      "tag": "UNKNOWN",
+      "metric_ids": [],
+      "verdict": "always allowed",
+      "condition": "coupon effect unknown"
+    }
+  ],
+  "action_card": {
+    "segment": "SAMPLE segment rule",
+    "four_ps": {
+      "product": "sample",
+      "price": "no change",
+      "place": "sample",
+      "promotion": "none"
+    },
+    "alternative": "no spend",
+    "owner": "SAMPLE owner",
+    "kpi": "distinct buyers in a stated window",
+    "approval_state": "PENDING_HUMAN",
+    "sandbox_only": true
+  },
+  "unavailable": [
+    "stock",
+    "margin",
+    "consent",
+    "any year other than 2017"
+  ],
+  "checker": {
+    "verdict": "SAMPLE",
+    "problems": []
+  }
+}
