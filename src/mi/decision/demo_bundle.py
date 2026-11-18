@@ -130,9 +130,7 @@ def build(out=OUT, zip_it=True) -> dict:
     if out == OUT:          # a small derived copy (no raw rows) that the web and CI can read without the git-ignored bundle
         import shutil
         shutil.copyfile(mp, MANIFEST_COPY)
-        MANIFEST_COPY.with_suffix(".sha256").write_text(sha256_file(mp) + "  grocery_bundle_manifest.json
-", encoding="utf-8", newline="
-")
+        MANIFEST_COPY.with_suffix(".sha256").write_text(sha256_file(mp) + "  grocery_bundle_manifest.json\n", encoding="utf-8", newline="\n")
     if zip_it:
         z = out.with_suffix(".zip")
         with zipfile.ZipFile(z, "w", zipfile.ZIP_DEFLATED) as f:
