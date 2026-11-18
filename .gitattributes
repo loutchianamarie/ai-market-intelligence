@@ -2,3 +2,5 @@
 reports/campaign_case.latest.json -text
 reports/campaign_case.latest.sha256 -text
 docs/contracts/*.json -text
+reports/grocery_bundle_manifest.json -text
+reports/grocery_bundle_manifest.sha256 -text
