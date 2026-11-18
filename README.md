@@ -51,8 +51,9 @@ python -m venv .venv && .venv\Scripts\activate
 pip install -r requirements.lock.txt
 pip install -e .                      # or add src/ to PYTHONPATH
 python -m mi.cli all                  # download → VERIFY (data/manifest.lock.json) → audit → train → evaluate → portfolio, sensitivity & reversal → claim audit → RAG → GEO/interview checks → Hillstrom method track → agents to the human checkpoint (~8.5 min incl. the full promotions table; logs in reports/run_logs, record in reports/run_manifest.json, current claims in reports/current_claims.json)
-python -m mi.cli test                 # 216 tests (grocery + advisor, campaign case, Charbel's consumer, model lab and report)
+python -m mi.cli test                 # 235 tests (grocery + advisor, campaign case, Charbel's consumer, model lab and report)
 python -m mi.cli demo                 # Streamlit manager app (offline; uses saved, hashed artifacts)
+python -m mi.cli home                 # two-view manager home on the Hillstrom e-mail case: trained result + advisor on the same export (docs/presentation/MANAGER_HOME_DEMO.md)
 python -m mi.claim_audit              # independent re-derivation of every headline number → reports/claim_audit.json
 python -m mi.seo.geo check            # GEO log check: expect complete_rows 20 of 20 (two Claude models; ChatGPT/Gemini retest pending)
 python -m mi.evidence.interviews check   # validate coded interviews (summarize → n of N)

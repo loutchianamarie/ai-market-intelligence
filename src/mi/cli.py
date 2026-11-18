@@ -7,6 +7,7 @@
                             client case, reports/campaign_case.latest.json) -> blocked demo -> agents to the human checkpoint
   python -m mi.cli test     run the test suite
   python -m mi.cli demo     launch the Streamlit manager app
+  python -m mi.cli home     launch the two-view manager home (Hillstrom e-mail case: trained result + advisor, offline)
 
 Every step's stdout/stderr goes to reports/run_logs/NN_<step>.log; a failing step prints its last lines and stops
 the run (except optional steps). reports/run_manifest.json records versions, git commit, data lock, timings and
@@ -138,6 +139,8 @@ def main(argv=None) -> int:
         return subprocess.call([py, "-m", "pytest", "-q"], cwd=ROOT)
     if cmd == "demo":
         return subprocess.call([py, "-m", "streamlit", "run", str(ROOT / "app" / "streamlit_app.py")], cwd=ROOT)
+    if cmd == "home":
+        return subprocess.call([py, "-m", "streamlit", "run", str(ROOT / "app" / "manager_home.py")], cwd=ROOT)
     return run_all()
 
 
