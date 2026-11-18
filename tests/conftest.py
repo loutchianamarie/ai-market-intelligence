@@ -65,5 +65,6 @@ def _digest(p):
 def live_demo_artifacts_untouched():
     before = {p: _digest(p) for p in GUARDED}
     yield
-    changed = [p.name for p in GUARDED if _digest(p) != before[p]]
+    # a file that did not exist before the session (a fresh CI checkout has no local dossier stores) may be created by tests; an existing one may not change
+    changed = [p.name for p in GUARDED if before[p] is not None and _digest(p) != before[p]]
     assert not changed, f"tests modified live demo artifacts: {changed}"

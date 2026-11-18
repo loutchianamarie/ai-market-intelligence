@@ -181,3 +181,14 @@ def test_manager_page_has_no_send_control_and_names_the_labels():
         assert label in src, label
     assert "form_submit_button" not in src and "st.button" not in src                                 # no action control on the manager screen
     assert "send_email" not in src and "record_sandbox_action" not in src
+
+
+def test_detail_app_survives_a_missing_local_dossier_store(tmp_path, monkeypatch):
+    """CI and a fresh clone have the saved trace (in git) but no local dossier store: the app must degrade, not crash."""
+    st_testing = pytest.importorskip("streamlit.testing.v1")
+    from mi.consumer import advisor as A
+    monkeypatch.setattr(A, "CAMPAIGN_DB", tmp_path / "empty.sqlite")
+    at = st_testing.AppTest.from_file(str(EXPORT_PATH.parents[1] / "app" / "buyer_decision.py"), default_timeout=60).run()
+    assert not at.exception
+    if VM.latest_trace() and VM.trace_is_current(VM.latest_trace(), load_case().sha256):
+        assert any("not in this machine's local dossier store" in w.value for w in at.warning)

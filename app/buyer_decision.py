@@ -155,6 +155,13 @@ g2.markdown(f"**SEO/GEO:** {badge('PENDING' if geo['answers_logged'] < geo['answ
             + "Separate real-brand workstream; no effect is attributed to e-mail data.", unsafe_allow_html=True)
 
 st.subheader("6. Action draft, CRM sandbox and human checkpoint")
+if dz:
+    try:
+        store.get(dz["id"])
+    except WorkflowError:       # the saved trace is in git; the dossier store is a local file and may be absent on another machine
+        st.warning(f"The saved agent run {dz['id']} is not in this machine's local dossier store (the store is not committed). "
+                   "Press **Run agents** in the sidebar to create one here; nothing is approved or sent.")
+        dz = None
 if not dz:
     st.info("No agent run yet: press **Run agents** in the sidebar. Nothing is sent by any control on this page.")
 else:
