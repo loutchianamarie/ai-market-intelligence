@@ -26,7 +26,25 @@ def latest_dossier_id(store: DossierStore) -> str | None:
     return r[0] if r else None
 
 
-def render(store: DossierStore, oid: str, model: dict, port: dict, geo: dict) -> str:
+def consultant_html(review) -> str:
+    """The ConsultAI review as static HTML, only when it loaded OK (checksummed, current, reconciled). Otherwise one honest line."""
+    if review is None or not review.ok:
+        why = "no review file has been delivered" if review is None or review.status == "ABSENT" else f"the file was {review.status}: {E(' '.join(review.reasons))}"
+        return f"<p>ConsultAI's review is not shown: {why}. Nothing from ConsultAI is invented.</p>"
+    d, rec = review.doc, review.reconciliation
+    run = d["run"]
+    nums = "".join(f"<td class='big'>{review.metric(n['metric_id'])['value']:,}<br><span style='font-size:13px'>{E(n['label'])}</span></td>" for n in d["headline"]["numbers"])
+    opts = "".join(f"<tr><td>{E(o['option'])}</td><td>{E(o['verdict'])}</td><td>{E(o['condition'])}</td></tr>" for o in d["options"])
+    sample = "<p><b>SAMPLE FILE: not a ConsultAI run.</b></p>" if review.is_sample else ""
+    return (f"{sample}<p>Run mode: <b>{E(run['mode'])}</b>{' (' + E(str(run['model_id'])) + ')' if run['model_id'] else ''}. "
+            f"<span class='k'>COMPUTED FROM UPLOADED DATA</span> {rec['matched']} of {rec['total']} reference metrics match our own computation. Nothing is sent.</p>"
+            f"<div class='box'><b>{E(d['headline']['decision'])}</b></div><table><tr>{nums}</tr></table>"
+            f"<table><tr><th>Option</th><th>Verdict</th><th>Condition</th></tr>{opts}</table>"
+            f"<p>Owner: {E(d['action_card']['owner'])}. Buyer KPI: {E(d['action_card']['kpi'])}. Approval: {E(d['action_card']['approval_state'])}. "
+            f"Unavailable: {E('; '.join(d['unavailable']))}.</p>")
+
+
+def render(store: DossierStore, oid: str, model: dict, port: dict, geo: dict, review=None) -> str:
     d = store.get(oid)
     rec = d.get("advisor_recommendation") or {}
     sel = "model_" + model["selected_model"]
@@ -55,6 +73,7 @@ table{{border-collapse:collapse;width:100%;margin:8px 0 18px}}td,th{{border:1px 
 <h2>Advisor work queue (simulated CRM)</h2>
 <table><tr><th>Item</th><th>Status</th><th>Kind</th><th>Title</th><th>Owner</th><th>Budget</th><th>Due</th></tr>{rows}</table>
 <p>READY items cost $0. The paid coupon test (design only) and the public content draft stay <b>BLOCKED_PENDING_APPROVAL</b>: a named human must verify consent and stock first, and approval is bound to the plan hash.</p>
+<h2>AI consultant (ConsultAI review of the same dataset)</h2>{consultant_html(review)}
 <h2>Discovery audit (separate public analogue)</h2><p>{E(geo_line)}</p>
 <p><small>Separate case: the randomized apparel e-mail experiment is a different retailer and dataset; its effect is never applied to this grocery decision.</small></p>
 </body></html>
@@ -70,7 +89,8 @@ def main() -> int:
     model = json.loads((REPORTS / "model_report.json").read_text(encoding="utf-8"))
     port = json.loads((REPORTS / "portfolio.json").read_text(encoding="utf-8"))
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(render(store, oid, model, port, geo_state()), encoding="utf-8", newline="\n")
+    from mi.consumer.consultant_file import load_review
+    OUT.write_text(render(store, oid, model, port, geo_state(), load_review()), encoding="utf-8", newline="\n")
     print(f"wrote {OUT.relative_to(REPORTS.parent)} from dossier {oid}")
     return 0
 

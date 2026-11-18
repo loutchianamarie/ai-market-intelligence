@@ -112,3 +112,20 @@ def test_consultant_view_refuses_a_tampered_or_stale_file_and_hides_numbers(tmp_
 def test_manager_page_has_no_action_control():
     src = (ROOT / "app" / "manager_home.py").read_text(encoding="utf-8")
     assert "st.button" not in src and "form_submit_button" not in src and "send_email" not in src and "record_sandbox_action" not in src
+
+
+def test_static_fallback_consultant_section_is_honest():
+    from mi.decision.demo_backup import consultant_html
+    assert "not shown" in consultant_html(None) and "invented" in consultant_html(None)
+    if CF.MANIFEST_PATH.exists():
+        import hashlib
+        import tempfile
+        from pathlib import Path
+        with tempfile.TemporaryDirectory() as tmp:
+            p = Path(tmp) / "r.json"
+            raw = json.dumps(CF.sample_review()).encode("utf-8")
+            p.write_bytes(raw)
+            p.with_suffix(".sha256").write_text(hashlib.sha256(raw).hexdigest())
+            r = CF.load_review(p)
+        html = consultant_html(r)
+        assert "SAMPLE FILE" in html and "9 of 9" in html and "OFFLINE_DETERMINISTIC" in html and "PENDING_HUMAN" in html
