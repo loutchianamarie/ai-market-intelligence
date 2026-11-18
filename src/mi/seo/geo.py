@@ -230,7 +230,7 @@ def geo_task(state: dict | None = None) -> dict:
             "success_metric": "team scores impact and effort (1 to 3) for each candidate action; frozen panel re-run in ChatGPT and Gemini before any claim about them",
             "decision_it_changes": "whether a Learn-intent content draft (plan C) is worth writing",
             "advisor_note": (f"{s['answers_logged']}/{s['answers_target']} answers collected ({', '.join(s['assistants'])}; one dated run {', '.join(s['dates'])}; "
-                             f"region {'set' if s['region_set'] else 'not set'}; {s["answers_target"] - s["answers_citing_urls"]} answers made without web search (no sources cited)). "
+                             f"region {'set' if s['region_set'] else 'not set'}; {s['answers_target'] - s['answers_citing_urls']} answers made without web search (no sources cited)). "
                              f"{s['brand']} (public analogue, not the dataset retailer) mentioned {m['num']}/{m['den']}, recommended {r['num']}/{r['den']}; "
                              f"Learn: mentioned {li['mentioned']}/{li['n']}, recommended {li['recommended']}/{li['n']}. Observed AI-answer visibility only: "
                              "no traffic, conversion or sales effect is claimed; any content draft needs human approval before publication."),
