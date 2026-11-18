@@ -1,7 +1,7 @@
 # Executive decision brief: next CRM budget (dossier CJ-GROCERY-001)
 
 **Labels:** HISTORICAL OBSERVATION · MODEL ESTIMATE · ASSUMPTION · SIMULATED WORKFLOW · FUTURE EXPERIMENT · COMPANY SCALE ASSUMED · PENDING. Revised 2026-11-14 (third pass).
-- **Live dossier:** see `NEXT_DAY_STATUS.md` (REVIEW_REQUESTED). Advisor status: **DEFER FUNDING / NO SPEND WHILE TERMS ARE UNCONFIRMED** (base case: retailer-funded). A named person decides.
+- **Live dossier:** see `reports/run_manifest.json` (REVIEW_REQUESTED). Advisor status: **DEFER FUNDING / NO SPEND WHILE TERMS ARE UNCONFIRMED** (base case: retailer-funded). A named person decides.
 - **Superseded, do not approve:** `OPP-80476CCD`, `OPP-BB3F6F1E`, `OPP-390338F3`, `OPP-E9A4AF0C`.
 
 ## The decision in one paragraph

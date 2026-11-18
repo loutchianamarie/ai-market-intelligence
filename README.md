@@ -6,7 +6,7 @@
 **Data:** the authentic 84.51° Complete Journey tables (2,469 households, 1.47M transaction lines, 2017; CC0, via the R package maintainers). See `docs/dataset_decision.md` for why H&M was not used.
 **Manager summary:** `docs/marketing_brief.md` (buyer outcomes, 4P options, work queue) · `docs/decision_card.md` · opportunity cards `docs/opportunity_cards.md` · data dictionary `docs/data_dictionary.md`.
 **Two cases, one advisor method (read `START_HERE.md` first; run sheet in `docs/presentation/DEMO_5MIN.md`).** The presentation leads with this grocery decision. The Hillstrom e-mail experiment below is a **different retailer and dataset**, used to show how randomized evidence measures additional repeat buyers; its effect is never applied to grocery. The e-mail case has its own detailed report, `docs/MASTER_PROJECT_REPORT.md`.
-**Current recommendation:** no rollout and no funded test at base assumptions; $0 research first (`docs/decision_brief.md`). Advisor status: DEFER FUNDING / NO SPEND WHILE TERMS ARE UNCONFIRMED (base case: retailer-funded); live dossier in `NEXT_DAY_STATUS.md`, and a named person decides.
+**Current recommendation:** no rollout and no funded test at base assumptions; $0 research first (`docs/decision_brief.md`). Advisor status: DEFER FUNDING / NO SPEND WHILE TERMS ARE UNCONFIRMED (base case: retailer-funded); live dossier id in `reports/run_manifest.json`, and a named person decides.
 
 ## Second, separate case: randomized e-mail campaign (`HILLSTROM_EMAIL_2008`, a different retailer)
 A separate case with its own data, model and claims. Nothing here is grocery evidence, and no grocery number enters it. It is shown on its own slide in the talk.
