@@ -1,0 +1,403 @@
+{
+  "schema": "consultant_review.v1",
+  "review_id": "CR-0cc1cdd070cd",
+  "generated_at": "2026-11-18T08:16:28Z",
+  "run": {
+    "mode": "OFFLINE_DETERMINISTIC",
+    "model_id": null,
+    "cost_usd": null,
+    "calls": 0,
+    "consultai_commit": "d2f3d8c"
+  },
+  "input": {
+    "case_id": "GROCERY_84_51_2017_BUNDLE",
+    "bundle_manifest_sha256": "05959ae7f83e5c11727e342a661fe0704f08ae5fe779c0807cb76ef12c663fe0"
+  },
+  "roles": [
+    {
+      "role": "analyst",
+      "tools": [
+        "sql",
+        "kpi"
+      ],
+      "status": "OK",
+      "summary": "Received the verified bundle; computed distinct yogurt buyers weeks 1-26 (1,196) against weeks 27-53 (1,136) and who stopped (357); passed the figures to the researcher."
+    },
+    {
+      "role": "researcher",
+      "tools": [
+        "unknowns_list"
+      ],
+      "status": "ABSTAINED",
+      "summary": "Received the analyst's figures; listed what the 2017 bundle cannot support (stock, margin, consent, other years, any coupon effect) and made no market claim; passed the unknowns to the strategist."
+    },
+    {
+      "role": "strategist",
+      "tools": [
+        "scenario_notes",
+        "crm_draft"
+      ],
+      "status": "OK",
+      "summary": "Received figures and unknowns; proposed the availability check before any discount and a consent-aware CRM draft for 345 households; passed the draft to the checker."
+    },
+    {
+      "role": "checker",
+      "tools": [
+        "checker"
+      ],
+      "status": "OK",
+      "summary": "Received the draft; re-checked every figure against the metric list, rejected unsupported claims (see the saved example), and passed it to the human."
+    },
+    {
+      "role": "human",
+      "tools": [],
+      "status": "PENDING_HUMAN",
+      "summary": "A named person decides whether to approve the sandbox draft; nothing is sent."
+    }
+  ],
+  "metrics": [
+    {
+      "metric_id": "households_total",
+      "label": "Households with at least one purchase line",
+      "value": 2469,
+      "unit": "households",
+      "tag": "COMPUTED FROM UPLOADED DATA",
+      "period": "2017",
+      "denominator": null,
+      "formula": "count distinct household_id"
+    },
+    {
+      "metric_id": "lines_total",
+      "label": "Purchase lines",
+      "value": 1469307,
+      "unit": "lines",
+      "tag": "COMPUTED FROM UPLOADED DATA",
+      "period": "2017",
+      "denominator": null,
+      "formula": "count rows of transactions"
+    },
+    {
+      "metric_id": "baskets_total",
+      "label": "Baskets",
+      "value": 155848,
+      "unit": "baskets",
+      "tag": "COMPUTED FROM UPLOADED DATA",
+      "period": "2017",
+      "denominator": null,
+      "formula": "count distinct basket_id"
+    },
+    {
+      "metric_id": "sales_total",
+      "label": "Total sales value",
+      "value": 4596039.58,
+      "unit": "USD",
+      "tag": "COMPUTED FROM UPLOADED DATA",
+      "period": "2017",
+      "denominator": null,
+      "formula": "sum sales_value"
+    },
+    {
+      "metric_id": "distinct_buyers_h1__YOGURT",
+      "label": "Distinct buyers of YOGURT, weeks 1-26",
+      "value": 1196,
+      "unit": "households",
+      "tag": "COMPUTED FROM UPLOADED DATA",
+      "period": "weeks 1-26",
+      "denominator": 2469,
+      "formula": "count distinct household_id with a line in this category in weeks 1-26"
+    },
+    {
+      "metric_id": "distinct_buyers_h2__YOGURT",
+      "label": "Distinct buyers of YOGURT, weeks 27-53",
+      "value": 1136,
+      "unit": "households",
+      "tag": "COMPUTED FROM UPLOADED DATA",
+      "period": "weeks 27-53",
+      "denominator": 2469,
+      "formula": "count distinct household_id with a line in this category in weeks 27-53"
+    },
+    {
+      "metric_id": "lines_h1__YOGURT",
+      "label": "Purchase lines of YOGURT, weeks 1-26",
+      "value": 13405,
+      "unit": "lines",
+      "tag": "COMPUTED FROM UPLOADED DATA",
+      "period": "weeks 1-26",
+      "denominator": null,
+      "formula": "count rows (lines are NOT buyers)"
+    },
+    {
+      "metric_id": "buyer_change__YOGURT",
+      "label": "Change in distinct buyers of YOGURT, second half against first",
+      "value": -0.0502,
+      "unit": "ratio",
+      "tag": "COMPUTED FROM UPLOADED DATA",
+      "period": "weeks 27-53 vs 1-26",
+      "denominator": 1196,
+      "formula": "distinct_buyers_h2 / distinct_buyers_h1 - 1"
+    },
+    {
+      "metric_id": "buyer_change__BAG_SNACKS",
+      "label": "Change in distinct buyers of BAG SNACKS, second half against first",
+      "value": 0.0329,
+      "unit": "ratio",
+      "tag": "COMPUTED FROM UPLOADED DATA",
+      "period": "weeks 27-53 vs 1-26",
+      "denominator": 1854,
+      "formula": "distinct_buyers_h2 / distinct_buyers_h1 - 1"
+    },
+    {
+      "metric_id": "buyer_change__FROZEN_PIZZA",
+      "label": "Change in distinct buyers of FROZEN PIZZA, second half against first",
+      "value": 0.0236,
+      "unit": "ratio",
+      "tag": "COMPUTED FROM UPLOADED DATA",
+      "period": "weeks 27-53 vs 1-26",
+      "denominator": 1439,
+      "formula": "distinct_buyers_h2 / distinct_buyers_h1 - 1"
+    },
+    {
+      "metric_id": "buyer_change__COLD_CEREAL",
+      "label": "Change in distinct buyers of COLD CEREAL, second half against first",
+      "value": 0.0547,
+      "unit": "ratio",
+      "tag": "COMPUTED FROM UPLOADED DATA",
+      "period": "weeks 27-53 vs 1-26",
+      "denominator": 1518,
+      "formula": "distinct_buyers_h2 / distinct_buyers_h1 - 1"
+    },
+    {
+      "metric_id": "buyer_change__SOUP",
+      "label": "Change in distinct buyers of SOUP, second half against first",
+      "value": 0.066,
+      "unit": "ratio",
+      "tag": "COMPUTED FROM UPLOADED DATA",
+      "period": "weeks 27-53 vs 1-26",
+      "denominator": 1546,
+      "formula": "distinct_buyers_h2 / distinct_buyers_h1 - 1"
+    },
+    {
+      "metric_id": "buyer_change__ICE_CREAM_MILK_SHERBTS",
+      "label": "Change in distinct buyers of ICE CREAM/MILK/SHERBTS, second half against first",
+      "value": 0.0537,
+      "unit": "ratio",
+      "tag": "COMPUTED FROM UPLOADED DATA",
+      "period": "weeks 27-53 vs 1-26",
+      "denominator": 1472,
+      "formula": "distinct_buyers_h2 / distinct_buyers_h1 - 1"
+    },
+    {
+      "metric_id": "buyer_change__COFFEE",
+      "label": "Change in distinct buyers of COFFEE, second half against first",
+      "value": 0.1173,
+      "unit": "ratio",
+      "tag": "COMPUTED FROM UPLOADED DATA",
+      "period": "weeks 27-53 vs 1-26",
+      "denominator": 921,
+      "formula": "distinct_buyers_h2 / distinct_buyers_h1 - 1"
+    },
+    {
+      "metric_id": "buyer_change__REFRGRATD_JUICES_DRNKS",
+      "label": "Change in distinct buyers of REFRGRATD JUICES/DRNKS, second half against first",
+      "value": 0.0068,
+      "unit": "ratio",
+      "tag": "COMPUTED FROM UPLOADED DATA",
+      "period": "weeks 27-53 vs 1-26",
+      "denominator": 1481,
+      "formula": "distinct_buyers_h2 / distinct_buyers_h1 - 1"
+    },
+    {
+      "metric_id": "yogurt_stopped_category",
+      "label": "Yogurt buyers in weeks 1-26 who did not buy yogurt in weeks 27-53",
+      "value": 357,
+      "unit": "households",
+      "tag": "COMPUTED FROM UPLOADED DATA",
+      "period": "weeks 27-53",
+      "denominator": 1196,
+      "formula": "households in H1 yogurt buyers minus H2 yogurt buyers"
+    },
+    {
+      "metric_id": "yogurt_stopped_but_still_shopping",
+      "label": "...of those, still bought something else in weeks 27-53",
+      "value": 345,
+      "unit": "households",
+      "tag": "COMPUTED FROM UPLOADED DATA",
+      "period": "weeks 27-53",
+      "denominator": 357,
+      "formula": "stopped yogurt households with any line in weeks 27-53"
+    },
+    {
+      "metric_id": "yogurt_left_retailer",
+      "label": "...of those, no purchase of any kind in weeks 27-53",
+      "value": 12,
+      "unit": "households",
+      "tag": "COMPUTED FROM UPLOADED DATA",
+      "period": "weeks 27-53",
+      "denominator": 357,
+      "formula": "stopped yogurt households with no line in weeks 27-53"
+    },
+    {
+      "metric_id": "lapsing_simple__YOGURT",
+      "label": "Simple lapsing households in YOGURT",
+      "value": 519,
+      "unit": "households",
+      "tag": "COMPUTED FROM UPLOADED DATA",
+      "period": "weeks 38-53",
+      "denominator": 818,
+      "formula": "bought the category in weeks 38-49 and not in weeks 50-53"
+    },
+    {
+      "metric_id": "yogurt_still_shopping_share",
+      "label": "Share of the households that stopped yogurt who still bought something else",
+      "value": 0.9664,
+      "unit": "ratio",
+      "tag": "COMPUTED FROM UPLOADED DATA",
+      "period": "weeks 27-53",
+      "denominator": 357,
+      "formula": "yogurt_stopped_but_still_shopping / yogurt_stopped_category"
+    },
+    {
+      "metric_id": "margin_unknown",
+      "label": "Margin per unit",
+      "value": "UNKNOWN",
+      "unit": "n/a",
+      "tag": "UNKNOWN",
+      "period": "n/a",
+      "denominator": null,
+      "formula": "not in the bundle; supplied by the client, or (incremental buyers) only measurable after a valid holdout test"
+    },
+    {
+      "metric_id": "cost_per_contact_unknown",
+      "label": "Cost per contact (CRM)",
+      "value": "UNKNOWN",
+      "unit": "n/a",
+      "tag": "UNKNOWN",
+      "period": "n/a",
+      "denominator": null,
+      "formula": "not in the bundle; supplied by the client, or (incremental buyers) only measurable after a valid holdout test"
+    },
+    {
+      "metric_id": "consent_unknown",
+      "label": "Households with consent to be contacted",
+      "value": "UNKNOWN",
+      "unit": "n/a",
+      "tag": "UNKNOWN",
+      "period": "n/a",
+      "denominator": null,
+      "formula": "not in the bundle; supplied by the client, or (incremental buyers) only measurable after a valid holdout test"
+    },
+    {
+      "metric_id": "stock_unknown",
+      "label": "Stock and availability by store",
+      "value": "UNKNOWN",
+      "unit": "n/a",
+      "tag": "UNKNOWN",
+      "period": "n/a",
+      "denominator": null,
+      "formula": "not in the bundle; supplied by the client, or (incremental buyers) only measurable after a valid holdout test"
+    },
+    {
+      "metric_id": "incremental_buyers_observed",
+      "label": "Observed incremental buyers from any action",
+      "value": "UNKNOWN",
+      "unit": "n/a",
+      "tag": "UNKNOWN",
+      "period": "n/a",
+      "denominator": null,
+      "formula": "not in the bundle; supplied by the client, or (incremental buyers) only measurable after a valid holdout test"
+    }
+  ],
+  "headline": {
+    "decision": "Check availability and assortment of Yogurt before any discount: 345 of the 357 households that stopped buying it still shop here.",
+    "numbers": [
+      {
+        "label": "Yogurt buyers, weeks 1-26",
+        "metric_id": "distinct_buyers_h1__YOGURT"
+      },
+      {
+        "label": "Yogurt buyers, weeks 27-53",
+        "metric_id": "distinct_buyers_h2__YOGURT"
+      },
+      {
+        "label": "Stopped it but still shopping",
+        "metric_id": "yogurt_stopped_but_still_shopping"
+      }
+    ]
+  },
+  "options": [
+    {
+      "option": "Check availability and assortment first (Product, Place)",
+      "tag": "COMPUTED FROM UPLOADED DATA",
+      "metric_ids": [
+        "yogurt_stopped_but_still_shopping",
+        "yogurt_stopped_category",
+        "yogurt_still_shopping_share"
+      ],
+      "verdict": "First. 96.6% of the households that stopped yogurt still bought something else, so they did not leave the retailer; range and shelf are the cheapest causes to rule out.",
+      "condition": "needs stock and shelf data from the retailer; the bundle has purchases only"
+    },
+    {
+      "option": "CRM reminder to lapsing households (Promotion, owned channel)",
+      "tag": "UNKNOWN",
+      "metric_ids": [
+        "lapsing_simple__YOGURT",
+        "consent_unknown"
+      ],
+      "verdict": "Second, and only for households with consent. 519 households match the simple lapsing rule; how many are reachable is UNKNOWN.",
+      "condition": "consent and contact limits supplied by the client; holdout group kept"
+    },
+    {
+      "option": "Coupon (Price)",
+      "tag": "UNKNOWN",
+      "metric_ids": [
+        "margin_unknown",
+        "cost_per_contact_unknown",
+        "incremental_buyers_observed"
+      ],
+      "verdict": "Not before a holdout test. Past coupon exposure was not randomized, so any effect is UNKNOWN, and margin and cost are UNKNOWN.",
+      "condition": "margin and cost supplied; a randomized holdout; a named human approves"
+    },
+    {
+      "option": "Useful content for the Learn and Browse stages (Promotion)",
+      "tag": "UNKNOWN",
+      "metric_ids": [],
+      "verdict": "Only if a discovery audit shows a gap; the bundle contains none, so this stays a draft.",
+      "condition": "discovery audit input; human review of any draft"
+    },
+    {
+      "option": "No spend",
+      "tag": "UNKNOWN",
+      "metric_ids": [
+        "stock_unknown"
+      ],
+      "verdict": "Always allowed. It still creates $0 work: the availability check, a client input form and two or three short interviews.",
+      "condition": "none"
+    }
+  ],
+  "action_card": {
+    "segment": "Households that bought yogurt in weeks 1-26 and not in weeks 27-53 but still shopped (345); contact only those with recorded consent, and keep a random holdout.",
+    "four_ps": {
+      "product": "Check that Yogurt range and facings are complete in the stores these households use",
+      "price": "No change; no discount before a holdout test and a known margin",
+      "place": "Check availability on shelf and in the online range",
+      "promotion": "Owned CRM reminder draft for consented households only (draft, not sent)"
+    },
+    "alternative": "No spend: run the availability check and collect margin, cost and consent first",
+    "owner": "Category manager named by the retailer (CRM operations supports the segment list)",
+    "kpi": "Distinct buyers of yogurt in a stated four-week window. Kept apart: expected buyers (a scenario), scenario additional buyers (an assumption) and observed incremental buyers (only after a valid holdout test; UNKNOWN today).",
+    "approval_state": "PENDING_HUMAN",
+    "sandbox_only": true
+  },
+  "unavailable": [
+    "stock and availability by store (the bundle has purchases only)",
+    "margin and cost per contact (not in the data; supplied by the client or left UNKNOWN)",
+    "consent and contact constraints (no consent field; no household can be treated as reachable)",
+    "any year other than 2017 (no 2026 sales trend, current campaign or current price is known)",
+    "any coupon or campaign effect (exposure was not randomized; the effect is UNKNOWN)",
+    "the team's trained purchase model (ConsultAI does not score households)"
+  ],
+  "checker": {
+    "verdict": "PASS; 3 unsupported draft claims were blocked in the saved example (consultant_checker_example.json)",
+    "problems": []
+  }
+}

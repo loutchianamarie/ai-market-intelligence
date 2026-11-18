@@ -1,0 +1,38 @@
+{
+  "note": "A saved demonstration, not part of the decision: three unsupported drafts, the checker's reasons, and the corrected text.",
+  "blocked": [
+    {
+      "draft": "A 10% coupon would win back about 300 yogurt buyers and add about $9,000 of profit.",
+      "why": "causal coupon claim (the effect is UNKNOWN: exposure was not randomized), numbers not in the computed metrics, and a scenario called profit",
+      "corrected": "A coupon is not recommended before a randomized holdout test; its effect, margin and cost are UNKNOWN.",
+      "rejected_by_checker": true,
+      "problems": [
+        "number 300 is not in the computed metrics: \"A 10% coupon would win back about 300 yogurt buyers and add about $9,000 of profit.\"",
+        "number $9,000 is not in the computed metrics: \"A 10% coupon would win back about 300 yogurt buyers and add about $9,000 of profit.\"",
+        "causal claim about a coupon, discount or contact: the effect is UNKNOWN (exposure was not randomized): \"A 10% coupon would win back about 300 yogurt buyers and add about $9,000 of profit.\"",
+        "a scenario or expectation is called profit: \"A 10% coupon would win back about 300 yogurt buyers and add about $9,000 of profit.\""
+      ],
+      "corrected_passes": true
+    },
+    {
+      "draft": "13,405 households bought yogurt in the first half.",
+      "why": "that number counts purchase lines, not households; lines are never buyers",
+      "corrected": "Distinct households are counted, not lines (see the distinct buyers metrics).",
+      "rejected_by_checker": true,
+      "problems": [
+        "13,405 is a count of purchase lines, not of buyers: \"13,405 households bought yogurt in the first half.\""
+      ],
+      "corrected_passes": true
+    },
+    {
+      "draft": "Margin is 0, so the reminder campaign is free money.",
+      "why": "an unknown is shown as zero; margin is UNKNOWN, never zero",
+      "corrected": "Margin and cost per contact are UNKNOWN until the client supplies them.",
+      "rejected_by_checker": true,
+      "problems": [
+        "an unknown is shown as zero: \"Margin is 0, so the reminder campaign is free money.\""
+      ],
+      "corrected_passes": true
+    }
+  ]
+}
