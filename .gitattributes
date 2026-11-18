@@ -4,3 +4,5 @@ reports/campaign_case.latest.sha256 -text
 docs/contracts/*.json -text
 reports/grocery_bundle_manifest.json -text
 reports/grocery_bundle_manifest.sha256 -text
+reports/consultant_review.latest.json -text
+reports/consultant_review.latest.sha256 -text
