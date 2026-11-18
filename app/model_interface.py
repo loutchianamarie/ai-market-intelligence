@@ -18,6 +18,7 @@ import streamlit as st  # noqa: E402
 
 from mi.paths import PROCESSED, REPORTS  # noqa: E402
 from mi.model import marketing_metrics as mm  # noqa: E402
+from mi.decision import interpret as it  # noqa: E402
 
 st.set_page_config(page_title="Purchase-propensity model", layout="wide")
 
@@ -40,6 +41,16 @@ R = rep["test"]["rule_repeat"]
 P = rep["test"]["rule_popularity"]
 nice = lambda c: c.title().replace("/", " / ")  # noqa: E731
 
+
+def explain(box, expanded=True):
+    """A plain-words reading of the chart above it: what it shows, so what, what to do, what to watch out for."""
+    with st.expander("How to read this: " + box["title"], expanded=expanded):
+        st.markdown(f"**What it shows.** {box['shows']}")
+        st.markdown(f"**So what.** {box['so_what']}")
+        st.markdown(f"**What to do.** {box['do']}")
+        st.markdown(f"**Watch out.** {box['watch_out']}")
+        st.caption(f"Evidence: {box['evidence']}. Written by rules from the numbers on this page, so it changes when they do.")
+
 st.title("Purchase-propensity model")
 st.caption("Which household is likely to buy which category in the next 4 weeks? Grocery case (84.51 Complete Journey, 2017).")
 st.warning("**Historical propensity, not a coupon effect.** The score says who is likely to buy anyway. It does not say who would respond "
@@ -51,9 +62,9 @@ c2.metric("ROC AUC (test)", f"{T['ROC_AUC']:.3f}", f"{T['ROC_AUC'] - R['ROC_AUC'
 c3.metric("Households scored", f"{sc.household_id.nunique():,}")
 c4.metric("Household x category rows", f"{len(sc):,}")
 
-tab_score, tab_top, tab_perf, tab_how, tab_gain, tab_rfm, tab_card, tab_data = st.tabs(
+tab_score, tab_top, tab_perf, tab_how, tab_gain, tab_rfm, tab_card, tab_data, tab_plan = st.tabs(
     ["1 Score a household", "2 Who to rank first", "3 How good is it", "4 How it was built",
-     "5 Lift and gains", "6 Customer tiers", "7 Decision card", "8 Another dataset"])
+     "5 Lift and gains", "6 Customer tiers", "7 Decision card", "8 Another dataset", "9 Strategy and plan"])
 
 # ------------------------------------------------------------------ 1 score a household
 with tab_score:
@@ -124,6 +135,7 @@ with tab_perf:
     bo = rep["bootstrap_model_minus_rule_repeat"]
     st.success(f"Gain over the repeat rule: {bo['AP_diff_mean']:+.3f} average precision (95% interval {bo['AP_diff_95ci'][0]:+.3f} to {bo['AP_diff_95ci'][1]:+.3f}, "
                f"household bootstrap, {bo['n_boot']} resamples). The interval excludes zero.")
+    explain(it.interpret_performance(T["AP"], R["AP"], P["AP"], bo["AP_diff_mean"], bo["AP_diff_95ci"][0], bo["AP_diff_95ci"][1], T["ROC_AUC"]))
     st.markdown("**Calibration: does a 30% score mean about 30%?**")
     cal = pd.DataFrame(rep["calibration_deciles_model"])
     cal["decile"] = range(1, len(cal) + 1)
@@ -134,6 +146,7 @@ with tab_perf:
         tooltip=["decile", alt.Tooltip("mean_pred:Q", format=".2f"), alt.Tooltip("observed:Q", format=".2f"), "n"])
     st.altair_chart((line + pts).properties(height=280), width="stretch")
     st.caption("Points close to the dashed diagonal mean the scores behave like real probabilities (isotonic calibration, fitted on a separate window).")
+    explain(it.interpret_calibration(rep["calibration_deciles_model"]))
     st.markdown("**By category (test): model vs repeat rule, average precision**")
     bc = pd.DataFrame(rep["by_category"])[["category", "n", "prevalence", "AP_model", "AP_rule"]].rename(
         columns={"AP_model": "model", "AP_rule": "repeat rule"})
@@ -197,6 +210,7 @@ with tab_gain:
                      [["decile", "rows", "buyers", "buyer rate", "lift", "cumulative list", "cumulative buyers captured"]]
                      .style.format({"buyer rate": "{:.0%}", "lift": "{:.2f}", "cumulative list": "{:.0%}", "cumulative buyers captured": "{:.0%}"}), hide_index=True, width="stretch")
         st.caption("Lift is the buyer rate in the group divided by the overall buyer rate. A lift of 2.5x means the group buys 2.5 times as often as an average row.")
+        explain(it.interpret_gains(lm["buyers_captured_share"], lr_["buyers_captured_share"], frac, lm["lift"], lr_["lift"]))
 
 # ------------------------------------------------------------------ 6 customer tiers
 with tab_rfm:
@@ -229,6 +243,8 @@ with tab_rfm:
         st.altair_chart(alt.Chart(ret).mark_line(point=True, color="#c8571f").encode(x=alt.X("window:N", sort=None, title=None), y=alt.Y("retention:Q", axis=alt.Axis(format="%"), scale=alt.Scale(domain=[0, 1])),
                         tooltip=["window", "active", "active_next_window", alt.Tooltip("retention:Q", format=".0%")]).properties(height=220), width="stretch")
 
+        explain(it.interpret_rfm(tier.to_dict("records"), ret.to_dict("records")))
+
 # ------------------------------------------------------------------ 7 decision card
 with tab_card:
     from mi.decision import decision_card as dc
@@ -248,12 +264,14 @@ with tab_card:
     st.dataframe(rk.rename(columns={"needed_response_multiple": "response needed vs assumed (x)", "net_base_usd": "net base (USD)", "net_high_usd": "net if all favourable (USD)",
                                     "expected_buyers_4w": "expected buyers (4 wk)"}).style.format({"response needed vs assumed (x)": "{:.1f}", "net base (USD)": "{:,.0f}", "net if all favourable (USD)": "{:,.0f}",
                                                                                              "expected buyers (4 wk)": "{:,.0f}"}), hide_index=True, width="stretch")
+    explain(it.interpret_portfolio(rk.to_dict("records")))
     cat_pick = st.selectbox("Open the card for", list(cards), index=list(cards).index("COFFEE"), key="card_cat")
     card = cards[cat_pick]
     (st.success if card["headline"]["decision"].startswith("TEST") else st.warning)(f"**{card['headline']['decision']}** — {card['headline']['one_line']}")
     if card["checker"]:
         st.error("The checker found problems: " + "; ".join(card["checker"]))
     st.markdown(dc.to_markdown(card).split("\n", 4)[-1])
+    explain(it.interpret_segments(card["situation"]["segments"], cat_pick))
     d1, d2 = st.columns(2)
     d1.download_button("Download the card (Markdown)", dc.to_markdown(card).encode("utf-8"), f"decision_card_{cat_pick.lower().replace('/', '_').replace(' ', '_')}.md", "text/markdown")
     d2.download_button("Download the card (JSON)", json.dumps(card, indent=1, default=float).encode("utf-8"), f"decision_card_{cat_pick.lower().replace('/', '_').replace(' ', '_')}.json", "application/json")
@@ -291,6 +309,7 @@ with tab_data:
         result = dr.assess(txd, prd, ov)
     if result:
         (st.success if result["verdict"] == "READY" else st.warning if result["verdict"] == "PARTIAL" else st.error)(f"**{result['verdict']}**")
+        explain(it.interpret_readiness(result))
         if result["facts"]:
             f = result["facts"]
             m1, m2, m3 = st.columns(3)
@@ -311,3 +330,34 @@ with tab_data:
         for fx in result["fixes"]:
             st.info(fx)
         st.download_button("Download the readiness report (JSON)", json.dumps(result, indent=1, default=str).encode("utf-8"), "dataset_readiness.json", "application/json")
+
+# ------------------------------------------------------------------ 9 strategy and plan
+with tab_plan:
+    from mi.decision import strategy_plan as sp
+    from mi.config import load_config as _lc
+
+    st.subheader("Marketing strategy and 13-week plan")
+    st.caption("Built on the decision card, so it cannot contradict its economics. Objective, targeting, positioning, strategy by segment, marketing mix, roadmap with owners and approval gates, "
+               "budget, KPIs, message drafts, risks and what the client must provide. Nothing is sent, spent or published; approval stays PENDING_HUMAN.")
+
+    @st.cache_data
+    def _plans():
+        cfg = _lc()
+        return {c: sp.build_plan(c, cfg) for c in cfg["categories"]}
+
+    plans = _plans()
+    pc = st.selectbox("Plan for", list(plans), index=list(plans).index("COFFEE"), key="plan_cat")
+    plan = plans[pc]
+    (st.success if plan["decision_from_card"].startswith("TEST") else st.warning)(f"**{plan['decision_from_card']}** — {plan['headline']}")
+    if plan["checker"]:
+        st.error("The checker found problems: " + "; ".join(plan["checker"]))
+    a1, a2, a3, a4 = st.columns(4)
+    a1.metric("Target segment", (plan["stp"]["targeting"]["primary"] or "none").replace("_", " ").title())
+    a2.metric("Test arms", len(plan["budget"]["arms"]))
+    a3.metric("Estimated test cost (USD, assumed)", f"{plan['budget']['total_test_usd']:,.0f}")
+    a4.metric("Approval", plan["approval"]["state"])
+    st.markdown(sp.to_markdown(plan).split("\n", 4)[-1])
+    e1, e2 = st.columns(2)
+    stem = pc.lower().replace("/", "_").replace(" ", "_")
+    e1.download_button("Download the plan (Markdown)", sp.to_markdown(plan).encode("utf-8"), f"marketing_plan_{stem}.md", "text/markdown")
+    e2.download_button("Download the plan (JSON)", json.dumps(plan, indent=1, default=float).encode("utf-8"), f"marketing_plan_{stem}.json", "application/json")

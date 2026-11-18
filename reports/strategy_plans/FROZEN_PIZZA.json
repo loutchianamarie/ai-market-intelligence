@@ -1,0 +1,801 @@
+{
+ "schema_version": "marketing_plan.v1",
+ "case_id": "CJ-GROCERY-001",
+ "category": "FROZEN PIZZA",
+ "generated_utc": "2026-11-18T19:04:01Z",
+ "decision_from_card": "LEARN FIRST (NO PAID SCALE-UP)",
+ "headline": "Frozen Pizza: 646 of 2,319 scored households are expected to buy in the next 4 weeks (model estimate); learn first (no paid scale-up).",
+ "objective": {
+  "statement": "Within 13 weeks, find out whether a reminder and a digital coupon brings back lapsing Frozen Pizza households, measured against a randomized no-message holdout, and decide whether to scale, change or stop.",
+  "baseline": "406 lapsing households; model estimate of their chance of buying in the next 4 weeks is 30%.",
+  "minimum_worthwhile_response": "Act on a measured lift of at least 6.2 percentage points in the 4-week purchase rate (the break-even response under assumed economics).",
+  "horizon_weeks": 13,
+  "status": "PROPOSED TARGET: a hurdle to test against, not a forecast"
+ },
+ "stp": {
+  "segmentation": [
+   {
+    "segment": "ACTIVE_NONBUYER",
+    "households": 679,
+    "meaning": "shops often but has not bought the category in 12 weeks",
+    "approach": "Educate",
+    "chance_of_buying": 0.14968141385768421,
+    "expected_buyers_4w": 101.63368000936758
+   },
+   {
+    "segment": "LAPSING",
+    "households": 406,
+    "meaning": "bought earlier in the 12 weeks, nothing in the last 4",
+    "approach": "Win back",
+    "chance_of_buying": 0.29640426554157173,
+    "expected_buyers_4w": 120.34013180987812
+   },
+   {
+    "segment": "LOW_ACTIVITY",
+    "households": 509,
+    "meaning": "few baskets in 12 weeks",
+    "approach": "Do not spend",
+    "chance_of_buying": 0.07802153470351489,
+    "expected_buyers_4w": 39.71296116408908
+   },
+   {
+    "segment": "RECENT_LIGHT",
+    "households": 322,
+    "meaning": "bought 1-2 times in 12 weeks, at least once in the last 4",
+    "approach": "Nurture",
+    "chance_of_buying": 0.364452344969217,
+    "expected_buyers_4w": 117.35365508008788
+   },
+   {
+    "segment": "REGULAR",
+    "households": 403,
+    "meaning": "buys the category in 3+ of the last 12 weeks",
+    "approach": "Defend",
+    "chance_of_buying": 0.6623017227318264,
+    "expected_buyers_4w": 266.90759426092603
+   }
+  ],
+  "targeting": {
+   "primary": "LAPSING",
+   "secondary": [
+    "RECENT_LIGHT",
+    "ACTIVE_NONBUYER"
+   ],
+   "do_not_target_with_offers": [
+    {
+     "segment": "REGULAR",
+     "why": "They buy anyway: a discount gives margin away. Defend with recognition and cross-sell, no price offer."
+    },
+    {
+     "segment": "LOW_ACTIVITY",
+     "why": "Few baskets: no category action is worth its cost."
+    }
+   ]
+  },
+  "positioning": {
+   "statement": "the easy dinner you already like, back on your list (to test, not to publish)",
+   "status": "HYPOTHESIS: to test with interviews and the holdout, not to publish",
+   "proof_points": []
+  }
+ },
+ "strategy_by_segment": [
+  {
+   "segment": "ACTIVE_NONBUYER",
+   "approach": "Educate",
+   "households": 679,
+   "what_we_do": "Educational content and placement near related categories; no paid offer until a test shows response.",
+   "paid_offer_verdict": "PAYS ONLY IF OPTIMISTIC",
+   "kpi": "first-time category buyers in 4 weeks, versus holdout"
+  },
+  {
+   "segment": "LAPSING",
+   "approach": "Win back",
+   "households": 406,
+   "what_we_do": "Check availability, assortment and price versus competitors first (a reason to stop buying is often stock or range), then a reminder message.",
+   "paid_offer_verdict": "PAYS ONLY IF OPTIMISTIC",
+   "kpi": "distinct buyers back within 4 weeks, versus a randomized no-message holdout"
+  },
+  {
+   "segment": "LOW_ACTIVITY",
+   "approach": "Do not spend",
+   "households": 509,
+   "what_we_do": "General brand communication only; no category action.",
+   "paid_offer_verdict": "NOT EVALUATED (no paid action for this segment)",
+   "kpi": "none (no action)"
+  },
+  {
+   "segment": "RECENT_LIGHT",
+   "approach": "Nurture",
+   "households": 322,
+   "what_we_do": "Replenishment reminder and recipe or usage content in owned channels before any discount; confirm the product is in stock.",
+   "paid_offer_verdict": "DOES NOT PAY",
+   "kpi": "share who buy again within 4 weeks"
+  },
+  {
+   "segment": "REGULAR",
+   "approach": "Defend",
+   "households": 403,
+   "what_we_do": "No discount: these households buy anyway, so a coupon mostly gives margin away. Recognise loyalty and cross-sell a partner category.",
+   "paid_offer_verdict": "DOES NOT PAY",
+   "kpi": "category purchase frequency and basket size; discount cost per buyer stays at zero"
+  }
+ ],
+ "marketing_mix": {
+  "Product": "Confirm Frozen Pizza availability and range first",
+  "Price": "No blanket discount; a coupon only where the test shows response and the margin covers it",
+  "Place": "Digital owned channels and in-store placement near related categories",
+  "Promotion": "Reminder and content in owned channels; a paid coupon only after a randomized test",
+  "channels": [
+   {
+    "channel": "In-store availability, range and placement",
+    "role": "fix reasons for lapsing first; place beside related categories",
+    "kind": "free",
+    "cost": "no media cost"
+   },
+   {
+    "channel": "Owned digital message (e-mail or app)",
+    "role": "reminder and content, no discount",
+    "kind": "owned",
+    "cost": "0.03 USD per message (ASSUMED)"
+   },
+   {
+    "channel": "Content page for the learning questions (SEO/GEO)",
+    "role": "be recommended when shoppers are still choosing",
+    "kind": "free",
+    "cost": "staff time; needs approval G3"
+   },
+   {
+    "channel": "Digital coupon",
+    "role": "only in the coupon arm of the test, only for the target segment",
+    "kind": "paid",
+    "cost": "see budget (ASSUMED)"
+   }
+  ]
+ },
+ "roadmap": [
+  {
+   "phase": "0. Approve",
+   "weeks": [
+    0,
+    0
+   ],
+   "goal": "A named person approves the plan",
+   "exit": "Plan approved by a named person",
+   "activities": [
+    {
+     "task": "Review and approve (or change) this plan",
+     "owner": "Marketing lead (named approver)",
+     "deliverable": "Signed-off plan",
+     "kind": "free",
+     "gates": [
+      "G1"
+     ]
+    }
+   ]
+  },
+  {
+   "phase": "1. Diagnose",
+   "weeks": [
+    1,
+    2
+   ],
+   "goal": "Find out why Frozen Pizza buyers stop, and collect the inputs that are unknown",
+   "exit": "Consent to contact and stock confirmed (UNKNOWN today)",
+   "activities": [
+    {
+     "task": "Check Frozen Pizza availability, range and price against competitors",
+     "owner": "Store operations",
+     "deliverable": "Short findings note",
+     "kind": "free",
+     "gates": []
+    },
+    {
+     "task": "Run 2 to 3 short interviews with lapsed shoppers: price, habit, stock or switching?",
+     "owner": "Marketing analyst",
+     "deliverable": "Coded interview sheet",
+     "kind": "free",
+     "gates": []
+    },
+    {
+     "task": "Collect margin, message cost, consent pool, coupon funding and stock capacity",
+     "owner": "Finance and CRM",
+     "deliverable": "Completed client input form",
+     "kind": "free",
+     "gates": []
+    },
+    {
+     "task": "Verify consent and stock",
+     "owner": "CRM and operations",
+     "deliverable": "Verification record",
+     "kind": "free",
+     "gates": [
+      "G2"
+     ]
+    }
+   ]
+  },
+  {
+   "phase": "2. Prepare",
+   "weeks": [
+    3,
+    4
+   ],
+   "goal": "Design the test and the content",
+   "exit": "Test design and drafts ready for approval",
+   "activities": [
+    {
+     "task": "Randomize eligible lapsing households into holdout, reminder, and reminder with coupon",
+     "owner": "Analytics",
+     "deliverable": "Randomized list with a fixed seed",
+     "kind": "free",
+     "gates": []
+    },
+    {
+     "task": "Finalize message drafts (no price or discount in reminders)",
+     "owner": "Marketing",
+     "deliverable": "Approved drafts",
+     "kind": "free",
+     "gates": []
+    },
+    {
+     "task": "Draft the factual page for the learning questions",
+     "owner": "Content and SEO",
+     "deliverable": "Draft page",
+     "kind": "free",
+     "gates": [
+      "G3"
+     ]
+    },
+    {
+     "task": "Set up daily guardrail monitoring: opt-outs, complaints, stock-outs",
+     "owner": "CRM and operations",
+     "deliverable": "Guardrail dashboard",
+     "kind": "free",
+     "gates": []
+    },
+    {
+     "task": "Approve the test launch",
+     "owner": "Marketing lead (named approver)",
+     "deliverable": "Launch decision",
+     "kind": "free",
+     "gates": [
+      "G4"
+     ]
+    }
+   ]
+  },
+  {
+   "phase": "3. Run",
+   "weeks": [
+    5,
+    8
+   ],
+   "goal": "Run the randomized test",
+   "exit": "Four weeks of outcomes collected",
+   "activities": [
+    {
+     "task": "Send reminders to the reminder arm and the coupon to the coupon arm",
+     "owner": "CRM",
+     "deliverable": "Send log (outside this tool)",
+     "kind": "paid",
+     "gates": [
+      "G2",
+      "G4"
+     ]
+    },
+    {
+     "task": "Keep the holdout untouched and monitor guardrails weekly",
+     "owner": "Analytics",
+     "deliverable": "Weekly guardrail note",
+     "kind": "free",
+     "gates": []
+    }
+   ]
+  },
+  {
+   "phase": "4. Read",
+   "weeks": [
+    9,
+    10
+   ],
+   "goal": "Measure the real response",
+   "exit": "Result with an interval",
+   "activities": [
+    {
+     "task": "Analyse purchase rate and contribution per household in the 28-day window with a 95% interval",
+     "owner": "Analytics",
+     "deliverable": "Result table and chart",
+     "kind": "free",
+     "gates": []
+    }
+   ]
+  },
+  {
+   "phase": "5. Decide",
+   "weeks": [
+    11,
+    13
+   ],
+   "goal": "Expand, change or stop",
+   "exit": "Decision meeting: expand, stop or change",
+   "activities": [
+    {
+     "task": "Apply the decision rule and update the plan with confirmed margin and cost",
+     "owner": "Marketing lead and finance",
+     "deliverable": "Decision memo",
+     "kind": "free",
+     "gates": [
+      "G5"
+     ]
+    }
+   ]
+  }
+ ],
+ "budget": {
+  "free_actions_usd": 0,
+  "status": "SCENARIO: assumed contact cost, redemption, coupon value and setup; panel households stand in for the company",
+  "households_per_arm": 887,
+  "arms": [
+   {
+    "arm": "Holdout (no message)",
+    "kind": "control",
+    "cost_usd": 0.0
+   },
+   {
+    "arm": "Reminder, no discount",
+    "kind": "owned",
+    "cost_usd": 26.61
+   },
+   {
+    "arm": "Reminder and digital coupon",
+    "kind": "paid",
+    "cost_usd": 141.95
+   }
+  ],
+  "setup_usd": 1500,
+  "total_test_usd": 1668.56,
+  "note": "Paid items stay blocked until gates G2 and G4 pass; nothing is spent by this plan."
+ },
+ "kpis": {
+  "primary": "incremental contribution per randomized eligible household after coupon and contact cost, 28 days",
+  "secondary": [
+   "distinct buyers in the category",
+   "repeat purchase within 4 weeks",
+   "opt-out rate"
+  ],
+  "guardrails": {
+   "opt_out_rate_max": 0.02,
+   "complaint_rate_max": 0.005,
+   "stockout_flag": false
+  },
+  "decision_rules": {
+   "expand": "95% CI lower bound > 0 and all guardrails pass",
+   "stop": "95% CI upper bound < 0 or any guardrail fails",
+   "change": "point estimate > 0 but CI includes 0 and guardrails pass",
+   "else": "INCONCLUSIVE"
+  },
+  "minimum_worthwhile_response": "Act on a measured lift of at least 6.2 percentage points in the 4-week purchase rate (the break-even response under assumed economics)."
+ },
+ "message_drafts": [
+  {
+   "segment": "REGULAR",
+   "angle": "recognise loyalty, show what is new",
+   "draft_subject": "Thanks for being a regular: what is new in frozen pizza",
+   "status": "DRAFT: not sent; no price, discount or saving stated; needs approval"
+  },
+  {
+   "segment": "RECENT_LIGHT",
+   "angle": "make restocking easy",
+   "draft_subject": "Your frozen pizza is easy to restock",
+   "status": "DRAFT: not sent; no price, discount or saving stated; needs approval"
+  },
+  {
+   "segment": "LAPSING",
+   "angle": "a reminder that the habit is easy to pick up again",
+   "draft_subject": "Your usual frozen pizza, back on your list",
+   "status": "DRAFT: not sent; no price, discount or saving stated; needs approval"
+  },
+  {
+   "segment": "ACTIVE_NONBUYER",
+   "angle": "help choosing, no offer",
+   "draft_subject": "How to choose frozen pizza: a short guide",
+   "status": "DRAFT: not sent; no price, discount or saving stated; needs approval"
+  }
+ ],
+ "discovery": {
+  "audited_brand": "Kroger",
+  "status": "OBSERVED answer log of a public analogue, not this retailer",
+  "answers": 20,
+  "learn": {
+   "mentioned": 5,
+   "recommended": 0,
+   "of": 8
+  },
+  "reading": "Shoppers who are still learning are not being recommended a store",
+  "action": "Publish a factual page for the learning questions (how digital coupons work, store brand versus name brand); needs human approval; no sales effect is claimed"
+ },
+ "cross_sell": [],
+ "risks": [
+  {
+   "risk": "Discounting people who would buy anyway",
+   "mitigation": "No price offer to regular buyers; the coupon arm is limited to the target segment; the holdout shows the real response",
+   "owner": "Marketing"
+  },
+  {
+   "risk": "Promoting a product that is out of stock",
+   "mitigation": "Stock confirmed before launch (gate G2) and a stock-out guardrail during the test",
+   "owner": "Operations"
+  },
+  {
+   "risk": "Contacting people without consent",
+   "mitigation": "Only the consented pool is contacted (gate G2); opt-out rate is a stop condition",
+   "owner": "CRM and legal"
+  },
+  {
+   "risk": "A misleading result from seasonality or contamination",
+   "mitigation": "Randomize inside the same weeks, keep the holdout clean, and read the interval, not the point estimate",
+   "owner": "Analytics"
+  },
+  {
+   "risk": "Over-trusting the model",
+   "mitigation": "Use it to order lists. Basis: on held-out weeks the model beats the simple repeat rule by 0.050 average precision (95% interval 0.045 to 0.056), history only. Success is judged on the holdout, not on the score",
+   "owner": "Analytics"
+  },
+  {
+   "risk": "Assumed margin, cost or response are wrong",
+   "mitigation": "Finance confirms them in phase 1 and the break-even is recomputed before any scale-up",
+   "owner": "Finance"
+  },
+  {
+   "risk": "The discovery content has no proven sales effect",
+   "mitigation": "Track visibility in assistant answers only; do not claim sales",
+   "owner": "Content and SEO"
+  }
+ ],
+ "needed_from_client": [
+  "Consent: how many households can be contacted, and how (UNKNOWN)",
+  "Margin on the category (ASSUMED)",
+  "Cost per message and per coupon redemption (ASSUMED)",
+  "Who funds the coupon: retailer or manufacturer (ASSUMED)",
+  "Stock and capacity for the category (UNKNOWN)",
+  "The campaign calendar, to avoid clashes (UNKNOWN)"
+ ],
+ "gates": {
+  "G1": "Plan approved by a named person",
+  "G2": "Consent to contact and stock confirmed (UNKNOWN today)",
+  "G3": "Public content approved by a named person",
+  "G4": "Test launch approved: arms, holdout and guardrails",
+  "G5": "Decision meeting: expand, stop or change"
+ },
+ "metrics": [
+  {
+   "id": "m_ap",
+   "label": "Model average precision (locked test)",
+   "value": 0.6717374137892858,
+   "unit": "x3",
+   "text": "0.672",
+   "tag": "OBSERVED",
+   "source": "reports/model_report.json"
+  },
+  {
+   "id": "m_ap_rule",
+   "label": "Repeat-rule average precision",
+   "value": 0.6210149195951625,
+   "unit": "x3",
+   "text": "0.621",
+   "tag": "OBSERVED",
+   "source": "reports/model_report.json"
+  },
+  {
+   "id": "m_hh",
+   "label": "Households scored for FROZEN PIZZA",
+   "value": 2319,
+   "unit": "count",
+   "text": "2,319",
+   "tag": "OBSERVED",
+   "source": "data/processed/scores_latest.parquet"
+  },
+  {
+   "id": "m_exp",
+   "label": "Expected buyers in the next 4 weeks (all scored households)",
+   "value": 645.9480223243486,
+   "unit": "count",
+   "text": "646",
+   "tag": "MODEL ESTIMATE",
+   "source": "calibrated model scores"
+  },
+  {
+   "id": "net_base_regular",
+   "label": "Scenario net per 4-week cycle, REGULAR digital coupon (base assumptions)",
+   "value": -3094.471189301132,
+   "unit": "usd",
+   "text": "-3,094",
+   "tag": "SCENARIO",
+   "source": "optimizer.Universe.evaluate"
+  },
+  {
+   "id": "net_low_regular",
+   "label": "... all assumptions unfavourable",
+   "value": -2951.8629873526506,
+   "unit": "usd",
+   "text": "-2,952",
+   "tag": "SCENARIO",
+   "source": "optimizer.Universe.evaluate"
+  },
+  {
+   "id": "net_high_regular",
+   "label": "... all assumptions favourable",
+   "value": -2827.687075221204,
+   "unit": "usd",
+   "text": "-2,828",
+   "tag": "SCENARIO",
+   "source": "optimizer.Universe.evaluate"
+  },
+  {
+   "id": "mult_regular",
+   "label": "Response needed to break even, as a multiple of the assumed response (REGULAR)",
+   "value": 12.053537764796337,
+   "unit": "x",
+   "text": "12.1",
+   "tag": "SCENARIO",
+   "source": "break-even / assumed response"
+  },
+  {
+   "id": "net_base_recent_light",
+   "label": "Scenario net per 4-week cycle, RECENT_LIGHT digital coupon (base assumptions)",
+   "value": -2054.534368828319,
+   "unit": "usd",
+   "text": "-2,055",
+   "tag": "SCENARIO",
+   "source": "optimizer.Universe.evaluate"
+  },
+  {
+   "id": "net_low_recent_light",
+   "label": "... all assumptions unfavourable",
+   "value": -2725.2928341781712,
+   "unit": "usd",
+   "text": "-2,725",
+   "tag": "SCENARIO",
+   "source": "optimizer.Universe.evaluate"
+  },
+  {
+   "id": "net_high_recent_light",
+   "label": "... all assumptions favourable",
+   "value": -109.41935362536958,
+   "unit": "usd",
+   "text": "-109",
+   "tag": "SCENARIO",
+   "source": "optimizer.Universe.evaluate"
+  },
+  {
+   "id": "mult_recent_light",
+   "label": "Response needed to break even, as a multiple of the assumed response (RECENT_LIGHT)",
+   "value": 2.9245192378933003,
+   "unit": "x",
+   "text": "2.9",
+   "tag": "SCENARIO",
+   "source": "break-even / assumed response"
+  },
+  {
+   "id": "net_base_lapsing",
+   "label": "Scenario net per 4-week cycle, LAPSING digital coupon (base assumptions)",
+   "value": -1823.7613144618588,
+   "unit": "usd",
+   "text": "-1,824",
+   "tag": "SCENARIO",
+   "source": "optimizer.Universe.evaluate"
+  },
+  {
+   "id": "net_low_lapsing",
+   "label": "... all assumptions unfavourable",
+   "value": -2732.4246664528237,
+   "unit": "usd",
+   "text": "-2,732",
+   "tag": "SCENARIO",
+   "source": "optimizer.Universe.evaluate"
+  },
+  {
+   "id": "net_high_lapsing",
+   "label": "... all assumptions favourable",
+   "value": 2074.321895177412,
+   "unit": "usd",
+   "text": "2,074",
+   "tag": "SCENARIO",
+   "source": "optimizer.Universe.evaluate"
+  },
+  {
+   "id": "mult_lapsing",
+   "label": "Response needed to break even, as a multiple of the assumed response (LAPSING)",
+   "value": 1.5569658902379033,
+   "unit": "x",
+   "text": "1.6",
+   "tag": "SCENARIO",
+   "source": "break-even / assumed response"
+  },
+  {
+   "id": "net_base_active_nonbuyer",
+   "label": "Scenario net per 4-week cycle, ACTIVE_NONBUYER digital coupon (base assumptions)",
+   "value": -2081.306338219785,
+   "unit": "usd",
+   "text": "-2,081",
+   "tag": "SCENARIO",
+   "source": "optimizer.Universe.evaluate"
+  },
+  {
+   "id": "net_low_active_nonbuyer",
+   "label": "... all assumptions unfavourable",
+   "value": -2789.032381504711,
+   "unit": "usd",
+   "text": "-2,789",
+   "tag": "SCENARIO",
+   "source": "optimizer.Universe.evaluate"
+  },
+  {
+   "id": "net_high_active_nonbuyer",
+   "label": "... all assumptions favourable",
+   "value": 803.7630357623136,
+   "unit": "usd",
+   "text": "804",
+   "tag": "SCENARIO",
+   "source": "optimizer.Universe.evaluate"
+  },
+  {
+   "id": "mult_active_nonbuyer",
+   "label": "Response needed to break even, as a multiple of the assumed response (ACTIVE_NONBUYER)",
+   "value": 2.594533669707445,
+   "unit": "x",
+   "text": "2.6",
+   "tag": "SCENARIO",
+   "source": "break-even / assumed response"
+  },
+  {
+   "id": "n_assumed",
+   "label": "Households per arm to detect the assumed response",
+   "value": 2121,
+   "unit": "count",
+   "text": "2,121",
+   "tag": "SCENARIO",
+   "source": "learning.sample_size"
+  },
+  {
+   "id": "n_be",
+   "label": "Households per arm to detect the break-even response",
+   "value": 887,
+   "unit": "count",
+   "text": "887",
+   "tag": "SCENARIO",
+   "source": "learning.sample_size"
+  },
+  {
+   "id": "p_focus_hh",
+   "label": "LAPSING households scored",
+   "value": 406,
+   "unit": "count",
+   "text": "406",
+   "tag": "OBSERVED",
+   "source": "decision card"
+  },
+  {
+   "id": "p_focus_q",
+   "label": "Baseline chance of buying in 4 weeks, LAPSING",
+   "value": 0.29640426554157173,
+   "unit": "share",
+   "text": "30%",
+   "tag": "MODEL ESTIMATE",
+   "source": "decision card"
+  },
+  {
+   "id": "p_be_points",
+   "label": "Minimum worthwhile response, percentage points (break-even under assumed economics)",
+   "value": 6.24,
+   "unit": "x",
+   "text": "6.2",
+   "tag": "SCENARIO",
+   "source": "decision card break-even"
+  },
+  {
+   "id": "p_contact",
+   "label": "Assumed cost per digital message (USD)",
+   "value": 0.03,
+   "unit": "usd2",
+   "text": "0.03",
+   "tag": "ASSUMPTION",
+   "source": "configs/policy.json"
+  },
+  {
+   "id": "p_n_arm",
+   "label": "Households per test arm (sample size for the break-even response)",
+   "value": 887,
+   "unit": "count",
+   "text": "887",
+   "tag": "SCENARIO",
+   "source": "decision card test design"
+  },
+  {
+   "id": "p_arm_rem",
+   "label": "Cost of the reminder arm (USD)",
+   "value": 26.61,
+   "unit": "usd",
+   "text": "27",
+   "tag": "SCENARIO",
+   "source": "households x message cost"
+  },
+  {
+   "id": "p_arm_cpn",
+   "label": "Cost of the coupon arm (USD)",
+   "value": 141.94532785313478,
+   "unit": "usd",
+   "text": "142",
+   "tag": "SCENARIO",
+   "source": "households x (message + expected coupon cost)"
+  },
+  {
+   "id": "p_setup",
+   "label": "Assumed fixed setup (USD)",
+   "value": 1500,
+   "unit": "usd",
+   "text": "1,500",
+   "tag": "ASSUMPTION",
+   "source": "configs/policy.json"
+  },
+  {
+   "id": "p_total",
+   "label": "Estimated total cost of the test (USD)",
+   "value": 1668.5553278531347,
+   "unit": "usd",
+   "text": "1,669",
+   "tag": "SCENARIO",
+   "source": "setup + arms"
+  },
+  {
+   "id": "p_gain",
+   "label": "Model average-precision gain over the repeat rule",
+   "value": 0.05044998897715656,
+   "unit": "x3",
+   "text": "0.050",
+   "tag": "OBSERVED",
+   "source": "reports/model_report.json"
+  },
+  {
+   "id": "p_gain_lo",
+   "label": "... 95% interval, lower",
+   "value": 0.045305102142999404,
+   "unit": "x3",
+   "text": "0.045",
+   "tag": "OBSERVED",
+   "source": "reports/model_report.json"
+  },
+  {
+   "id": "p_gain_hi",
+   "label": "... 95% interval, upper",
+   "value": 0.055625755158393485,
+   "unit": "x3",
+   "text": "0.056",
+   "tag": "OBSERVED",
+   "source": "reports/model_report.json"
+  }
+ ],
+ "confidence": {
+  "who_is_likely_to_buy": {
+   "level": "MEDIUM-HIGH",
+   "tag": "MODEL ESTIMATE",
+   "basis": "locked test average precision 0.672 versus 0.621 for the repeat rule; gain +0.050 (95% interval +0.045 to +0.056); history only, 2017"
+  },
+  "what_an_offer_would_do": {
+   "level": "LOW",
+   "tag": "UNKNOWN",
+   "basis": "coupon exposure was not randomized; response is an assumed range"
+  },
+  "profit": {
+   "level": "NONE",
+   "tag": "UNKNOWN",
+   "basis": "margin, cost, consent and stock are not confirmed; contributions are scenarios"
+  }
+ },
+ "approval": {
+  "state": "PENDING_HUMAN",
+  "sandbox_only": true,
+  "note": "Nothing is sent, spent or published by this plan."
+ },
+ "checker": []
+}

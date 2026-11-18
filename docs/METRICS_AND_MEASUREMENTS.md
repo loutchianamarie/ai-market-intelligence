@@ -61,3 +61,16 @@ Panel structure and freeze (Q01, Q02); every prompt answered once by each assist
 Run it: `PYTHONPATH=src python -m mi.seo.qa` (writes the report and the workbook). What it does not test: whether the assistants' answers are right, other assistants or regions, repeat runs, or any effect on traffic or sales.
 
 The workbook `reports/geo_audit_answers.xlsx` has the sheets README, Questions (10), Answers (20, one row each), Rates (overall, by intent, by language, by assistant), Share, Source_gap, Actions (impact and effort blank for the team to score) and QA.
+
+## 6. Strategy, plan and dashboard interpretation
+
+The analytics tell a manager what is happening. Two layers turn that into marketing.
+
+**Dashboard interpretation** (`src/mi/decision/interpret.py`). Under each chart a box says what it shows, so what, what to do, and what to watch out for, in plain words. Every sentence is built from the numbers on the page and the wording changes with them: a small proven gain is called modest, an interval that includes zero is called not proven, a segment with no recommendation in the discovery audit is called a content gap. Covered: model quality, calibration, lift and gains, customer tiers and retention, the category ranking, where buyers come from, the discovery audit, and the dataset readiness check.
+
+**Marketing strategy and 13-week plan** (`src/mi/decision/strategy_plan.py`, page tab 9, `reports/strategy_plans/`). One plan per category, built on the decision card so it cannot contradict the economics or the verdict:
+objective with a minimum worthwhile response (a hurdle, never a forecast); segmentation, targeting and positioning (regular buyers are never targeted with offers); strategy by segment (defend, nurture, win back, educate, do not spend); the 4 Ps and channels; a phased roadmap (approve, diagnose, prepare, run, read, decide) with owners, deliverables and five approval gates; a test budget; KPIs and the expand, stop or change rule; message drafts with no price or discount; risks with mitigations; and what the client must provide.
+
+Rules the plan checker enforces: anything that contacts households or spends sits behind both the consent-and-stock gate (G2) and the launch gate (G4); a paid arm exists only if the card allows a paid test, otherwise the test is reminder versus holdout with no discount; every number in the text is a registered metric; no promise of effect, no profit claim without a scenario label; approval stays PENDING_HUMAN.
+
+Both layers are deterministic and need no API key. A language model could phrase them more naturally, but the numbers and the rules would stay the same.

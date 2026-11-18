@@ -329,6 +329,15 @@ with tabs[4]:
                        f"Recommended in {bi['Learn']['recommended']}/{bi['Learn']['n']} Learn answers is not zero visibility (it is mentioned in "
                        f"{bi['Learn']['mentioned']}/{bi['Learn']['n']}) and is not measured lost sales. "
                        "Content actions below are hypotheses: impact and effort are unscored and any publication needs human approval.")
+        from mi.decision.interpret import interpret_geo
+        _b = interpret_geo(res["by_intent"], res["mention_rate"]["num"], res["recommendation_rate"]["num"], res["primary_pick_rate"]["num"],
+                           res["answers_logged"], panel["audited_brand"])
+        with st.expander("How to read this: " + _b["title"], expanded=True):
+            st.markdown(f"**What it shows.** {_b['shows']}")
+            st.markdown(f"**So what.** {_b['so_what']}")
+            st.markdown(f"**What to do.** {_b['do']}")
+            st.markdown(f"**Watch out.** {_b['watch_out']}")
+            st.caption(f"Evidence: {_b['evidence']}. Written by rules from the log, so it changes when the log does.")
         from mi.seo.geo import LOG as GEO_LOG
         lg = pd.read_csv(GEO_LOG, dtype=str).fillna("")
         lg["prompt_id"] = lg["prompt_id"].astype(int)
