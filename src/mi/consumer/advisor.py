@@ -29,6 +29,7 @@ from dataclasses import asdict, dataclass, field
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
+from mi.consumer import gate
 from mi.consumer.adapter import CaseResult, load_case
 from mi.campaign.contract import CASE_ID, CONTROL, MENS, WOMENS
 from mi.paths import DATA, REPORTS
@@ -83,8 +84,9 @@ def cite(c: dict) -> dict:
 class CampaignTools:
     """Typed tools. They read the validated export; they never compute a statistic."""
 
-    def __init__(self, case: CaseResult, store: DossierStore):
+    def __init__(self, case: CaseResult, store: DossierStore, commercial: dict | None = None):
         self.case, self.store = case, store
+        self.commercial = commercial          # manager's inputs (None = none provided: the saved-run default)
 
     # ---- analyst
     def t_read_arm_metrics(self):
@@ -155,16 +157,27 @@ class CampaignTools:
         d, m, r = self.case.doc, self.case.doc["marketing"], self.case.doc["recommendation"]
         drafts = [x for x in m["message_drafts"] if x["arm"] == r["recommended_arm"]] or m["message_drafts"][:1]
         message = "\n---\n".join(f"[{x['draft_id']}] Subject: {x['subject']}\n{x['body']}" for x in drafts)
-        return {"plan_id": f"{CASE_ID}__{r['recommended_policy_id']}__v1",
-                "audience": {"segment": "existing customers who purchased in the past twelve months, consented, minus a 10% randomized holdout",
-                             "size": "UNKNOWN: current consented base not provided (64,000 is the 2008 experiment, assumed)",
-                             "arm": r["recommended_arm"]},
-                "channel": "email", "offer": {"type": "none stated", "status": "UNKNOWN: offer terms not approved"},
-                "message": message, "budget": {"total": None, "status": "UNKNOWN: cost per e-mail and setup not provided"},
-                "design": {"randomized_holdout_share": r["holdout_plan"]["holdout_share"], "customers_per_arm_needed": r["holdout_plan"]["customers_per_arm_needed"],
-                           "primary_metric": m["success_metric"], "review_after_days": r["holdout_plan"]["review_after_days"],
-                           "model_used_to_exclude_anyone": False},
-                "recommendation_status": r["status"], "export_sha256": self.case.sha256}
+        pilot = {"plan_id": f"{CASE_ID}__{r['recommended_policy_id']}__v1",
+                 "audience": {"segment": "existing customers who purchased in the past twelve months, consented, minus a 10% randomized holdout",
+                              "size": "UNKNOWN: current consented base not provided (64,000 is the 2008 experiment, assumed)",
+                              "arm": r["recommended_arm"]},
+                 "channel": "email", "offer": {"type": "none stated", "status": "UNKNOWN: offer terms not approved"},
+                 "message": message, "budget": {"total": None, "status": "UNKNOWN: cost per e-mail and setup not provided"},
+                 "design": {"randomized_holdout_share": r["holdout_plan"]["holdout_share"], "customers_per_arm_needed": r["holdout_plan"]["customers_per_arm_needed"],
+                            "primary_metric": m["success_metric"], "review_after_days": r["holdout_plan"]["review_after_days"],
+                            "model_used_to_exclude_anyone": False},
+                 "recommendation_status": r["status"], "export_sha256": self.case.sha256}
+        if self.commercial is not None:       # the plan follows the manager's inputs; with none given the plan above is unchanged
+            g = gate.evaluate(self.case, self.commercial)
+            ci_, cost = g["inputs"], g["inputs"]["cost_per_email"]
+            pilot["budget"] = ({"total": round(g["contacts"] * float(cost) + float(ci_["setup"] or 0), 2), "contacts": g["contacts"],
+                                "status": "SCENARIO from inputs typed by the manager; not verified by finance"}
+                               if cost is not None else pilot["budget"])
+            pilot["audience"]["consent"] = "VERIFIED by CRM/legal (as entered)" if ci_["consent_verified"] else "NOT VERIFIED: no audience may be released"
+            pilot["design"]["holdout_drawn"] = ci_["holdout_drawn"]
+            pilot["design"]["model_used_to_exclude_anyone"] = ci_["exclude_with_model"]
+            pilot["recommendation_status"] = g["decision"]
+        return pilot
 
     def t_draft_action(self, opportunity_id, expected_version):
         pilot = self.build_pilot()
@@ -262,8 +275,12 @@ def check_dossier(case: CaseResult, d: dict) -> dict:
             if "SCENARIO" in (f.get("text") or "").upper() and f.get("tag") == "OBSERVED":
                 problems.append(f"{role}: scenario {f['claim_id']} tagged OBSERVED")
     pilot = d.get("pilot") or {}
-    if not pilot:
+    cg = d.get("commercial_gate") or {}
+    no_send = cg.get("decision") == "NO_EMAIL"
+    if not pilot and not no_send:
         problems.append("strategist: no action draft")
+    if no_send and pilot:
+        problems.append("a no-send decision must not carry an e-mail draft")
     text = json.dumps(pilot, default=str)
     if pilot and not re.search(r"unsubscribe", pilot.get("message", ""), re.I):
         problems.append("draft has no unsubscribe/opt-out")
@@ -280,16 +297,21 @@ def check_dossier(case: CaseResult, d: dict) -> dict:
     if d.get("state") in ("APPROVED", "SANDBOX_RECORDED") and not d.get("approval"):
         problems.append("state advanced without an approval record")
     # launch readiness is separate from draft quality: UNKNOWN inputs block a send, they do not invalidate the draft
-    blockers = []
-    for cid, why in (("CLM_MARGIN", "contribution margin UNKNOWN"), ("CLM_COST_PER_CONTACT", "cost per e-mail UNKNOWN")):
-        if claims.get(cid, {}).get("tag") == "UNKNOWN":
-            blockers.append(why)
-    blockers += ["consent status UNKNOWN (CRM owner with legal)", "holdout not yet drawn", "no named human approval"
-                 if not d.get("approval") else "approval recorded"]
-    blockers = [b for b in blockers if b != "approval recorded"]
+    if cg:      # the manager entered commercial inputs: blockers follow them, not the export's UNKNOWN defaults
+        blockers = [b for b in cg.get("blockers", []) if not (d.get("approval") and b.startswith("no named human"))]
+    else:
+        blockers = []
+        for cid, why in (("CLM_MARGIN", "contribution margin UNKNOWN"), ("CLM_COST_PER_CONTACT", "cost per e-mail UNKNOWN")):
+            if claims.get(cid, {}).get("tag") == "UNKNOWN":
+                blockers.append(why)
+        blockers += ["consent status UNKNOWN (CRM owner with legal)", "holdout not yet drawn", "no named human approval"
+                     if not d.get("approval") else "approval recorded"]
+        blockers = [b for b in blockers if b != "approval recorded"]
+    if no_send:
+        blockers = ["no e-mail: cost at or above break-even for the margin entered"] + [b for b in blockers if "approval" not in b]
     notes.append(f"{n_checked} findings re-checked against export {case.sha256[:12]}...")
     return {"passed": not problems, "problems": problems, "launch_ready": False if blockers else True, "launch_blockers": blockers,
-            "verdict": ("REJECTED: fix the draft" if problems else "PASS_DRAFT_HOLD_FOR_INPUTS" if blockers else "PASS"),
+            "verdict": ("REJECTED: fix the draft" if problems else "PASS_NO_SEND" if no_send else "PASS_DRAFT_HOLD_FOR_INPUTS" if blockers else "PASS"),
             "findings_checked": n_checked, "notes": notes, "approval_required": True}
 
 
@@ -308,10 +330,12 @@ class Step:
 
 
 class CampaignRun:
-    def __init__(self, case: CaseResult | None = None, store: DossierStore | None = None, persist: bool = True):
+    def __init__(self, case: CaseResult | None = None, store: DossierStore | None = None, persist: bool = True, commercial: dict | None = None):
         self.case = case or load_case()
         self.store = store or DossierStore(CAMPAIGN_DB)
-        self.tools = CampaignTools(self.case, self.store)
+        self.commercial = gate.normalize(commercial)
+        self.gate = gate.evaluate(self.case, self.commercial) if self.commercial is not None and self.case.ok else None
+        self.tools = CampaignTools(self.case, self.store, self.commercial)
         self.persist = persist
         self.steps: list[Step] = []
 
@@ -354,6 +378,9 @@ class CampaignRun:
                           "tasks": [{**t, "status": "PENDING"} for t in TASK_LEDGER], "stop_rule": STOP_RULE, "max_steps": 5},
             "agent_trace": [], "limitations": c.doc["warnings"],
         }
+        if self.gate is not None:
+            payload["commercial"] = self.commercial
+            payload["commercial_gate"] = {k: self.gate[k] for k in ("decision", "reasons", "blockers", "break_even_cost", "contacts", "kind")}
         return self.store.create(payload, actor="coordinator", role="agent")["opportunity_id"]
 
     def analyst(self, oid) -> Step:
@@ -384,6 +411,15 @@ class CampaignRun:
         s, t0 = Step("strategist", task_id="T3"), time.perf_counter()
         plan = self.call(s, "strategist", "read_marketing_plan", oid)
         v = self.store.get(oid)["version"]
+        if self.gate and self.gate["decision"] == "NO_EMAIL":
+            # economics fail at the inputs given: no e-mail draft, no approval request; only the $0 research/no-send work is queued
+            n_items = 0
+            for code, item in self.work_items(plan["data"]).items():
+                if code in ("R_NOSEND", "R_GEO"):
+                    n_items += self.call(s, "strategist", "queue_work_item", oid, opportunity_id=oid, item=item, idempotency_key=f"{oid}:{code}")["status"] == "ok"
+            s.transition = "NO_SEND_RECOMMENDED"
+            s.output = {"plan_hash": None, "work_items": n_items, "recommendation": "NO E-MAIL: " + " ".join(self.gate["reasons"]), "status": "NO_EMAIL"}
+            return self._finish(s, oid, t0)
         dr = self.call(s, "strategist", "draft_action", oid, opportunity_id=oid, expected_version=v)
         n_items = 0
         if dr["status"] == "ok":
@@ -391,8 +427,11 @@ class CampaignRun:
                 r = self.call(s, "strategist", "queue_work_item", oid, opportunity_id=oid, item=item, idempotency_key=f"{oid}:{code}")
                 n_items += r["status"] == "ok"
             v = self.store.get(oid)["version"]
-            rq = self.call(s, "strategist", "request_approval", oid, opportunity_id=oid, expected_version=v)
-            s.transition = "REVIEW_REQUESTED" if rq["status"] == "ok" else "DRAFT"
+            if self.gate and self.gate["decision"] == "REJECTED_MODEL_EXCLUSION":
+                s.transition = "DRAFT_REJECTED_MODEL_EXCLUSION"      # a plan the checker will reject is never put in front of an approver
+            else:
+                rq = self.call(s, "strategist", "request_approval", oid, opportunity_id=oid, expected_version=v)
+                s.transition = "REVIEW_REQUESTED" if rq["status"] == "ok" else "DRAFT"
         s.output = {"plan_hash": dr["data"]["plan_hash"] if dr["status"] == "ok" else None, "work_items": n_items,
                     "recommendation": self.case.doc["recommendation"]["decision"], "status": self.case.doc["recommendation"]["status"]}
         # state is changed by the transition itself; _finish must not clobber it
@@ -446,7 +485,7 @@ class CampaignRun:
                               actor="coordinator", role="agent", note="coordinator: stop at checkpoint")
         if self.persist:
             self.save_trace(oid, round((time.perf_counter() - t0) * 1000, 1))
-        return {"status": "OK", "opportunity_id": oid, "state": d["state"], "checker": chk.output["verdict"], "plan_hash": pilot_hash(d["pilot"]),
+        return {"status": "OK", "opportunity_id": oid, "state": d["state"], "checker": chk.output["verdict"], "plan_hash": pilot_hash(d["pilot"]) if d.get("pilot") else None,
                 "mode": MODE, "next": f'human: python -m mi.consumer.advisor approve {oid} --approver "<full name>"'}
 
     def save_trace(self, oid: str, total_ms: float | None = None, path: Path | None = None, extra: dict | None = None) -> dict:

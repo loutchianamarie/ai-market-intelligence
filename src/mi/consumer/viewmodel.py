@@ -126,7 +126,7 @@ def build(case: CaseResult, trace: dict | None = None, blocked: dict | None = No
                      "claim_id": "CLM_BUYERS_PER_1000_MENS"},
         "arms": arms, "policies": policies,
         "verdict": {"code": mvb["verdict"], "text": mvb["verdict_text"], "vs_random": mvb["model_minus_random_per_1000_contacts"],
-                    "vs_rule": mvb["model_minus_rule_per_1000_contacts"], "stable_vs_random": mvb["stable_vs_random"], "stable_vs_rule": mvb["stable_vs_rule"],
+                    "vs_rule": mvb["model_minus_rule_per_1000_contacts"], "stable_vs_random": mvb["stable_vs_random"], "stable_vs_rule": mvb["stable_vs_rule"], "share": mvb["primary_contact_share"],
                     "headline": ("Model ahead on the point estimate, NOT statistically stable: both intervals include zero. "
                                  "We do not use it to exclude customers.") if mvb["verdict"] == "MODEL_AHEAD_NOT_STABLE" else mvb["verdict"]},
         "recommendation": {"status": rec["status"], "decision": rec["decision"], "conditions": rec["conditions"], "reverse_if": rec["would_reverse_if"],
