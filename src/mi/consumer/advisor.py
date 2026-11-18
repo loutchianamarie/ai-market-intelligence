@@ -412,10 +412,13 @@ class CampaignRun:
                 "budget_usd": 0, "due_date": due(2 * st["step"]), "success_metric": plan["success_metric"][:120],
                 "follow_up_date": due(2 * st["step"] + 3), "requirements": {"consent_verified": None, "cost_confirmed": None} if paid else {},
                 "advisor_note": st["status"]}
-        items["R_GEO"] = {"kind": "research", "title": "Collect 20 real GEO answers (separate real-brand workstream)", "owner": "team (Assistant 1 / Assistant 2)",
-                          "segment": "public web and AI assistants", "channel": "AI assistants, no personal data", "draft": "docs/seo_geo_protocol.md",
-                          "evidence": ["reports/seo_geo_audit.json"], "budget_usd": 0, "due_date": due(7), "success_metric": "answers_logged = 20",
-                          "follow_up_date": due(10), "advisor_note": "no SEO/GEO effect is attributed to e-mail data"}
+        from mi.seo.geo import geo_task
+        g = geo_task()
+        items["R_GEO"] = {"kind": "research", "title": g["title"] + " (separate real-brand workstream)", "owner": "team",
+                          "segment": "public web and AI assistants", "channel": "AI assistants, no personal data", "draft": g["draft"],
+                          "evidence": ["reports/seo_geo_audit.json", "docs/geo_audit_results.md"], "budget_usd": 0, "due_date": due(7),
+                          "success_metric": g["success_metric"], "follow_up_date": due(10), "phase": g["phase"],
+                          "advisor_note": "no SEO/GEO effect is attributed to e-mail data. " + g["advisor_note"]}
         items["R_NOSEND"] = {"kind": "research", "title": "No-send path: obtain margin, cost per e-mail and consent, then re-run the decision", "owner": "finance with CRM",
                              "segment": "client", "channel": "internal", "draft": "break-even table in the export", "evidence": ["reports/campaign_case.latest.json#economic_thresholds"],
                              "budget_usd": 0, "due_date": due(5), "success_metric": "margin, cost and consent filled in", "follow_up_date": due(8),

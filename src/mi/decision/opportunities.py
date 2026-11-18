@@ -19,6 +19,7 @@ import pandas as pd
 from mi.config import load_config
 from mi.ingest.load import load
 from mi.paths import REPORTS, ROOT
+from mi.seo.geo import geo_pending_phrase
 
 
 def _geo_n() -> int:
@@ -174,7 +175,7 @@ def cards(facts, xs, coh, promo, port, dev) -> list[dict]:
               "hypothesized_need": "shoppers asking how to save on frozen pizza/coffee may not find the retailer's offers (HYPOTHESIS)",
               "positioning": "clear, factual answers to buyer questions",
               "four_ps": {"Product": "none", "Price": "none", "Place": "owned pages / listings", "Promotion": "content where cited sources are"},
-              "discriminating_evidence": ["20 GEO answers", "Search Console impressions/clicks for owned pages (if a real site owner)"],
+              "discriminating_evidence": ["the GEO audit (20 answers when complete)", "Search Console impressions/clicks for owned pages (if a real site owner)"],
               "success_metric": "mention/recommendation rate in a re-run panel AND owned-page search clicks (separately)",
               "evidence_level": "PENDING" if not _geo_n() else "OBSERVED answers (Claude models only); no traffic or conversion evidence",
               "recommendation": "collect evidence first; zero cost to collect" if not _geo_n() else "low-cost content action only where the audit shows a gap; repeat the panel in ChatGPT and Gemini before claiming anything about them"})
@@ -205,7 +206,7 @@ def _trend_checks(category) -> list[str]:
 def strategy_comparison(cards_) -> list[dict]:
     rank = {"no action": (1, "n/a", "$0"), "place / merchandising (non-discount)": (3, "LOW-MEDIUM: association barely beats a popularity suggestion", "not modelled (no causal data)"),
             "product / place investigation (non-discount)": (2, "HIGH: an operations check is cheap", "not modelled"),
-            "content / discovery": (3, "MEDIUM: 20 answers + analytics", "not modelled"),
+            "content / discovery": (3, "MEDIUM: GEO audit + analytics", "not modelled"),
             "coupon / paid contact": (4, "LOW at current cost: decision-grade test infeasible in the assumed pool", "negative at base; positive only under unconfirmed joint changes")}
     return [{"card": c["id"], "strategy_class": c["strategy_class"], "feasibility_rank_now": rank[c["strategy_class"]][0],
              "information_value": rank[c["strategy_class"]][1], "assumed_financial_upside": rank[c["strategy_class"]][2],
@@ -230,7 +231,7 @@ def run(write=True) -> dict:
            "what_to_learn_next": ["who funds a coupon and the consented pool size (flip the coupon economics or not)",
                                   "interviews: barrier for lapsed frozen-pizza buyers",
                                   "operations: stock/assortment for the shrinking category; feasibility of an adjacency test",
-                                  "20 GEO answers before any content work"],
+                                  geo_pending_phrase() + " before any content work"],
            "unavailable_metrics": "market size, LTV, CAC, ROAS: numerator/denominator/attribution/costs not in the data"}
     if write:
         (REPORTS / "opportunities.json").write_text(json.dumps(res, indent=2, default=float))

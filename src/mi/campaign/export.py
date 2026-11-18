@@ -577,15 +577,24 @@ def decision_card_md(doc: dict, det: dict) -> str:
     return "\n".join(L) + "\n"
 
 
-def capability_status() -> list[tuple[str, str, str]]:
-    """Seven capabilities with honest status. Other cases are named, and none of their numbers is copied into this case."""
-    geo = None
+def _geo_logged():
+    """GEO answers logged, read from the saved audit file only (this producer never imports the grocery/SEO code)."""
     p = REPORTS / "seo_geo_audit.json"
     if p.exists():
         try:                                                    # older reports were written in the platform encoding
-            geo = json.loads(p.read_text(encoding="utf-8", errors="replace")).get("answers_logged")
+            return json.loads(p.read_text(encoding="utf-8", errors="replace")).get("answers_logged")
         except ValueError:
-            geo = None
+            return None
+    return None
+
+
+def _geo_pending() -> str:
+    return "team scoring of the GEO audit and a ChatGPT/Gemini retest" if (_geo_logged() or 0) >= 20 else "the 20 GEO answers"
+
+
+def capability_status() -> list[tuple[str, str, str]]:
+    """Seven capabilities with honest status. Other cases are named, and none of their numbers is copied into this case."""
+    geo = _geo_logged()
     return [
         ("Research and RAG", "PARTIAL", "Source-backed explanation of this experiment from two primary sources; abstains on offer cost, retailer identity and creative. Grocery RAG tests are a separate case."),
         ("Customer intelligence", "VERIFIED on this case", "Conversion uplift model fitted and evaluated on held-out customers; no stable targeting gain. Not new-customer acquisition."),
@@ -664,7 +673,7 @@ def marketing_brief_md(doc: dict, det: dict, checksum: str) -> str:
           "5. Cite `claim_id` and `source_id` for every number on a slide or in a trace.", "",
           "## Human inputs still needed", "",
           "- Contribution margin and full cost per e-mail (finance, CRM).", "- Consent status of the current base (CRM, legal).",
-          "- A named approver and the holdout draw.", "- The 20 GEO answers and 2-3 interviews for the separate research tracks."]
+          "- A named approver and the holdout draw.", f"- For the separate research tracks: {_geo_pending()} and 2-3 customer interviews."]
     return "\n".join(L) + "\n"
 
 

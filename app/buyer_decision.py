@@ -28,17 +28,9 @@ COLORS = {"OBSERVED": "#1f6f43", "ESTIMATE": "#2a5ca8", "ASSUMPTION": "#8a5a00",
 
 
 def live_note() -> str:
-    """Status of live LLM use, read from the saved check files (never hard-coded as pending once a check passed)."""
-    import json as _j
-    p = Path(__file__).resolve().parents[1] / "reports" / "marketing_live_llm_check.json"
-    try:
-        c = _j.loads(p.read_text(encoding="utf-8"))
-    except (OSError, ValueError):
-        return "PENDING: no live LLM run recorded; this path calls no LLM."
-    if c.get("live_llm") and c.get("matches_export"):
-        return ("The decision path itself calls no LLM (deterministic specialists). A separate live check passed: the analyst role, driven by "
-                f"{c.get('model')}, called only its read tools and reported {c.get('findings_returned')} claims that all match the export. Strategist and checker are not LLM-driven.")
-    return "PENDING: the saved live LLM check did not pass or did not run; this path calls no LLM."
+    """Live-LLM status for the LOADED export. A check recorded against an older export is shown as HISTORICAL, never as validation."""
+    return VM.live_check_status(case.sha256)["text"]
+
 
 def badge(label: str) -> str:
     c = COLORS.get(label, "#555")
@@ -55,7 +47,7 @@ if not case.ok:
 store = DossierStore(A.CAMPAIGN_DB)
 trace = latest_trace()
 blocked = latest_blocked()
-if trace and trace.get("export_sha256") != case.sha256:
+if trace and not VM.trace_is_current(trace, case.sha256):
     st.warning("The saved agent trace was produced from a different export; run the agents again.")
     trace = None
 v = build(case, trace, blocked)
@@ -158,8 +150,9 @@ g1, g2 = st.columns(2)
 g1.markdown("**Abstains on (UNKNOWN, never estimated):** " + "; ".join(u["name"] for u in v["unknowns"]) + "; retailer identity; 2008 creative; consent status.")
 g1.markdown("**Sources:** " + "; ".join(f"`{s['source_id']}`" for s in v["sources"]) + ". 2008 published figures are PUBLISHED REFERENCE only.")
 geo = A.CampaignTools(case, store).t_seo_status()["data"]
-g2.markdown(f"**SEO/GEO:** {badge('PENDING' if geo['answers_logged'] < geo['answers_target'] else 'OBSERVED')} {geo['answers_logged']}/{geo['answers_target']} real answers logged. "
-            "Separate real-brand workstream; no effect is attributed to e-mail data.", unsafe_allow_html=True)
+g2.markdown(f"**SEO/GEO:** {badge('PENDING' if geo['answers_logged'] < geo['answers_target'] else 'OBSERVED')} {geo['answers_logged']}/{geo['answers_target']} real answers logged"
+            + (" (two Claude models on a public analogue brand; ChatGPT/Gemini retest pending). " if geo["answers_logged"] >= geo["answers_target"] else ". ")
+            + "Separate real-brand workstream; no effect is attributed to e-mail data.", unsafe_allow_html=True)
 
 st.subheader("6. Action draft, CRM sandbox and human checkpoint")
 if not dz:

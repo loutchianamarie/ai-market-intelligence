@@ -200,6 +200,38 @@ def latest_trace(path: Path = REPORTS / "marketing_agent_trace.json") -> dict | 
     return json.loads(path.read_text(encoding="utf-8")) if path.exists() else None
 
 
+def trace_is_current(trace: dict | None, export_sha256: str) -> bool:
+    """A saved agent trace may be shown as the current run only if it was produced from the loaded export."""
+    return bool(trace) and trace.get("export_sha256") == export_sha256
+
+
+LIVE_CHECK = REPORTS / "marketing_live_llm_check.json"
+
+
+def live_check_status(export_sha256: str, path: Path | None = None) -> dict:
+    """What the saved live-LLM check does and does NOT show for the CURRENTLY loaded export.
+
+    state: NONE | NOT_PASSED | HISTORICAL (passed on a different export, so it validates nothing about this one) | CURRENT.
+    The check file is never edited here and no API call is made.
+    """
+    try:
+        c = json.loads((path or LIVE_CHECK).read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {"state": "NONE", "text": "PENDING: no live LLM run recorded; this path calls no LLM."}
+    if not (c.get("live_llm") and c.get("matches_export")):
+        return {"state": "NOT_PASSED", "text": "PENDING: the saved live LLM check did not pass or did not run; this path calls no LLM."}
+    recorded = c.get("export_sha256")
+    what = (f"the analyst role, driven by {c.get('model')}, called only its read tools and reported {c.get('findings_returned')} claims that matched that export")
+    if recorded == export_sha256:
+        return {"state": "CURRENT", "text": ("The decision path itself calls no LLM (deterministic specialists). A separate live check passed on this export: "
+                                             f"{what}. Strategist and checker are not LLM-driven.")}
+    return {"state": "HISTORICAL",
+            "text": ("The decision path itself calls no LLM (deterministic specialists). HISTORICAL live check, NOT validated for the loaded export: "
+                     f"{what} (export {str(recorded)[:8] or 'unrecorded'}, now superseded by {export_sha256[:8]}). "
+                     "Live check PENDING for this export (re-run: python -m mi.consumer.advisor live-check, needs an API key). "
+                     "Strategist and checker are not LLM-driven.")}
+
+
 def latest_blocked(path: Path = REPORTS / "marketing_blocked_demo.json") -> dict | None:
     return json.loads(path.read_text(encoding="utf-8")) if path.exists() else None
 
@@ -249,10 +281,19 @@ def brief_markdown(v: dict) -> str:
           "| Portfolio optimization | VERIFIED as a campaign portfolio: Mens, Womens, no e-mail under contact caps |",
           "| Demand and risk | SCENARIO: intervals and break-even thresholds; no demand forecast |",
           "| Advisor and CRM | IMPLEMENTED as DETERMINISTIC_SPECIALISTS with a sandbox record; LIVE LLM RUN PENDING |",
-          "| SEO / GEO | PENDING: 0 of 20 real answers logged; separate from the e-mail data |",
+          f"| SEO / GEO | {_geo_row()} |",
           "| Outcome learning | HISTORICAL ONLY: outcome log works only after a recorded action; no live outcome exists |", "",
           "## Limits", ""] + [f"- {w}" for w in v["warnings"]]
     return "\n".join(L) + "\n"
+
+
+def _geo_row() -> str:
+    from mi.seo.geo import geo_state
+    g = geo_state()
+    if g["complete"]:
+        return (f"OBSERVED: {g['answers_logged']} of {g['answers_target']} answers from {' and '.join(g['assistants'])} on a public analogue brand; "
+                "ChatGPT/Gemini retest and impact/effort scoring PENDING; separate from the e-mail data")
+    return f"PENDING: {g['answers_logged']} of {g['answers_target']} real answers logged; separate from the e-mail data"
 
 
 # ----------------------------------------------------------------------------------------------- offline html

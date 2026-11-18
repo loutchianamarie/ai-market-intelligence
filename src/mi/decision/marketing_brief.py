@@ -10,6 +10,7 @@ import json
 import sys
 
 from mi.paths import REPORTS, ROOT
+from mi.seo.geo import geo_pending_phrase
 
 
 def _r(n):
@@ -50,7 +51,7 @@ def agenda() -> list[dict]:
          "evidence": [("OBSERVED (two Claude models)" if geo.get('answers_logged', 0) else "PENDING", f"{geo.get('answers_logged', 0)}/20 answers"),
                       ("VERIFIED EXTERNAL", "Google: no special requirements to appear in AI features (google_ai_features)")],
          "rag": rag_cite("Does Google require special markup or schema to appear in AI Overviews?"),
-         "task": "R2 GEO answers", "changes": "whether plan C is worth doing"},
+         "task": "R2 GEO audit", "changes": "whether plan C is worth doing"},
         {"problem": "Expensive / unconfirmed contact economics", "question": "Who funds the offer, how many consented households, what margin and costs?",
          "evidence": [("MEASURED", f"historical retailer match {fa.get('all_couponed_lines', {}).get('value_weighted_match_share')} of manufacturer coupon value (past lines only)"),
                       ("ASSUMED", "retailer-funded base; 7,308 reachable; $1,500 setup; $0.03 contact"),
@@ -90,7 +91,7 @@ def brief() -> str:
           "| plan | segment (measurable / reachable / substantial) | lever and why | Product / Price / Place / Promotion | buyers (4 weeks) | contribution | status |", "|---|---|---|---|---|---|---|",
           f"| A Frozen Pizza coupon | lapsing; 406 panel hh / consent unknown / 7,308 assumed | price lever only if price or habit is the barrier (unknown) | as is / $0.90 coupon / app / one message | {p['expected_buyers']} expected (current patterns, panel); +{add['low']:,.0f} to +{add['high']:,.0f} additional at assumed response (company); break-even +{a['break_even_additional_buyers']:,.0f} | {a['incremental_contribution_usd']['low']:+,.0f} to {a['incremental_contribution_usd']['high']:+,.0f} USD | no paid test (DEFER) |",
           f"| B Yogurt investigation | all yogurt buyers; store-level / no contact | product or place if the cause is availability or assortment; no discount until diagnosed | assortment review / check price moves / stock and shelf / none | {bo['actions']['B_yogurt_investigation']['current_pattern_buyers_panel']['expected_buyers']} expected (panel); additional: unknown | unknown ($0 check) | READY task OPS1 |",
-          "| C Discovery content | public analogue; not linkable to the panel | promotion via content only if assistants show a gap | none / none / owned pages / content | not measurable from this data | unknown | conditional on 20 answers |",
+          f"| C Discovery content | public analogue; not linkable to the panel | promotion via content only if assistants show a gap | none / none / owned pages / content | not measurable from this data | unknown | conditional on {geo_pending_phrase()} |",
           "| D No paid action | — | default until evidence arrives | — | current patterns continue | $0 | **current choice** |",
           f"| E extra category (pre-registered criteria) | {ex.get('selected') or 'none qualified'} | — | — | — | — | {ex.get('result', '')} |", "",
           "Cross-sell is kept as a **negative finding**: only 1 of 56 pairs beats a popularity suggestion, by 0.06 pp.", "",

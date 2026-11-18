@@ -126,9 +126,17 @@ def card(C) -> str:
           "1. Send the client input form (`docs/client_input_form.md`); load the answers with `python -m mi.decision.client_inputs` and re-run `python -m mi.cli all`.",
           "2. Interviews: why did lapsed buyers stop? This decides between a coupon, the product, availability and no action.",
           "3. Operations check on the Yogurt signal (card C3); keep the weak cross-sell (C2) as a negative finding.",
-          "4. Collect the 20 GEO answers before any content work (card C4).", "",
+          f"4. Before any content work (card C4): {_geo_step()}.", "",
           "Full cards: `docs/opportunity_cards.md`. Claims with provenance: `reports/current_claims.json`."]
     return "\n".join(L) + "\n"
+
+
+def _geo_step() -> str:
+    from mi.seo.geo import geo_state
+    g = geo_state()
+    if g["complete"]:
+        return "the GEO audit is complete (20/20, Claude models only): score impact and effort, then re-run the frozen panel in ChatGPT and Gemini"
+    return f"collect the remaining {g['answers_remaining']} of {g['answers_target']} GEO answers"
 
 
 def main(argv=None) -> int:

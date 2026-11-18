@@ -17,6 +17,7 @@ from pathlib import Path
 
 from mi.consumer.adapter import load_case
 from mi.paths import DOCS, REPORTS, ROOT
+from mi.seo.geo import geo_pending_phrase, geo_state
 
 OUT = DOCS / "MASTER_PROJECT_REPORT.md"
 
@@ -49,6 +50,14 @@ def test_inventory() -> tuple[int, list[tuple[str, int]]]:
     for f in sorted((ROOT / "tests").glob("test_*.py")):
         rows.append((f.name, len(re.findall(r"^def test_", f.read_text(encoding="utf-8"), re.M))))
     return sum(c for _, c in rows), rows
+
+
+def _geo_limit() -> str:
+    g = geo_state()
+    if g["complete"]:
+        return (f"The GEO audit is complete ({g['answers_logged']} of {g['answers_target']} answers, {' and '.join(g['assistants'])} only, one dated run, "
+                "public analogue brand; ChatGPT/Gemini retest and impact/effort scoring pending)")
+    return f"{g['answers_logged']} of {g['answers_target']} GEO answers logged"
 
 
 def build() -> str:
@@ -118,6 +127,8 @@ def build() -> str:
 
 **Master project report** | AI in Business and Marketing, semester 3 | generated {date.today().isoformat()} from commit `{head}` by `python -m mi.report.master_report`
 
+> **Scope: this is the detailed report for the separate HILLSTROM E-MAIL CASE, one of the two cases in the AI Marketing Decision Studio.** The presentation leads with the grocery marketing decision (see `START_HERE.md` and `docs/presentation/DEMO_5MIN.md`). The e-mail experiment is a different retailer and a different dataset: nothing below is a grocery result, the e-mail effect is never transferred to the grocery case, and no claim here says grocery buyers increased.
+>
 > Every number in this report is read from the project's computed artifacts (validated export, model-lab results, claims export). If a number changes, regenerate the report; do not edit it by hand.
 
 ## Abstract
@@ -275,7 +286,7 @@ flowchart TD
 - **Group effects only.** Treated-minus-control differences estimate additional repeat buyers for a population, not an individual's effect and not customer acquisition.
 - **Economics are assumptions.** Margin, e-mail cost, setup and the mailable base are illustrative; the system states the threshold, not a profit.
 - **Agents.** Deterministic specialists; live LLM execution verified only for the analyst role.
-- **Missing field evidence.** 0 of 20 GEO answers logged and 0 customer interviews completed; no SEO or GEO effect is attributed to e-mail data.
+- **Missing field evidence.** {_geo_limit()} and 0 customer interviews completed; no SEO or GEO effect is attributed to e-mail data.
 
 Unknowns the business must supply:
 
@@ -312,7 +323,7 @@ The model was retrained independently on a second machine (different Python and 
 
 ## 10. Conclusion and future work
 
-The defensible finding is the randomized average effect: a Mens e-mail creates about {n(Mn['additional_buyers_per_1000']['value'])} additional purchasing customers per 1,000 existing customers within two weeks. A targeting model does not yet earn the right to exclude anyone. Next steps, in order of value: (1) obtain margin, e-mail cost and consent status; (2) run the recommended randomized pilot with a 10% holdout, sized for {E['recommendation']['holdout_plan']['customers_per_arm_needed']:,} customers per arm to confirm the average effect and, with far larger volume, to test targeting; (3) complete the 20 GEO answers and the customer interviews as separate evidence tracks; (4) extend live LLM tool use to the strategist and checker under the same approval boundary.
+The defensible finding is the randomized average effect: a Mens e-mail creates about {n(Mn['additional_buyers_per_1000']['value'])} additional purchasing customers per 1,000 existing customers within two weeks. A targeting model does not yet earn the right to exclude anyone. Next steps, in order of value: (1) obtain margin, e-mail cost and consent status; (2) run the recommended randomized pilot with a 10% holdout, sized for {E['recommendation']['holdout_plan']['customers_per_arm_needed']:,} customers per arm to confirm the average effect and, with far larger volume, to test targeting; (3) {geo_pending_phrase()} and the customer interviews as separate evidence tracks; (4) extend live LLM tool use to the strategist and checker under the same approval boundary.
 
 ## References
 

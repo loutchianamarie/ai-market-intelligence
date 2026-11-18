@@ -47,7 +47,7 @@ This is a separate real-brand discovery workstream. It says nothing about the e-
 2. Person 1 runs all 10 prompts in assistant 1; person 2 runs all 10 in assistant 2. One fresh chat per prompt.
 3. Copy the full answer into a private file `answers/<prompt_id>_<assistant>.txt` (this folder is gitignored; only the SHA-256 of each answer goes in the log).
 4. Fill one row per answer in `data/seo/answer_log.csv`: `assistant_version`, `country_setting`, `timestamp_utc`, `raw_answer_sha256`, Y/N for `brand_mentioned`, `brand_recommended`, `brand_top_pick`, competitors named / recommended, `cited_urls` exactly as shown, `collected_by`.
-5. Check progress: `python -m mi.seo.geo check` (lists incomplete rows). When 20 rows are complete: `python -m mi.seo.geo analyze` writes `reports/seo_geo_audit.json`, and the app and slides show `20/20` instead of `0/20 PENDING`.
+5. Check progress: `python -m mi.seo.geo check` (lists incomplete rows). When 20 rows are complete: `python -m mi.seo.geo analyze` writes `reports/seo_geo_audit.json`, and the app and slides read the new count from that file.
 6. Rules for the Y/N columns are in `docs/seo_geo_protocol.md`. Do not count a mention you did not read in the answer.
 
 Log file: `{LOG.relative_to(LOG.parents[2]).as_posix()}`.

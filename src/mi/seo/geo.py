@@ -181,6 +181,62 @@ def check(log_path=LOG, panel_path=PANEL) -> dict:
             "warning": (None if freeze_ok or not started else "answers logged but the panel was not frozen at this version: re-freeze is NOT allowed mid-run; restart collection")}
 
 
+def geo_state(log_path=LOG, panel_path=PANEL) -> dict:
+    """One read of the real GEO state, for every generator that needs it (work items, briefs, app text).
+
+    Nothing here is typed by hand: counts come from the answer log, completeness from `check`. `complete` is True
+    only when all target rows pass the collection check and the panel is frozen at the logged version.
+    """
+    panel = load_panel(panel_path)
+    rows = read_log(log_path)
+    chk = check(log_path, panel_path)
+    res = analyze(rows, panel)
+    n, target = res["answers_logged"], res["answers_target"]
+    complete = bool(n >= target and chk["complete_rows"] >= target and chk["panel_frozen"])
+    st = {"answers_logged": n, "answers_target": target, "complete_rows": chk["complete_rows"], "complete": complete,
+          "brand": panel["audited_brand"], "competitors": panel["competitors"],
+          "answers_remaining": max(0, target - chk["complete_rows"]),
+          "assistants": sorted({(r.get("assistant_version") or "").split(" (")[0].strip() for r in rows if (r.get("assistant_version") or "").strip()}),
+          "dates": sorted({(r.get("timestamp_utc") or "")[:10] for r in rows if (r.get("timestamp_utc") or "").strip()}),
+          "answers_citing_urls": sum(1 for r in rows if (r.get("cited_urls") or "").strip()),
+          "region_set": any(not (r.get("country_setting") or "").lower().startswith("none") for r in rows if (r.get("country_setting") or "").strip())}
+    if n:
+        st.update({k: res[k] for k in ("mention_rate", "recommendation_rate", "primary_pick_rate", "by_intent")})
+    return st
+
+
+def geo_pending_phrase(state: dict | None = None) -> str:
+    """Short wording for 'what is left on GEO', for generated lists and tables (never says to collect answers that exist)."""
+    s = state or geo_state()
+    if not s["complete"]:
+        return f"the remaining {s['answers_remaining'] or s['answers_target']} of {s['answers_target']} GEO answers"
+    return "team scoring of the GEO audit and a ChatGPT/Gemini retest"
+
+
+def geo_task(state: dict | None = None) -> dict:
+    """The work item the advisor should queue for the CURRENT GEO state (collection task only while rows are missing)."""
+    s = state or geo_state()
+    if not s["complete"]:
+        rem = s["answers_remaining"] or s["answers_target"]
+        return {"title": f"Collect the remaining {rem} of {s['answers_target']} GEO answers",
+                "draft": "docs/seo_geo_protocol.md", "success_metric": f"python -m mi.seo.geo check reports complete_rows = {s['answers_target']}",
+                "decision_it_changes": "whether plan C (content) is worth doing", "advisor_note": "collection task: the answer log is incomplete",
+                "phase": "COLLECT"}
+    li = s["by_intent"]["Learn"]
+    m, r = s["mention_rate"], s["recommendation_rate"]
+    return {"title": (f"Review the completed {s['answers_target']}-answer GEO audit ({s['brand']} analogue), score impact and effort, "
+                      "and plan the ChatGPT/Gemini retest"),
+            "draft": "docs/geo_audit_results.md",
+            "success_metric": "team scores impact and effort (1 to 3) for each candidate action; frozen panel re-run in ChatGPT and Gemini before any claim about them",
+            "decision_it_changes": "whether a Learn-intent content draft (plan C) is worth writing",
+            "advisor_note": (f"{s['answers_logged']}/{s['answers_target']} answers collected ({', '.join(s['assistants'])}; one dated run {', '.join(s['dates'])}; "
+                             f"region {'set' if s['region_set'] else 'not set'}; {s["answers_target"] - s["answers_citing_urls"]} answers made without web search (no sources cited)). "
+                             f"{s['brand']} (public analogue, not the dataset retailer) mentioned {m['num']}/{m['den']}, recommended {r['num']}/{r['den']}; "
+                             f"Learn: mentioned {li['mentioned']}/{li['n']}, recommended {li['recommended']}/{li['n']}. Observed AI-answer visibility only: "
+                             "no traffic, conversion or sales effect is claimed; any content draft needs human approval before publication."),
+            "phase": "REVIEW"}
+
+
 def freeze(panel_path=PANEL, by="team") -> str:
     panel = json.loads(open(panel_path, encoding="utf-8").read())
     if any((r.get("timestamp_utc") or "").strip() for r in (csv.DictReader(open(LOG, encoding="utf-8")) if LOG.exists() else [])):

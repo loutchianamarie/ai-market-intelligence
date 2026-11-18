@@ -1,3 +1,5 @@
+import hashlib
+
 import pandas as pd
 import pytest
 
@@ -41,3 +43,27 @@ def tiny():
     demo = pd.DataFrame({"household_id": ["A"], "age": ["35-44"]})
     return {"tx": tx, "products": products, "campaigns": campaigns, "camp_desc": camp_desc,
             "coupons": coupons, "red": red, "demo": demo}
+
+
+# ---------------------------------------------------------------------------------------------------------------
+# Live demo artifacts must survive a test run untouched: a test that writes a throwaway dossier over the saved trace,
+# the campaign brief or the local dossier stores would make the demo show test data. Tests use tmp stores; this guard
+# proves it by hashing the files the demo reads before and after the whole session.
+from mi.paths import DOCS, PROCESSED  # noqa: E402
+
+GUARDED = [REPORTS / "marketing_agent_trace.json", REPORTS / "marketing_blocked_demo.json", REPORTS / "agent_trace_latest.json",
+           REPORTS / "buyer_decision_backup.html", REPORTS / "campaign_case.latest.json", REPORTS / "campaign_case.latest.sha256",
+           REPORTS / "seo_geo_audit.json", REPORTS / "run_manifest.json", REPORTS / "current_claims.json",
+           REPORTS / "demo_fallback" / "grocery_demo_backup.html", DOCS / "marketing_decision_brief.md", DOCS / "marketing_brief.md", PROCESSED / "dossier.sqlite", PROCESSED / "campaign_dossier.sqlite"]
+
+
+def _digest(p):
+    return hashlib.sha256(p.read_bytes()).hexdigest() if p.exists() else None
+
+
+@pytest.fixture(scope="session", autouse=True)
+def live_demo_artifacts_untouched():
+    before = {p: _digest(p) for p in GUARDED}
+    yield
+    changed = [p.name for p in GUARDED if _digest(p) != before[p]]
+    assert not changed, f"tests modified live demo artifacts: {changed}"

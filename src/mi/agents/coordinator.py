@@ -88,6 +88,20 @@ RESEARCH_PLAN = [
 ]
 
 
+def research_plan(geo=None) -> list[dict]:
+    """The $0 checklist. R2 follows the REAL GEO state: collect while rows are missing, otherwise review and retest."""
+    from mi.seo.geo import geo_state
+    g = geo or geo_state()
+    plan = [dict(x) for x in RESEARCH_PLAN]
+    if g["complete"]:
+        for x in plan:
+            if x["id"] == "R2":
+                x.update(task=(f"Review the completed {g['answers_target']}-answer GEO audit ({g['brand']} analogue, Claude models only); team scores impact and effort; "
+                               "re-run the frozen panel in ChatGPT and Gemini before claiming anything about them"),
+                         owner="Loutchiana and Charbel", decides="whether a Learn-intent content draft (plan C, publication needs approval) is worth writing")
+    return plan
+
+
 class Run:
     def __init__(self, store: DossierStore | None = None, llm: LLMClient | None = None):
         self.store = store or DossierStore()
@@ -95,6 +109,7 @@ class Run:
         self.llm = llm or LLMClient()
         self.cfg = load_config()
         self.trace: list[dict] = []
+        self.geo_override: dict | None = None  # tests and the advisor evaluation inject a GEO state; the live run reads the real one
 
     # ------------------------------------------------------------------ helpers
     def call(self, out: AgentOutput, oid: str, tool: str, **args) -> dict:
@@ -328,7 +343,7 @@ class Run:
                                   f"{100 * (h['B_new_entrants_cycle_break_even'] or 0):.1f} pp (new entrants only), "
                                   f"{100 * h['C_one_time_remaining_covers_setup_and_test']:.1f} pp (one-off on remaining households, covering setup and test); "
                                   "assumed uplift is 4.0 pp."),
-                       "reopen_if": reopen_conditions(dz.get("funding_contracts")), "research_plan": RESEARCH_PLAN,
+                       "reopen_if": reopen_conditions(dz.get("funding_contracts")), "research_plan": research_plan(self.geo_override),
                        "status": "ADVISORY; the dossier stays in review until a named human rejects or approves"}
                 d = self.store.get(oid)
                 self.store.update(oid, d["version"], {"advisor_recommendation": rec}, actor="activation_agent", role="agent",
@@ -378,16 +393,18 @@ class Run:
         due = lambda days: (today + timedelta(days=days)).isoformat()  # noqa: E731
         pilot = d.get("pilot") or {}
         bud = (pilot.get("budget") or {}).get("total", 0)
+        from mi.seo.geo import geo_task
+        g = geo_task(self.geo_override)
         items = [
             ("R1", {"kind": "research", "title": "2-3 consented interviews (lapsed frozen-pizza buyers, 1 nonbuyer)", "owner": "Loutchiana (I01-I02), Charbel (I03)",
                     "segment": "FROZEN PIZZA|LAPSING", "channel": "in person / call (consented)", "draft": "data/interviews/interview_template.md",
                     "evidence": ["reports/opportunities.json#C1", "docs/market_research_memo.md"], "budget_usd": 0, "due_date": due(7),
                     "success_metric": "mi.evidence.interviews check = OK; barrier codes recorded", "follow_up_date": due(10),
                     "decision_it_changes": "coupon vs product/availability vs no action for plan A"}),
-            ("R2", {"kind": "research", "title": "Freeze GEO panel and collect 20 fresh-chat answers", "owner": "Loutchiana (Assistant 1), Charbel (Assistant 2)",
-                    "segment": "public analogue (not panel)", "channel": "AI assistants (no personal data)", "draft": "docs/seo_geo_protocol.md",
-                    "evidence": ["reports/seo_geo_audit.json"], "budget_usd": 0, "due_date": due(7), "success_metric": "mi.seo.geo check complete_rows = 20",
-                    "follow_up_date": due(10), "decision_it_changes": "whether plan C (content) is worth doing"}),
+            ("R2", {"kind": "research", "title": g["title"], "owner": "Loutchiana and Charbel",
+                    "segment": "public analogue (not panel)", "channel": "AI assistants (no personal data)", "draft": g["draft"],
+                    "evidence": ["reports/seo_geo_audit.json", "docs/geo_audit_results.md"], "budget_usd": 0, "due_date": due(7), "success_metric": g["success_metric"],
+                    "follow_up_date": due(10), "decision_it_changes": g["decision_it_changes"], "advisor_note": g["advisor_note"], "phase": g["phase"]}),
             ("R3", {"kind": "research", "title": "Verify Kroger / Target / Walmart / ALDI offer pages by hand", "owner": "Charbel",
                     "segment": "public analogue", "channel": "browser + screenshots", "draft": "docs/decision_brief.md section 6",
                     "evidence": ["docs/decision_brief.md#6"], "budget_usd": 0, "due_date": due(5), "success_metric": "each row VERIFIED with date or stays UNVERIFIED",
@@ -402,7 +419,7 @@ class Run:
                       "evidence": ["reports/trend_check_yogurt.json", "docs/opportunity_cards.md#C3"], "budget_usd": 0, "due_date": due(10),
                       "success_metric": "cause identified or ruled out (stock / assortment / price / none)", "follow_up_date": due(14),
                       "decision_it_changes": "whether plan B becomes a product/place fix"}),
-            ("CONTENT1", {"kind": "public_content", "title": "Discovery content for the public analogue (only after R2 shows a gap)", "owner": "both (draft only)",
+            ("CONTENT1", {"kind": "public_content", "title": "Discovery content draft for the public analogue (only if the team scores a gap worth acting on; publication blocked until approved)", "owner": "both (draft only)",
                           "segment": "public web / AI assistants", "channel": "owned pages (publication blocked)", "draft": "to be written from GEO source gaps",
                           "evidence": ["reports/seo_geo_audit.json"], "budget_usd": 0, "due_date": due(21),
                           "success_metric": "mention/recommendation rate on a re-run panel; owned-page clicks (separately)",
@@ -561,6 +578,19 @@ def rejection_rehearsal() -> dict:
     return out
 
 
+def point_manifest_at(oid: str) -> bool:
+    """`mi.cli all` records the live dossier id in reports/run_manifest.json (the claims export and brief read it).
+    A standalone `coordinator run` creates a newer dossier, so it moves that pointer too; otherwise the generated
+    briefs would keep describing the previous dossier's work queue."""
+    p = REPORTS / "run_manifest.json"
+    if not p.exists():
+        return False
+    man = json.loads(p.read_text(encoding="utf-8"))
+    man["dossier"] = oid
+    p.write_text(json.dumps(man, indent=2), encoding="utf-8")
+    return True
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("cmd", choices=["run", "approve", "resume", "blocked-demo", "rejection-rehearsal", "llm-smoke", "show"])
@@ -572,6 +602,7 @@ def main(argv=None) -> int:
     if a.cmd == "run":
         r = Run()
         oid = r.run_to_checkpoint()
+        point_manifest_at(oid)
         d = r.store.get(oid)
         print(json.dumps({"opportunity_id": oid, "state": d["state"], "llm_available": r.llm.available,
                           "pilot_budget": d["pilot"]["budget"], "plan_hash": pilot_hash(d["pilot"]),

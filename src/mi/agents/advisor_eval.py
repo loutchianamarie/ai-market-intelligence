@@ -25,6 +25,12 @@ def run(write=True) -> dict:
     tmp = Path(tempfile.mkdtemp()) / "eval.sqlite"
     r = Run(DossierStore(tmp))
     r.persist_traces = False
+    # Case A6 is pre-registered for a panel with NO answers. The real log is now complete (20/20), so the case runs on an
+    # explicit empty-log fixture; the complete-panel behaviour is covered by tests/test_geo_state.py.
+    from mi.seo.geo import COLUMNS, geo_state
+    empty_log = tmp.parent / "empty_answer_log.csv"
+    empty_log.write_text(",".join(COLUMNS) + chr(10), encoding="utf-8")
+    r.geo_override = geo_state(empty_log)
     oid = r.run_to_checkpoint()
     q = WorkQueue(r.store)
     items = {w["idempotency_key"].split(":")[-1]: w for w in q.list(oid)}
@@ -70,8 +76,9 @@ def run(write=True) -> dict:
                                              "asserts_single_value": ans.get("usable_as_fact", False) and not ans.get("conflicts")}
     # A6 GEO with no answers
     from mi.seo.geo import analyze, load_panel, read_log
-    g = analyze(read_log(), load_panel())
-    res["A6_geo_no_answers"] = {"reports_visibility_metric": "mention_rate" in g, "creates_collection_task": "R2" in items,
+    g = analyze(read_log(empty_log), load_panel())
+    res["A6_geo_no_answers"] = {"reports_visibility_metric": "mention_rate" in g,
+                                "creates_collection_task": items["R2"]["payload"].get("phase") == "COLLECT",
                                 "content_action_conditional": items["CONTENT1"]["status"] == "BLOCKED_PENDING_APPROVAL"
                                                               and items["CONTENT1"]["payload"].get("depends_on") == "R2"}
     scored = []

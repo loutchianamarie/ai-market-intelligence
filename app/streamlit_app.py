@@ -319,6 +319,15 @@ with tabs[4]:
     if res["answers_logged"]:
         st.json({k: res[k] for k in ("mention_rate", "recommendation_rate", "primary_pick_rate", "share_of_voice",
                                      "share_of_recommendations", "largest_leak", "source_gap_top3")})
+        from mi.seo.geo import geo_state
+        gs = geo_state()
+        if gs["complete"]:
+            bi = res["by_intent"]
+            st.markdown(" · ".join(f"**{k}**: mentioned {v['mentioned']}/{v['n']}, recommended {v['recommended']}/{v['n']}" for k, v in bi.items()))
+            st.caption(f"{gs['answers_logged']}/{gs['answers_target']} answers from {' and '.join(gs['assistants'])} (not ChatGPT or Gemini); one dated run {', '.join(gs['dates'])}; "
+                       f"region not set; {gs['answers_target'] - gs['answers_citing_urls']} answers made without web search. {gs['brand']} is a public analogue, not the dataset retailer. "
+                       "Recommended in 0/8 Learn answers is not zero visibility (it is mentioned in 5/8) and is not measured lost sales. "
+                       "Content actions below are hypotheses: impact and effort are unscored and any publication needs human approval.")
         st.dataframe(pd.DataFrame(res["candidate_actions"]))
     st.caption(panel["audited_brand_rationale"])
 
