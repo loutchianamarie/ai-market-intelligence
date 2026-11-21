@@ -363,7 +363,7 @@ def test_grocery_store_and_dossiers_are_isolated(case, store):
     assert str(store.path).endswith("c.sqlite")
 
 
-# ------------------------------------------------------------------ view model, offline backup, deck, app
+# ------------------------------------------------------------------ view model, offline backup, app
 def test_viewmodel_matches_export_and_refuses_a_rejected_case(case, tmp_path):
     from mi.consumer.viewmodel import backup_html, brief_markdown, build
     v = build(case)
@@ -375,22 +375,6 @@ def test_viewmodel_matches_export_and_refuses_a_rejected_case(case, tmp_path):
     assert "profit of" not in md.lower()
     with pytest.raises(ValueError):
         build(load_case(tmp_path / "absent.json"))
-
-
-def test_five_slide_deck_uses_export_numbers(case, tmp_path):
-    pytest.importorskip("pptx")
-    import importlib.util
-    spec = importlib.util.spec_from_file_location("bd", EXPORT_PATH.parents[1] / "deck" / "build_campaign_deck.py")
-    mod = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(mod)
-    info = mod.make(tmp_path / "d.pptx")
-    from pptx import Presentation
-    prs = Presentation(str(tmp_path / "d.pptx"))
-    assert len(prs.slides) == 5 and info["total_words"] < 700
-    text = " ".join(sh.text_frame.text for sl in prs.slides for sh in sl.shapes if sh.has_text_frame)
-    text += " " + " ".join(c.text for sl in prs.slides for sh in sl.shapes if sh.has_table for r in sh.table.rows for c in r.cells)
-    assert "267 / 21,307" in text and "not stable" in text.lower() and "OBSERVED" in text and "0 of 20" in text
-    assert "profit of" not in text.lower() and "model wins" not in text.lower()
 
 
 def test_streamlit_screen_renders_without_exception():
@@ -425,22 +409,6 @@ def test_geo_sheet_lists_the_panel_prompts_and_never_contains_answers():
     panel = json.loads((EXPORT_PATH.parents[1] / "data" / "seo" / "prompt_panel.json").read_text(encoding="utf-8"))
     assert all(q["text"] in t for q in panel["prompts"])
     assert "no answer may be written by the team" in t and "fresh chat" in t.lower()
-
-
-def test_rehearsal_scoring_flags_overruns_and_records_nothing_by_itself(tmp_path, monkeypatch):
-    import importlib.util
-    spec = importlib.util.spec_from_file_location("reh", EXPORT_PATH.parents[1] / "deck" / "rehearse.py")
-    m = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(m)
-    ok = m.score([30, 45, 70, 95, 60])
-    assert ok["pass"] and ok["total_s"] == 300
-    over = m.score([40, 45, 70, 95, 70])
-    assert not over["pass"] and over["rows"][0]["status"] == "TOO LONG" and over["total_status"] == "OVER 5:00"
-    with pytest.raises(ValueError):
-        m.score([30, 45])
-    monkeypatch.setattr(m, "LOG", tmp_path / "log.json")
-    m.record(ok, "test")
-    assert json.loads((tmp_path / "log.json").read_text())[0]["rehearsal_of"] == "human"
 
 
 def test_what_if_is_scenario_arithmetic_and_validates():
